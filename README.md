@@ -9,17 +9,61 @@ My patches are A.I. generated!
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
+> **[v1.0.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.0.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;9 patches total
+<details open>
+<summary>📦 Universal TV Remote Control&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
 
-<!-- Do not modify this section by hand. The patch list is generated when release.yml creates a new release.
-     
-     If you wish for the patches list to be collapsed, then remove the word 'EXPANDED' from the comment tag above.
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Ads](#disable-ads) | Prevents the AppOpen ad preloader from initialising. |  |
+| [Suppress Paywall](#suppress-paywall) | Suppresses the CHECK_PREMIUM broadcast that launches the paywall screen. |  |
+| [Unlock Premium](#unlock-premium) | Unlocks all premium features in Universal TV Remote Control. |  |
 
-     If you wish to manually keep this list updated then remove the PATCHES_START and PATCHES_END 
-     comment blocks entirely. -->
+</details>
 
-#### A list of your patches will be automatically shown here after your first patches release is created.
+<details open>
+<summary>📦 1.1.1.1 + WARP&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
 
-&nbsp;
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Analytics / Telemetry](#disable-analytics-telemetry) | Try's to Disables App Analytics / Telemetry. |  |
+| [Spoof WARP+ Unlimited UI](#spoof-warp-unlimited-ui) | Unlocks WARP+ UI locally. |  |
+
+</details>
+
+<details open>
+<summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Ads](#remove-ads) | Removes interstitial, app-open and native ads from Case Tracker — Immigration. |  |
+| [Unlock Pro](#unlock-pro) | Unlocks all premium features and removes ads in Case Tracker — Immigration. |  |
+
+</details>
+
+<details open>
+<summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Citizen - Safety Alert&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all Citizen Pro/Protect features including Safety Network. |  |
+
+</details>
+
 <!-- PATCHES_END -->
 
 #### How to use these patches
