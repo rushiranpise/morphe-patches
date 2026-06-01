@@ -28,4 +28,13 @@ object Constants {
         appIconColor = 0x0066FF,
         targets = listOf(AppTarget(version = null))
     )
+
+
+    // Case Tracker — Immigration App by Saldous
+    val CASETRACKER_COMPATIBILITY = Compatibility(
+        name = "Case Tracker - Immigration",
+        packageName = "com.saldous.casetracker",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
 }
