@@ -12,4 +12,12 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Universal TV Remote Control by SensusTech
+    val UNIVERSALTV_COMPATIBILITY = Compatibility(
+        name = "Universal TV Remote Control",
+        packageName = "sensustech.universal.tv.remote.control",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
 }
