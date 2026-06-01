@@ -37,4 +37,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Cloudflare WARP — 1.1.1.1
+    val WARP_COMPATIBILITY = Compatibility(
+        name = "1.1.1.1 + WARP",
+        packageName = "com.cloudflare.onedotonedotonedotone",
+        appIconColor = 0xF48120,
+        targets = listOf(AppTarget(version = null))
+    )
 }
