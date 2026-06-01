@@ -20,4 +20,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Citizen — Safety Alert by sp0n
+    val CITIZEN_COMPATIBILITY = Compatibility(
+        name = "Citizen - Safety Alert",
+        packageName = "sp0n.citizen",
+        appIconColor = 0x0066FF,
+        targets = listOf(AppTarget(version = null))
+    )
 }
