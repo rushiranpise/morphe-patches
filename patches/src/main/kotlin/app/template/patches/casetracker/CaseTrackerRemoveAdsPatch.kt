@@ -40,7 +40,7 @@ import app.template.patches.shared.Constants.CASETRACKER_COMPATIBILITY
 @Suppress("unused")
 val caseTrackerRemoveAdsPatch = bytecodePatch(
     name = "Remove Ads",
-    description = "Removes interstitial, app-open and native ads from Case Tracker — Immigration.",
+    description = "Removes interstitial, app-open and native ads.",
     default = false
 ) {
     compatibleWith(CASETRACKER_COMPATIBILITY)
