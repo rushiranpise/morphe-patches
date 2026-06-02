@@ -1,6 +1,56 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0-dev.1",
   "patches": [
+    {
+      "name": "Bypass License Check",
+      "description": "Bypasses PairIP DRM license verification to prevent forced app shutdown on non-Play-licensed installs.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Bypass Subscription Paywall",
+      "description": "Bypasses the subscription paywall in-app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
     {
       "name": "Disable Ads",
       "description": "Prevents the AppOpen ad preloader from initialising.",
@@ -28,7 +78,7 @@
     },
     {
       "name": "Disable Analytics / Telemetry",
-      "description": "Try's to Disables App Analytics / Telemetry.",
+      "description": "Disables App Analytics / Telemetry.",
       "default": false,
       "dependencies": [],
       "compatiblePackages": [
@@ -52,8 +102,33 @@
       "options": []
     },
     {
+      "name": "Hide Subscription Screen",
+      "description": "Hide subscription screens in-app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Ads",
-      "description": "Removes interstitial, app-open and native ads from Case Tracker — Immigration.",
+      "description": "Removes interstitial, app-open and native ads.",
       "default": false,
       "dependencies": [],
       "compatiblePackages": [
@@ -63,6 +138,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Item Limits",
+      "description": "Removes all  item limits in-app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
@@ -103,7 +203,7 @@
     },
     {
       "name": "Suppress Paywall",
-      "description": "Suppresses the CHECK_PREMIUM broadcast that launches the paywall screen.",
+      "description": "Suppresses the in-app paywall.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -113,6 +213,56 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Suppress Premium Promotions",
+      "description": "Supress all premium promotions in-app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Followed Locations",
+      "description": "Unlocks the Followed Locations premium feature.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
@@ -153,32 +303,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks all premium features in Universal TV Remote Control.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "sensustech.universal.tv.remote.control",
-          "name": "Universal TV Remote Control",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Pro",
-      "description": "Unlocks all premium features and removes ads in Case Tracker — Immigration.",
+      "description": "Unlocks Premium Features In the App.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -202,8 +327,8 @@
       "options": []
     },
     {
-      "name": "Unlock Pro",
-      "description": "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium Features In the App.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -213,6 +338,56 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#0066FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium Features In the App.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.newsbreak.crimeradar",
+          "name": "Crime Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium Features In the App.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "sensustech.universal.tv.remote.control",
+          "name": "Universal TV Remote Control",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
