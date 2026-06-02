@@ -14,7 +14,7 @@ import app.template.patches.shared.Constants.UNIVERSALTV_COMPATIBILITY
 @Suppress("unused")
 val universalTvUnlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks all premium features in Universal TV Remote Control.",
+    description = "Unlocks Premium Features In the App.",
     default = true
 ) {
     compatibleWith(UNIVERSALTV_COMPATIBILITY)
@@ -63,7 +63,7 @@ val universalTvDisableAdsPatch = bytecodePatch(
 @Suppress("unused")
 val universalTvSuppressPaywallPatch = bytecodePatch(
     name = "Suppress Paywall",
-    description = "Suppresses the CHECK_PREMIUM broadcast that launches the paywall screen.",
+    description = "Suppresses the in-app paywall.",
     default = true
 ) {
     compatibleWith(UNIVERSALTV_COMPATIBILITY)

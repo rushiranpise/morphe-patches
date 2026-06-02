@@ -17,8 +17,8 @@ private val returnKotlinUnit =
 
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
-    name = "Unlock Pro",
-    description = "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
+    name = "Unlock Premium",
+    description = "Unlocks Premium Features In the App.",
     default = true
 ) {
     compatibleWith(CITIZEN_COMPATIBILITY)

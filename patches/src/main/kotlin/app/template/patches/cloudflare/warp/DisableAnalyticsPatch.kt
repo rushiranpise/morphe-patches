@@ -35,7 +35,7 @@ import app.template.patches.shared.Constants.WARP_COMPATIBILITY
 @Suppress("unused")
 val disableAnalyticsPatch = bytecodePatch(
     name = "Disable Analytics / Telemetry",
-    description = "Try's to Disables App Analytics / Telemetry.",
+    description = "Disables App Analytics / Telemetry.",
     default = false
 ) {
     compatibleWith(WARP_COMPATIBILITY)
