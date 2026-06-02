@@ -6,150 +6,58 @@ import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.CITIZEN_COMPATIBILITY
 
-/**
- * Unlocks Citizen Pro/Protect in sp0n.citizen.
- *
- * Five independent gate layers are patched, working from the outermost
- * API/SDK boundary down to the innermost domain-model + use-case layer.
- *
- * ## Root cause (confirmed from APK decompilation)
- *
- * The main Safety Network paywall is triggered by SafetyNetworkViewModel
- * coroutine lambda db0/f2 and db0/g2, which emit q$b$i (ShowPaywallRequired)
- * by calling ShowPaywallUseCase.d() via SafetyNetworkEducationViewModel.o().
- *
- * ShowPaywallUseCase.d() calls:
- *   PrivateUserRepository.getUser().isPlusActive()   → reads stored field
- *   PrivateUserRepository.getUser().isProtectActive() → reads stored field
- *
- * Both fields are set ONCE at PrivateUser construction time inside
- * PrivateUserMapper.toModel(), which reads CitizenPlusInfoDTO.getActive() and
- * CitizenProtectInfoDTO.getActive() via invoke-virtual/range — NOT the
- * standard virtual dispatch our Layer 2 getter patches cover.
- *
- * Result: even with Layers 1-4 applied, d() can still return false because
- * the PrivateUser object was constructed before patches fire, with fields=false.
- *
- * Layer 5 is the definitive fix: patch ShowPaywallUseCase.a/c/d directly to
- * return true, bypassing the entire remote-config + subscription-field chain.
- *
- * ## Layer 1 — SubscriptionDigestDTOKt.toModel()
- * Forces every subscription API response to ACTIVATED.
- *
- * ## Layer 2 — CitizenPlusInfoDTO / CitizenProtectInfoDTO.getActive()
- * DTO getters forced to true at source.
- *
- * ## Layer 3 — Superwall SDK
- * Forces SubscriptionStatus.Active so no Superwall paywall sheet is shown.
- *
- * ## Layer 4 — PrivateUser domain model getters
- * isPlusActive(), isProtectActive(), isProtectActiveOrInSetup() replaced with
- * unconditional true. Covers all UI code that calls these getters post-construction.
- *
- * ## Layer 5 — ShowPaywallUseCase.a/c/d + PrivateUser.isPaid()
- * The true master gate. a(SubscriptionFeature) is the entry point for every
- * feature paywall check in the app. c() and d() are the sub-checks. All three
- * are replaced with unconditional true, eliminating the remote-config dependency.
- * isPaid() is a stored field not reachable by getter patches — also forced true.
- *
- * Features unlocked:
- *   Safety Network      — isProtectActiveOrInSetup + ShowPaywallUseCase.d
- *   Safety Network edu  — ShowPaywallUseCase.d (via h.smali.o())
- *   Offender alerts     — ShowPaywallUseCase.c
- *   Safety home feed    — ShowPaywallUseCase.a/d
- *   Incident detail     — ShowPaywallUseCase.a/f
- *   Zones follow-loc    — ShowPaywallUseCase.d
- *   Profile features    — ShowPaywallUseCase.a
- *   Community feed      — ShowPaywallUseCase.a + isPaid
- *   Menu/nav items      — isPlusActive + isProtectActive + isPaid
- */
+private fun dismissActivity(@Suppress("UNUSED_PARAMETER") cls: String) =
+    "invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V\n" +
+    "invoke-super {p0}, Landroid/app/Activity;->finish()V\n" +
+    "return-void"
+
+private val returnKotlinUnit =
+    "sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
+    "return-object v0"
+
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks all Citizen Pro/Protect features including Safety Network.",
+    description = "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
     default = true
 ) {
     compatibleWith(CITIZEN_COMPATIBILITY)
 
     execute {
-
-        // ── Layer 1: Force ACTIVATED in SubscriptionDigestDTOKt.toModel() ────
-        SubscriptionDigestToModelFingerprint
-            .match(classDefBy(SubscriptionDigestToModelFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(
-                    13,
-                    "sget-object v1, Lsp0n/citizen/data/user/dto/SubscriptionState;" +
-                    "->ACTIVATED:Lsp0n/citizen/data/user/dto/SubscriptionState;"
-                )
-            }
-
-        // ── Layer 2: Force active=true on Plus and Protect DTO getters ───────
         listOf(
             CitizenPlusInfoGetActiveFingerprint,
             CitizenProtectInfoGetActiveFingerprint
         ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
+            fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
         }
 
-        // ── Layer 3: Keep Superwall SDK in Active state ───────────────────────
-        val activeClass =
-            "Lcom/superwall/sdk/models/entitlements/SubscriptionStatus\$Active;"
         SuperwallSetSubscriptionStatusFingerprint
             .match(classDefBy(SuperwallSetSubscriptionStatusFingerprint.definingClass!!))
-            .method
-            .apply {
+            .method.apply {
                 if (implementation == null) return@apply
-                addInstructions(0, "sget-object p1, $activeClass->INSTANCE:$activeClass")
+                addInstructions(0, "return-void")
             }
 
-        // ── Layer 4: Patch PrivateUser domain model getters ──────────────────
-        // Covers all UI code that calls these getters post-construction.
-        // Note: these are stored boolean fields (iget-boolean), so patching
-        // the getter returns true for every call even though the field itself
-        // remains false from the mapper. isPaid() is handled in Layer 5.
         listOf(
             PrivateUserIsPlusActiveFingerprint,
             PrivateUserIsProtectActiveFingerprint,
-            PrivateUserIsProtectActiveOrInSetupFingerprint
+            PrivateUserIsProtectActiveOrInSetupFingerprint,
+            CitizenProtectInfoDomainGetActiveFingerprint
         ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
+            fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
         }
 
-        // ── Layer 5: Patch ShowPaywallUseCase.a/c/d + PrivateUser.isPaid() ───
-        //
-        // ShowPaywallUseCase.a(SubscriptionFeature) is the single entry point
-        // called by every feature paywall check in the app. It consults a
-        // server-controlled remote config (FeatureConfigValue$SubscriptionBasedFeatures)
-        // BEFORE checking subscription status — meaning it can return false even
-        // when domain getters are patched.
-        //
-        // ShowPaywallUseCase.d() is the direct trigger for the Safety Network
-        // paywall: SafetyNetworkViewModel lambda db0/g2.invoke() calls
-        // q.n.j(q$b$i) (emits ShowPaywallRequired state) when d() returns false.
-        // SafetyNetworkEducationViewModel.o() also calls d() directly at lines
-        // 400 and 415 of social/safetynetwork/h.smali.
-        //
-        // Note: ShowPaywallUseCase.a() uses p1 register (first parameter register)
-        // not v0, because it's a non-static method with a parameter we reuse.
         ShowPaywallUseCaseAFingerprint
             .match(classDefBy(ShowPaywallUseCaseAFingerprint.definingClass!!))
-            .method
-            .apply {
+            .method.apply {
                 if (implementation == null) return@apply
                 removeInstructions(0, instructions.count())
                 addInstructions(0, "const/4 p1, 0x1\nreturn p1")
@@ -160,13 +68,302 @@ val citizenUnlockProPatch = bytecodePatch(
             ShowPaywallUseCaseDFingerprint,
             PrivateUserIsPaidFingerprint
         ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
+            fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+
+        SafetyCenterPaywallVMGateFingerprint
+            .match(classDefBy(SafetyCenterPaywallVMGateFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+
+        SafetyNetworkRemoveExpiredFingerprint
+            .match(classDefBy(SafetyNetworkRemoveExpiredFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
+            }
+
+        ClarityEntrypointVisibleFingerprint
+            .match(classDefBy(ClarityEntrypointVisibleFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;\nreturn-object p1")
+            }
+
+        MonoSubscriptionGetEnabledFingerprint
+            .match(classDefBy(MonoSubscriptionGetEnabledFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+
+        runCatching {
+            OnboardingOverridePaywallOnCreateFingerprint
+                .match(classDefBy(OnboardingOverridePaywallOnCreateFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, dismissActivity(OnboardingOverridePaywallOnCreateFingerprint.definingClass!!))
+                }
+        }
+
+        runCatching {
+            InAppOverridePaywallOnCreateFingerprint
+                .match(classDefBy(InAppOverridePaywallOnCreateFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, dismissActivity(InAppOverridePaywallOnCreateFingerprint.definingClass!!))
+                }
+        }
+
+        MonoSubscriptionIsSafetyToolAvailableFingerprint
+            .match(classDefBy(MonoSubscriptionIsSafetyToolAvailableFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+
+        MonoSubscriptionGetHidePremiumOnboardingFingerprint
+            .match(classDefBy(MonoSubscriptionGetHidePremiumOnboardingFingerprint.definingClass!!))
+            .method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+
+        listOf(
+            MonoSubscriptionGetShowPlusToPremiumEducationFingerprint,
+            MonoSubscriptionGetShowPlusToPremiumProfileBannerFingerprint
+        ).forEach { fp ->
+            fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+        }
+
+        listOf(
+            ClarityMapTooltipUpsellEnabledFingerprint,
+            ClarityRadioClipsUpsellEnabledFingerprint,
+            ClaritySettingsUpsellEnabledFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
+
+        listOf(
+            PlusV1NeighborhoodTrendsEnabledFingerprint,
+            PlusV1RadioClipsEnabledFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
+
+        runCatching {
+            SuperwallPaywallActivityOnCreateFingerprint
+                .match(classDefBy(SuperwallPaywallActivityOnCreateFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, dismissActivity(SuperwallPaywallActivityOnCreateFingerprint.definingClass!!))
+                }
+        }
+
+        listOf(
+            PrivateUserIsProtectEligibleFingerprint,
+            PrivateUserIsProtectSubscriberFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
+
+        runCatching {
+            MonoSubscriptionIsSafetyNetworkAvailableFingerprint
+                .match(classDefBy(MonoSubscriptionIsSafetyNetworkAvailableFingerprint.definingClass!!))
+                .method.apply {
                     if (implementation == null) return@apply
                     removeInstructions(0, instructions.count())
                     addInstructions(0, "const/4 v0, 0x1\nreturn v0")
                 }
         }
+
+        runCatching {
+            SafetyNetworkPaywallVMGateFingerprint
+                .match(classDefBy(SafetyNetworkPaywallVMGateFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+                }
+        }
+
+        runCatching {
+            ClarityProfileEntrypointEnabledFingerprint
+                .match(classDefBy(ClarityProfileEntrypointEnabledFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+        }
+
+        listOf(
+            ClarityPaywallActivityOnCreateFingerprint,
+            ComparePlansActivityOnCreateFingerprint,
+            CarouselPaywallActivityOnCreateFingerprint,
+            PromoOfferPaywallActivityOnCreateFingerprint,
+            PremiumEducationalPaywallActivityOnCreateFingerprint,
+            SuperwallOnboardingWrapperActivityOnCreateFingerprint,
+            SubscriptionCenterActivityOnCreateFingerprint,
+            SafetyCenterPaywallActivityOnCreateFingerprint,
+            SafetyNetworkEducationActivityOnCreateFingerprint,
+            FamilyPlanBenefitActivityOnCreateFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, dismissActivity(fp.definingClass!!))
+                }
+            }
+        }
+
+        runCatching {
+            TrustedContactsConfigGetEnabledFingerprint
+                .match(classDefBy(TrustedContactsConfigGetEnabledFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+        }
+
+        runCatching {
+            PaywallHomescreenTriggerConfigGetEnabledFingerprint
+                .match(classDefBy(PaywallHomescreenTriggerConfigGetEnabledFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+                }
+        }
+
+        // Layer 23: Safety Network collectors
+        listOf(
+            SafetyNetworkEducationFlowCollectorFingerprint,
+            SafetyNetworkSingleInviteFlowCollectorFingerprint,
+            SafetyNetworkPendingInvitesFlowCollectorFingerprint,
+            FamilyPlanBenefitFlowCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // Layers 24+25: MainActivity + PremiumEducational internal collectors
+        listOf(
+            MainActivityPaywallFlowCollectorAFingerprint,
+            MainActivityPaywallFlowCollectorBFingerprint,
+            MainActivityPaywallFlowCollectorCFingerprint,
+            MainActivityPaywallFlowCollectorDFingerprint,
+            MainActivityPaywallFlowCollectorEFingerprint,
+            MainActivityPaywallFlowCollectorFFingerprint,
+            MainActivityPaywallFlowCollectorGFingerprint,
+            MainActivityPaywallFlowCollectorHFingerprint,
+            MainActivityPaywallFlowCollectorAbaFingerprint,
+            MainActivityPaywallFlowCollectorBbaFingerprint,
+            MainActivityPaywallFlowCollectorCbaFingerprint,
+            MainActivityPaywallFlowCollectorDbaFingerprint,
+            PremiumEducationalPaywallInternalCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // Layers 26+27: Cross-package PremiumEducational flow collectors
+        // Layer 27 (MyProfileFragment) uses emit() NOT invokeSuspend() — see fingerprint comment.
+        listOf(
+            SafetyZonePaywallFlowCollectorFingerprint,
+            MenuPaywallFlowCollectorFingerprint,
+            OnboardingPaywallFlowCollectorFingerprint,
+            ProfilePaywallFlowCollectorFingerprint,
+            SafetyHomePaywallFlowCollectorFingerprint,
+            MyProfileFragmentPaywallCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // Obfuscated collectors — package names shift across builds, runCatching required
+        listOf(
+            ObfuscatedW50F1PaywallCollectorFingerprint,
+            ObfuscatedW70LPaywallCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // // Layer 28: SafetyNetworkRepository.isFeatureEnabled() coroutine gate
+        // // Intercept invokeSuspend() on both continuation classes. Returning kotlin.Unit
+        // // immediately signals a completed suspend with no config object produced —
+        // // the downstream paywall emission pipeline never starts.
+        // listOf(
+        //     SafetyNetworkIsFeatureEnabledOuterFingerprint,
+        //     SafetyNetworkIsFeatureEnabledConfigFingerprint
+        // ).forEach { fp ->
+        //     runCatching {
+        //         fp.match(classDefBy(fp.definingClass!!)).method.apply {
+        //             if (implementation == null) return@apply
+        //             removeInstructions(0, instructions.count())
+        //             addInstructions(0, returnKotlinUnit)
+        //         }
+        //     }
+        // }
     }
 }
