@@ -49,8 +49,8 @@ import app.template.patches.shared.Constants.CASETRACKER_COMPATIBILITY
  */
 @Suppress("unused")
 val caseTrackerUnlockProPatch = bytecodePatch(
-    name = "Unlock Pro",
-    description = "Unlocks all premium features and removes ads in Case Tracker — Immigration.",
+    name = "Unlock Premium",
+    description = "Unlocks Premium Features In the App.",
     default = true
 ) {
     compatibleWith(CASETRACKER_COMPATIBILITY)

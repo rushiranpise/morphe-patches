@@ -45,4 +45,12 @@ object Constants {
         appIconColor = 0xF48120,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Crime Radar — Local Police & Safety by Newsbreak
+    val CRIMERADAR_COMPATIBILITY = Compatibility(
+        name = "Crime Radar",
+        packageName = "com.newsbreak.crimeradar",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = null))
+    )
 }

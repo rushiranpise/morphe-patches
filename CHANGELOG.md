@@ -1,3 +1,9 @@
+## [1.2.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-06-02)
+
+### ✨ New Features
+
+* add Crime Radar Support ([7e29d5e](https://github.com/rushiranpise/morphe-patches/commit/7e29d5e7089dbdd86dad059204d0a9ab1d20dffe))
+
 ## [1.1.0](https://github.com/rushiranpise/morphe-patches/compare/v1.0.0...v1.1.0) (2026-06-02)
 
 ### ✨ New Features
