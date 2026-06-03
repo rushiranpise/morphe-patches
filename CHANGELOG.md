@@ -1,3 +1,9 @@
+## [1.2.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.2.0...v1.2.1-dev.1) (2026-06-03)
+
+### 🐛 Bug Fixes
+
+* Crime Radar Patch ([46ec460](https://github.com/rushiranpise/morphe-patches/commit/46ec46038300cf1f952974086f2de9f7e2bd6b47))
+
 ## [1.2.0](https://github.com/rushiranpise/morphe-patches/compare/v1.1.0...v1.2.0) (2026-06-02)
 
 ### ✨ New Features

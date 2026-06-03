@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1-dev.1",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -88,31 +88,6 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#F48120",
-          "signatures": null,
-          "targets": [
-            {
-              "version": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Subscription Screen",
-      "description": "Hide subscription screens in-app.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.newsbreak.crimeradar",
-          "name": "Crime Radar",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
