@@ -1,3 +1,9 @@
+## [1.3.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.2.1-dev.1...v1.3.0-dev.1) (2026-06-03)
+
+### ✨ New Features
+
+* add Splitwise Support ([5219923](https://github.com/rushiranpise/morphe-patches/commit/52199233baa219c57f37d3c08ba9dc57af3132e4))
+
 ## [1.2.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.2.0...v1.2.1-dev.1) (2026-06-03)
 
 ### 🐛 Bug Fixes

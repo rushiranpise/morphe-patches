@@ -1,5 +1,5 @@
 {
-  "version": "1.2.1-dev.1",
+  "version": "1.3.0-dev.1",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -363,6 +363,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.Splitwise.SplitwiseMobile",
+          "name": "Splitwise",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1CC29F",
           "signatures": null,
           "targets": [
             {
