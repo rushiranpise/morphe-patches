@@ -53,4 +53,12 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Splitwise — Finance, bills and expenses
+    val SPLITWISE_COMPATIBILITY = Compatibility(
+        name = "Splitwise",
+        packageName = "com.Splitwise.SplitwiseMobile",
+        appIconColor = 0x1CC29F,
+        targets = listOf(AppTarget(version = null))
+    )
 }

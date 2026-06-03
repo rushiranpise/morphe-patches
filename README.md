@@ -9,16 +9,15 @@ My patches are A.I. generated!
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.2.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.2.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
+> **[v1.3.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.3.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;16 patches total
 <details open>
-<summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Bypass License Check](#bypass-license-check) | Bypasses PairIP DRM license verification to prevent forced app shutdown on non-Play-licensed installs. |  |
 | [Bypass Subscription Paywall](#bypass-subscription-paywall) | Bypasses the subscription paywall in-app. |  |
-| [Hide Subscription Screen](#hide-subscription-screen) | Hide subscription screens in-app. |  |
 | [Remove Item Limits](#remove-item-limits) | Removes all  item limits in-app. |  |
 | [Suppress Premium Promotions](#suppress-premium-promotions) | Supress all premium promotions in-app. |  |
 | [Unlock Followed Locations](#unlock-followed-locations) | Unlocks the Followed Locations premium feature. |  |
@@ -77,6 +76,16 @@ My patches are A.I. generated!
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |  |
 
 </details>
 
