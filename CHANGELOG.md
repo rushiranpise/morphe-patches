@@ -1,3 +1,13 @@
+## [1.3.0](https://github.com/rushiranpise/morphe-patches/compare/v1.2.0...v1.3.0) (2026-06-03)
+
+### 🐛 Bug Fixes
+
+* Crime Radar Patch ([46ec460](https://github.com/rushiranpise/morphe-patches/commit/46ec46038300cf1f952974086f2de9f7e2bd6b47))
+
+### ✨ New Features
+
+* add Splitwise Support ([5219923](https://github.com/rushiranpise/morphe-patches/commit/52199233baa219c57f37d3c08ba9dc57af3132e4))
+
 ## [1.3.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.2.1-dev.1...v1.3.0-dev.1) (2026-06-03)
 
 ### ✨ New Features
