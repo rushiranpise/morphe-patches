@@ -9,7 +9,7 @@ My patches are A.I. generated!
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.4.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.4.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
+> **[v1.4.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.4.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;19 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -91,6 +91,16 @@ My patches are A.I. generated!
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo. |  |
 
 </details>
 

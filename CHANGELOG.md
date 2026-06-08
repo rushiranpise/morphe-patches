@@ -1,3 +1,9 @@
+## [1.4.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-06-08)
+
+### ✨ New Features
+
+* add snipd support ([9981ea2](https://github.com/rushiranpise/morphe-patches/commit/9981ea2f9d137e783a330f345d877e616daa88fc))
+
 ## [1.4.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-06-08)
 
 ### ✨ New Features

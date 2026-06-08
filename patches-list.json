@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-dev.2",
+  "version": "1.4.0-dev.3",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -363,6 +363,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ai.topicfinder.podcastdiscovery",
+          "name": "Snipd: AI Podcast Player",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1CC29F",
           "signatures": null,
           "targets": [
             {
