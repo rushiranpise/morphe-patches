@@ -70,4 +70,12 @@ object Constants {
         targets = listOf(AppTarget(version = null))
     )
 
+    // Pialytic — LaTeX Editor (VerbTeX)
+    val PIALYTIC_COMPATIBILITY = Compatibility(
+        name = "Pialytic",
+        packageName = "verbosus.pialytic",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "1.2.6"))
+    )
+
 }
