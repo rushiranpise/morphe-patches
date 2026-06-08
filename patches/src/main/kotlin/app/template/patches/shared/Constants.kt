@@ -61,4 +61,13 @@ object Constants {
         appIconColor = 0x1CC29F,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Greenify — App Hibernation & Battery Saver
+    val GREENIFY_COMPATIBILITY = Compatibility(
+        name = "Greenify",
+        packageName = "com.oasisfeng.greenify",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
 }
