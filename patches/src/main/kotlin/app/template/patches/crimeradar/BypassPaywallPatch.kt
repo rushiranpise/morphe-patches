@@ -98,6 +98,9 @@ private const val ACCOUNT_HELPER_CLASS =
 private const val GLOBAL_LOCATION_REPO_CLASS =
     "Lcom/particlemedia/feature/map/GlobalLocationRepository;"
 
+private const val SAVE_LOCATION_WORKER_CLASS =
+    "Lcom/particlemedia/feature/map/SafetyMapViewModel\$saveLocation\$1;"
+
 object IsActiveNowFingerprint : Fingerprint(
     definingClass = GATEWAY_CLASS,
     name = "isActiveNow"
@@ -149,6 +152,13 @@ object OnAccountChangedFingerprint : Fingerprint(
     name = "onAccountChanged"
 )
 
+// SafetyMapViewModel$saveLocation$1.invokeSuspend — smali_classes7
+// Intercept the API save call and mock successful SaveResp local insertion.
+object SaveLocationWorkerFingerprint : Fingerprint(
+    definingClass = SAVE_LOCATION_WORKER_CLASS,
+    name = "invokeSuspend"
+)
+
 @Suppress("unused")
 val bypassPaywallPatch = bytecodePatch(
     name = "Bypass Subscription Paywall",
@@ -162,19 +172,30 @@ val bypassPaywallPatch = bytecodePatch(
             return v0
         """.trimIndent()
 
-        // Patch all boolean gate methods in RadarMapSubscriptionGateway
+        val falseInstructions = """
+            const/4 v0, 0x0
+            return v0
+        """.trimIndent()
+
+        // Patch boolean gate methods in RadarMapSubscriptionGateway to return true
         for (fingerprint in listOf(
             IsActiveNowFingerprint,
             IsFeatureEnabledFingerprint,
             WasEverPremiumFingerprint,
             HasPaidEverFingerprint,
-            IsPremiumEntryDismissedFingerprint,
-            AutoRenewFingerprint
+            IsPremiumEntryDismissedFingerprint
         )) {
             val method = fingerprint.match(classDefBy(GATEWAY_CLASS)).method
             method.removeInstructions(0, method.instructions.count())
             method.addInstructions(0, trueInstructions)
         }
+
+        // Patch autoRenew in RadarMapSubscriptionGateway to return false
+        val autoRenewMethod = AutoRenewFingerprint
+            .match(classDefBy(GATEWAY_CLASS))
+            .method
+        autoRenewMethod.removeInstructions(0, autoRenewMethod.instructions.count())
+        autoRenewMethod.addInstructions(0, falseInstructions)
 
         // Patch shouldSuppressPremiumPromotions in SubscriptionAccountHelper
         val helperMethod = ShouldSuppressPremiumPromotionsFingerprint
@@ -185,7 +206,7 @@ val bypassPaywallPatch = bytecodePatch(
 
         // Patch GlobalLocationRepository.updateSavedListFull:
         // Full-method rewrite — hardcode limit=MAX_VALUE and lockedSaveIds=emptySet()
-        // so the LiveData streams are never poisoned by server-returned paywall values.
+        // and only update from server list if local list is null or empty to prevent stomping.
         val updateMethod = UpdateSavedListFullFingerprint
             .match(classDefBy(GLOBAL_LOCATION_REPO_CLASS))
             .method
@@ -204,9 +225,19 @@ val bypassPaywallPatch = bytecodePatch(
             invoke-static {}, Ljava/util/Collections;->emptySet()Ljava/util/Set;
             move-result-object v1
             invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedList:Landroidx/lifecycle/S;
+            invoke-virtual {v0}, Landroidx/lifecycle/M;->d()Ljava/lang/Object;
+            move-result-object v0
+            check-cast v0, Ljava/util/ArrayList;
+            if-eqz v0, :cond_update_server
+            invoke-virtual {v0}, Ljava/util/ArrayList;->isEmpty()Z
+            move-result v0
+            if-eqz v0, :cond_skip_server
+            :cond_update_server
             invoke-virtual {p1}, Lcom/particlemedia/feature/map/data/GLocationList;->getList()Ljava/util/ArrayList;
             move-result-object p1
             invoke-virtual {p0, p1}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->updateSavedList(Ljava/util/ArrayList;)V
+            :cond_skip_server
             return-void
             """.trimIndent()
         )
@@ -236,6 +267,61 @@ val bypassPaywallPatch = bytecodePatch(
             const-string v0, "mapSaveLocationList"
             invoke-static {v0}, LDd/z;->i(Ljava/lang/String;)V
             return-void
+            """.trimIndent()
+        )
+
+        // Patch SafetyMapViewModel${'$'}saveLocation${'$'}1.invokeSuspend
+        // Full-method rewrite — mock network save API response and add location locally.
+        val saveLocationMethod = SaveLocationWorkerFingerprint
+            .match(classDefBy(SAVE_LOCATION_WORKER_CLASS))
+            .method
+        saveLocationMethod.removeInstructions(0, saveLocationMethod.instructions.count())
+        saveLocationMethod.addInstructions(
+            0,
+            """
+            iget-object v0, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+            move-result-wide v1
+            invoke-static {v1, v2}, Ljava/lang/Long;->toString(J)Ljava/lang/String;
+            move-result-object v1
+            invoke-virtual {v0, v1}, LGb/a;->C(Ljava/lang/String;)V
+            invoke-virtual {v0}, LGb/a;->o()Ljava/lang/String;
+            move-result-object v1
+            if-nez v1, :cond_zip
+            const-string v1, "00000"
+            :cond_zip
+            invoke-virtual {v0, v1}, LGb/a;->F(Ljava/lang/String;)V
+            new-instance p1, Ljava/util/ArrayList;
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->INSTANCE:Lcom/particlemedia/feature/map/GlobalLocationRepository;
+            invoke-virtual {v0}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->getSavedList()Landroidx/lifecycle/S;
+            move-result-object v1
+            invoke-virtual {v1}, Landroidx/lifecycle/M;->d()Ljava/lang/Object;
+            move-result-object v1
+            check-cast v1, Ljava/util/ArrayList;
+            if-eqz v1, :cond_empty
+            goto :goto_init
+            :cond_empty
+            new-instance v1, Ljava/util/ArrayList;
+            invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+            :goto_init
+            invoke-direct {p1, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            invoke-virtual {p1, v1}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            const/4 v2, 0x1
+            invoke-virtual {v1, v2}, LGb/a;->D(Z)V
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            const/4 v2, 0x0
+            invoke-virtual {p1, v2, v1}, Ljava/util/ArrayList;->add(ILjava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->INSTANCE:Lcom/particlemedia/feature/map/GlobalLocationRepository;
+            invoke-virtual {v0, p1}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->updateSavedList(Ljava/util/ArrayList;)V
+            iget-object p1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}handleExceptionUnit:LLe/l;
+            if-eqz p1, :cond_callback
+            const/4 v0, 0x0
+            invoke-interface {p1, v0}, LLe/l;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
+            :cond_callback
+            sget-object p1, Lze/D;->a:Lze/D;
+            return-object p1
             """.trimIndent()
         )
     }

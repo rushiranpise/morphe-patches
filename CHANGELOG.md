@@ -1,3 +1,25 @@
+## [1.4.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-06-08)
+
+### ✨ New Features
+
+* add snipd support ([9981ea2](https://github.com/rushiranpise/morphe-patches/commit/9981ea2f9d137e783a330f345d877e616daa88fc))
+
+## [1.4.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-06-08)
+
+### ✨ New Features
+
+* add pialytic support ([22f460c](https://github.com/rushiranpise/morphe-patches/commit/22f460c7c7420f13326de61fa64c1e7a13bc3ebf))
+
+## [1.4.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-06-08)
+
+### 🐛 Bug Fixes
+
+* update crime radar ([33b29a1](https://github.com/rushiranpise/morphe-patches/commit/33b29a1b68ded26d2a219018cc81fa190c28ac60))
+
+### ✨ New Features
+
+* add Greenify support ([33d45f9](https://github.com/rushiranpise/morphe-patches/commit/33d45f96c971f20cfb4c5cbe2db65bc412736d55))
+
 ## [1.3.0](https://github.com/rushiranpise/morphe-patches/compare/v1.2.0...v1.3.0) (2026-06-03)
 
 ### 🐛 Bug Fixes
