@@ -78,4 +78,11 @@ object Constants {
         targets = listOf(AppTarget(version = "1.2.6"))
     )
 
+    // Snipd — AI Podcast Player
+    val SNIPD_COMPATIBILITY = Compatibility(
+        name = "Snipd: AI Podcast Player",
+        packageName = "ai.topicfinder.podcastdiscovery",
+        appIconColor = 0x1CC29F,
+        targets = listOf(AppTarget(version = null))
+    )
 }
