@@ -1,3 +1,9 @@
+## [1.4.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-06-08)
+
+### ✨ New Features
+
+* add pialytic support ([22f460c](https://github.com/rushiranpise/morphe-patches/commit/22f460c7c7420f13326de61fa64c1e7a13bc3ebf))
+
 ## [1.4.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-06-08)
 
 ### 🐛 Bug Fixes

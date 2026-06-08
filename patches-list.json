@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0-dev.1",
+  "version": "1.4.0-dev.2",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -217,6 +217,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock All Features",
+      "description": "Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "verbosus.pialytic",
+          "name": "Pialytic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.2.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null

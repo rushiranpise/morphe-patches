@@ -9,7 +9,7 @@ My patches are A.I. generated!
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.4.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.4.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;17 patches total
+> **[v1.4.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.4.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;18 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -56,6 +56,21 @@ My patches are A.I. generated!
 |----------|----------------|-----------|
 | [Remove Ads](#remove-ads) | Removes interstitial, app-open and native ads. |  |
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.2.6 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock All Features](#unlock-all-features) | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |  |
 
 </details>
 
