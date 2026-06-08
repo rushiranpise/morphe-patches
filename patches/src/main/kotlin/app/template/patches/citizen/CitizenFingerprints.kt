@@ -104,7 +104,7 @@ val PrivateUserIsPaidFingerprint = Fingerprint(
 
 val SafetyCenterPaywallVMGateFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/safetycenter/paywall/b;",
-    name = "o",
+    name = "n",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -306,7 +306,7 @@ val MonoSubscriptionIsSafetyNetworkAvailableFingerprint = Fingerprint(
 
 val SafetyNetworkPaywallVMGateFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/social/safetynetwork/h;",
-    name = "o",
+    name = "n",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -421,7 +421,7 @@ val PaywallHomescreenTriggerConfigGetEnabledFingerprint = Fingerprint(
 val SafetyNetworkEducationFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity\$a\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -429,7 +429,7 @@ val SafetyNetworkEducationFlowCollectorFingerprint = Fingerprint(
 val SafetyNetworkSingleInviteFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/social/safetynetwork/SafetyNetworkSingleInviteActivity\$a\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -437,7 +437,7 @@ val SafetyNetworkSingleInviteFlowCollectorFingerprint = Fingerprint(
 val SafetyNetworkPendingInvitesFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/social/safetynetwork/SafetyNetworkPendingInvitesActivity\$a\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -445,7 +445,7 @@ val SafetyNetworkPendingInvitesFlowCollectorFingerprint = Fingerprint(
 val FamilyPlanBenefitFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/social/safetynetwork/FamilyPlanBenefitActivity\$a\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -455,7 +455,7 @@ val FamilyPlanBenefitFlowCollectorFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorAFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$a\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -463,7 +463,7 @@ val MainActivityPaywallFlowCollectorAFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorBFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$b\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -471,7 +471,7 @@ val MainActivityPaywallFlowCollectorBFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorCFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$c\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -479,7 +479,7 @@ val MainActivityPaywallFlowCollectorCFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorDFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$d\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -487,7 +487,7 @@ val MainActivityPaywallFlowCollectorDFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorEFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$e\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -495,7 +495,7 @@ val MainActivityPaywallFlowCollectorEFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorFFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$f\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -503,7 +503,7 @@ val MainActivityPaywallFlowCollectorFFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorGFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$g\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -511,7 +511,7 @@ val MainActivityPaywallFlowCollectorGFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorHFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$h\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -519,7 +519,7 @@ val MainActivityPaywallFlowCollectorHFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorAbaFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$a\$b\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -527,7 +527,7 @@ val MainActivityPaywallFlowCollectorAbaFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorBbaFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$b\$b\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -535,7 +535,7 @@ val MainActivityPaywallFlowCollectorBbaFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorCbaFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$c\$b\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -543,7 +543,7 @@ val MainActivityPaywallFlowCollectorCbaFingerprint = Fingerprint(
 val MainActivityPaywallFlowCollectorDbaFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/main/MainActivity\$d\$b\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -558,7 +558,7 @@ val MainActivityPaywallFlowCollectorDbaFingerprint = Fingerprint(
 val PremiumEducationalPaywallInternalCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/paywall/superwall/PremiumEducationalPaywallActivity\$b\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -592,7 +592,7 @@ val PremiumEducationalPaywallInternalCollectorFingerprint = Fingerprint(
 val SafetyZonePaywallFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/zones/SafetyZoneActivity\$c\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -600,7 +600,7 @@ val SafetyZonePaywallFlowCollectorFingerprint = Fingerprint(
 val MenuPaywallFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/menu/h\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -608,7 +608,7 @@ val MenuPaywallFlowCollectorFingerprint = Fingerprint(
 val OnboardingPaywallFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/onboarding/h\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -616,7 +616,7 @@ val OnboardingPaywallFlowCollectorFingerprint = Fingerprint(
 val ProfilePaywallFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/profile/h\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -624,7 +624,7 @@ val ProfilePaywallFlowCollectorFingerprint = Fingerprint(
 val SafetyHomePaywallFlowCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/safetyhome/l\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -635,7 +635,7 @@ val SafetyHomePaywallFlowCollectorFingerprint = Fingerprint(
 val MyProfileFragmentPaywallCollectorFingerprint = Fingerprint(
     definingClass = "Lsp0n/citizen/profile/myprofile/ui/h\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -644,7 +644,7 @@ val MyProfileFragmentPaywallCollectorFingerprint = Fingerprint(
 val ObfuscatedW50F1PaywallCollectorFingerprint = Fingerprint(
     definingClass = "Lw50/f1\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -652,7 +652,7 @@ val ObfuscatedW50F1PaywallCollectorFingerprint = Fingerprint(
 val ObfuscatedW70LPaywallCollectorFingerprint = Fingerprint(
     definingClass = "Lw70/l\$a\$a;",
     name = "emit",
-    parameters = listOf("Ljava/lang/Object;", "Lux/b;"),
+    parameters = listOf("Ljava/lang/Object;", "Liq3;"),
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
@@ -669,3 +669,26 @@ val ObfuscatedW70LPaywallCollectorFingerprint = Fingerprint(
 // The correct intercept point is the specific downstream collector that acts on the
 // PremiumEducationalPaywall result, not the upstream shared coroutine body.
 // Layers 23–27 already cover all known downstream collectors. No replacement added.
+
+val PurchasePremiumHelperCreateIntentFingerprint = Fingerprint(
+    definingClass = "Lv8d;",
+    name = "a",
+    parameters = listOf(
+        "Landroid/content/Context;",
+        "Lsp0n/citizen/data/variablesettings/VariableSettingsRepository;",
+        "Lsp0n/citizen/analytics/premium/purchase/PurchaseAnalyticsApi\$ProtectPaywallOrigin;"
+    ),
+    returnType = "Landroid/content/Intent;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+val PremiumEducationalPaywallActivityCreateIntentFingerprint = Fingerprint(
+    definingClass = "Lsp0n/citizen/paywall/superwall/PremiumEducationalPaywallActivity\$a;",
+    name = "a",
+    parameters = listOf("Landroid/content/Context;", "Z", "Ljava/lang/String;"),
+    returnType = "Landroid/content/Intent;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+
+

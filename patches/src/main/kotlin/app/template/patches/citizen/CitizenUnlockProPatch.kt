@@ -17,8 +17,8 @@ private val returnKotlinUnit =
 
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
-    name = "Unlock Premium",
-    description = "Unlocks Premium Features In the App.",
+    name = "Unlock Pro",
+    description = "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
     default = true
 ) {
     compatibleWith(CITIZEN_COMPATIBILITY)
@@ -277,7 +277,6 @@ val citizenUnlockProPatch = bytecodePatch(
 
         // Layer 23: Safety Network collectors
         listOf(
-            SafetyNetworkEducationFlowCollectorFingerprint,
             SafetyNetworkSingleInviteFlowCollectorFingerprint,
             SafetyNetworkPendingInvitesFlowCollectorFingerprint,
             FamilyPlanBenefitFlowCollectorFingerprint
@@ -289,6 +288,26 @@ val citizenUnlockProPatch = bytecodePatch(
                     addInstructions(0, returnKotlinUnit)
                 }
             }
+        }
+
+        runCatching {
+            SafetyNetworkEducationFlowCollectorFingerprint
+                .match(classDefBy(SafetyNetworkEducationFlowCollectorFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(
+                        0,
+                        "iget-object p0, p0, Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity\$a\$a\$a;->d:Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity;\n" +
+                        "new-instance p1, Landroid/content/Intent;\n" +
+                        "const-class p2, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
+                        "invoke-direct {p1, p0, p2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                        "invoke-virtual {p0, p1}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V\n" +
+                        "invoke-virtual {p0}, Landroid/app/Activity;->finish()V\n" +
+                        "sget-object p0, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
+                        "return-object p0"
+                    )
+                }
         }
 
         // Layers 24+25: MainActivity + PremiumEducational internal collectors
@@ -349,21 +368,44 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
-        // // Layer 28: SafetyNetworkRepository.isFeatureEnabled() coroutine gate
-        // // Intercept invokeSuspend() on both continuation classes. Returning kotlin.Unit
-        // // immediately signals a completed suspend with no config object produced —
-        // // the downstream paywall emission pipeline never starts.
-        // listOf(
-        //     SafetyNetworkIsFeatureEnabledOuterFingerprint,
-        //     SafetyNetworkIsFeatureEnabledConfigFingerprint
-        // ).forEach { fp ->
-        //     runCatching {
-        //         fp.match(classDefBy(fp.definingClass!!)).method.apply {
-        //             if (implementation == null) return@apply
-        //             removeInstructions(0, instructions.count())
-        //             addInstructions(0, returnKotlinUnit)
-        //         }
-        //     }
-        // }
+        runCatching {
+            PurchasePremiumHelperCreateIntentFingerprint
+                .match(classDefBy(PurchasePremiumHelperCreateIntentFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
+                }
+        }
+
+        runCatching {
+            PremiumEducationalPaywallActivityCreateIntentFingerprint
+                .match(classDefBy(PremiumEducationalPaywallActivityCreateIntentFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(
+                        0,
+                        "if-nez p1, :goto_safety_network\n" +
+                        "new-instance v0, Landroid/content/Intent;\n" +
+                        "const-class v1, Lsp0n/citizen/paywall/superwall/PremiumEducationalPaywallActivity;\n" +
+                        "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                        "const-string p0, \"ORIGIN\"\n" +
+                        "invoke-virtual {v0, p0, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;\n" +
+                        "move-result-object p0\n" +
+                        "const-string p2, \"LAUNCH_SAFETY_NETWORK\"\n" +
+                        "invoke-virtual {p0, p2, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;\n" +
+                        "move-result-object p0\n" +
+                        "return-object p0\n" +
+                        ":goto_safety_network\n" +
+                        "new-instance v0, Landroid/content/Intent;\n" +
+                        "const-class v1, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
+                        "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                        "return-object v0"
+                    )
+                }
+        }
     }
 }
+
+
