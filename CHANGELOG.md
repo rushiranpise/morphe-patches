@@ -1,3 +1,13 @@
+## [1.4.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-06-08)
+
+### 🐛 Bug Fixes
+
+* update crime radar ([33b29a1](https://github.com/rushiranpise/morphe-patches/commit/33b29a1b68ded26d2a219018cc81fa190c28ac60))
+
+### ✨ New Features
+
+* add Greenify support ([33d45f9](https://github.com/rushiranpise/morphe-patches/commit/33d45f96c971f20cfb4c5cbe2db65bc412736d55))
+
 ## [1.3.0](https://github.com/rushiranpise/morphe-patches/compare/v1.2.0...v1.3.0) (2026-06-03)
 
 ### 🐛 Bug Fixes

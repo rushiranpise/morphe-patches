@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0-dev.1",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -227,6 +227,31 @@
       "options": []
     },
     {
+      "name": "Unlock Donation Features",
+      "description": "Unlocks all premium donation features in Greenify.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.oasisfeng.greenify",
+          "name": "Greenify",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Followed Locations",
       "description": "Unlocks the Followed Locations premium feature.",
       "default": true,
@@ -308,31 +333,6 @@
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "sp0n.citizen",
-          "name": "Citizen - Safety Alert",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#0066FF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks Premium Features In the App.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
@@ -363,6 +363,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "sp0n.citizen",
+          "name": "Citizen - Safety Alert",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#0066FF",
           "signatures": null,
           "targets": [
             {
