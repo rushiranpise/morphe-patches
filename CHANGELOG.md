@@ -1,3 +1,9 @@
+## [1.5.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-06-10)
+
+### ✨ New Features
+
+* add Beta Maniac support ([53589f5](https://github.com/rushiranpise/morphe-patches/commit/53589f558ea2a787a1a6379494bebc63c313636a))
+
 ## [1.5.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-06-10)
 
 ### ✨ New Features

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-10T07:29:56",
-  "description": "## [1.5.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-06-10)\n\n### ✨ New Features\n\n* add mlmanager support ([87750cf](https://github.com/rushiranpise/morphe-patches/commit/87750cf2fb8155e3dcbba8050feea2f3be1a25a3))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.5.0-dev.3/patches-1.5.0-dev.3.mpp",
+  "created_at": "2026-06-10T07:33:59",
+  "description": "## [1.5.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-06-10)\n\n### ✨ New Features\n\n* add Beta Maniac support ([53589f5](https://github.com/rushiranpise/morphe-patches/commit/53589f558ea2a787a1a6379494bebc63c313636a))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.5.0-dev.4/patches-1.5.0-dev.4.mpp",
   "signature_download_url": "",
-  "version": "1.5.0-dev.3"
+  "version": "1.5.0-dev.4"
 }

@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.3",
+  "version": "1.5.0-dev.4",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -367,6 +367,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks premium in Beta by Mirko.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "it.mirko.beta",
+          "name": "Beta by Mirko",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF5722",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "0.9.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
