@@ -109,4 +109,12 @@ object Constants {
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "5.0"))
     )
+
+    // Beta by Mirko — App updates tracker
+    val MIRKO_COMPATIBILITY = Compatibility(
+        name = "Beta by Mirko",
+        packageName = "it.mirko.beta",
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "0.9.4"))
+    )
 }
