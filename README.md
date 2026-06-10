@@ -1,15 +1,45 @@
 # 👋🧩 Rushi's Patches
 
-Repository for Rushi's patches, for usage with Morphe.
+> *Just some patches I make in my free time, with a little(most :p) help from AI.*
+
+This is my personal collection of patches that I use with **Morphe**.  
+Everything here is AI‑generated (mostly for fun and learning), then tested enough to not explode :p.
 
 ## ❓ About
 
-My patches are A.I. generated!
+## 🧠 Why AI‑generated?
+
+Because I’m curious what LLMs can do with code diffs.  
+No magic, no secrets — just a hobby.
+
+## ⚠️ Very important disclaimer
+
+I do this in my spare time.
+Patches work *for me* on *my machine*.
+Test before using on anything important.
+Seriously...
+
+## 📬 Feedback / ideas
+
+Found something broken? Have a new patch idea?
+Open an issue or just DM me — I might get to it when I'm bored.
+
+## ☕️ Like my work? Consider donating
+
+I'm a **full‑time student** (read: perpetually broke).
+These patches cost me AI subscription bills, late‑night debugging, and way too much coffee.
+
+If you find any of this useful, a small donation would genuinely help me keep the lights on (and keep the AI subscriptions running).
+
+**Reach out at:** `rushiranpise17@gmail.com`
+(PayPal, Zelle, UPI)
+
+Even a small amount makes a difference 🙏
 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.4.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.4.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;19 patches total
+> **[v1.5.0-dev.8](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.8)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;28 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -60,13 +90,18 @@ My patches are A.I. generated!
 </details>
 
 <details open>
-<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
-**🎯 Supported versions:**
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Ads](#remove-ads) | Removes interstitial and exit native ads from m-Indicator. |  |
 
-| 1.2.6 |
-| :---: |
+</details>
+
+<details open>
+<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -95,6 +130,26 @@ My patches are A.I. generated!
 </details>
 
 <details open>
+<summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks premium in Beta by Mirko. |  |
+
+</details>
+
+<details open>
+<summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all Photo Editor premium features by bypassing license checks. |  |
+
+</details>
+
+<details open>
 <summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
@@ -115,12 +170,77 @@ My patches are A.I. generated!
 </details>
 
 <details open>
+<summary>📦 Hibernator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all pro features in Hibernator. |  |
+
+</details>
+
+<details open>
+<summary>📦 KillApps&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all pro features in KillApps. |  |
+
+</details>
+
+<details open>
+<summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all pro features in ML Manager. |  |
+
+</details>
+
+<details open>
+<summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Removes ads and unlocks the no-ads subscription in RAR. |  |
+
+</details>
+
+<details open>
 <summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |  |
+
+</details>
+
+<details open>
+<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Subscription](#unlock-subscription) | Unlocks all subscription features in TWT App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.0.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock VIP](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |  |
 
 </details>
 
@@ -141,6 +261,33 @@ You can find the contribution guidelines [here](CONTRIBUTING.md).
 
 To build Rushi's Morphe Patches,
 you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation).
+
+> **Note:** Not all apps can be patched. Server-side features (AI, cloud sync, server-validated subscriptions) cannot be bypassed.
+
+## FAQ
+
+#### How do I use this?
+Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
+
+#### Why can't I log in with Google?
+Patched apps are re-signed, which breaks Google Play Services authentication. This is a known limitation for all patched apps.
+
+#### What APK version should I use?
+Use the latest versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
+
+#### The patch doesn't work on a newer version of app
+Open a [bug report](https://github.com/rushiranpise/morphe-patches/issues/new?template=bug_report.yml) with the app version and error message.
+
+## Disclaimer
+
+> **⚠️ Legal Notice**
+>
+> This project is provided for **educational and research purposes only**. The patches in this repository modify third-party applications and may violate the terms of service of those applications.
+>
+> - This project is **not affiliated** with any of the app developers listed above.
+> - Use these patches **at your own risk**. The author is not responsible for any consequences.
+> - If you are a developer or rights holder and believe this project infringes on your rights, please [submit a takedown request](https://github.com/rushiranpise/morphe-patches/issues/new?template=takedown-request.yml) and the relevant patches will be **promptly removed**.
+> - Users are encouraged to **support developers** by purchasing legitimate subscriptions if they find the apps useful.
 
 ## 📜 License
 

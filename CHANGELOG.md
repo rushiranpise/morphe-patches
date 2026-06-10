@@ -1,3 +1,55 @@
+## [1.5.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.7...v1.5.0-dev.8) (2026-06-10)
+
+### ✨ New Features
+
+* Add Yatri app support ([1069349](https://github.com/rushiranpise/morphe-patches/commit/1069349b368ab843fd43f0e36de8b16264386e5c))
+
+## [1.5.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.6...v1.5.0-dev.7) (2026-06-10)
+
+### 🐛 Bug Fixes
+
+* rar patch ([e65e6b7](https://github.com/rushiranpise/morphe-patches/commit/e65e6b75b765cc2f923794d3c68242a6a0deb46e))
+
+### ✨ New Features
+
+* add m-Indicator ([f592d31](https://github.com/rushiranpise/morphe-patches/commit/f592d314eb5c9ac59eb9fbbc5f8bb52ed439479b))
+
+## [1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-06-10)
+
+### ✨ New Features
+
+* Add RaR support ([2aa24b0](https://github.com/rushiranpise/morphe-patches/commit/2aa24b0c6e902986fb7f3dfd3c4c64b4e9b6fe99))
+
+## [1.5.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-06-10)
+
+### ✨ New Features
+
+* add Hibernator and KillApps support ([5634e04](https://github.com/rushiranpise/morphe-patches/commit/5634e040fd2f54fbabf1cb087dc748aed04496b0))
+
+## [1.5.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-06-10)
+
+### ✨ New Features
+
+* add Beta Maniac support ([53589f5](https://github.com/rushiranpise/morphe-patches/commit/53589f558ea2a787a1a6379494bebc63c313636a))
+
+## [1.5.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-06-10)
+
+### ✨ New Features
+
+* add mlmanager support ([87750cf](https://github.com/rushiranpise/morphe-patches/commit/87750cf2fb8155e3dcbba8050feea2f3be1a25a3))
+
+## [1.5.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-06-10)
+
+### ✨ New Features
+
+* Add Photo Editor support ([99e976e](https://github.com/rushiranpise/morphe-patches/commit/99e976eb4954b55cdf6c8be41efe06083b3302ba))
+
+## [1.5.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-06-10)
+
+### ✨ New Features
+
+* Stargazig Hub support ([38ef45e](https://github.com/rushiranpise/morphe-patches/commit/38ef45e7941ac236dde52b71243696fbe0b74b0f))
+
 ## [1.4.0](https://github.com/rushiranpise/morphe-patches/compare/v1.3.0...v1.4.0) (2026-06-08)
 
 ### 🐛 Bug Fixes

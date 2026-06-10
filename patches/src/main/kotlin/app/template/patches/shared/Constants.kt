@@ -75,7 +75,7 @@ object Constants {
         name = "Pialytic",
         packageName = "verbosus.pialytic",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "1.2.6"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // Snipd — AI Podcast Player
@@ -84,5 +84,77 @@ object Constants {
         packageName = "ai.topicfinder.podcastdiscovery",
         appIconColor = 0x1CC29F,
         targets = listOf(AppTarget(version = null))
+    )
+
+    // TWT App — Astronomy & Sky Guide
+    val TWTAPP_COMPATIBILITY = Compatibility(
+        name = "Stargazing Hub",
+        packageName = "com.twtapp",
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Photo Editor — iUdesk Photo Editor
+    val PHOTOEDITOR_COMPATIBILITY = Compatibility(
+        name = "Photo Editor",
+        packageName = "com.iudesk.android.photo.editor",
+        appIconColor = 0xFF6B9D,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // ML Manager — APK Downloader & Backup
+    val MLMANAGER_COMPATIBILITY = Compatibility(
+        name = "ML Manager",
+        packageName = "com.javiersantos.mlmanager",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Beta by Mirko — App updates tracker
+    val MIRKO_COMPATIBILITY = Compatibility(
+        name = "Beta Maniac",
+        packageName = "it.mirko.beta",
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Hibernator — Apps & Background Process
+    val HIBERNATOR_COMPATIBILITY = Compatibility(
+        name = "Hibernator",
+        packageName = "com.tafayor.hibernator",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // KillApps — Background Apps Killer
+    val KILLAPPS_COMPATIBILITY = Compatibility(
+        name = "KillApps",
+        packageName = "com.tafayor.killall",
+        appIconColor = 0xF44336,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // RAR
+    val RAR_COMPATIBILITY = Compatibility(
+        name = "RAR",
+        packageName = "com.rarlab.rar",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // m-Indicator — Mumbai Local Train
+    val MINDICATOR_COMPATIBILITY = Compatibility(
+        name = "m-Indicator",
+        packageName = "com.mobond.mindicator",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Yatri — Train, Metro & Bus Ticketing
+    val YATRI_COMPATIBILITY = Compatibility(
+        name = "Yatri",
+        packageName = "com.yatrirailways.yatri",
+        appIconColor = 0xFF6B00,
+        targets = listOf(AppTarget(version = "5.0.3"))
     )
 }
