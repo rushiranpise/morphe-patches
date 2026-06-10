@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.2",
+  "version": "1.5.0-dev.3",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -467,6 +467,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all pro features in ML Manager.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.javiersantos.mlmanager",
+          "name": "ML Manager",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null

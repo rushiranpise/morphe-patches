@@ -1,3 +1,9 @@
+## [1.5.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-06-10)
+
+### ✨ New Features
+
+* add mlmanager support ([87750cf](https://github.com/rushiranpise/morphe-patches/commit/87750cf2fb8155e3dcbba8050feea2f3be1a25a3))
+
 ## [1.5.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-06-10)
 
 ### ✨ New Features
