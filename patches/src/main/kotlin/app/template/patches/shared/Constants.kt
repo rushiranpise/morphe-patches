@@ -133,4 +133,12 @@ object Constants {
         appIconColor = 0xF44336,
         targets = listOf(AppTarget(version = null))
     )
+
+    // RAR
+    val RAR_COMPATIBILITY = Compatibility(
+        name = "RAR",
+        packageName = "com.rarlab.rar",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
 }
