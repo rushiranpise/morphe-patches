@@ -101,4 +101,12 @@ object Constants {
         appIconColor = 0xFF6B9D,
         targets = listOf(AppTarget(version = "13.3"))
     )
+
+    // ML Manager — APK Downloader & Backup
+    val MLMANAGER_COMPATIBILITY = Compatibility(
+        name = "ML Manager",
+        packageName = "com.javiersantos.mlmanager",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "5.0"))
+    )
 }
