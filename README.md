@@ -1,10 +1,40 @@
 # 👋🧩 Rushi's Patches
 
-Repository for Rushi's patches, for usage with Morphe.
+> *Just some patches I make in my free time, with a little(most :p) help from AI.*
+
+This is my personal collection of patches that I use with **Morphe**.  
+Everything here is AI‑generated (mostly for fun and learning), then tested enough to not explode :p.
 
 ## ❓ About
 
-My patches are A.I. generated!
+## 🧠 Why AI‑generated?
+
+Because I’m curious what LLMs can do with code diffs.  
+No magic, no secrets — just a hobby.
+
+## ⚠️ Very important disclaimer
+
+I do this in my spare time.
+Patches work *for me* on *my machine*.
+Test before using on anything important.
+Seriously...
+
+## 📬 Feedback / ideas
+
+Found something broken? Have a new patch idea?
+Open an issue or just DM me — I might get to it when I'm bored.
+
+## ☕️ Like my work? Consider donating
+
+I'm a **full‑time student** (read: perpetually broke).
+These patches cost me AI subscription bills, late‑night debugging, and way too much coffee.
+
+If you find any of this useful, a small donation would genuinely help me keep the lights on (and keep the AI subscriptions running).
+
+**Reach out at:** `rushiranpise17@gmail.com`
+(PayPal, Zelle, UPI)
+
+Even a small amount makes a difference 🙏
 
 ## 🩹 Patches list
 
