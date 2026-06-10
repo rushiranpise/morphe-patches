@@ -1,0 +1,53 @@
+name: Takedown Request
+description: Request removal of a patch (for rights holders / developers)
+title: "[Takedown] "
+labels: ["takedown", "priority"]
+assignees:
+  - rushiranpise
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is for app developers or rights holders requesting removal of a patch. Requests will be handled promptly.
+
+  - type: input
+    id: app_name
+    attributes:
+      label: App Name
+      placeholder: e.g., My App
+    validations:
+      required: true
+
+  - type: input
+    id: package_name
+    attributes:
+      label: Package Name
+      placeholder: e.g., com.example.myapp
+    validations:
+      required: true
+
+  - type: input
+    id: your_role
+    attributes:
+      label: Your Role
+      description: Your relationship to the app
+      placeholder: e.g., Developer, Publisher, Legal representative
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for Takedown
+      description: Please explain why you want the patch removed
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Email
+      description: Email for follow-up (optional)
+      placeholder: legal@example.com
+    validations:
+      required: false

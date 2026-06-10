@@ -247,6 +247,33 @@ You can find the contribution guidelines [here](CONTRIBUTING.md).
 To build Rushi's Morphe Patches,
 you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation).
 
+> **Note:** Not all apps can be patched. Server-side features (AI, cloud sync, server-validated subscriptions) cannot be bypassed.
+
+## FAQ
+
+#### How do I use this?
+Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
+
+#### Why can't I log in with Google?
+Patched apps are re-signed, which breaks Google Play Services authentication. This is a known limitation for all patched apps.
+
+#### What APK version should I use?
+Use the latest versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
+
+#### The patch doesn't work on a newer version of app
+Open a [bug report](https://github.com/rushiranpise/morphe-patches/issues/new?template=bug_report.yml) with the app version and error message.
+
+## Disclaimer
+
+> **⚠️ Legal Notice**
+>
+> This project is provided for **educational and research purposes only**. The patches in this repository modify third-party applications and may violate the terms of service of those applications.
+>
+> - This project is **not affiliated** with any of the app developers listed above.
+> - Use these patches **at your own risk**. The author is not responsible for any consequences.
+> - If you are a developer or rights holder and believe this project infringes on your rights, please [submit a takedown request](https://github.com/rushiranpise/morphe-patches/issues/new?template=takedown-request.yml) and the relevant patches will be **promptly removed**.
+> - Users are encouraged to **support developers** by purchasing legitimate subscriptions if they find the apps useful.
+
 ## 📜 License
 
 Rushi's Morphe Patches are licensed under the [GNU General Public License v3.0](LICENSE)
