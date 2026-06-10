@@ -141,4 +141,12 @@ object Constants {
         appIconColor = 0x4CAF50,
         targets = listOf(AppTarget(version = null))
     )
+
+    // m-Indicator — Mumbai Local Train
+    val MINDICATOR_COMPATIBILITY = Compatibility(
+        name = "m-Indicator",
+        packageName = "com.mobond.mindicator",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
 }
