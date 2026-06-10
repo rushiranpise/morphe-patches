@@ -1,3 +1,9 @@
+## [1.5.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-06-10)
+
+### ✨ New Features
+
+* Add Photo Editor support ([99e976e](https://github.com/rushiranpise/morphe-patches/commit/99e976eb4954b55cdf6c8be41efe06083b3302ba))
+
 ## [1.5.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-06-10)
 
 ### ✨ New Features
