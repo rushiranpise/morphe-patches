@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.1",
+  "version": "1.5.0-dev.2",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -367,6 +367,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all Photo Editor premium features by bypassing license checks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.iudesk.android.photo.editor",
+          "name": "Photo Editor",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF6B9D",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "13.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
