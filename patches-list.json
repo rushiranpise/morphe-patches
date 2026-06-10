@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.6",
+  "version": "1.5.0-dev.7",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -110,6 +110,31 @@
         {
           "packageName": "com.saldous.casetracker",
           "name": "Case Tracker - Immigration",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Removes interstitial and exit native ads from m-Indicator.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mobond.mindicator",
+          "name": "m-Indicator",
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
@@ -241,7 +266,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.2.6",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -384,14 +409,14 @@
       "compatiblePackages": [
         {
           "packageName": "it.mirko.beta",
-          "name": "Beta by Mirko",
+          "name": "Beta Maniac",
           "description": null,
           "apkFileType": null,
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
             {
-              "version": "0.9.4",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -416,7 +441,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "13.3",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -566,7 +591,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.0",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -634,7 +659,7 @@
       "compatiblePackages": [
         {
           "packageName": "com.twtapp",
-          "name": "TWT App",
+          "name": "Stargazing Hub",
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1A1A2E",

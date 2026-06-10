@@ -1,3 +1,13 @@
+## [1.5.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.6...v1.5.0-dev.7) (2026-06-10)
+
+### 🐛 Bug Fixes
+
+* rar patch ([e65e6b7](https://github.com/rushiranpise/morphe-patches/commit/e65e6b75b765cc2f923794d3c68242a6a0deb46e))
+
+### ✨ New Features
+
+* add m-Indicator ([f592d31](https://github.com/rushiranpise/morphe-patches/commit/f592d314eb5c9ac59eb9fbbc5f8bb52ed439479b))
+
 ## [1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-06-10)
 
 ### ✨ New Features

@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;26 patches total
+> **[v1.5.0-dev.7](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.7)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -90,13 +90,18 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
-**🎯 Supported versions:**
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Ads](#remove-ads) | Removes interstitial and exit native ads from m-Indicator. |  |
 
-| 1.2.6 |
-| :---: |
+</details>
+
+<details open>
+<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -125,13 +130,8 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Beta by Mirko&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
-
-**🎯 Supported versions:**
-
-| 0.9.4 |
-| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -142,11 +142,6 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
-
-**🎯 Supported versions:**
-
-| 13.3 |
-| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -198,11 +193,6 @@ Even a small amount makes a difference 🙏
 <summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
-**🎯 Supported versions:**
-
-| 5.0 |
-| :---: |
-
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks all pro features in ML Manager. |  |
@@ -230,7 +220,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 TWT App&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
