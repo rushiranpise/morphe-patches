@@ -149,4 +149,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Yatri — Train, Metro & Bus Ticketing
+    val YATRI_COMPATIBILITY = Compatibility(
+        name = "Yatri",
+        packageName = "com.yatrirailways.yatri",
+        appIconColor = 0xFF6B00,
+        targets = listOf(AppTarget(version = "5.0.3"))
+    )
 }
