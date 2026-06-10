@@ -85,4 +85,12 @@ object Constants {
         appIconColor = 0x1CC29F,
         targets = listOf(AppTarget(version = null))
     )
+
+    // TWT App — Astronomy & Sky Guide
+    val TWTAPP_COMPATIBILITY = Compatibility(
+        name = "TWT App",
+        packageName = "com.twtapp",
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = null))
+    )
 }
