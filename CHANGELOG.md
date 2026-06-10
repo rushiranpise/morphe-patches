@@ -1,3 +1,9 @@
+## [1.5.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-06-10)
+
+### ✨ New Features
+
+* Stargazig Hub support ([38ef45e](https://github.com/rushiranpise/morphe-patches/commit/38ef45e7941ac236dde52b71243696fbe0b74b0f))
+
 ## [1.4.0](https://github.com/rushiranpise/morphe-patches/compare/v1.3.0...v1.4.0) (2026-06-08)
 
 ### 🐛 Bug Fixes

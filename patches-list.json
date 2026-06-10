@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0-dev.1",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -463,6 +463,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1CC29F",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Subscription",
+      "description": "Unlocks all subscription features in TWT App.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.twtapp",
+          "name": "TWT App",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
             {
