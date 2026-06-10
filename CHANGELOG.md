@@ -1,3 +1,9 @@
+## [1.5.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.7...v1.5.0-dev.8) (2026-06-10)
+
+### ✨ New Features
+
+* Add Yatri app support ([1069349](https://github.com/rushiranpise/morphe-patches/commit/1069349b368ab843fd43f0e36de8b16264386e5c))
+
 ## [1.5.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.6...v1.5.0-dev.7) (2026-06-10)
 
 ### 🐛 Bug Fixes

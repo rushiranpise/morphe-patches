@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.7",
+  "version": "1.5.0-dev.8",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -667,6 +667,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP",
+      "description": "Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.yatrirailways.yatri",
+          "name": "Yatri",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF6B00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null

@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.5.0-dev.7](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.7)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
+> **[v1.5.0-dev.8](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.8)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;28 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -226,6 +226,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Subscription](#unlock-subscription) | Unlocks all subscription features in TWT App. |  |
+
+</details>
+
+<details open>
+<summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.0.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock VIP](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |  |
 
 </details>
 
