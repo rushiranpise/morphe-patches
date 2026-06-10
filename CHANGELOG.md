@@ -1,3 +1,9 @@
+## [1.5.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-06-10)
+
+### ✨ New Features
+
+* add Hibernator and KillApps support ([5634e04](https://github.com/rushiranpise/morphe-patches/commit/5634e040fd2f54fbabf1cb087dc748aed04496b0))
+
 ## [1.5.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-06-10)
 
 ### ✨ New Features

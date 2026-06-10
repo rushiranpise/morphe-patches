@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.4",
+  "version": "1.5.0-dev.5",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -488,6 +488,56 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#0066FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all pro features in Hibernator.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tafayor.hibernator",
+          "name": "Hibernator",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all pro features in KillApps.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tafayor.killall",
+          "name": "KillApps",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F44336",
           "signatures": null,
           "targets": [
             {
