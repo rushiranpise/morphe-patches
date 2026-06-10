@@ -93,4 +93,12 @@ object Constants {
         appIconColor = 0x1A1A2E,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Photo Editor — iUdesk Photo Editor
+    val PHOTOEDITOR_COMPATIBILITY = Compatibility(
+        name = "Photo Editor",
+        packageName = "com.iudesk.android.photo.editor",
+        appIconColor = 0xFF6B9D,
+        targets = listOf(AppTarget(version = "13.3"))
+    )
 }
