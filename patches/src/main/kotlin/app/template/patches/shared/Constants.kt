@@ -117,4 +117,20 @@ object Constants {
         appIconColor = 0xFF5722,
         targets = listOf(AppTarget(version = "0.9.4"))
     )
+
+    // Hibernator — Apps & Background Process
+    val HIBERNATOR_COMPATIBILITY = Compatibility(
+        name = "Hibernator",
+        packageName = "com.tafayor.hibernator",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // KillApps — Background Apps Killer
+    val KILLAPPS_COMPATIBILITY = Compatibility(
+        name = "KillApps",
+        packageName = "com.tafayor.killall",
+        appIconColor = 0xF44336,
+        targets = listOf(AppTarget(version = null))
+    )
 }
