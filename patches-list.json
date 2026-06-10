@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-dev.5",
+  "version": "1.5.0-dev.6",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -567,6 +567,31 @@
           "targets": [
             {
               "version": "5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Removes ads and unlocks the no-ads subscription in RAR.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.rarlab.rar",
+          "name": "RAR",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null

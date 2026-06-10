@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.5.0-dev.5](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;25 patches total
+> **[v1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;26 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
 <br>
@@ -206,6 +206,16 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks all pro features in ML Manager. |  |
+
+</details>
+
+<details open>
+<summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Removes ads and unlocks the no-ads subscription in RAR. |  |
 
 </details>
 

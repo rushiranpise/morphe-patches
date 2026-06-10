@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-10T08:17:55",
-  "description": "## [1.5.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-06-10)\n\n### ✨ New Features\n\n* add Hibernator and KillApps support ([5634e04](https://github.com/rushiranpise/morphe-patches/commit/5634e040fd2f54fbabf1cb087dc748aed04496b0))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.5.0-dev.5/patches-1.5.0-dev.5.mpp",
+  "created_at": "2026-06-10T08:36:23",
+  "description": "## [1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-06-10)\n\n### ✨ New Features\n\n* Add RaR support ([2aa24b0](https://github.com/rushiranpise/morphe-patches/commit/2aa24b0c6e902986fb7f3dfd3c4c64b4e9b6fe99))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.5.0-dev.6/patches-1.5.0-dev.6.mpp",
   "signature_download_url": "",
-  "version": "1.5.0-dev.5"
+  "version": "1.5.0-dev.6"
 }

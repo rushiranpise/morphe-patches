@@ -1,3 +1,9 @@
+## [1.5.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-06-10)
+
+### ✨ New Features
+
+* Add RaR support ([2aa24b0](https://github.com/rushiranpise/morphe-patches/commit/2aa24b0c6e902986fb7f3dfd3c4c64b4e9b6fe99))
+
 ## [1.5.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-06-10)
 
 ### ✨ New Features
