@@ -75,7 +75,7 @@ object Constants {
         name = "Pialytic",
         packageName = "verbosus.pialytic",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "1.2.6"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // Snipd — AI Podcast Player
@@ -88,7 +88,7 @@ object Constants {
 
     // TWT App — Astronomy & Sky Guide
     val TWTAPP_COMPATIBILITY = Compatibility(
-        name = "TWT App",
+        name = "Stargazing Hub",
         packageName = "com.twtapp",
         appIconColor = 0x1A1A2E,
         targets = listOf(AppTarget(version = null))
@@ -99,7 +99,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = "13.3"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // ML Manager — APK Downloader & Backup
@@ -107,15 +107,15 @@ object Constants {
         name = "ML Manager",
         packageName = "com.javiersantos.mlmanager",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "5.0"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // Beta by Mirko — App updates tracker
     val MIRKO_COMPATIBILITY = Compatibility(
-        name = "Beta by Mirko",
+        name = "Beta Maniac",
         packageName = "it.mirko.beta",
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = "0.9.4"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // Hibernator — Apps & Background Process
