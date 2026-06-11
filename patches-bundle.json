@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-11T19:59:20",
-  "description": "## [1.6.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.1...v1.6.0-dev.2) (2026-06-11)\n\n### ✨ New Features\n\n* add shareit premium patches ([a78dbd6](https://github.com/rushiranpise/morphe-patches/commit/a78dbd6cf28952ae9beacf07a505f65f862747ba))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.2/patches-1.6.0-dev.2.mpp",
+  "created_at": "2026-06-11T20:06:29",
+  "description": "## [1.6.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.2...v1.6.0-dev.3) (2026-06-11)\n\n### ✨ New Features\n\n* add netmonster patches ([0cd8d94](https://github.com/rushiranpise/morphe-patches/commit/0cd8d94b598c1ec20b197e646df6ca2ab47ce84f))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.3/patches-1.6.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.6.0-dev.2"
+  "version": "1.6.0-dev.3"
 }

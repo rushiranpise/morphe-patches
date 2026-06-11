@@ -1,3 +1,9 @@
+## [1.6.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.2...v1.6.0-dev.3) (2026-06-11)
+
+### ✨ New Features
+
+* add netmonster patches ([0cd8d94](https://github.com/rushiranpise/morphe-patches/commit/0cd8d94b598c1ec20b197e646df6ca2ab47ce84f))
+
 ## [1.6.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.1...v1.6.0-dev.2) (2026-06-11)
 
 ### ✨ New Features
