@@ -1,3 +1,9 @@
+## [1.6.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.1...v1.6.0-dev.2) (2026-06-11)
+
+### ✨ New Features
+
+* add shareit premium patches ([a78dbd6](https://github.com/rushiranpise/morphe-patches/commit/a78dbd6cf28952ae9beacf07a505f65f862747ba))
+
 ## [1.6.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0...v1.6.0-dev.1) (2026-06-11)
 
 ### ✨ New Features

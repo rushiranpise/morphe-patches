@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;29 patches total
+> **[v1.6.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;30 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
@@ -126,6 +126,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Lifetime](#unlock-lifetime) | Unlocks all Lifetime features in Proxyman. |  |
+
+</details>
+
+<details open>
+<summary>📦 SHAREit Premium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=shareit.premium'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.1.98 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime](#unlock-lifetime) | Unlocks SHAREit lifetime premium. |  |
 
 </details>
 
