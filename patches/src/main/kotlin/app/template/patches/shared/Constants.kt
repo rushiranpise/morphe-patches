@@ -157,4 +157,12 @@ object Constants {
         appIconColor = 0xFF6B00,
         targets = listOf(AppTarget(version = "5.0.3"))
     )
+
+    // Proxyman — Network Debugger
+    val PROXYMAN_COMPATIBILITY = Compatibility(
+        name = "Proxyman",
+        packageName = "com.proxyman.proxymanandroid",
+        appIconColor = 0xFF6B35,
+        targets = listOf(AppTarget(version = null))
+    )
 }
