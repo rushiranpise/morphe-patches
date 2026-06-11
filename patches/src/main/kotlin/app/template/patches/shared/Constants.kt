@@ -155,7 +155,7 @@ object Constants {
         name = "Yatri",
         packageName = "com.yatrirailways.yatri",
         appIconColor = 0xFF6B00,
-        targets = listOf(AppTarget(version = "5.0.3"))
+        targets = listOf(AppTarget(version = null))
     )
 
     // Proxyman — Network Debugger
@@ -171,6 +171,14 @@ object Constants {
         name = "SHAREit Premium",
         packageName = "shareit.premium",
         appIconColor = 0xFF4B00,
-        targets = listOf(AppTarget(version = "1.1.98"))
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // NetMonster — Network Cell Info, Signal
+    val NETMONSTER_COMPATIBILITY = Compatibility(
+        name = "NetMonster",
+        packageName = "cz.mroczis.netmonster",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
     )
 }
