@@ -165,4 +165,12 @@ object Constants {
         appIconColor = 0xFF6B35,
         targets = listOf(AppTarget(version = null))
     )
+
+    // SHAREit Premium
+    val SHAREIT_COMPATIBILITY = Compatibility(
+        name = "SHAREit Premium",
+        packageName = "shareit.premium",
+        appIconColor = 0xFF4B00,
+        targets = listOf(AppTarget(version = "1.1.98"))
+    )
 }
