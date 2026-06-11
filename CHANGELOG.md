@@ -1,3 +1,9 @@
+## [1.6.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0...v1.6.0-dev.1) (2026-06-11)
+
+### ✨ New Features
+
+* add proxyman patches ([8f44581](https://github.com/rushiranpise/morphe-patches/commit/8f44581a1451551a9ce26bba807c087f3a0d59bc))
+
 ## [1.5.0](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0...v1.5.0) (2026-06-10)
 
 ### 🐛 Bug Fixes
