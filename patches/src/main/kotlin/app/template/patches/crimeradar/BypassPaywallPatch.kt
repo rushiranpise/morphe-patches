@@ -215,18 +215,18 @@ val bypassPaywallPatch = bytecodePatch(
             0,
             """
             const-string v0, "result"
-            invoke-static {p1, v0}, Lkotlin/jvm/internal/m;->h(Ljava/lang/Object;Ljava/lang/String;)V
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedLimit:Landroidx/lifecycle/S;
+            invoke-static {p1, v0}, Lkotlin/jvm/internal/n;->h(Ljava/lang/Object;Ljava/lang/String;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedLimit:Landroidx/lifecycle/T;
             const v1, 0x7fffffff
             invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
             move-result-object v1
-            invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->lockedSaveIds:Landroidx/lifecycle/S;
+            invoke-virtual {v0, v1}, Landroidx/lifecycle/T;->l(Ljava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->lockedSaveIds:Landroidx/lifecycle/T;
             invoke-static {}, Ljava/util/Collections;->emptySet()Ljava/util/Set;
             move-result-object v1
-            invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedList:Landroidx/lifecycle/S;
-            invoke-virtual {v0}, Landroidx/lifecycle/M;->d()Ljava/lang/Object;
+            invoke-virtual {v0, v1}, Landroidx/lifecycle/T;->l(Ljava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedList:Landroidx/lifecycle/T;
+            invoke-virtual {v0}, Landroidx/lifecycle/N;->d()Ljava/lang/Object;
             move-result-object v0
             check-cast v0, Ljava/util/ArrayList;
             if-eqz v0, :cond_update_server
@@ -253,19 +253,19 @@ val bypassPaywallPatch = bytecodePatch(
         accountChangedMethod.addInstructions(
             0,
             """
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedList:Landroidx/lifecycle/S;
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedList:Landroidx/lifecycle/T;
             const/4 v1, 0x0
-            invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedLimit:Landroidx/lifecycle/S;
+            invoke-virtual {v0, v1}, Landroidx/lifecycle/T;->l(Ljava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->savedLimit:Landroidx/lifecycle/T;
             const v1, 0x7fffffff
             invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
             move-result-object v1
-            invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
-            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->lockedSaveIds:Landroidx/lifecycle/S;
-            sget-object v1, LAe/E;->b:LAe/E;
-            invoke-virtual {v0, v1}, Landroidx/lifecycle/M;->l(Ljava/lang/Object;)V
+            invoke-virtual {v0, v1}, Landroidx/lifecycle/T;->l(Ljava/lang/Object;)V
+            sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->lockedSaveIds:Landroidx/lifecycle/T;
+            sget-object v1, LPf/E;->b:LPf/E;
+            invoke-virtual {v0, v1}, Landroidx/lifecycle/T;->l(Ljava/lang/Object;)V
             const-string v0, "mapSaveLocationList"
-            invoke-static {v0}, LDd/z;->i(Ljava/lang/String;)V
+            invoke-static {v0}, Lje/w;->i(Ljava/lang/String;)V
             return-void
             """.trimIndent()
         )
@@ -279,23 +279,23 @@ val bypassPaywallPatch = bytecodePatch(
         saveLocationMethod.addInstructions(
             0,
             """
-            iget-object v0, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            iget-object v0, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:Ljc/a;
             invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
             move-result-wide v1
             invoke-static {v1, v2}, Ljava/lang/Long;->toString(J)Ljava/lang/String;
             move-result-object v1
-            invoke-virtual {v0, v1}, LGb/a;->C(Ljava/lang/String;)V
-            invoke-virtual {v0}, LGb/a;->o()Ljava/lang/String;
+            invoke-virtual {v0, v1}, Ljc/a;->C(Ljava/lang/String;)V
+            invoke-virtual {v0}, Ljc/a;->o()Ljava/lang/String;
             move-result-object v1
             if-nez v1, :cond_zip
             const-string v1, "00000"
             :cond_zip
-            invoke-virtual {v0, v1}, LGb/a;->F(Ljava/lang/String;)V
+            invoke-virtual {v0, v1}, Ljc/a;->F(Ljava/lang/String;)V
             new-instance p1, Ljava/util/ArrayList;
             sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->INSTANCE:Lcom/particlemedia/feature/map/GlobalLocationRepository;
-            invoke-virtual {v0}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->getSavedList()Landroidx/lifecycle/S;
+            invoke-virtual {v0}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->getSavedList()Landroidx/lifecycle/T;
             move-result-object v1
-            invoke-virtual {v1}, Landroidx/lifecycle/M;->d()Ljava/lang/Object;
+            invoke-virtual {v1}, Landroidx/lifecycle/N;->d()Ljava/lang/Object;
             move-result-object v1
             check-cast v1, Ljava/util/ArrayList;
             if-eqz v1, :cond_empty
@@ -305,22 +305,22 @@ val bypassPaywallPatch = bytecodePatch(
             invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
             :goto_init
             invoke-direct {p1, v1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
-            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:Ljc/a;
             invoke-virtual {p1, v1}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
-            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:Ljc/a;
             const/4 v2, 0x1
-            invoke-virtual {v1, v2}, LGb/a;->D(Z)V
-            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:LGb/a;
+            invoke-virtual {v1, v2}, Ljc/a;->D(Z)V
+            iget-object v1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}gLocation:Ljc/a;
             const/4 v2, 0x0
             invoke-virtual {p1, v2, v1}, Ljava/util/ArrayList;->add(ILjava/lang/Object;)V
             sget-object v0, Lcom/particlemedia/feature/map/GlobalLocationRepository;->INSTANCE:Lcom/particlemedia/feature/map/GlobalLocationRepository;
             invoke-virtual {v0, p1}, Lcom/particlemedia/feature/map/GlobalLocationRepository;->updateSavedList(Ljava/util/ArrayList;)V
-            iget-object p1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}handleExceptionUnit:LLe/l;
+            iget-object p1, p0, Lcom/particlemedia/feature/map/SafetyMapViewModel${'$'}saveLocation${'$'}1;->${'$'}handleExceptionUnit:Lag/l;
             if-eqz p1, :cond_callback
             const/4 v0, 0x0
-            invoke-interface {p1, v0}, LLe/l;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
+            invoke-interface {p1, v0}, Lag/l;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
             :cond_callback
-            sget-object p1, Lze/D;->a:Lze/D;
+            sget-object p1, LOf/G;->a:LOf/G;
             return-object p1
             """.trimIndent()
         )
