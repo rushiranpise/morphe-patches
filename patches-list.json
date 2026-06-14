@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0-dev.4",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -327,6 +327,56 @@
       "options": []
     },
     {
+      "name": "Unlock Lifetime",
+      "description": "Unlocks all Lifetime features in Proxyman.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.proxyman.proxymanandroid",
+          "name": "Proxyman",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF6B35",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Lifetime",
+      "description": "Unlocks SHAREit lifetime premium.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "shareit.premium",
+          "name": "SHAREit Premium",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF4B00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Premium",
       "description": "Unlocks Premium Features In the App.",
       "default": true,
@@ -413,6 +463,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#FF5722",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "cz.mroczis.netmonster",
+          "name": "NetMonster",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
@@ -691,7 +766,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.0.3",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
