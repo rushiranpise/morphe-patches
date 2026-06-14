@@ -1,3 +1,9 @@
+## [1.6.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.3...v1.6.0-dev.4) (2026-06-14)
+
+### 🐛 Bug Fixes
+
+* Refactor BypassPaywallPatch to use updated lifecycle classes ([ef8ffbf](https://github.com/rushiranpise/morphe-patches/commit/ef8ffbfa4b2a3279a9ddb63fa75ffef0935ac0d4)), closes [/github.com/rushiranpise/morphe-patches/issues/12#issuecomment-4695720422](https://github.com/rushiranpise//github.com/rushiranpise/morphe-patches/issues/12/issues/issuecomment-4695720422)
+
 ## [1.6.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.2...v1.6.0-dev.3) (2026-06-11)
 
 ### ✨ New Features
