@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.5",
+  "version": "1.6.0-dev.6",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -529,6 +529,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Bypasses PairIP license check, paywall, ads, and pro upsell in SAI.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mtv.sai",
+          "name": "SAI - Split APKs Installer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo.",
       "default": true,
       "dependencies": [],
@@ -767,7 +792,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.18.2",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
