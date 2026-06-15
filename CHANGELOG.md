@@ -1,3 +1,9 @@
+## [1.6.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.4...v1.6.0-dev.5) (2026-06-15)
+
+### ✨ New Features
+
+* add TeraBox ([740303d](https://github.com/rushiranpise/morphe-patches/commit/740303dcab889f18c98ae725338964fbb4fb8a77))
+
 ## [1.6.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.3...v1.6.0-dev.4) (2026-06-14)
 
 ### 🐛 Bug Fixes
