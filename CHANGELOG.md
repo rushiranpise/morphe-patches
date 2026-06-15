@@ -1,3 +1,9 @@
+## [1.6.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.5...v1.6.0-dev.6) (2026-06-15)
+
+### ✨ New Features
+
+* add sai ([d0d47e7](https://github.com/rushiranpise/morphe-patches/commit/d0d47e743e4177cf8711ba2401cda70618046c7d))
+
 ## [1.6.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.4...v1.6.0-dev.5) (2026-06-15)
 
 ### ✨ New Features
