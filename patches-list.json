@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.7",
+  "version": "1.6.0-dev.8",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -393,6 +393,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Lifetime Access",
+      "description": "Unlocks Lifetime access in Nzb360.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.kevinforeman.nzb360",
+          "name": "nzb360",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "23.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null

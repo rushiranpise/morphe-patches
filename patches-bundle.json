@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-15T04:58:05",
-  "description": "## [1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.6...v1.6.0-dev.7) (2026-06-15)\n\n### ✨ New Features\n\n* add blockerhero ([f8d885a](https://github.com/rushiranpise/morphe-patches/commit/f8d885acb745310c601ca0eae6c0850f039b9eb4))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.7/patches-1.6.0-dev.7.mpp",
+  "created_at": "2026-06-15T05:05:42",
+  "description": "## [1.6.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.7...v1.6.0-dev.8) (2026-06-15)\n\n### ✨ New Features\n\n* Add patches for NZB360 app ([9327679](https://github.com/rushiranpise/morphe-patches/commit/9327679ca778f790d5e00ffb1b0865a4231c6dba))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.8/patches-1.6.0-dev.8.mpp",
   "signature_download_url": "",
-  "version": "1.6.0-dev.7"
+  "version": "1.6.0-dev.8"
 }
