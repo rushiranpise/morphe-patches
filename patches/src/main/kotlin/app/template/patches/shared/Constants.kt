@@ -181,4 +181,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Dubox Drive — Cloud Storage
+    val DUBOXDRIVE_COMPATIBILITY = Compatibility(
+        name = "Dubox Drive",
+        packageName = "com.dubox.drive",
+        appIconColor = 0x2EAAFF,
+        targets = listOf(AppTarget(version = "4.18.2"))
+    )
 }
