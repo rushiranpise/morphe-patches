@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;33 patches total
+> **[v1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.7)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
@@ -116,6 +116,16 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Donation Features](#unlock-donation-features) | Unlocks all premium donation features in Greenify. |  |
+
+</details>
+
+<details open>
+<summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.blockerhero'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime](#unlock-lifetime) | Unlocks lifetime subscription features in BlockerHero. |  |
 
 </details>
 

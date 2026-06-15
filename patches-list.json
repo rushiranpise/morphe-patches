@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.6",
+  "version": "1.6.0-dev.7",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -314,6 +314,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Lifetime",
+      "description": "Unlocks lifetime subscription features in BlockerHero.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.blockerhero",
+          "name": "BlockerHero",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF5252",
           "signatures": null,
           "targets": [
             {

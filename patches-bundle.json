@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-06-15T04:53:12",
-  "description": "## [1.6.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.5...v1.6.0-dev.6) (2026-06-15)\n\n### ✨ New Features\n\n* add sai ([d0d47e7](https://github.com/rushiranpise/morphe-patches/commit/d0d47e743e4177cf8711ba2401cda70618046c7d))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.6/patches-1.6.0-dev.6.mpp",
+  "created_at": "2026-06-15T04:58:05",
+  "description": "## [1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.6...v1.6.0-dev.7) (2026-06-15)\n\n### ✨ New Features\n\n* add blockerhero ([f8d885a](https://github.com/rushiranpise/morphe-patches/commit/f8d885acb745310c601ca0eae6c0850f039b9eb4))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.6.0-dev.7/patches-1.6.0-dev.7.mpp",
   "signature_download_url": "",
-  "version": "1.6.0-dev.6"
+  "version": "1.6.0-dev.7"
 }

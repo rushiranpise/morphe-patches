@@ -1,3 +1,9 @@
+## [1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.6...v1.6.0-dev.7) (2026-06-15)
+
+### ✨ New Features
+
+* add blockerhero ([f8d885a](https://github.com/rushiranpise/morphe-patches/commit/f8d885acb745310c601ca0eae6c0850f039b9eb4))
+
 ## [1.6.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.5...v1.6.0-dev.6) (2026-06-15)
 
 ### ✨ New Features
