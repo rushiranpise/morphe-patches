@@ -187,6 +187,14 @@ object Constants {
         name = "Dubox Drive",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.18.2"))
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // SAI — Split APKs Installer by MTV
+    val SAI_COMPATIBILITY = Compatibility(
+        name = "SAI - Split APKs Installer",
+        packageName = "com.mtv.sai",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
     )
 }
