@@ -205,4 +205,12 @@ object Constants {
         appIconColor = 0xFF5252,
         targets = listOf(AppTarget(version = null))
     )
+
+    // nzb360 — Usenet & Torrent Manager
+    val NZB360_COMPATIBILITY = Compatibility(
+        name = "nzb360",
+        packageName = "com.kevinforeman.nzb360",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "23.4"))
+    )
 }
