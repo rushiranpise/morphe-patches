@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.9",
+  "version": "1.6.0-dev.10",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -303,6 +303,31 @@
       "options": []
     },
     {
+      "name": "Unlock All Access",
+      "description": "Unlocks All access in Nzb360.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.kevinforeman.nzb360",
+          "name": "nzb360",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock All Features",
       "description": "Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access.",
       "default": true,
@@ -439,31 +464,6 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#FF4B00",
-          "signatures": null,
-          "targets": [
-            {
-              "version": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Lifetime Access",
-      "description": "Unlocks Lifetime access in Nzb360.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.kevinforeman.nzb360",
-          "name": "nzb360",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
@@ -689,6 +689,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium ",
+      "description": "Unlocks premium in Clickmate",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.inscode.autoclicker",
+          "name": "Clickmate",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {

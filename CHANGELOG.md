@@ -1,3 +1,9 @@
+## [1.6.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.9...v1.6.0-dev.10) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* update nzb360 patches ([8de9f05](https://github.com/rushiranpise/morphe-patches/commit/8de9f05018fbde283a8a2978cb891ec14991c5fc))
+
 ## [1.6.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.8...v1.6.0-dev.9) (2026-06-15)
 
 ### ✨ New Features
