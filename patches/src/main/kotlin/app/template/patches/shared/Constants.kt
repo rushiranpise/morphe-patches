@@ -222,4 +222,12 @@ object Constants {
         targets = listOf(AppTarget(version = null))
     )
 
+    // Clickmate
+    val INSCODE_AUTOCLICKER_COMPATIBILITY = Compatibility(
+        name = "Clickmate",
+        packageName = "com.inscode.autoclicker",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
 }
