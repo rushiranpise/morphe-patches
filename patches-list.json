@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.8",
+  "version": "1.6.0-dev.9",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -103,6 +103,31 @@
       "options": []
     },
     {
+      "name": "Disable Restricted Access",
+      "description": "Removes restricted/locked indicators on premium media in Canva.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.canva.editor",
+          "name": "Canva",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#8B3DFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Ads",
       "description": "Removes interstitial, app-open and native ads.",
       "default": false,
@@ -164,6 +189,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Watermark",
+      "description": "Removes watermarks from Canva exports and previews.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.canva.editor",
+          "name": "Canva",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#8B3DFF",
           "signatures": null,
           "targets": [
             {
@@ -417,7 +467,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "23.4",
+              "version": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -835,7 +885,7 @@
       "compatiblePackages": [
         {
           "packageName": "com.dubox.drive",
-          "name": "Dubox Drive",
+          "name": "TeraBox",
           "description": null,
           "apkFileType": null,
           "appIconColor": "#2EAAFF",
