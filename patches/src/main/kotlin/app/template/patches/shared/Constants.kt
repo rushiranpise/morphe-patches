@@ -197,4 +197,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
     )
+
+    // BlockerHero — App Blocker & Focus Timer
+    val BLOCKERHERO_COMPATIBILITY = Compatibility(
+        name = "BlockerHero",
+        packageName = "com.blockerhero",
+        appIconColor = 0xFF5252,
+        targets = listOf(AppTarget(version = null))
+    )
 }
