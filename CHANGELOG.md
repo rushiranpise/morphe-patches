@@ -1,3 +1,9 @@
+## [1.6.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.8...v1.6.0-dev.9) (2026-06-15)
+
+### ✨ New Features
+
+* add canva ([05d28c9](https://github.com/rushiranpise/morphe-patches/commit/05d28c93f5ffd737ad90a2bcf7ede00a2ed4000f))
+
 ## [1.6.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.7...v1.6.0-dev.8) (2026-06-15)
 
 ### ✨ New Features

@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.0-dev.8](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.8)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;35 patches total
+> **[v1.6.0-dev.9](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.9)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;37 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
@@ -75,6 +75,17 @@ Even a small amount makes a difference 🙏
 |----------|----------------|-----------|
 | [Disable Analytics / Telemetry](#disable-analytics-telemetry) | Disables App Analytics / Telemetry. |  |
 | [Spoof WARP+ Unlimited UI](#spoof-warp-unlimited-ui) | Unlocks WARP+ UI locally. |  |
+
+</details>
+
+<details open>
+<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Restricted Access](#disable-restricted-access) | Removes restricted/locked indicators on premium media in Canva. |  |
+| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
 
 </details>
 
@@ -152,11 +163,6 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 nzb360&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360'>📥</a></summary>
 <br>
-
-**🎯 Supported versions:**
-
-| 23.4 |
-| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -295,7 +301,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Dubox Drive&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.dubox.drive'>📥</a></summary>
+<summary>📦 TeraBox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.dubox.drive'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
