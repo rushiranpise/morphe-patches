@@ -184,7 +184,7 @@ object Constants {
 
     // Dubox Drive — Cloud Storage
     val DUBOXDRIVE_COMPATIBILITY = Compatibility(
-        name = "Dubox Drive",
+        name = "TeraBox",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
         targets = listOf(AppTarget(version = null))
@@ -211,6 +211,15 @@ object Constants {
         name = "nzb360",
         packageName = "com.kevinforeman.nzb360",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "23.4"))
+        targets = listOf(AppTarget(version = null))
     )
+
+    // Canva
+    val CANVA_COMPATIBILITY = Compatibility(
+        name = "Canva",
+        packageName = "com.canva.editor",
+        appIconColor = 0x8B3DFF,
+        targets = listOf(AppTarget(version = null))
+    )
+
 }
