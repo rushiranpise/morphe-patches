@@ -1,3 +1,9 @@
+## [1.6.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.7...v1.6.0-dev.8) (2026-06-15)
+
+### ✨ New Features
+
+* Add patches for NZB360 app ([9327679](https://github.com/rushiranpise/morphe-patches/commit/9327679ca778f790d5e00ffb1b0865a4231c6dba))
+
 ## [1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.6...v1.6.0-dev.7) (2026-06-15)
 
 ### ✨ New Features
