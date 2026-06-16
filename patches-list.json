@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.10",
+  "version": "1.6.0-dev.11",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -635,7 +635,7 @@
       "compatiblePackages": [
         {
           "packageName": "com.mtv.sai",
-          "name": "SAI - Split APKs Installer",
+          "name": "SAI",
           "description": null,
           "apkFileType": null,
           "appIconColor": "#1565C0",
@@ -814,6 +814,31 @@
           "description": null,
           "apkFileType": null,
           "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all pro features in NetGuard.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.faircode.netguard",
+          "name": "NetGuard",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {

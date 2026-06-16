@@ -1,3 +1,9 @@
+## [1.6.0-dev.11](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.10...v1.6.0-dev.11) (2026-06-16)
+
+### ✨ New Features
+
+* add NetGuard patches ([5ebd48e](https://github.com/rushiranpise/morphe-patches/commit/5ebd48e2fee41f1ab59bedb81cc886578e90dd47))
+
 ## [1.6.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.9...v1.6.0-dev.10) (2026-06-15)
 
 ### 🐛 Bug Fixes
