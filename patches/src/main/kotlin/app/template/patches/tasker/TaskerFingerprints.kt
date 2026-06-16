@@ -37,3 +37,16 @@ val LicenseCheckZFingerprint = Fingerprint(
     returnType = "Lio/reactivex/Single;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
+// ── ExtensionsContextKt.I3(Context)Z ─────────────────────────────────────────
+// Returns true if this APK was installed by the Play Store (installer pkg ==
+// "com.android.vending"). On AOSP / de-Googled ROMs the Play Store is absent,
+// getInstallerPackageName() returns null, so I3() returns false.
+// When false, the purchase-flow UI (if/c5 dialog) is launched instead of the
+// normal app flow. Forcing true skips that dialog on GMS-less devices.
+val IsInstalledFromPlayStoreFingerprint = Fingerprint(
+    definingClass = "Lcom/joaomgcd/taskerm/util/ExtensionsContextKt;",
+    name = "I3",
+    parameters = listOf("Landroid/content/Context;"),
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL)
+)
