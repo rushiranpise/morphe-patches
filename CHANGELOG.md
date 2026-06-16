@@ -1,3 +1,9 @@
+## [1.6.0-dev.13](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.12...v1.6.0-dev.13) (2026-06-16)
+
+### 🐛 Bug Fixes
+
+* update Tasker patches ([8dd4dea](https://github.com/rushiranpise/morphe-patches/commit/8dd4dea0f20fd56b4c2a3282b46328e0f915e879))
+
 ## [1.6.0-dev.12](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.11...v1.6.0-dev.12) (2026-06-16)
 
 ### ✨ New Features
