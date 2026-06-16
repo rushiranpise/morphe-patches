@@ -1,3 +1,9 @@
+## [1.6.0-dev.12](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.11...v1.6.0-dev.12) (2026-06-16)
+
+### ✨ New Features
+
+* add tasker unlock pro patch ([4805906](https://github.com/rushiranpise/morphe-patches/commit/480590645d7929c488ca16c4f5949fa9b31d73fa))
+
 ## [1.6.0-dev.11](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.10...v1.6.0-dev.11) (2026-06-16)
 
 ### ✨ New Features
