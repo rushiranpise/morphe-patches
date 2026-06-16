@@ -192,7 +192,7 @@ object Constants {
 
     // SAI — Split APKs Installer by MTV
     val SAI_COMPATIBILITY = Compatibility(
-        name = "SAI - Split APKs Installer",
+        name = "SAI",
         packageName = "com.mtv.sai",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = null))
@@ -230,4 +230,11 @@ object Constants {
         targets = listOf(AppTarget(version = null))
     )
 
+    // NetGuard — No-root Firewall by Marcel Bokhorst
+    val NETGUARD_COMPATIBILITY = Compatibility(
+        name = "NetGuard",
+        packageName = "eu.faircode.netguard",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
 }
