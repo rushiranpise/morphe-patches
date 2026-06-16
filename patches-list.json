@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0-dev.11",
+  "version": "1.6.0-dev.12",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -893,6 +893,31 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Tasker Pro features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "net.dinglisch.android.taskerm",
+          "name": "Tasker",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#263238",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.6.20",
               "isExperimental": false,
               "minSdk": null,
               "description": null
