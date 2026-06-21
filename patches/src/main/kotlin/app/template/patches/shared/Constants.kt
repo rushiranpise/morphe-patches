@@ -269,4 +269,12 @@ object Constants {
         appIconColor = 0x2A3B4C,
         targets = listOf(AppTarget(version = null))
     )
+
+    // HTTP Mock Tool — API Mock & Network Capture
+    val HTTPMOCK_COMPATIBILITY = Compatibility(
+        name = "HTTP Sniffer",
+        packageName = "com.anetcapture.mock",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "2.11.0-ad_mob"))
+    )
 }
