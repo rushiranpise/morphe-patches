@@ -277,4 +277,12 @@ object Constants {
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "2.11.0-ad_mob"))
     )
+
+    // MyPerm — App Permission Manager by darken
+    val MYPERM_COMPATIBILITY = Compatibility(
+        name = "Permission Pilot",
+        packageName = "eu.darken.myperm",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "2.1.1-rc0"))
+    )
 }
