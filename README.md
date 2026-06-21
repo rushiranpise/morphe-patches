@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.0-dev.13](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.13)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;40 patches total
+> **[v1.6.0-dev.14](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.14)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;53 patches total
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
@@ -111,6 +111,51 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Psiphon Pro&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.psiphon3.subscription'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 476 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Ads / Unlock Premium](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and the upgrade button/banner without crashing on the now-expected non-null Purchase object. |  |
+
+</details>
+
+<details open>
+<summary>📦 AIDA64&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.finalwire.aida64'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.20 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove ads](#remove-ads) | Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init. |  |
+
+</details>
+
+<details open>
+<summary>📦 Speedtest by Ookla&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 7.0.4 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Ad-Free](#unlock-ad-free) | Removes ads and unlocks ad-free status in Speedtest by Ookla. |  |
+
+</details>
+
+<details open>
 <summary>📦 nzb360&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360'>📥</a></summary>
 <br>
 
@@ -127,6 +172,16 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock All Features](#unlock-all-features) | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |  |
+
+</details>
+
+<details open>
+<summary>📦 Flightradar24&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.flightradar24free'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Business Premium](#unlock-business-premium) | Unlocks Business/Gold premium features in Flightradar24: ad-free map, weather layers, ATC, 3D view, flight history, and unlimited saved locations. |  |
 
 </details>
 
@@ -171,12 +226,47 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 AdGuard Nightly&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.adguard.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.14.68 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime Premium](#unlock-lifetime-premium) | Unlocks all features locked behind the subscription paywall. |  |
+
+</details>
+
+<details open>
 <summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 CPU-Z&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cpuid.cpu_z'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Premium features in app. |  |
+
+</details>
+
+<details open>
+<summary>📦 Hola VPN Proxy Plus&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.hola.play'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) |  |  |
 
 </details>
 
@@ -211,6 +301,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Proton VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ch.protonvpn.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.18.84.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks local Proton VPN premium  features. |  |
+
+</details>
+
+<details open>
 <summary>📦 SAI&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mtv.sai'>📥</a></summary>
 <br>
 
@@ -227,6 +332,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo. |  |
+
+</details>
+
+<details open>
+<summary>📦 Social Gamebox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.app.social_gamebox'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.1.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Social Gamebox premium features. |  |
 
 </details>
 
@@ -281,6 +401,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Permission Pilot&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.darken.myperm'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.1.1-rc0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
+
+</details>
+
+<details open>
 <summary>📦 NetGuard&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.faircode.netguard'>📥</a></summary>
 <br>
 
@@ -291,12 +426,42 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 NetShare - Hotspot & Wifi Direct&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=kha.prog.mikrotik'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| UI/link-274 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks Pro features in app. |  |
+
+</details>
+
+<details open>
 <summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.rarlab.rar'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Removes ads and unlocks the no-ads subscription in RAR. |  |
+
+</details>
+
+<details open>
+<summary>📦 App Permission Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.shexa.permissionmanager'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.4.6.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
 
 </details>
 
@@ -352,6 +517,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock VIP](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |  |
+
+</details>
+
+<details open>
+<summary>📦 HTTP Sniffer&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.anetcapture.mock'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.11.0-ad_mob |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock VIP (Lifetime)](#unlock-vip-lifetime) | Forces permanent professional VIP tier, removes ads and upgrade popups, bypasses PairIP. |  |
 
 </details>
 
