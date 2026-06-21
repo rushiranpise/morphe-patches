@@ -309,4 +309,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "3.4.6.2"))
     )
+
+    // Hola VPN Proxy Plus
+    val HOLAVPN_COMPATIBILITY = Compatibility(
+        name = "Hola VPN Proxy Plus",
+        packageName = "org.hola.play",
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = null))
+    )
 }
