@@ -335,4 +335,11 @@ object Constants {
     )
 
     // Social Gamebox
+    // Flightradar24
+    val FLIGHTRADAR_COMPATIBILITY = Compatibility(
+        name = "Flightradar24",
+        packageName = "com.flightradar24free",
+        appIconColor = 0xFFDD00,
+        targets = listOf(AppTarget(version = null))
+    )
 }
