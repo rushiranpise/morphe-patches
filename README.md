@@ -39,9 +39,9 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.5.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.5.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;28 patches total
+> **[v1.6.0-dev.14](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0-dev.14)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;53 patches total
 <details open>
-<summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches</summary>
+<summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -56,7 +56,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Universal TV Remote Control&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<summary>📦 Universal TV Remote Control&nbsp;&nbsp;•&nbsp;&nbsp;3 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -68,7 +68,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 1.1.1.1 + WARP&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 1.1.1.1 + WARP&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -79,7 +79,18 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Restricted Access](#disable-restricted-access) | Removes restricted/locked indicators on premium media in Canva. |  |
+| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
+
+</details>
+
+<details open>
+<summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.saldous.casetracker'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -90,7 +101,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mobond.mindicator'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -100,7 +111,62 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Psiphon Pro&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.psiphon3.subscription'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 476 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Ads / Unlock Premium](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and the upgrade button/banner without crashing on the now-expected non-null Purchase object. |  |
+
+</details>
+
+<details open>
+<summary>📦 AIDA64&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.finalwire.aida64'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.20 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove ads](#remove-ads) | Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init. |  |
+
+</details>
+
+<details open>
+<summary>📦 Speedtest by Ookla&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 7.0.4 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Ad-Free](#unlock-ad-free) | Removes ads and unlocks ad-free status in Speedtest by Ookla. |  |
+
+</details>
+
+<details open>
+<summary>📦 nzb360&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock All Access](#unlock-all-access) | Unlocks All access in Nzb360. |  |
+
+</details>
+
+<details open>
+<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=verbosus.pialytic'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -110,7 +176,17 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Greenify&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Flightradar24&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.flightradar24free'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Business Premium](#unlock-business-premium) | Unlocks Business/Gold premium features in Flightradar24: ad-free map, weather layers, ATC, 3D view, flight history, and unlimited saved locations. |  |
+
+</details>
+
+<details open>
+<summary>📦 Greenify&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.oasisfeng.greenify'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -120,7 +196,52 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.blockerhero'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime](#unlock-lifetime) | Unlocks lifetime subscription features in BlockerHero. |  |
+
+</details>
+
+<details open>
+<summary>📦 Proxyman&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime](#unlock-lifetime) | Unlocks all Lifetime features in Proxyman. |  |
+
+</details>
+
+<details open>
+<summary>📦 SHAREit Premium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=shareit.premium'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime](#unlock-lifetime) | Unlocks SHAREit lifetime premium. |  |
+
+</details>
+
+<details open>
+<summary>📦 AdGuard Nightly&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.adguard.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.14.68 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Lifetime Premium](#unlock-lifetime-premium) | Unlocks all features locked behind the subscription paywall. |  |
+
+</details>
+
+<details open>
+<summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -130,7 +251,27 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 CPU-Z&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cpuid.cpu_z'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Premium features in app. |  |
+
+</details>
+
+<details open>
+<summary>📦 Hola VPN Proxy Plus&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.hola.play'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) |  |  |
+
+</details>
+
+<details open>
+<summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=it.mirko.beta'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -140,7 +281,17 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 NetMonster&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=cz.mroczis.netmonster'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium features. |  |
+
+</details>
+
+<details open>
+<summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -150,7 +301,32 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Proton VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ch.protonvpn.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.18.84.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks local Proton VPN premium  features. |  |
+
+</details>
+
+<details open>
+<summary>📦 SAI&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mtv.sai'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Bypasses PairIP license check, paywall, ads, and pro upsell in SAI. |  |
+
+</details>
+
+<details open>
+<summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -160,7 +336,32 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Citizen - Safety Alert&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Social Gamebox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.app.social_gamebox'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.1.3 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Social Gamebox premium features. |  |
+
+</details>
+
+<details open>
+<summary>📦 Clickmate&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.inscode.autoclicker'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium ](#unlock-premium) | Unlocks premium in Clickmate |  |
+
+</details>
+
+<details open>
+<summary>📦 Citizen - Safety Alert&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sp0n.citizen'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -170,7 +371,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Hibernator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Hibernator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.hibernator'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -180,7 +381,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 KillApps&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 KillApps&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.killall'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -190,7 +391,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -200,7 +401,47 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Permission Pilot&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.darken.myperm'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.1.1-rc0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
+
+</details>
+
+<details open>
+<summary>📦 NetGuard&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.faircode.netguard'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all pro features in NetGuard. |  |
+
+</details>
+
+<details open>
+<summary>📦 NetShare - Hotspot & Wifi Direct&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=kha.prog.mikrotik'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| UI/link-274 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks Pro features in app. |  |
+
+</details>
+
+<details open>
+<summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.rarlab.rar'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -210,7 +451,22 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 App Permission Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.shexa.permissionmanager'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.4.6.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
+
+</details>
+
+<details open>
+<summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -220,7 +476,22 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 Tasker&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 6.6.20 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks Tasker Pro features. |  |
+
+</details>
+
+<details open>
+<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.twtapp'>📥</a></summary>
 <br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -230,17 +501,37 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<summary>📦 TeraBox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.dubox.drive'>📥</a></summary>
 <br>
 
-**🎯 Supported versions:**
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock VIP](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+) |  |
 
-| 5.0.3 |
-| :---: |
+</details>
+
+<details open>
+<summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.yatrirailways.yatri'>📥</a></summary>
+<br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock VIP](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |  |
+
+</details>
+
+<details open>
+<summary>📦 HTTP Sniffer&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.anetcapture.mock'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.11.0-ad_mob |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock VIP (Lifetime)](#unlock-vip-lifetime) | Forces permanent professional VIP tier, removes ads and upgrade popups, bypasses PairIP. |  |
 
 </details>
 

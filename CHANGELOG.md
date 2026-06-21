@@ -1,3 +1,105 @@
+## [1.6.0-dev.14](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.13...v1.6.0-dev.14) (2026-06-21)
+
+### 🐛 Bug Fixes
+
+* add shared method extensions ([31ff361](https://github.com/rushiranpise/morphe-patches/commit/31ff361d67754f03bd3a6be3ebc1340282636e6c))
+* blocker hero ([9a0ca38](https://github.com/rushiranpise/morphe-patches/commit/9a0ca38744a15551d336be2c62df73500b570ca9)), closes [/github.com/rushiranpise/morphe-patches/issues/14#issuecomment-4717309269](https://github.com/rushiranpise//github.com/rushiranpise/morphe-patches/issues/14/issues/issuecomment-4717309269)
+* terabox ([3c29c12](https://github.com/rushiranpise/morphe-patches/commit/3c29c12723a6eb9f713a8f740c6f4c2a2cf2d0c2))
+
+### ✨ New Features
+
+* add Adguard nightly ([aef9fa4](https://github.com/rushiranpise/morphe-patches/commit/aef9fa4761e032b6ef44241149e0e204dacb1ce9))
+* add AIDA64 ([d2c9d0b](https://github.com/rushiranpise/morphe-patches/commit/d2c9d0b860548ebb56e28bee1466a751b38078e9))
+* add App Permission Manager ([fb09dce](https://github.com/rushiranpise/morphe-patches/commit/fb09dcebe26ef4b3771fed96fb3a1cab02ee820a))
+* add CPU-Z ([93e8837](https://github.com/rushiranpise/morphe-patches/commit/93e8837cc555263363e8d09060c757a70b683e14))
+* add FlightRadar24 ([624b6c2](https://github.com/rushiranpise/morphe-patches/commit/624b6c2baf936517b07a67d2fe62edcafa96eda2))
+* add Hola VPN ([a73f254](https://github.com/rushiranpise/morphe-patches/commit/a73f2548909d98e2c125681c0bca9307cf9c28e5))
+* add Http Sniffer ([a2ec360](https://github.com/rushiranpise/morphe-patches/commit/a2ec3608068f6b6eeb7af8b34bd9bf45b8b40efa))
+* add Netshare ([29c2ca2](https://github.com/rushiranpise/morphe-patches/commit/29c2ca2b13ded2713370b3ece77b61f6bf9f57d1))
+* add Permission Pilot ([bbf3553](https://github.com/rushiranpise/morphe-patches/commit/bbf355370982d0c30170685161811ff6c1c80341))
+* add proton vpn ([6589c89](https://github.com/rushiranpise/morphe-patches/commit/6589c89c6264038ef25b13f8406aa0d9685663f9))
+* add Psiphon Pro ([777e56b](https://github.com/rushiranpise/morphe-patches/commit/777e56b53ac27b962269ff4d02da732a13516685))
+* add Social GameBox ([733cf20](https://github.com/rushiranpise/morphe-patches/commit/733cf20a9e9086c211a73ffeb5faa3523bce9dd5))
+* add Speedtest ([d26b4b9](https://github.com/rushiranpise/morphe-patches/commit/d26b4b97ea15dd1cfae4333b6c4225f6407d1562))
+
+## [1.6.0-dev.13](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.12...v1.6.0-dev.13) (2026-06-16)
+
+### 🐛 Bug Fixes
+
+* update Tasker patches ([8dd4dea](https://github.com/rushiranpise/morphe-patches/commit/8dd4dea0f20fd56b4c2a3282b46328e0f915e879))
+
+## [1.6.0-dev.12](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.11...v1.6.0-dev.12) (2026-06-16)
+
+### ✨ New Features
+
+* add tasker unlock pro patch ([4805906](https://github.com/rushiranpise/morphe-patches/commit/480590645d7929c488ca16c4f5949fa9b31d73fa))
+
+## [1.6.0-dev.11](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.10...v1.6.0-dev.11) (2026-06-16)
+
+### ✨ New Features
+
+* add NetGuard patches ([5ebd48e](https://github.com/rushiranpise/morphe-patches/commit/5ebd48e2fee41f1ab59bedb81cc886578e90dd47))
+
+## [1.6.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.9...v1.6.0-dev.10) (2026-06-15)
+
+### 🐛 Bug Fixes
+
+* update nzb360 patches ([8de9f05](https://github.com/rushiranpise/morphe-patches/commit/8de9f05018fbde283a8a2978cb891ec14991c5fc))
+
+## [1.6.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.8...v1.6.0-dev.9) (2026-06-15)
+
+### ✨ New Features
+
+* add canva ([05d28c9](https://github.com/rushiranpise/morphe-patches/commit/05d28c93f5ffd737ad90a2bcf7ede00a2ed4000f))
+
+## [1.6.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.7...v1.6.0-dev.8) (2026-06-15)
+
+### ✨ New Features
+
+* Add patches for NZB360 app ([9327679](https://github.com/rushiranpise/morphe-patches/commit/9327679ca778f790d5e00ffb1b0865a4231c6dba))
+
+## [1.6.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.6...v1.6.0-dev.7) (2026-06-15)
+
+### ✨ New Features
+
+* add blockerhero ([f8d885a](https://github.com/rushiranpise/morphe-patches/commit/f8d885acb745310c601ca0eae6c0850f039b9eb4))
+
+## [1.6.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.5...v1.6.0-dev.6) (2026-06-15)
+
+### ✨ New Features
+
+* add sai ([d0d47e7](https://github.com/rushiranpise/morphe-patches/commit/d0d47e743e4177cf8711ba2401cda70618046c7d))
+
+## [1.6.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.4...v1.6.0-dev.5) (2026-06-15)
+
+### ✨ New Features
+
+* add TeraBox ([740303d](https://github.com/rushiranpise/morphe-patches/commit/740303dcab889f18c98ae725338964fbb4fb8a77))
+
+## [1.6.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.3...v1.6.0-dev.4) (2026-06-14)
+
+### 🐛 Bug Fixes
+
+* Refactor BypassPaywallPatch to use updated lifecycle classes ([ef8ffbf](https://github.com/rushiranpise/morphe-patches/commit/ef8ffbfa4b2a3279a9ddb63fa75ffef0935ac0d4)), closes [/github.com/rushiranpise/morphe-patches/issues/12#issuecomment-4695720422](https://github.com/rushiranpise//github.com/rushiranpise/morphe-patches/issues/12/issues/issuecomment-4695720422)
+
+## [1.6.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.2...v1.6.0-dev.3) (2026-06-11)
+
+### ✨ New Features
+
+* add netmonster patches ([0cd8d94](https://github.com/rushiranpise/morphe-patches/commit/0cd8d94b598c1ec20b197e646df6ca2ab47ce84f))
+
+## [1.6.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.1...v1.6.0-dev.2) (2026-06-11)
+
+### ✨ New Features
+
+* add shareit premium patches ([a78dbd6](https://github.com/rushiranpise/morphe-patches/commit/a78dbd6cf28952ae9beacf07a505f65f862747ba))
+
+## [1.6.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0...v1.6.0-dev.1) (2026-06-11)
+
+### ✨ New Features
+
+* add proxyman patches ([8f44581](https://github.com/rushiranpise/morphe-patches/commit/8f44581a1451551a9ce26bba807c087f3a0d59bc))
+
 ## [1.5.0](https://github.com/rushiranpise/morphe-patches/compare/v1.4.0...v1.5.0) (2026-06-10)
 
 ### 🐛 Bug Fixes

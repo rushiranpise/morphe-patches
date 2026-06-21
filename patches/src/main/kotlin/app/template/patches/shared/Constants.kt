@@ -155,6 +155,198 @@ object Constants {
         name = "Yatri",
         packageName = "com.yatrirailways.yatri",
         appIconColor = 0xFF6B00,
-        targets = listOf(AppTarget(version = "5.0.3"))
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Proxyman — Network Debugger
+    val PROXYMAN_COMPATIBILITY = Compatibility(
+        name = "Proxyman",
+        packageName = "com.proxyman.proxymanandroid",
+        appIconColor = 0xFF6B35,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // SHAREit Premium
+    val SHAREIT_COMPATIBILITY = Compatibility(
+        name = "SHAREit Premium",
+        packageName = "shareit.premium",
+        appIconColor = 0xFF4B00,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // NetMonster — Network Cell Info, Signal
+    val NETMONSTER_COMPATIBILITY = Compatibility(
+        name = "NetMonster",
+        packageName = "cz.mroczis.netmonster",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Dubox Drive — Cloud Storage
+    val DUBOXDRIVE_COMPATIBILITY = Compatibility(
+        name = "TeraBox",
+        packageName = "com.dubox.drive",
+        appIconColor = 0x2EAAFF,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // SAI — Split APKs Installer by MTV
+    val SAI_COMPATIBILITY = Compatibility(
+        name = "SAI",
+        packageName = "com.mtv.sai",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // BlockerHero — App Blocker & Focus Timer
+    val BLOCKERHERO_COMPATIBILITY = Compatibility(
+        name = "BlockerHero",
+        packageName = "com.blockerhero",
+        appIconColor = 0xFF5252,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // nzb360 — Usenet & Torrent Manager
+    val NZB360_COMPATIBILITY = Compatibility(
+        name = "nzb360",
+        packageName = "com.kevinforeman.nzb360",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Canva
+    val CANVA_COMPATIBILITY = Compatibility(
+        name = "Canva",
+        packageName = "com.canva.editor",
+        appIconColor = 0x8B3DFF,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Clickmate
+    val INSCODE_AUTOCLICKER_COMPATIBILITY = Compatibility(
+        name = "Clickmate",
+        packageName = "com.inscode.autoclicker",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // NetGuard — No-root Firewall by Marcel Bokhorst
+    val NETGUARD_COMPATIBILITY = Compatibility(
+        name = "NetGuard",
+        packageName = "eu.faircode.netguard",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Tasker — Task Automation by Dinglisch Android Workshop
+    val TASKER_COMPATIBILITY = Compatibility(
+        name = "Tasker",
+        packageName = "net.dinglisch.android.taskerm",
+        appIconColor = 0x263238,
+        targets = listOf(AppTarget(version = "6.6.20"))
+    )
+
+    // AdGuard — Ad Blocker & Privacy
+    val ADGUARD_COMPATIBILITY = Compatibility(
+        name = "AdGuard Nightly",
+        packageName = "com.adguard.android",
+        appIconColor = 0x67B346,
+        targets = listOf(AppTarget(version = "4.14.68"))
+    )
+
+    // AIDA64 — System & Hardware Info by FinalWire
+    val AIDA64_COMPATIBILITY = Compatibility(
+        name = "AIDA64",
+        packageName = "com.finalwire.aida64",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "2.20"))
+    )
+
+    // CPU-Z by CPUID
+    val CPUZ_COMPATIBILITY = Compatibility(
+        name = "CPU-Z",
+        packageName = "com.cpuid.cpu_z",
+        appIconColor = 0x2A3B4C,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // HTTP Mock Tool — API Mock & Network Capture
+    val HTTPMOCK_COMPATIBILITY = Compatibility(
+        name = "HTTP Sniffer",
+        packageName = "com.anetcapture.mock",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "2.11.0-ad_mob"))
+    )
+
+    // MyPerm — App Permission Manager by darken
+    val MYPERM_COMPATIBILITY = Compatibility(
+        name = "Permission Pilot",
+        packageName = "eu.darken.myperm",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "2.1.1-rc0"))
+    )
+
+    // Proton VPN
+    val PROTONVPN_COMPATIBILITY = Compatibility(
+        name = "Proton VPN",
+        packageName = "ch.protonvpn.android",
+        appIconColor = 0x6D4AFF,
+        targets = listOf(AppTarget(version = "5.18.84.0", versionCode = 605188400))
+    )
+
+    // NetShare — Mobile Hotspot / Subnet Router
+    val NETSHARE_COMPATIBILITY = Compatibility(
+        name = "NetShare - Hotspot & Wifi Direct",
+        packageName = "kha.prog.mikrotik",
+        appIconColor = 0x1976D2,
+        targets = listOf(AppTarget(version = "UI/link-274"))
+    )
+
+    // Shexa — Permission Manager by Shexa
+    val SHEXA_COMPATIBILITY = Compatibility(
+        name = "App Permission Manager",
+        packageName = "com.shexa.permissionmanager",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "3.4.6.2"))
+    )
+
+    // Hola VPN Proxy Plus
+    val HOLAVPN_COMPATIBILITY = Compatibility(
+        name = "Hola VPN Proxy Plus",
+        packageName = "org.hola.play",
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // Psiphon Pro — Censorship Circumvention VPN
+    val PSIPHON_COMPATIBILITY = Compatibility(
+        name = "Psiphon Pro",
+        packageName = "com.psiphon3.subscription",
+        appIconColor = 0x6A1B9A,
+        targets = listOf(AppTarget(version = "476"))
+    )
+
+    // Speedtest by Ookla
+    val SPEEDTEST_COMPATIBILITY = Compatibility(
+        name = "Speedtest by Ookla",
+        packageName = "org.zwanoo.android.speedtest",
+        appIconColor = 0x141C4C,
+        targets = listOf(AppTarget(version = "7.0.4"))
+    )
+
+    // Social Gamebox
+    val SOCIALGAMEBOX_COMPATIBILITY = Compatibility(
+        name = "Social Gamebox",
+        packageName = "com.app.social_gamebox",
+        appIconColor = 0x7C4DFF,
+        targets = listOf(AppTarget(version = "1.1.3"))
+    )
+
+    // Flightradar24
+    val FLIGHTRADAR_COMPATIBILITY = Compatibility(
+        name = "Flightradar24",
+        packageName = "com.flightradar24free",
+        appIconColor = 0xFFDD00,
+        targets = listOf(AppTarget(version = null))
     )
 }

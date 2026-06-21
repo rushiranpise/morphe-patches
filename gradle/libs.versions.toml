@@ -1,5 +1,5 @@
 [versions]
-morphe-patcher = "1.5.1"
+morphe-patcher = "1.5.2"
 #noinspection GradleDependency
 smali = "d92701d947"
 gson = "2.14.0"

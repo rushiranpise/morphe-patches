@@ -73,6 +73,9 @@ def anchor(name):
     """Convert a patch name to a GitHub-compatible anchor slug."""
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", name.lower())).strip("-")
 
+def play_store_link(package_name):
+    """Generate Google Play Store URL from package name."""
+    return f"https://play.google.com/store/apps/details?id={package_name}"
 
 def patches_table(patches):
     """Render a sorted markdown table of patches with name, description, and options."""
@@ -125,16 +128,24 @@ def versions_table(targets):
     return "\n".join(rows)
 
 
-def spoiler(label, count, targets, tbl, expanded=False):
+def spoiler(label, count, targets, tbl, expanded=False, package_name=None):
     """Wrap a patches table in a <details> spoiler with a versions sub-table.
     If expanded=True, the spoiler is open by default (for repos with few patches).
+    If package_name is provided, adds a 📥 Play Store link after the patch count.
     """
     noun = "patch" if count == 1 else "patches"
     vtbl = versions_table(targets)
     versions_section = f"**🎯 Supported versions:**\n\n{vtbl}\n\n" if vtbl else ""
     tag = "<details open>" if expanded else "<details>"
+    
+    # Build summary line: label + count + optional Play Store link
+    summary = f"{label}&nbsp;&nbsp;•&nbsp;&nbsp;{count} {noun}"
+    if package_name:
+        play_url = f"https://play.google.com/store/apps/details?id={package_name}"
+        summary += f"&nbsp;&nbsp;<a href='{play_url}'>📥</a>"
+    
     return f"""{tag}
-<summary>{label}&nbsp;&nbsp;•&nbsp;&nbsp;{count} {noun}</summary>
+<summary>{summary}</summary>
 <br>
 
 {versions_section}{tbl}
@@ -154,7 +165,8 @@ def build_content(expanded=False):
     for pkg, entry in by_pkg.items():
         patches = list(entry["patches"].values())
         label   = f"{entry['emoji']} {entry['name']}"
-        lines.append(spoiler(label, len(patches), entry["targets"], patches_table(patches), expanded))
+        # Pass package_name=pkg to add the 📥 link
+        lines.append(spoiler(label, len(patches), entry["targets"], patches_table(patches), expanded, package_name=pkg))
         lines.append("")
 
     # Universal patches (no specific app)
