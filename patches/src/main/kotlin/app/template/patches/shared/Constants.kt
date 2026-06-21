@@ -261,4 +261,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "2.20"))
     )
+
+    // CPU-Z by CPUID
+    val CPUZ_COMPATIBILITY = Compatibility(
+        name = "CPU-Z",
+        packageName = "com.cpuid.cpu_z",
+        appIconColor = 0x2A3B4C,
+        targets = listOf(AppTarget(version = null))
+    )
 }
