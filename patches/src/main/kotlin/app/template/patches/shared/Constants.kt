@@ -317,4 +317,12 @@ object Constants {
         appIconColor = 0xFF5722,
         targets = listOf(AppTarget(version = null))
     )
+
+    // Psiphon Pro — Censorship Circumvention VPN
+    val PSIPHON_COMPATIBILITY = Compatibility(
+        name = "Psiphon Pro",
+        packageName = "com.psiphon3.subscription",
+        appIconColor = 0x6A1B9A,
+        targets = listOf(AppTarget(version = "476"))
+    )
 }
