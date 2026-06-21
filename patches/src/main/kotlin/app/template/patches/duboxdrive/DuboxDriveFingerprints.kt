@@ -199,3 +199,100 @@ object MemberInfoGetRenewTime : Fingerprint(
     parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
+
+// hm0.t.m0()Z — global cached-VipInfo isVip gate (4.18.6+, renamed from gm0/t)
+object Hm0TM0Fingerprint : Fingerprint(
+    definingClass = "Lhm0/t;",
+    name = "m0",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL)
+)
+
+// Account.T(Context)V — master logout method; sends ACTION_LOGOUT broadcast
+// Anchored by "mContext" param null-check string, unique to this method in Account class
+object AccountLogoutFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/account/Account;",
+    name = "T",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    strings = listOf("mContext")
+)
+
+
+// QuotaExtraInfo.isTimeLimitQuotaType()Z — root gate for all expiry dialogs (a3, k0).
+// Stable class path, unique string anchor "permanent_30g_temp_994g".
+// Patching here covers ww/xw/_____.m() and AboutMeFragment without class-path guessing.
+object QuotaIsTimeLimitTypeFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/cloudfile/io/model/QuotaExtraInfo;",
+    name = "isTimeLimitQuotaType",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    strings = listOf("permanent_30g_temp_994g")
+)
+
+// nu/m (4.18.2) / ou/m (4.18.6+) -- strings-only, class path changes each version
+object BackupGuideShownAFingerprint : Fingerprint(
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    strings = listOf("prefix_buckup_guide_")
+)
+
+object BackupGuideShownBFingerprint : Fingerprint(
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    strings = listOf("prefix_buckup_new_guide_v2")
+)
+
+// i0._()Z — "new user subscription guide not shown" MMKV check
+// Returns true (not shown) on cold start → f3.g() shows subscription/expired screen
+object NewUserSubGuideFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/ui/tutorial/i0;",
+    name = "_",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
+    strings = listOf("is_show_new_user_sub_guide_activity")
+)
+
+// i0.__(Context)V — launches SubscribeActivity ("account expired/subscribe" screen)
+// Stable class path; unique: only V-returning static method with Context param on i0.
+object SubscribeActivityLaunchFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/ui/tutorial/i0;",
+    name = "__",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL)
+)
+
+// tutorial/k._(Context, String)V — launches PlusSubscribeGuideActivity
+// Called from BuckupSettingGuideActivity and f3.g(); noop to suppress.
+object PlusSubscribeGuideActivityLaunchFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/ui/tutorial/k;",
+    name = "_",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;", "Ljava/lang/String;"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL)
+)
+
+// az/_.a(Activity)Z (4.18.2) / bz/_.a(Activity)Z (4.18.6+) — "Account has expired" dialog
+// No const-string in the method itself — use definingClass + signature, dual-version.
+object AccountExpiredDialogA182Fingerprint : Fingerprint(
+    definingClass = "Laz/_;" ,
+    name = "a",
+    returnType = "Z",
+    parameters = listOf("Landroid/app/Activity;"),
+    accessFlags = listOf(AccessFlags.PRIVATE)
+)
+
+object AccountExpiredDialogA186Fingerprint : Fingerprint(
+    definingClass = "Lbz/_;" ,
+    name = "a",
+    returnType = "Z",
+    parameters = listOf("Landroid/app/Activity;"),
+    accessFlags = listOf(AccessFlags.PRIVATE)
+)
