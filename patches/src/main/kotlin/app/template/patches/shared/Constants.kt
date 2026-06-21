@@ -253,4 +253,12 @@ object Constants {
         appIconColor = 0x67B346,
         targets = listOf(AppTarget(version = "4.14.68"))
     )
+
+    // AIDA64 — System & Hardware Info by FinalWire
+    val AIDA64_COMPATIBILITY = Compatibility(
+        name = "AIDA64",
+        packageName = "com.finalwire.aida64",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "2.20"))
+    )
 }
