@@ -245,4 +245,12 @@ object Constants {
         appIconColor = 0x263238,
         targets = listOf(AppTarget(version = "6.6.20"))
     )
+
+    // AdGuard — Ad Blocker & Privacy
+    val ADGUARD_COMPATIBILITY = Compatibility(
+        name = "AdGuard Nightly",
+        packageName = "com.adguard.android",
+        appIconColor = 0x67B346,
+        targets = listOf(AppTarget(version = "4.14.68"))
+    )
 }
