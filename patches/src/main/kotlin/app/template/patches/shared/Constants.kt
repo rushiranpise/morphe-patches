@@ -301,4 +301,12 @@ object Constants {
         appIconColor = 0x1976D2,
         targets = listOf(AppTarget(version = "UI/link-274"))
     )
+
+    // Shexa — Permission Manager by Shexa
+    val SHEXA_COMPATIBILITY = Compatibility(
+        name = "App Permission Manager",
+        packageName = "com.shexa.permissionmanager",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "3.4.6.2"))
+    )
 }
