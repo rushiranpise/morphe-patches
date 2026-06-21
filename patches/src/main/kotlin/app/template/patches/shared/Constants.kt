@@ -333,4 +333,6 @@ object Constants {
         appIconColor = 0x141C4C,
         targets = listOf(AppTarget(version = "7.0.4"))
     )
+
+    // Social Gamebox
 }
