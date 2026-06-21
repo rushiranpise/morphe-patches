@@ -341,4 +341,12 @@ object Constants {
         appIconColor = 0x7C4DFF,
         targets = listOf(AppTarget(version = "1.1.3"))
     )
+
+    // Flightradar24
+    val FLIGHTRADAR_COMPATIBILITY = Compatibility(
+        name = "Flightradar24",
+        packageName = "com.flightradar24free",
+        appIconColor = 0xFFDD00,
+        targets = listOf(AppTarget(version = null))
+    )
 }
