@@ -333,4 +333,12 @@ object Constants {
         appIconColor = 0x141C4C,
         targets = listOf(AppTarget(version = "7.0.4"))
     )
+
+    // Social Gamebox
+    val SOCIALGAMEBOX_COMPATIBILITY = Compatibility(
+        name = "Social Gamebox",
+        packageName = "com.app.social_gamebox",
+        appIconColor = 0x7C4DFF,
+        targets = listOf(AppTarget(version = "1.1.3"))
+    )
 }
