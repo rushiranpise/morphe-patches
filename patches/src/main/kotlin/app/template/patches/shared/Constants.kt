@@ -325,4 +325,12 @@ object Constants {
         appIconColor = 0x6A1B9A,
         targets = listOf(AppTarget(version = "476"))
     )
+
+    // Speedtest by Ookla
+    val SPEEDTEST_COMPATIBILITY = Compatibility(
+        name = "Speedtest by Ookla",
+        packageName = "org.zwanoo.android.speedtest",
+        appIconColor = 0x141C4C,
+        targets = listOf(AppTarget(version = "7.0.4"))
+    )
 }
