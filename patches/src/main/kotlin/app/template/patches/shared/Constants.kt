@@ -293,4 +293,12 @@ object Constants {
         appIconColor = 0x6D4AFF,
         targets = listOf(AppTarget(version = "5.18.84.0", versionCode = 605188400))
     )
+
+    // NetShare — Mobile Hotspot / Subnet Router
+    val NETSHARE_COMPATIBILITY = Compatibility(
+        name = "NetShare - Hotspot & Wifi Direct",
+        packageName = "kha.prog.mikrotik",
+        appIconColor = 0x1976D2,
+        targets = listOf(AppTarget(version = "UI/link-274"))
+    )
 }
