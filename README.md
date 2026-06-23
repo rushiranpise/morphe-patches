@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.7.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;67 patches total
+> **[v1.7.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;66 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
@@ -120,22 +120,6 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 2.365.o |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Disable Restricted Access](#disable-restricted-access) | Removes restricted/locked indicators on premium media in Canva. |  |
-| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
-
-</details>
-
-<details open>
 <summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.saldous.casetracker'>📥</a></summary>
 <br>
 
@@ -178,6 +162,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Remove Ads / Unlock Premium](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and the upgrade button/banner without crashing on the now-expected non-null Purchase object. |  |
+
+</details>
+
+<details open>
+<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.365.o |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
 
 </details>
 
@@ -717,7 +716,7 @@ Even a small amount makes a difference 🙏
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock VIP](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+). |  |
+| [Unlock VIP](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+) |  |
 
 </details>
 

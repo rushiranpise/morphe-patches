@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.7.0-dev.2",
+  "version": "1.7.0-dev.3",
   "patches": [
     {
       "name": "Alert Distances",
@@ -312,31 +312,6 @@
           "targets": [
             {
               "version": "6.38.7",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Disable Restricted Access",
-      "description": "Removes restricted/locked indicators on premium media in Canva.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.canva.editor",
-          "name": "Canva",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#8B3DFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.365.o",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1950,7 +1925,7 @@
     },
     {
       "name": "Unlock VIP",
-      "description": "Unlocks Dubox Drive VIP/SVIP (Premium+).",
+      "description": "Unlocks Dubox Drive VIP/SVIP (Premium+)",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
