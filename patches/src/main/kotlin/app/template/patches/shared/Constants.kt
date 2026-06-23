@@ -10,7 +10,7 @@ object Constants {
         name = "Call Recorder - Automatic",
         packageName = "com.catalinagroup.callrecorder",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "2.4.281"))
     )
 
     // Universal TV Remote Control by SensusTech
@@ -18,7 +18,7 @@ object Constants {
         name = "Universal TV Remote Control",
         packageName = "sensustech.universal.tv.remote.control",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.8.1"))
     )
 
     // Citizen — Safety Alert by sp0n
@@ -26,7 +26,7 @@ object Constants {
         name = "Citizen - Safety Alert",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "0.1297.0"))
     )
 
 
@@ -35,7 +35,7 @@ object Constants {
         name = "Case Tracker - Immigration",
         packageName = "com.saldous.casetracker",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "5.5.1"))
     )
 
     // Cloudflare WARP — 1.1.1.1
@@ -43,7 +43,7 @@ object Constants {
         name = "1.1.1.1 + WARP",
         packageName = "com.cloudflare.onedotonedotonedotone",
         appIconColor = 0xF48120,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "6.38.7"))
     )
 
     // Crime Radar — Local Police & Safety by Newsbreak
@@ -51,7 +51,7 @@ object Constants {
         name = "Crime Radar",
         packageName = "com.newsbreak.crimeradar",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "26.23.2"))
     )
 
     // Splitwise — Finance, bills and expenses
@@ -59,7 +59,7 @@ object Constants {
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "26.5.5"))
     )
 
     // Greenify — App Hibernation & Battery Saver
@@ -67,7 +67,7 @@ object Constants {
         name = "Greenify",
         packageName = "com.oasisfeng.greenify",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "5.1.1"))
     )
 
     // Pialytic — LaTeX Editor (VerbTeX)
@@ -75,7 +75,7 @@ object Constants {
         name = "Pialytic",
         packageName = "verbosus.pialytic",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.2.8"))
     )
 
     // Snipd — AI Podcast Player
@@ -83,7 +83,7 @@ object Constants {
         name = "Snipd: AI Podcast Player",
         packageName = "ai.topicfinder.podcastdiscovery",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "4.1.14"))
     )
 
     // TWT App — Astronomy & Sky Guide
@@ -91,7 +91,7 @@ object Constants {
         name = "Stargazing Hub",
         packageName = "com.twtapp",
         appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "3.2.1"))
     )
 
     // Photo Editor — iUdesk Photo Editor
@@ -99,7 +99,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "13.3"))
     )
 
     // ML Manager — APK Downloader & Backup
@@ -107,7 +107,7 @@ object Constants {
         name = "ML Manager",
         packageName = "com.javiersantos.mlmanager",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "5.0"))
     )
 
     // Beta by Mirko — App updates tracker
@@ -115,7 +115,7 @@ object Constants {
         name = "Beta Maniac",
         packageName = "it.mirko.beta",
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "0.9.4"))
     )
 
     // Hibernator — Apps & Background Process
@@ -123,7 +123,7 @@ object Constants {
         name = "Hibernator",
         packageName = "com.tafayor.hibernator",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "2.56.10"))
     )
 
     // KillApps — Background Apps Killer
@@ -131,7 +131,7 @@ object Constants {
         name = "KillApps",
         packageName = "com.tafayor.killall",
         appIconColor = 0xF44336,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.57.9"))
     )
 
     // RAR
@@ -139,7 +139,7 @@ object Constants {
         name = "RAR",
         packageName = "com.rarlab.rar",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "7.20.build131"))
     )
 
     // m-Indicator — Mumbai Local Train
@@ -147,7 +147,7 @@ object Constants {
         name = "m-Indicator",
         packageName = "com.mobond.mindicator",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "18.0.352"))
     )
 
     // Yatri — Train, Metro & Bus Ticketing
@@ -155,7 +155,7 @@ object Constants {
         name = "Yatri",
         packageName = "com.yatrirailways.yatri",
         appIconColor = 0xFF6B00,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "5.0.3"))
     )
 
     // Proxyman — Network Debugger
@@ -163,7 +163,7 @@ object Constants {
         name = "Proxyman",
         packageName = "com.proxyman.proxymanandroid",
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.16.0"))
     )
 
     // SHAREit Premium
@@ -171,7 +171,7 @@ object Constants {
         name = "SHAREit Premium",
         packageName = "shareit.premium",
         appIconColor = 0xFF4B00,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.1.98"))
     )
 
     // NetMonster — Network Cell Info, Signal
@@ -179,7 +179,7 @@ object Constants {
         name = "NetMonster",
         packageName = "cz.mroczis.netmonster",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "3.4.1"))
     )
 
     // Dubox Drive — Cloud Storage
@@ -187,7 +187,7 @@ object Constants {
         name = "TeraBox",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "4.18.6"))
     )
 
     // SAI — Split APKs Installer by MTV
@@ -195,7 +195,7 @@ object Constants {
         name = "SAI",
         packageName = "com.mtv.sai",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "2.2.8"))
     )
 
     // BlockerHero — App Blocker & Focus Timer
@@ -203,7 +203,7 @@ object Constants {
         name = "BlockerHero",
         packageName = "com.blockerhero",
         appIconColor = 0xFF5252,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.5.0"))
     )
 
     // nzb360 — Usenet & Torrent Manager
@@ -211,7 +211,7 @@ object Constants {
         name = "nzb360",
         packageName = "com.kevinforeman.nzb360",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "23.5"))
     )
 
     // Canva
@@ -219,7 +219,7 @@ object Constants {
         name = "Canva",
         packageName = "com.canva.editor",
         appIconColor = 0x8B3DFF,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "2.365.o"))
     )
 
     // Clickmate
@@ -227,7 +227,7 @@ object Constants {
         name = "Clickmate",
         packageName = "com.inscode.autoclicker",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "7.1.4"))
     )
 
     // NetGuard — No-root Firewall by Marcel Bokhorst
@@ -235,7 +235,7 @@ object Constants {
         name = "NetGuard",
         packageName = "eu.faircode.netguard",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "2.335"))
     )
 
     // Tasker — Task Automation by Dinglisch Android Workshop
@@ -267,7 +267,7 @@ object Constants {
         name = "CPU-Z",
         packageName = "com.cpuid.cpu_z",
         appIconColor = 0x2A3B4C,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.57"))
     )
 
     // HTTP Mock Tool — API Mock & Network Capture
@@ -291,7 +291,7 @@ object Constants {
         name = "Proton VPN",
         packageName = "ch.protonvpn.android",
         appIconColor = 0x6D4AFF,
-        targets = listOf(AppTarget(version = "5.18.84.0", versionCode = 605188400))
+        targets = listOf(AppTarget(version = "5.18.84.0"))
     )
 
     // NetShare — Mobile Hotspot / Subnet Router
@@ -315,7 +315,7 @@ object Constants {
         name = "Hola VPN Proxy Plus",
         packageName = "org.hola.play",
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "AARCH64_1.248.400"))
     )
 
     // Psiphon Pro — Censorship Circumvention VPN
