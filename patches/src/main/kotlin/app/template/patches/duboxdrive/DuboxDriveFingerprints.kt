@@ -281,18 +281,153 @@ object PlusSubscribeGuideActivityLaunchFingerprint : Fingerprint(
 
 // az/_.a(Activity)Z (4.18.2) / bz/_.a(Activity)Z (4.18.6+) — "Account has expired" dialog
 // No const-string in the method itself — use definingClass + signature, dual-version.
+// az/_.____() (4.18.2) / bz/_.____() (4.18.6+) — error dispatch method
+// packed-switch base -0x181ca routes error -98761 to az/_.a() "Account has expired" dialog.
+// Use custom lambda: exact class+name match, no fragile string anchor.
 object AccountExpiredDialogA182Fingerprint : Fingerprint(
-    definingClass = "Laz/_;" ,
-    name = "a",
     returnType = "Z",
-    parameters = listOf("Landroid/app/Activity;"),
-    accessFlags = listOf(AccessFlags.PRIVATE)
+    parameters = listOf("Landroid/app/Activity;", "I"),
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    custom = { method, classDef ->
+        classDef.type == "Laz/_;" && method.name == "____"
+    }
 )
 
 object AccountExpiredDialogA186Fingerprint : Fingerprint(
-    definingClass = "Lbz/_;" ,
-    name = "a",
     returnType = "Z",
-    parameters = listOf("Landroid/app/Activity;"),
-    accessFlags = listOf(AccessFlags.PRIVATE)
+    parameters = listOf("Landroid/app/Activity;", "I"),
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    custom = { method, classDef ->
+        classDef.type == "Lbz/_;" && method.name == "____"
+    }
+)
+
+// MainActivity.showBuckupSettingGuideActivity()V — launches BuckupSettingGuideActivity on cold start
+// Anchored by const-class BuckupSettingGuideActivity — unique to this method.
+object ShowBuckupSettingGuideFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/ui/MainActivity;",
+    name = "showBuckupSettingGuideActivity",
+    returnType = "V",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PRIVATE, AccessFlags.FINAL)
+)
+
+// MainActivity.checkStartAutoBackupGuideActivity()V
+// Our VipRightsManager.i() returning true triggers BuckupSettingGuideActivity via this method.
+// Noop it to always skip to showMainView().
+object CheckStartAutoBackupGuideFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/ui/MainActivity;",
+    name = "checkStartAutoBackupGuideActivity",
+    returnType = "V",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PRIVATE, AccessFlags.FINAL)
+)
+
+// OtherRouter.M0(Context, ce0/__, Z)V — shows a3 expire dialog from FCM push notifications
+// (storagewillexpirealert / storagedidexpirealert routes). Noop to block.
+object OtherRouterExpireDialogFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/router/router/OtherRouter;",
+    name = "M0",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;", "Lce0/__;", "Z"),
+    accessFlags = listOf(AccessFlags.PRIVATE, AccessFlags.FINAL),
+    strings = listOf("getSupportFragmentManager(...)")
+)
+
+// az/g.____(I)Z (4.18.2) / bz/g.____(I)Z (4.18.6+) — errno 132 (0x84) checker
+// Server returns errno 132 on session/token expiry → triggers "Account has expired" dialog.
+// Return false so errno 132 is never treated as an expiry error.
+object Errno132CheckerA182Fingerprint : Fingerprint(
+    definingClass = "Laz/g;",
+    name = "____",
+    returnType = "Z",
+    parameters = listOf("I"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+object Errno132CheckerA186Fingerprint : Fingerprint(
+    definingClass = "Lbz/g;",
+    name = "____",
+    returnType = "Z",
+    parameters = listOf("I"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC)
+)
+
+// VipInfo additional boolean getters needed for full Premium+
+object VipInfoGetCurrentLoginCountryEnableVip : Fingerprint(
+    definingClass = VIP_INFO, name = "getCurrentLoginCountryEnableVip", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+object VipInfoGetRegisterCountryEnableVip : Fingerprint(
+    definingClass = VIP_INFO, name = "getRegisterCountryEnableVip", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+object VipInfoGetVipHasSpacePri : Fingerprint(
+    definingClass = VIP_INFO, name = "getVipHasSpacePri", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+object VipInfoIsSub : Fingerprint(
+    definingClass = VIP_INFO, name = "isSub", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+object VipInfoIsSubSpaceProduct : Fingerprint(
+    definingClass = VIP_INFO, name = "isSubSpaceProduct", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+
+// MemberInfo additional boolean getters
+object MemberInfoGetHasSpacePri : Fingerprint(
+    definingClass = MEMBER_INFO, name = "getHasSpacePri", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+object MemberInfoGetHasIapRecord : Fingerprint(
+    definingClass = MEMBER_INFO, name = "getHasIapRecord", returnType = "Z",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+
+// Passport SDK MemberInfo.isVip()I
+object PassportMemberInfoIsVip : Fingerprint(
+    definingClass = "Lcom/mars/united/international/passport/domain/model/MemberInfo;",
+    name = "isVip", returnType = "I",
+    parameters = emptyList(), accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+)
+
+// VipRightsManager.i(String)Z — main privilege gate, anchored by "type" null-check string
+object VipRightsGateIFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/vip/manager/VipRightsManager;",
+    returnType = "Z",
+    parameters = listOf("Ljava/lang/String;"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    strings = listOf("type")
+)
+
+// VipRightsManager.j()Z — NA_STUDIO_CREATE gate
+object VipRightsGateJFingerprint : Fingerprint(
+    definingClass = "Lcom/dubox/drive/vip/manager/VipRightsManager;",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    strings = listOf("NA_STUDIO_CREATE")
+)
+
+// az/_._____(Activity, RemoteExceptionInfo)Z (4.18.2) — handles ServerBanInfo
+// Server sends banCode=-98761 to trigger "Account has expired" dialog.
+// Noop returns false immediately before dialog shows.
+object ServerBanHandlerA182Fingerprint : Fingerprint(
+    returnType = "Z",
+    parameters = listOf("Landroid/app/Activity;", "Lcom/dubox/drive/kernel/architecture/net/exception/RemoteExceptionInfo;"),
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    custom = { method, classDef ->
+        classDef.type == "Laz/_;" && method.name == "_____"
+    }
+)
+
+// bz/_._____(Activity, RemoteExceptionInfo)Z (4.18.6+)
+object ServerBanHandlerA186Fingerprint : Fingerprint(
+    returnType = "Z",
+    parameters = listOf("Landroid/app/Activity;", "Lcom/dubox/drive/kernel/architecture/net/exception/RemoteExceptionInfo;"),
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    custom = { method, classDef ->
+        classDef.type == "Lbz/_;" && method.name == "_____"
+    }
 )

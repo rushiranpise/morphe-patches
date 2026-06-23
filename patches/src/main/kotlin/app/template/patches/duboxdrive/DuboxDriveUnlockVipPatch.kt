@@ -4,170 +4,153 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import app.template.patches.shared.Constants.DUBOXDRIVE_COMPATIBILITY
+import com.android.tools.smali.dexlib2.AccessFlags
 
 @Suppress("unused")
 val duboxDriveUnlockVipPatch = bytecodePatch(
     name = "Unlock VIP",
-    description = "Unlocks Dubox Drive VIP/SVIP (Premium+)"
+    description = "Unlocks Dubox Drive VIP/SVIP (Premium+)."
 ) {
     compatibleWith(DUBOXDRIVE_COMPATIBILITY)
 
     execute {
-        // isVip / isVip()Z -> true
-        VipInfoIsVipFingerprint
-            .match(classDefBy(VipInfoIsVipFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
 
-        MemberInfoIsVipFingerprint
-            .match(classDefBy(MemberInfoIsVipFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
+        val vipInfoClass = "Lcom/dubox/drive/vip/model/VipInfo;"
+        val memberInfoClass = "Lcom/dubox/drive/vip/domain/job/server/response/MemberInfo;"
+        val volumeMemberInfoClass = "Lcom/dubox/drive/vip/domain/job/server/response/VolumeMemberInfo;"
+        val vipRightsManagerClass = "Lcom/dubox/drive/vip/manager/VipRightsManager;"
 
-        VolumeMemberInfoIsVipFingerprint
-            .match(classDefBy(VolumeMemberInfoIsVipFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
-
-        // vip level / identity -> 2 (SVIP / Premium+)
-        VipInfoGetVipLevelFingerprint
-            .match(classDefBy(VipInfoGetVipLevelFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x2\nreturn v0")
-            }
-
-        VipInfoGetVipIdentityFingerprint
-            .match(classDefBy(VipInfoGetVipIdentityFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x2\nreturn v0")
-            }
-
-        MemberInfoGetVipLevelFingerprint
-            .match(classDefBy(MemberInfoGetVipLevelFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x2\nreturn v0")
-            }
-
-        // VipRightsManager privilege gates -> always granted
+        // ── VipInfo boolean getters → true ────────────────────────────────────
         for (fp in listOf(
-            VipRightsI, VipRightsJ, VipRightsK, VipRightsL,
-            VipRightsZ, VipRightsA, VipRightsB, VipRightsC
+            VipInfoIsVipFingerprint,
+            VipInfoGetCurrentLoginCountryEnableVip,
+            VipInfoGetRegisterCountryEnableVip,
+            VipInfoGetVipHasSpacePri,
+            VipInfoIsSub,
+            VipInfoIsSubSpaceProduct
         )) {
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
+            fp.match(classDefBy(vipInfoClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+
+        // ── VipInfo integer getters → 2 (SVIP) ───────────────────────────────
+        for (fp in listOf(VipInfoGetVipLevelFingerprint, VipInfoGetVipIdentityFingerprint)) {
+            fp.match(classDefBy(vipInfoClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, "const/4 v0, 0x2\nreturn v0")
+            }
+        }
+
+        // ── VipInfo expiry timestamps (seconds) → 2099 ───────────────────────
+        val secEpoch2099 = "const-wide v0, 0xf2bf6800L\nreturn-wide v0"
+        for (fp in listOf(VipInfoGetExpireTimeSeconds, VipInfoGetVipEndTimeWithoutGrace, VipInfoGetRenewTime)) {
+            fp.match(classDefBy(vipInfoClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, secEpoch2099)
+            }
+        }
+
+        // ── MemberInfo boolean getters → 1/true ──────────────────────────────
+        for (fp in listOf(
+            MemberInfoIsVipFingerprint,
+            MemberInfoGetHasSpacePri,
+            MemberInfoGetHasIapRecord
+        )) {
+            fp.match(classDefBy(memberInfoClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+
+        // ── MemberInfo integer getter → 2 ────────────────────────────────────
+        MemberInfoGetVipLevelFingerprint.match(classDefBy(memberInfoClass)).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "const/4 v0, 0x2\nreturn v0")
+        }
+
+        // ── MemberInfo expiry timestamps (millis) → 2099 ─────────────────────
+        val msEpoch2099 = "const-wide v0, 0x3b453f1a800L\nreturn-wide v0"
+        for (fp in listOf(
+            MemberInfoGetVipEndTime, MemberInfoGetVipEndTimeWithoutGrace,
+            MemberInfoGetVipLeftTime, MemberInfoGetRenewTime
+        )) {
+            fp.match(classDefBy(memberInfoClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, msEpoch2099)
+            }
+        }
+
+        // ── VolumeMemberInfo.isVip()I → 1 ────────────────────────────────────
+        VolumeMemberInfoIsVipFingerprint.match(classDefBy(volumeMemberInfoClass)).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+
+        // ── Passport SDK MemberInfo.isVip()I → 1 ─────────────────────────────
+        PassportMemberInfoIsVip.match(classDefBy(PassportMemberInfoIsVip.definingClass!!)).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+
+        // ── VipRightsManager string-anchored gates → true ────────────────────
+        for (fp in listOf(VipRightsGateIFingerprint, VipRightsGateJFingerprint)) {
+            fp.match(classDefBy(vipRightsManagerClass)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+
+        // ── VipRightsManager catch-all ()Z → true ────────────────────────────
+        mutableClassDefBy(vipRightsManagerClass)
+            .methods
+            .filter { m ->
+                m.returnType == "Z" && m.parameters.isEmpty() &&
+                AccessFlags.PUBLIC.isSet(m.accessFlags) &&
+                AccessFlags.FINAL.isSet(m.accessFlags) &&
+                m.implementation != null
+            }
+            .forEach { it.addInstructions(0, "const/4 v0, 0x1\nreturn v0") }
+
+        // ── Global VipInfo cache gate (gm0/hm0.t.m0) → true ─────────────────
+        for (fp in listOf(Gm0TM0Fingerprint, Hm0TM0Fingerprint)) {
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
                     if (implementation == null) return@apply
                     addInstructions(0, "const/4 v0, 0x1\nreturn v0")
                 }
-        }
-
-        // Account.T(Context)V — master logout: clears session, sends ACTION_LOGOUT broadcast
-        // Triggered by periodic server sync (AccountChangeHandler) on session expiry.
-        // Make it a no-op to block all server-forced logouts.
-        AccountLogoutFingerprint
-            .match(classDefBy(AccountLogoutFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
             }
-
-        // nu/m.a+b (4.18.2) / ou/m.a+b (4.18.6+) — backup guide shown checks
-        // No definingClass — matched by unique string anchor across all classes
-        for (fp in listOf(BackupGuideShownAFingerprint, BackupGuideShownBFingerprint)) {
-            fp.match().method.toMutable()
-                .addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
-        // az/_.a(Activity)Z (4.18.2) / bz/_.a(Activity)Z (4.18.6+)
-        // The actual "Account has expired, please log in again" popup — return false (don't show)
+        // ── Account.T(Context)V — block server-forced logout ──────────────────
+        AccountLogoutFingerprint.match(classDefBy(AccountLogoutFingerprint.definingClass!!)).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "return-void")
+        }
+
+        // ── az/_._____() / bz/_._____(Activity, RemoteExceptionInfo) — ServerBanInfo handler
+        // Server sends banCode=-98761 → triggers "Account has expired". Return false.
+        for (fp in listOf(ServerBanHandlerA182Fingerprint, ServerBanHandlerA186Fingerprint)) {
+            runCatching { fp.match().method.toMutable()
+                .addInstructions(0, "const/4 v0, 0x0\nreturn v0") }
+        }
+
+        // ── az/_.____() / bz/_.____() — error dispatch; -98761 → "Account has expired" ──
+        // custom lambda fingerprint — try both class paths, suppress absent one
         for (fp in listOf(AccountExpiredDialogA182Fingerprint, AccountExpiredDialogA186Fingerprint)) {
+            runCatching { fp.match().method.toMutable()
+                .addInstructions(0, "const/4 v0, 0x0\nreturn v0") }
+        }
+
+        // ── errno 132 (0x84) checker → false (root cause of expired popup) ───
+        for (fp in listOf(Errno132CheckerA182Fingerprint, Errno132CheckerA186Fingerprint)) {
             runCatching {
-                fp.match(classDefBy(fp.definingClass!!))
-                    .method
-                    .apply {
-                        if (implementation == null) return@apply
-                        addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-                    }
-            }
-        }
-
-        // i0.__() — noop SubscribeActivity launcher (account expired/subscribe screen)
-        // tutorial/k._() — noop PlusSubscribeGuideActivity launcher
-        // Both called from BuckupSettingGuideActivity (6x total) and f3.g()
-        for (fp in listOf(SubscribeActivityLaunchFingerprint, PlusSubscribeGuideActivityLaunchFingerprint)) {
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
                     if (implementation == null) return@apply
-                    addInstructions(0, "return-void")
+                    addInstructions(0, "const/4 v0, 0x0\nreturn v0")
                 }
-        }
-
-        // i0._()Z — "new user subscription guide not shown" → suppress expired/subscribe screen
-        NewUserSubGuideFingerprint
-            .match(classDefBy(NewUserSubGuideFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
-
-        // QuotaExtraInfo.isTimeLimitQuotaType()Z — root gate for all expiry dialogs (a3, k0).
-        // Patching here is more stable than targeting obfuscated ww/xw/_____. 
-        QuotaIsTimeLimitTypeFingerprint
-            .match(classDefBy(QuotaIsTimeLimitTypeFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-            }
-
-        // Global cached-VipInfo isVip gate (ads/mediation/badges)
-        // 4.18.2: gm0/t  4.18.6+: hm0/t — try both, suppress whichever is absent
-        for (fp in listOf(Gm0TM0Fingerprint, Hm0TM0Fingerprint)) {
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!))
-                    .method
-                    .apply {
-                        if (implementation == null) return@apply
-                        addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                    }
-            }
-        }
-
-        // Expiry timestamps -> year 2099 (epoch milliseconds)
-        for (fp in listOf(
-            VipInfoGetExpireTimeSeconds, VipInfoGetVipEndTimeWithoutGrace,
-            MemberInfoGetVipEndTime, MemberInfoGetVipEndTimeWithoutGrace, MemberInfoGetVipLeftTime, VipInfoGetRenewTime, MemberInfoGetRenewTime
-        )) {
-            fp.match(classDefBy(fp.definingClass!!))
-                .method
-                .apply {
-                    if (implementation == null) return@apply
-                    addInstructions(
-                        0,
-                        """
-                        const-wide v0, 0x3b453f1a800L
-                        return-wide v0
-                        """.trimIndent()
-                    )
-                }
         }
     }
 }
