@@ -157,7 +157,7 @@ val wazeRadarSoundAnySpeedPatch = bytecodePatch(
                 move-result-object v0
                 const/16 v1, 632
                 const/4 v2, 0x1
-                invoke-virtual {v0, v1, v2}, Lcom/waze/ConfigManager;->setConfigValueBoolNTV(I Z)V
+                invoke-virtual {v0, v1, v2}, Lcom/waze/ConfigManager;->setConfigValueBoolNTV(IZ)V
                 """.trimIndent()
             )
         }
