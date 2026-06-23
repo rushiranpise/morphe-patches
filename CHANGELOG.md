@@ -1,3 +1,13 @@
+## [1.7.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-06-23)
+
+### 🐛 Bug Fixes
+
+* waze ([14d4782](https://github.com/rushiranpise/morphe-patches/commit/14d47825b88661cf985cad53635ea2d7dcabe189))
+
+### ✨ New Features
+
+* fix terabox ([1ec09f4](https://github.com/rushiranpise/morphe-patches/commit/1ec09f4aa579898e9142e828c4f43a5f54023898))
+
 ## [1.7.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-06-23)
 
 ### ✨ New Features
