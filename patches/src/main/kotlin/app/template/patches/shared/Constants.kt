@@ -357,4 +357,12 @@ object Constants {
         appIconColor = 0xFFB300,
         targets = listOf(AppTarget(version = "6.5.9"))
     )
+
+    // Rocket Money
+    val ROCKETMONEY_COMPATIBILITY = Compatibility(
+        name = "Rocket Money",
+        packageName = "com.truebill",
+        appIconColor = 0xDE3341,
+        targets = listOf(AppTarget(version = "13.15.0"))
+    )
 }
