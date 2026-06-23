@@ -144,7 +144,7 @@ val flightradarUnlockBusinessPatch = bytecodePatch(
         EcfGetSubscriptionTierEnumFingerprint.match(mutableClassDefBy(EcfGetSubscriptionTierEnumFingerprint.definingClass!!)).method.apply {
             if (implementation == null) return@apply
             removeInstructions(0, instructions.count())
-            addInstructions(0, "sget-object v0, Late\$a;->h:Late\$a;\nreturn-object v0")
+            addInstructions(0, "sget-object v0, Lzse\$a;->h:Lzse\$a;\nreturn-object v0")
         }
 
 
