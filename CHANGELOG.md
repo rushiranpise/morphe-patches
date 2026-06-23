@@ -1,3 +1,10 @@
+## [1.7.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0...v1.7.0-dev.1) (2026-06-23)
+
+### ✨ New Features
+
+* add cashew ([95038e2](https://github.com/rushiranpise/morphe-patches/commit/95038e27747c0ab2a78a2dea19ebcceca9971a0b))
+* add Rocket Money ([2e6090c](https://github.com/rushiranpise/morphe-patches/commit/2e6090cfed6a3bce6871e3b4bf01448223fd23ea))
+
 ## [1.6.0](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0...v1.6.0) (2026-06-21)
 
 ### 🐛 Bug Fixes
