@@ -1,3 +1,9 @@
+## [1.7.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-06-23)
+
+### ✨ New Features
+
+* add waze ([3b27d0e](https://github.com/rushiranpise/morphe-patches/commit/3b27d0e91e0e51910ffc5a5c5fdca883a9533d97))
+
 ## [1.7.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0...v1.7.0-dev.1) (2026-06-23)
 
 ### ✨ New Features
