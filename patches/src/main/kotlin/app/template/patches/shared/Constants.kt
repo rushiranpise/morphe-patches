@@ -349,4 +349,12 @@ object Constants {
         appIconColor = 0x327CB5,
         targets = listOf(AppTarget(version = "11.6.1"))
     )
+
+    // Cashew — Budget & Finance Tracker by James Kokoska
+    val CASHEW_COMPATIBILITY = Compatibility(
+        name = "Cashew - Budget & Finance App",
+        packageName = "com.budget.tracker_app",
+        appIconColor = 0xFFB300,
+        targets = listOf(AppTarget(version = "6.5.9"))
+    )
 }
