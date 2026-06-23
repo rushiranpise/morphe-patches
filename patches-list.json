@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0",
+  "version": "1.7.0-dev.1",
   "patches": [
     {
       "name": "Bypass License Check",
@@ -17,7 +17,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -42,7 +42,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -67,7 +67,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -92,7 +92,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "6.38.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -117,7 +117,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.365.o",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -142,7 +142,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -167,7 +167,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "18.0.352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -217,7 +217,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -242,7 +242,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.365.o",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -292,7 +292,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "6.38.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -317,7 +317,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -342,7 +342,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -392,7 +392,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "23.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -417,7 +417,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -438,11 +438,11 @@
           "name": "Flightradar24",
           "description": null,
           "apkFileType": null,
-          "appIconColor": "#FFDD00",
+          "appIconColor": "#327CB5",
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "11.6.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -467,7 +467,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.1.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -492,7 +492,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -517,7 +517,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -542,7 +542,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.16.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -567,7 +567,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.1.98",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -617,7 +617,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.4.281",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -642,7 +642,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -667,7 +667,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.57",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -692,7 +692,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -717,7 +717,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "AARCH64_1.248.400",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -742,7 +742,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "0.9.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -767,7 +767,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "3.4.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -792,7 +792,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "13.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -829,6 +829,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Rocket Money Premium Features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.truebill",
+          "name": "Rocket Money",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#DE3341",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "13.15.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Bypasses PairIP license check, paywall, ads, and pro upsell in SAI.",
       "default": true,
       "dependencies": [],
@@ -842,7 +867,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -867,7 +892,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "4.1.14",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -917,7 +942,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -942,7 +967,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "7.1.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlock Pro Features in Cashew App",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.budget.tracker_app",
+          "name": "Cashew - Budget & Finance App",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FFB300",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.5.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -967,7 +1017,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "0.1297.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -992,7 +1042,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.56.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1017,7 +1067,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.57.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1042,7 +1092,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1092,7 +1142,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.335",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1142,7 +1192,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "7.20.build131",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1192,7 +1242,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.5.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1242,7 +1292,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "3.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1254,7 +1304,7 @@
     },
     {
       "name": "Unlock VIP",
-      "description": "Unlocks Dubox Drive VIP/SVIP (Premium+)",
+      "description": "Unlocks Dubox Drive VIP/SVIP (Premium+).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1267,7 +1317,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "4.18.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1292,7 +1342,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
