@@ -365,4 +365,12 @@ object Constants {
         appIconColor = 0xDE3341,
         targets = listOf(AppTarget(version = "13.15.0"))
     )
+
+    // Waze — GPS, Maps & Traffic
+    val WAZE_COMPATIBILITY = Compatibility(
+        name = "Waze - GPS, Maps & Traffic",
+        packageName = "com.waze",
+        appIconColor = 0x33CCFF,
+        targets = listOf(AppTarget(version = "5.19.0.2"))
+    )
 }
