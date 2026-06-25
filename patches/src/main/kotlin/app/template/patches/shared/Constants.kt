@@ -373,4 +373,13 @@ object Constants {
         appIconColor = 0x33CCFF,
         targets = listOf(AppTarget(version = "5.19.0.2"))
     )
+
+    // AccuWeather — Weather Radar & Forecast
+    val ACCUWEATHER_COMPATIBILITY = Compatibility(
+        name = "AccuWeather: Weather Radar",
+        packageName = "com.accuweather.android",
+        appIconColor = 0xF25C1B,
+        targets = listOf(AppTarget(version = "21.1.11-1-rc"))
+    )
+
 }
