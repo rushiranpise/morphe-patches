@@ -382,4 +382,12 @@ object Constants {
         targets = listOf(AppTarget(version = "21.1.11-1-rc"))
     )
 
+    // Windscribe VPN
+    val WINDSCRIBE_COMPATIBILITY = Compatibility(
+        name = "Windscribe VPN",
+        packageName = "com.windscribe.vpn",
+        appIconColor = 0x00AEEF,
+        targets = listOf(AppTarget(version = "4.1.2274"))
+    )
+
 }
