@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.7.0-dev.3",
+  "version": "1.7.0-dev.4",
   "patches": [
     {
       "name": "Alert Distances",
@@ -1574,6 +1574,31 @@
       "options": []
     },
     {
+      "name": "Unlock Premium",
+      "description": "Unlocks Windscribe premium account.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.windscribe.vpn",
+          "name": "Windscribe VPN",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00AEEF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.2274",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Premium ",
       "description": "Unlocks premium in Clickmate",
       "default": true,
@@ -1589,6 +1614,31 @@
           "targets": [
             {
               "version": "7.1.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium+",
+      "description": "Unlocks AccuWeather's Premium+ subscription tier without a Play Store purchase. Enables the full 15-day and hourly forecast detail, MinuteCast extended precision, air quality and health indexes, real-feel temperature, severe weather notifications, and widget customisation.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.accuweather.android",
+          "name": "AccuWeather: Weather Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F25C1B",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "21.1.11-1-rc",
               "isExperimental": false,
               "minSdk": null,
               "description": null
