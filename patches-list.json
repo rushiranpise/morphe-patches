@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.7.0-dev.4",
+  "version": "1.7.0-dev.5",
   "patches": [
     {
       "name": "Alert Distances",
@@ -105,6 +105,43 @@
           "required": false,
           "type": "kotlin.Long",
           "default": 200,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "AudioKit Integration",
+      "description": "Allows third-party audio apps (like Morphe YouTube Music) to be recognized as official partners by Waze AudioKit.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "packageName",
+          "title": "Target Package Name",
+          "description": "The package name of the YouTube Music app to spoof.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "app.morphe.android.apps.youtube.music",
           "values": null
         }
       ]

@@ -1,3 +1,9 @@
+## [1.7.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.4...v1.7.0-dev.5) (2026-06-25)
+
+### ✨ New Features
+
+* add youtube music support in waze ([82be725](https://github.com/rushiranpise/morphe-patches/commit/82be7253f0dd70ce512e6bf43552ade369331c6d))
+
 ## [1.7.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.3...v1.7.0-dev.4) (2026-06-25)
 
 ### ✨ New Features
