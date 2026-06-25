@@ -1,3 +1,10 @@
+## [1.7.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.3...v1.7.0-dev.4) (2026-06-25)
+
+### ✨ New Features
+
+* add AccuWeather ([1849324](https://github.com/rushiranpise/morphe-patches/commit/18493248a9005c25c78e828150af25a14c1a60d9))
+* add windscribe ([2905d3c](https://github.com/rushiranpise/morphe-patches/commit/2905d3c73b0adde98b9d2df0bfe4bc7012f78904))
+
 ## [1.7.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-06-23)
 
 ### 🐛 Bug Fixes
