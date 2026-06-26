@@ -39,9 +39,9 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.7.0-dev.5](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0-dev.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;69 patches total
+> **[v1.7.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;67 patches total
 <details open>
-<summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;13 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
+<summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
 
 **🎯 Supported versions:**
@@ -52,7 +52,6 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Alert Distances](#alert-distances) | Configures radar/camera and hazard alert announcement distances.<br>Credits: Waze CGE Mod.<br> | • Accident alert (m)<br>• General alert (m)<br>• Police / camera alert (m)<br>• Enforcement — freeways (m)<br>• Enforcement — highways (m)<br>• Enforcement — streets (m)<br>• Hazard alert (m)<br>• Heavy traffic alert (m)<br>• Min between alerts (m) |
-| [AudioKit Integration](#audiokit-integration) | Allows third-party audio apps (like Morphe YouTube Music) to be recognized as official partners by Waze AudioKit. | • Target Package Name |
 | [AutoZoom](#autozoom) | Controls how aggressively the map zooms in/out based on driving speed.<br>Credits: Waze Chuppito Mod | • Speed factor<br>• Scale factor<br>• Max scale<br>• Gradient speed threshold (km/h) |
 | [Disable Ads](#disable-ads) | Suppresses all Waze ad systems via bundled preferences file:<br>• AdMob SDK (Ad_.*)<br>• Google Ads (Google_Ads.*)<br>• Ads Inventory Prediction<br>• ExternalPOI pins, coupons, popups (ExternalPO_ + Extern__POI both key variants)<br>• Search autocomplete server ads<br>Credits: Waze CGE Mod (ExternalPOI keys), Waze Chuppito (dual-key coverage). |  |
 | [Disable Advil Ad Requests](#disable-advil-ad-requests) | Stubs AdvilRequest.getPageUrl() → "" so the Advil ad server receives no page URL and returns no ad content.  |  |
@@ -703,21 +702,6 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |  |
-
-</details>
-
-<details open>
-<summary>📦 Tasker&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm'>📥</a></summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 6.6.20 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks Tasker Pro features. |  |
 
 </details>
 
