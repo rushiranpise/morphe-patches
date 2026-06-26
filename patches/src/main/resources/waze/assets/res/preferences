@@ -1,0 +1,182 @@
+;
+; ## MORPHE MOD — Waze Enhanced (Chuppito + CGE +  Magical Unicorn merged) ##
+;
+
+; # Ads — AdMob
+;
+AAOS.ads_enabled: 0
+Ad_.Admob SDK enabled: 0
+Ad_.Allow profile targeting default: 0
+Ad_.Allow profile targeting show dialog minimum drive count: 0
+Ad_.CCPA compliance is required: no
+Ad_.In car whole screen pins display: 0
+Ads.In car show pins on non touch screens: no
+Ads_Inventory_Prediction.Feature Enabled: 0
+Ads_Inventory_Prediction.Sample interval seconds: 4
+Ads_Inventory_Prediction.Send interval seconds: 100
+
+; # Ads — Google
+;
+Google_Ads.Display refresh period millis: -1
+Google_Ads.Feature enabled: 0
+Google_Ads.In car enabled: 0
+Google_Ads.Max concurrent pins: 0
+
+; # Ads — ExternalPOI (both key variants)
+;
+ExternalPO_.Feature Enabled: no
+ExternalPO_.Max POIs Display: 0
+ExternalPO_.Max POIs Display Small Screen: 0
+ExternalPO_.Max PopupUps Per Scroll: 0
+ExternalPO_.Max PopupUps Per Session: 0
+ExternalPO_.Max Replay Sec: 36000
+ExternalPO_.My Coupons Enabled: no
+ExternalPO_.My Coupons URL: 
+ExternalPO_.My Coupons URL V2: 
+ExternalPO_.Nearby Coupons and Games URL: 
+ExternalPO_.NearBy Display Time: 60
+ExternalPO_.NearBy Max Speed mmsec: 1400
+ExternalPO_.NearBy Sleep time: 36000
+ExternalPO_.Popup Enabled: no
+ExternalPO_.Popup Number of Seconds Multiple Popups: 1
+ExternalPO_.Popup Number of Seconds: 1
+ExternalPO_.URL: 
+ExternalPO_.URL V2: 
+ExternalPO_.URL V3: 
+Extern__POI.Feature Enabled: no
+Extern__POI.Max POIs Display: 5
+Extern__POI.Max POIs Display Small Screen: 0
+Extern__POI.Max PopupUps Per Scroll: 0
+Extern__POI.Max PopupUps Per Session: 0
+Extern__POI.Max Replay Sec: 0
+Extern__POI.My Coupons Enabled: no
+Extern__POI.My Coupons URL: http://astatic.php?v=4
+Extern__POI.My Coupons URL V2: http://astatic.php?v=4
+Extern__POI.NearBy Display Time: 60
+Extern__POI.NearBy Sleep time: 36000
+Extern__POI.Popup Enabled: no
+Extern__POI.Popup Number of Seconds Multiple Popups: 1
+Extern__POI.Popup Number of Seconds: 1
+Extern__POI.URL: http://astatic.php?v=4
+Extern__POI.URL V2: http://astatic.php?v=4
+Extern__POI.URL V3: http://astatic.php?v=4
+
+; # Alerts — Radar display (uncensored)
+;
+Alerts.Enable Enforcement Alert_: yes
+Alerts.Enable Enforcement Alert: yes
+Alerts.Enable Enforcement Polic_: yes
+Alerts.Enable_Enforcement_Alerts: yes
+Alerts.Enable_Enforcement_Police: yes
+
+; # Alerts — Distances (CGE Mod)
+; Official -> MOD
+; Accident:         600 -> 2000
+; Alert:            600 -> 1000
+; Between Alerts:   300 -> 200
+; Freeways:        2000 -> 1200
+; Highways:        1000 -> 900
+; Streets:          500 -> 700
+; Hazard:           600 -> 500
+; Heavy Traffic:    600 -> 3000
+; Police:           600 -> 1000
+;
+Alerts.Accident Alert Distace: 2000
+Alerts.Accident_Alert_Distace: 2000
+Alerts.Alert Distance: 1000
+Alerts.Alert Distanc_: 1000
+Alerts.Alert_Distance: 1000
+Alerts.Blocked_lane_alert_distance: 1000
+Alerts.Distance Between Alerts: 200
+Alerts.Distance_Between_Alerts: 200
+Alerts.Enforcement Alerts Distanc_ Freeways: 1200
+Alerts.Enforcement Alerts Distanc_ Highways: 900
+Alerts.Enforcement Alerts Distanc_ Streets: 700
+Alerts.Enforcement_Alerts_Distance_Freeways: 1200
+Alerts.Enforcement_Alerts_Distance_Highways: 900
+Alerts.Enforcement_Alerts_Distance_Streets: 700
+Alerts.Hazard Alert Distace: 500
+Alerts.Hazard_Alert_Distace: 500
+Alerts.Heavy Traffic Alert Distace: 3000
+Alerts.Heavy_Traffic_Alert_Distace: 3000
+Alerts.Police Alert Distac_: 1000
+Alerts.Police Alert Distace: 1000
+Alerts.Police_Alert_Distace: 1000
+
+; # Android Auto distances
+;
+Android Auto.Num Venue Pins: 2
+Android Auto.Heads Up Distance Normal: 1200
+Android Auto.Heads Up Distance Freeway: 1300
+
+; # AutoZoom
+;
+AutoZoom.Speed Factor: 20
+AutoZoom.Scale Factor: 25
+AutoZoom.Max Scale: 8000
+AutoZoom.Min Scale: 0
+AutoZoom.Threshold: 25
+AutoZoom.Gradient Factor: 150
+AutoZoom.Gradient Speed Threshold: 60
+
+; # Map — speedometer report + speed limit sign
+; Map.Speedometer report speed enable_: 1 -> tap speedometer -> "Report" option for bad/missing limits
+; Map.Speedometer sign style: us -> larger circular US-style speed limit sign
+;
+Map.Speedometer report speed enable_: 1
+Map.Speedometer sign style: us
+Map Turn Mode.Feature Enabled: 1
+Map Turn Mode.Min distance to next turn: 150
+Map Turn Mode.Max distance to turn: 200
+Map Turn Mode.Force 2D distance: 80
+Map Turn Mode.Continuous zoom: 0
+
+; # Navigation
+;
+Navigation.Nearing destination distance: 0
+Notifications on route.Permanent hazard: 0
+Notifications on route.School zone: 0
+Traffic Bar.Min time in traffic seconds: 180
+GPS.Show GPS: no
+
+; # Popups (Chuppito — both key variants)
+; Min speed MMSec: 999999 = popups never show at any driving speed
+;
+Popup_.Delay seconds after user interaction: 1
+Popup_.Fully stopped speed MMSec: -1
+Popup_.Min Distance: 1
+Popup_.Min reset scroll speed MMSec: 7000
+Popup_.Min speed MMSec: 999999
+Popu__.Delay seconds after user interaction: 1
+Popu__.Fully stopped speed MMSec: -1
+Popu__.Min Distance: 1
+Popu__.Min reset scroll speed MMSec: 7000
+Popu__.Min speed MMSec: 999999
+
+; # Search Autocomplete
+;
+Search_Autocomplete.Ads URL: 
+Search_Autocomplete.Enabled features: 124
+Search_Autocomplete.Fallback use address: yes
+Search_Autocomplete.Max history num: 2
+Search_Autocomplete.Route distance enabled: 0
+Search_Autocomplete.Server ads: no
+Search_Autocomplete.Show distances: yes
+Search_Autocomplete.Skip location preview for results: 1
+Search_Autocomplete.Use alt service: 0
+Search_Autocomplete.Waze prepare URL prefix: https://gapi.waze.com/autocomplete/p?e=ROW&c=wd&exp=8,10,12,13
+Search_Autocomplete.Waze URL prefix: https://gapi.waze.com/autocomplete/q?e=ROW&c=wd&exp=14,15,16,18
+
+; # Voice / TTS
+;
+TTS.Default Voice ID: Vanessa
+Prompts.Default Name: fr
+System.Default Language: fr
+
+; # Misc
+;
+Moods.Edit moods enabled: 1
+Points.Points Per Distance: 100000
+Smart Lock.Smart lock enable_: 1
+Smart Lock.Smart lock enabled: 1
+GeoConfig.Ignor_ server config: yes

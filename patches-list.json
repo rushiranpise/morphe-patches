@@ -1,7 +1,176 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.6.0",
+  "version": "1.7.0-dev.6",
   "patches": [
+    {
+      "name": "Alert Distances",
+      "description": "Configures radar/camera and hazard alert announcement distances.\nCredits: Waze CGE Mod.\n",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "accidentDist",
+          "title": "Accident alert (m)",
+          "description": "Official: 600m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 2000,
+          "values": null
+        },
+        {
+          "key": "alertDist",
+          "title": "General alert (m)",
+          "description": "Official: 600m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1000,
+          "values": null
+        },
+        {
+          "key": "policeDist",
+          "title": "Police / camera alert (m)",
+          "description": "Official: 600m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1000,
+          "values": null
+        },
+        {
+          "key": "freewayDist",
+          "title": "Enforcement — freeways (m)",
+          "description": "Official: 2000m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1200,
+          "values": null
+        },
+        {
+          "key": "highwayDist",
+          "title": "Enforcement — highways (m)",
+          "description": "Official: 1000m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 900,
+          "values": null
+        },
+        {
+          "key": "streetDist",
+          "title": "Enforcement — streets (m)",
+          "description": "Official: 500m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 700,
+          "values": null
+        },
+        {
+          "key": "hazardDist",
+          "title": "Hazard alert (m)",
+          "description": "Official: 600m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 500,
+          "values": null
+        },
+        {
+          "key": "heavyTrafDist",
+          "title": "Heavy traffic alert (m)",
+          "description": "Official: 600m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 3000,
+          "values": null
+        },
+        {
+          "key": "betweenDist",
+          "title": "Min between alerts (m)",
+          "description": "Official: 300m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 200,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "AutoZoom",
+      "description": "Controls how aggressively the map zooms in/out based on driving speed.\nCredits: Waze Chuppito Mod",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "speedFactor",
+          "title": "Speed factor",
+          "description": "Higher = more zoom-out at speed. Official: 10.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 20,
+          "values": null
+        },
+        {
+          "key": "scaleFactor",
+          "title": "Scale factor",
+          "description": "Overall zoom scale multiplier. Official: 25.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 25,
+          "values": null
+        },
+        {
+          "key": "maxScale",
+          "title": "Max scale",
+          "description": "Maximum zoom-out scale. Official: 8000.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 8000,
+          "values": null
+        },
+        {
+          "key": "gradientSpeed",
+          "title": "Gradient speed threshold (km/h)",
+          "description": "Zoom gradient activates above this speed. Official: 30.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 60,
+          "values": null
+        }
+      ]
+    },
     {
       "name": "Bypass License Check",
       "description": "Bypasses PairIP DRM license verification to prevent forced app shutdown on non-Play-licensed installs.",
@@ -17,7 +186,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -42,7 +211,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -67,7 +236,57 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable Ads",
+      "description": "Suppresses all Waze ad systems via bundled preferences file:\n• AdMob SDK (Ad_.*)\n• Google Ads (Google_Ads.*)\n• Ads Inventory Prediction\n• ExternalPOI pins, coupons, popups (ExternalPO_ + Extern__POI both key variants)\n• Search autocomplete server ads\nCredits: Waze CGE Mod (ExternalPOI keys), Waze Chuppito (dual-key coverage).",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable Advil Ad Requests",
+      "description": "Stubs AdvilRequest.getPageUrl() → \"\" so the Advil ad server receives no page URL and returns no ad content. ",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -92,7 +311,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "6.38.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -103,21 +322,335 @@
       "options": []
     },
     {
-      "name": "Disable Restricted Access",
-      "description": "Removes restricted/locked indicators on premium media in Canva.",
+      "name": "Enlarged Speedometer",
+      "description": "Increases speedometer digit size for better readability.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "smallTextSize",
+          "title": "Text size — speed below 100",
+          "description": "Speedometer font size when speed < 100. Default: 28sp (original: 20sp).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 28,
+          "values": null
+        },
+        {
+          "key": "largeTextSize",
+          "title": "Text size — speed 100+",
+          "description": "Speedometer font size when speed ≥ 100. Default: 21sp (original: 13sp).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 21,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Map Skin (Vitamin C)",
+      "description": "Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.\n• Night: true black AMOLED background (saves battery, prevents burn-in)\n• Day: warm beige background\n• Larger font labels across the board\n• Wider navigation arrow head for better visibility\n• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow\nCredits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.canva.editor",
-          "name": "Canva",
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
           "description": null,
           "apkFileType": null,
-          "appIconColor": "#8B3DFF",
+          "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "nightBg",
+          "title": "Night background color (hex)",
+          "description": "Default: 000000 (true black, AMOLED). Original Waze: 1a1a2e.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "000000",
+          "values": null
+        },
+        {
+          "key": "dayBg",
+          "title": "Day background color (hex)",
+          "description": "Default: ebe7dd (warm beige). Original Waze: f7f3eb.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "ebe7dd",
+          "values": null
+        },
+        {
+          "key": "fontHuge",
+          "title": "Font size — huge labels",
+          "description": "Default: 18 (original: 14).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 18,
+          "values": null
+        },
+        {
+          "key": "fontBig",
+          "title": "Font size — big labels",
+          "description": "Default: 14 (original: 12).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 14,
+          "values": null
+        },
+        {
+          "key": "fontMedium",
+          "title": "Font size — medium labels",
+          "description": "Default: 12 (original: 10).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 12,
+          "values": null
+        },
+        {
+          "key": "fontSmall",
+          "title": "Font size — small labels",
+          "description": "Default: 10 (original: 8).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 10,
+          "values": null
+        },
+        {
+          "key": "navArrow",
+          "title": "Nav arrow head width factor",
+          "description": "Default: 10.0 (original: 3.0). Wider = more visible chevron.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "10.0",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Navigation & Map",
+      "description": "Configures navigation and map behaviour:\n• Nearing destination distance (Credits: CGE Mod)\n• Android Auto head-up alert distances\n• Map turn mode (auto-zoom to upcoming turn)\n• Traffic bar minimum time threshold\n• GPS icon visibility\n• Route notifications (hazard, school zone) both disabled by default\nCredits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys).",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "nearingDestDist",
+          "title": "Nearing destination distance (m)",
+          "description": "0 = silent arrival. Official: ~500m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 0,
+          "values": null
+        },
+        {
+          "key": "aaHeadUpNormal",
+          "title": "Android Auto head-up — normal roads (m)",
+          "description": "Official: 800m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1200,
+          "values": null
+        },
+        {
+          "key": "aaHeadUpFreeway",
+          "title": "Android Auto head-up — freeways (m)",
+          "description": "Official: 1000m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1300,
+          "values": null
+        },
+        {
+          "key": "trafficBarMinTime",
+          "title": "Traffic bar min time in traffic (seconds)",
+          "description": "Official: 300s.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 180,
+          "values": null
+        },
+        {
+          "key": "showGpsIcon",
+          "title": "Show GPS icon on map",
+          "description": "Official: yes.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "no",
+          "values": {
+            "Hidden (less clutter)": "no",
+            "Visible": "yes"
+          }
+        },
+        {
+          "key": "mapTurnMode",
+          "title": "Map turn mode (auto-zoom to turn)",
+          "description": "Default: enabled.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "1",
+          "values": {
+            "Enabled": "1",
+            "Disabled": "0"
+          }
+        },
+        {
+          "key": "hazardNotif",
+          "title": "Permanent hazard route notification",
+          "description": "Default: disabled (0).",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "0",
+          "values": {
+            "Disabled": "0",
+            "Enabled": "1"
+          }
+        },
+        {
+          "key": "schoolNotif",
+          "title": "School zone route notification",
+          "description": "Default: disabled (0).",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "0",
+          "values": {
+            "Disabled": "0",
+            "Enabled": "1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Popup Suppression",
+      "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nCredits: Waze Chuppito Mod.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "minSpeed",
+          "title": "Min speed to show popups (MMSec)",
+          "description": "Default 999999 = never. Official: 0 (always shows).",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 999999,
+          "values": null
+        },
+        {
+          "key": "fullyStoppedSpeed",
+          "title": "Fully stopped speed (MMSec)",
+          "description": "-1 = disable stopped trigger. Official: 0.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": -1,
+          "values": null
+        },
+        {
+          "key": "minDistance",
+          "title": "Min distance to show popup (m)",
+          "description": "Official: 100m.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1,
+          "values": null
+        },
+        {
+          "key": "minResetScrollSpeed",
+          "title": "Min reset scroll speed (MMSec)",
+          "description": "Speed at which scroll suppression resets. Official: 1400.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 7000,
+          "values": null
+        },
+        {
+          "key": "delayAfterInteraction",
+          "title": "Delay after user interaction (seconds)",
+          "description": "Seconds before popup can appear post-interaction. Official: 0.",
+          "required": false,
+          "type": "kotlin.Long",
+          "default": 1,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Radar Sound (Any Speed)",
+      "description": "Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.\n",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -142,7 +675,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -167,7 +700,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "18.0.352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -217,7 +750,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -242,7 +775,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.365.o",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -278,6 +811,69 @@
       "options": []
     },
     {
+      "name": "Report Speed Limit",
+      "description": "Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.\n",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Speed Limit Sign",
+      "description": "Sets the speed limit sign style shown on the map.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "signStyle",
+          "title": "Sign style",
+          "description": "us = large circular US-style (recommended). metric = small local-style.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "us",
+          "values": {
+            "US circular — large, more readable": "us",
+            "Local metric — small": "metric"
+          }
+        }
+      ]
+    },
+    {
       "name": "Spoof WARP+ Unlimited UI",
       "description": "Unlocks WARP+ UI locally.",
       "default": true,
@@ -292,7 +888,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "6.38.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -317,7 +913,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -342,7 +938,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Uncensored Radar / Camera Display",
+      "description": "Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. Enables enforcement alerts via preferences keys:\nCredits: Waze CGE Mod.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.waze",
+          "name": "Waze - GPS, Maps & Traffic",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#33CCFF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -392,7 +1013,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "23.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -417,7 +1038,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -438,11 +1059,11 @@
           "name": "Flightradar24",
           "description": null,
           "apkFileType": null,
-          "appIconColor": "#FFDD00",
+          "appIconColor": "#327CB5",
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "11.6.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -467,7 +1088,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.1.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -492,7 +1113,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -517,7 +1138,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -542,7 +1163,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.16.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -567,7 +1188,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.1.98",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -617,7 +1238,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.4.281",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -642,7 +1263,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -667,7 +1288,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.57",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -692,7 +1313,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -717,7 +1338,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "AARCH64_1.248.400",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -742,7 +1363,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "0.9.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -767,7 +1388,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "3.4.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -792,7 +1413,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "13.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -829,6 +1450,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Rocket Money Premium Features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.truebill",
+          "name": "Rocket Money",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#DE3341",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "13.15.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Bypasses PairIP license check, paywall, ads, and pro upsell in SAI.",
       "default": true,
       "dependencies": [],
@@ -842,7 +1488,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -867,7 +1513,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "4.1.14",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -917,7 +1563,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.8.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Windscribe premium account.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.windscribe.vpn",
+          "name": "Windscribe VPN",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00AEEF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.2274",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -942,7 +1613,57 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "7.1.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium+",
+      "description": "Unlocks AccuWeather's Premium+ subscription tier without a Play Store purchase. Enables the full 15-day and hourly forecast detail, MinuteCast extended precision, air quality and health indexes, real-feel temperature, severe weather notifications, and widget customisation.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.accuweather.android",
+          "name": "AccuWeather: Weather Radar",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F25C1B",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "21.1.11-1-rc",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlock Pro Features in Cashew App",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.budget.tracker_app",
+          "name": "Cashew - Budget & Finance App",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FFB300",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.5.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -967,7 +1688,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "0.1297.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -992,7 +1713,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.56.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1017,7 +1738,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.57.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1042,7 +1763,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1092,7 +1813,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "2.335",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1142,7 +1863,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "7.20.build131",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1192,32 +1913,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Pro",
-      "description": "Unlocks Tasker Pro features.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "net.dinglisch.android.taskerm",
-          "name": "Tasker",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#263238",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "6.6.20",
+              "version": "26.5.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1242,7 +1938,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "3.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1267,7 +1963,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "4.18.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1292,7 +1988,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "5.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
