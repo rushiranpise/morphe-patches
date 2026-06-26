@@ -1,3 +1,41 @@
+## [1.7.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.5...v1.7.0-dev.6) (2026-06-26)
+
+## [1.7.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.4...v1.7.0-dev.5) (2026-06-25)
+
+### ✨ New Features
+
+* add youtube music support in waze ([82be725](https://github.com/rushiranpise/morphe-patches/commit/82be7253f0dd70ce512e6bf43552ade369331c6d))
+
+## [1.7.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.3...v1.7.0-dev.4) (2026-06-25)
+
+### ✨ New Features
+
+* add AccuWeather ([1849324](https://github.com/rushiranpise/morphe-patches/commit/18493248a9005c25c78e828150af25a14c1a60d9))
+* add windscribe ([2905d3c](https://github.com/rushiranpise/morphe-patches/commit/2905d3c73b0adde98b9d2df0bfe4bc7012f78904))
+
+## [1.7.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.2...v1.7.0-dev.3) (2026-06-23)
+
+### 🐛 Bug Fixes
+
+* waze ([14d4782](https://github.com/rushiranpise/morphe-patches/commit/14d47825b88661cf985cad53635ea2d7dcabe189))
+
+### ✨ New Features
+
+* fix terabox ([1ec09f4](https://github.com/rushiranpise/morphe-patches/commit/1ec09f4aa579898e9142e828c4f43a5f54023898))
+
+## [1.7.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0-dev.1...v1.7.0-dev.2) (2026-06-23)
+
+### ✨ New Features
+
+* add waze ([3b27d0e](https://github.com/rushiranpise/morphe-patches/commit/3b27d0e91e0e51910ffc5a5c5fdca883a9533d97))
+
+## [1.7.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0...v1.7.0-dev.1) (2026-06-23)
+
+### ✨ New Features
+
+* add cashew ([95038e2](https://github.com/rushiranpise/morphe-patches/commit/95038e27747c0ab2a78a2dea19ebcceca9971a0b))
+* add Rocket Money ([2e6090c](https://github.com/rushiranpise/morphe-patches/commit/2e6090cfed6a3bce6871e3b4bf01448223fd23ea))
+
 ## [1.6.0](https://github.com/rushiranpise/morphe-patches/compare/v1.5.0...v1.6.0) (2026-06-21)
 
 ### 🐛 Bug Fixes

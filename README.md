@@ -39,10 +39,41 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.6.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.6.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;53 patches total
+> **[v1.7.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;67 patches total
+<details open>
+<summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.19.0.2 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Alert Distances](#alert-distances) | Configures radar/camera and hazard alert announcement distances.<br>Credits: Waze CGE Mod.<br> | • Accident alert (m)<br>• General alert (m)<br>• Police / camera alert (m)<br>• Enforcement — freeways (m)<br>• Enforcement — highways (m)<br>• Enforcement — streets (m)<br>• Hazard alert (m)<br>• Heavy traffic alert (m)<br>• Min between alerts (m) |
+| [AutoZoom](#autozoom) | Controls how aggressively the map zooms in/out based on driving speed.<br>Credits: Waze Chuppito Mod | • Speed factor<br>• Scale factor<br>• Max scale<br>• Gradient speed threshold (km/h) |
+| [Disable Ads](#disable-ads) | Suppresses all Waze ad systems via bundled preferences file:<br>• AdMob SDK (Ad_.*)<br>• Google Ads (Google_Ads.*)<br>• Ads Inventory Prediction<br>• ExternalPOI pins, coupons, popups (ExternalPO_ + Extern__POI both key variants)<br>• Search autocomplete server ads<br>Credits: Waze CGE Mod (ExternalPOI keys), Waze Chuppito (dual-key coverage). |  |
+| [Disable Advil Ad Requests](#disable-advil-ad-requests) | Stubs AdvilRequest.getPageUrl() → "" so the Advil ad server receives no page URL and returns no ad content.  |  |
+| [Enlarged Speedometer](#enlarged-speedometer) | Increases speedometer digit size for better readability. | • Text size — speed below 100<br>• Text size — speed 100+ |
+| [Map Skin (Vitamin C)](#map-skin-vitamin-c) | Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.<br>• Night: true black AMOLED background (saves battery, prevents burn-in)<br>• Day: warm beige background<br>• Larger font labels across the board<br>• Wider navigation arrow head for better visibility<br>• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow<br>Credits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration). | • Night background color (hex)<br>• Day background color (hex)<br>• Font size — huge labels<br>• Font size — big labels<br>• Font size — medium labels<br>• Font size — small labels<br>• Nav arrow head width factor |
+| [Navigation & Map](#navigation-map) | Configures navigation and map behaviour:<br>• Nearing destination distance (Credits: CGE Mod)<br>• Android Auto head-up alert distances<br>• Map turn mode (auto-zoom to upcoming turn)<br>• Traffic bar minimum time threshold<br>• GPS icon visibility<br>• Route notifications (hazard, school zone) both disabled by default<br>Credits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys). | • Nearing destination distance (m)<br>• Android Auto head-up — normal roads (m)<br>• Android Auto head-up — freeways (m)<br>• Traffic bar min time in traffic (seconds)<br>• Show GPS icon on map<br>• Map turn mode (auto-zoom to turn)<br>• Permanent hazard route notification<br>• School zone route notification |
+| [Popup Suppression](#popup-suppression) | Prevents promotional and ad popups from appearing while driving.<br>Raises the minimum trigger speed to a near-impossible value so popups never appear.<br>Credits: Waze Chuppito Mod. | • Min speed to show popups (MMSec)<br>• Fully stopped speed (MMSec)<br>• Min distance to show popup (m)<br>• Min reset scroll speed (MMSec)<br>• Delay after user interaction (seconds) |
+| [Radar Sound (Any Speed)](#radar-sound-any-speed) | Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.<br> |  |
+| [Report Speed Limit](#report-speed-limit) | Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.<br> |  |
+| [Speed Limit Sign](#speed-limit-sign) | Sets the speed limit sign style shown on the map. | • Sign style |
+| [Uncensored Radar / Camera Display](#uncensored-radar-camera-display) | Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. Enables enforcement alerts via preferences keys:<br>Credits: Waze CGE Mod. |  |
+
+</details>
+
 <details open>
 <summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 26.23.2 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -59,6 +90,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Universal TV Remote Control&nbsp;&nbsp;•&nbsp;&nbsp;3 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 1.8.1 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Disable Ads](#disable-ads) | Prevents the AppOpen ad preloader from initialising. |  |
@@ -71,6 +107,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 1.1.1.1 + WARP&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 6.38.7 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Disable Analytics / Telemetry](#disable-analytics-telemetry) | Disables App Analytics / Telemetry. |  |
@@ -79,19 +120,13 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
-<br>
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Disable Restricted Access](#disable-restricted-access) | Removes restricted/locked indicators on premium media in Canva. |  |
-| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
-
-</details>
-
-<details open>
 <summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.saldous.casetracker'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 5.5.1 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -103,6 +138,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mobond.mindicator'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 18.0.352 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -122,6 +162,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Remove Ads / Unlock Premium](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and the upgrade button/banner without crashing on the now-expected non-null Purchase object. |  |
+
+</details>
+
+<details open>
+<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 2.365.o |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
 
 </details>
 
@@ -159,6 +214,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 nzb360&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 23.5 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock All Access](#unlock-all-access) | Unlocks All access in Nzb360. |  |
@@ -168,6 +228,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=verbosus.pialytic'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 1.2.8 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -179,6 +244,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Flightradar24&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.flightradar24free'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 11.6.1 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Business Premium](#unlock-business-premium) | Unlocks Business/Gold premium features in Flightradar24: ad-free map, weather layers, ATC, 3D view, flight history, and unlimited saved locations. |  |
@@ -188,6 +258,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Greenify&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.oasisfeng.greenify'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 5.1.1 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -199,6 +274,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.blockerhero'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 1.5.0 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Lifetime](#unlock-lifetime) | Unlocks lifetime subscription features in BlockerHero. |  |
@@ -209,6 +289,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Proxyman&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 1.16.0 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Lifetime](#unlock-lifetime) | Unlocks all Lifetime features in Proxyman. |  |
@@ -218,6 +303,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 SHAREit Premium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=shareit.premium'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 1.1.98 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -244,6 +334,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 2.4.281 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
@@ -253,6 +348,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 CPU-Z&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cpuid.cpu_z'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 1.57 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -264,6 +364,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Hola VPN Proxy Plus&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.hola.play'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| AARCH64_1.248.400 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) |  |  |
@@ -273,6 +378,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=it.mirko.beta'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 0.9.4 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -284,6 +394,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 NetMonster&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=cz.mroczis.netmonster'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 3.4.1 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks all premium features. |  |
@@ -293,6 +408,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 13.3 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -316,8 +436,28 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Rocket Money&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.truebill'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 13.15.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Rocket Money Premium Features. |  |
+
+</details>
+
+<details open>
 <summary>📦 SAI&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mtv.sai'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 2.2.8 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -328,6 +468,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 4.1.14 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -351,8 +496,28 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Windscribe VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.windscribe.vpn'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 4.1.2274 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Windscribe premium account. |  |
+
+</details>
+
+<details open>
 <summary>📦 Clickmate&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.inscode.autoclicker'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 7.1.4 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -361,8 +526,43 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 AccuWeather: Weather Radar&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.accuweather.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 21.1.11-1-rc |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium+](#unlock-premium) | Unlocks AccuWeather's Premium+ subscription tier without a Play Store purchase. Enables the full 15-day and hourly forecast detail, MinuteCast extended precision, air quality and health indexes, real-feel temperature, severe weather notifications, and widget customisation. |  |
+
+</details>
+
+<details open>
+<summary>📦 Cashew - Budget & Finance App&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.budget.tracker_app'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 6.5.9 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlock Pro Features in Cashew App |  |
+
+</details>
+
+<details open>
 <summary>📦 Citizen - Safety Alert&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sp0n.citizen'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 0.1297.0 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -374,6 +574,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Hibernator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.hibernator'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 2.56.10 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks all pro features in Hibernator. |  |
@@ -384,6 +589,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 KillApps&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.killall'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 1.57.9 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks all pro features in KillApps. |  |
@@ -393,6 +603,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 5.0 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -419,6 +634,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 NetGuard&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.faircode.netguard'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 2.335 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks all pro features in NetGuard. |  |
@@ -443,6 +663,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.rarlab.rar'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 7.20.build131 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -469,6 +694,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 26.5.5 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Pro](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |  |
@@ -476,23 +706,13 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Tasker&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm'>📥</a></summary>
+<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.twtapp'>📥</a></summary>
 <br>
 
 **🎯 Supported versions:**
 
-| 6.6.20 |
+| 3.2.1 |
 | :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks Tasker Pro features. |  |
-
-</details>
-
-<details open>
-<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.twtapp'>📥</a></summary>
-<br>
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
@@ -504,6 +724,11 @@ Even a small amount makes a difference 🙏
 <summary>📦 TeraBox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.dubox.drive'>📥</a></summary>
 <br>
 
+**🎯 Supported versions:**
+
+| 4.18.6 |
+| :---: |
+
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock VIP](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+) |  |
@@ -513,6 +738,11 @@ Even a small amount makes a difference 🙏
 <details open>
 <summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.yatrirailways.yatri'>📥</a></summary>
 <br>
+
+**🎯 Supported versions:**
+
+| 5.0.3 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
