@@ -238,14 +238,6 @@ object Constants {
         targets = listOf(AppTarget(version = "2.335"))
     )
 
-    // Tasker — Task Automation by Dinglisch Android Workshop
-    val TASKER_COMPATIBILITY = Compatibility(
-        name = "Tasker",
-        packageName = "net.dinglisch.android.taskerm",
-        appIconColor = 0x263238,
-        targets = listOf(AppTarget(version = "6.6.20"))
-    )
-
     // AdGuard — Ad Blocker & Privacy
     val ADGUARD_COMPATIBILITY = Compatibility(
         name = "AdGuard Nightly",
