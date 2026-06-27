@@ -392,4 +392,12 @@ object Constants {
             AppTarget(version = "1.0.2.0526.03", versionCode = 50040002),
         )
     )
+
+    // The Weather Channel — Weather Forecast & Alerts by The Weather Channel
+    val THEWEATHERCHANNEL_COMPATIBILITY = Compatibility(
+        name = "The Weather Channel",
+        packageName = "com.weather.Weather",
+        appIconColor = 0x1B6AC9,
+        targets = listOf(AppTarget(version = "16.10.1", versionCode = 1080012982))
+    )
 }
