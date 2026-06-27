@@ -102,9 +102,7 @@ private val CONTENT_CLASSES_BOOLEAN = listOf(
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks all premium content in Strength Training by Muscle Motion. " +
-        "Patches the content-level isPaid() gates to return false (content appears free) " +
-        "and the user-level subscription gates to return true (user appears subscribed).",
+    description = "Unlocks all premium content in Strength Training by Muscle Motion. ",
 ) {
     compatibleWith(Constants.STRENGTHTRAINING_COMPATIBILITY)
 
@@ -166,21 +164,7 @@ val unlockPremiumPatch = bytecodePatch(
             clearBody()
             addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
-    }
-}
 
-
-@Suppress("unused")
-val spoofPlanDetailsPatch = bytecodePatch(
-    name = "Unlock Pro",
-    description = "Unlocks Pro Features. " +
-        "Patches PaidStatus.getType()→\"indi\" (→\"Individual\"), " +
-        "PaidStatus.getBilling()→\"Yearly\", " +
-        "LoginResponse.getExpiryDate()→Jan 1 2099.",
-) {
-    compatibleWith(Constants.STRENGTHTRAINING_COMPATIBILITY)
-
-    execute {
         // PaidStatus.getType() → "indi"
         // getCurrentPlan() maps "indi" → "Individual" for display in profile.
         GetTypeFingerprint.method.apply {
@@ -222,5 +206,6 @@ val spoofPlanDetailsPatch = bytecodePatch(
                 """,
             )
         }
+
     }
 }
