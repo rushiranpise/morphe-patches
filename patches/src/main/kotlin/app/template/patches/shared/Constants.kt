@@ -26,7 +26,7 @@ object Constants {
         name = "Citizen - Safety Alert",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "0.1297.0"))
+        targets = listOf(AppTarget(version = "0.1298.0"))
     )
 
 
