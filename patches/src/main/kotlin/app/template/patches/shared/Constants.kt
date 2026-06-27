@@ -408,4 +408,12 @@ object Constants {
         appIconColor = 0x1A1A2E,
         targets = listOf(AppTarget(version = "1.4.6", versionCode = 43))
     )
+
+    // 1Tap Cleaner — App cache & history cleaner by a0soft
+    val ONETAPCLEANER_COMPATIBILITY = Compatibility(
+        name = "1Tap Cleaner",
+        packageName = "com.a0soft.gphone.acc.free",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
+    )
 }
