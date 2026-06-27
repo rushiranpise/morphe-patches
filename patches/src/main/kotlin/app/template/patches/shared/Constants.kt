@@ -440,4 +440,12 @@ object Constants {
         appIconColor = 0xDF1B12,
         targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
     )
+
+    // TiviMate IPTV Player by Artem Golubev
+    val TIVIMATE_COMPATIBILITY = Compatibility(
+        name = "TiviMate IPTV Player",
+        packageName = "ar.tvplayer.tv",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.3.3", versionCode = 1000005332))
+    )
 }
