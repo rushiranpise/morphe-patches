@@ -424,4 +424,12 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
     )
+
+    // Windy — Weather Radar & Forecast by Windyty
+    val WINDY_COMPATIBILITY = Compatibility(
+        name = "Windy: Weather Radar & Forecast",
+        packageName = "com.windyty.android",
+        appIconColor = 0x0FA0EB,
+        targets = listOf(AppTarget(version = null))
+    )
 }
