@@ -11,9 +11,10 @@ private fun dismissActivity(@Suppress("UNUSED_PARAMETER") cls: String) =
     "invoke-super {p0}, Landroid/app/Activity;->finish()V\n" +
     "return-void"
 
+// Uses p1 (param register) to avoid requiring .locals >= 1
 private val returnKotlinUnit =
-    "sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
-    "return-object v0"
+    "sget-object p1, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
+    "return-object p1"
 
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
@@ -24,6 +25,7 @@ val citizenUnlockProPatch = bytecodePatch(
     compatibleWith(CITIZEN_COMPATIBILITY)
 
     execute {
+        // Layer 2
         listOf(
             CitizenPlusInfoGetActiveFingerprint,
             CitizenProtectInfoGetActiveFingerprint
@@ -35,6 +37,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 3
         SuperwallSetSubscriptionStatusFingerprint
             .match(classDefBy(SuperwallSetSubscriptionStatusFingerprint.definingClass!!))
             .method.apply {
@@ -42,6 +45,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 addInstructions(0, "return-void")
             }
 
+        // Layer 4
         listOf(
             PrivateUserIsPlusActiveFingerprint,
             PrivateUserIsProtectActiveFingerprint,
@@ -55,6 +59,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 5
         ShowPaywallUseCaseAFingerprint
             .match(classDefBy(ShowPaywallUseCaseAFingerprint.definingClass!!))
             .method.apply {
@@ -75,6 +80,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 6
         SafetyCenterPaywallVMGateFingerprint
             .match(classDefBy(SafetyCenterPaywallVMGateFingerprint.definingClass!!))
             .method.apply {
@@ -83,6 +89,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
 
+        // Layer 7
         SafetyNetworkRemoveExpiredFingerprint
             .match(classDefBy(SafetyNetworkRemoveExpiredFingerprint.definingClass!!))
             .method.apply {
@@ -91,6 +98,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
             }
 
+        // Layer 10
         ClarityEntrypointVisibleFingerprint
             .match(classDefBy(ClarityEntrypointVisibleFingerprint.definingClass!!))
             .method.apply {
@@ -99,6 +107,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;\nreturn-object p1")
             }
 
+        // Layer 11
         MonoSubscriptionGetEnabledFingerprint
             .match(classDefBy(MonoSubscriptionGetEnabledFingerprint.definingClass!!))
             .method.apply {
@@ -107,6 +116,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
 
+        // Layer 12
         runCatching {
             OnboardingOverridePaywallOnCreateFingerprint
                 .match(classDefBy(OnboardingOverridePaywallOnCreateFingerprint.definingClass!!))
@@ -127,6 +137,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
+        // Layers 13/14/15
         MonoSubscriptionIsSafetyToolAvailableFingerprint
             .match(classDefBy(MonoSubscriptionIsSafetyToolAvailableFingerprint.definingClass!!))
             .method.apply {
@@ -154,6 +165,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 17
         listOf(
             ClarityMapTooltipUpsellEnabledFingerprint,
             ClarityRadioClipsUpsellEnabledFingerprint,
@@ -168,6 +180,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 18
         listOf(
             PlusV1NeighborhoodTrendsEnabledFingerprint,
             PlusV1RadioClipsEnabledFingerprint
@@ -181,6 +194,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Layer 19
         runCatching {
             SuperwallPaywallActivityOnCreateFingerprint
                 .match(classDefBy(SuperwallPaywallActivityOnCreateFingerprint.definingClass!!))
@@ -191,6 +205,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
+        // Layer 20
         listOf(
             PrivateUserIsProtectEligibleFingerprint,
             PrivateUserIsProtectSubscriberFingerprint
@@ -204,6 +219,7 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
+        // Removed in v0.1298.0 — runCatching for compat
         runCatching {
             MonoSubscriptionIsSafetyNetworkAvailableFingerprint
                 .match(classDefBy(MonoSubscriptionIsSafetyNetworkAvailableFingerprint.definingClass!!))
@@ -224,6 +240,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
+        // Layer 21
         runCatching {
             ClarityProfileEntrypointEnabledFingerprint
                 .match(classDefBy(ClarityProfileEntrypointEnabledFingerprint.definingClass!!))
@@ -234,6 +251,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
+        // Layer 22
         listOf(
             ClarityPaywallActivityOnCreateFingerprint,
             ComparePlansActivityOnCreateFingerprint,
@@ -275,7 +293,7 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
-        // Layer 23: Safety Network collectors
+        // Layer 23: Safety Network flow collectors (zp3)
         listOf(
             SafetyNetworkSingleInviteFlowCollectorFingerprint,
             SafetyNetworkPendingInvitesFlowCollectorFingerprint,
@@ -310,7 +328,8 @@ val citizenUnlockProPatch = bytecodePatch(
                 }
         }
 
-        // Layers 24+25: MainActivity + PremiumEducational internal collectors
+        // Layer 24: MainActivity collectors (gone in v0.1298.0 — runCatching)
+        // Layer 25: PremiumEducational internal collector
         listOf(
             MainActivityPaywallFlowCollectorAFingerprint,
             MainActivityPaywallFlowCollectorBFingerprint,
@@ -335,15 +354,20 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
-        // Layers 26+27: Cross-package PremiumEducational flow collectors
-        // Layer 27 (MyProfileFragment) uses emit() NOT invokeSuspend() — see fingerprint comment.
+        // Layers 26+27: Cross-package collectors
+        // EXCLUDED: SafetyZonePaywallFlowCollector — multi-branch nav dispatcher (breaks alert zones)
+        // EXCLUDED: SafetyNetworkActivityPaywallCollector — multi-branch nav dispatcher (breaks safety network)
+        // EXCLUDED: SubscriptionCenterActivityCollector — multi-branch dispatcher
         listOf(
             SafetyZonePaywallFlowCollectorFingerprint,
-            MenuPaywallFlowCollectorFingerprint,
-            OnboardingPaywallFlowCollectorFingerprint,
-            ProfilePaywallFlowCollectorFingerprint,
-            SafetyHomePaywallFlowCollectorFingerprint,
-            MyProfileFragmentPaywallCollectorFingerprint
+            MenuPaywallFlowCollectorFingerprint,         // empty in v0.1298.0 — runCatching safe
+            OnboardingPaywallFlowCollectorFingerprint,   // empty in v0.1298.0 — runCatching safe
+            ProfilePaywallFlowCollectorFingerprint,      // gone in v0.1298.0 — runCatching safe
+            SafetyHomePaywallFlowCollectorFingerprint,   // older builds
+            MyProfileFragmentPaywallCollectorFingerprint, // older builds (h$a$a)
+            SafetyCenterPaywallActivityCollectorFingerprint,
+            SubscriptionCenterActivityCollectorFingerprint,
+            SafetyNetworkActivityPaywallCollectorFingerprint
         ).forEach { fp ->
             runCatching {
                 fp.match(classDefBy(fp.definingClass!!)).method.apply {
@@ -354,7 +378,6 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
-        // Obfuscated collectors — package names shift across builds, runCatching required
         listOf(
             ObfuscatedW50F1PaywallCollectorFingerprint,
             ObfuscatedW70LPaywallCollectorFingerprint
@@ -368,14 +391,18 @@ val citizenUnlockProPatch = bytecodePatch(
             }
         }
 
-        runCatching {
-            PurchasePremiumHelperCreateIntentFingerprint
-                .match(classDefBy(PurchasePremiumHelperCreateIntentFingerprint.definingClass!!))
-                .method.apply {
+        // PurchasePremiumHelper: v8d (older) + c3d (v0.1298.0+)
+        listOf(
+            PurchasePremiumHelperCreateIntentFingerprint,
+            PurchasePremiumHelperC3DFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
                     if (implementation == null) return@apply
                     removeInstructions(0, instructions.count())
                     addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
                 }
+            }
         }
 
         runCatching {
@@ -405,7 +432,30 @@ val citizenUnlockProPatch = bytecodePatch(
                     )
                 }
         }
+
+        // NavigationType b1b$h0/i0/u0 (v0.1298.0+ — replaces MainActivity collectors)
+        listOf(
+            NavigationTypeH0PaywallFingerprint,
+            NavigationTypeI0PaywallFingerprint,
+            NavigationTypeU0PaywallFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.match(classDefBy(fp.definingClass!!)).method.apply {
+                    if (implementation == null) return@apply
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // ProtectFabHelper zvc (v0.1298.0+)
+        runCatching {
+            ProtectFabHelperPaywallFingerprint
+                .match(classDefBy(ProtectFabHelperPaywallFingerprint.definingClass!!))
+                .method.apply {
+                    if (implementation == null) return@apply
+                    addInstructions(0, "return-void")
+                }
+        }
     }
 }
-
-
