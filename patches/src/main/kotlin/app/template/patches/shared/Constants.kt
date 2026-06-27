@@ -382,4 +382,14 @@ object Constants {
         targets = listOf(AppTarget(version = "4.1.2274"))
     )
 
+    // MovieBox TV by Transsion/Mbox
+    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
+        name = "MovieBox TV",
+        packageName = "com.community.oneroom",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104),
+            AppTarget(version = "1.0.2.0526.03", versionCode = 50040002),
+        )
+    )
 }
