@@ -432,4 +432,12 @@ object Constants {
         appIconColor = 0x0FA0EB,
         targets = listOf(AppTarget(version = null))
     )
+
+    // TomTom GO Navigation
+    val TOMTOMGO_COMPATIBILITY = Compatibility(
+        name = "TomTom GO Navigation",
+        packageName = "com.tomtom.gplay.navapp",
+        appIconColor = 0xDF1B12,
+        targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
+    )
 }
