@@ -400,4 +400,12 @@ object Constants {
         appIconColor = 0x1B6AC9,
         targets = listOf(AppTarget(version = "16.10.1", versionCode = 1080012982))
     )
+
+    // Ninja VPN — Fast & Secure VPN Proxy
+    val NINJVAPN_COMPATIBILITY = Compatibility(
+        name = "Ninja VPN",
+        packageName = "app.ninjavpn.android",
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = "1.4.6", versionCode = 43))
+    )
 }
