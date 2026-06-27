@@ -39,7 +39,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;82 patches total
+> **[v1.8.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;81 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
@@ -532,7 +532,7 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 Strength Training: Gym Workout&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile'>📥</a></summary>
+<summary>📦 Strength Training: Gym Workout&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile'>📥</a></summary>
 <br>
 
 **🎯 Supported versions:**
@@ -542,8 +542,7 @@ Even a small amount makes a difference 🙏
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion. Patches the content-level isPaid() gates to return false (content appears free) and the user-level subscription gates to return true (user appears subscribed). |  |
-| [Unlock Pro](#unlock-pro) | Unlocks Pro Features. Patches PaidStatus.getType()→"indi" (→"Individual"), PaidStatus.getBilling()→"Yearly", LoginResponse.getExpiryDate()→Jan 1 2099. |  |
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion.  |  |
 
 </details>
 

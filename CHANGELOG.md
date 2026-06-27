@@ -1,3 +1,9 @@
+## [1.8.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0-dev.1...v1.8.0-dev.2) (2026-06-27)
+
+### 🐛 Bug Fixes
+
+* Strength Training ([45b1065](https://github.com/rushiranpise/morphe-patches/commit/45b10651fffada2332259ab8724bf6dc1af319dd))
+
 ## [1.8.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0...v1.8.0-dev.1) (2026-06-27)
 
 ### 🐛 Bug Fixes
