@@ -17,50 +17,104 @@ val unlockPremiumPlusPatch = bytecodePatch(
     compatibleWith(Constants.ACCUWEATHER_COMPATIBILITY)
 
     execute {
-        // The subscription Flow emits u9/a sealed subclasses:
-        //   u9/a$b "Success(active=" — not logged in / no sub → wraps emptySet
-        //   u9/a$a "Mismatch(active=" — logged in but inactive/mismatched → wraps some set
-        // Both are unwrapped by u9/b$a$a.emit() via u9/a.a()Set, then emitted as
-        // Set<u9/c> to all ViewModels which gate via Set.contains(u9/c(PREMIUM_PLUS)).
+        // Full flow analysis:
         //
-        // Fix: replace a()Set on both subclasses to always return {PREMIUM_PLUS}.
-        // We clear the original body and rewrite with ensureRegisters(5) so the
-        // compiler template uses .registers 5 instead of the original 2
-        // (avoiding the "register index out of range" VerifyError).
+        // The subscription coroutine (z9/c$a) does:
+        //   1. Calls storefront API → gets product list → z9/c.f(list) → storefront Set<u9/c>
+        //   2. Reads Play Billing subscriptions → Play Set<u9/c>
+        //   3. Computes "missing" = items in storefront NOT in Play Billing
+        //   4. If missing.isEmpty() → wraps storefront set in u9/a$b → emits downstream
+        //   5. If NOT empty → calls z9/j.h(missing) to verify Play Billing entries → may return
+        //      error String → wraps in u9/a$a (Mismatch) which triggers MismatchDialog in HomeViewModel
         //
-        // u9/c direct ctor: <init>(Lu9/p; Ljava/lang/String;)V — needs v0..v2 (3 regs + p0=this).
-        // Total needed: 5 registers (v0,v1,v2 locals + p0 param; compiler maps p0 to v3).
+        // Previous approach of patching BOTH u9/a$a and u9/a$b caused the MismatchDialog
+        // ("something went wrong") because:
+        //   - Patching u9/a$b.a() returns {PREMIUM_PLUS} from storefront set
+        //   - The "missing subs" loop: storefront has {PREMIUM_PLUS}, Play Billing has {}
+        //   - PREMIUM_PLUS is "missing" from Play → z9/j.h() called → Play Billing error → u9/a$a emitted
+        //   - HomeViewModel detects u9/a$a (Mismatch) + isPremiumPlus=true → shows MismatchDialog
+        //
+        // Correct two-patch solution:
+        //
+        // PATCH 1: z9/c.f(List<Product>)Set → return empty Set
+        //   - Storefront set = {} → "missing subs" loop finds NOTHING missing → z9/j.h() never called
+        //   - u9/a$b({}) emitted → no Mismatch, no MismatchDialog
+        //   Pinned by: 3-string intersection "loginManager"+"Bearer "+"uploadSubscriptionsToStorefrontUseCase"
+        //   (unique to z9/c). Method: private instance (List)Set.
+        //
+        // PATCH 2: u9/a$b.a()Set → return {PREMIUM_PLUS}
+        //   - u9/b$a$a.emit() unwraps u9/a → calls a()Set → gets {PREMIUM_PLUS} → emits downstream
+        //   - All ViewModels: Set.contains(u9/c(PREMIUM_PLUS)) = true → features unlocked
+        //   Pinned by: unique string "Success(active=" in u9/a$b.toString()
+        //   Method: instance ()Set.
+        //
+        // u9/a$a (Mismatch class) is intentionally NOT patched to avoid triggering MismatchDialog.
 
-        val newBody = """
-            new-instance v0, Lu9/c;
-            sget-object v1, Lu9/p;->e:Lu9/p;
-            const-string v2, ""
-            invoke-direct {v0, v1, v2}, Lu9/c;-><init>(Lu9/p;Ljava/lang/String;)V
-            invoke-static {v0}, Ljava/util/Collections;->singleton(Ljava/lang/Object;)Ljava/util/Set;
-            move-result-object v0
-            return-object v0
-        """
+        // --- Patch 1: z9/c.f(List)Set → always return empty Set ---
+        val subFlowClass = classDefByStrings("loginManager")
+            .intersect(classDefByStrings("Bearer ").toSet())
+            .intersect(classDefByStrings("uploadSubscriptionsToStorefrontUseCase").toSet())
+            .firstOrNull()
+            ?: throw PatchException(
+                "AccuWeather: subscription flow class not found. " +
+                    "Re-derive from the class containing \"loginManager\", \"Bearer \", " +
+                    "and \"uploadSubscriptionsToStorefrontUseCase\".",
+            )
 
-        fun patchGetter(pin: String) {
-            val classDef = classDefByStrings(pin).firstOrNull()
-                ?: throw PatchException(
-                    "AccuWeather: subscription wrapper class pinned by \"$pin\" not found.",
-                )
-            val method = mutableClassDefBy(classDef).methods
-                .firstOrNull { m ->
-                    !AccessFlags.STATIC.isSet(m.accessFlags) &&
-                        m.returnType == "Ljava/util/Set;" &&
-                        m.parameterTypes.isEmpty()
-                }
-                ?: throw PatchException(
-                    "AccuWeather: a()Set getter not found in ${classDef.type}.",
-                )
-            method.clearBody()
-            method.ensureRegisters(5)
-            method.addInstructions(0, newBody)
-        }
+        val buildSubSetMethod = mutableClassDefBy(subFlowClass).methods
+            .firstOrNull { method ->
+                AccessFlags.PRIVATE.isSet(method.accessFlags) &&
+                    !AccessFlags.STATIC.isSet(method.accessFlags) &&
+                    method.returnType == "Ljava/util/Set;" &&
+                    method.parameterTypes.size == 1 &&
+                    method.parameterTypes[0] == "Ljava/util/List;"
+            }
+            ?: throw PatchException(
+                "AccuWeather: subscription Set builder (private (List)Set) not found " +
+                    "in ${subFlowClass.type}.",
+            )
 
-        patchGetter("Success(active=")   // u9/a$b — not-logged-in / no-sub path
-        patchGetter("Mismatch(active=")  // u9/a$a — logged-in inactive-sub path
+        buildSubSetMethod.clearBody()
+        buildSubSetMethod.ensureRegisters(2)
+        buildSubSetMethod.addInstructions(
+            0,
+            """
+                invoke-static {}, LZf/a0;->e()Ljava/util/Set;
+                move-result-object v0
+                return-object v0
+            """,
+        )
+
+        // --- Patch 2: u9/a$b.a()Set → always return {PREMIUM_PLUS} ---
+        val successClass = classDefByStrings("Success(active=").firstOrNull()
+            ?: throw PatchException(
+                "AccuWeather: subscription Success wrapper class (containing \"Success(active=\") " +
+                    "not found.",
+            )
+
+        val successGetSet = mutableClassDefBy(successClass).methods
+            .firstOrNull { method ->
+                !AccessFlags.STATIC.isSet(method.accessFlags) &&
+                    method.returnType == "Ljava/util/Set;" &&
+                    method.parameterTypes.isEmpty()
+            }
+            ?: throw PatchException(
+                "AccuWeather: a()Set getter not found in ${successClass.type}.",
+            )
+
+        successGetSet.clearBody()
+        successGetSet.ensureRegisters(5)
+        successGetSet.addInstructions(
+            0,
+            """
+                new-instance v0, Lu9/c;
+                sget-object v1, Lu9/p;->e:Lu9/p;
+                const-string v2, ""
+                invoke-direct {v0, v1, v2}, Lu9/c;-><init>(Lu9/p;Ljava/lang/String;)V
+                invoke-static {v0}, Ljava/util/Collections;->singleton(Ljava/lang/Object;)Ljava/util/Set;
+                move-result-object v0
+                return-object v0
+            """,
+        )
     }
 }
