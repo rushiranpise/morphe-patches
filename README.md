@@ -1,13 +1,12 @@
 # 👋🧩 Rushi's Patches
 <p align="center">
 
-![GitHub Release](https://img.shields.io/github/v/release/rushiranpise/morphe-patches?style=for-the-badge)
 ![License](https://img.shields.io/github/license/rushiranpise/morphe-patches?style=for-the-badge)
-![GitHub Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
-![GitHub Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
-![GitHub Downloads](https://img.shields.io/github/downloads/rushiranpise/morphe-patches/total?style=for-the-badge)
-![GitHub Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
-![GitHub Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
+![Total Downloads](https://img.shields.io/github/downloads/rushiranpise/morphe-patches/total?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
+![Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
 
 </p>
 <br/>
