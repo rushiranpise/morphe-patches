@@ -51,7 +51,7 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: I have verified that a suitable patch does not already exist on another community repo.
+        - label: I have verified that a suitable patch does not already exist on another [community repo](https://Morphe-patches.software).
           required: true
         - label: I understand that server-side features (AI, cloud sync) cannot be patched.
           required: true
