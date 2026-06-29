@@ -58,7 +58,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.1-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
+> **[v1.8.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
