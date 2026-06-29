@@ -1,3 +1,13 @@
+## [1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0-dev.2...v1.8.0-dev.3) (2026-06-29)
+
+### 🐛 Bug Fixes
+
+* duobox ([7fb70c3](https://github.com/rushiranpise/morphe-patches/commit/7fb70c36add8190d87cff37c58fbb7f924f301c1))
+
+### ✨ New Features
+
+* Muscle & Motion sage ([3c9b5e0](https://github.com/rushiranpise/morphe-patches/commit/3c9b5e01e7e4a32e4a2dcdbce0eda765a6960912))
+
 ## [1.8.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0-dev.1...v1.8.0-dev.2) (2026-06-27)
 
 ### 🐛 Bug Fixes

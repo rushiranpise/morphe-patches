@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.8.0-dev.2",
+  "version": "1.8.0-dev.3",
   "patches": [
     {
       "name": "Alert Distances",
@@ -1411,6 +1411,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks all premium content in Anatomy by Muscle Motion.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.anatomy",
+          "name": "3D Anatomy & Physiology",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks Premium Features In the App.",
       "default": true,
       "dependencies": [],
@@ -1536,6 +1561,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks all premium content.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.kyphosis",
+          "name": "Kyphosis Exercises - Hunchback",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E65100",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.4.9",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks premium in Beta by Mirko.",
       "default": true,
       "dependencies": [],
@@ -1625,6 +1675,31 @@
           "targets": [
             {
               "version": "13.3",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium content in Posture Correction by Muscle Motion.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.posture",
+          "name": "Posture Correction Exercises",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00897B",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1811,31 +1886,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks TiviMate Premium.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "ar.tvplayer.tv",
-          "name": "TiviMate IPTV Player",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "5.3.3",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks car and truck premium features.",
       "default": true,
       "dependencies": [],
@@ -1925,6 +1975,56 @@
           "targets": [
             {
               "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium content.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.workout",
+          "name": "Workout & Gym Training Plan",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#C62828",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.2.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium content in Yoga by Muscle Motion.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.yoga",
+          "name": "Yoga - Poses & Classes",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#7B1FA2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2328,7 +2428,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.18.6",
+              "version": "4.19.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
