@@ -1,17 +1,20 @@
+# Based on templates from:
+# https://github.com/hoo-dles/morphe-patches
+# Modified for this repository.
 name: 🐞 Bug report
 description: Report a bug or an issue.
-title: "bug: "
-labels: ["Bug report"]
+title: 'bug: '
+labels: ['bug']
 body:
   - type: markdown
     attributes:
       value: |
-        # Patches template bug report
+        # Bug Report
 
         Before creating a new bug report, please keep the following in mind:
 
-        - **Do not submit a duplicate bug report**: Search for existing bug reports [here](https://github.com/TEMPLATE/template-patches-template/issues?q=label%3A%22Bug+report%22).
-        - **Review the contribution guidelines**: Make sure your bug report adheres to it. You can find the guidelines [here](https://github.com/TEMPLATE/template-patches-template/blob/main/CONTRIBUTING.md).
+        - **Do not submit a duplicate bug report.** Search for existing bug reports [here](https://github.com/hoo-dles/morphe-patches/issues?q=label%3A%22bug%22).
+        - **Do not use the issue page for support.** If you need help or have questions, please visit the [official reddit](https://www.reddit.com/r/MorpheApp) or create a new [Q&A discussion](https://github.com/hoo-dles/morphe-patches/discussions/new?category=q-a).
   - type: textarea
     attributes:
       label: Bug description
@@ -21,19 +24,35 @@ body:
         - Add images and videos if possible
     validations:
       required: true
+  - type: input
+    attributes:
+      label: App name
+      placeholder: 'Duolingo, Prime Video, MyFitnessPal, etc'
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: App version
+      description: 'Please provide the version of the app that is causing the issue.'
+      placeholder: '1.23.456'
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Manager or CLI version
+      description: 'Please provide the version of the Morphe Manager or Morphe CLI used.'
+      placeholder: 'Manager v1.12.0'
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Error logs
-      description: Exceptions can be captured by running `logcat | grep AndroidRuntime` in a shell.
+      description: Exceptions can be captured by running `logcat` via `adb` or in a shell.
       render: shell
   - type: textarea
     attributes:
       label: Solution
       description: If applicable, add a possible solution to the bug.
-  - type: textarea
-    attributes:
-      label: Additional context
-      description: Add additional context here.
   - type: checkboxes
     id: acknowledgements
     attributes:

@@ -1,6 +1,25 @@
 # 👋🧩 Rushi's Patches
+<p align="center">
 
+![License](https://img.shields.io/github/license/rushiranpise/morphe-patches?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
+![Total Downloads](https://img.shields.io/github/downloads/rushiranpise/morphe-patches/total?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
+![Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
+
+</p>
+<br/>
+
+> [!NOTE]
+>
 > *Just some patches I make in my free time, with a little(most :p) help from AI.*
+>
+> Patch requests are always welcome, **but please read the [new announcement](https://github.com/rushiranpise/morphe-patches/discussions/71) before opening an issue!**
+>
+> If you find this project useful and want to help support its development, consider [donating](#%EF%B8%8F-like-my-work-consider-donating). :pray:
+
+<br/>
 
 This is my personal collection of patches that I use with **Morphe**.  
 Everything here is AI‑generated (mostly for fun and learning), then tested enough to not explode :p.
@@ -39,7 +58,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.7.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.7.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;67 patches total
+> **[v1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
@@ -83,6 +102,27 @@ Even a small amount makes a difference 🙏
 | [Suppress Premium Promotions](#suppress-premium-promotions) | Supress all premium promotions in-app. |  |
 | [Unlock Followed Locations](#unlock-followed-locations) | Unlocks the Followed Locations premium feature. |  |
 | [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+
+</details>
+
+<details open>
+<summary>📦 MovieBox TV&nbsp;&nbsp;•&nbsp;&nbsp;7 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.community.oneroom'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.0.15.0616.03 | 1.0.2.0526.03 |
+| :---: | :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Bypass member rights check](#bypass-member-rights-check) | Forces MemberCheckResult.isPassed() to always return Boolean.TRUE, bypassing the server-side membership gate and preventing the 'Get Premium / 7-day trial' dialog. |  |
+| [Clear VIP resolution tip](#clear-vip-resolution-tip) | Forces MemberResolutionBean.getVipResolutionTip() to always return Boolean.FALSE, suppressing any 'VIP only' badge shown on resolution options. |  |
+| [Spoof member active status](#spoof-member-active-status) | Forces MemberInfo.isActive() to always return true, making the app believe the membership subscription is active. |  |
+| [Spoof member days left](#spoof-member-days-left) | Forces MemberInfo.getDaysLeft() to always return 3650 (10 years), preventing the '0 days left' display on the premium screen. |  |
+| [Spoof member provider flags](#spoof-member-provider-flags) | Forces MemberProvider.c() (kv_is_pay_enable_member) and MemberProvider.e() (kv_is_skip_ad) to always return true. |  |
+| [Suppress newbie bonus dialog](#suppress-newbie-bonus-dialog) | Makes MemberProvider.w(F)V return immediately, suppressing the 'Claim 7-day trial / newbies bonus' ClaimMemberDialog popup. |  |
+| [Unlock member resolution](#unlock-member-resolution) | Forces MemberResolutionBean.isUnlock() to always return Boolean.TRUE, making all locally-cached episodes appear as unlocked to the playback layer. |  |
 
 </details>
 
@@ -331,6 +371,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 3D Anatomy & Physiology&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |  |
+
+</details>
+
+<details open>
 <summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
 <br>
 
@@ -376,6 +431,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Kyphosis Exercises - Hunchback&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.4.9 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
+
+</details>
+
+<details open>
 <summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=it.mirko.beta'>📥</a></summary>
 <br>
 
@@ -406,6 +476,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Ninja VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=app.ninjavpn.android'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.4.6 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Ninja VPN premium. |  |
+
+</details>
+
+<details open>
 <summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor'>📥</a></summary>
 <br>
 
@@ -417,6 +502,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks all Photo Editor premium features by bypassing license checks. |  |
+
+</details>
+
+<details open>
+<summary>📦 Posture Correction Exercises&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.posture'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Posture Correction by Muscle Motion. |  |
 
 </details>
 
@@ -496,6 +596,51 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 Strength Training: Gym Workout&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.5.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion.  |  |
+
+</details>
+
+<details open>
+<summary>📦 The Weather Channel&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.weather.Weather'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 16.10.1 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall. |  |
+
+</details>
+
+<details open>
+<summary>📦 TomTom GO Navigation&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.6.316-beta |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks car and truck premium features. |  |
+
+</details>
+
+<details open>
 <summary>📦 Windscribe VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.windscribe.vpn'>📥</a></summary>
 <br>
 
@@ -507,6 +652,46 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Windscribe premium account. |  |
+
+</details>
+
+<details open>
+<summary>📦 Windy: Weather Radar & Forecast&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.windyty.android'>📥</a></summary>
+<br>
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks Windy Pro features. |  |
+
+</details>
+
+<details open>
+<summary>📦 Workout & Gym Training Plan&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.workout'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
+
+</details>
+
+<details open>
+<summary>📦 Yoga - Poses & Classes&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Yoga by Muscle Motion. |  |
 
 </details>
 
@@ -561,7 +746,7 @@ Even a small amount makes a difference 🙏
 
 **🎯 Supported versions:**
 
-| 0.1297.0 |
+| 0.1298.0 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -661,6 +846,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 1Tap Cleaner&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.a0soft.gphone.acc.free'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 5.18 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Pro](#unlock-pro) | Unlocks 1Tap Cleaner PRO: history export, app-group filters, unlimited cache targets, ad removal. |  |
+
+</details>
+
+<details open>
 <summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.rarlab.rar'>📥</a></summary>
 <br>
 
@@ -726,7 +926,7 @@ Even a small amount makes a difference 🙏
 
 **🎯 Supported versions:**
 
-| 4.18.6 |
+| 4.19.6 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
@@ -790,14 +990,28 @@ you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-do
 #### How do I use this?
 Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
 
-#### Why can't I log in with Google?
+#### Capture logs 
+
+Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs)
+
+#### Help, why can't I log in with my Google account? Why doesn't Google Drive work?
+MicroG integration is needed for features that require Google Play Services.
 Patched apps are re-signed, which breaks Google Play Services authentication. This is a known limitation for all patched apps.
 
 #### What APK version should I use?
-Use the latest versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
+Use the suggested versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
 
-#### The patch doesn't work on a newer version of app
-Open a [bug report](https://github.com/rushiranpise/morphe-patches/issues/new?template=bug_report.yml) with the app version and error message.
+#### Can you make a patch for \[Super Cool App Goes Here\]?
+Maybe? Each patch is different, and many features use server-side functionality that cannot be modified. Before submitting a request, please check the existing open (and closed!) issues to reduce duplication.
+
+#### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
+I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who does this stuff in my free time. If it's within my technical capabilities, I'll get around to it at some point.
+
+## 📩 Developers
+
+If you're an app developer and have concerns about a patch, feel free to contact me or submit a takedown request.
+
+I'm happy to discuss issues and will review reasonable requests in good faith.
 
 ## Disclaimer
 
@@ -809,6 +1023,14 @@ Open a [bug report](https://github.com/rushiranpise/morphe-patches/issues/new?te
 > - Use these patches **at your own risk**. The author is not responsible for any consequences.
 > - If you are a developer or rights holder and believe this project infringes on your rights, please [submit a takedown request](https://github.com/rushiranpise/morphe-patches/issues/new?template=takedown-request.yml) and the relevant patches will be **promptly removed**.
 > - Users are encouraged to **support developers** by purchasing legitimate subscriptions if they find the apps useful.
+
+## ❤️ Credits
+
+Thanks to:
+
+- Morphe developers
+- Contributors
+- Everyone who reports bugs and tests patches
 
 ## 📜 License
 
