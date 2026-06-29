@@ -26,7 +26,7 @@ object Constants {
         name = "Citizen - Safety Alert",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "0.1297.0"))
+        targets = listOf(AppTarget(version = "0.1298.0"))
     )
 
 
@@ -187,7 +187,7 @@ object Constants {
         name = "TeraBox",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.18.6"))
+        targets = listOf(AppTarget(version = "4.19.6"))
     )
 
     // SAI — Split APKs Installer by MTV
@@ -380,6 +380,105 @@ object Constants {
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
         targets = listOf(AppTarget(version = "4.1.2274"))
+    )
+
+    // MovieBox TV by Transsion/Mbox
+    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
+        name = "MovieBox TV",
+        packageName = "com.community.oneroom",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104),
+            AppTarget(version = "1.0.2.0526.03", versionCode = 50040002),
+        )
+    )
+
+    // The Weather Channel — Weather Forecast & Alerts by The Weather Channel
+    val THEWEATHERCHANNEL_COMPATIBILITY = Compatibility(
+        name = "The Weather Channel",
+        packageName = "com.weather.Weather",
+        appIconColor = 0x1B6AC9,
+        targets = listOf(AppTarget(version = "16.10.1", versionCode = 1080012982))
+    )
+
+    // Ninja VPN — Fast & Secure VPN Proxy
+    val NINJVAPN_COMPATIBILITY = Compatibility(
+        name = "Ninja VPN",
+        packageName = "app.ninjavpn.android",
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = "1.4.6", versionCode = 43))
+    )
+
+    // 1Tap Cleaner — App cache & history cleaner by a0soft
+    val ONETAPCLEANER_COMPATIBILITY = Compatibility(
+        name = "1Tap Cleaner",
+        packageName = "com.a0soft.gphone.acc.free",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
+    )
+
+    // Strength Training by Muscle Motion
+    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
+        name = "Strength Training: Gym Workout",
+        packageName = "air.com.musclemotion.strength.mobile",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
+    )
+
+    // Windy — Weather Radar & Forecast by Windyty
+    val WINDY_COMPATIBILITY = Compatibility(
+        name = "Windy: Weather Radar & Forecast",
+        packageName = "com.windyty.android",
+        appIconColor = 0x0FA0EB,
+        targets = listOf(AppTarget(version = null))
+    )
+
+    // TomTom GO Navigation
+    val TOMTOMGO_COMPATIBILITY = Compatibility(
+        name = "TomTom GO Navigation",
+        packageName = "com.tomtom.gplay.navapp",
+        appIconColor = 0xDF1B12,
+        targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
+    )
+
+    // Posture Correction by Muscle Motion
+    val POSTURE_COMPATIBILITY = Compatibility(
+        name = "Posture Correction Exercises",
+        packageName = "air.com.musclemotion.posture",
+        appIconColor = 0x00897B,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 10040835))
+    )
+
+    // Kyphosis by Muscle Motion (legacy Adobe AIR architecture)
+    val KYPHOSIS_COMPATIBILITY = Compatibility(
+        name = "Kyphosis Exercises - Hunchback",
+        packageName = "air.com.musclemotion.kyphosis",
+        appIconColor = 0xE65100,
+        targets = listOf(AppTarget(version = "1.4.9", versionCode = 156))
+    )
+
+    // Workout by Muscle Motion (legacy Adobe AIR architecture)
+    val WORKOUT_COMPATIBILITY = Compatibility(
+        name = "Workout & Gym Training Plan",
+        packageName = "air.com.musclemotion.workout",
+        appIconColor = 0xC62828,
+        targets = listOf(AppTarget(version = "1.2.0", versionCode = 153))
+    )
+
+    // Yoga by Muscle Motion
+    val YOGA_COMPATIBILITY = Compatibility(
+        name = "Yoga - Poses & Classes",
+        packageName = "air.com.musclemotion.yoga",
+        appIconColor = 0x7B1FA2,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004178))
+    )
+
+    // Anatomy by Muscle Motion
+    val ANATOMY_COMPATIBILITY = Compatibility(
+        name = "3D Anatomy & Physiology",
+        packageName = "air.com.musclemotion.anatomy",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004183))
     )
 
 }

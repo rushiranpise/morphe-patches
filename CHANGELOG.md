@@ -1,3 +1,36 @@
+## [1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0-dev.2...v1.8.0-dev.3) (2026-06-29)
+
+### 🐛 Bug Fixes
+
+* duobox ([7fb70c3](https://github.com/rushiranpise/morphe-patches/commit/7fb70c36add8190d87cff37c58fbb7f924f301c1))
+
+### ✨ New Features
+
+* Muscle & Motion sage ([3c9b5e0](https://github.com/rushiranpise/morphe-patches/commit/3c9b5e01e7e4a32e4a2dcdbce0eda765a6960912))
+
+## [1.8.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0-dev.1...v1.8.0-dev.2) (2026-06-27)
+
+### 🐛 Bug Fixes
+
+* Strength Training ([45b1065](https://github.com/rushiranpise/morphe-patches/commit/45b10651fffada2332259ab8724bf6dc1af319dd))
+
+## [1.8.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0...v1.8.0-dev.1) (2026-06-27)
+
+### 🐛 Bug Fixes
+
+* accuweather ([e94428d](https://github.com/rushiranpise/morphe-patches/commit/e94428dc5e2b5721b354b876a4cf19e1336bc8a8))
+* citizen ([e3fa0e2](https://github.com/rushiranpise/morphe-patches/commit/e3fa0e253899ac9d14b03730a2dc69db36705dde))
+
+### ✨ New Features
+
+* add 1 tap cleaner ([6b0d67c](https://github.com/rushiranpise/morphe-patches/commit/6b0d67ce8fe5a0152d72480b7a9e6a38a30fb99e))
+* add movie box ([7c84581](https://github.com/rushiranpise/morphe-patches/commit/7c84581db41907b0ff412c7f55f34342f70545a2))
+* add ninja vpn ([31833cc](https://github.com/rushiranpise/morphe-patches/commit/31833cca5ec8a25e5c831e4e89456682a90a7acc))
+* add strength training ([29d8083](https://github.com/rushiranpise/morphe-patches/commit/29d80837d90cb29139f274fff55c1e4cdb894b44))
+* add tivimate ([7164236](https://github.com/rushiranpise/morphe-patches/commit/7164236a7e5cc58f96b151d7bfc7af3f35dad0da))
+* add tomtom ([600b5e1](https://github.com/rushiranpise/morphe-patches/commit/600b5e1e4000f0cfa7a5a19ee3fb2f81fbba4681))
+* add windy ([2113f45](https://github.com/rushiranpise/morphe-patches/commit/2113f452185ff153686255e3af4349041fa9121a))
+
 ## [1.7.0](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0...v1.7.0) (2026-06-26)
 
 ### 🐛 Bug Fixes
