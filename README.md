@@ -1,12 +1,12 @@
 # 👋🧩 Rushi's Patches
 <p align="center">
 
+![GitHub Release](https://img.shields.io/github/v/release/rushiranpise/morphe-patches?style=for-the-badge)
 ![License](https://img.shields.io/github/license/rushiranpise/morphe-patches?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
-![Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
-![Total Downloads](https://img.shields.io/github/downloads/rushiranpise/morphe-patches/total?style=for-the-badge)
-![Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
-![Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
 
 </p>
 <br/>
@@ -58,7 +58,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
+> **[v1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
