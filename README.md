@@ -1,5 +1,15 @@
 # 👋🧩 Rushi's Patches
+<p align="center">
 
+![GitHub Release](https://img.shields.io/github/v/release/rushiranpise/morphe-patches?style=for-the-badge)
+![License](https://img.shields.io/github/license/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Downloads](https://img.shields.io/github/downloads/rushiranpise/morphe-patches/total?style=for-the-badge)
+![GitHub Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
+![GitHub Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
+
+</p>
 <br/>
 
 > [!NOTE]
@@ -981,7 +991,7 @@ you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-do
 #### How do I use this?
 Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
 
-## Capture logs 
+#### Capture logs 
 
 Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs)
 
@@ -998,6 +1008,12 @@ Maybe? Each patch is different, and many features use server-side functionality 
 #### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
 I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who does this stuff in my free time. If it's within my technical capabilities, I'll get around to it at some point.
 
+## 📩 Developers
+
+If you're an app developer and have concerns about a patch, feel free to contact me or submit a takedown request.
+
+I'm happy to discuss issues and will review reasonable requests in good faith.
+
 ## Disclaimer
 
 > **⚠️ Legal Notice**
@@ -1008,6 +1024,14 @@ I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who 
 > - Use these patches **at your own risk**. The author is not responsible for any consequences.
 > - If you are a developer or rights holder and believe this project infringes on your rights, please [submit a takedown request](https://github.com/rushiranpise/morphe-patches/issues/new?template=takedown-request.yml) and the relevant patches will be **promptly removed**.
 > - Users are encouraged to **support developers** by purchasing legitimate subscriptions if they find the apps useful.
+
+## ❤️ Credits
+
+Thanks to:
+
+- Morphe developers
+- Contributors
+- Everyone who reports bugs and tests patches
 
 ## 📜 License
 
