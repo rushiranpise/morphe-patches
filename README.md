@@ -49,7 +49,7 @@ Even a small amount makes a difference 🙏
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.8.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;81 patches total
+> **[v1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
 <details open>
 <summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
 <br>
@@ -362,6 +362,21 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
+<summary>📦 3D Anatomy & Physiology&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |  |
+
+</details>
+
+<details open>
 <summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
 <br>
 
@@ -403,6 +418,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) |  |  |
+
+</details>
+
+<details open>
+<summary>📦 Kyphosis Exercises - Hunchback&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.4.9 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
 
 </details>
 
@@ -463,6 +493,21 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks all Photo Editor premium features by bypassing license checks. |  |
+
+</details>
+
+<details open>
+<summary>📦 Posture Correction Exercises&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.posture'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Posture Correction by Muscle Motion. |  |
 
 </details>
 
@@ -572,21 +617,6 @@ Even a small amount makes a difference 🙏
 </details>
 
 <details open>
-<summary>📦 TiviMate IPTV Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ar.tvplayer.tv'>📥</a></summary>
-<br>
-
-**🎯 Supported versions:**
-
-| 5.3.3 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks TiviMate Premium. |  |
-
-</details>
-
-<details open>
 <summary>📦 TomTom GO Navigation&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp'>📥</a></summary>
 <br>
 
@@ -623,6 +653,36 @@ Even a small amount makes a difference 🙏
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [Unlock Premium](#unlock-premium) | Unlocks Windy Pro features. |  |
+
+</details>
+
+<details open>
+<summary>📦 Workout & Gym Training Plan&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.workout'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 1.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
+
+</details>
+
+<details open>
+<summary>📦 Yoga - Poses & Classes&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga'>📥</a></summary>
+<br>
+
+**🎯 Supported versions:**
+
+| 3.2.0 |
+| :---: |
+
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Yoga by Muscle Motion. |  |
 
 </details>
 
@@ -857,7 +917,7 @@ Even a small amount makes a difference 🙏
 
 **🎯 Supported versions:**
 
-| 4.18.6 |
+| 4.19.6 |
 | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
