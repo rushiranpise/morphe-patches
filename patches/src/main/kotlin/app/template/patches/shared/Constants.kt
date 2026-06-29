@@ -187,7 +187,7 @@ object Constants {
         name = "TeraBox",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.18.6"))
+        targets = listOf(AppTarget(version = "4.19.6"))
     )
 
     // SAI — Split APKs Installer by MTV
