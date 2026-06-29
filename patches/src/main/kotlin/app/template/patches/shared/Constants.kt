@@ -441,11 +441,44 @@ object Constants {
         targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
     )
 
-    // TiviMate IPTV Player by Artem Golubev
-    val TIVIMATE_COMPATIBILITY = Compatibility(
-        name = "TiviMate IPTV Player",
-        packageName = "ar.tvplayer.tv",
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.3.3", versionCode = 1000005332))
+    // Posture Correction by Muscle Motion
+    val POSTURE_COMPATIBILITY = Compatibility(
+        name = "Posture Correction Exercises",
+        packageName = "air.com.musclemotion.posture",
+        appIconColor = 0x00897B,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 10040835))
     )
+
+    // Kyphosis by Muscle Motion (legacy Adobe AIR architecture)
+    val KYPHOSIS_COMPATIBILITY = Compatibility(
+        name = "Kyphosis Exercises - Hunchback",
+        packageName = "air.com.musclemotion.kyphosis",
+        appIconColor = 0xE65100,
+        targets = listOf(AppTarget(version = "1.4.9", versionCode = 156))
+    )
+
+    // Workout by Muscle Motion (legacy Adobe AIR architecture)
+    val WORKOUT_COMPATIBILITY = Compatibility(
+        name = "Workout & Gym Training Plan",
+        packageName = "air.com.musclemotion.workout",
+        appIconColor = 0xC62828,
+        targets = listOf(AppTarget(version = "1.2.0", versionCode = 153))
+    )
+
+    // Yoga by Muscle Motion
+    val YOGA_COMPATIBILITY = Compatibility(
+        name = "Yoga - Poses & Classes",
+        packageName = "air.com.musclemotion.yoga",
+        appIconColor = 0x7B1FA2,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004178))
+    )
+
+    // Anatomy by Muscle Motion
+    val ANATOMY_COMPATIBILITY = Compatibility(
+        name = "3D Anatomy & Physiology",
+        packageName = "air.com.musclemotion.anatomy",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004183))
+    )
+
 }
