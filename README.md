@@ -1,6 +1,16 @@
 # 👋🧩 Rushi's Patches
 
+<br/>
+
+> [!NOTE]
+>
 > *Just some patches I make in my free time, with a little(most :p) help from AI.*
+>
+> Patch requests are always welcome, **but please read the [new announcement](https://github.com/rushiranpise/morphe-patches/discussions/71) before opening an issue!**
+>
+> If you find this project useful and want to help support its development, consider [donating](#%EF%B8%8F-like-my-work-consider-donating). :pray:
+
+<br/>
 
 This is my personal collection of patches that I use with **Morphe**.  
 Everything here is AI‑generated (mostly for fun and learning), then tested enough to not explode :p.
@@ -911,14 +921,22 @@ you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-do
 #### How do I use this?
 Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
 
-#### Why can't I log in with Google?
+## Capture logs 
+
+Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs)
+
+#### Help, why can't I log in with my Google account? Why doesn't Google Drive work?
+MicroG integration is needed for features that require Google Play Services.
 Patched apps are re-signed, which breaks Google Play Services authentication. This is a known limitation for all patched apps.
 
 #### What APK version should I use?
-Use the latest versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
+Use the suggested versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
 
-#### The patch doesn't work on a newer version of app
-Open a [bug report](https://github.com/rushiranpise/morphe-patches/issues/new?template=bug_report.yml) with the app version and error message.
+#### Can you make a patch for \[Super Cool App Goes Here\]?
+Maybe? Each patch is different, and many features use server-side functionality that cannot be modified. Before submitting a request, please check the existing open (and closed!) issues to reduce duplication.
+
+#### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
+I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who does this stuff in my free time. If it's within my technical capabilities, I'll get around to it at some point.
 
 ## Disclaimer
 
