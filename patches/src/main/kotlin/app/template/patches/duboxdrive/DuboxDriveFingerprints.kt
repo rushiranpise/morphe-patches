@@ -72,11 +72,16 @@ object VipRightsGateJ : Fingerprint(definingClass = VIP_RIGHTS, returnType = "Z"
     strings = listOf("NA_STUDIO_CREATE"))
 
 // ── Global VipInfo cache gate (class path changes each version) ───────────────
-// 4.18.2: gm0/t   4.18.6+: hm0/t
+// 4.18.2: gm0/t.m0()   4.18.6: hm0/t.m0()   4.19.6+: ApisKt.J()
 object GlobalVipGate4182 : Fingerprint(definingClass = "Lgm0/t;", name = "m0",
     returnType = "Z", parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL))
 object GlobalVipGate4186 : Fingerprint(definingClass = "Lhm0/t;", name = "m0",
+    returnType = "Z", parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL))
+// 4.19.6+: moved to ApisKt top-level file, stable class name
+object GlobalVipGate4196 : Fingerprint(
+    definingClass = "Lcom/dubox/drive/component/ApisKt;", name = "J",
     returnType = "Z", parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL))
 
@@ -98,3 +103,39 @@ object AccountBanHandler : Fingerprint(
     parameters = listOf("Ljava/lang/Object;", "I",
         "Lcom/dubox/drive/legacy/ServerBanInfo;", "Landroid/os/Bundle;"),
     accessFlags = listOf(AccessFlags.PRIVATE))
+
+// ── Account expired gate — lq/_._____(Activity, RemoteExceptionInfo)Z ──────────
+// Called by all API receivers when server returns ServerBanInfo after login.
+// Returns Z=false = "not handled" so caller skips the expired dialog.
+object AccountExpiredGate : Fingerprint(
+    definingClass = "Llq/_;",
+    name = "_____",
+    parameters = listOf(
+        "Landroid/app/Activity;",
+        "Lcom/dubox/drive/kernel/architecture/net/exception/RemoteExceptionInfo;",
+    ),
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+)
+
+// ── Cracked APK login block — "current version carries a risk" ─────────────────
+// Passport SDK parses server response body for "invalid signature" → returns 0x970ff7
+// → OnThirdLoginResultListener → AccountFragment$______._() → shows cracked dialog
+
+// Root fix: passport SDK error parser (private, called via synthetic wrapper)
+object PassportSignatureErrorParser : Fingerprint(
+    definingClass = "Lcom/mars/united/international/passport/service/____\$_;",
+    name = "__",
+    parameters = listOf("Ljava/lang/String;"),
+    returnType = "I",
+    accessFlags = listOf(AccessFlags.PRIVATE, AccessFlags.FINAL)
+)
+
+// Safety net: login error display method in AccountFragment
+object AccountFragmentLoginErrorDisplay : Fingerprint(
+    definingClass = "Lcom/dubox/drive/login/ui/fragment/AccountFragment\$______;",
+    name = "_",
+    parameters = listOf("Ljava/lang/String;", "I", "Ljava/lang/String;"),
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC)
+)
