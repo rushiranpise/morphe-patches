@@ -54,8 +54,6 @@ function sortedVersions(entry) {
 }
 
 function listItems(items, formatter, limit = 12) {
-  if (!items.length) return "- None";
-
   const visible = items.slice(0, limit).map(formatter);
   const remaining = items.length - visible.length;
   if (remaining > 0) visible.push(`- ...and ${remaining} more`);
@@ -91,33 +89,39 @@ function changedAppsSection(lastRelease, currentList) {
     })
     .sort((a, b) => a[1].name.localeCompare(b[1].name));
 
-  const addedItems = listItems(
-    added,
-    ([packageName, entry]) => `- ${entry.name} (${packageName})`
-  );
-  const removedItems = listItems(
-    removed,
-    ([packageName, entry]) => `- ${entry.name} (${packageName})`
-  );
-  const updatedItems = listItems(updated, ([packageName, current]) => {
-    const previous = previousPackages.get(packageName);
-    const before = sortedVersions(previous).join(", ") || "unknown";
-    const after = sortedVersions(current).join(", ") || "unknown";
-    return `- ${current.name} (${packageName}): ${before} -> ${after}`;
-  });
+  const sections = ["## Supported Apps Changed"];
 
-  return [
-    "## Supported Apps Changed",
-    "",
-    "### Added Apps",
-    addedItems,
-    "",
-    "### Updated App Versions",
-    updatedItems,
-    "",
-    "### Removed Apps",
-    removedItems,
-  ].join("\n");
+  if (added.length > 0) {
+    sections.push(
+      "",
+      "### Added Apps",
+      listItems(added, ([packageName, entry]) => `- **${entry.name}** (\`${packageName}\`)`)
+    );
+  }
+
+  if (updated.length > 0) {
+    sections.push("", "### Updated App Versions");
+    sections.push(listItems(updated, ([packageName, current]) => {
+      const previous = previousPackages.get(packageName);
+      const before = sortedVersions(previous).join(", ") || "unknown";
+      const after = sortedVersions(current).join(", ") || "unknown";
+      return `- **${current.name}** (\`${packageName}\`): \`${before}\` -> \`${after}\``;
+    }));
+  }
+
+  if (removed.length > 0) {
+    sections.push(
+      "",
+      "### Removed Apps",
+      listItems(removed, ([packageName, entry]) => `- **${entry.name}** (\`${packageName}\`)`)
+    );
+  }
+
+  if (sections.length === 1) {
+    sections.push("", "No supported app changes detected.");
+  }
+
+  return sections.join("\n");
 }
 
 function releaseHeader(context, currentList) {
@@ -134,11 +138,11 @@ function releaseHeader(context, currentList) {
     "",
     "Patch source for Morphe.",
     "",
-    `**Channel:** ${channel}`,
-    `**Branch:** \`${branchName}\``,
+    `**Channel:** ${channel}  `,
+    `**Branch:** \`${branchName}\`  `,
     patchCountLine,
-    `**Install source:** https://morphe.software/add-source?github=rushiranpise/morphe-patches`,
-    `**Bundle asset:** download \`${mppName}\` from the assets below.`,
+    `**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  `,
+    `**Download:** \`${mppName}\` from the release assets below.`,
     "",
     isPrerelease
       ? "> This is a dev prerelease and may be less stable than a stable release."
@@ -150,9 +154,9 @@ function releaseHeader(context, currentList) {
 
 function supportSection() {
   return [
-    "## Reporting Issues",
+    "## Need Help?",
     "",
-    "If a patch fails, include:",
+    "If a patch fails, open a bug report and include:",
     "",
     "- App version",
     "- Patch source release/build",
@@ -168,7 +172,7 @@ function checksumSection() {
   return [
     "## Verification",
     "",
-    "A `SHA256SUMS.txt` asset is attached for verifying the downloaded `.mpp` bundle.",
+    "Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.",
   ].join("\n");
 }
 
@@ -190,7 +194,7 @@ async function generateNotes(pluginConfig, context) {
     changedAppsSection(context.lastRelease, currentList),
     supportSection(),
     checksumSection(),
-    conventionalNotes.trim() ? `## Changes\n\n${conventionalNotes.trim()}` : "",
+    conventionalNotes.trim(),
   ]
     .filter(Boolean)
     .join("\n\n");
