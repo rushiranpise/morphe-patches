@@ -1,3 +1,64 @@
+# Rushi's Patches v1.8.2-dev.1
+Patch source for Morphe.
+**Channel:** dev prerelease
+**Branch:** `dev`
+**Patch count:** 85
+**Install source:** https://morphe.software/add-source?github=rushiranpise/morphe-patches
+**Bundle asset:** download `patches-1.8.2-dev.1.mpp` from the assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+### Added Apps
+- None
+
+### Updated App Versions
+- TeraBox (com.dubox.drive): 4.19.6 -> 4.20.1
+
+### Removed Apps
+- None
+
+## Reporting Issues
+
+If a patch fails, include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+A `SHA256SUMS.txt` asset is attached for verifying the downloaded `.mpp` bundle.
+
+## Changes
+
+## [1.8.2-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.1...v1.8.2-dev.1) (2026-07-02)
+
+### Fixes
+
+* correct patch metadata urls ([cc8eb1e](https://github.com/rushiranpise/morphe-patches/commit/cc8eb1e3dd2a313aa559f996c05d31a9aad2dd2c))
+* terabox ([e66c010](https://github.com/rushiranpise/morphe-patches/commit/e66c010b6df09743b27f45b06e3804610eacd812))
+
+### Maintenance
+
+* improve release page notes ([28fd63d](https://github.com/rushiranpise/morphe-patches/commit/28fd63de8b0677834b2e275a3b128373391a3c5c))
+
+### Documentation
+
+* add app update breakage template ([28689cc](https://github.com/rushiranpise/morphe-patches/commit/28689ccdc215f624b1065893377340dfbb92ea9a))
+* add ids to enhancement template ([8c6ce0d](https://github.com/rushiranpise/morphe-patches/commit/8c6ce0d7101f8fc6f0539a8be5ddaffd1b534c8b))
+* document supported apk formats ([1424593](https://github.com/rushiranpise/morphe-patches/commit/142459391a0366694eacbdea57919bb88d099157))
+* improve bug report requirements ([f828b85](https://github.com/rushiranpise/morphe-patches/commit/f828b850be9648dd9db3c8a34840f2b3b0e6ee0b))
+* improve readme issue guidance ([c8334ec](https://github.com/rushiranpise/morphe-patches/commit/c8334ececeb939395a7fa212f4c8a6ccbac28170))
+* improve readme navigation and request guidance ([e99d02a](https://github.com/rushiranpise/morphe-patches/commit/e99d02a36ec04a70084a7ee922605a18220fe507))
+* number generated patch sections ([e397307](https://github.com/rushiranpise/morphe-patches/commit/e39730743063c5f3b02b044427cf1f26889c8480))
+* redesign generated patches table ([f867965](https://github.com/rushiranpise/morphe-patches/commit/f867965693dc05eb25a5369ada15565e7c224d51))
+* require patch version and logs for bug reports ([a0ec45e](https://github.com/rushiranpise/morphe-patches/commit/a0ec45e5c3d11ac84db23fcd1d0fff64f3f114f1))
+
 ## [1.8.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0...v1.8.1) (2026-06-29)
 
 ## [1.8.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0...v1.8.1-dev.1) (2026-06-29)
