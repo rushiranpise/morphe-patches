@@ -41,9 +41,9 @@ Seriously...
 ## 📬 Feedback / ideas
 
 Found something broken? Have a new patch idea?
-Open an issue or just DM me — I might get to it when I'm bored.
+Open an issue — I might get to it when I'm bored.
 
-Bug reports must include logs and the patch release channel/build used to create the patched APK, for example `stable v1.8.0` or `dev v1.8.0-dev.3`.
+Bug reports must include logs, the patch source release used to create the patched APK (for example `stable v1.8.0` or `dev v1.8.0-dev.3`), and the APK source/type.
 
 ## ☕️ Like my work? Consider donating
 
@@ -994,7 +994,7 @@ Install [Morphe Manager](https://morphe.software), add this repo as a patch sour
 
 #### Capture logs 
 
-Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs). When opening a bug report, include the relevant logs and the patch release channel/build you used, for example `stable v1.8.0` or `dev v1.8.0-dev.3`.
+Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs). When opening a bug report, include the relevant logs, the patch source release you used (for example `stable v1.8.0` or `dev v1.8.0-dev.3`), and the APK source/type.
 
 #### Help, why can't I log in with my Google account? Why doesn't Google Drive work?
 MicroG integration is needed for features that require Google Play Services.
