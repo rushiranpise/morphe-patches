@@ -16,6 +16,8 @@ Features can be requested by opening an issue using the
 If you encounter a bug while using Morphe Patches template, open an issue using the
 [Bug report issue template](https://github.com/rushiranpise/morphe-patches/issues/new?labels=Bug+report&template=bug_report.yml&title=bug%3A+).
 
+Bug reports must include logs and the patch release channel/build used to create the patched APK, for example `stable v1.8.0` or `dev v1.8.0-dev.3`.
+
 ## 📝 How to contribute
 
 1. Before contributing, it is recommended to open an issue to discuss your change
