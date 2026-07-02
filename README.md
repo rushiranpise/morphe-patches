@@ -79,911 +79,737 @@ Even a small amount makes a difference 🙏
 
 ## 🩹 Patches list
 
-<!-- PATCHES_START EXPANDED -->
-> **[v1.8.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;85 patches total
-<details open>
-<summary>📦 Waze - GPS, Maps & Traffic&nbsp;&nbsp;•&nbsp;&nbsp;12 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.waze'>📥</a></summary>
+<!-- PATCHES_START -->
+> **[v1.8.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;85 patches total
+<details>
+<summary><strong>1.1.1.1 + WARP</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `6.38.7`
 
-| 5.19.0.2 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Alert Distances](#alert-distances) | Configures radar/camera and hazard alert announcement distances.<br>Credits: Waze CGE Mod.<br> | • Accident alert (m)<br>• General alert (m)<br>• Police / camera alert (m)<br>• Enforcement — freeways (m)<br>• Enforcement — highways (m)<br>• Enforcement — streets (m)<br>• Hazard alert (m)<br>• Heavy traffic alert (m)<br>• Min between alerts (m) |
-| [AutoZoom](#autozoom) | Controls how aggressively the map zooms in/out based on driving speed.<br>Credits: Waze Chuppito Mod | • Speed factor<br>• Scale factor<br>• Max scale<br>• Gradient speed threshold (km/h) |
-| [Disable Ads](#disable-ads) | Suppresses all Waze ad systems via bundled preferences file:<br>• AdMob SDK (Ad_.*)<br>• Google Ads (Google_Ads.*)<br>• Ads Inventory Prediction<br>• ExternalPOI pins, coupons, popups (ExternalPO_ + Extern__POI both key variants)<br>• Search autocomplete server ads<br>Credits: Waze CGE Mod (ExternalPOI keys), Waze Chuppito (dual-key coverage). |  |
-| [Disable Advil Ad Requests](#disable-advil-ad-requests) | Stubs AdvilRequest.getPageUrl() → "" so the Advil ad server receives no page URL and returns no ad content.  |  |
-| [Enlarged Speedometer](#enlarged-speedometer) | Increases speedometer digit size for better readability. | • Text size — speed below 100<br>• Text size — speed 100+ |
-| [Map Skin (Vitamin C)](#map-skin-vitamin-c) | Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.<br>• Night: true black AMOLED background (saves battery, prevents burn-in)<br>• Day: warm beige background<br>• Larger font labels across the board<br>• Wider navigation arrow head for better visibility<br>• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow<br>Credits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration). | • Night background color (hex)<br>• Day background color (hex)<br>• Font size — huge labels<br>• Font size — big labels<br>• Font size — medium labels<br>• Font size — small labels<br>• Nav arrow head width factor |
-| [Navigation & Map](#navigation-map) | Configures navigation and map behaviour:<br>• Nearing destination distance (Credits: CGE Mod)<br>• Android Auto head-up alert distances<br>• Map turn mode (auto-zoom to upcoming turn)<br>• Traffic bar minimum time threshold<br>• GPS icon visibility<br>• Route notifications (hazard, school zone) both disabled by default<br>Credits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys). | • Nearing destination distance (m)<br>• Android Auto head-up — normal roads (m)<br>• Android Auto head-up — freeways (m)<br>• Traffic bar min time in traffic (seconds)<br>• Show GPS icon on map<br>• Map turn mode (auto-zoom to turn)<br>• Permanent hazard route notification<br>• School zone route notification |
-| [Popup Suppression](#popup-suppression) | Prevents promotional and ad popups from appearing while driving.<br>Raises the minimum trigger speed to a near-impossible value so popups never appear.<br>Credits: Waze Chuppito Mod. | • Min speed to show popups (MMSec)<br>• Fully stopped speed (MMSec)<br>• Min distance to show popup (m)<br>• Min reset scroll speed (MMSec)<br>• Delay after user interaction (seconds) |
-| [Radar Sound (Any Speed)](#radar-sound-any-speed) | Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.<br> |  |
-| [Report Speed Limit](#report-speed-limit) | Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.<br> |  |
-| [Speed Limit Sign](#speed-limit-sign) | Sets the speed limit sign style shown on the map. | • Sign style |
-| [Uncensored Radar / Camera Display](#uncensored-radar-camera-display) | Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. Enables enforcement alerts via preferences keys:<br>Credits: Waze CGE Mod. |  |
+| Patch | Details |
+|---|---|
+| [**Disable Analytics / Telemetry**](#disable-analytics-telemetry) | Disables App Analytics / Telemetry. |
+| [**Spoof WARP+ Unlimited UI**](#spoof-warp-unlimited-ui) | Unlocks WARP+ UI locally. |
 
 </details>
 
-<details open>
-<summary>📦 Crime Radar&nbsp;&nbsp;•&nbsp;&nbsp;6 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar'>📥</a></summary>
+<details>
+<summary><strong>1Tap Cleaner</strong> &middot; 1 patch &middot; <code>com.a0soft.gphone.acc.free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.a0soft.gphone.acc.free">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.18`
 
-| 26.23.2 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Bypass License Check](#bypass-license-check) | Bypasses PairIP DRM license verification to prevent forced app shutdown on non-Play-licensed installs. |  |
-| [Bypass Subscription Paywall](#bypass-subscription-paywall) | Bypasses the subscription paywall in-app. |  |
-| [Remove Item Limits](#remove-item-limits) | Removes all  item limits in-app. |  |
-| [Suppress Premium Promotions](#suppress-premium-promotions) | Supress all premium promotions in-app. |  |
-| [Unlock Followed Locations](#unlock-followed-locations) | Unlocks the Followed Locations premium feature. |  |
-| [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks 1Tap Cleaner PRO: history export, app-group filters, unlimited cache targets, ad removal. |
 
 </details>
 
-<details open>
-<summary>📦 MovieBox TV&nbsp;&nbsp;•&nbsp;&nbsp;7 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.community.oneroom'>📥</a></summary>
+<details>
+<summary><strong>3D Anatomy &amp; Physiology</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.anatomy</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.2.0`
 
-| 3.0.15.0616.03 | 1.0.2.0526.03 |
-| :---: | :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Bypass member rights check](#bypass-member-rights-check) | Forces MemberCheckResult.isPassed() to always return Boolean.TRUE, bypassing the server-side membership gate and preventing the 'Get Premium / 7-day trial' dialog. |  |
-| [Clear VIP resolution tip](#clear-vip-resolution-tip) | Forces MemberResolutionBean.getVipResolutionTip() to always return Boolean.FALSE, suppressing any 'VIP only' badge shown on resolution options. |  |
-| [Spoof member active status](#spoof-member-active-status) | Forces MemberInfo.isActive() to always return true, making the app believe the membership subscription is active. |  |
-| [Spoof member days left](#spoof-member-days-left) | Forces MemberInfo.getDaysLeft() to always return 3650 (10 years), preventing the '0 days left' display on the premium screen. |  |
-| [Spoof member provider flags](#spoof-member-provider-flags) | Forces MemberProvider.c() (kv_is_pay_enable_member) and MemberProvider.e() (kv_is_skip_ad) to always return true. |  |
-| [Suppress newbie bonus dialog](#suppress-newbie-bonus-dialog) | Makes MemberProvider.w(F)V return immediately, suppressing the 'Claim 7-day trial / newbies bonus' ClaimMemberDialog popup. |  |
-| [Unlock member resolution](#unlock-member-resolution) | Forces MemberResolutionBean.isUnlock() to always return Boolean.TRUE, making all locally-cached episodes appear as unlocked to the playback layer. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |
 
 </details>
 
-<details open>
-<summary>📦 Universal TV Remote Control&nbsp;&nbsp;•&nbsp;&nbsp;3 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control'>📥</a></summary>
+<details>
+<summary><strong>AccuWeather: Weather Radar</strong> &middot; 1 patch &middot; <code>com.accuweather.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.accuweather.android">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `21.1.11-1-rc`
 
-| 1.8.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Disable Ads](#disable-ads) | Prevents the AppOpen ad preloader from initialising. |  |
-| [Suppress Paywall](#suppress-paywall) | Suppresses the in-app paywall. |  |
-| [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium+**](#unlock-premium) | Unlocks AccuWeather's Premium+ subscription tier without a Play Store purchase. |
 
 </details>
 
-<details open>
-<summary>📦 1.1.1.1 + WARP&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone'>📥</a></summary>
+<details>
+<summary><strong>AdGuard Nightly</strong> &middot; 1 patch &middot; <code>com.adguard.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.adguard.android">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `4.14.68`
 
-| 6.38.7 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Disable Analytics / Telemetry](#disable-analytics-telemetry) | Disables App Analytics / Telemetry. |  |
-| [Spoof WARP+ Unlimited UI](#spoof-warp-unlimited-ui) | Unlocks WARP+ UI locally. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Lifetime Premium**](#unlock-lifetime-premium) | Unlocks all features locked behind the subscription paywall. |
 
 </details>
 
-<details open>
-<summary>📦 Case Tracker - Immigration&nbsp;&nbsp;•&nbsp;&nbsp;2 patches&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.saldous.casetracker'>📥</a></summary>
+<details>
+<summary><strong>AIDA64</strong> &middot; 1 patch &middot; <code>com.finalwire.aida64</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.finalwire.aida64">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.20`
 
-| 5.5.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Remove Ads](#remove-ads) | Removes interstitial, app-open and native ads. |  |
-| [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+| Patch | Details |
+|---|---|
+| [**Remove ads**](#remove-ads) | Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init. |
 
 </details>
 
-<details open>
-<summary>📦 m-Indicator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mobond.mindicator'>📥</a></summary>
+<details>
+<summary><strong>App Permission Manager</strong> &middot; 1 patch &middot; <code>com.shexa.permissionmanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.shexa.permissionmanager">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.4.6.2`
 
-| 18.0.352 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Remove Ads](#remove-ads) | Removes interstitial and exit native ads from m-Indicator. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all Pro features in app. |
 
 </details>
 
-<details open>
-<summary>📦 Psiphon Pro&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.psiphon3.subscription'>📥</a></summary>
+<details>
+<summary><strong>Beta Maniac</strong> &middot; 1 patch &middot; <code>it.mirko.beta</code> &middot; <a href="https://play.google.com/store/apps/details?id=it.mirko.beta">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `0.9.4`
 
-| 476 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Remove Ads / Unlock Premium](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and the upgrade button/banner without crashing on the now-expected non-null Purchase object. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks premium in Beta by Mirko. |
 
 </details>
 
-<details open>
-<summary>📦 Canva&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.canva.editor'>📥</a></summary>
+<details>
+<summary><strong>BlockerHero</strong> &middot; 1 patch &middot; <code>com.blockerhero</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.blockerhero">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.5.0`
 
-| 2.365.o |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Remove Watermark](#remove-watermark) | Removes watermarks from Canva exports and previews. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Lifetime**](#unlock-lifetime) | Unlocks lifetime subscription features in BlockerHero. |
 
 </details>
 
-<details open>
-<summary>📦 AIDA64&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.finalwire.aida64'>📥</a></summary>
+<details>
+<summary><strong>Call Recorder - Automatic</strong> &middot; 1 patch &middot; <code>com.catalinagroup.callrecorder</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.4.281`
 
-| 2.20 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Remove ads](#remove-ads) | Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
 
 </details>
 
-<details open>
-<summary>📦 Speedtest by Ookla&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest'>📥</a></summary>
+<details>
+<summary><strong>Canva</strong> &middot; 1 patch &middot; <code>com.canva.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.canva.editor">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.365.o`
 
-| 7.0.4 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Ad-Free](#unlock-ad-free) | Removes ads and unlocks ad-free status in Speedtest by Ookla. |  |
+| Patch | Details |
+|---|---|
+| [**Remove Watermark**](#remove-watermark) | Removes watermarks from Canva exports and previews. |
 
 </details>
 
-<details open>
-<summary>📦 nzb360&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360'>📥</a></summary>
+<details>
+<summary><strong>Case Tracker - Immigration</strong> &middot; 2 patches &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.5.1`
 
-| 23.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock All Access](#unlock-all-access) | Unlocks All access in Nzb360. |  |
+| Patch | Details |
+|---|---|
+| [**Remove Ads**](#remove-ads) | Removes interstitial, app-open and native ads. |
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
 
 </details>
 
-<details open>
-<summary>📦 Pialytic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=verbosus.pialytic'>📥</a></summary>
+<details>
+<summary><strong>Cashew - Budget &amp; Finance App</strong> &middot; 1 patch &middot; <code>com.budget.tracker_app</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.budget.tracker_app">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `6.5.9`
 
-| 1.2.8 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock All Features](#unlock-all-features) | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlock Pro Features in Cashew App |
 
 </details>
 
-<details open>
-<summary>📦 Flightradar24&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.flightradar24free'>📥</a></summary>
+<details>
+<summary><strong>Citizen - Safety Alert</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `0.1298.0`
 
-| 11.6.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Business Premium](#unlock-business-premium) | Unlocks Business/Gold premium features in Flightradar24: ad-free map, weather layers, ATC, 3D view, flight history, and unlimited saved locations. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more. |
 
 </details>
 
-<details open>
-<summary>📦 Greenify&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.oasisfeng.greenify'>📥</a></summary>
+<details>
+<summary><strong>Clickmate</strong> &middot; 1 patch &middot; <code>com.inscode.autoclicker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.inscode.autoclicker">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `7.1.4`
 
-| 5.1.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Donation Features](#unlock-donation-features) | Unlocks all premium donation features in Greenify. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium **](#unlock-premium) | Unlocks premium in Clickmate |
 
 </details>
 
-<details open>
-<summary>📦 BlockerHero&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.blockerhero'>📥</a></summary>
+<details>
+<summary><strong>CPU-Z</strong> &middot; 1 patch &middot; <code>com.cpuid.cpu_z</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.57`
 
-| 1.5.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Lifetime](#unlock-lifetime) | Unlocks lifetime subscription features in BlockerHero. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium features in app. |
 
 </details>
 
-<details open>
-<summary>📦 Proxyman&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid'>📥</a></summary>
+<details>
+<summary><strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `26.23.2`
 
-| 1.16.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Lifetime](#unlock-lifetime) | Unlocks all Lifetime features in Proxyman. |  |
+| Patch | Details |
+|---|---|
+| [**Bypass License Check**](#bypass-license-check) | Bypasses PairIP DRM license verification to prevent forced app shutdown on non-Play-licensed installs. |
+| [**Bypass Subscription Paywall**](#bypass-subscription-paywall) | Bypasses the subscription paywall in-app. |
+| [**Remove Item Limits**](#remove-item-limits) | Removes all item limits in-app. |
+| [**Suppress Premium Promotions**](#suppress-premium-promotions) | Supress all premium promotions in-app. |
+| [**Unlock Followed Locations**](#unlock-followed-locations) | Unlocks the Followed Locations premium feature. |
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
 
 </details>
 
-<details open>
-<summary>📦 SHAREit Premium&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=shareit.premium'>📥</a></summary>
+<details>
+<summary><strong>Flightradar24</strong> &middot; 1 patch &middot; <code>com.flightradar24free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.flightradar24free">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `11.6.1`
 
-| 1.1.98 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Lifetime](#unlock-lifetime) | Unlocks SHAREit lifetime premium. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Business Premium**](#unlock-business-premium) | Unlocks Business/Gold premium features in Flightradar24: ad-free map, weather layers, ATC, 3D view, flight history, and unlimited saved locations. |
 
 </details>
 
-<details open>
-<summary>📦 AdGuard Nightly&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.adguard.android'>📥</a></summary>
+<details>
+<summary><strong>Greenify</strong> &middot; 1 patch &middot; <code>com.oasisfeng.greenify</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.1.1`
 
-| 4.14.68 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Lifetime Premium](#unlock-lifetime-premium) | Unlocks all features locked behind the subscription paywall. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Donation Features**](#unlock-donation-features) | Unlocks all premium donation features in Greenify. |
 
 </details>
 
-<details open>
-<summary>📦 3D Anatomy & Physiology&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy'>📥</a></summary>
+<details>
+<summary><strong>Hibernator</strong> &middot; 1 patch &middot; <code>com.tafayor.hibernator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.hibernator">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.56.10`
 
-| 3.2.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all pro features in Hibernator. |
 
 </details>
 
-<details open>
-<summary>📦 Call Recorder - Automatic&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder'>📥</a></summary>
+<details>
+<summary><strong>Hola VPN Proxy Plus</strong> &middot; 1 patch &middot; <code>org.hola.play</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.hola.play">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `AARCH64_1.248.400`
 
-| 2.4.281 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Premium Features In the App. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) |  |
 
 </details>
 
-<details open>
-<summary>📦 CPU-Z&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.cpuid.cpu_z'>📥</a></summary>
+<details>
+<summary><strong>HTTP Sniffer</strong> &middot; 1 patch &middot; <code>com.anetcapture.mock</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.anetcapture.mock">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.11.0-ad_mob`
 
-| 1.57 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Premium features in app. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock VIP (Lifetime)**](#unlock-vip-lifetime) | Forces permanent professional VIP tier, removes ads and upgrade popups, bypasses PairIP. |
 
 </details>
 
-<details open>
-<summary>📦 Hola VPN Proxy Plus&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=org.hola.play'>📥</a></summary>
+<details>
+<summary><strong>KillApps</strong> &middot; 1 patch &middot; <code>com.tafayor.killall</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.killall">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.57.9`
 
-| AARCH64_1.248.400 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) |  |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all pro features in KillApps. |
 
 </details>
 
-<details open>
-<summary>📦 Kyphosis Exercises - Hunchback&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis'>📥</a></summary>
+<details>
+<summary><strong>Kyphosis Exercises - Hunchback</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.kyphosis</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.4.9`
 
-| 1.4.9 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content. |
 
 </details>
 
-<details open>
-<summary>📦 Beta Maniac&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=it.mirko.beta'>📥</a></summary>
+<details>
+<summary><strong>m-Indicator</strong> &middot; 1 patch &middot; <code>com.mobond.mindicator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mobond.mindicator">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `18.0.352`
 
-| 0.9.4 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks premium in Beta by Mirko. |  |
+| Patch | Details |
+|---|---|
+| [**Remove Ads**](#remove-ads) | Removes interstitial and exit native ads from m-Indicator. |
 
 </details>
 
-<details open>
-<summary>📦 NetMonster&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=cz.mroczis.netmonster'>📥</a></summary>
+<details>
+<summary><strong>ML Manager</strong> &middot; 1 patch &middot; <code>com.javiersantos.mlmanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.0`
 
-| 3.4.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium features. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all pro features in ML Manager. |
 
 </details>
 
-<details open>
-<summary>📦 Ninja VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=app.ninjavpn.android'>📥</a></summary>
+<details>
+<summary><strong>MovieBox TV</strong> &middot; 7 patches &middot; <code>com.community.oneroom</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.oneroom">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.0.15.0616.03` `1.0.2.0526.03`
 
-| 1.4.6 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Ninja VPN premium. |  |
+| Patch | Details |
+|---|---|
+| [**Bypass member rights check**](#bypass-member-rights-check) | Forces MemberCheckResult.isPassed() to always return Boolean.TRUE, bypassing the server-side membership gate and preventing the 'Get Premium / 7-day trial' dialog. |
+| [**Clear VIP resolution tip**](#clear-vip-resolution-tip) | Forces MemberResolutionBean.getVipResolutionTip() to always return Boolean.FALSE, suppressing any 'VIP only' badge shown on resolution options. |
+| [**Spoof member active status**](#spoof-member-active-status) | Forces MemberInfo.isActive() to always return true, making the app believe the membership subscription is active. |
+| [**Spoof member days left**](#spoof-member-days-left) | Forces MemberInfo.getDaysLeft() to always return 3650 (10 years), preventing the '0 days left' display on the premium screen. |
+| [**Spoof member provider flags**](#spoof-member-provider-flags) | Forces MemberProvider.c() (kv_is_pay_enable_member) and MemberProvider.e() (kv_is_skip_ad) to always return true. |
+| [**Suppress newbie bonus dialog**](#suppress-newbie-bonus-dialog) | Makes MemberProvider.w(F)V return immediately, suppressing the 'Claim 7-day trial / newbies bonus' ClaimMemberDialog popup. |
+| [**Unlock member resolution**](#unlock-member-resolution) | Forces MemberResolutionBean.isUnlock() to always return Boolean.TRUE, making all locally-cached episodes appear as unlocked to the playback layer. |
 
 </details>
 
-<details open>
-<summary>📦 Photo Editor&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor'>📥</a></summary>
+<details>
+<summary><strong>NetGuard</strong> &middot; 1 patch &middot; <code>eu.faircode.netguard</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.faircode.netguard">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.335`
 
-| 13.3 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all Photo Editor premium features by bypassing license checks. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all pro features in NetGuard. |
 
 </details>
 
-<details open>
-<summary>📦 Posture Correction Exercises&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.posture'>📥</a></summary>
+<details>
+<summary><strong>NetMonster</strong> &middot; 1 patch &middot; <code>cz.mroczis.netmonster</code> &middot; <a href="https://play.google.com/store/apps/details?id=cz.mroczis.netmonster">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.4.1`
 
-| 3.2.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Posture Correction by Muscle Motion. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium features. |
 
 </details>
 
-<details open>
-<summary>📦 Proton VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ch.protonvpn.android'>📥</a></summary>
+<details>
+<summary><strong>NetShare - Hotspot &amp; Wifi Direct</strong> &middot; 1 patch &middot; <code>kha.prog.mikrotik</code> &middot; <a href="https://play.google.com/store/apps/details?id=kha.prog.mikrotik">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `UI/link-274`
 
-| 5.18.84.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks local Proton VPN premium  features. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks Pro features in app. |
 
 </details>
 
-<details open>
-<summary>📦 Rocket Money&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.truebill'>📥</a></summary>
+<details>
+<summary><strong>Ninja VPN</strong> &middot; 1 patch &middot; <code>app.ninjavpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=app.ninjavpn.android">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.4.6`
 
-| 13.15.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Rocket Money Premium Features. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Ninja VPN premium. |
 
 </details>
 
-<details open>
-<summary>📦 SAI&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.mtv.sai'>📥</a></summary>
+<details>
+<summary><strong>nzb360</strong> &middot; 1 patch &middot; <code>com.kevinforeman.nzb360</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `23.5`
 
-| 2.2.8 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Bypasses PairIP license check, paywall, ads, and pro upsell in SAI. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock All Access**](#unlock-all-access) | Unlocks All access in Nzb360. |
 
 </details>
 
-<details open>
-<summary>📦 Snipd: AI Podcast Player&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery'>📥</a></summary>
+<details>
+<summary><strong>Permission Pilot</strong> &middot; 1 patch &middot; <code>eu.darken.myperm</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.darken.myperm">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.1.1-rc0`
 
-| 4.1.14 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks all Pro features in app. |
 
 </details>
 
-<details open>
-<summary>📦 Social Gamebox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.app.social_gamebox'>📥</a></summary>
+<details>
+<summary><strong>Photo Editor</strong> &middot; 1 patch &middot; <code>com.iudesk.android.photo.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `13.3`
 
-| 1.1.3 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Social Gamebox premium features. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all Photo Editor premium features by bypassing license checks. |
 
 </details>
 
-<details open>
-<summary>📦 Strength Training: Gym Workout&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile'>📥</a></summary>
+<details>
+<summary><strong>Pialytic</strong> &middot; 1 patch &middot; <code>verbosus.pialytic</code> &middot; <a href="https://play.google.com/store/apps/details?id=verbosus.pialytic">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.2.8`
 
-| 3.5.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion.  |  |
+| Patch | Details |
+|---|---|
+| [**Unlock All Features**](#unlock-all-features) | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |
 
 </details>
 
-<details open>
-<summary>📦 The Weather Channel&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.weather.Weather'>📥</a></summary>
+<details>
+<summary><strong>Posture Correction Exercises</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.posture</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.posture">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.2.0`
 
-| 16.10.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Posture Correction by Muscle Motion. |
 
 </details>
 
-<details open>
-<summary>📦 TomTom GO Navigation&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp'>📥</a></summary>
+<details>
+<summary><strong>Proton VPN</strong> &middot; 1 patch &middot; <code>ch.protonvpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=ch.protonvpn.android">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.18.84.0`
 
-| 3.6.316-beta |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks car and truck premium features. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks local Proton VPN premium features. |
 
 </details>
 
-<details open>
-<summary>📦 Windscribe VPN&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.windscribe.vpn'>📥</a></summary>
+<details>
+<summary><strong>Proxyman</strong> &middot; 1 patch &middot; <code>com.proxyman.proxymanandroid</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.16.0`
 
-| 4.1.2274 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Windscribe premium account. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Lifetime**](#unlock-lifetime) | Unlocks all Lifetime features in Proxyman. |
 
 </details>
 
-<details open>
-<summary>📦 Windy: Weather Radar & Forecast&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.windyty.android'>📥</a></summary>
+<details>
+<summary><strong>Psiphon Pro</strong> &middot; 1 patch &middot; <code>com.psiphon3.subscription</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.psiphon3.subscription">Play Store</a></summary>
 <br>
 
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks Windy Pro features. |  |
+**Supported versions:** `476`
+
+| Patch | Details |
+|---|---|
+| [**Remove Ads / Unlock Premium**](#remove-ads-unlock-premium) | Forces SubscriptionStateImpl.getStatus() (LB2/c.h) to always return HAS_UNLIMITED_SUBSCRIPTION and getPurchase() (LB2/c.g) to return a well-formed fake Purchase, removing ads and... |
 
 </details>
 
-<details open>
-<summary>📦 Workout & Gym Training Plan&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.workout'>📥</a></summary>
+<details>
+<summary><strong>RAR</strong> &middot; 1 patch &middot; <code>com.rarlab.rar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.rarlab.rar">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `7.20.build131`
 
-| 1.2.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Removes ads and unlocks the no-ads subscription in RAR. |
 
 </details>
 
-<details open>
-<summary>📦 Yoga - Poses & Classes&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga'>📥</a></summary>
+<details>
+<summary><strong>Rocket Money</strong> &middot; 1 patch &middot; <code>com.truebill</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.truebill">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `13.15.0`
 
-| 3.2.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium](#unlock-premium) | Unlocks all premium content in Yoga by Muscle Motion. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Rocket Money Premium Features. |
 
 </details>
 
-<details open>
-<summary>📦 Clickmate&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.inscode.autoclicker'>📥</a></summary>
+<details>
+<summary><strong>SAI</strong> &middot; 1 patch &middot; <code>com.mtv.sai</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mtv.sai">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `2.2.8`
 
-| 7.1.4 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium ](#unlock-premium) | Unlocks premium in Clickmate |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Bypasses PairIP license check, paywall, ads, and pro upsell in SAI. |
 
 </details>
 
-<details open>
-<summary>📦 AccuWeather: Weather Radar&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.accuweather.android'>📥</a></summary>
+<details>
+<summary><strong>SHAREit Premium</strong> &middot; 1 patch &middot; <code>shareit.premium</code> &middot; <a href="https://play.google.com/store/apps/details?id=shareit.premium">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.1.98`
 
-| 21.1.11-1-rc |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Premium+](#unlock-premium) | Unlocks AccuWeather's Premium+ subscription tier without a Play Store purchase. Enables the full 15-day and hourly forecast detail, MinuteCast extended precision, air quality and health indexes, real-feel temperature, severe weather notifications, and widget customisation. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Lifetime**](#unlock-lifetime) | Unlocks SHAREit lifetime premium. |
 
 </details>
 
-<details open>
-<summary>📦 Cashew - Budget & Finance App&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.budget.tracker_app'>📥</a></summary>
+<details>
+<summary><strong>Snipd: AI Podcast Player</strong> &middot; 1 patch &middot; <code>ai.topicfinder.podcastdiscovery</code> &middot; <a href="https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `4.1.14`
 
-| 6.5.9 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlock Pro Features in Cashew App |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo. |
 
 </details>
 
-<details open>
-<summary>📦 Citizen - Safety Alert&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=sp0n.citizen'>📥</a></summary>
+<details>
+<summary><strong>Social Gamebox</strong> &middot; 1 patch &middot; <code>com.app.social_gamebox</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.app.social_gamebox">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.1.3`
 
-| 0.1298.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Social Gamebox premium features. |
 
 </details>
 
-<details open>
-<summary>📦 Hibernator&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.hibernator'>📥</a></summary>
+<details>
+<summary><strong>Speedtest by Ookla</strong> &middot; 1 patch &middot; <code>org.zwanoo.android.speedtest</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `7.0.4`
 
-| 2.56.10 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all pro features in Hibernator. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Ad-Free**](#unlock-ad-free) | Removes ads and unlocks ad-free status in Speedtest by Ookla. |
 
 </details>
 
-<details open>
-<summary>📦 KillApps&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.tafayor.killall'>📥</a></summary>
+<details>
+<summary><strong>Splitwise</strong> &middot; 1 patch &middot; <code>com.Splitwise.SplitwiseMobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `26.5.5`
 
-| 1.57.9 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all pro features in KillApps. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |
 
 </details>
 
-<details open>
-<summary>📦 ML Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager'>📥</a></summary>
+<details>
+<summary><strong>Stargazing Hub</strong> &middot; 1 patch &middot; <code>com.twtapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.twtapp">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.2.1`
 
-| 5.0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all pro features in ML Manager. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Subscription**](#unlock-subscription) | Unlocks all subscription features in TWT App. |
 
 </details>
 
-<details open>
-<summary>📦 Permission Pilot&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.darken.myperm'>📥</a></summary>
+<details>
+<summary><strong>Strength Training: Gym Workout</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.strength.mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.5.0`
 
-| 2.1.1-rc0 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion. |
 
 </details>
 
-<details open>
-<summary>📦 NetGuard&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=eu.faircode.netguard'>📥</a></summary>
+<details>
+<summary><strong>TeraBox</strong> &middot; 1 patch &middot; <code>com.dubox.drive</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dubox.drive">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `4.19.6`
 
-| 2.335 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all pro features in NetGuard. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock VIP**](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+) |
 
 </details>
 
-<details open>
-<summary>📦 NetShare - Hotspot & Wifi Direct&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=kha.prog.mikrotik'>📥</a></summary>
+<details>
+<summary><strong>The Weather Channel</strong> &middot; 1 patch &middot; <code>com.weather.Weather</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.weather.Weather">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `16.10.1`
 
-| UI/link-274 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks Pro features in app. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. |
 
 </details>
 
-<details open>
-<summary>📦 1Tap Cleaner&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.a0soft.gphone.acc.free'>📥</a></summary>
+<details>
+<summary><strong>TomTom GO Navigation</strong> &middot; 1 patch &middot; <code>com.tomtom.gplay.navapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.6.316-beta`
 
-| 5.18 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks 1Tap Cleaner PRO: history export, app-group filters, unlimited cache targets, ad removal. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks car and truck premium features. |
 
 </details>
 
-<details open>
-<summary>📦 RAR&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.rarlab.rar'>📥</a></summary>
+<details>
+<summary><strong>Universal TV Remote Control</strong> &middot; 3 patches &middot; <code>sensustech.universal.tv.remote.control</code> &middot; <a href="https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.8.1`
 
-| 7.20.build131 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Removes ads and unlocks the no-ads subscription in RAR. |  |
+| Patch | Details |
+|---|---|
+| [**Disable Ads**](#disable-ads) | Prevents the AppOpen ad preloader from initialising. |
+| [**Suppress Paywall**](#suppress-paywall) | Suppresses the in-app paywall. |
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
 
 </details>
 
-<details open>
-<summary>📦 App Permission Manager&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.shexa.permissionmanager'>📥</a></summary>
+<details>
+<summary><strong>Waze - GPS, Maps &amp; Traffic</strong> &middot; 12 patches &middot; <code>com.waze</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.waze">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.19.0.2`
 
-| 3.4.6.2 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks all Pro features in app. |  |
+| Patch | Details |
+|---|---|
+| [**Alert Distances**](#alert-distances) | Configures radar/camera and hazard alert announcement distances.<br><sub>Options: Accident alert (m), General alert (m), Police / camera alert (m), +6 more</sub> |
+| [**AutoZoom**](#autozoom) | Controls how aggressively the map zooms in/out based on driving speed.<br><sub>Options: Speed factor, Scale factor, Max scale, +1 more</sub> |
+| [**Disable Ads**](#disable-ads) | Suppresses all Waze ad systems via bundled preferences file: |
+| [**Disable Advil Ad Requests**](#disable-advil-ad-requests) | Stubs AdvilRequest.getPageUrl() → "" so the Advil ad server receives no page URL and returns no ad content. |
+| [**Enlarged Speedometer**](#enlarged-speedometer) | Increases speedometer digit size for better readability.<br><sub>Options: Text size — speed below 100, Text size — speed 100+</sub> |
+| [**Map Skin (Vitamin C)**](#map-skin-vitamin-c) | Applies Chuppito's 'Vitamin C' map skin.<br><sub>Options: Night background color (hex), Day background color (hex), Font size — huge labels, +4 more</sub> |
+| [**Navigation &amp; Map**](#navigation-map) | Configures navigation and map behaviour:<br><sub>Options: Nearing destination distance (m), Android Auto head-up — normal roads (m), Android Auto head-up — freeways (m), +5 more</sub> |
+| [**Popup Suppression**](#popup-suppression) | Prevents promotional and ad popups from appearing while driving.<br><sub>Options: Min speed to show popups (MMSec), Fully stopped speed (MMSec), Min distance to show popup (m), +2 more</sub> |
+| [**Radar Sound (Any Speed)**](#radar-sound-any-speed) | Plays radar/speed camera sound alerts regardless of current speed. |
+| [**Report Speed Limit**](#report-speed-limit) | Adds a Report option when tapping the speedometer to report wrong or missing speed limits. |
+| [**Speed Limit Sign**](#speed-limit-sign) | Sets the speed limit sign style shown on the map.<br><sub>Options: Sign style</sub> |
+| [**Uncensored Radar / Camera Display**](#uncensored-radar-camera-display) | Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. |
 
 </details>
 
-<details open>
-<summary>📦 Splitwise&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile'>📥</a></summary>
+<details>
+<summary><strong>Windscribe VPN</strong> &middot; 1 patch &middot; <code>com.windscribe.vpn</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windscribe.vpn">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `4.1.2274`
 
-| 26.5.5 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Pro](#unlock-pro) | Unlocks Splitwise Pro features, removes ad banners, and suppresses all upgrade upsell prompts. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Windscribe premium account. |
 
 </details>
 
-<details open>
-<summary>📦 Stargazing Hub&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.twtapp'>📥</a></summary>
+<details>
+<summary><strong>Windy: Weather Radar &amp; Forecast</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
-
-| 3.2.1 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock Subscription](#unlock-subscription) | Unlocks all subscription features in TWT App. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Windy Pro features. |
 
 </details>
 
-<details open>
-<summary>📦 TeraBox&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.dubox.drive'>📥</a></summary>
+<details>
+<summary><strong>Workout &amp; Gym Training Plan</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.workout</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.workout">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `1.2.0`
 
-| 4.19.6 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock VIP](#unlock-vip) | Unlocks Dubox Drive VIP/SVIP (Premium+) |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content. |
 
 </details>
 
-<details open>
-<summary>📦 Yatri&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.yatrirailways.yatri'>📥</a></summary>
+<details>
+<summary><strong>Yatri</strong> &middot; 1 patch &middot; <code>com.yatrirailways.yatri</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.yatrirailways.yatri">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `5.0.3`
 
-| 5.0.3 |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock VIP](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock VIP**](#unlock-vip) | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |
 
 </details>
 
-<details open>
-<summary>📦 HTTP Sniffer&nbsp;&nbsp;•&nbsp;&nbsp;1 patch&nbsp;&nbsp;<a href='https://play.google.com/store/apps/details?id=com.anetcapture.mock'>📥</a></summary>
+<details>
+<summary><strong>Yoga - Poses &amp; Classes</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.yoga</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga">Play Store</a></summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:** `3.2.0`
 
-| 2.11.0-ad_mob |
-| :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Unlock VIP (Lifetime)](#unlock-vip-lifetime) | Forces permanent professional VIP tier, removes ads and upgrade popups, bypasses PairIP. |  |
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Yoga by Muscle Motion. |
 
 </details>
 
