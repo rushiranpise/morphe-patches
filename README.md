@@ -1003,6 +1003,9 @@ Patched apps are re-signed, which breaks Google Play Services authentication. Th
 #### What APK version should I use?
 Use the suggested versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
 
+#### What APK formats are supported?
+Use clean APK, XAPK, or APKM files from a reputable source. Prefer `arm64-v8a` for modern phones, and avoid already-modded or repacked APKs when reporting bugs.
+
 #### Can you make a patch for \[Super Cool App Goes Here\]?
 Maybe? Each patch is different, and many features use server-side functionality that cannot be modified. Before submitting a request, please check the existing open (and closed!) issues to reduce duplication.
 
