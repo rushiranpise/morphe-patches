@@ -44,11 +44,20 @@ body:
       placeholder: 'Manager v1.12.0'
     validations:
       required: true
+  - type: input
+    attributes:
+      label: Patch release version
+      description: 'Required: provide the Morphe patch release channel and build number used to create the patched APK.'
+      placeholder: 'stable v1.8.0 or dev v1.8.0-dev.3'
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Error logs
-      description: Exceptions can be captured by running `logcat` via `adb` or in a shell.
+      description: 'Required: paste the relevant patching or runtime logs. See the README for how to capture logs: https://github.com/rushiranpise/morphe-patches#capture-logs'
       render: shell
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Solution
