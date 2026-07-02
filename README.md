@@ -43,7 +43,27 @@ Seriously...
 Found something broken? Have a new patch idea?
 Open an issue — I might get to it when I'm bored.
 
-Bug reports must include logs, the patch source release used to create the patched APK (for example `stable v1.8.0` or `dev v1.8.0-dev.3`), and the APK source/type.
+Useful links:
+
+- [Bug report](https://github.com/rushiranpise/morphe-patches/issues/new?template=bug_report.yml)
+- [Patch broken after app update](https://github.com/rushiranpise/morphe-patches/issues/new?template=patch_broken_after_update.yml)
+- [Enhancement request](https://github.com/rushiranpise/morphe-patches/issues/new?template=enhancement_request.yml)
+- [App request discussion](https://github.com/rushiranpise/morphe-patches/discussions/new?category=app-requests)
+
+## How to use these patches
+
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=rushiranpise/morphe-patches
+
+Or manually add this repository URL as a patch source in Morphe: https://github.com/rushiranpise/morphe-patches
+
+## Reporting bugs
+
+Bug reports must include:
+
+- Logs
+- App version
+- Patch source release used to create the patched APK, for example `stable v1.8.0` or `dev v1.8.0-dev.3`
+- APK source/type, for example `APKMirror APK arm64-v8a` or `APKPure XAPK`
 
 ## ☕️ Like my work? Consider donating
 
@@ -969,12 +989,6 @@ Even a small amount makes a difference 🙏
 
 <!-- PATCHES_END -->
 
-#### How to use these patches
-
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=rushiranpise/morphe-patches
-
-Or manually add this repository url as a patch source in Morphe: https://github.com/rushiranpise/morphe-patches
-
 ### 📙 Contributing
 
 Thank you for considering contributing to Rushi's Morphe Patches.  
@@ -989,27 +1003,24 @@ you can follow the [Morphe documentation](https://github.com/MorpheApp/morphe-do
 
 ## FAQ
 
-#### How do I use this?
+### How do I use this?
 Install [Morphe Manager](https://morphe.software), add this repo as a patch source, then select an app to patch.
 
-#### Capture logs 
+### Capture logs
 
 Refer to [Morphe Documentation](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-resources/questions.md#40-capture-logs). When opening a bug report, include the relevant logs, the patch source release you used (for example `stable v1.8.0` or `dev v1.8.0-dev.3`), and the APK source/type.
 
-#### Help, why can't I log in with my Google account? Why doesn't Google Drive work?
+### Help, why can't I log in with my Google account? Why doesn't Google Drive work?
 MicroG integration is needed for features that require Google Play Services.
 Patched apps are re-signed, which breaks Google Play Services authentication. This is a known limitation for all patched apps.
 
-#### What APK version should I use?
-Use the suggested versions. Download the correct format (XAPK/APKM/APK) and architecture (arm64 for modern phones).
+### What APK version or format should I use?
+Use the suggested app versions. Download clean APK, XAPK, or APKM files from a reputable source, prefer `arm64-v8a` for modern phones, and avoid already-modded or repacked APKs when reporting bugs.
 
-#### What APK formats are supported?
-Use clean APK, XAPK, or APKM files from a reputable source. Prefer `arm64-v8a` for modern phones, and avoid already-modded or repacked APKs when reporting bugs.
-
-#### Can you make a patch for \[Super Cool App Goes Here\]?
+### Can you make a patch for \[Super Cool App Goes Here\]?
 Maybe? Each patch is different, and many features use server-side functionality that cannot be modified. Before submitting a request, please check the existing open (and closed!) issues to reduce duplication.
 
-#### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
+### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
 I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who does this stuff in my free time. If it's within my technical capabilities, I'll get around to it at some point.
 
 ## 📩 Developers
