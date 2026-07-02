@@ -146,14 +146,15 @@ def versions_line(targets):
     return "**Supported versions:** " + " ".join(f"`{escape(version)}`" for version in versions)
 
 
-def details_block(label, count, targets, table, expanded=False, package_name=None):
+def details_block(label, count, targets, table, expanded=False, package_name=None, index=None):
     """Wrap a patches table in a details block with compact metadata."""
     noun = "patch" if count == 1 else "patches"
     versions = versions_line(targets)
     versions_section = f"{versions}\n\n" if versions else ""
     tag = "<details open>" if expanded else "<details>"
 
-    summary = f"<strong>{escape(label, quote=False)}</strong> &middot; {count} {noun}"
+    prefix = f"<code>#{index}</code> " if index is not None else ""
+    summary = f"{prefix}<strong>{escape(label, quote=False)}</strong> &middot; {count} {noun}"
     if package_name:
         summary += (
             f" &middot; <code>{escape(package_name, quote=False)}</code>"
@@ -178,7 +179,8 @@ def build_content(expanded=False):
     ]
 
     # One details block per app, sorted by app name for predictable scanning.
-    for package_name, entry in sorted(by_pkg.items(), key=lambda item: item[1]["name"].lower()):
+    sorted_packages = sorted(by_pkg.items(), key=lambda item: item[1]["name"].lower())
+    for index, (package_name, entry) in enumerate(sorted_packages, start=1):
         patches = list(entry["patches"].values())
         lines.append(
             details_block(
@@ -188,6 +190,7 @@ def build_content(expanded=False):
                 patches_table(patches),
                 expanded,
                 package_name=package_name,
+                index=index,
             )
         )
         lines.append("")
@@ -202,6 +205,7 @@ def build_content(expanded=False):
                 [],
                 patches_table(universal_patches),
                 expanded,
+                index=len(sorted_packages) + 1,
             )
         )
         lines.append("")
