@@ -210,7 +210,7 @@ object Constants {
         packageName = "com.dubox.drive",
         apkFileType = ApkFileType.APK, 
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.19.6"))
+        targets = listOf(AppTarget(version = "4.20.1"))
     )
 
     // SAI — Split APKs Installer by MTV
