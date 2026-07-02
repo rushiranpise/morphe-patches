@@ -17,6 +17,7 @@
           - **Do not submit a duplicate feature request**: Search for existing feature requests [here](https://github.com/rushiranpise/morphe-patches/issues?q=label%3A%22enhancement%22).
           - **Please don't ask for the world.** I'm only one person, and I'm not a wizard.
     - type: textarea
+      id: feature_description
       attributes:
         label: Feature description
         description: |
@@ -25,6 +26,7 @@
       validations:
         required: true
     - type: input
+      id: app_name
       attributes:
         label: App name
         placeholder: 'Duolingo, Prime Video, MyFitnessPal, etc'
