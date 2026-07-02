@@ -74,20 +74,16 @@
       {
         "assets": [
           {
-            "path": "patches/build/libs/patches-!(*sources*|*javadoc*).mpp?(.asc)",
-            "label": "Morphe patches bundle"
+            "path": "patches/build/libs/patches-!(*sources*|*javadoc*).mpp?(.asc)"
           },
           {
-            "path": "patches-list.json",
-            "label": "Patches list JSON"
+            "path": "patches-list.json"
           },
           {
-            "path": "patches-bundle.json",
-            "label": "Morphe source bundle JSON"
+            "path": "patches-bundle.json"
           },
           {
-            "path": "SHA256SUMS.txt",
-            "label": "SHA-256 checksums"
+            "path": "SHA256SUMS.txt"
           }
         ],
         "successComment": false
