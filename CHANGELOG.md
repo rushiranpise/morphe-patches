@@ -1,3 +1,7 @@
+## [1.8.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0...v1.8.1) (2026-06-29)
+
+## [1.8.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.0...v1.8.1-dev.1) (2026-06-29)
+
 ## [1.8.0](https://github.com/rushiranpise/morphe-patches/compare/v1.7.0...v1.8.0) (2026-06-29)
 
 ### 🐛 Bug Fixes
