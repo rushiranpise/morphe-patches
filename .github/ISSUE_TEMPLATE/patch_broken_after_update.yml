@@ -1,30 +1,17 @@
-# Based on templates from:
-# https://github.com/hoo-dles/morphe-patches
-# Modified for this repository.
-name: 🐞 Bug report
-description: Report a bug or an issue.
-title: 'bug: '
+name: Patch broken after app update
+description: Report a patch that stopped working after the app was updated.
+title: 'bug: patch broken after app update - '
 labels: ['bug']
 body:
   - type: markdown
     attributes:
       value: |
-        # Bug Report
+        # Patch Broken After App Update
 
-        Before creating a new bug report, please keep the following in mind:
+        Use this form when a patch worked before, but stopped working after updating the target app.
 
-        - **Do not submit a duplicate bug report.** Search for existing bug reports [here](https://github.com/rushiranpise/morphe-patches/issues?q=label%3A%22bug%22).
-        - **Do not use the issue page for support.** If you need help or have questions, please visit the [official reddit](https://www.reddit.com/r/MorpheApp) or create a new [Q&A discussion](https://github.com/rushiranpise/morphe-patches/discussions/new?category=q-a).
-  - type: textarea
-    id: bug_description
-    attributes:
-      label: Bug description
-      description: |
-        - Describe your bug in detail
-        - Add steps to reproduce the bug if possible (Step 1. ... Step 2. ...)
-        - Add images and videos if possible
-    validations:
-      required: true
+        Before creating a new report, please search existing open and closed bug reports:
+        https://github.com/rushiranpise/morphe-patches/issues?q=label%3A%22bug%22
   - type: input
     id: app_name
     attributes:
@@ -33,23 +20,23 @@ body:
     validations:
       required: true
   - type: input
-    id: app_version
+    id: broken_app_version
     attributes:
-      label: App version
-      description: 'Please provide the version of the app that is causing the issue.'
+      label: Broken app version
+      description: The app version where the patch no longer works.
       placeholder: '1.23.456'
     validations:
       required: true
   - type: input
-    id: manager_or_cli_version
+    id: last_working_app_version
     attributes:
-      label: Manager or CLI version
-      description: 'Please provide the version of the Morphe Manager or Morphe CLI used.'
-      placeholder: 'Manager v1.12.0'
+      label: Last working app version
+      description: The newest app version where this patch still worked, if known.
+      placeholder: '1.23.455'
     validations:
-      required: true
+      required: false
   - type: input
-    id: patch_release_version
+    id: patch_source_release
     attributes:
       label: Patch source release
       description: 'Required: provide the Morphe patch release channel and build number used to create the patched APK.'
@@ -57,11 +44,29 @@ body:
     validations:
       required: true
   - type: input
+    id: manager_or_cli_version
+    attributes:
+      label: Manager or CLI version
+      description: The Morphe Manager or Morphe CLI version used.
+      placeholder: 'Manager v1.12.0'
+    validations:
+      required: true
+  - type: input
     id: apk_source_type
     attributes:
       label: APK source and type
-      description: 'Required: provide where the APK came from and its package format or architecture.'
+      description: Provide where the APK came from and its package format or architecture.
       placeholder: 'APKMirror APK arm64-v8a, APKPure XAPK, Play Store split APK, etc'
+    validations:
+      required: true
+  - type: textarea
+    id: broken_patches
+    attributes:
+      label: Broken patch or patches
+      description: List the patch names that stopped working and what changed.
+      placeholder: |
+        - Unlock Premium: premium screen opens again
+        - Remove Ads: banner ads are visible again
     validations:
       required: true
   - type: textarea
@@ -81,11 +86,9 @@ body:
     id: acknowledgements
     attributes:
       label: Acknowledgements
-      description: Your bug report will be closed if you don't follow the checklist below.
+      description: Your report may be closed if you do not follow the checklist below.
       options:
         - label: I have checked all open and closed bug reports and this is not a duplicate.
-          required: true
-        - label: I have chosen an appropriate title.
           required: true
         - label: I followed the README log capture instructions and included the relevant logs.
           required: true
