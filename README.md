@@ -89,9 +89,9 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.8.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;85 patches total
+> **[v1.8.2-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.8.2-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;85 patches total
 <details>
-<summary><code>#1</code> <strong>1.1.1.1 + WARP</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
+<summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.38.7`
@@ -116,19 +116,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#3</code> <strong>3D Anatomy &amp; Physiology</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.anatomy</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy">Play Store</a></summary>
-<br>
-
-**Supported versions:** `3.2.0`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |
-
-</details>
-
-<details>
-<summary><code>#4</code> <strong>AccuWeather: Weather Radar</strong> &middot; 1 patch &middot; <code>com.accuweather.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.accuweather.android">Play Store</a></summary>
+<summary><code>#3</code> <strong>AccuWeather</strong> &middot; 1 patch &middot; <code>com.accuweather.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.accuweather.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `21.1.11-1-rc`
@@ -140,7 +128,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#5</code> <strong>AdGuard Nightly</strong> &middot; 1 patch &middot; <code>com.adguard.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.adguard.android">Play Store</a></summary>
+<summary><code>#4</code> <strong>AdGuard Nightly</strong> &middot; 1 patch &middot; <code>com.adguard.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.adguard.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.14.68`
@@ -152,7 +140,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#6</code> <strong>AIDA64</strong> &middot; 1 patch &middot; <code>com.finalwire.aida64</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.finalwire.aida64">Play Store</a></summary>
+<summary><code>#5</code> <strong>AIDA64</strong> &middot; 1 patch &middot; <code>com.finalwire.aida64</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.finalwire.aida64">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.20`
@@ -160,6 +148,18 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Remove ads**](#remove-ads) | Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init. |
+
+</details>
+
+<details>
+<summary><code>#6</code> <strong>Anatomy</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.anatomy</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy">Play Store</a></summary>
+<br>
+
+**Supported versions:** `3.2.0`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |
 
 </details>
 
@@ -200,19 +200,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#10</code> <strong>Call Recorder - Automatic</strong> &middot; 1 patch &middot; <code>com.catalinagroup.callrecorder</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder">Play Store</a></summary>
-<br>
-
-**Supported versions:** `2.4.281`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
-
-</details>
-
-<details>
-<summary><code>#11</code> <strong>Canva</strong> &middot; 1 patch &middot; <code>com.canva.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.canva.editor">Play Store</a></summary>
+<summary><code>#10</code> <strong>Canva</strong> &middot; 1 patch &middot; <code>com.canva.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.canva.editor">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.365.o`
@@ -224,7 +212,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#12</code> <strong>Case Tracker - Immigration</strong> &middot; 2 patches &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
+<summary><code>#11</code> <strong>Case Tracker</strong> &middot; 2 patches &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.5.1`
@@ -237,7 +225,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#13</code> <strong>Cashew - Budget &amp; Finance App</strong> &middot; 1 patch &middot; <code>com.budget.tracker_app</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.budget.tracker_app">Play Store</a></summary>
+<summary><code>#12</code> <strong>Cashew</strong> &middot; 1 patch &middot; <code>com.budget.tracker_app</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.budget.tracker_app">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.5.9`
@@ -249,7 +237,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#14</code> <strong>Citizen - Safety Alert</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
+<summary><code>#13</code> <strong>Citizen</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
 <br>
 
 **Supported versions:** `0.1298.0`
@@ -261,7 +249,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#15</code> <strong>Clickmate</strong> &middot; 1 patch &middot; <code>com.inscode.autoclicker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.inscode.autoclicker">Play Store</a></summary>
+<summary><code>#14</code> <strong>Clickmate</strong> &middot; 1 patch &middot; <code>com.inscode.autoclicker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.inscode.autoclicker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.1.4`
@@ -273,7 +261,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#16</code> <strong>CPU-Z</strong> &middot; 1 patch &middot; <code>com.cpuid.cpu_z</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z">Play Store</a></summary>
+<summary><code>#15</code> <strong>CPU-Z</strong> &middot; 1 patch &middot; <code>com.cpuid.cpu_z</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.57`
@@ -285,7 +273,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#17</code> <strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
+<summary><code>#16</code> <strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
 <br>
 
 **Supported versions:** `26.23.2`
@@ -297,6 +285,18 @@ Bug reports must include:
 | [**Remove Item Limits**](#remove-item-limits) | Removes all item limits in-app. |
 | [**Suppress Premium Promotions**](#suppress-premium-promotions) | Supress all premium promotions in-app. |
 | [**Unlock Followed Locations**](#unlock-followed-locations) | Unlocks the Followed Locations premium feature. |
+| [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
+
+</details>
+
+<details>
+<summary><code>#17</code> <strong>Cube ACR</strong> &middot; 1 patch &middot; <code>com.catalinagroup.callrecorder</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder">Play Store</a></summary>
+<br>
+
+**Supported versions:** `2.4.281`
+
+| Patch | Details |
+|---|---|
 | [**Unlock Premium**](#unlock-premium) | Unlocks Premium Features In the App. |
 
 </details>
@@ -374,7 +374,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#24</code> <strong>Kyphosis Exercises - Hunchback</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.kyphosis</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis">Play Store</a></summary>
+<summary><code>#24</code> <strong>Kyphosis</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.kyphosis</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.4.9`
@@ -452,7 +452,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#30</code> <strong>NetShare - Hotspot &amp; Wifi Direct</strong> &middot; 1 patch &middot; <code>kha.prog.mikrotik</code> &middot; <a href="https://play.google.com/store/apps/details?id=kha.prog.mikrotik">Play Store</a></summary>
+<summary><code>#30</code> <strong>NetShare</strong> &middot; 1 patch &middot; <code>kha.prog.mikrotik</code> &middot; <a href="https://play.google.com/store/apps/details?id=kha.prog.mikrotik">Play Store</a></summary>
 <br>
 
 **Supported versions:** `UI/link-274`
@@ -524,7 +524,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#36</code> <strong>Posture Correction Exercises</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.posture</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.posture">Play Store</a></summary>
+<summary><code>#36</code> <strong>Posture</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.posture</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.posture">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.2.0`
@@ -620,7 +620,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#44</code> <strong>Snipd: AI Podcast Player</strong> &middot; 1 patch &middot; <code>ai.topicfinder.podcastdiscovery</code> &middot; <a href="https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery">Play Store</a></summary>
+<summary><code>#44</code> <strong>Snipd</strong> &middot; 1 patch &middot; <code>ai.topicfinder.podcastdiscovery</code> &middot; <a href="https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.1.14`
@@ -644,7 +644,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#46</code> <strong>Speedtest by Ookla</strong> &middot; 1 patch &middot; <code>org.zwanoo.android.speedtest</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest">Play Store</a></summary>
+<summary><code>#46</code> <strong>Speedtest</strong> &middot; 1 patch &middot; <code>org.zwanoo.android.speedtest</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.0.4`
@@ -680,7 +680,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#49</code> <strong>Strength Training: Gym Workout</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.strength.mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile">Play Store</a></summary>
+<summary><code>#49</code> <strong>Strength Training</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.strength.mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.5.0`
@@ -695,7 +695,7 @@ Bug reports must include:
 <summary><code>#50</code> <strong>TeraBox</strong> &middot; 1 patch &middot; <code>com.dubox.drive</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dubox.drive">Play Store</a></summary>
 <br>
 
-**Supported versions:** `4.19.6`
+**Supported versions:** `4.20.1`
 
 | Patch | Details |
 |---|---|
@@ -716,7 +716,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#52</code> <strong>TomTom GO Navigation</strong> &middot; 1 patch &middot; <code>com.tomtom.gplay.navapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp">Play Store</a></summary>
+<summary><code>#52</code> <strong>TomTom GO</strong> &middot; 1 patch &middot; <code>com.tomtom.gplay.navapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.6.316-beta`
@@ -728,7 +728,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#53</code> <strong>Universal TV Remote Control</strong> &middot; 3 patches &middot; <code>sensustech.universal.tv.remote.control</code> &middot; <a href="https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control">Play Store</a></summary>
+<summary><code>#53</code> <strong>Unimote</strong> &middot; 3 patches &middot; <code>sensustech.universal.tv.remote.control</code> &middot; <a href="https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.8.1`
@@ -742,7 +742,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#54</code> <strong>Waze - GPS, Maps &amp; Traffic</strong> &middot; 12 patches &middot; <code>com.waze</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.waze">Play Store</a></summary>
+<summary><code>#54</code> <strong>Waze</strong> &middot; 12 patches &middot; <code>com.waze</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.waze">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.19.0.2`
@@ -777,7 +777,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#56</code> <strong>Windy: Weather Radar &amp; Forecast</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
+<summary><code>#56</code> <strong>Windy</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
 <br>
 
 | Patch | Details |
@@ -787,7 +787,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#57</code> <strong>Workout &amp; Gym Training Plan</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.workout</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.workout">Play Store</a></summary>
+<summary><code>#57</code> <strong>Workout</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.workout</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.workout">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.2.0`
@@ -811,7 +811,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#59</code> <strong>Yoga - Poses &amp; Classes</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.yoga</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga">Play Store</a></summary>
+<summary><code>#59</code> <strong>Yoga</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.yoga</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.2.0`
