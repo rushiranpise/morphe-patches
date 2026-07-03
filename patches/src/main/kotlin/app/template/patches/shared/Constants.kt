@@ -485,4 +485,12 @@ object Constants {
         appIconColor = 0x00A862,
         targets = listOf(AppTarget(version = "11.55.1", versionCode = 1155080))
     )
+
+    // Tranzmate — Public Transit by Moovit
+    val TRANZMATE_COMPATIBILITY = Compatibility(
+        name = "Moovit",
+        packageName = "com.tranzmate",
+        appIconColor = 0x0066FF,
+        targets = listOf(AppTarget(version = "5.195.0.1789", versionCode = 1789))
+    )
 }
