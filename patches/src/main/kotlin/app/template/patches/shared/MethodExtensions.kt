@@ -1,6 +1,7 @@
 package app.template.patches.shared
 
 import app.morphe.patcher.patch.PatchException
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import com.android.tools.smali.dexlib2.builder.BuilderTryBlock
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
@@ -53,3 +54,13 @@ private val tryBlocksField: Field? = run {
         }
         ?.apply { isAccessible = true }
 }
+
+fun MutableMethod.returnEarly() = addInstructions(
+    0,
+    when (returnType) {
+        "V" -> "return-void"
+        "Z", "B", "C", "S", "I", "F" -> "const/4 v0, 0x0\nreturn v0"
+        "J", "D" -> "const-wide/16 v0, 0x0\nreturn-wide v0"
+        else -> "const/4 v0, 0x0\nreturn-object v0"
+    },
+)
