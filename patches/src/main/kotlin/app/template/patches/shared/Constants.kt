@@ -541,4 +541,12 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "3.2.7.0"))
     )
+
+    // NewsBreak
+    val NEWSBREAK_COMPATIBILITY = Compatibility(
+        name = "NewsBreak",
+        packageName = "com.particlenews.newsbreak",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "26.27.0", versionCode = 26270016))
+    )
 }
