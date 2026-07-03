@@ -573,4 +573,12 @@ object Constants {
         appIconColor = 0x2563EB,
         targets = listOf(AppTarget(version = "2.8.1", versionCode = 118))
     )
+
+    // Police Scanner — Broadcastify (police.scanner.radio.broadcastify.citizen)
+    val POLICESCANNER_COMPATIBILITY = Compatibility(
+        name = "Police Scanner",
+        packageName = "police.scanner.radio.broadcastify.citizen",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = null))
+    )
 }
