@@ -1,1 +1,1 @@
-e5bd3159985559e25d00409646802d2d09a79dcaeb04aca54f43e65279546724  patches/build/libs/patches-1.8.2-dev.1.mpp
+e15d973d1d6cc142369270ec686efc3569f7c300062a40754f2ac9a7e646ced7  patches/build/libs/patches-1.8.2-dev.2.mpp
