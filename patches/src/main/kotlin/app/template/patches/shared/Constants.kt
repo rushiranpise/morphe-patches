@@ -517,4 +517,12 @@ object Constants {
         appIconColor = 0x2F7D62,
         targets = listOf(AppTarget(version = "1.15", versionCode = 25))
     )
+
+    // BlurWall — Blur Wallpaper by Automan
+    val BLURWALL_COMPATIBILITY = Compatibility(
+        name = "BlurWall",
+        packageName = "apps.automan.blurwallpaper",
+        appIconColor = 0x42A5F5,
+        targets = listOf(AppTarget(version = "2.9.2", versionCode = 28))
+    )
 }
