@@ -8,32 +8,39 @@
   ],
   "plugins": [
     [
-        "@semantic-release/commit-analyzer", {
+      "@semantic-release/commit-analyzer",
+      {
         "releaseRules": [
-            { "type": "fix", "release": "patch" },
-            { "type": "feat", "release": "minor" },
-            { "type": "bump", "release": "patch" },
-            { "type": "perf", "release": "patch" },
-            { "type": "build", "scope": "Needs bump", "release": "patch" }
+          { "type": "fix", "release": "patch" },
+          { "type": "feat", "release": "minor" },
+          { "type": "bump", "release": "patch" },
+          { "type": "perf", "release": "patch" },
+          { "type": "build", "scope": "Needs bump", "release": "patch" }
         ]
-        }
+      }
     ],
     [
-        "@semantic-release/release-notes-generator", {
-        "preset": "conventionalcommits",
-        "presetConfig": {
+      "./.github/scripts/release-notes-plugin.cjs",
+      {
+        "releaseNotesGenerator": {
+          "preset": "conventionalcommits",
+          "presetConfig": {
             "types": [
-                { "type": "fix", "section": "🐛 Bug Fixes", "hidden": false },
-                { "type": "feat", "section": "✨ New Features", "hidden": false },
-                { "type": "bump", "section": "🚀 Updated App Support", "hidden": false },
-                { "type": "perf", "section": "🔧 Improvements",  "hidden": false },
-                { "type": "build", "hidden": true }
+              { "type": "feat", "section": "New Patches", "hidden": false },
+              { "type": "bump", "section": "Updated App Support", "hidden": false },
+              { "type": "fix", "section": "Fixes", "hidden": false },
+              { "type": "perf", "section": "Improvements", "hidden": false },
+              { "type": "build", "section": "Maintenance", "hidden": false },
+              { "type": "docs", "section": "Documentation", "hidden": false },
+              { "type": "chore", "hidden": true }
             ]
+          }
         }
-        }
+      }
     ],
     [
-      "@MorpheApp/changelog", {
+      "@MorpheApp/changelog",
+      {
         "releaseJson": {
           "path": "patches-bundle.json",
           "downloadUrlTemplate": "https://github.com/${owner}/${repo}/releases/download/v${version}/patches-${version}.mpp",
@@ -45,9 +52,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "./gradlew generatePatchesList \
-          && jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json \
-          && python3 .github/scripts/generate_patches_readme.py $GITHUB_REPOSITORY $GITHUB_REF_NAME patches-list.json README.md"
+        "prepareCmd": "./gradlew generatePatchesList && jq '.version=\"${nextRelease.version}\"' patches-list.json > patches-list.json.tmp && mv patches-list.json.tmp patches-list.json && python3 .github/scripts/generate_patches_readme.py $GITHUB_REPOSITORY $GITHUB_REF_NAME patches-list.json README.md && find patches/build/libs -maxdepth 1 -type f -name '*.mpp' ! -name '*sources*' ! -name '*javadoc*' -exec sha256sum {} + > SHA256SUMS.txt"
       }
     ],
     [
@@ -58,7 +63,8 @@
           "gradle.properties",
           "patches-bundle.json",
           "patches-list.json",
-          "README.md"
+          "README.md",
+          "SHA256SUMS.txt"
         ],
         "message": "chore: Release v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
@@ -69,6 +75,15 @@
         "assets": [
           {
             "path": "patches/build/libs/patches-!(*sources*|*javadoc*).mpp?(.asc)"
+          },
+          {
+            "path": "patches-list.json"
+          },
+          {
+            "path": "patches-bundle.json"
+          },
+          {
+            "path": "SHA256SUMS.txt"
           }
         ],
         "successComment": false
@@ -77,7 +92,7 @@
     [
       "@cleyrop-org/semantic-release-backmerge",
       {
-        "backmergeBranches": [{"from": "main", "to": "dev"}],
+        "backmergeBranches": [{ "from": "main", "to": "dev" }],
         "clearWorkspace": true
       }
     ]
