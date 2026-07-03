@@ -1,3 +1,37 @@
+# Rushi's Patches v1.9.1
+Patch source for Morphe.
+**Channel:** stable  
+**Branch:** `main`  
+**Patch count:** 107
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.9.1.mpp` from the release assets below.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.9.1](https://github.com/rushiranpise/morphe-patches/compare/v1.9.0...v1.9.1) (2026-07-03)
+
+### Fixes
+
+* correct extension path ([c87ac8b](https://github.com/rushiranpise/morphe-patches/commit/c87ac8b2a6727f70fe10df15074c9a29a0cd90cc))
+
 # Rushi's Patches v1.9.1-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease  
