@@ -525,4 +525,12 @@ object Constants {
         appIconColor = 0x42A5F5,
         targets = listOf(AppTarget(version = "2.9.2", versionCode = 28))
     )
+
+    // Carbon
+    val CARBON_COMPATIBILITY = Compatibility(
+        name = "Carbon",
+        packageName = "com.joincarbon.nutrition",
+        appIconColor = 0x111111,
+        targets = listOf(AppTarget(version = "2.76.5784", versionCode = 1633629070))
+    )
 }
