@@ -419,7 +419,7 @@ object Constants {
         name = "Windy",
         packageName = "com.windyty.android",
         appIconColor = 0x0FA0EB,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "50.1.1"))
     )
 
     // TomTom GO Navigation
@@ -532,5 +532,13 @@ object Constants {
         packageName = "com.joincarbon.nutrition",
         appIconColor = 0x111111,
         targets = listOf(AppTarget(version = "2.76.5784", versionCode = 1633629070))
+    )
+
+    // Scoopz — Local News & Community (com.localaiapp.scoops)
+    val SCOOPZ_COMPATIBILITY = Compatibility(
+        name = "Scoopz - Local & Breaking News",
+        packageName = "com.localaiapp.scoops",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.2.7.0"))
     )
 }
