@@ -565,4 +565,12 @@ object Constants {
         appIconColor = 0x0D47A1,
         targets = listOf(AppTarget(version = "6.6.2", versionCode = 532))
     )
+
+    // MigraConnect — USCIS & EOIR Case Tracker (com.tecso.MigraConnect)
+    val MIGRACONNECT_COMPATIBILITY = Compatibility(
+        name = "MigraConnect",
+        packageName = "com.tecso.MigraConnect",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "2.8.1", versionCode = 118))
+    )
 }
