@@ -1,3 +1,43 @@
+# Rushi's Patches v1.8.2-dev.2
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 85
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.8.2-dev.2.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.8.2-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.8.2-dev.1...v1.8.2-dev.2) (2026-07-03)
+
+### Fixes
+
+* remove incorrect apk file type metadata ([dfbf6f5](https://github.com/rushiranpise/morphe-patches/commit/dfbf6f53c0f2728ca43f71e948ae0fc975b22cdc))
+
+### Maintenance
+
+* polish release notes layout ([d529d58](https://github.com/rushiranpise/morphe-patches/commit/d529d580215a8c8140bdb21280a10efb60e8aee0))
+* use original release asset filenames ([c9ccf47](https://github.com/rushiranpise/morphe-patches/commit/c9ccf47bffcabeee5b3f4e8a3eecef894a57aff0))
+
 # Rushi's Patches v1.8.2-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.8.2-dev.1",
+  "version": "1.8.2-dev.2",
   "patches": [
     {
       "name": "Alert Distances",
@@ -12,7 +12,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -119,7 +119,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -181,7 +181,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -206,7 +206,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -231,7 +231,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -262,7 +262,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -293,7 +293,7 @@
           "packageName": "sensustech.universal.tv.remote.control",
           "name": "Unimote",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -318,7 +318,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -343,7 +343,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -368,7 +368,7 @@
           "packageName": "com.cloudflare.onedotonedotonedotone",
           "name": "1.1.1.1",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#F48120",
           "signatures": null,
           "targets": [
@@ -393,7 +393,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -437,7 +437,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -526,7 +526,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -636,7 +636,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -707,7 +707,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -732,7 +732,7 @@
           "packageName": "com.saldous.casetracker",
           "name": "Case Tracker",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -757,7 +757,7 @@
           "packageName": "com.mobond.mindicator",
           "name": "m-Indicator",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -782,7 +782,7 @@
           "packageName": "com.psiphon3.subscription",
           "name": "Psiphon Pro",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#6A1B9A",
           "signatures": null,
           "targets": [
@@ -807,7 +807,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -832,7 +832,7 @@
           "packageName": "com.canva.editor",
           "name": "Canva",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#8B3DFF",
           "signatures": null,
           "targets": [
@@ -857,7 +857,7 @@
           "packageName": "com.finalwire.aida64",
           "name": "AIDA64",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -882,7 +882,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -907,7 +907,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -945,7 +945,7 @@
           "packageName": "com.cloudflare.onedotonedotonedotone",
           "name": "1.1.1.1",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#F48120",
           "signatures": null,
           "targets": [
@@ -970,7 +970,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1001,7 +1001,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1032,7 +1032,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1063,7 +1063,7 @@
           "packageName": "sensustech.universal.tv.remote.control",
           "name": "Unimote",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1088,7 +1088,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1113,7 +1113,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1144,7 +1144,7 @@
           "packageName": "com.waze",
           "name": "Waze",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#33CCFF",
           "signatures": null,
           "targets": [
@@ -1169,7 +1169,7 @@
           "packageName": "org.zwanoo.android.speedtest",
           "name": "Speedtest",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#141C4C",
           "signatures": null,
           "targets": [
@@ -1194,7 +1194,7 @@
           "packageName": "com.kevinforeman.nzb360",
           "name": "nzb360",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1219,7 +1219,7 @@
           "packageName": "verbosus.pialytic",
           "name": "Pialytic",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -1244,7 +1244,7 @@
           "packageName": "com.flightradar24free",
           "name": "Flightradar24",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#327CB5",
           "signatures": null,
           "targets": [
@@ -1269,7 +1269,7 @@
           "packageName": "com.oasisfeng.greenify",
           "name": "Greenify",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -1294,7 +1294,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1319,7 +1319,7 @@
           "packageName": "com.blockerhero",
           "name": "BlockerHero",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF5252",
           "signatures": null,
           "targets": [
@@ -1344,7 +1344,7 @@
           "packageName": "com.proxyman.proxymanandroid",
           "name": "Proxyman",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF6B35",
           "signatures": null,
           "targets": [
@@ -1369,7 +1369,7 @@
           "packageName": "shareit.premium",
           "name": "SHAREit Premium",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF4B00",
           "signatures": null,
           "targets": [
@@ -1394,7 +1394,7 @@
           "packageName": "com.adguard.android",
           "name": "AdGuard Nightly",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#67B346",
           "signatures": null,
           "targets": [
@@ -1419,7 +1419,7 @@
           "packageName": "air.com.musclemotion.anatomy",
           "name": "Anatomy",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1444,7 +1444,7 @@
           "packageName": "com.catalinagroup.callrecorder",
           "name": "Cube ACR",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1469,7 +1469,7 @@
           "packageName": "com.saldous.casetracker",
           "name": "Case Tracker",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1494,7 +1494,7 @@
           "packageName": "com.cpuid.cpu_z",
           "name": "CPU-Z",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#2A3B4C",
           "signatures": null,
           "targets": [
@@ -1519,7 +1519,7 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1544,7 +1544,7 @@
           "packageName": "org.hola.play",
           "name": "Hola VPN Proxy Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
@@ -1569,7 +1569,7 @@
           "packageName": "air.com.musclemotion.kyphosis",
           "name": "Kyphosis",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E65100",
           "signatures": null,
           "targets": [
@@ -1594,7 +1594,7 @@
           "packageName": "it.mirko.beta",
           "name": "Beta Maniac",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
@@ -1619,7 +1619,7 @@
           "packageName": "cz.mroczis.netmonster",
           "name": "NetMonster",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1644,7 +1644,7 @@
           "packageName": "app.ninjavpn.android",
           "name": "Ninja VPN",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
@@ -1669,7 +1669,7 @@
           "packageName": "com.iudesk.android.photo.editor",
           "name": "Photo Editor",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF6B9D",
           "signatures": null,
           "targets": [
@@ -1694,7 +1694,7 @@
           "packageName": "air.com.musclemotion.posture",
           "name": "Posture",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#00897B",
           "signatures": null,
           "targets": [
@@ -1719,7 +1719,7 @@
           "packageName": "ch.protonvpn.android",
           "name": "Proton VPN",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#6D4AFF",
           "signatures": null,
           "targets": [
@@ -1744,7 +1744,7 @@
           "packageName": "com.truebill",
           "name": "Rocket Money",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#DE3341",
           "signatures": null,
           "targets": [
@@ -1769,7 +1769,7 @@
           "packageName": "com.mtv.sai",
           "name": "SAI",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1794,7 +1794,7 @@
           "packageName": "ai.topicfinder.podcastdiscovery",
           "name": "Snipd",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1CC29F",
           "signatures": null,
           "targets": [
@@ -1819,7 +1819,7 @@
           "packageName": "com.app.social_gamebox",
           "name": "Social Gamebox",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#7C4DFF",
           "signatures": null,
           "targets": [
@@ -1844,7 +1844,7 @@
           "packageName": "air.com.musclemotion.strength.mobile",
           "name": "Strength Training",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -1869,7 +1869,7 @@
           "packageName": "com.weather.Weather",
           "name": "The Weather Channel",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1B6AC9",
           "signatures": null,
           "targets": [
@@ -1894,7 +1894,7 @@
           "packageName": "com.tomtom.gplay.navapp",
           "name": "TomTom GO",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#DF1B12",
           "signatures": null,
           "targets": [
@@ -1919,7 +1919,7 @@
           "packageName": "sensustech.universal.tv.remote.control",
           "name": "Unimote",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -1944,7 +1944,7 @@
           "packageName": "com.windscribe.vpn",
           "name": "Windscribe VPN",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#00AEEF",
           "signatures": null,
           "targets": [
@@ -1969,7 +1969,7 @@
           "packageName": "com.windyty.android",
           "name": "Windy",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#0FA0EB",
           "signatures": null,
           "targets": [
@@ -1994,7 +1994,7 @@
           "packageName": "air.com.musclemotion.workout",
           "name": "Workout",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#C62828",
           "signatures": null,
           "targets": [
@@ -2019,7 +2019,7 @@
           "packageName": "air.com.musclemotion.yoga",
           "name": "Yoga",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#7B1FA2",
           "signatures": null,
           "targets": [
@@ -2044,7 +2044,7 @@
           "packageName": "com.inscode.autoclicker",
           "name": "Clickmate",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -2069,7 +2069,7 @@
           "packageName": "com.accuweather.android",
           "name": "AccuWeather",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#F25C1B",
           "signatures": null,
           "targets": [
@@ -2094,7 +2094,7 @@
           "packageName": "com.budget.tracker_app",
           "name": "Cashew",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FFB300",
           "signatures": null,
           "targets": [
@@ -2119,7 +2119,7 @@
           "packageName": "sp0n.citizen",
           "name": "Citizen",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#0066FF",
           "signatures": null,
           "targets": [
@@ -2144,7 +2144,7 @@
           "packageName": "com.tafayor.hibernator",
           "name": "Hibernator",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -2169,7 +2169,7 @@
           "packageName": "com.tafayor.killall",
           "name": "KillApps",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#F44336",
           "signatures": null,
           "targets": [
@@ -2194,7 +2194,7 @@
           "packageName": "com.javiersantos.mlmanager",
           "name": "ML Manager",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -2219,7 +2219,7 @@
           "packageName": "eu.darken.myperm",
           "name": "Permission Pilot",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -2244,7 +2244,7 @@
           "packageName": "eu.faircode.netguard",
           "name": "NetGuard",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -2269,7 +2269,7 @@
           "packageName": "kha.prog.mikrotik",
           "name": "NetShare",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1976D2",
           "signatures": null,
           "targets": [
@@ -2298,7 +2298,7 @@
           "packageName": "com.a0soft.gphone.acc.free",
           "name": "1Tap Cleaner",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -2323,7 +2323,7 @@
           "packageName": "com.rarlab.rar",
           "name": "RAR",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -2348,7 +2348,7 @@
           "packageName": "com.shexa.permissionmanager",
           "name": "App Permission Manager",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -2373,7 +2373,7 @@
           "packageName": "com.Splitwise.SplitwiseMobile",
           "name": "Splitwise",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1CC29F",
           "signatures": null,
           "targets": [
@@ -2398,7 +2398,7 @@
           "packageName": "com.twtapp",
           "name": "Stargazing Hub",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
@@ -2423,7 +2423,7 @@
           "packageName": "com.dubox.drive",
           "name": "TeraBox",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#2EAAFF",
           "signatures": null,
           "targets": [
@@ -2448,7 +2448,7 @@
           "packageName": "com.yatrirailways.yatri",
           "name": "Yatri",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#FF6B00",
           "signatures": null,
           "targets": [
@@ -2473,7 +2473,7 @@
           "packageName": "com.anetcapture.mock",
           "name": "HTTP Sniffer",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -2498,7 +2498,7 @@
           "packageName": "com.community.oneroom",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": null,
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
