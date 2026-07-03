@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.8.2-dev.2",
+  "version": "1.9.0-dev.1",
   "patches": [
     {
       "name": "Alert Distances",
@@ -197,6 +197,56 @@
       "options": []
     },
     {
+      "name": "Bypass PairIP License Check",
+      "description": "Bypasses PairIP License check.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "apps.automan.blurwallpaper",
+          "name": "BlurWall",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#42A5F5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.9.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Bypass PairIP License Check",
+      "description": "Makes LicenseClient.checkLicense() a no-op so the app never shows the license-denied blocking screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.changayaf.inmigreat",
+          "name": "Inmigreat",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6344CC",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.2.83",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Bypass Subscription Paywall",
       "description": "Bypasses the subscription paywall in-app.",
       "default": true,
@@ -240,12 +290,6 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
             }
           ]
         }
@@ -268,12 +312,6 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -384,6 +422,56 @@
       "options": []
     },
     {
+      "name": "Disable License Check",
+      "description": "Disables License Check",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "apps.automan.blurwallpaper",
+          "name": "BlurWall",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#42A5F5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.9.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable Paywall Config",
+      "description": "Disables SkinSort local paywall configuration.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.skinsort",
+          "name": "SkinSort",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2F7D62",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.15",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Enlarged Speedometer",
       "description": "Increases speedometer digit size for better readability.",
       "default": false,
@@ -423,6 +511,63 @@
           "required": false,
           "type": "kotlin.Long",
           "default": 21,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Fix Firebase after re-signing",
+      "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch no other config needed.",
+      "default": false,
+      "dependencies": [
+        "RawResourcePatch"
+      ],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "GmsCore support (MicroG)",
+      "description": "Routes Google Play Services calls through MicroG instead of real GPS.\n\nWorks for: Google apps (YouTube, Maps, News, Photos) and third-party apps using classic Google Sign-In (Android 13 and below).\n\nDoes not work for: Android 14+ Credential Manager sign-in (most modern third-party apps), Play Integrity / SafetyNet checks, or apps with custom auth.\n\nRequires MicroG RE installed. Apply with Original app certificate patch.",
+      "default": false,
+      "dependencies": [
+        "RawResourcePatch",
+        "ResourcePatch"
+      ],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "gmsCoreVendor",
+          "title": "MicroG package name",
+          "description": "Which MicroG / GmsCore app is installed on your device. Check your device's app list for \"MicroG\" or \"GmsCore\" if unsure — most users should leave this as the default.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "app.revanced.android.gms",
+          "values": {
+            "app.revanced.android.gms (default)": "app.revanced.android.gms",
+            "app.morphe.android.gms": "app.morphe.android.gms",
+            "app.morphe.manager": "app.morphe.manager",
+            "app.revanced.manager": "app.revanced.manager",
+            "app.rvx.manager": "app.rvx.manager",
+            "com.google.android.gms": "com.google.android.gms",
+            "org.microg.gms": "org.microg.gms"
+          }
+        },
+        {
+          "key": "mainActivityName",
+          "title": "Main activity class (optional)",
+          "description": "The app's main Activity class name ending with a semicolon, e.g. /MainActivity; Used to inject the MicroG check at startup. Leave blank for auto-detection.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        },
+        {
+          "key": "packageName",
+          "title": "Custom package name (optional)",
+          "description": "Rename the app to this package name. Leave blank to keep the original. Must be a valid package name (e.g. com.example.myapp).",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
           "values": null
         }
       ]
@@ -698,6 +843,51 @@
       ]
     },
     {
+      "name": "Provide Original app certificate",
+      "description": "By Default it Reads the signing certificate from the original app installed. Required for GmsCore, Firebase, and Signature spoof patches. Only fill options below if the original is uninstalled.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "originalApkPath",
+          "title": "Path to original APK (if uninstalled)",
+          "description": "Full path to the original APK or .apks bundle. Example: /sdcard/Download/Waze.apks",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        },
+        {
+          "key": "manualCertSha1",
+          "title": "Certificate SHA-1 (manual)",
+          "description": "40-char hex. Found on APKMirror under app signature info.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        },
+        {
+          "key": "manualCertSha256",
+          "title": "Certificate SHA-256 (manual)",
+          "description": "64-char hex. Optional companion to SHA-1.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        },
+        {
+          "key": "manualCertBase64",
+          "title": "Certificate Base64 DER (manual)",
+          "description": "Needed only for Signature spoof patch. Get it with: apksigner verify --print-certs original.apk",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Radar Sound (Any Speed)",
       "description": "Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.\n",
       "default": true,
@@ -713,31 +903,6 @@
           "targets": [
             {
               "version": "5.19.0.2",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Remove Ads",
-      "description": "Removes interstitial, app-open and native ads.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.saldous.casetracker",
-          "name": "Case Tracker",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -862,7 +1027,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.20",
+              "version": "2.21",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -961,6 +1126,88 @@
       "options": []
     },
     {
+      "name": "Spoof Widevine / DRM level",
+      "description": "Reports Widevine L1 (hardware DRM) to apps that check DRM level locally.\n\nUseful for apps that refuse to play HD/4K content on L3 devices or after re-signing.\n\nDoes not bypass server-side DRM - Netflix, Disney+ and similar are not affected.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "securityLevel",
+          "title": "Widevine security level to report",
+          "description": "L1 = hardware DRM (highest quality). L3 = software only. Default L1.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "L1",
+          "values": {
+            "L1 (highest — hardware)": "L1",
+            "L2": "L2",
+            "L3 (software only)": "L3"
+          }
+        },
+        {
+          "key": "hdcpLevel",
+          "title": "HDCP level to report",
+          "description": "HDCP_V2_2 is required for 4K content on most streaming apps.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "HDCP_V2_2",
+          "values": {
+            "HDCP 2.2": "HDCP_V2_2",
+            "HDCP 2.3": "HDCP_V2_3",
+            "HDCP 1.x": "HDCP_V1",
+            "None (disable)": "HDCP_LEVEL_NONE"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spoof app signature",
+      "description": "Makes the app think its signing certificate is unchanged after Morphe re-signs it.\n\nUseful when an app crashes or shows a tamper warning because it checks its own certificate.\n\nDoes not bypass Play Integrity / SafetyNet hardware attestation.\n\nApply with Original app certificate patch.",
+      "default": false,
+      "dependencies": [
+        "ResourcePatch",
+        "RawResourcePatch",
+        "ResourcePatch"
+      ],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "packageName",
+          "title": "Package name override (optional)",
+          "description": "Leave blank — read automatically from the app. Only set this if you changed the app's package name and the patch is using the wrong one.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": null,
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Spoof install source",
+      "description": "Makes the app think it was installed from a specific store (default: Google Play).\n\nUseful when an app blocks features or shows errors because it detects it was not installed from the Play Store.\n\nOnly affects what the app itself sees - does not change the real system install record.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "installerPackageName",
+          "title": "Store to impersonate",
+          "description": "Most apps only check for the Google Play Store, so the default is usually correct. Pick from the list, or type any package name directly if your app checks for a different store.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "com.android.vending",
+          "values": {
+            "Google Play Store": "com.android.vending",
+            "Samsung Galaxy Store": "com.sec.android.app.samsungapps",
+            "Huawei AppGallery": "com.huawei.appmarket",
+            "Amazon Appstore": "com.amazon.venezia",
+            "F-Droid": "org.fdroid.fdroid"
+          }
+        }
+      ]
+    },
+    {
       "name": "Spoof member active status",
       "description": "Forces MemberInfo.isActive() to always return true, making the app believe the membership subscription is active.",
       "default": true,
@@ -976,12 +1223,6 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1010,12 +1251,6 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
             }
           ]
         }
@@ -1038,12 +1273,6 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1119,12 +1348,6 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1260,6 +1483,31 @@
       "options": []
     },
     {
+      "name": "Unlock Club",
+      "description": "Unlocks Citymapper Club Membership Note: Need to manually Purchase inside APP!.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.citymapper.app.release",
+          "name": "Citymapper",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A862",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "11.55.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Donation Features",
       "description": "Unlocks all premium donation features in Greenify.",
       "default": true,
@@ -1275,6 +1523,56 @@
           "targets": [
             {
               "version": "5.1.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Drama Episodes",
+      "description": "Bypasses the IAA (ad-watch-to-unlock) episode gate for drama mini-series.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.localaiapp.scoops",
+          "name": "Scoopz",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.7.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Enterprise",
+      "description": "Unlocks Enterprise features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tecso.MigraConnect",
+          "name": "MigraConnect",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2563EB",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.8.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1410,6 +1708,31 @@
       "options": []
     },
     {
+      "name": "Unlock Moovit+",
+      "description": "Unlocks Moovit+",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tranzmate",
+          "name": "Moovit",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#0066FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.195.0.1789",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Premium",
       "description": "Unlocks all premium content in Anatomy by Muscle Motion.",
       "default": true,
@@ -1425,6 +1748,31 @@
           "targets": [
             {
               "version": "3.2.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlock Premium Features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "apps.automan.blurwallpaper",
+          "name": "BlurWall",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#42A5F5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.9.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1461,20 +1809,20 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks Premium Features In the App.",
+      "description": "Unlocks Carbon premium subscription.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.saldous.casetracker",
-          "name": "Case Tracker",
+          "packageName": "com.joincarbon.nutrition",
+          "name": "Carbon",
           "description": null,
           "apkFileType": null,
-          "appIconColor": "#1565C0",
+          "appIconColor": "#111111",
           "signatures": null,
           "targets": [
             {
-              "version": "5.5.1",
+              "version": "2.76.5784",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1486,7 +1834,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks Premium features in app.",
+      "description": "Unlocks premium features in app.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1499,7 +1847,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.57",
+              "version": "1.59",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1586,6 +1934,33 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Premium Features in app.",
+      "default": true,
+      "dependencies": [
+        "RawResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.lawfully.lawfully_ai_tracker",
+          "name": "Lawfully",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#0D47A1",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.6.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks premium in Beta by Mirko.",
       "default": true,
       "dependencies": [],
@@ -1625,6 +2000,31 @@
           "targets": [
             {
               "version": "3.4.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium features in app..",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.particlenews.newsbreak",
+          "name": "NewsBreak",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1786,6 +2186,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks SkinSort premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.skinsort",
+          "name": "SkinSort",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2F7D62",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.15",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all Premium features in Snipd: AI Podcast Player by spoofing the RevenueCat CustomerInfo.",
       "default": true,
       "dependencies": [],
@@ -1811,6 +2236,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.snow_forecast.snowforecast",
+          "name": "Snow-Forecast.com",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#CA0013",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.0.6",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks Social Gamebox premium features.",
       "default": true,
       "dependencies": [],
@@ -1825,31 +2275,6 @@
           "targets": [
             {
               "version": "1.1.3",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content in Strength Training by Muscle Motion. ",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.strength.mobile",
-          "name": "Strength Training",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.5.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1974,7 +2399,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "50.1.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2086,6 +2511,31 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks all premium features in Case Tracker — Immigration.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.saldous.casetracker",
+          "name": "Case Tracker",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.5.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Unlock Pro Features in Cashew App",
       "default": true,
       "dependencies": [],
@@ -2150,6 +2600,31 @@
           "targets": [
             {
               "version": "2.56.10",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlock Pro Features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.changayaf.inmigreat",
+          "name": "Inmigreat",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6344CC",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.2.83",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2315,6 +2790,31 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks premium features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "police.scanner.radio.broadcastify.citizen",
+          "name": "Police Scanner",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#0D47A1",
+          "signatures": null,
+          "targets": [
+            {
+              "version": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Removes ads and unlocks the no-ads subscription in RAR.",
       "default": true,
       "dependencies": [],
@@ -2379,6 +2879,56 @@
           "targets": [
             {
               "version": "26.5.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks UDisc Pro subscription.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.regasoftware.udisc",
+          "name": "UDisc",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F47C20",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "24.2.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Royale",
+      "description": "Unlocks Transit Royale Membership.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.thetransitapp.droid",
+          "name": "Transit",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00B2A9",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.1.12",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2504,12 +3054,6 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2.0526.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null

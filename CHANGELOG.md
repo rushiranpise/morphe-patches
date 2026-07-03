@@ -1,3 +1,80 @@
+# Rushi's Patches v1.9.0-dev.1
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 107
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.9.0-dev.1.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+### Added Apps
+- **BlurWall** (`apps.automan.blurwallpaper`)
+- **Carbon** (`com.joincarbon.nutrition`)
+- **Citymapper** (`com.citymapper.app.release`)
+- **Inmigreat** (`com.changayaf.inmigreat`)
+- **Lawfully** (`com.lawfully.lawfully_ai_tracker`)
+- **MigraConnect** (`com.tecso.MigraConnect`)
+- **Moovit** (`com.tranzmate`)
+- **NewsBreak** (`com.particlenews.newsbreak`)
+- **Police Scanner** (`police.scanner.radio.broadcastify.citizen`)
+- **Scoopz** (`com.localaiapp.scoops`)
+- **SkinSort** (`com.skinsort`)
+- **Snow-Forecast.com** (`com.snow_forecast.snowforecast`)
+- ...and 2 more
+
+### Updated App Versions
+- **AIDA64** (`com.finalwire.aida64`): `2.20` -> `2.21`
+- **CPU-Z** (`com.cpuid.cpu_z`): `1.57` -> `1.59`
+- **MovieBox TV** (`com.community.oneroom`): `1.0.2.0526.03, 3.0.15.0616.03` -> `3.0.15.0616.03`
+- **Windy** (`com.windyty.android`): `unknown` -> `50.1.1`
+
+### Removed Apps
+- **Strength Training** (`air.com.musclemotion.strength.mobile`)
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.9.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.2-dev.2...v1.9.0-dev.1) (2026-07-03)
+
+### New Patches
+
+* add blurwall ([571b0a8](https://github.com/rushiranpise/morphe-patches/commit/571b0a8ab2f8389e5e6459308cb75b5c7ade1238))
+* add carbon ([8dd9619](https://github.com/rushiranpise/morphe-patches/commit/8dd96198aa837e27ebe7c3304313abf889cbf6a5))
+* add citymapper ([5ff6d09](https://github.com/rushiranpise/morphe-patches/commit/5ff6d090edf07324d57cbb43440bae2adbb8d1af))
+* add Inmigreat ([f90b9ea](https://github.com/rushiranpise/morphe-patches/commit/f90b9ea0e4b55150755d321ca43127f75e684949))
+* add lawfully ([e196bc5](https://github.com/rushiranpise/morphe-patches/commit/e196bc567c8a90bc08abede31f8c10ed855e49bc))
+* add migraconnect ([3a890af](https://github.com/rushiranpise/morphe-patches/commit/3a890af883bb945bfa8d4aebb89de0db05590132))
+* add Moovit ([73769fa](https://github.com/rushiranpise/morphe-patches/commit/73769fa127101f66e6ddf8ff8e35b077d5b1fe08))
+* add newsbreak ([0e6f76a](https://github.com/rushiranpise/morphe-patches/commit/0e6f76a102a8e771bd85e13a1001c2a76b4e30d2))
+* add police scanner ([ea24eee](https://github.com/rushiranpise/morphe-patches/commit/ea24eeeb6ac1e673880fc28d83c0b85c111e1e90))
+* add scoopz ([8db7776](https://github.com/rushiranpise/morphe-patches/commit/8db777640490a80a8bc155644d71e9cf766ca06b))
+* add skinsort ([6d4800d](https://github.com/rushiranpise/morphe-patches/commit/6d4800dbeeaba56091806fced89c30704e36a841))
+* add snowforecast ([c0a6854](https://github.com/rushiranpise/morphe-patches/commit/c0a6854c0b1a43352d03c2adddc0b130765d7e4f))
+* add transit ([326bb35](https://github.com/rushiranpise/morphe-patches/commit/326bb3542fcb901abcd6c2e37f70dc14c1cf211f))
+* add udisk ([10ca21b](https://github.com/rushiranpise/morphe-patches/commit/10ca21b2d79846793e877e4e66c69f5530a3d574))
+* add universal patches ([2b6267e](https://github.com/rushiranpise/morphe-patches/commit/2b6267e69c894662a36cc41108587a90d87b9104))
+
+### Fixes
+
+* case tracker ([1261ec0](https://github.com/rushiranpise/morphe-patches/commit/1261ec07bd664512c8d5b974cca24547b699ef0b))
+* cpuz ([8c9040e](https://github.com/rushiranpise/morphe-patches/commit/8c9040e1eb729d6b6aa9778ac1a65386ce804dd2))
+* remove broken patch ([e868590](https://github.com/rushiranpise/morphe-patches/commit/e86859061b58ea2317616b317fa361d1fa8eed72))
+
 # Rushi's Patches v1.8.2-dev.2
 Patch source for Morphe.
 **Channel:** dev prerelease  
