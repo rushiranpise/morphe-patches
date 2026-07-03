@@ -536,7 +536,7 @@ object Constants {
 
     // Scoopz — Local News & Community (com.localaiapp.scoops)
     val SCOOPZ_COMPATIBILITY = Compatibility(
-        name = "Scoopz - Local & Breaking News",
+        name = "Scoopz",
         packageName = "com.localaiapp.scoops",
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "3.2.7.0"))
@@ -548,5 +548,13 @@ object Constants {
         packageName = "com.particlenews.newsbreak",
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "26.27.0", versionCode = 26270016))
+    )
+
+    // Inmigreat — Immigration Guide & Case Tracker (com.changayaf.inmigreat)
+    val INMIGREAT_COMPATIBILITY = Compatibility(
+        name = "Inmigreat",
+        packageName = "com.changayaf.inmigreat",
+        appIconColor = 0x6344CC,
+        targets = listOf(AppTarget(version = "2.2.83", versionCode = 679))
     )
 }
