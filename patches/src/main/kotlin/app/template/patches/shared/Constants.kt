@@ -493,4 +493,12 @@ object Constants {
         appIconColor = 0x0066FF,
         targets = listOf(AppTarget(version = "5.195.0.1789", versionCode = 1789))
     )
+
+    // Transit — Bus, Train, Tracker
+    val THETRANSIT_COMPATIBILITY = Compatibility(
+        name = "Transit",
+        packageName = "com.thetransitapp.droid",
+        appIconColor = 0x00B2A9,
+        targets = listOf(AppTarget(version = "6.1.12", versionCode = 5125980))
+    )
 }
