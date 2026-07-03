@@ -501,4 +501,12 @@ object Constants {
         appIconColor = 0x00B2A9,
         targets = listOf(AppTarget(version = "6.1.12", versionCode = 5125980))
     )
+
+    // UDisc Disc Golf
+    val UDISC_COMPATIBILITY = Compatibility(
+        name = "UDisc",
+        packageName = "com.regasoftware.udisc",
+        appIconColor = 0xF47C20,
+        targets = listOf(AppTarget(version = "24.2.1", versionCode = 9928))
+    )
 }
