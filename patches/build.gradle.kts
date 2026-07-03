@@ -4,10 +4,10 @@ patches {
     about {
         name = "Rushi's Patches"
         description = "Patches for apps I like"
-        source = "git@github.com:morphe-patches.git"
+        source = "https://github.com/rushiranpise/morphe-patches"
         author = "rushiranpise"
-        contact = "githu.com/rushiranpise"
-        website = "https://github.com/morphe-patches"
+        contact = "https://github.com/rushiranpise"
+        website = "https://github.com/rushiranpise/morphe-patches"
         license = "GPLv3"
     }
 }

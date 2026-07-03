@@ -9,56 +9,48 @@ import app.template.patches.shared.Constants.CASETRACKER_COMPATIBILITY
 /**
  * Unlocks all premium features in Case Tracker — Immigration (com.saldous.casetracker).
  *
- * This patch combines three independent layers to ensure premium access
- * survives every code path — initial load, billing callbacks, and SDK
- * subscription state updates.
+ * ## Subscription model (v5.5.1)
  *
- * ## Subscription Tiers
+ * All purchase state is stored in a MutableStateFlow<z> (ads/x.b).
+ * The data class z(a: Z, b: Z, c: Z, d: Z) maps to:
+ *   z.a = isSubscribed (Pro || Plus || AdsRemoved)
+ *   z.b = isPro
+ *   z.c = isPlus
+ *   z.d = isAdsRemoved
  *
- * | Tier   | Field | SharedPrefs Key              | Vendor IDs                    |
- * |--------|-------|------------------------------|-------------------------------|
- * | Remove Ads | c.z0 | HAS_PURCHASED_REMOVE_ADS | MP199T0_ads, LP499T0_ads      |
- * | Pro    | c.A0  | HAS_PURCHASED_PRO_PLAN   | *pro* (contains match)        |
- * | Plus   | c.B0  | HAS_PURCHASED_PLUS_PLAN  | *plus* (contains match)       |
+ * The StateFlow is seeded at startup from SharedPreferences via
+ * data/c.a(String, boolean)Z, then can be overwritten by a backend
+ * refresh coroutine (ads/x.e).
  *
- * ## Layer 1 — SharedPrefs getter (c.a)
+ * ## Layers
  *
- * `c.a(String key, boolean default): Z` is the sole helper used by
- * DataManager’s init coroutine to populate z0, A0 and B0 from
- * SharedPreferences on every app launch.  Replacing its body with
- * `const/4 true; return` forces all three flags true from the first frame.
+ * **Layer 1 — SharedPrefs getter (data/c.a)**
+ * Replacing with `return true` causes the StateFlow to be seeded with
+ * z(true, true, true, true) on every cold start.
  *
- * ## Layer 2 — Billing callback writer (ads/w.a)
+ * **Layer 2 — isPro getter (ads/x.a)**
+ * Short-circuits the Pro tier gate to always return true regardless of
+ * the current StateFlow value.
  *
- * `ads/w.a(v, String, int): V` is the static handler that writes purchase
- * results back to the DataManager statics and SharedPreferences when a
- * billing event fires (purchase, restore, or Unsubscribed).  We prepend
- * a block that sput-boolean true into all three statics and return-void
- * immediately so no billing event can ever reset the flags to false.
+ * **Layer 3 — isSubscribed getter (ads/x.c)**
+ * Short-circuits the generic "any paid tier" gate to always return true.
  *
- * ## Layer 3 — RevenewSDK subscription state observer
- *
- * `RevenewSDK.updateSubscriptionState(List): V` is called by the custom
- * RevenewSDK whenever Google Play Billing returns a new subscription list.
- * The SDK emits either `Subscribed` or `Unsubscribed` into the
- * `subscriptionObservable` StateFlow that UI layers observe for paywall
- * decisions.  A timeout-recovery coroutine also calls this method as a
- * fallback if billing is slow.  Prepending `return-void` keeps the
- * StateFlow permanently in its initial `Loading` state, so no paywall
- * is ever shown via the reactive path.
+ * **Layer 4 — refreshFromBackend coroutine (ads/x.e)**
+ * Prepending return-void prevents the Revenew backend from overwriting
+ * the premium state with an Unsubscribed result after network calls.
  */
 @Suppress("unused")
 val caseTrackerUnlockProPatch = bytecodePatch(
-    name = "Unlock Premium",
-    description = "Unlocks Premium Features In the App.",
+    name = "Unlock Pro",
+    description = "Unlocks all premium features in Case Tracker — Immigration.",
     default = true
 ) {
     compatibleWith(CASETRACKER_COMPATIBILITY)
 
     execute {
         // ── Layer 1: SharedPrefs boolean getter ──────────────────────────────
-        // c.a(String, boolean)Z — used by DataManager init to populate z0, A0, B0.
-        // Replace body entirely: always return true.
+        // data/c.a(String, boolean)Z — seeds StateFlow<z> on init.
+        // Replace body: always return true.
         SharedPrefGetBooleanFingerprint
             .match(classDefBy(SharedPrefGetBooleanFingerprint.definingClass!!))
             .method
@@ -74,37 +66,56 @@ val caseTrackerUnlockProPatch = bytecodePatch(
                 )
             }
 
-        // ── Layer 2: Billing callback writer ─────────────────────────────────
-        // ads/w.a(v, String, int)V — billing event handler.
-        // Prepend: sput true into all three statics and return-void immediately.
-        AdsWriterFingerprint
-            .match(classDefBy(AdsWriterFingerprint.definingClass!!))
+        // ── Layer 2: isPro getter ─────────────────────────────────────────────
+        // ads/x.a()Z — reads z.b (isPro) from StateFlow. Force true.
+        IsProGetterFingerprint
+            .match(classDefBy(IsProGetterFingerprint.definingClass!!))
+            .method
+            .apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(
+                    0,
+                    """
+                    const/4 v0, 0x1
+                    return v0
+                    """.trimIndent()
+                )
+            }
+
+        // ── Layer 3: isSubscribed getter ──────────────────────────────────────
+        // ads/x.c()Z — reads z.a (any paid tier). Force true.
+        IsSubscribedGetterFingerprint
+            .match(classDefBy(IsSubscribedGetterFingerprint.definingClass!!))
+            .method
+            .apply {
+                if (implementation == null) return@apply
+                removeInstructions(0, instructions.count())
+                addInstructions(
+                    0,
+                    """
+                    const/4 v0, 0x1
+                    return v0
+                    """.trimIndent()
+                )
+            }
+
+        // ── Layer 4: refreshFromBackend coroutine ─────────────────────────────
+        // ads/x.e(ContinuationImpl)Object — backend subscription refresh.
+        // Return kotlin.Unit immediately — must use return-object (not return-void)
+        // since the method signature returns Object, not void.
+        RefreshFromBackendFingerprint
+            .match(classDefBy(RefreshFromBackendFingerprint.definingClass!!))
             .method
             .apply {
                 if (implementation == null) return@apply
                 addInstructions(
                     0,
                     """
-                    const/4 v0, 0x1
-                    sput-boolean v0, Lcom/saldous/casetracker/data/c;->z0:Z
-                    sput-boolean v0, Lcom/saldous/casetracker/data/c;->A0:Z
-                    sput-boolean v0, Lcom/saldous/casetracker/data/c;->B0:Z
-                    return-void
+                    sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;
+                    return-object v0
                     """.trimIndent()
                 )
-            }
-
-        // ── Layer 3: RevenewSDK subscription state observer ──────────────────
-        // RevenewSDK.updateSubscriptionState(List)V — called on every
-        // billing result and on timeout recovery.  Prepend return-void so
-        // the subscriptionObservable StateFlow stays at Loading permanently
-        // and no Unsubscribed paywall event is ever emitted to the UI.
-        RevenewUpdateStateFingerprint
-            .match(classDefBy(RevenewUpdateStateFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
             }
     }
 }

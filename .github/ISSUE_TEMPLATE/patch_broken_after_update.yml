@@ -1,0 +1,96 @@
+name: Patch broken after app update
+description: Report a patch that stopped working after the app was updated.
+title: 'bug: patch broken after app update - '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Patch Broken After App Update
+
+        Use this form when a patch worked before, but stopped working after updating the target app.
+
+        Before creating a new report, please search existing open and closed bug reports:
+        https://github.com/rushiranpise/morphe-patches/issues?q=label%3A%22bug%22
+  - type: input
+    id: app_name
+    attributes:
+      label: App name
+      placeholder: 'Duolingo, Prime Video, MyFitnessPal, etc'
+    validations:
+      required: true
+  - type: input
+    id: broken_app_version
+    attributes:
+      label: Broken app version
+      description: The app version where the patch no longer works.
+      placeholder: '1.23.456'
+    validations:
+      required: true
+  - type: input
+    id: last_working_app_version
+    attributes:
+      label: Last working app version
+      description: The newest app version where this patch still worked, if known.
+      placeholder: '1.23.455'
+    validations:
+      required: false
+  - type: input
+    id: patch_source_release
+    attributes:
+      label: Patch source release
+      description: 'Required: provide the Morphe patch release channel and build number used to create the patched APK.'
+      placeholder: 'stable v1.8.0 or dev v1.8.0-dev.3'
+    validations:
+      required: true
+  - type: input
+    id: manager_or_cli_version
+    attributes:
+      label: Manager or CLI version
+      description: The Morphe Manager or Morphe CLI version used.
+      placeholder: 'Manager v1.12.0'
+    validations:
+      required: true
+  - type: input
+    id: apk_source_type
+    attributes:
+      label: APK source and type
+      description: Provide where the APK came from and its package format or architecture.
+      placeholder: 'APKMirror APK arm64-v8a, APKPure XAPK, Play Store split APK, etc'
+    validations:
+      required: true
+  - type: textarea
+    id: broken_patches
+    attributes:
+      label: Broken patch or patches
+      description: List the patch names that stopped working and what changed.
+      placeholder: |
+        - Unlock Premium: premium screen opens again
+        - Remove Ads: banner ads are visible again
+    validations:
+      required: true
+  - type: textarea
+    id: error_logs
+    attributes:
+      label: Error logs
+      description: 'Required: paste the relevant patching or runtime logs. See the README for how to capture logs: https://github.com/rushiranpise/morphe-patches#capture-logs'
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Screenshots, videos, suspected cause, or anything else that may help.
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Your report may be closed if you do not follow the checklist below.
+      options:
+        - label: I have checked all open and closed bug reports and this is not a duplicate.
+          required: true
+        - label: I followed the README log capture instructions and included the relevant logs.
+          required: true
+        - label: All requested information has been provided properly.
+          required: true
