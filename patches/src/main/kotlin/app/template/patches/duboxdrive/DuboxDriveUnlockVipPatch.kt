@@ -139,7 +139,7 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             .forEach { it.addInstructions(0, "const/4 v0, 0x1\nreturn v0") }
 
         // ── Global VipInfo cache gate (class changes per version) → true ──────
-        for (fp in listOf(GlobalVipGate4182, GlobalVipGate4186, GlobalVipGate4196)) {
+        for (fp in listOf(GlobalVipGate4182, GlobalVipGate4186, GlobalVipGate4196, GlobalVipGate4201)) {
             runCatching {
                 fp.match(classDefBy(fp.definingClass!!)).method.apply {
                     if (implementation == null) return@apply

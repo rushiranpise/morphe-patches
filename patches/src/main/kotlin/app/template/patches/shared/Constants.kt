@@ -1,13 +1,12 @@
 package app.template.patches.shared
 
-import app.morphe.patcher.patch.ApkFileType
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 
 object Constants {
     // Call Recorder — Automatic by Catalina Group
     val CALLRECORDER_COMPATIBILITY = Compatibility(
-        name = "Call Recorder - Automatic",
+        name = "Cube ACR",
         packageName = "com.catalinagroup.callrecorder",
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "2.4.281"))
@@ -15,7 +14,7 @@ object Constants {
 
     // Universal TV Remote Control by SensusTech
     val UNIVERSALTV_COMPATIBILITY = Compatibility(
-        name = "Universal TV Remote Control",
+        name = "Unimote",
         packageName = "sensustech.universal.tv.remote.control",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "1.8.1"))
@@ -23,7 +22,7 @@ object Constants {
 
     // Citizen — Safety Alert by sp0n
     val CITIZEN_COMPATIBILITY = Compatibility(
-        name = "Citizen - Safety Alert",
+        name = "Citizen",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
         targets = listOf(AppTarget(version = "0.1298.0"))
@@ -32,7 +31,7 @@ object Constants {
 
     // Case Tracker — Immigration App by Saldous
     val CASETRACKER_COMPATIBILITY = Compatibility(
-        name = "Case Tracker - Immigration",
+        name = "Case Tracker",
         packageName = "com.saldous.casetracker",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "5.5.1"))
@@ -40,10 +39,10 @@ object Constants {
 
     // Cloudflare WARP — 1.1.1.1
     val WARP_COMPATIBILITY = Compatibility(
-        name = "1.1.1.1 + WARP",
+        name = "1.1.1.1",
         packageName = "com.cloudflare.onedotonedotonedotone",
         appIconColor = 0xF48120,
-        targets = listOf(AppTarget(version = "6.38.7"))
+        targets = listOf(AppTarget(version = "6.38.7", versionCode = 5311))
     )
 
     // Crime Radar — Local Police & Safety by Newsbreak
@@ -80,7 +79,7 @@ object Constants {
 
     // Snipd — AI Podcast Player
     val SNIPD_COMPATIBILITY = Compatibility(
-        name = "Snipd: AI Podcast Player",
+        name = "Snipd",
         packageName = "ai.topicfinder.podcastdiscovery",
         appIconColor = 0x1CC29F,
         targets = listOf(AppTarget(version = "4.1.14"))
@@ -187,7 +186,7 @@ object Constants {
         name = "TeraBox",
         packageName = "com.dubox.drive",
         appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.19.6"))
+        targets = listOf(AppTarget(version = "4.20.1"))
     )
 
     // SAI — Split APKs Installer by MTV
@@ -251,7 +250,7 @@ object Constants {
         name = "AIDA64",
         packageName = "com.finalwire.aida64",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "2.20"))
+        targets = listOf(AppTarget(version = "2.21", versionCode = 221))
     )
 
     // CPU-Z by CPUID
@@ -259,7 +258,7 @@ object Constants {
         name = "CPU-Z",
         packageName = "com.cpuid.cpu_z",
         appIconColor = 0x2A3B4C,
-        targets = listOf(AppTarget(version = "1.57"))
+        targets = listOf(AppTarget(version = "1.59", versionCode = 59))
     )
 
     // HTTP Mock Tool — API Mock & Network Capture
@@ -288,7 +287,7 @@ object Constants {
 
     // NetShare — Mobile Hotspot / Subnet Router
     val NETSHARE_COMPATIBILITY = Compatibility(
-        name = "NetShare - Hotspot & Wifi Direct",
+        name = "NetShare",
         packageName = "kha.prog.mikrotik",
         appIconColor = 0x1976D2,
         targets = listOf(AppTarget(version = "UI/link-274"))
@@ -320,7 +319,7 @@ object Constants {
 
     // Speedtest by Ookla
     val SPEEDTEST_COMPATIBILITY = Compatibility(
-        name = "Speedtest by Ookla",
+        name = "Speedtest",
         packageName = "org.zwanoo.android.speedtest",
         appIconColor = 0x141C4C,
         targets = listOf(AppTarget(version = "7.0.4"))
@@ -344,7 +343,7 @@ object Constants {
 
     // Cashew — Budget & Finance Tracker by James Kokoska
     val CASHEW_COMPATIBILITY = Compatibility(
-        name = "Cashew - Budget & Finance App",
+        name = "Cashew",
         packageName = "com.budget.tracker_app",
         appIconColor = 0xFFB300,
         targets = listOf(AppTarget(version = "6.5.9"))
@@ -360,7 +359,7 @@ object Constants {
 
     // Waze — GPS, Maps & Traffic
     val WAZE_COMPATIBILITY = Compatibility(
-        name = "Waze - GPS, Maps & Traffic",
+        name = "Waze",
         packageName = "com.waze",
         appIconColor = 0x33CCFF,
         targets = listOf(AppTarget(version = "5.19.0.2"))
@@ -368,7 +367,7 @@ object Constants {
 
     // AccuWeather — Weather Radar & Forecast
     val ACCUWEATHER_COMPATIBILITY = Compatibility(
-        name = "AccuWeather: Weather Radar",
+        name = "AccuWeather",
         packageName = "com.accuweather.android",
         appIconColor = 0xF25C1B,
         targets = listOf(AppTarget(version = "21.1.11-1-rc"))
@@ -388,9 +387,7 @@ object Constants {
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104),
-            AppTarget(version = "1.0.2.0526.03", versionCode = 50040002),
-        )
+            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104))
     )
 
     // The Weather Channel — Weather Forecast & Alerts by The Weather Channel
@@ -417,25 +414,17 @@ object Constants {
         targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
     )
 
-    // Strength Training by Muscle Motion
-    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
-        name = "Strength Training: Gym Workout",
-        packageName = "air.com.musclemotion.strength.mobile",
-        appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
-    )
-
     // Windy — Weather Radar & Forecast by Windyty
     val WINDY_COMPATIBILITY = Compatibility(
-        name = "Windy: Weather Radar & Forecast",
+        name = "Windy",
         packageName = "com.windyty.android",
         appIconColor = 0x0FA0EB,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "50.1.1"))
     )
 
     // TomTom GO Navigation
     val TOMTOMGO_COMPATIBILITY = Compatibility(
-        name = "TomTom GO Navigation",
+        name = "TomTom GO",
         packageName = "com.tomtom.gplay.navapp",
         appIconColor = 0xDF1B12,
         targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
@@ -443,7 +432,7 @@ object Constants {
 
     // Posture Correction by Muscle Motion
     val POSTURE_COMPATIBILITY = Compatibility(
-        name = "Posture Correction Exercises",
+        name = "Posture",
         packageName = "air.com.musclemotion.posture",
         appIconColor = 0x00897B,
         targets = listOf(AppTarget(version = "3.2.0", versionCode = 10040835))
@@ -451,7 +440,7 @@ object Constants {
 
     // Kyphosis by Muscle Motion (legacy Adobe AIR architecture)
     val KYPHOSIS_COMPATIBILITY = Compatibility(
-        name = "Kyphosis Exercises - Hunchback",
+        name = "Kyphosis",
         packageName = "air.com.musclemotion.kyphosis",
         appIconColor = 0xE65100,
         targets = listOf(AppTarget(version = "1.4.9", versionCode = 156))
@@ -459,7 +448,7 @@ object Constants {
 
     // Workout by Muscle Motion (legacy Adobe AIR architecture)
     val WORKOUT_COMPATIBILITY = Compatibility(
-        name = "Workout & Gym Training Plan",
+        name = "Workout",
         packageName = "air.com.musclemotion.workout",
         appIconColor = 0xC62828,
         targets = listOf(AppTarget(version = "1.2.0", versionCode = 153))
@@ -467,7 +456,7 @@ object Constants {
 
     // Yoga by Muscle Motion
     val YOGA_COMPATIBILITY = Compatibility(
-        name = "Yoga - Poses & Classes",
+        name = "Yoga",
         packageName = "air.com.musclemotion.yoga",
         appIconColor = 0x7B1FA2,
         targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004178))
@@ -475,10 +464,121 @@ object Constants {
 
     // Anatomy by Muscle Motion
     val ANATOMY_COMPATIBILITY = Compatibility(
-        name = "3D Anatomy & Physiology",
+        name = "Anatomy",
         packageName = "air.com.musclemotion.anatomy",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004183))
     )
 
+    // Citymapper
+    val CITYMAPPER_COMPATIBILITY = Compatibility(
+        name = "Citymapper",
+        packageName = "com.citymapper.app.release",
+        appIconColor = 0x00A862,
+        targets = listOf(AppTarget(version = "11.55.1", versionCode = 1155080))
+    )
+
+    // Tranzmate — Public Transit by Moovit
+    val TRANZMATE_COMPATIBILITY = Compatibility(
+        name = "Moovit",
+        packageName = "com.tranzmate",
+        appIconColor = 0x0066FF,
+        targets = listOf(AppTarget(version = "5.195.0.1789", versionCode = 1789))
+    )
+
+    // Transit — Bus, Train, Tracker
+    val THETRANSIT_COMPATIBILITY = Compatibility(
+        name = "Transit",
+        packageName = "com.thetransitapp.droid",
+        appIconColor = 0x00B2A9,
+        targets = listOf(AppTarget(version = "6.1.12", versionCode = 5125980))
+    )
+
+    // UDisc Disc Golf
+    val UDISC_COMPATIBILITY = Compatibility(
+        name = "UDisc",
+        packageName = "com.regasoftware.udisc",
+        appIconColor = 0xF47C20,
+        targets = listOf(AppTarget(version = "24.2.1", versionCode = 9928))
+    )
+
+    // Snow-Forecast.com
+    val SNOWFORECAST_COMPATIBILITY = Compatibility(
+        name = "Snow-Forecast.com",
+        packageName = "com.snow_forecast.snowforecast",
+        appIconColor = 0xCA0013,
+        targets = listOf(AppTarget(version = "8.0.6", versionCode = 2139))
+    )
+
+    // SkinSort
+    val SKINSORT_COMPATIBILITY = Compatibility(
+        name = "SkinSort",
+        packageName = "com.skinsort",
+        appIconColor = 0x2F7D62,
+        targets = listOf(AppTarget(version = "1.15", versionCode = 25))
+    )
+
+    // BlurWall — Blur Wallpaper by Automan
+    val BLURWALL_COMPATIBILITY = Compatibility(
+        name = "BlurWall",
+        packageName = "apps.automan.blurwallpaper",
+        appIconColor = 0x42A5F5,
+        targets = listOf(AppTarget(version = "2.9.2", versionCode = 28))
+    )
+
+    // Carbon
+    val CARBON_COMPATIBILITY = Compatibility(
+        name = "Carbon",
+        packageName = "com.joincarbon.nutrition",
+        appIconColor = 0x111111,
+        targets = listOf(AppTarget(version = "2.76.5784", versionCode = 1633629070))
+    )
+
+    // Scoopz — Local News & Community (com.localaiapp.scoops)
+    val SCOOPZ_COMPATIBILITY = Compatibility(
+        name = "Scoopz",
+        packageName = "com.localaiapp.scoops",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.2.7.0"))
+    )
+
+    // NewsBreak
+    val NEWSBREAK_COMPATIBILITY = Compatibility(
+        name = "NewsBreak",
+        packageName = "com.particlenews.newsbreak",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "26.27.0", versionCode = 26270016))
+    )
+
+    // Inmigreat — Immigration Guide & Case Tracker (com.changayaf.inmigreat)
+    val INMIGREAT_COMPATIBILITY = Compatibility(
+        name = "Inmigreat",
+        packageName = "com.changayaf.inmigreat",
+        appIconColor = 0x6344CC,
+        targets = listOf(AppTarget(version = "2.2.83", versionCode = 679))
+    )
+
+    // Lawfully (com.lawfully.lawfully_ai_tracker)
+    val LAWFULLY_COMPATIBILITY = Compatibility(
+        name = "Lawfully",
+        packageName = "com.lawfully.lawfully_ai_tracker",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = "6.6.2", versionCode = 532))
+    )
+
+    // MigraConnect — USCIS & EOIR Case Tracker (com.tecso.MigraConnect)
+    val MIGRACONNECT_COMPATIBILITY = Compatibility(
+        name = "MigraConnect",
+        packageName = "com.tecso.MigraConnect",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "2.8.1", versionCode = 118))
+    )
+
+    // Police Scanner — Broadcastify (police.scanner.radio.broadcastify.citizen)
+    val POLICESCANNER_COMPATIBILITY = Compatibility(
+        name = "Police Scanner",
+        packageName = "police.scanner.radio.broadcastify.citizen",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = null))
+    )
 }
