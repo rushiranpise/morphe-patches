@@ -557,4 +557,12 @@ object Constants {
         appIconColor = 0x6344CC,
         targets = listOf(AppTarget(version = "2.2.83", versionCode = 679))
     )
+
+    // Lawfully (com.lawfully.lawfully_ai_tracker)
+    val LAWFULLY_COMPATIBILITY = Compatibility(
+        name = "Lawfully",
+        packageName = "com.lawfully.lawfully_ai_tracker",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = "6.6.2", versionCode = 532))
+    )
 }
