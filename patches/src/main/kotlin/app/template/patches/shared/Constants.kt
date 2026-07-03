@@ -42,7 +42,7 @@ object Constants {
         name = "1.1.1.1",
         packageName = "com.cloudflare.onedotonedotonedotone",
         appIconColor = 0xF48120,
-        targets = listOf(AppTarget(version = "6.38.7"))
+        targets = listOf(AppTarget(version = "6.38.7", versionCode = 5311))
     )
 
     // Crime Radar — Local Police & Safety by Newsbreak
@@ -250,7 +250,7 @@ object Constants {
         name = "AIDA64",
         packageName = "com.finalwire.aida64",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "2.20"))
+        targets = listOf(AppTarget(version = "2.21", versionCode = 221))
     )
 
     // CPU-Z by CPUID
@@ -258,7 +258,7 @@ object Constants {
         name = "CPU-Z",
         packageName = "com.cpuid.cpu_z",
         appIconColor = 0x2A3B4C,
-        targets = listOf(AppTarget(version = "1.57"))
+        targets = listOf(AppTarget(version = "1.59", versionCode = 59))
     )
 
     // HTTP Mock Tool — API Mock & Network Capture
@@ -508,5 +508,13 @@ object Constants {
         packageName = "com.regasoftware.udisc",
         appIconColor = 0xF47C20,
         targets = listOf(AppTarget(version = "24.2.1", versionCode = 9928))
+    )
+
+    // Snow-Forecast.com
+    val SNOWFORECAST_COMPATIBILITY = Compatibility(
+        name = "Snow-Forecast.com",
+        packageName = "com.snow_forecast.snowforecast",
+        appIconColor = 0xCA0013,
+        targets = listOf(AppTarget(version = "8.0.6", versionCode = 2139))
     )
 }
