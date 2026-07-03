@@ -517,4 +517,12 @@ object Constants {
         appIconColor = 0xCA0013,
         targets = listOf(AppTarget(version = "8.0.6", versionCode = 2139))
     )
+
+    // SkinSort
+    val SKINSORT_COMPATIBILITY = Compatibility(
+        name = "SkinSort",
+        packageName = "com.skinsort",
+        appIconColor = 0x2F7D62,
+        targets = listOf(AppTarget(version = "1.15", versionCode = 25))
+    )
 }
