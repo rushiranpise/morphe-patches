@@ -613,4 +613,12 @@ object Constants {
         appIconColor = 0x6200EE,
         targets = listOf(AppTarget(version = "build107.0.5", versionCode = 10705))
     )
+
+    // Weawow: Weather & Widget
+    val WEAWOW_COMPATIBILITY = Compatibility(
+        name = "Weawow: Weather & Widget",
+        packageName = "com.weawow",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "7.1.7", versionCode = 717))
+    )
 }
