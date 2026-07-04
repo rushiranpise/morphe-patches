@@ -621,4 +621,12 @@ object Constants {
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "7.1.7", versionCode = 717))
     )
+
+    // SPIN Safe Browser
+    val SPIN_COMPATIBILITY = Compatibility(
+        name = "SPIN",
+        packageName = "com.nationaledtech.spinbrowser",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "70.3.0", versionCode = 2025061004))
+    )
 }
