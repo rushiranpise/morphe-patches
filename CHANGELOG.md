@@ -1,3 +1,59 @@
+# Rushi's Patches v1.10.0-dev.1
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 117
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.10.0-dev.1.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+### Added Apps
+- **CamScanner** (`com.intsig.camscanner`)
+- **Image & Video Date Fixer** (`eu.duong.imagedatefixer`)
+- **Inure App Manager** (`app.simple.inure.play`)
+- **Rename & Organize** (`eu.duong.picturemanager`)
+- **SPIN** (`com.nationaledtech.spinbrowser`)
+- **Strength Training** (`air.com.musclemotion.strength.mobile`)
+- **Toxly** (`com.mindful.code.studio.toxly.scanner`)
+- **Tracked** (`com.tracked.mobile`)
+- **Weawow: Weather & Widget** (`com.weawow`)
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.10.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.9.1...v1.10.0-dev.1) (2026-07-04)
+
+### New Patches
+
+* add camscanner ([ad5617c](https://github.com/rushiranpise/morphe-patches/commit/ad5617c9a08ca492357a2e4f566161a6555e6c53))
+* add inure ([82a6cdc](https://github.com/rushiranpise/morphe-patches/commit/82a6cdc3602ddabff0eb8852264368bb5ac6323d))
+* add JD apps ([417b355](https://github.com/rushiranpise/morphe-patches/commit/417b355c31a1a62a7b5c2000763481ba93f21757))
+* add spin ([3eccc7c](https://github.com/rushiranpise/morphe-patches/commit/3eccc7c60c59735e839326cc7cc1c604339be4ca))
+* add Strength Training ([d1afe6c](https://github.com/rushiranpise/morphe-patches/commit/d1afe6c0c004501d9298be15c458c8cd289c0f72))
+* add toxly ([d3702fa](https://github.com/rushiranpise/morphe-patches/commit/d3702fa5fde5c31ae6dfd04a7918101495bc48d8))
+* add tracked ([a97ac19](https://github.com/rushiranpise/morphe-patches/commit/a97ac19507e2e64e653c1a74d9fea3c23a7b6d08))
+* add weawow ([b52511e](https://github.com/rushiranpise/morphe-patches/commit/b52511e2f26d172bef8da1c5a9b4599c8e496c4e))
+
+### Fixes
+
+* add dependencies patches ([a3e1c4e](https://github.com/rushiranpise/morphe-patches/commit/a3e1c4e86ee00d736226a31ba4bf0fe20c539cf7))
+* citizen ([fe2a205](https://github.com/rushiranpise/morphe-patches/commit/fe2a205686a6cdcb795dd8fa2401bcf91b915358))
+
 # Rushi's Patches v1.9.1
 Patch source for Morphe.
 **Channel:** stable  
