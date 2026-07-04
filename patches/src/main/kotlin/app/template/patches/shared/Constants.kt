@@ -58,7 +58,7 @@ object Constants {
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = "26.5.5"))
+        targets = listOf(AppTarget(version = "26.6.3", versionCode = 945))
     )
 
     // Greenify — App Hibernation & Battery Saver
