@@ -414,6 +414,14 @@ object Constants {
         targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
     )
 
+    // Strength Training by Muscle Motion
+    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
+        name = "Strength Training",
+        packageName = "air.com.musclemotion.strength.mobile",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
+    )
+
     // Windy — Weather Radar & Forecast by Windyty
     val WINDY_COMPATIBILITY = Compatibility(
         name = "Windy",
