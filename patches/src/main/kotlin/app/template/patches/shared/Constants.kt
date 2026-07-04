@@ -605,4 +605,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "8.25.1", versionCode = 8250101))
     )
+
+    // Inure App Manager by Hamza Rizwan
+    val INURE_COMPATIBILITY = Compatibility(
+        name = "Inure App Manager",
+        packageName = "app.simple.inure.play",
+        appIconColor = 0x6200EE,
+        targets = listOf(AppTarget(version = "build107.0.5", versionCode = 10705))
+    )
 }
