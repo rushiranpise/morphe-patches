@@ -629,4 +629,12 @@ object Constants {
         appIconColor = 0x2563EB,
         targets = listOf(AppTarget(version = "70.3.0", versionCode = 2025061004))
     )
+
+    // Tracked
+    val TRACKED_COMPATIBILITY = Compatibility(
+        name = "Tracked",
+        packageName = "com.tracked.mobile",
+        appIconColor = 0x020617,
+        targets = listOf(AppTarget(version = "7.0.0", versionCode = 125))
+    )
 }
