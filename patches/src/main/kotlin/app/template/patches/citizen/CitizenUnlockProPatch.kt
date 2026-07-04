@@ -359,15 +359,12 @@ val citizenUnlockProPatch = bytecodePatch(
         // EXCLUDED: SafetyNetworkActivityPaywallCollector — multi-branch nav dispatcher (breaks safety network)
         // EXCLUDED: SubscriptionCenterActivityCollector — multi-branch dispatcher
         listOf(
-            SafetyZonePaywallFlowCollectorFingerprint,
             MenuPaywallFlowCollectorFingerprint,         // empty in v0.1298.0 — runCatching safe
             OnboardingPaywallFlowCollectorFingerprint,   // empty in v0.1298.0 — runCatching safe
             ProfilePaywallFlowCollectorFingerprint,      // gone in v0.1298.0 — runCatching safe
             SafetyHomePaywallFlowCollectorFingerprint,   // older builds
             MyProfileFragmentPaywallCollectorFingerprint, // older builds (h$a$a)
             SafetyCenterPaywallActivityCollectorFingerprint,
-            SubscriptionCenterActivityCollectorFingerprint,
-            SafetyNetworkActivityPaywallCollectorFingerprint
         ).forEach { fp ->
             runCatching {
                 fp.match(classDefBy(fp.definingClass!!)).method.apply {
