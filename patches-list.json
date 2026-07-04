@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.9.1",
+  "version": "1.10.0-dev.1",
   "patches": [
     {
       "name": "Alert Distances",
@@ -199,7 +199,7 @@
     {
       "name": "Bypass PairIP License Check",
       "description": "Bypasses PairIP License check.",
-      "default": true,
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -224,7 +224,7 @@
     {
       "name": "Bypass PairIP License Check",
       "description": "Makes LicenseClient.checkLicense() a no-op so the app never shows the license-denied blocking screen.",
-      "default": true,
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -424,7 +424,7 @@
     {
       "name": "Disable License Check",
       "description": "Disables License Check",
-      "default": true,
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -449,7 +449,7 @@
     {
       "name": "Disable Paywall Config",
       "description": "Disables SkinSort local paywall configuration.",
-      "default": true,
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -462,6 +462,31 @@
           "targets": [
             {
               "version": "1.15",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable telemetry",
+      "description": "Disables CamScanner's custom telemetry/log-agent system.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.intsig.camscanner",
+          "name": "CamScanner",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#19BCAA",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.20.0.2606230000",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1608,6 +1633,31 @@
       "options": []
     },
     {
+      "name": "Unlock Full Version",
+      "description": "Unlocks all features in Inure App Manager.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "app.simple.inure.play",
+          "name": "Inure App Manager",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6200EE",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "build107.0.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Lifetime",
       "description": "Unlocks lifetime subscription features in BlockerHero.",
       "default": true,
@@ -1761,7 +1811,10 @@
       "name": "Unlock Premium",
       "description": "Unlock Premium Features in app.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "apps.automan.blurwallpaper",
@@ -1898,6 +1951,31 @@
           "targets": [
             {
               "version": "AARCH64_1.248.400",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium features in Image & Video Date Fixer.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.duong.imagedatefixer",
+          "name": "Image & Video Date Fixer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.7.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2136,6 +2214,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks all premium features in Rename & Organize.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.duong.picturemanager",
+          "name": "Rename & Organize",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.25.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks Rocket Money Premium Features.",
       "default": true,
       "dependencies": [],
@@ -2286,6 +2389,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks all premium content in Strength Training by Muscle Motion. Note: Create an exercise plan to access videos",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "air.com.musclemotion.strength.mobile",
+          "name": "Strength Training",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall.",
       "default": true,
       "dependencies": [],
@@ -2325,6 +2453,56 @@
           "targets": [
             {
               "version": "3.6.316-beta",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Toxly Premium",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mindful.code.studio.toxly.scanner",
+          "name": "Toxly",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.15.3",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium Features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tracked.mobile",
+          "name": "Tracked",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#020617",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2613,7 +2791,9 @@
       "name": "Unlock Pro",
       "description": "Unlock Pro Features in app.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.changayaf.inmigreat",
@@ -2939,6 +3119,31 @@
       "options": []
     },
     {
+      "name": "Unlock SPIN Plus",
+      "description": "Unlocks SPIN Plus",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nationaledtech.spinbrowser",
+          "name": "SPIN",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2563EB",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "70.3.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Subscription",
       "description": "Unlocks all subscription features in TWT App.",
       "default": true,
@@ -3039,6 +3244,31 @@
       "options": []
     },
     {
+      "name": "Unlock donation",
+      "description": "Forces h0() to return \"yes\" so donate dialog never shows and providers unlock.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.weawow",
+          "name": "Weawow: Weather & Widget",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.1.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock member resolution",
       "description": "Forces MemberResolutionBean.isUnlock() to always return Boolean.TRUE, making all locally-cached episodes appear as unlocked to the playback layer.",
       "default": true,
@@ -3054,6 +3284,31 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Yearly unlock",
+      "description": "Unlocks premium features without login. Note: Login Won't Work",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.intsig.camscanner",
+          "name": "CamScanner",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#19BCAA",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.20.0.2606230000",
               "isExperimental": false,
               "minSdk": null,
               "description": null
