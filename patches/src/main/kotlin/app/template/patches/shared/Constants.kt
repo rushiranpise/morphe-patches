@@ -637,4 +637,12 @@ object Constants {
         appIconColor = 0x020617,
         targets = listOf(AppTarget(version = "7.0.0", versionCode = 125))
     )
+
+    // Toxly
+    val TOXLY_COMPATIBILITY = Compatibility(
+        name = "Toxly",
+        packageName = "com.mindful.code.studio.toxly.scanner",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "1.15.3", versionCode = 54))
+    )
 }
