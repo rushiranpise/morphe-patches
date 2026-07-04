@@ -581,4 +581,12 @@ object Constants {
         appIconColor = 0x0D47A1,
         targets = listOf(AppTarget(version = null))
     )
+
+    // CamScanner
+    val CAMSCANNER_COMPATIBILITY = Compatibility(
+        name = "CamScanner",
+        packageName = "com.intsig.camscanner",
+        appIconColor = 0x19BCAA,
+        targets = listOf(AppTarget(version = "7.20.0.2606230000", versionCode = 72002))
+    )
 }
