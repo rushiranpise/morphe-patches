@@ -589,4 +589,20 @@ object Constants {
         appIconColor = 0x19BCAA,
         targets = listOf(AppTarget(version = "7.20.0.2606230000", versionCode = 72002))
     )
+
+    // Image & Video Date Fixer by JD Apps
+    val IMAGEDATEFIXER_COMPATIBILITY = Compatibility(
+        name = "Image & Video Date Fixer",
+        packageName = "eu.duong.imagedatefixer",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "3.7.1", versionCode = 30700100))
+    )
+
+    // Rename & Organize by JD Apps
+    val RENAMEORGANIZE_COMPATIBILITY = Compatibility(
+        name = "Rename & Organize",
+        packageName = "eu.duong.picturemanager",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "8.25.1", versionCode = 8250101))
+    )
 }
