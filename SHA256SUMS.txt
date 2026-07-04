@@ -1,1 +1,1 @@
-a13dc4e16180f633170ea24de695171c6cf18579ba87ad15f999de728b060e0a  patches/build/libs/patches-1.9.1.mpp
+c361bb76fb2090a09429198a62a76f08cbf3f90d109db46b2a7597dae0b2b64d  patches/build/libs/patches-1.10.0-dev.1.mpp
