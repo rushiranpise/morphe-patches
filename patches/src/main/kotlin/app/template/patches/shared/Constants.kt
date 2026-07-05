@@ -669,4 +669,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "7.40.0", versionCode = 7512))
     )
+
+    // KineStop — Motion Stop & Screen Off by Urbandroid
+    val KINESTOP_COMPATIBILITY = Compatibility(
+        name = "KineStop",
+        packageName = "com.urbandroid.kinestop",
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = "5.1", versionCode = 101))
+    )
 }
