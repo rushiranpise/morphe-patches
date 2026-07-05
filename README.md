@@ -6,7 +6,7 @@
 ![GitHub Stars](https://img.shields.io/github/stars/rushiranpise/morphe-patches?style=for-the-badge)
 ![GitHub Forks](https://img.shields.io/github/forks/rushiranpise/morphe-patches?style=for-the-badge)
 ![GitHub Issues](https://img.shields.io/github/issues/rushiranpise/morphe-patches?style=for-the-badge)
-![GitHub Discussions](https://img.shields.io/github/discussions/rushiranpise/morphe-patches?style=for-the-badge)
+![Active GitHub Discussions](https://img.shields.io/github/discussions-search/rushiranpise/morphe-patches?query=is%3Aopen&style=for-the-badge&label=active%20discussions)
 
 </p>
 <br/>
