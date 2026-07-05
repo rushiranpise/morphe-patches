@@ -693,4 +693,12 @@ object Constants {
         appIconColor = 0x1C9BE6,
         targets = listOf(AppTarget(version = "15.2.2", versionCode = 10323))
     )
+
+    // TurboScan — Document & PDF Scanner by Piksoft Inc.
+    val TURBOSCAN_COMPATIBILITY = Compatibility(
+        name = "TurboScan",
+        packageName = "com.piksoft.turboscan.free",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.7.3", versionCode = 123))
+    )
 }
