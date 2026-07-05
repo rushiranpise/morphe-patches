@@ -7,23 +7,6 @@ import app.morphe.patcher.patch.rawResourcePatch
 import app.template.patches.shared.Constants.TRACKED_COMPATIBILITY
 import java.security.MessageDigest
 
-@Suppress("unused")
-val trackedUnlockPremiumPatch = bytecodePatch(
-    name = "Unlock Premium",
-    description = "Unlocks Premium Features.",
-    default = true,
-) {
-    compatibleWith(TRACKED_COMPATIBILITY)
-    dependsOn(trackedUnlockPremiumHermesPatch)
-
-    execute {
-        EntitlementIsActiveFingerprint
-            .match(classDefBy(EntitlementIsActiveFingerprint.definingClass!!))
-            .method
-            .addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-    }
-}
-
 private val trackedUnlockPremiumHermesPatch = rawResourcePatch(
     name = "Unlock Premium Hermes gates",
     description = "Unlocks Tracked's local React Native premium gate.",
@@ -49,6 +32,23 @@ private val trackedUnlockPremiumHermesPatch = rawResourcePatch(
 
         if (patched == 0) throw PatchException("No Tracked Hermes gates were patched.")
         bundle.writeBytes(bytes.withUpdatedSha1())
+    }
+}
+
+@Suppress("unused")
+val trackedUnlockPremiumPatch = bytecodePatch(
+    name = "Unlock Premium",
+    description = "Unlocks Premium Features.",
+    default = true,
+) {
+    compatibleWith(TRACKED_COMPATIBILITY)
+    dependsOn(trackedUnlockPremiumHermesPatch)
+
+    execute {
+        EntitlementIsActiveFingerprint
+            .match(classDefBy(EntitlementIsActiveFingerprint.definingClass!!))
+            .method
+            .addInstructions(0, "const/4 v0, 0x1\nreturn v0")
     }
 }
 
