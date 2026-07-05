@@ -149,16 +149,27 @@ val unlockFullVersionPatch = bytecodePatch(
                 )
             }
 
-        // ── Layer 7: SplashScreen.unlockStateChecker()V — no-op ─────────────
-        // Checks for companion unlocker APK; calls setFullVersion(false) if absent,
-        // overwriting our patches. Returning immediately prevents the false write.
+        // ── Layer 7: SplashScreen.unlockStateChecker()V ──────────────────────
+        // Checks for companion unlocker APK; calls setFullVersion(false) if absent.
+        // Also the ONLY place that hides the daysLeft TextView — layout has it
+        // visible by default with hardcoded trial text. Replace body with just
+        // the ViewUtils.gone(daysLeft) call so the view is always hidden.
         UnlockStateCheckerFingerprint
             .match(classDefBy(UnlockStateCheckerFingerprint.definingClass!!))
             .method
             .apply {
                 if (implementation == null) return@apply
                 removeInstructions(0, instructions.count())
-                addInstructions(0, "return-void")
+                addInstructions(
+                    0,
+                    """
+                    sget-object v0, Lapp/simple/inure/util/ViewUtils;->INSTANCE:Lapp/simple/inure/util/ViewUtils;
+                    iget-object v1, p0, Lapp/simple/inure/ui/launcher/SplashScreen;->daysLeft:Lapp/simple/inure/decorations/typeface/TypeFaceTextView;
+                    check-cast v1, Landroid/view/View;
+                    invoke-virtual {v0, v1}, Lapp/simple/inure/util/ViewUtils;->gone(Landroid/view/View;)V
+                    return-void
+                    """.trimIndent()
+                )
             }
     }
 }
