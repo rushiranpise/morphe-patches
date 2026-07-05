@@ -661,4 +661,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "3.2.3", versionCode = 52))
     )
+
+    // Genius Scan — PDF Scanner by The Grizzly Labs
+    val GENIUSSCAN_COMPATIBILITY = Compatibility(
+        name = "Genius Scan - PDF Scanner",
+        packageName = "com.thegrizzlylabs.geniusscan.free",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "7.40.0", versionCode = 7512))
+    )
 }
