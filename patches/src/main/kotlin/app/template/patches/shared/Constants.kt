@@ -98,7 +98,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = "13.3"))
+        targets = listOf(AppTarget(version = "13.3.1", versionCode = 2026060800))
     )
 
     // ML Manager — APK Downloader & Backup
@@ -138,7 +138,7 @@ object Constants {
         name = "RAR",
         packageName = "com.rarlab.rar",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.20.build131"))
+        targets = listOf(AppTarget(version = "7.22.build132", versionCode = 132))
     )
 
     // m-Indicator — Mumbai Local Train
@@ -218,7 +218,7 @@ object Constants {
         name = "Canva",
         packageName = "com.canva.editor",
         appIconColor = 0x8B3DFF,
-        targets = listOf(AppTarget(version = "2.365.o"))
+        targets = listOf(AppTarget(version = "2.367.0", versionCode = 29613027))
     )
 
     // Clickmate
@@ -282,7 +282,7 @@ object Constants {
         name = "Proton VPN",
         packageName = "ch.protonvpn.android",
         appIconColor = 0x6D4AFF,
-        targets = listOf(AppTarget(version = "5.18.84.0"))
+        targets = listOf(AppTarget(version = "5.19.16.0", versionCode = 605191600))
     )
 
     // NetShare — Mobile Hotspot / Subnet Router
@@ -290,7 +290,7 @@ object Constants {
         name = "NetShare",
         packageName = "kha.prog.mikrotik",
         appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "UI/link-274"))
+        targets = listOf(AppTarget(version = "276", versionCode = 276))
     )
 
     // Shexa — Permission Manager by Shexa
@@ -314,7 +314,7 @@ object Constants {
         name = "Psiphon Pro",
         packageName = "com.psiphon3.subscription",
         appIconColor = 0x6A1B9A,
-        targets = listOf(AppTarget(version = "476"))
+        targets = listOf(AppTarget(version = "479", versionCode = 479))
     )
 
     // Speedtest by Ookla
@@ -322,7 +322,7 @@ object Constants {
         name = "Speedtest",
         packageName = "org.zwanoo.android.speedtest",
         appIconColor = 0x141C4C,
-        targets = listOf(AppTarget(version = "7.0.4"))
+        targets = listOf(AppTarget(version = "7.0.6", versionCode = 257592))
     )
 
     // Social Gamebox
@@ -362,7 +362,7 @@ object Constants {
         name = "Waze",
         packageName = "com.waze",
         appIconColor = 0x33CCFF,
-        targets = listOf(AppTarget(version = "5.19.0.2"))
+        targets = listOf(AppTarget(version = "5.21.0.0", versionCode = 1030711))
     )
 
     // AccuWeather — Weather Radar & Forecast
@@ -370,7 +370,7 @@ object Constants {
         name = "AccuWeather",
         packageName = "com.accuweather.android",
         appIconColor = 0xF25C1B,
-        targets = listOf(AppTarget(version = "21.1.11-1-rc"))
+        targets = listOf(AppTarget(version = "21.1.12-2-rc", versionCode = 210112002))
     )
 
     // Windscribe VPN
@@ -395,7 +395,7 @@ object Constants {
         name = "The Weather Channel",
         packageName = "com.weather.Weather",
         appIconColor = 0x1B6AC9,
-        targets = listOf(AppTarget(version = "16.10.1", versionCode = 1080012982))
+        targets = listOf(AppTarget(version = "16.11.0", versionCode = 1080013045))
     )
 
     // Ninja VPN — Fast & Secure VPN Proxy
@@ -547,7 +547,7 @@ object Constants {
         name = "Scoopz",
         packageName = "com.localaiapp.scoops",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.2.7.0"))
+        targets = listOf(AppTarget(version = "3.27.0", versionCode = 3270002))
     )
 
     // NewsBreak
