@@ -6,6 +6,10 @@ on:
       - dev
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+  contents: read
+
 env:
   MESSAGE: Merge branch `${{ github.head_ref || github.ref_name }}` to `main`
 
@@ -15,11 +19,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Open pull request
         uses: repo-sync/pull-request@v2
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           destination_branch: 'main'
           pr_title: 'chore: ${{ env.MESSAGE }}'
           pr_body: 'This pull request will ${{ env.MESSAGE }}.'

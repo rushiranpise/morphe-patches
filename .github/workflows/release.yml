@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -28,13 +28,20 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Cache Gradle
-        uses: burrunan/gradle-cache-action@v3
-
+      # Verify the build isn't broken. This is required for
+      # chore commits where semantic release doesn't run.
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :patches:buildAndroid generatePatchesList clean
+        run: ./gradlew :patches:buildAndroid
+
+      # Cleaning up is necessary otherwise semantic release will create two artifacts,
+      # One artifact of the current release number and a second of the new release.
+      # Semantic release runs its own compilation step and
+      - name: Cleanup build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew clean
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
