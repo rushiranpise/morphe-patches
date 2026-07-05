@@ -1,4 +1,4 @@
-name: Sync tracker config
+name: Sync patches-tracker config
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   dispatch:
-    name: Dispatch tracker config sync
+    name: Dispatch patches-tracker config sync
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch patches-tracker sync event
