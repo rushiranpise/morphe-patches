@@ -1,3 +1,53 @@
+# Rushi's Patches v1.10.0-dev.2
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 117
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.10.0-dev.2.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.10.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0-dev.1...v1.10.0-dev.2) (2026-07-05)
+
+### New Patches
+
+* add allreader ([2db39f3](https://github.com/rushiranpise/morphe-patches/commit/2db39f356b3f6eebe1b91ca1aefc0bd4bb51cc12))
+* add genius scan ([1f09538](https://github.com/rushiranpise/morphe-patches/commit/1f095387fce65009cd3971b8b88b9e472ad0f290))
+* add kinestop ([da2ef42](https://github.com/rushiranpise/morphe-patches/commit/da2ef42ab97c4209a44899674fbdb6756e57dfa4))
+* add pkge ([03cf6e9](https://github.com/rushiranpise/morphe-patches/commit/03cf6e90b425b11421583af9cd0aec61664849ed))
+* add spot angles ([f7f62fb](https://github.com/rushiranpise/morphe-patches/commit/f7f62fb2f4fc9e770a541304815f2cb89224de68))
+* add turboscan ([f83195f](https://github.com/rushiranpise/morphe-patches/commit/f83195f087c237f24ef27a524ea430880e3d495b))
+* add wave boating ([e68a563](https://github.com/rushiranpise/morphe-patches/commit/e68a563b6912e6b89ae5b6cc22424998a3da165f))
+
+### Fixes
+
+* hide dependency patches from patch list ([8c8e999](https://github.com/rushiranpise/morphe-patches/commit/8c8e99941f9297b35177b6e6a6df1f0cbc48a15e))
+* inure ([0e8a422](https://github.com/rushiranpise/morphe-patches/commit/0e8a422045f415b9b851e94e095a3017fc351f21))
+
+### Documentation
+
+* update readme ([c0ada5f](https://github.com/rushiranpise/morphe-patches/commit/c0ada5f4d411e7a267e627d5eb65dcde1a6e56b0))
+
 # Rushi's Patches v1.10.0-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease  
