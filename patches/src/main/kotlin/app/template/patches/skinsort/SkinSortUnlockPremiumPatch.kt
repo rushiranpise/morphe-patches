@@ -14,7 +14,6 @@ val skinSortUnlockPremiumPatch = bytecodePatch(
     description = "Unlocks SkinSort premium features."
 ) {
     compatibleWith(SKINSORT_COMPATIBILITY)
-    dependsOn(skinSortDisablePaywallConfigPatch)
 
     execute {
         fun replaceWith(fingerprint: Fingerprint, instructionsText: String) {
@@ -130,10 +129,11 @@ val skinSortUnlockPremiumPatch = bytecodePatch(
     }
 }
 
+@Suppress("unused")
 val skinSortDisablePaywallConfigPatch = rawResourcePatch(
     name = "Disable Paywall Config",
     description = "Disables SkinSort local paywall configuration.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(SKINSORT_COMPATIBILITY)
 
