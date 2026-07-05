@@ -656,7 +656,7 @@ object Constants {
 
     // All Reader — PDF & Document Viewer
     val ALLREADER_COMPATIBILITY = Compatibility(
-        name = "All Reader - PDF & Doc Viewer",
+        name = "All Reader",
         packageName = "alldocumentreader.office.viewer.filereader.pdfviewer",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "3.2.3", versionCode = 52))
@@ -664,7 +664,7 @@ object Constants {
 
     // Genius Scan — PDF Scanner by The Grizzly Labs
     val GENIUSSCAN_COMPATIBILITY = Compatibility(
-        name = "Genius Scan - PDF Scanner",
+        name = "Genius Scan",
         packageName = "com.thegrizzlylabs.geniusscan.free",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "7.40.0", versionCode = 7512))
@@ -676,5 +676,13 @@ object Constants {
         packageName = "com.urbandroid.kinestop",
         appIconColor = 0x1A1A2E,
         targets = listOf(AppTarget(version = "5.1", versionCode = 101))
+    )
+
+    // pkge — Parcel & Package Tracker
+    val PKGE_COMPATIBILITY = Compatibility(
+        name = "pkge",
+        packageName = "net.pkge.pkge",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "19.0.13", versionCode = 458))
     )
 }
