@@ -55,7 +55,6 @@ val inmigreatUnlockPremiumPatch = rawResourcePatch(
     default = true,
 ) {
     compatibleWith(INMIGREAT_COMPATIBILITY)
-    dependsOn(inmigreatBypassLicensePatch)
 
     execute {
         val bundleFile = get("assets/index.android.bundle")

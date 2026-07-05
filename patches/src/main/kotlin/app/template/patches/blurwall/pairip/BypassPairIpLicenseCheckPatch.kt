@@ -9,10 +9,10 @@ import app.template.patches.shared.Constants.BLURWALL_COMPATIBILITY
 // fails on re-signed APK → LicenseActivity (PAYWALL type) → "get app from Play Store".
 // Patch: always return true (= installer check passed).
 
+@Suppress("unused")
 val bypassPairIpLicenseCheckPatch = bytecodePatch(
     name = "Bypass PairIP License Check",
     description = "Bypasses PairIP License check.",
-    default = false,
 ) {
     compatibleWith(BLURWALL_COMPATIBILITY)
 
