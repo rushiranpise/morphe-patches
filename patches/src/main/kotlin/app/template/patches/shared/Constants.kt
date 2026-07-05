@@ -58,7 +58,7 @@ object Constants {
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = "26.5.5"))
+        targets = listOf(AppTarget(version = "26.6.3", versionCode = 945))
     )
 
     // Greenify — App Hibernation & Battery Saver
@@ -378,7 +378,7 @@ object Constants {
         name = "Windscribe VPN",
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
-        targets = listOf(AppTarget(version = "4.1.2274"))
+        targets = listOf(AppTarget(version = "4.1.2284", versionCode = 2284))
     )
 
     // MovieBox TV by Transsion/Mbox
