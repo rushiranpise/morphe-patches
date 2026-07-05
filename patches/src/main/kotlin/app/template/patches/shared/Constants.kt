@@ -17,7 +17,7 @@ object Constants {
         name = "Unimote",
         packageName = "sensustech.universal.tv.remote.control",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "1.8.1"))
+        targets = listOf(AppTarget(version = "1.8.1", versionCode = 78))
     )
 
     // Citizen — Safety Alert by sp0n
@@ -98,7 +98,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = "13.3"))
+        targets = listOf(AppTarget(version = "13.3.1", versionCode = 2026060800))
     )
 
     // ML Manager — APK Downloader & Backup
@@ -242,7 +242,7 @@ object Constants {
         name = "AdGuard Nightly",
         packageName = "com.adguard.android",
         appIconColor = 0x67B346,
-        targets = listOf(AppTarget(version = "4.14.68"))
+        targets = listOf(AppTarget(version = "4.14.68", versionCode = 10330100))
     )
 
     // AIDA64 — System & Hardware Info by FinalWire
@@ -290,7 +290,7 @@ object Constants {
         name = "NetShare",
         packageName = "kha.prog.mikrotik",
         appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "UI/link-274"))
+        targets = listOf(AppTarget(version = "276", versionCode = 276))
     )
 
     // Shexa — Permission Manager by Shexa
@@ -322,7 +322,7 @@ object Constants {
         name = "Speedtest",
         packageName = "org.zwanoo.android.speedtest",
         appIconColor = 0x141C4C,
-        targets = listOf(AppTarget(version = "7.0.4"))
+        targets = listOf(AppTarget(version = "7.0.6", versionCode = 257592))
     )
 
     // Social Gamebox
@@ -338,7 +338,7 @@ object Constants {
         name = "Flightradar24",
         packageName = "com.flightradar24free",
         appIconColor = 0x327CB5,
-        targets = listOf(AppTarget(version = "11.6.1"))
+        targets = listOf(AppTarget(version = "11.6.1", versionCode = 110615540))
     )
 
     // Cashew — Budget & Finance Tracker by James Kokoska
@@ -370,7 +370,7 @@ object Constants {
         name = "AccuWeather",
         packageName = "com.accuweather.android",
         appIconColor = 0xF25C1B,
-        targets = listOf(AppTarget(version = "21.1.11-1-rc"))
+        targets = listOf(AppTarget(version = "21.1.12-2-rc", versionCode = 210112002))
     )
 
     // Windscribe VPN
@@ -547,7 +547,7 @@ object Constants {
         name = "Scoopz",
         packageName = "com.localaiapp.scoops",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.2.7.0"))
+        targets = listOf(AppTarget(version = "3.27.0", versionCode = 3270002))
     )
 
     // NewsBreak
