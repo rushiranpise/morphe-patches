@@ -13,6 +13,9 @@ updates:
     target-branch: dev
     schedule:
       interval: weekly
+    ignore:
+      # version 10.x and later may not generate release notes correctly
+      - dependency-name: "conventional-changelog-conventionalcommits"
 
   - package-ecosystem: gradle
     labels: []

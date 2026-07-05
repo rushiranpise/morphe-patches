@@ -1,7 +1,14 @@
 package app.template.patches.inmigreat
 
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
+import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
+import app.morphe.patcher.string
 import app.template.patches.shared.Constants.INMIGREAT_COMPATIBILITY
+import com.android.tools.smali.dexlib2.AccessFlags
 import java.security.MessageDigest
 
 /**
@@ -48,6 +55,33 @@ import java.security.MessageDigest
  * After all patches the bundle's trailing **SHA-1 checksum** (last 20 bytes) is
  * recomputed so Hermes accepts the modified file at runtime.
  */
+private val CheckLicenseFingerprint = Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "checkLicense",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;"),
+    filters = listOf(string("Skipping license check in isolated process.")),
+)
+
+private val inmigreatBypassLicensePatch = bytecodePatch(
+    name = "Bypass PairIP License Check",
+    description = "Makes LicenseClient.checkLicense() a no-op so the app never shows the license-denied blocking screen.",
+    default = false,
+) {
+    compatibleWith(INMIGREAT_COMPATIBILITY)
+
+    execute {
+        CheckLicenseFingerprint
+            .match(classDefBy(CheckLicenseFingerprint.definingClass!!))
+            .method
+            .apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "return-void")
+            }
+    }
+}
+
 @Suppress("unused")
 val inmigreatUnlockPremiumPatch = rawResourcePatch(
     name = "Unlock Pro",
@@ -55,6 +89,7 @@ val inmigreatUnlockPremiumPatch = rawResourcePatch(
     default = true,
 ) {
     compatibleWith(INMIGREAT_COMPATIBILITY)
+    dependsOn(inmigreatBypassLicensePatch)
 
     execute {
         val bundleFile = get("assets/index.android.bundle")

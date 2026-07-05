@@ -8,12 +8,29 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
 import app.template.patches.shared.Constants.SKINSORT_COMPATIBILITY
 
+private val skinSortDisablePaywallConfigPatch = rawResourcePatch(
+    name = "Disable Paywall Config",
+    description = "Disables SkinSort local paywall configuration.",
+    default = false,
+) {
+    compatibleWith(SKINSORT_COMPATIBILITY)
+
+    execute {
+        get("assets/json/path-configuration.json")?.replaceText(
+            "\"scan_paywall_limit\": 5" to "\"scan_paywall_limit\": 999999",
+            "\"sale_offering_enabled\": true" to "\"sale_offering_enabled\": false",
+            "\"paywall_type\": \"revenueCatV2\"" to "\"paywall_type\": \"none\"",
+        )
+    }
+}
+
 @Suppress("unused")
 val skinSortUnlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Unlocks SkinSort premium features."
 ) {
     compatibleWith(SKINSORT_COMPATIBILITY)
+    dependsOn(skinSortDisablePaywallConfigPatch)
 
     execute {
         fun replaceWith(fingerprint: Fingerprint, instructionsText: String) {
@@ -126,23 +143,6 @@ val skinSortUnlockPremiumPatch = bytecodePatch(
             """
         )
         forceTrue(SkinSortPairIpLicenseContentProviderOnCreateFingerprint)
-    }
-}
-
-@Suppress("unused")
-val skinSortDisablePaywallConfigPatch = rawResourcePatch(
-    name = "Disable Paywall Config",
-    description = "Disables SkinSort local paywall configuration.",
-    default = true,
-) {
-    compatibleWith(SKINSORT_COMPATIBILITY)
-
-    execute {
-        get("assets/json/path-configuration.json")?.replaceText(
-            "\"scan_paywall_limit\": 5" to "\"scan_paywall_limit\": 999999",
-            "\"sale_offering_enabled\": true" to "\"sale_offering_enabled\": false",
-            "\"paywall_type\": \"revenueCatV2\"" to "\"paywall_type\": \"none\"",
-        )
     }
 }
 
