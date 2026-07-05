@@ -29,13 +29,18 @@ jobs:
         run: |
           if [ -z "${GH_TOKEN}" ]; then
             echo "PATCHES_TRACKER_TOKEN is required to dispatch ${TRACKER_REPO}/${TRACKER_WORKFLOW}."
-            echo "Create a fine-grained PAT with Actions: write access to ${TRACKER_REPO}, then add it as this repo secret."
+            echo "Create a classic PAT with repo and workflow scopes, then add it as this repo secret."
             exit 1
           fi
 
-          gh api \
+          if ! gh api \
             --method POST \
             "repos/${TRACKER_REPO}/actions/workflows/${TRACKER_WORKFLOW}/dispatches" \
-            -f ref="${TRACKER_REF}"
+            -f ref="${TRACKER_REF}"; then
+            echo "::error::Could not dispatch ${TRACKER_REPO}/${TRACKER_WORKFLOW}."
+            echo "PATCHES_TRACKER_TOKEN must be a classic personal access token from an owner account with repo and workflow scopes."
+            echo "Fine-grained tokens can return 'Resource not accessible by personal access token' for this workflow dispatch endpoint."
+            exit 1
+          fi
 
           echo "Dispatched ${TRACKER_REPO}/${TRACKER_WORKFLOW} on ${TRACKER_REF}."
