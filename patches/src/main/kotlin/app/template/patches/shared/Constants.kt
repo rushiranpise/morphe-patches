@@ -701,4 +701,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "1.7.3", versionCode = 123))
     )
+
+    // Wavve Boating GPS — Marine Navigation & Charts
+    val WAVVE_BOATING_COMPATIBILITY = Compatibility(
+        name = "Wavve Boating",
+        packageName = "com.wavve.boating.gps",
+        appIconColor = 0x0077CC,
+        targets = listOf(AppTarget(version = "5.6.9", versionCode = 3178))
+    )
 }
