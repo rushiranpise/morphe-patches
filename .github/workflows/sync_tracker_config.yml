@@ -1,0 +1,41 @@
+name: Sync tracker config
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - patches/src/main/kotlin/app/template/patches/shared/Constants.kt
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-tracker-config
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    name: Dispatch tracker config sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch patches-tracker workflow
+        env:
+          GH_TOKEN: ${{ secrets.PATCHES_TRACKER_TOKEN }}
+          TRACKER_REPO: rushiranpise/patches-tracker
+          TRACKER_REF: main
+          TRACKER_WORKFLOW: sync-config-from-constants.yml
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "PATCHES_TRACKER_TOKEN is required to dispatch ${TRACKER_REPO}/${TRACKER_WORKFLOW}."
+            echo "Create a fine-grained PAT with Actions: write access to ${TRACKER_REPO}, then add it as this repo secret."
+            exit 1
+          fi
+
+          gh api \
+            --method POST \
+            "repos/${TRACKER_REPO}/actions/workflows/${TRACKER_WORKFLOW}/dispatches" \
+            -f ref="${TRACKER_REF}"
+
+          echo "Dispatched ${TRACKER_REPO}/${TRACKER_WORKFLOW} on ${TRACKER_REF}."
