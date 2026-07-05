@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.10.0-dev.2",
+  "version": "1.10.0-dev.3",
   "patches": [
     {
       "name": "Alert Distances",
@@ -3373,7 +3373,7 @@
       "options": []
     },
     {
-      "name": "Yearly unlock",
+      "name": "Yearly Unlock",
       "description": "Unlocks premium features without login. Note: Login Won't Work",
       "default": true,
       "dependencies": [],
