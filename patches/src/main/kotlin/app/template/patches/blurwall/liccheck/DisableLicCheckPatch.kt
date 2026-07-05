@@ -16,10 +16,10 @@ import app.template.patches.shared.Constants.BLURWALL_COMPATIBILITY
 // Patch: prepend a short-circuit at the top of the getter — when key == "start_blur",
 // return Boolean.TRUE immediately, bypassing the SharedPreferences read entirely.
 
+@Suppress("unused")
 val disableLicCheckPatch = bytecodePatch(
     name = "Disable License Check",
     description = "Disables License Check",
-    default = false,
 ) {
     compatibleWith(BLURWALL_COMPATIBILITY)
 

@@ -2,8 +2,6 @@ package app.template.patches.blurwall.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
-import app.template.patches.blurwall.liccheck.disableLicCheckPatch
-import app.template.patches.blurwall.pairip.bypassPairIpLicenseCheckPatch
 import app.template.patches.shared.Constants.BLURWALL_COMPATIBILITY
 
 // BlurWall v2.9.2 — RevenueCat onReceived bypass.
@@ -20,7 +18,6 @@ val unlockPremiumPatch = bytecodePatch(
     description = "Unlock Premium Features in app.",
 ) {
     compatibleWith(BLURWALL_COMPATIBILITY)
-    dependsOn(disableLicCheckPatch,bypassPairIpLicenseCheckPatch)
 
     execute {
         OnReceivedFingerprint.method.addInstructions(

@@ -40,10 +40,11 @@ private val CheckLicenseFingerprint = Fingerprint(
     filters = listOf(string("Skipping license check in isolated process.")),
 )
 
+@Suppress("unused")
 val inmigreatBypassLicensePatch = bytecodePatch(
     name = "Bypass PairIP License Check",
     description = "Makes LicenseClient.checkLicense() a no-op so the app never shows the license-denied blocking screen.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(INMIGREAT_COMPATIBILITY)
 
