@@ -685,4 +685,12 @@ object Constants {
         appIconColor = 0x2563EB,
         targets = listOf(AppTarget(version = "19.0.13", versionCode = 458))
     )
+
+    // SpotAngels — Parking & Maps
+    val SPOTANGELS_COMPATIBILITY = Compatibility(
+        name = "SpotAngels",
+        packageName = "com.spotangels.android",
+        appIconColor = 0x1C9BE6,
+        targets = listOf(AppTarget(version = "15.2.2", versionCode = 10323))
+    )
 }
