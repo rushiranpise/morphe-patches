@@ -1,3 +1,51 @@
+# Rushi's Patches v1.10.1
+Patch source for Morphe.
+**Channel:** stable  
+**Branch:** `main`  
+**Patch count:** 120
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.10.1.mpp` from the release assets below.
+
+## Supported Apps Changed
+
+### Updated App Versions
+- **1Tap Cleaner** (`com.a0soft.gphone.acc.free`): `5.19` -> `5.18`
+- **AccuWeather** (`com.accuweather.android`): `21.1.12-2-rc` -> `21.1.11-1-rc`
+- **Canva** (`com.canva.editor`): `2.367.0` -> `2.365.o`
+- **Case Tracker** (`com.saldous.casetracker`): `5.5.2` -> `5.5.1`
+- **Crime Radar** (`com.newsbreak.crimeradar`): `26.26.0` -> `26.23.2`
+- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.1-ad_mob` -> `2.11.0-ad_mob`
+- **m-Indicator** (`com.mobond.mindicator`): `18.0.356` -> `18.0.352`
+- **MovieBox TV** (`com.community.oneroom`): `3.0.16.0703.03` -> `3.0.15.0616.03`
+- **NetShare** (`kha.prog.mikrotik`): `276` -> `UI/link-274`
+- **Ninja VPN** (`app.ninjavpn.android`): `1.4.7` -> `1.4.6`
+- **Photo Editor** (`com.iudesk.android.photo.editor`): `13.3.1` -> `13.3`
+- **Pialytic** (`verbosus.pialytic`): `1.3.0` -> `1.2.8`
+- ...and 14 more
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.10.1](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0...v1.10.1) (2026-07-06)
+
+### Fixes
+
+* Remove extra newline in Constants.kt ([32b354f](https://github.com/rushiranpise/morphe-patches/commit/32b354fb1cabd089d57595d613d3ec669a8a0276))
+* restore verified working versions ([fa3a518](https://github.com/rushiranpise/morphe-patches/commit/fa3a518c71936536b5bd14280eef35d0e0212fca))
+
 # Rushi's Patches v1.10.1-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease  
