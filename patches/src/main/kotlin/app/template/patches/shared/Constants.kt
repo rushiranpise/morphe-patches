@@ -290,7 +290,7 @@ object Constants {
         name = "NetShare",
         packageName = "kha.prog.mikrotik",
         appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "276", versionCode = 276))
+        targets = listOf(AppTarget(version = "277", versionCode = 277))
     )
 
     // Shexa — Permission Manager by Shexa
