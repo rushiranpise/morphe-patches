@@ -653,8 +653,7 @@ object Constants {
         appIconColor = 0x4CAF50,
         targets = listOf(AppTarget(version = "1.15.3", versionCode = 54))
     )
-
-}
+    
     // All Reader — PDF & Document Viewer
     val ALLREADER_COMPATIBILITY = Compatibility(
         name = "All Reader",
