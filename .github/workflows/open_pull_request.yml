@@ -30,6 +30,13 @@ jobs:
             exit 0
           fi
 
+          # Check if there are any commits between branches
+          COMMITS=$(gh api "repos/${{ github.repository }}/compare/${TARGET_BRANCH}...${SOURCE_BRANCH}" --jq '.total_commits')
+          if [ "$COMMITS" -eq 0 ]; then
+            echo "No commits between $TARGET_BRANCH and $SOURCE_BRANCH. Skipping PR creation."
+            exit 0
+          fi
+
           # Try to create the PR
           gh pr create \
             --base "$TARGET_BRANCH" \
