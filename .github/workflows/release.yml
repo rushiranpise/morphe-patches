@@ -3,9 +3,6 @@ name: Release
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - dev
 
 jobs:
   release:
@@ -28,21 +25,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # Verify the build isn't broken. This is required for
-      # chore commits where semantic release doesn't run.
-      - name: Build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew :patches:buildAndroid
-
-      # Cleaning up is necessary otherwise semantic release will create two artifacts,
-      # One artifact of the current release number and a second of the new release.
-      # Semantic release runs its own compilation step and
-      - name: Cleanup build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew clean
-
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -52,8 +34,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Semantic release runs its own Gradle build command.
+      # Only dev and main branch will generate a release as specified by .releaserc
       - name: Release
-        uses: cycjimmy/semantic-release-action@v5
+        uses: cycjimmy/semantic-release-action@v6
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,3 +48,11 @@ jobs:
         with:
           subject-name: 'Morphe Patches ${{ steps.release.outputs.new_release_git_tag }}'
           subject-path: patches/build/libs/patches-*.mpp
+
+      # Always verify compilation when semantic-release did not publish a release.
+      # This covers non-main/dev branches, chore commits, docs commits, etc.
+      - name: Verify project compiles
+        if: steps.release.outputs.new_release_published != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew :patches:buildAndroid clean --no-daemon

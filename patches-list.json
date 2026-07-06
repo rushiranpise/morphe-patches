@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.10.0",
+  "version": "1.10.1-dev.1",
   "patches": [
     {
       "name": "Alert Distances",
@@ -17,7 +17,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -124,7 +124,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -186,7 +186,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -211,7 +211,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -236,7 +236,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -261,7 +261,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -311,7 +311,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -336,7 +336,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -411,7 +411,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -512,7 +512,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -601,7 +601,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -711,7 +711,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -827,7 +827,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -852,7 +852,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "18.0.356",
+              "version": "18.0.352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -877,7 +877,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "479",
+              "version": "476",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -902,7 +902,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -927,7 +927,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.367.0",
+              "version": "2.365.o",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -977,7 +977,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1002,7 +1002,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1147,7 +1147,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1172,7 +1172,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1197,7 +1197,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1247,7 +1247,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1272,7 +1272,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1297,7 +1297,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.19.0.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1322,7 +1322,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.0.6",
+              "version": "7.0.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1372,7 +1372,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.3.0",
+              "version": "1.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1472,7 +1472,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.27.0",
+              "version": "3.2.7.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1522,7 +1522,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1597,7 +1597,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.18.0",
+              "version": "1.16.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1875,7 +1875,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.26.0",
+              "version": "26.23.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2077,7 +2077,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.4.7",
+              "version": "1.4.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2102,7 +2102,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "13.3.1",
+              "version": "13.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2177,7 +2177,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.16.0",
+              "version": "5.18.84.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2279,7 +2279,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.19",
+              "version": "1.15",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2404,7 +2404,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.11.0",
+              "version": "16.10.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2454,7 +2454,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.16.2",
+              "version": "1.15.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2556,7 +2556,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.1.2284",
+              "version": "4.1.2274",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2681,7 +2681,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "21.1.12-2-rc",
+              "version": "21.1.11-1-rc",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2706,7 +2706,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.5.2",
+              "version": "5.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2933,7 +2933,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "276",
+              "version": "UI/link-274",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2962,7 +2962,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19",
+              "version": "5.18",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3012,7 +3012,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.23.build133",
+              "version": "7.20.build131",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3062,7 +3062,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.6.3",
+              "version": "26.5.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3187,7 +3187,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.3.1",
+              "version": "3.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3262,7 +3262,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.0.4",
+              "version": "5.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3287,7 +3287,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.11.1-ad_mob",
+              "version": "2.11.0-ad_mob",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3337,7 +3337,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.0.16.0703.03",
+              "version": "3.0.15.0616.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
