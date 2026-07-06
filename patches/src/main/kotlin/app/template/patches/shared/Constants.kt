@@ -709,4 +709,20 @@ object Constants {
         appIconColor = 0x0077CC,
         targets = listOf(AppTarget(version = "5.6.9", versionCode = 3178))
     )
+
+    // PictureThis — Plant Identifier by Glority Global Group
+    val PICTURETHIS_COMPATIBILITY = Compatibility(
+        name = "PictureThis - Plant Identifier",
+        packageName = "cn.danatech.xingseus",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "5.29.0", versionCode = 5084))
+    )
+
+    // Picture Mushroom - Mushroom ID
+    val PICTUREMUSHROOM_COMPATIBILITY = Compatibility(
+        name = "Picture Mushroom - Mushroom ID",
+        packageName = "com.glority.picturemushroom",
+        appIconColor = 0x7A4A24,
+        targets = listOf(AppTarget(version = "2.9.31", versionCode = 90))
+    )
 }
