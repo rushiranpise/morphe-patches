@@ -208,5 +208,24 @@ val unlockPremiumPatch = bytecodePatch(
             )
         }
 
+        // l/b1.d():Z → true
+        // Home screen gate: p.smali calls g2/n.s() → l/b1.d() (reads sp_premium)
+        // Result (v18) controls whether b7/l.k=isPaid is set, which routes to paywall.
+        UserPrefsIsPremiumFingerprint.method.apply {
+            clearBody()
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+
+        // z0/z3.t0():Z → true (sp_android_subscription secondary gate)
+        HasAndroidSubscriptionFingerprint.methodOrNull?.apply {
+            clearBody()
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+
+        // z0/z3.q0(Z):V → return-void (prevent sp_premium being written as false on cancel)
+        SaveUserStatusFingerprint.methodOrNull?.apply {
+            clearBody()
+            addInstructions(0, "return-void")
+        }
     }
 }
