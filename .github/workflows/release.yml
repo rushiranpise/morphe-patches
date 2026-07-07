@@ -41,6 +41,10 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CITYMAPPER_MAPS_API_KEY: ${{ secrets.CITYMAPPER_MAPS_API_KEY }}
+          FLIGHTRADAR_MAPS_API_KEY: ${{ secrets.FLIGHTRADAR_MAPS_API_KEY }}
+          NETMONSTER_MAPS_API_KEY: ${{ secrets.NETMONSTER_MAPS_API_KEY }}
+          SHARED_MAPS_API_KEY: ${{ secrets.SHARED_MAPS_API_KEY }}
 
       - name: Attest
         if: steps.release.outputs.new_release_published == 'true'
@@ -55,4 +59,8 @@ jobs:
         if: steps.release.outputs.new_release_published != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CITYMAPPER_MAPS_API_KEY: ${{ secrets.CITYMAPPER_MAPS_API_KEY }}
+          FLIGHTRADAR_MAPS_API_KEY: ${{ secrets.FLIGHTRADAR_MAPS_API_KEY }}
+          NETMONSTER_MAPS_API_KEY: ${{ secrets.NETMONSTER_MAPS_API_KEY }}
+          SHARED_MAPS_API_KEY: ${{ secrets.SHARED_MAPS_API_KEY }}
         run: ./gradlew :patches:buildAndroid clean --no-daemon

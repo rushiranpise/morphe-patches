@@ -18,6 +18,44 @@ kotlin {
     }
 }
 
+val generatedSecretsDir = layout.buildDirectory.dir("generated/secrets/kotlin")
+
+sourceSets {
+    main {
+        kotlin.srcDir(generatedSecretsDir)
+    }
+}
+
+fun String.kotlinStringLiteral() = replace("\\", "\\\\").replace("\"", "\\\"")
+
+val generateSecrets by tasks.registering {
+    val sharedMapsApiKey = providers.environmentVariable("SHARED_MAPS_API_KEY")
+    inputs.property("SHARED_MAPS_API_KEY", sharedMapsApiKey.orElse(""))
+    outputs.dir(generatedSecretsDir)
+
+    doLast {
+        val outputDir = generatedSecretsDir.get().asFile.resolve("app/template/patches/shared")
+        outputDir.mkdirs()
+        outputDir.resolve("BuildSecrets.kt").writeText(
+            """
+            package app.template.patches.shared
+
+            internal object BuildSecrets {
+                const val SHARED_MAPS_API_KEY = "${sharedMapsApiKey.orNull.orEmpty().kotlinStringLiteral()}"
+            }
+            """.trimIndent(),
+        )
+    }
+}
+
+tasks.named("compileKotlin") {
+    dependsOn(generateSecrets)
+}
+
+tasks.named("sourcesJar") {
+    dependsOn(generateSecrets)
+}
+
 // Separate configuration so gson is available at runtime for the
 // generatePatchesList task but never bundled into the APK.
 val patchListGeneratorClasspath: Configuration by configurations.creating
