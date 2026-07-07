@@ -1,3 +1,38 @@
+# Rushi's Patches v1.11.0-dev.3
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 141
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.3.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.2...v1.11.0-dev.3) (2026-07-07)
+
+### Fixes
+
+* inject map api keys from actions secrets ([7d5d282](https://github.com/rushiranpise/morphe-patches/commit/7d5d282a29181e196677407d8c415a17b83f8853))
+
 # Rushi's Patches v1.11.0-dev.2
 Patch source for Morphe.
 **Channel:** dev prerelease  
