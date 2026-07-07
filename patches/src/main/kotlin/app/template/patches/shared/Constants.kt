@@ -580,7 +580,7 @@ object Constants {
         name = "Police Scanner",
         packageName = "police.scanner.radio.broadcastify.citizen",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = 1.29.0-260420093))
     )
 
     // CamScanner
@@ -734,5 +734,13 @@ object Constants {
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x000000,
         targets = listOf(AppTarget(version = "7.2", versionCode = 80))
+    )
+
+    // APKMirror Installer
+    val APKMIRROR_INSTALLER_COMPATIBILITY = Compatibility(
+        name = "APKMirror Installer",
+        packageName = "com.apkmirror.helper.prod",
+        appIconColor = 0xFF9800,
+        targets = listOf(AppTarget(version = "2.0.3 (41-d04e542)", versionCode = 41))
     )
 }
