@@ -725,4 +725,12 @@ object Constants {
         appIconColor = 0x7A4A24,
         targets = listOf(AppTarget(version = "2.9.31", versionCode = 90))
     )
+
+    // Amazon Shopping
+    val AMAZON_SHOPPING_COMPATIBILITY = Compatibility(
+        name = "Amazon Shopping",
+        packageName = "com.amazon.mShop.android.shopping",
+        appIconColor = 0xFF9900,
+        targets = listOf(AppTarget(version = "32.12.4.100", versionCode = 1241319416))
+    )
 }
