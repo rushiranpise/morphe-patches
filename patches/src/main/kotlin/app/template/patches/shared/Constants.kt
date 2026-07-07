@@ -758,4 +758,12 @@ object Constants {
         appIconColor = 0x3B82F6,
         targets = listOf(AppTarget(version = "6.0", versionCode = 60))
     )
+
+    // ColorNote
+    val COLORNOTE_COMPATIBILITY = Compatibility(
+        name = "ColorNote",
+        packageName = "com.socialnmobile.dictapps.notepad.color.note",
+        appIconColor = 0xF2C200,
+        targets = listOf(AppTarget(version = "4.8.4", versionCode = 2104840))
+    )
 }
