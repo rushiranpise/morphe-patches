@@ -587,7 +587,7 @@ object Constants {
         name = "Police Scanner",
         packageName = "police.scanner.radio.broadcastify.citizen",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = 1.29.0-260420093))
+        targets = listOf(AppTarget(version = "1.29.0-260420093"))
     )
 
     // CamScanner
@@ -738,7 +738,6 @@ object Constants {
     val AMOLEDPIX_COMPATIBILITY = Compatibility(
         name = "AmoledPix",
         packageName = "com.androholic.amoledpix",
-        apkFileType = ApkFileType.APKS,
         appIconColor = 0x000000,
         targets = listOf(AppTarget(version = "7.2", versionCode = 80))
     )
@@ -771,7 +770,6 @@ object Constants {
     val POCKET_CASTS_COMPATIBILITY = Compatibility(
         name = "Pocket Casts",
         packageName = "au.com.shiftyjelly.pocketcasts",
-        apkFileType = ApkFileType.APKS,
         appIconColor = 0xF43E37,
         targets = listOf(AppTarget(version = "8.14", versionCode = 9435))
     )
@@ -780,7 +778,6 @@ object Constants {
     val STICKER_MAKER_COMPATIBILITY = Compatibility(
         name = "Sticker Maker",
         packageName = "com.marsvard.stickermakerforwhatsapp",
-        apkFileType = ApkFileType.APKS,
         appIconColor = 0x00A884,
         targets = listOf(AppTarget(version = "1.0.10-5", versionCode = 1001005))
     )
