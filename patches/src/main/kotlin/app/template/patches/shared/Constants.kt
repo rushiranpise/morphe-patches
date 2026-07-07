@@ -750,4 +750,12 @@ object Constants {
         appIconColor = 0xFF9800,
         targets = listOf(AppTarget(version = "2.0.3 (41-d04e542)", versionCode = 41))
     )
+
+    // Block Puzzle
+    val BLOCKPUZZLE_COMPATIBILITY = Compatibility(
+        name = "Block Puzzle",
+        packageName = "game.puzzle.blockpuzzle",
+        appIconColor = 0x3B82F6,
+        targets = listOf(AppTarget(version = "6.0", versionCode = 60))
+    )
 }
