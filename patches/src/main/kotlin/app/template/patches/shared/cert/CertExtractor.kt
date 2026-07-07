@@ -22,7 +22,7 @@ internal var autoBase64Der: String? = null
 private val log = Logger.getLogger("CertExtractor")
 private fun ByteArray.toHex() = joinToString("") { "%02X".format(it) }
 
-private fun populateFromEncoded(encoded: ByteArray) {
+internal fun populateFromEncoded(encoded: ByteArray) {
     autoSha256    = MessageDigest.getInstance("SHA-256").digest(encoded).toHex()
     autoSha1      = MessageDigest.getInstance("SHA-1").digest(encoded).toHex()
     autoBase64Der = Base64.getEncoder().encodeToString(encoded)
@@ -170,7 +170,11 @@ val extractApkCertificatePatch = rawResourcePatch(
     ) { it == null || it.isNotBlank() }
 
     execute {
-        // Manual values take priority
+        // Pre-seeded cert takes top priority (e.g. SpotifyCertSeedPatch)
+        if (autoBase64Der != null) {
+            log.info("Using pre-seeded cert.")
+            return@execute
+        }
         val sha1Manual = manualCertSha1?.takeIf { it.length == 40 }
         if (sha1Manual != null) {
             autoSha1      = sha1Manual
@@ -202,6 +206,7 @@ val extractApkCertificatePatch = rawResourcePatch(
             } catch (_: Exception) { appInfo.javaClass.getField("sourceDir").get(appInfo) }
                 as? String ?: throw Exception("null sourceDir")
             log.info("Reading cert from installed app: $sourceDir")
+            if (autoBase64Der != null) { log.info("Skipping installed app strategy — pre-seeded cert active."); return@execute }
             if (extractFromFile(File(sourceDir))) return@execute
         } catch (e: Exception) {
             log.info("Installed app strategy failed: ${e.message}")
