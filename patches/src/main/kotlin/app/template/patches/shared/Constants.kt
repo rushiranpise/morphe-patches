@@ -733,4 +733,13 @@ object Constants {
         appIconColor = 0xFF9900,
         targets = listOf(AppTarget(version = "32.12.4.100", versionCode = 1241319416))
     )
+
+    // AmoledPix
+    val AMOLEDPIX_COMPATIBILITY = Compatibility(
+        name = "AmoledPix",
+        packageName = "com.androholic.amoledpix",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x000000,
+        targets = listOf(AppTarget(version = "7.2", versionCode = 80))
+    )
 }
