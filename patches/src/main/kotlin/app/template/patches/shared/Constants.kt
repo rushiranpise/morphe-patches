@@ -766,4 +766,13 @@ object Constants {
         appIconColor = 0xF2C200,
         targets = listOf(AppTarget(version = "4.8.4", versionCode = 2104840))
     )
+
+     // Pocket Casts
+    val POCKET_CASTS_COMPATIBILITY = Compatibility(
+        name = "Pocket Casts",
+        packageName = "au.com.shiftyjelly.pocketcasts",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xF43E37,
+        targets = listOf(AppTarget(version = "8.14", versionCode = 9435))
+    )
 }
