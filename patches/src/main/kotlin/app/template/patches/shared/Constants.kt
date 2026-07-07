@@ -800,4 +800,12 @@ object Constants {
         appIconColor = 0x1E88E5,
         targets = listOf(AppTarget(version = "2.29.3", versionCode = 505))
     )
+
+    // Fitbod — Workout & Fitness Coach
+    val FITBOD_COMPATIBILITY = Compatibility(
+        name = "Fitbod",
+        packageName = "com.fitbod.fitbod",
+        appIconColor = 0xFF3D00,
+        targets = listOf(AppTarget(version = "8.24.0-1", versionCode = 10824001))
+    )
 }
