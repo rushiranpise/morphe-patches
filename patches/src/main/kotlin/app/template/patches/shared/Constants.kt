@@ -784,4 +784,12 @@ object Constants {
         appIconColor = 0x00A884,
         targets = listOf(AppTarget(version = "1.0.10-5", versionCode = 1001005))
     )
+
+    // Subway Now
+    val SUBWAYNOW_COMPATIBILITY = Compatibility(
+        name = "Subway Now",
+        packageName = "io.goodservice.theweekendest",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.2.8", versionCode = 79))
+    )
 }
