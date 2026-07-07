@@ -808,4 +808,12 @@ object Constants {
         appIconColor = 0xFF3D00,
         targets = listOf(AppTarget(version = "8.24.0-1", versionCode = 10824001))
     )
+
+    // Toomics
+    val TOOMICS_COMPATIBILITY = Compatibility(
+        name = "Toomics",
+        packageName = "com.toomics.global.google",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "1.6.7", versionCode = 106))
+    )
 }
