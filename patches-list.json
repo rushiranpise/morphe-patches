@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.11.0-dev.1",
+  "version": "1.11.0-dev.2",
   "patches": [
     {
       "name": "Alert Distances",
@@ -17,7 +17,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -124,7 +124,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -272,6 +272,47 @@
       "options": []
     },
     {
+      "name": "Dark mode",
+      "description": "Force dark mode for Amazon Shopping.",
+      "default": false,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "amazonDarkMode",
+          "title": "Dark mode",
+          "description": "Off / Follow system / Always on.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "follow_system",
+          "values": {
+            "Off": "off",
+            "Follow system": "follow_system",
+            "Always on": "on"
+          }
+        }
+      ]
+    },
+    {
       "name": "Disable Ads",
       "description": "Prevents the AppOpen ad preloader from initialising.",
       "default": true,
@@ -311,7 +352,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -336,7 +377,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -372,6 +413,31 @@
       "options": []
     },
     {
+      "name": "Disable search suggestions tracking",
+      "description": "Prevents search keypress and focus events from being sent with suggestion requests.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable telemetry",
       "description": "Disables CamScanner's custom telemetry/log-agent system.",
       "default": true,
@@ -397,6 +463,31 @@
       "options": []
     },
     {
+      "name": "Disable video autoplay",
+      "description": "Prevents product and ad videos from autoplaying.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Enlarged Speedometer",
       "description": "Increases speedometer digit size for better readability.",
       "default": false,
@@ -411,7 +502,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -498,6 +589,31 @@
       ]
     },
     {
+      "name": "Hide Rufus tab",
+      "description": "Removes the Rufus AI assistant tab from Amazon's bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Map Skin (Vitamin C)",
       "description": "Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.\n• Night: true black AMOLED background (saves battery, prevents burn-in)\n• Day: warm beige background\n• Larger font labels across the board\n• Wider navigation arrow head for better visibility\n• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow\nCredits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration).",
       "default": true,
@@ -512,7 +628,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -601,7 +717,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -697,6 +813,31 @@
       ]
     },
     {
+      "name": "Open links in browser",
+      "description": "Opens non-Amazon URLs in the default browser instead of the in-app WebView.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Popup Suppression",
       "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nCredits: Waze Chuppito Mod.",
       "default": true,
@@ -711,7 +852,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -766,6 +907,31 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Price history charts",
+      "description": "Injects Keepa and CamelCamelCamel price history charts on Amazon product pages.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Provide Original app certificate",
@@ -827,7 +993,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ADS",
+      "description": "Remove in-app ads",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.toomics.global.google",
+          "name": "Toomics",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.6.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -852,7 +1043,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": "18.0.352",
+              "version": "18.0.356",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Remove in-app ads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.vizmanga.android",
+          "name": "VIZ Manga",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.13.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -877,7 +1093,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "476",
+              "version": "479",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -927,7 +1143,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.365.o",
+              "version": "2.367.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -963,6 +1179,58 @@
       "options": []
     },
     {
+      "name": "Remove ads",
+      "description": "Hides sponsored and ad content in Amazon Shopping via CSS injection.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ads",
+      "description": "Disables Block Puzzle AdMob initialization, banner, and interstitial ads.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "game.puzzle.blockpuzzle",
+          "name": "Block Puzzle",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#3B82F6",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Report Speed Limit",
       "description": "Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.\n",
       "default": true,
@@ -977,7 +1245,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Sanitize share links",
+      "description": "Strips tracking parameters from copied/shared Amazon links, leaving only the clean product URL.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1002,7 +1295,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1297,7 +1590,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.0.2",
+              "version": "5.21.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1322,7 +1615,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.0.4",
+              "version": "7.0.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1472,7 +1765,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.2.7.0",
+              "version": "3.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1683,6 +1976,31 @@
       "options": []
     },
     {
+      "name": "Unlock Patron",
+      "description": "Unlocks Pocket Casts Patron yearly feature checks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "au.com.shiftyjelly.pocketcasts",
+          "name": "Pocket Casts",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F43E37",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.14",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Plus",
       "description": "Unlocks all SpotAngels Plus features in app",
       "default": true,
@@ -1698,6 +2016,33 @@
           "targets": [
             {
               "version": "15.2.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Plus",
+      "description": "Unlocks Subway Now Plus.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "io.goodservice.theweekendest",
+          "name": "Subway Now",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1837,6 +2182,33 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks ColorNote premium and removes advertising ID permissions.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.socialnmobile.dictapps.notepad.color.note",
+          "name": "ColorNote",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#F2C200",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.8.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks premium features in app.",
       "default": true,
       "dependencies": [],
@@ -1876,6 +2248,31 @@
           "targets": [
             {
               "version": "26.23.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all Fitbod premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.fitbod.fitbod",
+          "name": "Fitbod",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF3D00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.24.0-1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2102,7 +2499,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "13.3",
+              "version": "13.3.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2235,7 +2632,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.18.84.0",
+              "version": "5.19.16.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2424,6 +2821,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Sticker Maker premium and ad-free checks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.marsvard.stickermakerforwhatsapp",
+          "name": "Sticker Maker",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00A884",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.10-5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all premium content in Strength Training by Muscle Motion. Note: Create an exercise plan to access videos",
       "default": true,
       "dependencies": [],
@@ -2462,7 +2884,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.10.1",
+              "version": "16.12.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2614,7 +3036,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.1.2274",
+              "version": "4.1.2284",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2739,7 +3161,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "21.1.11-1-rc",
+              "version": "21.1.12-2-rc",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2764,7 +3186,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.5.1",
+              "version": "5.5.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2991,7 +3413,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "UI/link-274",
+              "version": "277",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3045,7 +3467,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": null,
+              "version": "1.29.0-260420093",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3070,7 +3492,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.20.build131",
+              "version": "7.23.build133",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3120,7 +3542,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.5.5",
+              "version": "26.6.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3146,6 +3568,31 @@
           "targets": [
             {
               "version": "24.2.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro / No Ads",
+      "description": "Unlocks Pro/No Ads feature in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.metalsoft.trackchecker_mobile",
+          "name": "TrackChecker Mobile",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1E88E5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.29.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3245,7 +3692,34 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.2.1",
+              "version": "3.3.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Ultimate",
+      "description": "Unlocks Ultimate Ad-Free + Android TV.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.apkmirror.helper.prod",
+          "name": "APKMirror Installer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9800",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.3 (41-d04e542)",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3320,7 +3794,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.0.3",
+              "version": "5.0.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3345,7 +3819,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.11.0-ad_mob",
+              "version": "2.11.1-ad_mob",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3396,6 +3870,33 @@
           "targets": [
             {
               "version": "3.0.15.0616.03",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock premium",
+      "description": "Unlocks AmoledPix premium features and disables ads.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.androholic.amoledpix",
+          "name": "AmoledPix",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#000000",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null

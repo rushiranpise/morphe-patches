@@ -1,3 +1,55 @@
+# Rushi's Patches v1.11.0-dev.2
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 122
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.2.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.1...v1.11.0-dev.2) (2026-07-07)
+
+### New Patches
+
+* add toomics ([808e36c](https://github.com/rushiranpise/morphe-patches/commit/808e36ca6ff58a290a42137c575f169d9c275f8a))
+* amazon ([b1b0c44](https://github.com/rushiranpise/morphe-patches/commit/b1b0c4486c9625f691e95ec8d1e00942e6ca6899))
+* amoledpix ([c41c2fd](https://github.com/rushiranpise/morphe-patches/commit/c41c2fdbbb11056688e8363a969d46dd5bf0b501))
+* apkmirror ([d230ccb](https://github.com/rushiranpise/morphe-patches/commit/d230ccb2ddbab5e1ffebb3f66d9992a0f2932f48))
+* blockpuzzle ([0ca9efc](https://github.com/rushiranpise/morphe-patches/commit/0ca9efc9c6e106cf963b306f22d6b849f47a9829))
+* colornote ([023946f](https://github.com/rushiranpise/morphe-patches/commit/023946fbf2b4221f2c8eadb3e83e7ad07f8ef403))
+* fitpod ([a5f0e9b](https://github.com/rushiranpise/morphe-patches/commit/a5f0e9b832f22f54aea210bc9e7a5428f75a6391))
+* pocketcast ([3942b5f](https://github.com/rushiranpise/morphe-patches/commit/3942b5ff1c286e44d467f22f2a1a1f9bfd93425d))
+* stickermaker ([289dbfc](https://github.com/rushiranpise/morphe-patches/commit/289dbfcd6e3ba17c24cc147206815946d24bf5f9))
+* subwaynow ([2490c99](https://github.com/rushiranpise/morphe-patches/commit/2490c999cbcafac7a59d318ecfa8fd9230f5d6c0))
+* trackercheck ([3e27c45](https://github.com/rushiranpise/morphe-patches/commit/3e27c45da919fba019109b88cafb301d4b9c30ad))
+* vizmanga ([6d1dbf9](https://github.com/rushiranpise/morphe-patches/commit/6d1dbf93e1ee08b16d969761165979b31703608f))
+
+### Fixes
+
+* pkge ([6b1904b](https://github.com/rushiranpise/morphe-patches/commit/6b1904bdb14994f3e4cbb0b1781d525e24a3d0d8))
+* release ([8420467](https://github.com/rushiranpise/morphe-patches/commit/84204672d394573d63986c95ab884326b66cf8eb))
+* Strength Training ([eeed1a0](https://github.com/rushiranpise/morphe-patches/commit/eeed1a0c1a74603a37f5a2a8a27674ddfffbecdc))
+
 # Rushi's Patches v1.11.0-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease  
