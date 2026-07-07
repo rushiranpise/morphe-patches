@@ -792,4 +792,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "1.2.8", versionCode = 79))
     )
+
+    // TrackChecker Mobile — Parcel & Package Tracker by metalsoft
+    val TRACKCHECKER_COMPATIBILITY = Compatibility(
+        name = "TrackChecker Mobile",
+        packageName = "com.metalsoft.trackchecker_mobile",
+        appIconColor = 0x1E88E5,
+        targets = listOf(AppTarget(version = "2.29.3", versionCode = 505))
+    )
 }
