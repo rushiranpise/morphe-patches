@@ -362,7 +362,7 @@ public class FlightradarHelper {
         if (info.metaData == null) {
             info.metaData = new android.os.Bundle();
         }
-        info.metaData.putString("com.google.android.maps.v2.API_KEY", "REMOVED_GOOGLE_MAPS_API_KEY");
+        info.metaData.putString("com.google.android.maps.v2.API_KEY", ApiKeys.FLIGHTRADAR_MAPS);
     }
 
     public static void cleanupEmsData(Object ems) {

@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 
 public class UDiscHelper {
     private static final String PKG = "com.regasoftware.udisc";
-    private static final String MAPS_API_KEY = "REMOVED_GOOGLE_MAPS_API_KEY";
+    private static final String MAPS_API_KEY = ApiKeys.SHARED_MAPS;
 
     public static void init() {
         try {
