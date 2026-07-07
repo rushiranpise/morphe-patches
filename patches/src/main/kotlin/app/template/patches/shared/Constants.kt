@@ -816,4 +816,12 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "1.6.7", versionCode = 106))
     )
+
+    // VIZ Manga — Read Manga Official by VIZ Media
+    val VIZMANGA_COMPATIBILITY = Compatibility(
+        name = "VIZ Manga",
+        packageName = "com.vizmanga.android",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "4.13.5", versionCode = 227))
+    )
 }
