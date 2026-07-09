@@ -98,7 +98,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = "13.3.1", versionCode = 2026060800))
+        targets = listOf(AppTarget(version = "13.4", versionCode = 2026070800))
     )
 
     // ML Manager — APK Downloader & Backup
