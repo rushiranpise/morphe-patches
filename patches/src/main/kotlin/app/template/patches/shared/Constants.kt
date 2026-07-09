@@ -413,7 +413,7 @@ object Constants {
         name = "Ninja VPN",
         packageName = "app.ninjavpn.android",
         appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = "1.4.6", versionCode = 43))
+        targets = listOf(AppTarget(version = "1.4.7", versionCode = 44))
     )
 
     // 1Tap Cleaner — App cache & history cleaner by a0soft
