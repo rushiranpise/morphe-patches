@@ -839,4 +839,20 @@ object Constants {
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "4.14.0", versionCode = 232))
     )
+
+    // Microsoft Excel
+    val EXCEL_COMPATIBILITY = Compatibility(
+        name = "Excel",
+        packageName = "com.microsoft.office.excel",
+        appIconColor = 0x1B5E20,
+        targets = listOf(AppTarget(version = "16.0.20131.20080", versionCode = 2005201435))
+    )
+
+    // Microsoft Word
+    val WORD_COMPATIBILITY = Compatibility(
+        name = "Word",
+        packageName = "com.microsoft.office.word",
+        appIconColor = 0x1A237E,
+        targets = listOf(AppTarget(version = "16.0.20131.20080", versionCode = 2005201435))
+    )
 }
