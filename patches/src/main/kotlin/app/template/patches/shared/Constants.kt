@@ -948,4 +948,12 @@ object Constants {
         appIconColor = 0x1D5CFF,
         targets = listOf(AppTarget(version = "3.27.2", versionCode = 424))
     )
+
+     // RecipeBro — Cooking Buddy
+    val RECIPEBRO_COMPATIBILITY = Compatibility(
+        name = "RecipeBro",
+        packageName = "com.recipebro.cookingbuddy",
+        appIconColor = 0xE65100,
+        targets = listOf(AppTarget(version = "1.3.74", versionCode = 1362))
+    )
 }
