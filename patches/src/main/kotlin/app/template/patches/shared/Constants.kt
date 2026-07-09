@@ -978,4 +978,11 @@ object Constants {
         appIconColor = 0x2962FF,
         targets = listOf(AppTarget(version = "1.20.77.0.1002295", versionCode = 1002295))
     )
+
+     val WOLFRAMALPHA_COMPATIBILITY = Compatibility(
+        name = "WolframAlpha",
+        packageName = "com.wolfram.android.alphapro",
+        appIconColor = 0xDD1100,
+        targets = listOf(AppTarget(version = "1.0.8.20260601651", versionCode = 117))
+    )
 }
