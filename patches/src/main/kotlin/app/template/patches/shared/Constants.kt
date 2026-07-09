@@ -363,7 +363,7 @@ object Constants {
         name = "AccuWeather",
         packageName = "com.accuweather.android",
         appIconColor = 0xF25C1B,
-        targets = listOf(AppTarget(version = "21.1.12-2-rc", versionCode = 210112002))
+        targets = listOf(AppTarget(version = "21.1.13-1-rc", versionCode = 210113001))
     )
 
     // Windscribe VPN
@@ -371,7 +371,7 @@ object Constants {
         name = "Windscribe VPN",
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
-        targets = listOf(AppTarget(version = "4.1.2284", versionCode = 2284))
+        targets = listOf(AppTarget(version = "4.2.2326", versionCode = 2326))
     )
 
     // MovieBox TV by Transsion/Mbox
@@ -460,7 +460,7 @@ object Constants {
         name = "Yoga",
         packageName = "air.com.musclemotion.yoga",
         appIconColor = 0x7B1FA2,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004178))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
     )
 
     // Anatomy by Muscle Motion
@@ -564,7 +564,7 @@ object Constants {
         name = "Lawfully",
         packageName = "com.lawfully.lawfully_ai_tracker",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = "6.6.2", versionCode = 532))
+        targets = listOf(AppTarget(version = "6.7.1", versionCode = 534))
     )
 
     // MigraConnect — USCIS & EOIR Case Tracker (com.tecso.MigraConnect)
@@ -812,6 +812,6 @@ object Constants {
         name = "VIZ Manga",
         packageName = "com.vizmanga.android",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "4.13.5", versionCode = 227))
+        targets = listOf(AppTarget(version = "4.14.0", versionCode = 232))
     )
 }
