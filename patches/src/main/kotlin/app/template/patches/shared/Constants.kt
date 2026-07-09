@@ -956,4 +956,12 @@ object Constants {
         appIconColor = 0xE65100,
         targets = listOf(AppTarget(version = "1.3.74", versionCode = 1362))
     )
+
+    val SCRL_COMPATIBILITY = Compatibility(
+        name = "SCRL",
+        packageName = "com.appostrophe.scrl",
+        appIconColor = 0xEFC67A,
+        targets = listOf(AppTarget(version = "1.21", versionCode = 253))
+    )
+
 }
