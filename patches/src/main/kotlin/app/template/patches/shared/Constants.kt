@@ -162,7 +162,7 @@ object Constants {
         name = "Proxyman",
         packageName = "com.proxyman.proxymanandroid",
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = "1.16.0"))
+        targets = listOf(AppTarget(version = "1.18.0", versionCode = 45))
     )
 
     // SHAREit Premium
