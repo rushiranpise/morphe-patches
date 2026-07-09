@@ -338,7 +338,7 @@ object Constants {
         name = "Flightradar24",
         packageName = "com.flightradar24free",
         appIconColor = 0x327CB5,
-        targets = listOf(AppTarget(version = "11.6.1"))
+        targets = listOf(AppTarget(version = "11.7.0", versionCode = 110708450))
     )
 
     // Cashew — Budget & Finance Tracker by James Kokoska
