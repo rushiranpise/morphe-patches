@@ -863,4 +863,12 @@ object Constants {
         appIconColor = 0x2563EB,
         targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
     )
+
+    // AMBOSS Medical Knowledge
+    val AMBOSS_COMPATIBILITY = Compatibility(
+        name = "AMBOSS",
+        packageName = "com.amboss.medical.knowledge",
+        appIconColor = 0xCC1F3C,
+        targets = listOf(AppTarget(version = "2.115.1.4408", versionCode = 4408))
+    )
 }
