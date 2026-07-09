@@ -17,10 +17,10 @@ import com.android.tools.smali.dexlib2.AccessFlags
  * taking a single enum parameter and returning Z.
  */
 val IsFeatureAllowedFingerprint = Fingerprint(
-    definingClass = "Lp9/f;",
+    definingClass = "Lq9/f;",
     name = "a",
     returnType = "Z",
-    parameters = listOf("Lp9/a;"),
+    parameters = listOf("Lq9/a;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
 
@@ -33,10 +33,10 @@ val IsFeatureAllowedFingerprint = Fingerprint(
  * Fingerprinted by the 0x7fffffff literal — unique to this method.
  */
 val GetFeatureLimitFingerprint = Fingerprint(
-    definingClass = "Lp9/f;",
+    definingClass = "Lq9/f;",
     name = "b",
     returnType = "I",
-    parameters = listOf("Lp9/a;"),
+    parameters = listOf("Lq9/a;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     filters = listOf(
         literal(0x7fffffff)
@@ -54,10 +54,10 @@ val GetFeatureLimitFingerprint = Fingerprint(
  * Fingerprinted by the unique "auto_paywall_first_foreground_at" key.
  */
 val AutoPaywallFingerprint = Fingerprint(
-    definingClass = "Lq9/b;",
+    definingClass = "Lr9/b;",
     name = "c",
     returnType = "V",
-    parameters = listOf("Lq9/c1;", "J"),
+    parameters = listOf("Lr9/f1;", "J"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     filters = listOf(
         string("auto_paywall_first_foreground_at")
@@ -118,9 +118,9 @@ val PairIPLicenseActivityFingerprint = Fingerprint(
  * Fingerprinted by the unique parameter signature (Z,r9/d,Long?,Z,r9/c,J).
  */
 val UserSubscriptionConstructorFingerprint = Fingerprint(
-    definingClass = "Lr9/b;",
+    definingClass = "Ls9/b;",
     name = "<init>",
     returnType = "V",
-    parameters = listOf("Z", "Lr9/d;", "Ljava/lang/Long;", "Z", "Lr9/c;", "J"),
+    parameters = listOf("Z", "Ls9/d;", "Ljava/lang/Long;", "Z", "Ls9/c;", "J"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
 )
