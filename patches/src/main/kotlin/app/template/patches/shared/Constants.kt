@@ -916,4 +916,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "7.5.4", versionCode = 376))
     )
+
+    // JEFIT — Workout Tracker & Gym Log
+    val JEFIT_COMPATIBILITY = Compatibility(
+        name = "JEFIT",
+        packageName = "je.fit",
+        appIconColor = 0x1A73E8,
+        targets = listOf(AppTarget(version = "17.1.0", versionCode = 1966))
+    )
 }
