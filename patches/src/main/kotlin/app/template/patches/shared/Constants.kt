@@ -924,4 +924,12 @@ object Constants {
         appIconColor = 0x1A73E8,
         targets = listOf(AppTarget(version = "17.1.0", versionCode = 1966))
     )
+
+   // AiScore
+    val AISCORE_COMPATIBILITY = Compatibility(
+        name = "AiScore",
+        packageName = "com.onesports.score",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
+    )
 }
