@@ -940,4 +940,12 @@ object Constants {
         appIconColor = 0x1A6FBF,
         targets = listOf(AppTarget(version = "8.71.2", versionCode = 591))
     )
+
+    // Pocket Prep
+    val POCKETPREP_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep",
+        packageName = "com.pocketprep.android.itcybersecurity",
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.27.2", versionCode = 424))
+    )
 }
