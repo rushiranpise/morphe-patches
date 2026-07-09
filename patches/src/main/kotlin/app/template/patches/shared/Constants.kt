@@ -925,12 +925,11 @@ object Constants {
         targets = listOf(AppTarget(version = "17.1.0", versionCode = 1966))
     )
 
-   // AiScore
-    val AISCORE_COMPATIBILITY = Compatibility(
-        name = "AiScore",
-        packageName = "com.onesports.score",
-        appIconColor = 0x2563EB,
-        targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
+    val LIVESCORE_COMPATIBILITY = Compatibility(
+        name = "LiveScore",
+        packageName = "com.livescore",
+        appIconColor = 0xE30613,
+        targets = listOf(AppTarget(version = "9.7.1", versionCode = 2072))
     )
 
     // MyRadar — Weather Radar & Forecast by ACME AtronOmatic
