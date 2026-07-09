@@ -888,4 +888,10 @@ object Constants {
         targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
     )
 
+    val DUOLINGO_COMPATIBILITY = Compatibility(
+        name = "Duolingo",
+        packageName = "com.duolingo",
+        appIconColor = 0x58CC02,
+        targets = listOf(AppTarget(version = "6.87.6", versionCode = 2409))
+    )
 }
