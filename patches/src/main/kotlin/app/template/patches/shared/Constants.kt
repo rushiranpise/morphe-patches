@@ -605,7 +605,7 @@ object Constants {
         name = "CamScanner",
         packageName = "com.intsig.camscanner",
         appIconColor = 0x19BCAA,
-        targets = listOf(AppTarget(version = "7.20.0.2606230000", versionCode = 72002))
+        targets = listOf(AppTarget(version = "7.20.5.2606250000", versionCode = 72051))
     )
 
     // Image & Video Date Fixer by JD Apps
