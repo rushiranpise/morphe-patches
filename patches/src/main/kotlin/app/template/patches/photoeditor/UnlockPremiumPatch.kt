@@ -9,13 +9,14 @@ import app.template.patches.shared.Constants.PHOTOEDITOR_COMPATIBILITY
 @Suppress("unused")
 val photoeditorUnlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks all Photo Editor premium features by bypassing license checks.",
+    description = "Unlocks all Photo Editor premium features",
     default = true
 ) {
     compatibleWith(PHOTOEDITOR_COMPATIBILITY)
 
     execute {
-        // Patch c81.a(Context)Z — unconditionally return true (licensed)
+        // Patch j81.a(Context)Z — unconditionally return true (licensed)
+        // v13.3: class was Lc81; → v13.4: renamed to Lj81; (same method sig)
         // Strategy: Insert const/4 + return at method start (before monitor-enter)
         // This preserves original try-catch structure and exception handlers
         PhotoEditorLicenseCacheCheckFingerprint
