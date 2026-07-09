@@ -501,7 +501,7 @@ object Constants {
         name = "Moovit",
         packageName = "com.tranzmate",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "5.195.0.1789", versionCode = 1789))
+        targets = listOf(AppTarget(version = "5.195.2.1792", versionCode = 1792))
     )
 
     // Transit — Bus, Train, Tracker
