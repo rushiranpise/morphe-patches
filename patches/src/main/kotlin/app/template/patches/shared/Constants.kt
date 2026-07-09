@@ -971,4 +971,11 @@ object Constants {
         appIconColor = 0x00ADEF,
         targets = listOf(AppTarget(version = "3.35.0", versionCode = 1033500))
     )
+
+    val TRADINGVIEW_COMPATIBILITY = Compatibility(
+        name = "TradingView",
+        packageName = "com.tradingview.tradingviewapp",
+        appIconColor = 0x2962FF,
+        targets = listOf(AppTarget(version = "1.20.77.0.1002295", versionCode = 1002295))
+    )
 }
