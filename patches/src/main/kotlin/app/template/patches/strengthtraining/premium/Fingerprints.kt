@@ -3,9 +3,12 @@ package app.template.patches.strengthtraining.premium
 import app.morphe.patcher.Fingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
-// l/b1.d():Z — reads sp_premium SharedPreference; main isPremium gate.
+// Reads sp_premium SharedPreference; main isPremium gate.
 object UserPrefsIsPremiumFingerprint : Fingerprint(
-    definingClass = "Ll/b1;",
+    classFingerprint = Fingerprint(
+        strings = listOf("getIsPremium() -> isPaid: "),
+    ),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     name = "d",
     returnType = "Z",
     parameters = emptyList(),
@@ -13,8 +16,8 @@ object UserPrefsIsPremiumFingerprint : Fingerprint(
 
 // z0/z3.t0():Z — reads sp_android_subscription; secondary billing gate.
 object HasAndroidSubscriptionFingerprint : Fingerprint(
-    definingClass = "Lz0/z3;",
-    name = "t0",
+    definingClass = "Lne7;",
+    name = "w0",
     returnType = "Z",
     parameters = emptyList(),
 )
@@ -22,8 +25,8 @@ object HasAndroidSubscriptionFingerprint : Fingerprint(
 // z0/z3.q0(Z):V — writes sp_premium = !cancelled on subscription cancel.
 // No-op to prevent premium flag being cleared.
 object SaveUserStatusFingerprint : Fingerprint(
-    definingClass = "Lz0/z3;",
-    name = "q0",
+    definingClass = "Lne7;",
+    name = "t0",
     returnType = "V",
     parameters = listOf("Z"),
 )
@@ -59,7 +62,7 @@ object LoginResponseIsPaidFingerprint : Fingerprint(
 
 // PaidStatus.getType():String — returns "indi"/"pro"/"business"/"" from server field.
 // Profile fragment uses this to display plan name via getCurrentPlan().
-// Patch to return "indi" so getCurrentPlan() maps it to "Individual".
+// Patch to return "business" so getCurrentPlan() maps it to Business.
 object GetTypeFingerprint : Fingerprint(
     definingClass = "Lair/com/musclemotion/data/remote/response/login/PaidStatus;",
     name = "getType",
@@ -75,6 +78,14 @@ object GetBillingFingerprint : Fingerprint(
     definingClass = "Lair/com/musclemotion/data/remote/response/login/PaidStatus;",
     name = "getBilling",
     returnType = "Ljava/lang/String;",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+object GetTraineeLimitFingerprint : Fingerprint(
+    definingClass = "Lair/com/musclemotion/data/remote/response/login/PaidStatus;",
+    name = "getTraineeLimit",
+    returnType = "Ljava/lang/Integer;",
     parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )

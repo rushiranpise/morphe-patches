@@ -47,8 +47,6 @@ private val CONTENT_RESPONSE_CLASSES_Z = listOf(
     "Lair/com/musclemotion/data/remote/response/exercises/EnrichmentVideoResponse;",
     "Lair/com/musclemotion/data/remote/response/exercises/ExerciseFullResponse;",
     "Lair/com/musclemotion/data/remote/response/exercises/ExerciseResponse;",
-    "Lair/com/musclemotion/data/remote/response/home/NewPopularItemResponse;",
-    "Lair/com/musclemotion/data/remote/response/home/RecommendedItemResponse;",
     "Lair/com/musclemotion/data/remote/response/most_viewed/TheoryMostViewedVideoResponse;",
     "Lair/com/musclemotion/data/remote/response/plan/PlanResponse;",
     "Lair/com/musclemotion/data/remote/response/search/SearchAnatomyResponse;",
@@ -78,9 +76,6 @@ private val CONTENT_ENTITY_CLASSES_Z = listOf(
     "Lair/com/musclemotion/data/local/entity/exercises/ExerciseEntity;",
     "Lair/com/musclemotion/data/local/entity/exercises/ExerciseFullEntity;",
     "Lair/com/musclemotion/data/local/entity/exercises/ExerciseVideoEntity;",
-    "Lair/com/musclemotion/data/local/entity/home/NewPopularItemEntity;",
-    "Lair/com/musclemotion/data/local/entity/home/RecentlyViewedItemEntity;",
-    "Lair/com/musclemotion/data/local/entity/home/RecommendedItemEntity;",
     "Lair/com/musclemotion/data/local/entity/most_viewed/MostViewedVideoEntity;",
     "Lair/com/musclemotion/data/local/entity/plan/PlanEntity;",
     "Lair/com/musclemotion/data/local/entity/plan/WorkoutItemEntity;",
@@ -95,7 +90,6 @@ private val CONTENT_CLASSES_BOOLEAN = listOf(
     "Lair/com/musclemotion/data/remote/response/exercises/VideoResponse;",
     "Lair/com/musclemotion/data/remote/response/anatomy/SubMusclePartResponse;",
     "Lair/com/musclemotion/data/remote/response/plan/WorkoutItemResponse;",
-    "Lair/com/musclemotion/data/remote/response/home/RecentlyViewedItemResponse;",
     "Lair/com/musclemotion/data/local/entity/anatomy/SubMusclePartEntity;",
 )
 
@@ -103,7 +97,7 @@ private val CONTENT_CLASSES_BOOLEAN = listOf(
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Unlocks all premium content in Strength Training by Muscle Motion. "+
-    "Note: Create an exercise plan to access videos",
+    "Note: Create an exercise plan to access all videos",
 ) {
     compatibleWith(Constants.STRENGTHTRAINING_COMPATIBILITY)
 
@@ -165,15 +159,14 @@ val unlockPremiumPatch = bytecodePatch(
             clearBody()
             addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
-
-        // PaidStatus.getType() → "indi"
-        // getCurrentPlan() maps "indi" → "Individual" for display in profile.
+        
+        // PaidStatus.getType() → "business"
         GetTypeFingerprint.method.apply {
             clearBody()
             addInstructions(
                 0,
                 """
-                    const-string v0, "indi"
+                    const-string v0, "business"
                     return-object v0
                 """,
             )
@@ -187,6 +180,19 @@ val unlockPremiumPatch = bytecodePatch(
                 0,
                 """
                     const-string v0, "Yearly"
+                    return-object v0
+                """,
+            )
+        }
+
+        GetTraineeLimitFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    const/16 v0, 0x3e7
+                    invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                    move-result-object v0
                     return-object v0
                 """,
             )
