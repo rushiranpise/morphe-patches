@@ -908,4 +908,12 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "5.15.4", versionCode = 501500400))
     )
+
+    // Historical Calendar — Day in History by Alexandru Cene
+    val HISTORICALCALENDAR_COMPATIBILITY = Compatibility(
+        name = "Historical Calendar",
+        packageName = "com.alexandrucene.dayhistory",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "7.5.4", versionCode = 376))
+    )
 }
