@@ -322,7 +322,7 @@ object Constants {
         name = "Speedtest",
         packageName = "org.zwanoo.android.speedtest",
         appIconColor = 0x141C4C,
-        targets = listOf(AppTarget(version = "7.0.6", versionCode = 257594))
+        targets = listOf(AppTarget(version = "7.0.7", versionCode = 258530))
     )
 
     // Social Gamebox
