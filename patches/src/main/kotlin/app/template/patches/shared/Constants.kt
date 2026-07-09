@@ -424,14 +424,6 @@ object Constants {
         targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
     )
 
-    // Strength Training by Muscle Motion
-    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
-        name = "Strength Training",
-        packageName = "air.com.musclemotion.strength.mobile",
-        appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
-    )
-
     // Windy — Weather Radar & Forecast by Windyty
     val WINDY_COMPATIBILITY = Compatibility(
         name = "Windy",
@@ -453,7 +445,7 @@ object Constants {
         name = "Posture",
         packageName = "air.com.musclemotion.posture",
         appIconColor = 0x00897B,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 10040835))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 10040838))
     )
 
     // Kyphosis by Muscle Motion (legacy Adobe AIR architecture)
@@ -485,7 +477,15 @@ object Constants {
         name = "Anatomy",
         packageName = "air.com.musclemotion.anatomy",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004183))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004185))
+    )
+
+    // Strength Training by Muscle Motion
+    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
+        name = "Strength Training",
+        packageName = "air.com.musclemotion.strength.mobile",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.5.1", versionCode = 924))
     )
 
     // Citymapper
