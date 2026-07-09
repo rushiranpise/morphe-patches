@@ -25,13 +25,13 @@ val toxlyUnlockPremiumPatch = bytecodePatch(
             addInstructions(
                 returnIndex,
                 """
-                    iget-object v0, p0, Lg60;->e:Lc16;
+                    iget-object v0, p0, Lg80;->e:Lj76;
                     const/4 v1, 0x0
                     sget-object v2, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-                    invoke-virtual {v0, v1, v2}, Lc16;->j(Ljava/lang/Object;Ljava/lang/Object;)Z
-                    iget-object v0, p0, Lg60;->a:Landroid/content/Context;
+                    invoke-virtual {v0, v1, v2}, Lj76;->j(Ljava/lang/Object;Ljava/lang/Object;)Z
+                    iget-object v0, p0, Lg80;->a:Landroid/content/Context;
                     const/4 v1, 0x1
-                    invoke-static {v0, v1}, Lp4;->b(Landroid/content/Context;Z)V
+                    invoke-static {v0, v1}, Lw4;->b(Landroid/content/Context;Z)V
                 """.trimIndent(),
             )
         }
@@ -39,13 +39,13 @@ val toxlyUnlockPremiumPatch = bytecodePatch(
         BillingRepositoryRefreshPurchasesFingerprint.method.addInstructions(
             0,
             """
-                iget-object v0, p0, Lg60;->e:Lc16;
+                iget-object v0, p0, Lg80;->e:Lj76;
                 const/4 v1, 0x0
                 sget-object v2, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-                invoke-virtual {v0, v1, v2}, Lc16;->j(Ljava/lang/Object;Ljava/lang/Object;)Z
-                iget-object v0, p0, Lg60;->a:Landroid/content/Context;
+                invoke-virtual {v0, v1, v2}, Lj76;->j(Ljava/lang/Object;Ljava/lang/Object;)Z
+                iget-object v0, p0, Lg80;->a:Landroid/content/Context;
                 const/4 v1, 0x1
-                invoke-static {v0, v1}, Lp4;->b(Landroid/content/Context;Z)V
+                invoke-static {v0, v1}, Lw4;->b(Landroid/content/Context;Z)V
                 return-void
             """.trimIndent(),
         )

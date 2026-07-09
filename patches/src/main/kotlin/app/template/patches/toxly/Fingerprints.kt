@@ -3,10 +3,10 @@ package app.template.patches.toxly
 import app.morphe.patcher.Fingerprint
 
 val BillingRepositoryConstructorFingerprint = Fingerprint(
-    definingClass = "Lg60;",
+    definingClass = "Lg80;",
     name = "<init>",
     returnType = "V",
-    parameters = listOf("Landroid/content/Context;", "Lct1;"),
+    parameters = listOf("Landroid/content/Context;", "Lbw1;"),
     strings = listOf("Please provide a valid listener for purchases updates."),
 )
 
@@ -18,7 +18,7 @@ val PairIpCheckLicenseFingerprint = Fingerprint(
 )
 
 val BillingRepositoryRefreshPurchasesFingerprint = Fingerprint(
-    definingClass = "Lg60;",
+    definingClass = "Lg80;",
     name = "d",
     returnType = "V",
     parameters = listOf("Ljava/util/List;"),

@@ -661,7 +661,7 @@ object Constants {
         name = "Toxly",
         packageName = "com.mindful.code.studio.toxly.scanner",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "1.15.3", versionCode = 54))
+        targets = listOf(AppTarget(version = "1.16.6", versionCode = 61))
     )
     
     // All Reader — PDF & Document Viewer
