@@ -378,7 +378,7 @@ object Constants {
         name = "Windscribe VPN",
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
-        targets = listOf(AppTarget(version = "4.2.2326", versionCode = 2326))
+        targets = listOf(AppTarget(version = "4.2.2328", versionCode = 2328))
     )
 
     // MovieBox (com.community.oneroom) + MovieBox TV (com.community.mbox.tv) by Transsion/Mbox
@@ -922,7 +922,7 @@ object Constants {
         name = "JEFIT",
         packageName = "je.fit",
         appIconColor = 0x1A73E8,
-        targets = listOf(AppTarget(version = "17.1.0", versionCode = 1966))
+        targets = listOf(AppTarget(version = "17.2.5", versionCode = 2002))
     )
 
     val LIVESCORE_COMPATIBILITY = Compatibility(
@@ -960,7 +960,7 @@ object Constants {
         name = "SCRL",
         packageName = "com.appostrophe.scrl",
         appIconColor = 0xEFC67A,
-        targets = listOf(AppTarget(version = "1.21", versionCode = 253))
+        targets = listOf(AppTarget(version = "1.22", versionCode = 256))
     )
 
     // Sticker.ly
