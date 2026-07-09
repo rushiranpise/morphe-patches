@@ -2,6 +2,7 @@ package app.template.patches.amazon.videautoplay
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.AMAZON_IN_COMPATIBILITY
 import app.template.patches.shared.Constants.AMAZON_SHOPPING_COMPATIBILITY
 
 private const val HELPER = "Lapp/template/extension/extension/AmazonHelper;"
@@ -12,7 +13,7 @@ val amazonDisableVideoAutoplayPatch = bytecodePatch(
     description = "Prevents product and ad videos from autoplaying.",
     default = true,
 ) {
-    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY)
+    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY, AMAZON_IN_COMPATIBILITY)
     extendWith("extensions/extension.mpe")
 
     execute {

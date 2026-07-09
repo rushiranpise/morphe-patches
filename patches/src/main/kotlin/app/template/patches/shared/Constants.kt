@@ -734,6 +734,14 @@ object Constants {
         targets = listOf(AppTarget(version = "32.12.4.100", versionCode = 1241319416))
     )
 
+    // Amazon India Shop, Pay, miniTV
+    val AMAZON_IN_COMPATIBILITY = Compatibility(
+        name = "Amazon India",
+        packageName = "in.amazon.mShop.android.shopping",
+        appIconColor = 0xFF9900,
+        targets = listOf(AppTarget(version = "32.12.4.300", versionCode = 1241319416))
+    )
+
     // AmoledPix
     val AMOLEDPIX_COMPATIBILITY = Compatibility(
         name = "AmoledPix",

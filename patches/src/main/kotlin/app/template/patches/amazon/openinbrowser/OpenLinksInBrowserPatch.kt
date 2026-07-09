@@ -2,6 +2,7 @@ package app.template.patches.amazon.openinbrowser
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.AMAZON_IN_COMPATIBILITY
 import app.template.patches.shared.Constants.AMAZON_SHOPPING_COMPATIBILITY
 
 @Suppress("unused")
@@ -10,7 +11,7 @@ val amazonOpenLinksInBrowserPatch = bytecodePatch(
     description = "Opens non-Amazon URLs in the default browser instead of the in-app WebView.",
     default = false,
 ) {
-    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY)
+    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY, AMAZON_IN_COMPATIBILITY)
 
     execute {
         // p1=WebView, p2=url (.locals 3)
