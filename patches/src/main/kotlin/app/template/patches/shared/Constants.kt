@@ -871,4 +871,13 @@ object Constants {
         appIconColor = 0xCC1F3C,
         targets = listOf(AppTarget(version = "2.115.1.4408", versionCode = 4408))
     )
+
+    // Blurams Home Pro — Security Camera App
+    val BLURAMS_COMPATIBILITY = Compatibility(
+        name = "Blurams",
+        packageName = "com.blurams.ipc",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.1049.4.908", versionCode = 1908))
+    )
 }
