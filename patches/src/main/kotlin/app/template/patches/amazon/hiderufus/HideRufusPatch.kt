@@ -2,6 +2,7 @@ package app.template.patches.amazon.hiderufus
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.AMAZON_IN_COMPATIBILITY
 import app.template.patches.shared.Constants.AMAZON_SHOPPING_COMPATIBILITY
 
 /**
@@ -14,7 +15,7 @@ val amazonHideRufusPatch = bytecodePatch(
     description = "Removes the Rufus AI assistant tab from Amazon's bottom navigation bar.",
     default = true,
 ) {
-    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY)
+    compatibleWith(AMAZON_SHOPPING_COMPATIBILITY, AMAZON_IN_COMPATIBILITY)
 
     execute {
         SavXTabControllerIsEnabledFingerprint.method.addInstructions(
