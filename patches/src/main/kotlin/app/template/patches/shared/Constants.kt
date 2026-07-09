@@ -964,4 +964,11 @@ object Constants {
         targets = listOf(AppTarget(version = "1.21", versionCode = 253))
     )
 
+    // Sticker.ly
+    val STICKERLY_COMPATIBILITY = Compatibility(
+        name = "Sticker.ly",
+        packageName = "com.snowcorp.stickerly.android",
+        appIconColor = 0x00ADEF,
+        targets = listOf(AppTarget(version = "3.35.0", versionCode = 1033500))
+    )
 }
