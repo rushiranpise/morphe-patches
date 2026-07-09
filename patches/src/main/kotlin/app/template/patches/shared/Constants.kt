@@ -932,4 +932,12 @@ object Constants {
         appIconColor = 0x2563EB,
         targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
     )
+
+    // MyRadar — Weather Radar & Forecast by ACME AtronOmatic
+    val MYRADAR_COMPATIBILITY = Compatibility(
+        name = "MyRadar",
+        packageName = "com.acmeaom.android.myradar",
+        appIconColor = 0x1A6FBF,
+        targets = listOf(AppTarget(version = "8.71.2", versionCode = 591))
+    )
 }
