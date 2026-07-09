@@ -894,4 +894,18 @@ object Constants {
         appIconColor = 0x58CC02,
         targets = listOf(AppTarget(version = "6.87.6", versionCode = 2409))
     )
+
+    val FLIGHTSKY_COMPATIBILITY = Compatibility(
+        name = "Flightsky",
+        packageName = "com.live.flight.tracker",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.7.1", versionCode = 23))
+    )
+
+    val FLIGHTAWARE_COMPATIBILITY = Compatibility(
+        name = "FlightAware",
+        packageName = "com.flightaware.android.liveFlightTracker",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.15.4", versionCode = 501500400))
+    )
 }
