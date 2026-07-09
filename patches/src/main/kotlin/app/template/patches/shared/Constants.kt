@@ -876,8 +876,16 @@ object Constants {
     val BLURAMS_COMPATIBILITY = Compatibility(
         name = "Blurams",
         packageName = "com.blurams.ipc",
-        apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "5.1049.4.908", versionCode = 1908))
     )
+
+    // Carousell — Buy & Sell Marketplace
+    val CAROUSELL_COMPATIBILITY = Compatibility(
+        name = "Carousell",
+        packageName = "com.thecarousell.Carousell",
+        appIconColor = 0xE7392C,
+        targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
+    )
+
 }
