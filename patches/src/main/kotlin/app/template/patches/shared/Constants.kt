@@ -381,13 +381,23 @@ object Constants {
         targets = listOf(AppTarget(version = "4.2.2326", versionCode = 2326))
     )
 
-    // MovieBox TV by Transsion/Mbox
-    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
-        name = "MovieBox TV",
+    // MovieBox (com.community.oneroom) + MovieBox TV (com.community.mbox.tv) by Transsion/Mbox
+    val MOVIEBOX_COMPATIBILITY = Compatibility(
+        name = "MovieBox",
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104))
+            AppTarget(version = "3.0.16.0703.03", versionCode = 50020113),
+        )
+    )
+
+    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
+        name = "MovieBox TV",
+        packageName = "com.community.mbox.tv",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "1.1.1.0702.03", versionCode = 50040006),
+        )
     )
 
     // The Weather Channel — Weather Forecast & Alerts by The Weather Channel
