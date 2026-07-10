@@ -391,7 +391,7 @@ object Constants {
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "3.0.16.0703.03", versionCode = 50020113),
+            AppTarget(version = "3.0.16.0709.03", versionCode = 50020116),
         )
     )
 
