@@ -34,7 +34,7 @@ object Constants {
         name = "Case Tracker",
         packageName = "com.saldous.casetracker",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.5.1"))
+        targets = listOf(AppTarget(version = "5.5.2", versionCode = 1036))
     )
 
     // Cloudflare WARP — 1.1.1.1
@@ -58,7 +58,7 @@ object Constants {
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = "26.5.5"))
+        targets = listOf(AppTarget(version = "26.6.3", versionCode = 945))
     )
 
     // Greenify — App Hibernation & Battery Saver
@@ -90,7 +90,7 @@ object Constants {
         name = "Stargazing Hub",
         packageName = "com.twtapp",
         appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = "3.2.1"))
+        targets = listOf(AppTarget(version = "3.3.1", versionCode = 3030100))
     )
 
     // Photo Editor — iUdesk Photo Editor
@@ -98,7 +98,7 @@ object Constants {
         name = "Photo Editor",
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
-        targets = listOf(AppTarget(version = "13.3"))
+        targets = listOf(AppTarget(version = "13.4", versionCode = 2026070800))
     )
 
     // ML Manager — APK Downloader & Backup
@@ -138,7 +138,7 @@ object Constants {
         name = "RAR",
         packageName = "com.rarlab.rar",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.20.build131"))
+        targets = listOf(AppTarget(version = "7.23.build133", versionCode = 133))
     )
 
     // m-Indicator — Mumbai Local Train
@@ -146,7 +146,7 @@ object Constants {
         name = "m-Indicator",
         packageName = "com.mobond.mindicator",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "18.0.352"))
+        targets = listOf(AppTarget(version = "18.0.356", versionCode = 356))
     )
 
     // Yatri — Train, Metro & Bus Ticketing
@@ -154,7 +154,7 @@ object Constants {
         name = "Yatri",
         packageName = "com.yatrirailways.yatri",
         appIconColor = 0xFF6B00,
-        targets = listOf(AppTarget(version = "5.0.3"))
+        targets = listOf(AppTarget(version = "5.0.4", versionCode = 317))
     )
 
     // Proxyman — Network Debugger
@@ -162,7 +162,7 @@ object Constants {
         name = "Proxyman",
         packageName = "com.proxyman.proxymanandroid",
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = "1.16.0"))
+        targets = listOf(AppTarget(version = "1.18.0", versionCode = 45))
     )
 
     // SHAREit Premium
@@ -218,7 +218,7 @@ object Constants {
         name = "Canva",
         packageName = "com.canva.editor",
         appIconColor = 0x8B3DFF,
-        targets = listOf(AppTarget(version = "2.365.o"))
+        targets = listOf(AppTarget(version = "2.367.0", versionCode = 29613027))
     )
 
     // Clickmate
@@ -266,7 +266,7 @@ object Constants {
         name = "HTTP Sniffer",
         packageName = "com.anetcapture.mock",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.11.0-ad_mob"))
+        targets = listOf(AppTarget(version = "2.11.1-ad_mob", versionCode = 133))
     )
 
     // MyPerm — App Permission Manager by darken
@@ -282,7 +282,7 @@ object Constants {
         name = "Proton VPN",
         packageName = "ch.protonvpn.android",
         appIconColor = 0x6D4AFF,
-        targets = listOf(AppTarget(version = "5.18.84.0"))
+        targets = listOf(AppTarget(version = "5.19.16.0", versionCode = 605191600))
     )
 
     // NetShare — Mobile Hotspot / Subnet Router
@@ -290,7 +290,7 @@ object Constants {
         name = "NetShare",
         packageName = "kha.prog.mikrotik",
         appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "UI/link-274"))
+        targets = listOf(AppTarget(version = "277", versionCode = 277))
     )
 
     // Shexa — Permission Manager by Shexa
@@ -314,7 +314,7 @@ object Constants {
         name = "Psiphon Pro",
         packageName = "com.psiphon3.subscription",
         appIconColor = 0x6A1B9A,
-        targets = listOf(AppTarget(version = "476"))
+        targets = listOf(AppTarget(version = "479", versionCode = 479))
     )
 
     // Speedtest by Ookla
@@ -322,7 +322,7 @@ object Constants {
         name = "Speedtest",
         packageName = "org.zwanoo.android.speedtest",
         appIconColor = 0x141C4C,
-        targets = listOf(AppTarget(version = "7.0.4"))
+        targets = listOf(AppTarget(version = "7.0.7", versionCode = 258530))
     )
 
     // Social Gamebox
@@ -338,7 +338,7 @@ object Constants {
         name = "Flightradar24",
         packageName = "com.flightradar24free",
         appIconColor = 0x327CB5,
-        targets = listOf(AppTarget(version = "11.6.1"))
+        targets = listOf(AppTarget(version = "11.7.0", versionCode = 110708450))
     )
 
     // Cashew — Budget & Finance Tracker by James Kokoska
@@ -362,7 +362,7 @@ object Constants {
         name = "Waze",
         packageName = "com.waze",
         appIconColor = 0x33CCFF,
-        targets = listOf(AppTarget(version = "5.19.0.2"))
+        targets = listOf(AppTarget(version = "5.21.0.0", versionCode = 1030711))
     )
 
     // AccuWeather — Weather Radar & Forecast
@@ -370,7 +370,7 @@ object Constants {
         name = "AccuWeather",
         packageName = "com.accuweather.android",
         appIconColor = 0xF25C1B,
-        targets = listOf(AppTarget(version = "21.1.11-1-rc"))
+        targets = listOf(AppTarget(version = "21.1.13-1-rc", versionCode = 210113001))
     )
 
     // Windscribe VPN
@@ -378,16 +378,39 @@ object Constants {
         name = "Windscribe VPN",
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
-        targets = listOf(AppTarget(version = "4.1.2274"))
+        targets = listOf(AppTarget(version = "4.2.2328", versionCode = 2328))
     )
 
-    // MovieBox TV by Transsion/Mbox
-    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
-        name = "MovieBox TV",
+   // MovieBox (com.community.oneroom) + MovieBox TV (com.community.mbox.tv) by Transsion/Mbox
+    // NOTE: v3.0.16.0708.03 APK is protected by ByteDance PGL shell packer (libpglarmor.so)
+    //   with a 4-class stub + payload encrypted in assets/Wic8HNcb & assets/C90ie74Rj.
+    //   Static DEX patching is not possible on the packed APK; only the unpacked source
+    //   (v3.0.16.0703.03) is patchable. Patch the 0703 build only.
+    val MOVIEBOX_COMPATIBILITY = Compatibility(
+        name = "MovieBox",
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "3.0.15.0616.03", versionCode = 50020104))
+            AppTarget(version = "3.0.16.0703.03", versionCode = 50020113),
+        )
+    )
+
+    val MOVIEBOX_IN_COMPATIBILITY = Compatibility(
+        name = "MovieBox (India)",
+        packageName = "com.community.mbox.in",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "3.0.16.0707.03", versionCode = 50020115),
+        )
+    )
+
+    val MOVIEBOXTV_COMPATIBILITY = Compatibility(
+        name = "MovieBox TV",
+        packageName = "com.community.mbox.tv",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "1.1.1.0702.03", versionCode = 50040006),
+        )
     )
 
     // The Weather Channel — Weather Forecast & Alerts by The Weather Channel
@@ -395,7 +418,7 @@ object Constants {
         name = "The Weather Channel",
         packageName = "com.weather.Weather",
         appIconColor = 0x1B6AC9,
-        targets = listOf(AppTarget(version = "16.10.1", versionCode = 1080012982))
+        targets = listOf(AppTarget(version = "16.12.0", versionCode = 1080013138))
     )
 
     // Ninja VPN — Fast & Secure VPN Proxy
@@ -403,7 +426,7 @@ object Constants {
         name = "Ninja VPN",
         packageName = "app.ninjavpn.android",
         appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = "1.4.6", versionCode = 43))
+        targets = listOf(AppTarget(version = "1.4.7", versionCode = 44))
     )
 
     // 1Tap Cleaner — App cache & history cleaner by a0soft
@@ -412,14 +435,6 @@ object Constants {
         packageName = "com.a0soft.gphone.acc.free",
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
-    )
-
-    // Strength Training by Muscle Motion
-    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
-        name = "Strength Training",
-        packageName = "air.com.musclemotion.strength.mobile",
-        appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.5.0", versionCode = 921))
     )
 
     // Windy — Weather Radar & Forecast by Windyty
@@ -443,7 +458,7 @@ object Constants {
         name = "Posture",
         packageName = "air.com.musclemotion.posture",
         appIconColor = 0x00897B,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 10040835))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 10040838))
     )
 
     // Kyphosis by Muscle Motion (legacy Adobe AIR architecture)
@@ -467,7 +482,7 @@ object Constants {
         name = "Yoga",
         packageName = "air.com.musclemotion.yoga",
         appIconColor = 0x7B1FA2,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004178))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
     )
 
     // Anatomy by Muscle Motion
@@ -475,7 +490,15 @@ object Constants {
         name = "Anatomy",
         packageName = "air.com.musclemotion.anatomy",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "3.2.0", versionCode = 1004183))
+        targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004185))
+    )
+
+    // Strength Training by Muscle Motion
+    val STRENGTHTRAINING_COMPATIBILITY = Compatibility(
+        name = "Strength Training",
+        packageName = "air.com.musclemotion.strength.mobile",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "3.5.1", versionCode = 924))
     )
 
     // Citymapper
@@ -491,7 +514,7 @@ object Constants {
         name = "Moovit",
         packageName = "com.tranzmate",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "5.195.0.1789", versionCode = 1789))
+        targets = listOf(AppTarget(version = "5.195.2.1792", versionCode = 1792))
     )
 
     // Transit — Bus, Train, Tracker
@@ -547,7 +570,7 @@ object Constants {
         name = "Scoopz",
         packageName = "com.localaiapp.scoops",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "3.2.7.0"))
+        targets = listOf(AppTarget(version = "3.28.0", versionCode = 3280007))
     )
 
     // NewsBreak
@@ -571,7 +594,7 @@ object Constants {
         name = "Lawfully",
         packageName = "com.lawfully.lawfully_ai_tracker",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = "6.6.2", versionCode = 532))
+        targets = listOf(AppTarget(version = "6.7.1", versionCode = 534))
     )
 
     // MigraConnect — USCIS & EOIR Case Tracker (com.tecso.MigraConnect)
@@ -587,7 +610,7 @@ object Constants {
         name = "Police Scanner",
         packageName = "police.scanner.radio.broadcastify.citizen",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "1.29.0-260420093"))
     )
 
     // CamScanner
@@ -595,7 +618,7 @@ object Constants {
         name = "CamScanner",
         packageName = "com.intsig.camscanner",
         appIconColor = 0x19BCAA,
-        targets = listOf(AppTarget(version = "7.20.0.2606230000", versionCode = 72002))
+        targets = listOf(AppTarget(version = "7.20.5.2606250000", versionCode = 72051))
     )
 
     // Image & Video Date Fixer by JD Apps
@@ -651,7 +674,7 @@ object Constants {
         name = "Toxly",
         packageName = "com.mindful.code.studio.toxly.scanner",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "1.15.3", versionCode = 54))
+        targets = listOf(AppTarget(version = "1.16.6", versionCode = 61))
     )
     
     // All Reader — PDF & Document Viewer
@@ -708,5 +731,293 @@ object Constants {
         packageName = "com.wavve.boating.gps",
         appIconColor = 0x0077CC,
         targets = listOf(AppTarget(version = "5.6.9", versionCode = 3178))
+    )
+
+    // PictureThis — Plant Identifier by Glority Global Group
+    val PICTURETHIS_COMPATIBILITY = Compatibility(
+        name = "PictureThis - Plant Identifier",
+        packageName = "cn.danatech.xingseus",
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "5.29.0", versionCode = 5084))
+    )
+
+    // Picture Mushroom - Mushroom ID
+    val PICTUREMUSHROOM_COMPATIBILITY = Compatibility(
+        name = "Picture Mushroom - Mushroom ID",
+        packageName = "com.glority.picturemushroom",
+        appIconColor = 0x7A4A24,
+        targets = listOf(AppTarget(version = "2.9.31", versionCode = 90))
+    )
+
+    // Amazon Shopping
+    val AMAZON_SHOPPING_COMPATIBILITY = Compatibility(
+        name = "Amazon Shopping",
+        packageName = "com.amazon.mShop.android.shopping",
+        appIconColor = 0xFF9900,
+        targets = listOf(AppTarget(version = "32.12.4.100", versionCode = 1241319416))
+    )
+
+    // Amazon India Shop, Pay, miniTV
+    val AMAZON_IN_COMPATIBILITY = Compatibility(
+        name = "Amazon India",
+        packageName = "in.amazon.mShop.android.shopping",
+        appIconColor = 0xFF9900,
+        targets = listOf(AppTarget(version = "32.12.4.300", versionCode = 1241319416))
+    )
+
+    // AmoledPix
+    val AMOLEDPIX_COMPATIBILITY = Compatibility(
+        name = "AmoledPix",
+        packageName = "com.androholic.amoledpix",
+        appIconColor = 0x000000,
+        targets = listOf(AppTarget(version = "7.2", versionCode = 80))
+    )
+
+    // APKMirror Installer
+    val APKMIRROR_INSTALLER_COMPATIBILITY = Compatibility(
+        name = "APKMirror Installer",
+        packageName = "com.apkmirror.helper.prod",
+        appIconColor = 0xFF9800,
+        targets = listOf(AppTarget(version = "2.0.3 (41-d04e542)", versionCode = 41))
+    )
+
+    // Block Puzzle
+    val BLOCKPUZZLE_COMPATIBILITY = Compatibility(
+        name = "Block Puzzle",
+        packageName = "game.puzzle.blockpuzzle",
+        appIconColor = 0x3B82F6,
+        targets = listOf(AppTarget(version = "6.0", versionCode = 60))
+    )
+
+    // ColorNote
+    val COLORNOTE_COMPATIBILITY = Compatibility(
+        name = "ColorNote",
+        packageName = "com.socialnmobile.dictapps.notepad.color.note",
+        appIconColor = 0xF2C200,
+        targets = listOf(AppTarget(version = "4.8.4", versionCode = 2104840))
+    )
+
+     // Pocket Casts
+    val POCKET_CASTS_COMPATIBILITY = Compatibility(
+        name = "Pocket Casts",
+        packageName = "au.com.shiftyjelly.pocketcasts",
+        appIconColor = 0xF43E37,
+        targets = listOf(AppTarget(version = "8.14", versionCode = 9435))
+    )
+
+    // Sticker Maker
+    val STICKER_MAKER_COMPATIBILITY = Compatibility(
+        name = "Sticker Maker",
+        packageName = "com.marsvard.stickermakerforwhatsapp",
+        appIconColor = 0x00A884,
+        targets = listOf(AppTarget(version = "1.0.10-5", versionCode = 1001005))
+    )
+
+    // Subway Now
+    val SUBWAYNOW_COMPATIBILITY = Compatibility(
+        name = "Subway Now",
+        packageName = "io.goodservice.theweekendest",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.2.8", versionCode = 79))
+    )
+
+    // TrackChecker Mobile — Parcel & Package Tracker by metalsoft
+    val TRACKCHECKER_COMPATIBILITY = Compatibility(
+        name = "TrackChecker Mobile",
+        packageName = "com.metalsoft.trackchecker_mobile",
+        appIconColor = 0x1E88E5,
+        targets = listOf(AppTarget(version = "2.29.3", versionCode = 505))
+    )
+
+    // Fitbod — Workout & Fitness Coach
+    val FITBOD_COMPATIBILITY = Compatibility(
+        name = "Fitbod",
+        packageName = "com.fitbod.fitbod",
+        appIconColor = 0xFF3D00,
+        targets = listOf(AppTarget(version = "8.24.0-1", versionCode = 10824001))
+    )
+
+    // Toomics
+    val TOOMICS_COMPATIBILITY = Compatibility(
+        name = "Toomics",
+        packageName = "com.toomics.global.google",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "1.6.7", versionCode = 106))
+    )
+
+    // VIZ Manga — Read Manga Official by VIZ Media
+    val VIZMANGA_COMPATIBILITY = Compatibility(
+        name = "VIZ Manga",
+        packageName = "com.vizmanga.android",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "4.14.0", versionCode = 232))
+    )
+
+    // Microsoft Excel
+    val EXCEL_COMPATIBILITY = Compatibility(
+        name = "Excel",
+        packageName = "com.microsoft.office.excel",
+        appIconColor = 0x1B5E20,
+        targets = listOf(AppTarget(version = "16.0.20131.20080", versionCode = 2005201435))
+    )
+
+    // Microsoft Word
+    val WORD_COMPATIBILITY = Compatibility(
+        name = "Word",
+        packageName = "com.microsoft.office.word",
+        appIconColor = 0x1A237E,
+        targets = listOf(AppTarget(version = "16.0.20131.20080", versionCode = 2005201435))
+    )
+
+    // AiScore
+    val AISCORE_COMPATIBILITY = Compatibility(
+        name = "AiScore",
+        packageName = "com.onesports.score",
+        appIconColor = 0x2563EB,
+        targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
+    )
+
+    // AMBOSS Medical Knowledge
+    val AMBOSS_COMPATIBILITY = Compatibility(
+        name = "AMBOSS",
+        packageName = "com.amboss.medical.knowledge",
+        appIconColor = 0xCC1F3C,
+        targets = listOf(AppTarget(version = "2.115.1.4408", versionCode = 4408))
+    )
+
+    // Blurams Home Pro — Security Camera App
+    val BLURAMS_COMPATIBILITY = Compatibility(
+        name = "Blurams",
+        packageName = "com.blurams.ipc",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.1049.4.908", versionCode = 1908))
+    )
+
+    // Carousell — Buy & Sell Marketplace
+    val CAROUSELL_COMPATIBILITY = Compatibility(
+        name = "Carousell",
+        packageName = "com.thecarousell.Carousell",
+        appIconColor = 0xE7392C,
+        targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
+    )
+
+    val DUOLINGO_COMPATIBILITY = Compatibility(
+        name = "Duolingo",
+        packageName = "com.duolingo",
+        appIconColor = 0x58CC02,
+        targets = listOf(AppTarget(version = "6.87.6", versionCode = 2409))
+    )
+
+    val FLIGHTSKY_COMPATIBILITY = Compatibility(
+        name = "Flightsky",
+        packageName = "com.live.flight.tracker",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.7.1", versionCode = 23))
+    )
+
+    val FLIGHTAWARE_COMPATIBILITY = Compatibility(
+        name = "FlightAware",
+        packageName = "com.flightaware.android.liveFlightTracker",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "5.15.4", versionCode = 501500400))
+    )
+
+    // Historical Calendar — Day in History by Alexandru Cene
+    val HISTORICALCALENDAR_COMPATIBILITY = Compatibility(
+        name = "Historical Calendar",
+        packageName = "com.alexandrucene.dayhistory",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "7.5.4", versionCode = 376))
+    )
+
+    // JEFIT — Workout Tracker & Gym Log
+    val JEFIT_COMPATIBILITY = Compatibility(
+        name = "JEFIT",
+        packageName = "je.fit",
+        appIconColor = 0x1A73E8,
+        targets = listOf(AppTarget(version = "17.2.5", versionCode = 2002))
+    )
+
+    val LIVESCORE_COMPATIBILITY = Compatibility(
+        name = "LiveScore",
+        packageName = "com.livescore",
+        appIconColor = 0xE30613,
+        targets = listOf(AppTarget(version = "9.7.1", versionCode = 2072))
+    )
+
+    // MyRadar — Weather Radar & Forecast by ACME AtronOmatic
+    val MYRADAR_COMPATIBILITY = Compatibility(
+        name = "MyRadar",
+        packageName = "com.acmeaom.android.myradar",
+        appIconColor = 0x1A6FBF,
+        targets = listOf(AppTarget(version = "8.71.2", versionCode = 591))
+    )
+
+    // Pocket Prep
+    val POCKETPREP_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep",
+        packageName = "com.pocketprep.android.itcybersecurity",
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.27.2", versionCode = 424))
+    )
+
+     // RecipeBro — Cooking Buddy
+    val RECIPEBRO_COMPATIBILITY = Compatibility(
+        name = "RecipeBro",
+        packageName = "com.recipebro.cookingbuddy",
+        appIconColor = 0xE65100,
+        targets = listOf(AppTarget(version = "1.3.74", versionCode = 1362))
+    )
+
+    val SCRL_COMPATIBILITY = Compatibility(
+        name = "SCRL",
+        packageName = "com.appostrophe.scrl",
+        appIconColor = 0xEFC67A,
+        targets = listOf(AppTarget(version = "1.22", versionCode = 256))
+    )
+
+    // Sticker.ly
+    val STICKERLY_COMPATIBILITY = Compatibility(
+        name = "Sticker.ly",
+        packageName = "com.snowcorp.stickerly.android",
+        appIconColor = 0x00ADEF,
+        targets = listOf(AppTarget(version = "3.35.0", versionCode = 1033500))
+    )
+
+    val TRADINGVIEW_COMPATIBILITY = Compatibility(
+        name = "TradingView",
+        packageName = "com.tradingview.tradingviewapp",
+        appIconColor = 0x2962FF,
+        targets = listOf(AppTarget(version = "1.20.77.0.1002295", versionCode = 1002295))
+    )
+
+     val WOLFRAMALPHA_COMPATIBILITY = Compatibility(
+        name = "WolframAlpha",
+        packageName = "com.wolfram.android.alphapro",
+        appIconColor = 0xDD1100,
+        targets = listOf(AppTarget(version = "1.0.8.20260601651", versionCode = 117))
+    )
+
+    val LIFE360_COMPATIBILITY = Compatibility(
+        name = "Life360",
+        packageName = "com.life360.android.safetymapd",
+        appIconColor = 0x5D2DE6,
+        targets = listOf(AppTarget(version = "26.25.0", versionCode = 2903210))
+    )
+
+    // Today Weather by Lockdown
+    val TODAYWEATHER_COMPATIBILITY = Compatibility(
+        name = "Today Weather",
+        packageName = "mobi.lockdown.weather",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
+    )
+
+    // UbikiTouch
+    val UBIKITOUCH_COMPATIBILITY = Compatibility(
+        name = "UbikiTouch",
+        packageName = "eu.toneiv.ubktouch",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = "1.16.13", versionCode = 73441))
     )
 }
