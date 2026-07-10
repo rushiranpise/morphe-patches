@@ -381,13 +381,26 @@ object Constants {
         targets = listOf(AppTarget(version = "4.2.2328", versionCode = 2328))
     )
 
-    // MovieBox (com.community.oneroom) + MovieBox TV (com.community.mbox.tv) by Transsion/Mbox
+   // MovieBox (com.community.oneroom) + MovieBox TV (com.community.mbox.tv) by Transsion/Mbox
+    // NOTE: v3.0.16.0708.03 APK is protected by ByteDance PGL shell packer (libpglarmor.so)
+    //   with a 4-class stub + payload encrypted in assets/Wic8HNcb & assets/C90ie74Rj.
+    //   Static DEX patching is not possible on the packed APK; only the unpacked source
+    //   (v3.0.16.0703.03) is patchable. Patch the 0703 build only.
     val MOVIEBOX_COMPATIBILITY = Compatibility(
         name = "MovieBox",
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
             AppTarget(version = "3.0.16.0703.03", versionCode = 50020113),
+        )
+    )
+
+    val MOVIEBOX_IN_COMPATIBILITY = Compatibility(
+        name = "MovieBox (India)",
+        packageName = "com.community.mbox.in",
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "3.0.16.0707.03", versionCode = 50020115),
         )
     )
 
