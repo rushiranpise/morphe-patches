@@ -997,4 +997,11 @@ object Constants {
         appIconColor = 0xDD1100,
         targets = listOf(AppTarget(version = "1.0.8.20260601651", versionCode = 117))
     )
+
+    val LIFE360_COMPATIBILITY = Compatibility(
+        name = "Life360",
+        packageName = "com.life360.android.safetymapd",
+        appIconColor = 0x5D2DE6,
+        targets = listOf(AppTarget(version = "26.25.0", versionCode = 2903210))
+    )
 }
