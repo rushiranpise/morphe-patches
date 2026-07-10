@@ -1,3 +1,113 @@
+# Rushi's Patches v1.11.0
+Patch source for Morphe.
+**Channel:** stable  
+**Branch:** `main`  
+**Patch count:** 165
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0.mpp` from the release assets below.
+
+## Supported Apps Changed
+
+### Added Apps
+- **AiScore** (`com.onesports.score`)
+- **Amazon India** (`in.amazon.mShop.android.shopping`)
+- **Amazon Shopping** (`com.amazon.mShop.android.shopping`)
+- **AmoledPix** (`com.androholic.amoledpix`)
+- **APKMirror Installer** (`com.apkmirror.helper.prod`)
+- **Block Puzzle** (`game.puzzle.blockpuzzle`)
+- **Blurams** (`com.blurams.ipc`)
+- **Carousell** (`com.thecarousell.Carousell`)
+- **ColorNote** (`com.socialnmobile.dictapps.notepad.color.note`)
+- **Duolingo** (`com.duolingo`)
+- **Excel** (`com.microsoft.office.excel`)
+- **Fitbod** (`com.fitbod.fitbod`)
+- ...and 26 more
+
+### Updated App Versions
+- **AccuWeather** (`com.accuweather.android`): `21.1.11-1-rc` -> `21.1.13-1-rc`
+- **Anatomy** (`air.com.musclemotion.anatomy`): `3.2.0` -> `3.2.1`
+- **CamScanner** (`com.intsig.camscanner`): `7.20.0.2606230000` -> `7.20.5.2606250000`
+- **Canva** (`com.canva.editor`): `2.365.o` -> `2.367.0`
+- **Case Tracker** (`com.saldous.casetracker`): `5.5.1` -> `5.5.2`
+- **Flightradar24** (`com.flightradar24free`): `11.6.1` -> `11.7.0`
+- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.0-ad_mob` -> `2.11.1-ad_mob`
+- **Lawfully** (`com.lawfully.lawfully_ai_tracker`): `6.6.2` -> `6.7.1`
+- **m-Indicator** (`com.mobond.mindicator`): `18.0.352` -> `18.0.356`
+- **Moovit** (`com.tranzmate`): `5.195.0.1789` -> `5.195.2.1792`
+- **MovieBox** (`com.community.oneroom`): `3.0.15.0616.03` -> `3.0.16.0703.03`
+- **NetShare** (`kha.prog.mikrotik`): `UI/link-274` -> `277`
+- ...and 19 more
+
+### Removed Apps
+- **SkinSort** (`com.skinsort`)
+- **Tracked** (`com.tracked.mobile`)
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0](https://github.com/rushiranpise/morphe-patches/compare/v1.10.1...v1.11.0) (2026-07-10)
+
+### New Patches
+
+* add aiscore ([b758b02](https://github.com/rushiranpise/morphe-patches/commit/b758b024ca4c1f9b890bb8261e1a25bf5a542dcf))
+* add aiscore ([9884851](https://github.com/rushiranpise/morphe-patches/commit/9884851302d0244e85660716dd1ff651334224c6))
+* add amazon india ([6455cb7](https://github.com/rushiranpise/morphe-patches/commit/6455cb71d7878ad60ee8d1e4fc590d369e9ff232))
+* add amboss ([bb7701e](https://github.com/rushiranpise/morphe-patches/commit/bb7701ea2a9d74e9280950bbb9a6c6a160648d67))
+* add blurams ([08d6a77](https://github.com/rushiranpise/morphe-patches/commit/08d6a77966a880f03762b646849e13c04fa80464))
+* add Carousell ([78a814b](https://github.com/rushiranpise/morphe-patches/commit/78a814b6b798a52c9207f359557c86399d31a127))
+* add duolingo ([68bfbe4](https://github.com/rushiranpise/morphe-patches/commit/68bfbe40ccf17ecd524afcc3ce573c5dd5af74c1))
+* add flight apps ([78b3b79](https://github.com/rushiranpise/morphe-patches/commit/78b3b791a3c92c5cfc2ee9fcc083a74b236f2da0))
+* add historical calendar ([b530405](https://github.com/rushiranpise/morphe-patches/commit/b530405bcc295ed99f567b61341ed752ed0759c5))
+* add JEFIT ([19199f3](https://github.com/rushiranpise/morphe-patches/commit/19199f350f980d34c6ff45ec6d249f4691d5cb17))
+* add life360 ([6b26e06](https://github.com/rushiranpise/morphe-patches/commit/6b26e067124fa4a624e18ee49342140e410b2769))
+* add moviebox india ([a7662ba](https://github.com/rushiranpise/morphe-patches/commit/a7662ba12f5b858dfcb20bdb88f8f95c0ef6cbe9))
+* add movieboxtv ([998983d](https://github.com/rushiranpise/morphe-patches/commit/998983d0dbe11bbcd8ecdfd1eb6f919e239d8e19))
+* add myradar ([3c0b8a0](https://github.com/rushiranpise/morphe-patches/commit/3c0b8a06913408555ea1b968d5558eda9be8613c))
+* add picturethis apps ([2af13cf](https://github.com/rushiranpise/morphe-patches/commit/2af13cf2e0b4b9cd0669465ea6d2b422ca08f57d))
+* add pocketprep ([84bffb8](https://github.com/rushiranpise/morphe-patches/commit/84bffb817d597d8aa2ffc18d743cd42acee4bf81))
+* add RecipeBro ([ee4ee1d](https://github.com/rushiranpise/morphe-patches/commit/ee4ee1d642fe7d6b03b8fa10ed6b2f69d9bd000c))
+* add scrl ([75119d0](https://github.com/rushiranpise/morphe-patches/commit/75119d06342a224f50cff764788932e42a6bc169))
+* add stickerly ([af24434](https://github.com/rushiranpise/morphe-patches/commit/af24434cce7b8d8ce00cf1e8318c43ed81705115))
+* add todays weather ([ebe3e49](https://github.com/rushiranpise/morphe-patches/commit/ebe3e49a68e37312466cfb2aaac9341e0e9f3f18))
+* add toomics ([b3b213b](https://github.com/rushiranpise/morphe-patches/commit/b3b213bd47e069f04f66cdeb8c5cf5c58899bbc5))
+* add tradingview ([69e7d07](https://github.com/rushiranpise/morphe-patches/commit/69e7d07fb712b378755a54ecad62db70f3b105fc))
+* add UbikiTouch ([086ac80](https://github.com/rushiranpise/morphe-patches/commit/086ac80378e76a4a5f4f34c515d3ec3b5c7da2b5))
+* add WolframAlpha ([040db33](https://github.com/rushiranpise/morphe-patches/commit/040db33b9a46a59eecc6e496f569cb7a7a914ab0))
+* add word & excel ([1445673](https://github.com/rushiranpise/morphe-patches/commit/1445673f029e958f3fff60f5b490865b05d1514d))
+* amazon ([d2221ca](https://github.com/rushiranpise/morphe-patches/commit/d2221ca3793766fb59954cb2ea9407282c67e25a))
+* amoledpix ([5622279](https://github.com/rushiranpise/morphe-patches/commit/562227950f8002d29423226ba60f25f6acd43c25))
+* apkmirror ([4a56688](https://github.com/rushiranpise/morphe-patches/commit/4a56688db4cb0dadbb57e317bff190fcff1f448b))
+* blockpuzzle ([fc7896c](https://github.com/rushiranpise/morphe-patches/commit/fc7896c84075af63840d4573856b82df66aa2a2b))
+* colornote ([ecc74f5](https://github.com/rushiranpise/morphe-patches/commit/ecc74f53539d78c74801bc0f0e9084cd4812e51f))
+* fitpod ([b7ffd25](https://github.com/rushiranpise/morphe-patches/commit/b7ffd25593fa2ec0dbac31d82fdea01cb4faaee3))
+* pocketcast ([743da24](https://github.com/rushiranpise/morphe-patches/commit/743da241b5ea1a98d864b086c3cf8f4cc7f480ba))
+* stickermaker ([3a2268a](https://github.com/rushiranpise/morphe-patches/commit/3a2268abf3d2de449a7405776d77e3bec11d320a))
+* subwaynow ([62fc6ce](https://github.com/rushiranpise/morphe-patches/commit/62fc6ce86f6e50c88472d85d8ee64ca709e3146d))
+* trackercheck ([58a049c](https://github.com/rushiranpise/morphe-patches/commit/58a049cb5fb29a556121a2561d109dedaa5f3e78))
+* vizmanga ([14e3941](https://github.com/rushiranpise/morphe-patches/commit/14e39418d9b3be0478ac83588acb929cba1f7f3d))
+
+### Fixes
+
+* amazon ([7f9fe2a](https://github.com/rushiranpise/morphe-patches/commit/7f9fe2afa45379173fab5edb974fa8d2978c940b))
+* inject map api keys from actions secrets ([7d5d282](https://github.com/rushiranpise/morphe-patches/commit/7d5d282a29181e196677407d8c415a17b83f8853))
+* livescore ([0d7552a](https://github.com/rushiranpise/morphe-patches/commit/0d7552a4e7733b06c459cddb595eba156af3b7e8))
+* pkge ([933081f](https://github.com/rushiranpise/morphe-patches/commit/933081fe0f94292c92d9c38500cd9e35fa0294bd))
+* release ([76daaf4](https://github.com/rushiranpise/morphe-patches/commit/76daaf4c0ad922cb9dd08502c6da46108a8d8592))
+* Strength Training ([962d3c1](https://github.com/rushiranpise/morphe-patches/commit/962d3c1cb708f1581b4920f898ad3c41236b1628))
+
 # Rushi's Patches v1.11.0-dev.5
 Patch source for Morphe.
 **Channel:** dev prerelease  
