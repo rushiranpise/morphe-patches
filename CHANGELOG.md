@@ -1,3 +1,224 @@
+# Rushi's Patches v1.11.0-dev.5
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 163
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.5.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.4...v1.11.0-dev.5) (2026-07-10)
+
+### New Patches
+
+* add life360 ([6b26e06](https://github.com/rushiranpise/morphe-patches/commit/6b26e067124fa4a624e18ee49342140e410b2769))
+* add moviebox india ([a7662ba](https://github.com/rushiranpise/morphe-patches/commit/a7662ba12f5b858dfcb20bdb88f8f95c0ef6cbe9))
+* add todays weather ([ebe3e49](https://github.com/rushiranpise/morphe-patches/commit/ebe3e49a68e37312466cfb2aaac9341e0e9f3f18))
+* add UbikiTouch ([086ac80](https://github.com/rushiranpise/morphe-patches/commit/086ac80378e76a4a5f4f34c515d3ec3b5c7da2b5))
+
+### Fixes
+
+* amazon ([7f9fe2a](https://github.com/rushiranpise/morphe-patches/commit/7f9fe2afa45379173fab5edb974fa8d2978c940b))
+
+# Rushi's Patches v1.11.0-dev.4
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 141
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.4.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.3...v1.11.0-dev.4) (2026-07-09)
+
+### New Patches
+
+* add aiscore ([b758b02](https://github.com/rushiranpise/morphe-patches/commit/b758b024ca4c1f9b890bb8261e1a25bf5a542dcf))
+* add aiscore ([9884851](https://github.com/rushiranpise/morphe-patches/commit/9884851302d0244e85660716dd1ff651334224c6))
+* add amazon india ([6455cb7](https://github.com/rushiranpise/morphe-patches/commit/6455cb71d7878ad60ee8d1e4fc590d369e9ff232))
+* add amboss ([bb7701e](https://github.com/rushiranpise/morphe-patches/commit/bb7701ea2a9d74e9280950bbb9a6c6a160648d67))
+* add blurams ([08d6a77](https://github.com/rushiranpise/morphe-patches/commit/08d6a77966a880f03762b646849e13c04fa80464))
+* add Carousell ([78a814b](https://github.com/rushiranpise/morphe-patches/commit/78a814b6b798a52c9207f359557c86399d31a127))
+* add duolingo ([68bfbe4](https://github.com/rushiranpise/morphe-patches/commit/68bfbe40ccf17ecd524afcc3ce573c5dd5af74c1))
+* add flight apps ([78b3b79](https://github.com/rushiranpise/morphe-patches/commit/78b3b791a3c92c5cfc2ee9fcc083a74b236f2da0))
+* add historical calendar ([b530405](https://github.com/rushiranpise/morphe-patches/commit/b530405bcc295ed99f567b61341ed752ed0759c5))
+* add JEFIT ([19199f3](https://github.com/rushiranpise/morphe-patches/commit/19199f350f980d34c6ff45ec6d249f4691d5cb17))
+* add movieboxtv ([998983d](https://github.com/rushiranpise/morphe-patches/commit/998983d0dbe11bbcd8ecdfd1eb6f919e239d8e19))
+* add myradar ([3c0b8a0](https://github.com/rushiranpise/morphe-patches/commit/3c0b8a06913408555ea1b968d5558eda9be8613c))
+* add pocketprep ([84bffb8](https://github.com/rushiranpise/morphe-patches/commit/84bffb817d597d8aa2ffc18d743cd42acee4bf81))
+* add RecipeBro ([ee4ee1d](https://github.com/rushiranpise/morphe-patches/commit/ee4ee1d642fe7d6b03b8fa10ed6b2f69d9bd000c))
+* add scrl ([75119d0](https://github.com/rushiranpise/morphe-patches/commit/75119d06342a224f50cff764788932e42a6bc169))
+* add stickerly ([af24434](https://github.com/rushiranpise/morphe-patches/commit/af24434cce7b8d8ce00cf1e8318c43ed81705115))
+* add tradingview ([69e7d07](https://github.com/rushiranpise/morphe-patches/commit/69e7d07fb712b378755a54ecad62db70f3b105fc))
+* add WolframAlpha ([040db33](https://github.com/rushiranpise/morphe-patches/commit/040db33b9a46a59eecc6e496f569cb7a7a914ab0))
+* add word & excel ([1445673](https://github.com/rushiranpise/morphe-patches/commit/1445673f029e958f3fff60f5b490865b05d1514d))
+
+### Fixes
+
+* livescore ([0d7552a](https://github.com/rushiranpise/morphe-patches/commit/0d7552a4e7733b06c459cddb595eba156af3b7e8))
+
+# Rushi's Patches v1.11.0-dev.3
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 141
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.3.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.2...v1.11.0-dev.3) (2026-07-07)
+
+### Fixes
+
+* inject map api keys from actions secrets ([7d5d282](https://github.com/rushiranpise/morphe-patches/commit/7d5d282a29181e196677407d8c415a17b83f8853))
+
+# Rushi's Patches v1.11.0-dev.2
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 122
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.2.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.1...v1.11.0-dev.2) (2026-07-07)
+
+### New Patches
+
+* add toomics ([808e36c](https://github.com/rushiranpise/morphe-patches/commit/808e36ca6ff58a290a42137c575f169d9c275f8a))
+* amazon ([b1b0c44](https://github.com/rushiranpise/morphe-patches/commit/b1b0c4486c9625f691e95ec8d1e00942e6ca6899))
+* amoledpix ([c41c2fd](https://github.com/rushiranpise/morphe-patches/commit/c41c2fdbbb11056688e8363a969d46dd5bf0b501))
+* apkmirror ([d230ccb](https://github.com/rushiranpise/morphe-patches/commit/d230ccb2ddbab5e1ffebb3f66d9992a0f2932f48))
+* blockpuzzle ([0ca9efc](https://github.com/rushiranpise/morphe-patches/commit/0ca9efc9c6e106cf963b306f22d6b849f47a9829))
+* colornote ([023946f](https://github.com/rushiranpise/morphe-patches/commit/023946fbf2b4221f2c8eadb3e83e7ad07f8ef403))
+* fitpod ([a5f0e9b](https://github.com/rushiranpise/morphe-patches/commit/a5f0e9b832f22f54aea210bc9e7a5428f75a6391))
+* pocketcast ([3942b5f](https://github.com/rushiranpise/morphe-patches/commit/3942b5ff1c286e44d467f22f2a1a1f9bfd93425d))
+* stickermaker ([289dbfc](https://github.com/rushiranpise/morphe-patches/commit/289dbfcd6e3ba17c24cc147206815946d24bf5f9))
+* subwaynow ([2490c99](https://github.com/rushiranpise/morphe-patches/commit/2490c999cbcafac7a59d318ecfa8fd9230f5d6c0))
+* trackercheck ([3e27c45](https://github.com/rushiranpise/morphe-patches/commit/3e27c45da919fba019109b88cafb301d4b9c30ad))
+* vizmanga ([6d1dbf9](https://github.com/rushiranpise/morphe-patches/commit/6d1dbf93e1ee08b16d969761165979b31703608f))
+
+### Fixes
+
+* pkge ([6b1904b](https://github.com/rushiranpise/morphe-patches/commit/6b1904bdb14994f3e4cbb0b1781d525e24a3d0d8))
+* release ([8420467](https://github.com/rushiranpise/morphe-patches/commit/84204672d394573d63986c95ab884326b66cf8eb))
+* Strength Training ([eeed1a0](https://github.com/rushiranpise/morphe-patches/commit/eeed1a0c1a74603a37f5a2a8a27674ddfffbecdc))
+
+# Rushi's Patches v1.11.0-dev.1
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 120
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.1.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.10.1...v1.11.0-dev.1) (2026-07-06)
+
+### New Patches
+
+* add picturethis apps ([cc4d7b9](https://github.com/rushiranpise/morphe-patches/commit/cc4d7b9a554219487e95e45dc19b6a449f422fb3))
+
 # Rushi's Patches v1.10.1
 Patch source for Morphe.
 **Channel:** stable  

@@ -12,8 +12,12 @@ val unlockPremiumPatch = bytecodePatch(
     compatibleWith(PKGE_COMPATIBILITY)
 
     execute {
-        // p1 is the boolean argument (true = purchased, false = not purchased).
-        // Overwriting it with 1 before the branch means the buffer always emits PremiumStatus.Purchased.
+        // Forces PremiumPurchasedStatusBuffer to always emit Purchased
         premiumStatusSendFingerprint.method.addInstruction(0, "const/4 p1, 0x1")
+
+        // Forces SubscriptionsHelperImpl.isPremiumPurchased(AdaptyProfile) to always return true
+        // Covers auto-update and all direct isPremiumPurchased() calls bypassing the buffer
+        isPremiumPurchasedAdaptyFingerprint.method.addInstruction(0, "const/4 p1, 0x1")
+        isPremiumPurchasedAdaptyFingerprint.method.addInstruction(1, "return p1")
     }
 }

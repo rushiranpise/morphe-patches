@@ -148,9 +148,9 @@ val proxymanUnlockLifetimePatch = bytecodePatch(
                     0,
                     """
                     const/4 p1, 0x1
-                    sget-object p2, Lr9/d;->d:Lr9/d;
+                    sget-object p2, Ls9/d;->d:Ls9/d;
                     const/4 p4, 0x1
-                    sget-object p5, Lr9/c;->c:Lr9/c;
+                    sget-object p5, Ls9/c;->c:Ls9/c;
                     """.trimIndent()
                 )
             }

@@ -140,7 +140,7 @@ public class NetMonsterHelper {
 
     private static void spoofApiKey(android.content.pm.ApplicationInfo info) {
         if (info.metaData == null) info.metaData = new android.os.Bundle();
-        info.metaData.putString("com.google.android.geo.API_KEY", "REMOVED_GOOGLE_MAPS_API_KEY");
+        info.metaData.putString("com.google.android.geo.API_KEY", ApiKeys.NETMONSTER_MAPS);
     }
 
     private static byte[] hexToBytes(String s) {
