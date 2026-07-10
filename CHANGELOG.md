@@ -1,3 +1,45 @@
+# Rushi's Patches v1.11.0-dev.5
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 163
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.11.0-dev.5.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.11.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.4...v1.11.0-dev.5) (2026-07-10)
+
+### New Patches
+
+* add life360 ([6b26e06](https://github.com/rushiranpise/morphe-patches/commit/6b26e067124fa4a624e18ee49342140e410b2769))
+* add moviebox india ([a7662ba](https://github.com/rushiranpise/morphe-patches/commit/a7662ba12f5b858dfcb20bdb88f8f95c0ef6cbe9))
+* add todays weather ([ebe3e49](https://github.com/rushiranpise/morphe-patches/commit/ebe3e49a68e37312466cfb2aaac9341e0e9f3f18))
+* add UbikiTouch ([086ac80](https://github.com/rushiranpise/morphe-patches/commit/086ac80378e76a4a5f4f34c515d3ec3b5c7da2b5))
+
+### Fixes
+
+* amazon ([7f9fe2a](https://github.com/rushiranpise/morphe-patches/commit/7f9fe2afa45379173fab5edb974fa8d2978c940b))
+
 # Rushi's Patches v1.11.0-dev.4
 Patch source for Morphe.
 **Channel:** dev prerelease  
