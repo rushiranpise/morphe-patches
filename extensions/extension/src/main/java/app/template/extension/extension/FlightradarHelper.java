@@ -147,6 +147,12 @@ public class FlightradarHelper {
                 android.util.Log.e("FlightradarHelper", "Error mocking UserSessionData strings", e);
             }
 
+            try {
+                mockSubscriptionItem(sessionData);
+            } catch (Exception e) {
+                android.util.Log.e("FlightradarHelper", "Error mocking subscription item", e);
+            }
+
             Field featuresField = getDeclaredFieldRecursive(sessionData.getClass(), "features");
             if (featuresField != null) {
                 featuresField.setAccessible(true);
@@ -162,6 +168,43 @@ public class FlightradarHelper {
             }
         } catch (Exception e) {
             android.util.Log.e("FlightradarHelper", "Error mocking UserSessionData features", e);
+        }
+    }
+
+    private static void mockSubscriptionItem(Object sessionData) throws Exception {
+        Field subscriptionsField = getDeclaredFieldRecursive(sessionData.getClass(), "subscriptions");
+        if (subscriptionsField == null) return;
+
+        subscriptionsField.setAccessible(true);
+        Object subscriptions = subscriptionsField.get(sessionData);
+        if (subscriptions == null) {
+            subscriptions = subscriptionsField.getType().newInstance();
+            subscriptionsField.set(sessionData, subscriptions);
+        }
+
+        Field k0Field = getDeclaredFieldRecursive(subscriptions.getClass(), "k0");
+        if (k0Field == null) return;
+
+        k0Field.setAccessible(true);
+        Object item = k0Field.get(subscriptions);
+        if (item == null) {
+            item = k0Field.getType().newInstance();
+            k0Field.set(subscriptions, item);
+        }
+
+        setObjectField(item, "name", "Business");
+        setObjectField(item, "sku", "fr24_business_yearly");
+        setObjectField(item, "typePlatform", "android");
+        setObjectField(item, "typeSubscription", "yearly");
+        setObjectField(item, "isOnTrial", Boolean.FALSE);
+        setObjectField(item, "dateExpires", Long.valueOf(4102444800000L));
+    }
+
+    private static void setObjectField(Object target, String fieldName, Object value) throws Exception {
+        Field field = getDeclaredFieldRecursive(target.getClass(), fieldName);
+        if (field != null) {
+            field.setAccessible(true);
+            field.set(target, value);
         }
     }
 
@@ -362,7 +405,7 @@ public class FlightradarHelper {
         if (info.metaData == null) {
             info.metaData = new android.os.Bundle();
         }
-        info.metaData.putString("com.google.android.maps.v2.API_KEY", "REMOVED_GOOGLE_MAPS_API_KEY");
+        info.metaData.putString("com.google.android.maps.v2.API_KEY", ApiKeys.FLIGHTRADAR_MAPS);
     }
 
     public static void cleanupEmsData(Object ems) {

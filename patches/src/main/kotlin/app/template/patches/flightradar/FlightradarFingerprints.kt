@@ -11,28 +11,28 @@ val BillingPurchasesProviderIsValidFingerprint = Fingerprint(
 )
 
 val UserIsGoldFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "r",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
 
 val UserIsBasicFingerprint = Fingerprint(
-    definingClass = "Lzse;",
-    name = "q",
+    definingClass = "Loye;",
+    name = "n",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
 
 val UserIsAdvertsEnabledFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "a",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
 )
 
 val EcfGetSubscriptionTierFingerprint = Fingerprint(
-    definingClass = "Llue;",
+    definingClass = "Le0f;",
     name = "b",
     returnType = "Ljava/lang/String;",
     parameters = listOf("Lcom/flightradar24free/models/account/UserData;"),
@@ -40,9 +40,9 @@ val EcfGetSubscriptionTierFingerprint = Fingerprint(
 )
 
 val EcfGetSubscriptionTierEnumFingerprint = Fingerprint(
-    definingClass = "Llue;",
+    definingClass = "Le0f;",
     name = "a",
-    returnType = "Lzse\$a;",
+    returnType = "Loye\$a;",
     parameters = listOf("Lcom/flightradar24free/models/account/UserData;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL)
 )
@@ -267,7 +267,7 @@ val UserFeaturesGetMapInfoAircraftFingerprint = Fingerprint(
 
 // Loaf.e() is the central UserFeatures provider
 val LoafGetUserFeaturesFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "e",
     returnType = "Lcom/flightradar24free/models/account/UserFeatures;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
@@ -275,7 +275,7 @@ val LoafGetUserFeaturesFingerprint = Fingerprint(
 
 // Loaf.u() = isSilver
 val UserIsSilverFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "u",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
@@ -283,7 +283,7 @@ val UserIsSilverFingerprint = Fingerprint(
 
 // Loaf.b() = hasAlerts
 val UserHasAlertsFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "b",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
@@ -296,7 +296,7 @@ val UserDataGetUserDataFingerprint = Fingerprint(
 )
 
 val UserIsBusinessFingerprint = Fingerprint(
-    definingClass = "Lzse;",
+    definingClass = "Loye;",
     name = "o",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
