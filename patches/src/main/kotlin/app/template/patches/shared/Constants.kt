@@ -1012,4 +1012,12 @@ object Constants {
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
     )
+
+    // UbikiTouch
+    val UBIKITOUCH_COMPATIBILITY = Compatibility(
+        name = "UbikiTouch",
+        packageName = "eu.toneiv.ubktouch",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = "1.16.13", versionCode = 73441))
+    )
 }
