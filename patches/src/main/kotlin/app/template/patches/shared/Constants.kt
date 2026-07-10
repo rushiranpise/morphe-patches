@@ -1004,4 +1004,12 @@ object Constants {
         appIconColor = 0x5D2DE6,
         targets = listOf(AppTarget(version = "26.25.0", versionCode = 2903210))
     )
+
+    // Today Weather by Lockdown
+    val TODAYWEATHER_COMPATIBILITY = Compatibility(
+        name = "Today Weather",
+        packageName = "mobi.lockdown.weather",
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
+    )
 }
