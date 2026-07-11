@@ -8,7 +8,7 @@ import app.template.patches.shared.clearBody
 @Suppress("unused")
 val stickerlyUnlockPlusPatch = bytecodePatch(
     name = "Unlock Plus",
-    description = "Unlocks Sticker.ly PLUS subscription.",
+    description = "Unlocks Sticker.ly PLUS subscription" + "Note: For Facebook Login, Uninstall Facebook App.",
     default = true,
 ) {
     compatibleWith(STICKERLY_COMPATIBILITY)
