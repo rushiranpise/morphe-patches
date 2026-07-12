@@ -54,3 +54,19 @@ val PremiumSetterFingerprint = Fingerprint(
         )
     )
 )
+
+// Layer 6: PlanSelector — paywall plan chooser composable (k74.invoke).
+// Defaults selectedPlanIndex=1 (Yearly). We force Lifetime (index=0) to show as selected.
+// Unique: only invoke(Object,Object)Object method containing all three plan label strings.
+val PlanSelectorFingerprint = Fingerprint(
+    strings = listOf("Lifetime", "Pro Yearly", "Pro Monthly"),
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/lang/Number;",
+            name = "intValue",
+            returnType = "I",
+        ),
+    ),
+)

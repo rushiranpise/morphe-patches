@@ -54,3 +54,18 @@ val PremiumSetterFingerprint = Fingerprint(
         )
     )
 )
+
+// Layer 6: PlanSelector — paywall plan chooser composable (in4.invoke).
+// Same pattern as Anime variant.
+val PlanSelectorFingerprint = Fingerprint(
+    strings = listOf("Lifetime", "Pro Yearly", "Pro Monthly"),
+    returnType = "Ljava/lang/Object;",
+    parameters = listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/lang/Number;",
+            name = "intValue",
+            returnType = "I",
+        ),
+    ),
+)
