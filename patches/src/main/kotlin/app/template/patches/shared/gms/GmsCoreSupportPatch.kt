@@ -227,29 +227,32 @@ fun gmsCoreSupportResourcePatch(
             manifestFile.writeText(manifestContent)
 
             // meta-data entries read by GmsCore to spoof the original identity.
-            fun Node.addMetaIfAbsent(name: String, value: String) {
-                val exists = (0 until childNodes.length).any { i ->
-                    childNodes.item(i).nodeName == "meta-data" &&
-                        childNodes.item(i).attributes?.getNamedItem("android:name")?.nodeValue == name
+            fun Node.upsertMeta(name: String, value: String) {
+                val existing = (0 until childNodes.length)
+                    .map { childNodes.item(it) }
+                    .firstOrNull { node ->
+                        node.nodeName == "meta-data" &&
+                            node.attributes?.getNamedItem("android:name")?.nodeValue == name
+                    } as? Element
+                if (existing != null) {
+                    existing.setAttribute("android:value", value)
+                    return
                 }
-                if (!exists) {
-                    val meta = (ownerDocument ?: doc).createElement("meta-data") as Element
-                    meta.setAttribute("android:name", name)
-                    meta.setAttribute("android:value", value)
-                    appendChild(meta)
-                }
+                val meta = (ownerDocument ?: doc).createElement("meta-data") as Element
+                meta.setAttribute("android:name", name)
+                meta.setAttribute("android:value", value)
+                appendChild(meta)
             }
 
-            applicationNode.addMetaIfAbsent(
+            applicationNode.upsertMeta(
                 "$gmsCoreVendor.android.gms.SPOOFED_PACKAGE_NAME",
                 originalPackageName,
             )
-            applicationNode.addMetaIfAbsent(
+            applicationNode.upsertMeta(
                 "$gmsCoreVendor.android.gms.SPOOFED_PACKAGE_SIGNATURE",
                 spoofedPackageSignature,
             )
-            // Points the app at the correct GmsCore package (vendor-aware).
-            applicationNode.addMetaIfAbsent(
+            applicationNode.upsertMeta(
                 "$gmsCoreVendor.MICROG_PACKAGE_NAME",
                 "$gmsCoreVendor.android.gms",
             )
@@ -363,23 +366,26 @@ val gmsCoreVendorOption by stringOption(
                         manifestNode.appendChild(perm)
                     }
 
-                    fun Node.addMetaIfAbsent(name: String, value: String) {
-                        val exists = (0 until childNodes.length).any { i ->
-                            childNodes.item(i).nodeName == "meta-data" &&
-                                childNodes.item(i).attributes?.getNamedItem("android:name")?.nodeValue == name
+                    fun Node.upsertMeta(name: String, value: String) {
+                        val existing = (0 until childNodes.length)
+                            .map { childNodes.item(it) }
+                            .firstOrNull { node ->
+                                node.nodeName == "meta-data" &&
+                                    node.attributes?.getNamedItem("android:name")?.nodeValue == name
+                            } as? Element
+                        if (existing != null) {
+                            existing.setAttribute("android:value", value)
+                            return
                         }
-                        if (!exists) {
-                            val meta = (ownerDocument ?: doc).createElement("meta-data") as Element
-                            meta.setAttribute("android:name", name)
-                            meta.setAttribute("android:value", value)
-                            appendChild(meta)
-                        }
+                        val meta = (ownerDocument ?: doc).createElement("meta-data") as Element
+                        meta.setAttribute("android:name", name)
+                        meta.setAttribute("android:value", value)
+                        appendChild(meta)
                     }
 
-                    applicationNode.addMetaIfAbsent("$vendor.SPOOFED_PACKAGE_NAME", originalPackageName)
-                    // Only inject if user provided a signature — not required for all apps.
-                    if (sig != null) applicationNode.addMetaIfAbsent("$vendor.SPOOFED_PACKAGE_SIGNATURE", sig)
-                    applicationNode.addMetaIfAbsent("$vendor.MICROG_PACKAGE_NAME", vendor)
+                    applicationNode.upsertMeta("$vendor.SPOOFED_PACKAGE_NAME", originalPackageName)
+                    if (sig != null) applicationNode.upsertMeta("$vendor.SPOOFED_PACKAGE_SIGNATURE", sig)
+                    applicationNode.upsertMeta("$vendor.MICROG_PACKAGE_NAME", vendor)
                 }
 
                 // Manifest text rewrites.
