@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.12.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.12.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;222 patches total
+> **[v1.12.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.12.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;222 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -890,7 +890,7 @@ Bug reports must include:
 
 | Patch | Details |
 |---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlockins all premium widgets. |
+| [**Unlock Premium**](#unlock-premium) | Unlock all premium widgets. |
 
 </details>
 

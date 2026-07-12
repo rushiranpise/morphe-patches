@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.12.0-dev.1",
+  "version": "1.12.0",
   "patches": [
     {
       "name": "Add resource file",
@@ -3608,7 +3608,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlockins all premium widgets.",
+      "description": "Unlock all premium widgets.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
