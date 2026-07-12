@@ -64,3 +64,8 @@ fun MutableMethod.returnEarly() = addInstructions(
         else -> "const/4 v0, 0x0\nreturn-object v0"
     },
 )
+
+fun MutableMethod.returnEarly(value: Boolean) = addInstructions(
+    0,
+    "const/4 v0, ${if (value) "0x1" else "0x0"}\nreturn v0",
+)

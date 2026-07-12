@@ -1716,7 +1716,8 @@ I'm happy to discuss issues and will review reasonable requests in good faith.
 
 Thanks to:
 
-- Morphe developers
+- [Morphe](https://github.com/MorpheApp/)
+- [Revanced](https://github.com/revanced)
 - Contributors
 - Everyone who reports bugs and tests patches
 
