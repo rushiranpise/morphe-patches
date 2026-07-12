@@ -7,7 +7,7 @@ import app.template.patches.shared.Constants.MINIMAL_WIDGETS_COMPATIBILITY
 @Suppress("unused")
 val minimalWidgetsUnlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlockins all premium widgets.",
+    description = "Unlock all premium widgets.",
     default = true,
 ) {
     compatibleWith(MINIMAL_WIDGETS_COMPATIBILITY)
