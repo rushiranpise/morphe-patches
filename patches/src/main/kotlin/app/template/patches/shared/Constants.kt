@@ -391,7 +391,7 @@ object Constants {
         packageName = "com.community.oneroom",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "3.0.16.0703.03", versionCode = 50020113),
+            AppTarget(version = "3.0.16.0709.03", versionCode = 50020116),
         )
     )
 
@@ -409,7 +409,7 @@ object Constants {
         packageName = "com.community.mbox.tv",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "1.1.1.0702.03", versionCode = 50040006),
+            AppTarget(version = "1.1.4.0710.03", versionCode = 50040009),
         )
     )
 
@@ -1019,5 +1019,140 @@ object Constants {
         packageName = "eu.toneiv.ubktouch",
         appIconColor = 0x0D47A1,
         targets = listOf(AppTarget(version = "1.16.13", versionCode = 73441))
+    )
+
+    // Ace Ex File Manager by Edili
+    val ACE_EXPLORER_COMPATIBILITY = Compatibility(
+        name = "Ace Ex File Manager",
+        packageName = "com.ace.ex.file.manager",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.6.0.4", versionCode = 48))
+    )
+
+    // RS File Manager by Edili
+    val RS_EXPLORER_COMPATIBILITY = Compatibility(
+        name = "RS File Manager",
+        packageName = "com.rs.explorer.filemanager",
+        appIconColor = 0x0D47A1,
+        targets = listOf(AppTarget(version = "2.3.0.4", versionCode = 239))
+    )
+
+    // Strava — Run, Bike, Hike
+    val STRAVA_COMPATIBILITY = Compatibility(
+        name = "Strava",
+        packageName = "com.strava",
+        appIconColor = 0xFC4C02,
+        targets = listOf(AppTarget(version = "471.11", versionCode = 12398607))
+    )
+
+    // KineMaster — Video Editor & Maker by NexStreaming/KineMaster Corp
+    val KINEMASTER_COMPATIBILITY = Compatibility(
+        name = "KineMaster",
+        packageName = "com.nexstreaming.app.kinemasterfree",
+        appIconColor = 0x1B54C8,
+        targets = listOf(AppTarget(version = "8.1.13.36552.GP", versionCode = 36552))
+    )
+
+    val BUZZCAST_COMPATIBILITY = Compatibility(
+        name = "BuzzCast",
+        packageName = "com.guochao.faceshow",
+        appIconColor = 0x7C3AED,
+        targets = listOf(AppTarget(version = "3.2.80", versionCode = 3280))
+    )
+
+    // Lark Player — Music & MP3 Player by Dywx
+    val LARK_PLAYER_COMPATIBILITY = Compatibility(
+        name = "Lark Player",
+        packageName = "com.dywx.larkplayer",
+        appIconColor = 0x1DB954,
+        targets = listOf(AppTarget(version = "2026.9.6", versionCode = 2026090609))
+    )
+
+    // Uptodown App Store
+    val UPTODOWN_COMPATIBILITY = Compatibility(
+        name = "Uptodown App Store",
+        packageName = "com.uptodown",
+        appIconColor = 0x1E88E5,
+        targets = listOf(AppTarget(version = "7.34", versionCode = 734))
+    )
+
+    // Minimal Widgets
+    val MINIMAL_WIDGETS_COMPATIBILITY = Compatibility(
+        name = "Minimal Widgets",
+        packageName = "com.jndapp.minimal.widgets",
+        appIconColor = 0x212121,
+        targets = listOf(AppTarget(version = "1.0.08", versionCode = 8))
+    )
+
+    // Anime Depth Wallpapers
+    val ANIME_DEPTH_WALLPAPERS_COMPATIBILITY = Compatibility(
+        name = "Anime Depth Wallpapers",
+        packageName = "com.jndapp.anime.depth.live.wallpaper",
+        appIconColor = 0x6A1B9A,
+        targets = listOf(AppTarget(version = "1.0.4", versionCode = 5))
+    )
+
+    // Depth Live Wallpaper
+    val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
+        name = "Depth Live Wallpaper",
+        packageName = "com.jndapp.depth.live.wallpaper",
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "2.1.06", versionCode = 35))
+    )
+
+    // Pixel Habit Tracker by pixel.al
+    val PIXEL_HABIT_TRACKER_COMPATIBILITY = Compatibility(
+        name = "Pixel Habit Tracker",
+        packageName = "com.pixel.al.pixelhabittracker",
+        appIconColor = 0xFF6B35,
+        targets = listOf(AppTarget(version = "2.1.1", versionCode = 100062))
+    )
+
+     // PLAYit — Video Player & Music Player
+    val PLAYIT_COMPATIBILITY = Compatibility(
+        name = "PLAYit",
+        packageName = "com.playit.videoplayer",
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "2.7.50.12", versionCode = 20750012))
+    )
+
+    // Pocket Bard — RPG Sound System by MojoFilter Media
+    val POCKET_BARD_COMPATIBILITY = Compatibility(
+        name = "Pocket Bard",
+        packageName = "com.MojoFilterMediaLLC.RPGSoundSystem",
+        appIconColor = 0x6A0DAD,
+        targets = listOf(AppTarget(version = "3.1.15", versionCode = 232))
+    )
+
+    // NYT Games — New York Times Crossword & Games
+    val NYT_GAMES_COMPATIBILITY = Compatibility(
+        name = "NYT Games",
+        packageName = "com.nytimes.crossword",
+        appIconColor = 0x000000,
+        targets = listOf(AppTarget(version = "6.33.0", versionCode = 6426391))
+    )
+
+    // Komoot — Cycling & Hiking Maps
+    val KOMOOT_COMPATIBILITY = Compatibility(
+        name = "komoot",
+        packageName = "de.komoot.android",
+        appIconColor = 0x65AB1E,
+        targets = listOf(AppTarget(version = "2026.28.2", versionCode = 263708003))
+    )
+
+    // MEGA — Cloud Storage & Chat
+    val MEGA_COMPATIBILITY = Compatibility(
+        name = "MEGA",
+        packageName = "mega.privacy.android.app",
+        appIconColor = 0xD9272E,
+        targets = listOf(AppTarget(version = "16.9(261881039)(3c7e30562a)", versionCode = 261881039))
+    )
+
+    // Dailyhunt — News & Short Videos by VerSe Innovation
+    val DAILYHUNT_COMPATIBILITY = Compatibility(
+        name = "Dailyhunt",
+        packageName = "com.eterno",
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "33.5.4", versionCode = 10310))
     )
 }
