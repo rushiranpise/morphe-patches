@@ -18,19 +18,35 @@ internal var autoSha1: String? = null
     private set
 internal var autoBase64Der: String? = null
     private set
+private var autoCertSource: String? = null
+private var autoCertPriority = 0
 
 private val log = Logger.getLogger("CertExtractor")
 private fun ByteArray.toHex() = joinToString("") { "%02X".format(it) }
+private fun certSourcePriority(source: String) = when (source) {
+    "preseed" -> 30
+    "provided" -> 20
+    "manual" -> 15
+    "installed" -> 10
+    else -> 5
+}
 
-internal fun populateFromEncoded(encoded: ByteArray) {
+internal fun populateFromEncoded(encoded: ByteArray, source: String = "extracted") {
+    val priority = certSourcePriority(source)
+    if (priority < autoCertPriority) {
+        log.info("Cert: keeping source=$autoCertSource over lower-priority source=$source")
+        return
+    }
     autoSha256    = MessageDigest.getInstance("SHA-256").digest(encoded).toHex()
     autoSha1      = MessageDigest.getInstance("SHA-1").digest(encoded).toHex()
     autoBase64Der = Base64.getEncoder().encodeToString(encoded)
-    log.info("Cert: SHA-1=$autoSha1")
+    autoCertSource = source
+    autoCertPriority = priority
+    log.info("Cert: source=$source SHA-1=$autoSha1")
 }
 
 internal fun seedCert(base64Der: String) {
-    populateFromEncoded(Base64.getDecoder().decode(base64Der))
+    populateFromEncoded(Base64.getDecoder().decode(base64Der), "preseed")
 }
 
 private fun parseCertFromStream(stream: InputStream): ByteArray? =
@@ -99,7 +115,7 @@ private fun extractFromSigningBlock(apkBytes: ByteArray): ByteArray? {
     return null
 }
 
-internal fun extractFromFile(file: File): Boolean {
+internal fun extractFromFile(file: File, source: String = "extracted"): Boolean {
     val fileBytes = file.readBytes()
     var apkBytes: ByteArray? = null
     ZipInputStream(ByteArrayInputStream(fileBytes)).use { outer ->
@@ -112,8 +128,8 @@ internal fun extractFromFile(file: File): Boolean {
         }
     }
     val targetBytes = apkBytes ?: fileBytes
-    extractFromSigningBlock(targetBytes)?.let { populateFromEncoded(it); return true }
-    certFromApkBytes(targetBytes)?.let { populateFromEncoded(it); return true }
+    extractFromSigningBlock(targetBytes)?.let { populateFromEncoded(it, source); return true }
+    certFromApkBytes(targetBytes)?.let { populateFromEncoded(it, source); return true }
     return false
 }
 
@@ -171,15 +187,27 @@ val extractApkCertificatePatch = rawResourcePatch(
 
     execute {
         // Pre-seeded cert takes top priority (e.g. SpotifyCertSeedPatch)
-        if (autoBase64Der != null) {
+        if (autoCertSource == "preseed") {
             log.info("Using pre-seeded cert.")
             return@execute
+        }
+        val path = originalApkPath
+        if (!path.isNullOrBlank()) {
+            val file = File(path)
+            if (!file.exists()) {
+                log.warning("File not found: $path")
+            } else {
+                log.info("Reading cert from provided path: ${file.name}")
+                if (extractFromFile(file, "provided")) return@execute
+            }
         }
         val sha1Manual = manualCertSha1?.takeIf { it.length == 40 }
         if (sha1Manual != null) {
             autoSha1      = sha1Manual
             autoSha256    = manualCertSha256?.takeIf { it.length == 64 }
             autoBase64Der = manualCertBase64?.takeIf { it.isNotBlank() }
+            autoCertSource = "manual"
+            autoCertPriority = certSourcePriority("manual")
             log.info("Using manual cert values")
             return@execute
         }
@@ -206,22 +234,10 @@ val extractApkCertificatePatch = rawResourcePatch(
             } catch (_: Exception) { appInfo.javaClass.getField("sourceDir").get(appInfo) }
                 as? String ?: throw Exception("null sourceDir")
             log.info("Reading cert from installed app: $sourceDir")
-            if (autoBase64Der != null) { log.info("Skipping installed app strategy — pre-seeded cert active."); return@execute }
-            if (extractFromFile(File(sourceDir))) return@execute
+            if (extractFromFile(File(sourceDir), "installed")) return@execute
         } catch (e: Exception) {
             log.info("Installed app strategy failed: ${e.message}")
         }
-
-        // Strategy 2: user-supplied path
-        val path = originalApkPath
-        if (path.isNullOrBlank()) {
-            log.warning("No cert found. Provide original APK path or manual cert values.")
-            return@execute
-        }
-        val file = File(path)
-        if (!file.exists()) { log.warning("File not found: $path"); return@execute }
-        log.info("Reading cert from: ${file.name}")
-        if (!extractFromFile(file))
-            log.warning("No cert in ${file.name} — ensure this is the original Google-signed build.")
+        log.warning("No cert found. Provide original APK path or manual cert values.")
     }
 }
