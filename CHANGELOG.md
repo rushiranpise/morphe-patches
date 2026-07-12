@@ -1,3 +1,58 @@
+# Rushi's Patches v1.12.0-dev.1
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 165
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.12.0-dev.1.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.12.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0...v1.12.0-dev.1) (2026-07-12)
+
+### New Patches
+
+* add ace ([6535fc2](https://github.com/rushiranpise/morphe-patches/commit/6535fc23c68398b2a3164788333052ad72d0cfed))
+* add buzzcast ([7d640be](https://github.com/rushiranpise/morphe-patches/commit/7d640bec1b163ca37c9119d3a959a32c971b0c05))
+* add daily hunt ([650c983](https://github.com/rushiranpise/morphe-patches/commit/650c983d8796297090d1fd0ef92b0978cd77937d))
+* add ex ([03af341](https://github.com/rushiranpise/morphe-patches/commit/03af3414ee323851b1c5b62b5ca9aeb629215ac2))
+* add justnew design apps ([0bfb500](https://github.com/rushiranpise/morphe-patches/commit/0bfb5002e8ce8ec438b616e71c88378c0f975615))
+* add kinemaster ([c9d9912](https://github.com/rushiranpise/morphe-patches/commit/c9d9912b14e24f43d8b3f83796719506c7c030d4))
+* add komoot ([58494ca](https://github.com/rushiranpise/morphe-patches/commit/58494ca40ec398d785e62b8088364edac706fed1))
+* add lark player ([cf76807](https://github.com/rushiranpise/morphe-patches/commit/cf7680717f8cce6f27b0ef21588a0234ff4b6a5d))
+* add mega ([74b2412](https://github.com/rushiranpise/morphe-patches/commit/74b24124d709ff21b9890df442649f3eca910bb8))
+* add nyttgames ([e531da4](https://github.com/rushiranpise/morphe-patches/commit/e531da4247e2da775f6932c5b3cff3ce72590160))
+* add pixelhabit ([89d4b0d](https://github.com/rushiranpise/morphe-patches/commit/89d4b0d3346797925216deaaf241a6ff4d85d22e))
+* add playit ([da32bef](https://github.com/rushiranpise/morphe-patches/commit/da32bef3169cc558d0316f2d4f1d3ac208b21a9c))
+* add pocketbard ([e0f8315](https://github.com/rushiranpise/morphe-patches/commit/e0f8315ab548135087a9ef348f5804c471ae1415))
+* add strava ([8e55342](https://github.com/rushiranpise/morphe-patches/commit/8e55342e7f9cb33561d55c57ca4d60bda53dba17))
+* add universal patches ([a80ca36](https://github.com/rushiranpise/morphe-patches/commit/a80ca366f446e2d93d271f43b0e87fdd3ea391f5))
+* add uptodown ([f5bbc0e](https://github.com/rushiranpise/morphe-patches/commit/f5bbc0ea9471e2be6cd486070d685ef7d9af647d))
+
+### Fixes
+
+* dailyhunt ([53561e8](https://github.com/rushiranpise/morphe-patches/commit/53561e8cfb8bf50509f60273d00956f120ebe857))
+* moovit crash ([4d64bc7](https://github.com/rushiranpise/morphe-patches/commit/4d64bc71c7bf92e9e03f90163d1f919f01ea9df8))
+
 # Rushi's Patches v1.11.0
 Patch source for Morphe.
 **Channel:** stable  
