@@ -25,7 +25,7 @@ object Constants {
         name = "Citizen",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "0.1298.0"))
+        targets = listOf(AppTarget(version = "0.1300.0", versionCode = 1134))
     )
 
 
@@ -34,7 +34,7 @@ object Constants {
         name = "Case Tracker",
         packageName = "com.saldous.casetracker",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.5.2", versionCode = 1036))
+        targets = listOf(AppTarget(version = "5.5.3", versionCode = 1052))
     )
 
     // Cloudflare WARP — 1.1.1.1
@@ -58,7 +58,7 @@ object Constants {
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = "26.6.3", versionCode = 945))
+        targets = listOf(AppTarget(version = "26.7.1", versionCode = 948))
     )
 
     // Greenify — App Hibernation & Battery Saver
@@ -346,7 +346,7 @@ object Constants {
         name = "Cashew",
         packageName = "com.budget.tracker_app",
         appIconColor = 0xFFB300,
-        targets = listOf(AppTarget(version = "6.5.9"))
+        targets = listOf(AppTarget(version = "6.6.11", versionCode = 510))
     )
 
     // Rocket Money
@@ -586,7 +586,7 @@ object Constants {
         name = "Inmigreat",
         packageName = "com.changayaf.inmigreat",
         appIconColor = 0x6344CC,
-        targets = listOf(AppTarget(version = "2.2.83", versionCode = 679))
+        targets = listOf(AppTarget(version = "2.3.4", versionCode = 683))
     )
 
     // Lawfully (com.lawfully.lawfully_ai_tracker)
@@ -834,7 +834,7 @@ object Constants {
         name = "Fitbod",
         packageName = "com.fitbod.fitbod",
         appIconColor = 0xFF3D00,
-        targets = listOf(AppTarget(version = "8.24.0-1", versionCode = 10824001))
+        targets = listOf(AppTarget(version = "8.24.1-0", versionCode = 10824100))
     )
 
     // Toomics
@@ -1121,7 +1121,7 @@ object Constants {
         name = "Pocket Bard",
         packageName = "com.MojoFilterMediaLLC.RPGSoundSystem",
         appIconColor = 0x6A0DAD,
-        targets = listOf(AppTarget(version = "3.1.15", versionCode = 232))
+        targets = listOf(AppTarget(version = "3.1.16", versionCode = 234))
     )
 
     // NYT Games — New York Times Crossword & Games
@@ -1129,7 +1129,7 @@ object Constants {
         name = "NYT Games",
         packageName = "com.nytimes.crossword",
         appIconColor = 0x000000,
-        targets = listOf(AppTarget(version = "6.33.0", versionCode = 6426391))
+        targets = listOf(AppTarget(version = "6.33.1", versionCode = 6426456))
     )
 
     // Komoot — Cycling & Hiking Maps
