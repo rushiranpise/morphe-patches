@@ -4,6 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TRANZMATE_COMPATIBILITY
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
 @Suppress("unused")
@@ -143,10 +144,18 @@ val tranzmatePremiumPatch = bytecodePatch(
                     .contains("view_blocked_smart_tips_banner") == true
             }
         check(blockedSmartTipsIndex > 0) { "Moovit blocked smart tips banner signature not found." }
-        ItineraryBlockedSmartTipsBannerFingerprint.method.replaceInstruction(
-            blockedSmartTipsIndex - 17,
-            "const/4 v6, 0x0",
-        )
+        val blockedSmartTipsMoveResultIndex = ItineraryBlockedSmartTipsBannerFingerprint.method.implementation!!
+            .instructions
+            .subList(0, blockedSmartTipsIndex)
+            .indexOfLast { instruction -> instruction.opcode == Opcode.MOVE_RESULT }
+        if (blockedSmartTipsMoveResultIndex >= 0) {
+            ItineraryBlockedSmartTipsBannerFingerprint.method.replaceInstruction(
+                blockedSmartTipsMoveResultIndex,
+                "const/4 v6, 0x0",
+            )
+        } else {
+            println("Moovit blocked smart tips result assignment not found; skipping optional banner tweak.")
+        }
 
         val goPremiumInstructions = MyMoovitPlusGoPremiumCardFingerprint.method.implementation!!.instructions
         val goPremiumStringIndex = goPremiumInstructions.indexOfFirst { instruction ->

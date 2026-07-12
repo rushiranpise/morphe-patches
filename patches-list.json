@@ -1,7 +1,34 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.11.0",
+  "version": "1.12.0-dev.1",
   "patches": [
+    {
+      "name": "Add resource file",
+      "description": "Adds or replaces one raw APK file from text options.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalAddResourcePath",
+          "title": "Target path",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "res/values/morphe_added.xml",
+          "values": null
+        },
+        {
+          "key": "universalAddResourceContent",
+          "title": "File content",
+          "description": null,
+          "required": false,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        }
+      ]
+    },
     {
       "name": "Alert Distances",
       "description": "Configures radar/camera and hazard alert announcement distances.\nCredits: Waze CGE Mod.\n",
@@ -222,127 +249,67 @@
       "options": []
     },
     {
-      "name": "Bypass TV episode VIP gate",
-      "description": "Forces BffSubjectInfo.isVip() to always return false, making every episode appear as non-VIP-only so playback is not blocked in DetailFragment.",
-      "default": true,
+      "name": "Change package name",
+      "description": "Changes manifest package and optionally provider/permission authorities.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
+      "compatiblePackages": null,
+      "options": [
         {
-          "packageName": "com.community.mbox.tv",
-          "name": "MovieBox TV",
+          "key": "universalNewPackageName",
+          "title": "New package or suffix",
           "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.1.1.0702.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "required": true,
+          "type": "kotlin.String",
+          "default": "append.morphe",
+          "values": null
+        },
+        {
+          "key": "universalRewriteAuthorities",
+          "title": "Rewrite authorities",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "true",
+          "values": null
         }
-      ],
-      "options": []
+      ]
     },
     {
-      "name": "Bypass member rights check",
-      "description": "Forces MemberCheckResult.isPassed() to always return Boolean.TRUE.",
-      "default": true,
+      "name": "Change version code",
+      "description": "Changes android:versionCode.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
+      "compatiblePackages": null,
+      "options": [
         {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "key": "universalVersionCode",
+          "title": "Version code",
+          "description": "Version code to write into AndroidManifest.xml.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "2147483647",
+          "values": null
         }
-      ],
-      "options": []
+      ]
     },
     {
-      "name": "Clear VIP resolution tip",
-      "description": "Forces MemberResolutionBean.getVipResolutionTip() to always return Boolean.FALSE.",
-      "default": true,
+      "name": "Custom certificates",
+      "description": "Adds a permissive network security config with system/user certs.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
+      "compatiblePackages": null,
+      "options": [
         {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
+          "key": "universalAllowCleartext",
+          "title": "Allow cleartext",
           "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.tv",
-          "name": "MovieBox TV",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.1.1.0702.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "required": true,
+          "type": "kotlin.String",
+          "default": "true",
+          "values": null
         }
-      ],
-      "options": []
+      ]
     },
     {
       "name": "Dark mode",
@@ -502,6 +469,30 @@
       "options": []
     },
     {
+      "name": "Disable Play Integrity",
+      "description": "Blocks Play Integrity service binding.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Disable ad SDK calls",
+      "description": "No-ops common ad SDK load/show/init/fetch methods in bundled ad packages.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Disable clipboard access",
+      "description": "Blocks app clipboard reads and writes.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Disable search suggestions tracking",
       "description": "Prevents search keypress and focus events from being sent with suggestion requests.",
       "default": true,
@@ -540,6 +531,14 @@
           ]
         }
       ],
+      "options": []
+    },
+    {
+      "name": "Disable shake ads",
+      "description": "Skips SensorManager.registerListener calls that can power shake-to-ad behavior.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
       "options": []
     },
     {
@@ -609,6 +608,14 @@
       "options": []
     },
     {
+      "name": "Enable Android debugging",
+      "description": "Sets android:debuggable=true.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Enable Debug Menu",
       "description": "Enables Duolingo's hidden debug menu in settings.",
       "default": false,
@@ -631,6 +638,32 @@
           ]
         }
       ],
+      "options": []
+    },
+    {
+      "name": "Enable ROM signature spoofing",
+      "description": "Adds fake-signature permission and metadata.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalFakeSignature",
+          "title": "Certificate hex/signature",
+          "description": null,
+          "required": false,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Enable debug build target",
+      "description": "Forces compatible BUILD_TARGET debug providers to debug=true.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
       "options": []
     },
     {
@@ -676,6 +709,24 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Export all activities",
+      "description": "Makes all activities exportable.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Export internal data documents provider",
+      "description": "Registers an extension DocumentsProvider for the app internal data directory.",
+      "default": false,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": null,
+      "options": []
     },
     {
       "name": "Fix Amazon manifest conflicts",
@@ -729,6 +780,14 @@
       "options": []
     },
     {
+      "name": "Force dark theme",
+      "description": "Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "GmsCore support (MicroG)",
       "description": "Routes Google Play Services calls through MicroG instead of real GPS.\n\nWorks for: Google apps (YouTube, Maps, News, Photos) and third-party apps using classic Google Sign-In (Android 13 and below).\n\nDoes not work for: Android 14+ Credential Manager sign-in (most modern third-party apps), Play Integrity / SafetyNet checks, or apps with custom auth.\n\nRequires MicroG RE installed. Apply with Original app certificate patch.",
       "default": false,
@@ -776,6 +835,50 @@
       ]
     },
     {
+      "name": "Hex patch",
+      "description": "Replaces one hex byte pattern inside one APK file.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalHexTargetPath",
+          "title": "Target path",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "classes.dex",
+          "values": null
+        },
+        {
+          "key": "universalHexFrom",
+          "title": "Find hex",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        },
+        {
+          "key": "universalHexTo",
+          "title": "Replace hex",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Hide ADB status",
+      "description": "Hides adb_enabled and development_settings_enabled.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Hide Rufus tab",
       "description": "Removes the Rufus AI assistant tab from Amazon's bottom navigation bar.",
       "default": true,
@@ -815,6 +918,71 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Hide VPN and proxy",
+      "description": "Hides common VPN transport/interface and Java proxy property checks.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Hide app icon",
+      "description": "Removes launcher category from MAIN launcher filters.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Hide mock location",
+      "description": "Hides mock-location signals from app checks.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "hideMockLocationMode",
+          "title": "Mode",
+          "description": "Which mock-location checks to hide.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "full",
+          "values": {
+            "Full": "full",
+            "Location API only": "location",
+            "Settings only": "settings",
+            "AppOps only": "appops",
+            "Extras and provider only": "extras_provider",
+            "Accuracy only": "accuracy"
+          }
+        },
+        {
+          "key": "hideMockLocationProvider",
+          "title": "Provider",
+          "description": "Provider returned when app reads an unknown/mock provider.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "gps",
+          "values": {
+            "GPS": "gps",
+            "Network": "network",
+            "Fused": "fused",
+            "Passive": "passive",
+            "Original": "original"
+          }
+        },
+        {
+          "key": "hideMockLocationAccuracy",
+          "title": "Accuracy meters",
+          "description": "Accuracy value returned by Location.getAccuracy().",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "5.0",
+          "values": null
+        }
+      ]
     },
     {
       "name": "Map Skin (Vitamin C)",
@@ -1057,6 +1225,14 @@
       "options": []
     },
     {
+      "name": "Override certificate pinning",
+      "description": "Forces network security config trust anchors to override pins.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Popup Suppression",
       "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nCredits: Waze Chuppito Mod.",
       "default": true,
@@ -1126,6 +1302,14 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Predictive back gesture",
+      "description": "Enables Android predictive back gesture.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
     },
     {
       "name": "Price history charts",
@@ -1389,6 +1573,14 @@
       "options": []
     },
     {
+      "name": "Remove ad manifest entries",
+      "description": "Removes common ad SDK permissions, services, providers, libraries, and metadata.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Remove ads",
       "description": "Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init.",
       "default": true,
@@ -1534,6 +1726,38 @@
       "options": []
     },
     {
+      "name": "Remove audio capture policy",
+      "description": "Forces runtime audio capture policy to ALLOW_CAPTURE_BY_ALL.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Remove screen capture restriction",
+      "description": "Allows audio playback capture in the manifest.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Remove screenshot restriction",
+      "description": "Removes FLAG_SECURE and screenshot blocking.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Remove share targets",
+      "description": "Removes chooser/direct share targets.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Report Speed Limit",
       "description": "Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.\n",
       "default": true,
@@ -1600,6 +1824,14 @@
       "options": []
     },
     {
+      "name": "Set target SDK 34",
+      "description": "Sets targetSdkVersion to 34.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
       "name": "Speed Limit Sign",
       "description": "Sets the speed limit sign style shown on the map.",
       "default": true,
@@ -1638,29 +1870,141 @@
       ]
     },
     {
-      "name": "Spoof TV account VIP status",
-      "description": "Forces BffGetVipUserInfoData.isVip() to always return Boolean.TRUE.",
-      "default": true,
+      "name": "Spoof Android ID",
+      "description": "Spoofs Settings.Secure android_id reads.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
+      "compatiblePackages": null,
+      "options": [
         {
-          "packageName": "com.community.mbox.tv",
-          "name": "MovieBox TV",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.1.1.0702.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "key": "universalAndroidId",
+          "title": "Android ID",
+          "description": "16 hex characters.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "a1b2c3d4e5f67890",
+          "values": null
         }
-      ],
-      "options": []
+      ]
+    },
+    {
+      "name": "Spoof Bluetooth identifiers",
+      "description": "Spoofs Bluetooth adapter name and MAC address reads.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalBluetoothName",
+          "title": "Bluetooth name",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Pixel Buds",
+          "values": null
+        },
+        {
+          "key": "universalBluetoothAddress",
+          "title": "Bluetooth MAC address",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "02:11:22:33:44:55",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Spoof Pixel device",
+      "description": "Ports PixelSpoof-style Build, system property, and Pixel feature spoofing.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "pixelSpoofMode",
+          "title": "Spoof mode",
+          "description": "Pixel 10 Pro XL / mustang profile, or Pixel XL / marlin for Google Photos.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "build_props_features",
+          "values": {
+            "Full spoof": "build_props_features",
+            "Build fields only": "build",
+            "System properties only": "props",
+            "Pixel features only": "features",
+            "Build + system properties": "build_props",
+            "Build + Pixel features": "build_features",
+            "System properties + Pixel features": "props_features",
+            "Build + props + features + identifiers": "build_props_features_identifiers",
+            "Google Photos unlimited storage": "photos_build_props_features",
+            "Identifiers only": "identifiers"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spoof Play age signals",
+      "description": "Spoofs Play age signal result getters.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalPlayAgeLower",
+          "title": "Lower age",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "18",
+          "values": null
+        },
+        {
+          "key": "universalPlayAgeUpper",
+          "title": "Upper age",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "99",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Spoof SIM provider",
+      "description": "Spoofs TelephonyManager SIM/network provider values.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalSimCountryIso",
+          "title": "Country ISO",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "us",
+          "values": null
+        },
+        {
+          "key": "universalSimOperator",
+          "title": "Operator code",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "310260",
+          "values": null
+        },
+        {
+          "key": "universalSimOperatorName",
+          "title": "Operator name",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "T-Mobile",
+          "values": null
+        }
+      ]
     },
     {
       "name": "Spoof WARP+ Unlimited UI",
@@ -1686,6 +2030,50 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Spoof Wi-Fi connection",
+      "description": "Forces common connectivity checks to connected/unmetered.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Spoof Wi-Fi identifiers",
+      "description": "Spoofs Wi-Fi SSID, BSSID, and MAC address reads.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalWifiSsid",
+          "title": "SSID",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Pixel_WiFi",
+          "values": null
+        },
+        {
+          "key": "universalWifiBssid",
+          "title": "BSSID",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "02:00:00:12:34:56",
+          "values": null
+        },
+        {
+          "key": "universalWifiMac",
+          "title": "MAC address",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "02:00:00:65:43:21",
+          "values": null
+        }
+      ]
     },
     {
       "name": "Spoof Widevine / DRM level",
@@ -1746,6 +2134,87 @@
       ]
     },
     {
+      "name": "Spoof build info",
+      "description": "Spoofs common android.os.Build fields with configurable values.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": [
+        {
+          "key": "universalBuildModel",
+          "title": "MODEL",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Pixel 10 Pro XL",
+          "values": null
+        },
+        {
+          "key": "universalBuildManufacturer",
+          "title": "MANUFACTURER",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Google",
+          "values": null
+        },
+        {
+          "key": "universalBuildBrand",
+          "title": "BRAND",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "google",
+          "values": null
+        },
+        {
+          "key": "universalBuildDevice",
+          "title": "DEVICE",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "mustang",
+          "values": null
+        },
+        {
+          "key": "universalBuildProduct",
+          "title": "PRODUCT",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "mustang",
+          "values": null
+        },
+        {
+          "key": "universalBuildFingerprint",
+          "title": "FINGERPRINT",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "google/mustang/mustang:17/CP2A.260605.012/15430684:user/release-keys",
+          "values": null
+        },
+        {
+          "key": "universalBuildRelease",
+          "title": "VERSION.RELEASE",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "17",
+          "values": null
+        },
+        {
+          "key": "universalBuildSdk",
+          "title": "VERSION.SDK_INT",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "37",
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Spoof install source",
       "description": "Makes the app think it was installed from a specific store (default: Google Play).\n\nUseful when an app blocks features or shows errors because it detects it was not installed from the Play Store.\n\nOnly affects what the app itself sees - does not change the real system install record.",
       "default": false,
@@ -1770,127 +2239,74 @@
       ]
     },
     {
-      "name": "Spoof member brief info",
-      "description": "Forces MemberBriefInfo.isActive()=true, getMemberType()=2, getExpiryDate()='2035-12-31'. MemberBriefInfo is a lightweight summary bean used in home/profile cards — discovered via MovieboxHooker (Kero309x) analysis.",
-      "default": true,
+      "name": "Spoof keystore security level",
+      "description": "Forces key/security level getters to software/trusted-environment style values.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
+      "compatiblePackages": null,
       "options": []
     },
     {
-      "name": "Spoof member info",
-      "description": "Forces MemberInfo active=true, memberType=2 (VIP), days=3650, expiryDate/nextRenewDate='2035-12-31'. Previously only patched isActive+getDaysLeft+getExpiryDate; now also patches getMemberType()+getNextRenewDate() discovered via MovieboxHooker analysis.",
-      "default": true,
+      "name": "Spoof root of trust",
+      "description": "Spoofs common RootOfTrust verified boot getters.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
+      "compatiblePackages": null,
       "options": []
     },
     {
-      "name": "Spoof member provider flags",
-      "description": "Forces MMKV member gates to true. Phone (com.community.oneroom): e()Z=kv_is_pay_enable_member, f()Z=kv_is_skip_ad. India (com.community.mbox.in): d()Z=kv_is_pay_enable_member, f()Z=kv_is_skip_ad. Both share f()Z for kv_is_skip_ad; primary gate method differs per package.",
-      "default": true,
+      "name": "Spoof telephony IDs",
+      "description": "Spoofs IMEI, MEID, subscriber ID, SIM serial, and line number reads.",
+      "default": false,
       "dependencies": [],
-      "compatiblePackages": [
+      "compatiblePackages": null,
+      "options": [
         {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
+          "key": "universalImei",
+          "title": "IMEI",
           "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "required": true,
+          "type": "kotlin.String",
+          "default": "356938035643809",
+          "values": null
         },
         {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
+          "key": "universalMeid",
+          "title": "MEID",
           "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
+          "required": true,
+          "type": "kotlin.String",
+          "default": "A000004E4F4F50",
+          "values": null
+        },
+        {
+          "key": "universalSubscriberId",
+          "title": "Subscriber ID",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "310260000000000",
+          "values": null
+        },
+        {
+          "key": "universalSimSerial",
+          "title": "SIM serial",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "89014103211118510720",
+          "values": null
+        },
+        {
+          "key": "universalLineNumber",
+          "title": "Line number",
+          "description": null,
+          "required": true,
+          "type": "kotlin.String",
+          "default": "+15551234567",
+          "values": null
         }
-      ],
-      "options": []
+      ]
     },
     {
       "name": "Suppress Paywall",
@@ -1933,47 +2349,6 @@
           "targets": [
             {
               "version": "26.23.2",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Suppress newbie bonus dialog",
-      "description": "Makes MemberProvider ClaimMemberDialog trigger return-void. Phone (com.community.oneroom): z(F)V. India (com.community.mbox.in): w(F)V. Both suppressed via name search.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2491,6 +2866,31 @@
       "options": []
     },
     {
+      "name": "Unlock PRO",
+      "description": "Unlocks all PRO features in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.pixel.al.pixelhabittracker",
+          "name": "Pixel Habit Tracker",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF6B35",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.1.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Patron",
       "description": "Unlocks Pocket Casts Patron yearly feature checks.",
       "default": true,
@@ -2572,7 +2972,7 @@
     },
     {
       "name": "Unlock Plus",
-      "description": "Unlocks Sticker.ly PLUS subscription.",
+      "description": "Unlocks Sticker.ly PLUS subscriptionNote: For Facebook Login, Uninstall Facebook App.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -2613,6 +3013,31 @@
           "targets": [
             {
               "version": "1.2.8",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks premium features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.ace.ex.file.manager",
+          "name": "Ace Ex File Manager",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.6.0.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2688,6 +3113,31 @@
           "targets": [
             {
               "version": "3.2.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium wallpapers.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.jndapp.anime.depth.live.wallpaper",
+          "name": "Anime Depth Wallpapers",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6A1B9A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2854,6 +3304,56 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks premium features after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.eterno",
+          "name": "Dailyhunt",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "33.5.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all premium wallpapers.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.jndapp.depth.live.wallpaper",
+          "name": "Depth Live Wallpaper",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.1.06",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all Fitbod premium features.",
       "default": true,
       "dependencies": [],
@@ -2867,7 +3367,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "8.24.0-1",
+              "version": "8.24.1-0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2981,6 +3481,56 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlock Premium features after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nexstreaming.app.kinemasterfree",
+          "name": "KineMaster",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1B54C8",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.1.13.36552.GP",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks premium features and all map packs.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "de.komoot.android",
+          "name": "komoot",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#65AB1E",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.28.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all premium content.",
       "default": true,
       "dependencies": [],
@@ -2995,6 +3545,31 @@
           "targets": [
             {
               "version": "1.4.9",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks premium features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.dywx.larkplayer",
+          "name": "Lark Player",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1DB954",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.9.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3022,6 +3597,31 @@
           "targets": [
             {
               "version": "6.7.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlockins all premium widgets.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.jndapp.minimal.widgets",
+          "name": "Minimal Widgets",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#212121",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.08",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3418,6 +4018,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks premium features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.rs.explorer.filemanager",
+          "name": "RS File Manager",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#0D47A1",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.3.0.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Bypasses PairIP license check, paywall, ads, and pro upsell in SAI.",
       "default": true,
       "dependencies": [],
@@ -3557,6 +4182,31 @@
           "targets": [
             {
               "version": "1.0.10-5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium features in app. Also re-enables password login after OTP.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.strava",
+          "name": "Strava",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FC4C02",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "471.11",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3944,7 +4594,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.5.2",
+              "version": "5.5.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3969,7 +4619,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.5.9",
+              "version": "6.6.11",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3994,7 +4644,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "0.1298.0",
+              "version": "0.1300.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4046,7 +4696,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.83",
+              "version": "2.3.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4072,6 +4722,31 @@
           "targets": [
             {
               "version": "1.57.9",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks all Pro features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "mega.privacy.android.app",
+          "name": "MEGA",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#D9272E",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "16.9(261881039)(3c7e30562a)",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4300,7 +4975,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.6.3",
+              "version": "26.7.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4486,6 +5161,33 @@
       "options": []
     },
     {
+      "name": "Unlock SVIP",
+      "description": "Unlocks SViP features in app.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.guochao.faceshow",
+          "name": "BuzzCast",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#7C3AED",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.80",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Subscription",
       "description": "Unlocks user-selectable Duolingo subscription tiers.",
       "default": true,
@@ -4546,6 +5248,31 @@
           "targets": [
             {
               "version": "3.3.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Turbo",
+      "description": "Unlocks Turbo subscription after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.uptodown",
+          "name": "Uptodown App Store",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1E88E5",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.34",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4623,6 +5350,97 @@
           "targets": [
             {
               "version": "4.20.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP",
+      "description": "Unlocks VIP features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.community.oneroom",
+          "name": "MovieBox",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.0.16.0709.03",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "com.community.mbox.in",
+          "name": "MovieBox (India)",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.0.16.0707.03",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP",
+      "description": "Unlocks VIP Features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.community.mbox.tv",
+          "name": "MovieBox TV",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.1.4.0710.03",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP",
+      "description": "Unlock VIP subscription in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.playit.videoplayer",
+          "name": "PLAYit",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF5722",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.7.50.12",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4740,104 +5558,6 @@
       "options": []
     },
     {
-      "name": "Unlock download member requirement",
-      "description": "Forces DownloadBean.getRequireMemberType() to always return Integer(0), making all download items appear as freely downloadable regardless of VIP tier. Discovered via MovieboxHooker (Kero309x) analysis.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock member resolution",
-      "description": "Forces MemberResolutionBean.isUnlock() to always return Boolean.TRUE.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.oneroom",
-          "name": "MovieBox",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0703.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.in",
-          "name": "MovieBox (India)",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.0.16.0707.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.community.mbox.tv",
-          "name": "MovieBox TV",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.1.1.0702.03",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Unlock premium",
       "description": "Unlocks AmoledPix premium features and disables ads.",
       "default": true,
@@ -4865,6 +5585,31 @@
       "options": []
     },
     {
+      "name": "Unlock premium",
+      "description": "Unlock Premium features in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.MojoFilterMediaLLC.RPGSoundSystem",
+          "name": "Pocket Bard",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#6A0DAD",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.1.16",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock pro",
       "description": "Unlocks all pro features.",
       "default": true,
@@ -4880,6 +5625,31 @@
           "targets": [
             {
               "version": "5.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock subscription",
+      "description": "Unlocks subscription in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.nytimes.crossword",
+          "name": "NYT Games",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#000000",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.33.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
