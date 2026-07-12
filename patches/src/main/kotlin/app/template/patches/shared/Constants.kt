@@ -354,7 +354,7 @@ object Constants {
         name = "Rocket Money",
         packageName = "com.truebill",
         appIconColor = 0xDE3341,
-        targets = listOf(AppTarget(version = "13.15.0"))
+        targets = listOf(AppTarget(version = "15.0.0"))
     )
 
     // Waze — GPS, Maps & Traffic
@@ -409,7 +409,7 @@ object Constants {
         packageName = "com.community.mbox.tv",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "1.1.4.0710.03", versionCode = 50040009),
+            AppTarget(version = "3.0.16.0709.03", versionCode = 50020116),
         )
     )
 
@@ -434,7 +434,7 @@ object Constants {
         name = "1Tap Cleaner",
         packageName = "com.a0soft.gphone.acc.free",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.18", versionCode = 240005189))
+        targets = listOf(AppTarget(version = "5.19", versionCode = 240005189))
     )
 
     // Windy — Weather Radar & Forecast by Windyty
@@ -530,7 +530,7 @@ object Constants {
         name = "UDisc",
         packageName = "com.regasoftware.udisc",
         appIconColor = 0xF47C20,
-        targets = listOf(AppTarget(version = "24.2.1", versionCode = 9928))
+        targets = listOf(AppTarget(version = "24.2.3", versionCode = 9928))
     )
 
     // Snow-Forecast.com
@@ -898,7 +898,7 @@ object Constants {
         name = "Carousell",
         packageName = "com.thecarousell.Carousell",
         appIconColor = 0xE7392C,
-        targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
+        targets = listOf(AppTarget(version = "2.462.7", versionCode = 10767))
     )
 
     val DUOLINGO_COMPATIBILITY = Compatibility(
@@ -1010,7 +1010,7 @@ object Constants {
         name = "Today Weather",
         packageName = "mobi.lockdown.weather",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
+        targets = listOf(AppTarget(version = "2.5.0-6", versionCode = 755))
     )
 
     // UbikiTouch
