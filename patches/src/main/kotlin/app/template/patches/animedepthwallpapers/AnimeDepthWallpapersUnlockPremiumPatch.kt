@@ -2,10 +2,8 @@ package app.template.patches.animedepthwallpapers
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
-import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.ANIME_DEPTH_WALLPAPERS_COMPATIBILITY
-import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
 private fun dismissActivity() =
@@ -49,12 +47,21 @@ val animeDepthWallpapersUnlockPremiumPatch = bytecodePatch(
         // Layer 5: PremiumSetter — force Set.contains("premium_lifetime") result to true
         runCatching {
             val method = PremiumSetterFingerprint.method
-            val containsMatch = PremiumSetterFingerprint.instructionMatches[0]
-            val containsIndex = containsMatch.index
+            val containsIndex = PremiumSetterFingerprint.instructionMatches[0].index
             val moveResultIndex = containsIndex + 1
-            val moveResultInstr = method.getInstruction<OneRegisterInstruction>(moveResultIndex)
-            val register = moveResultInstr.registerA
-            method.addInstructions(moveResultIndex + 1, "const/4 v$register, 0x1")
+            val reg = method.getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
+            method.addInstructions(moveResultIndex + 1, "const/4 v$reg, 0x1")
+        }
+
+        // Layer 6: PlanSelector — force selectedPlanIndex=0 (Lifetime) in paywall plan chooser.
+        // k74.invoke reads the plan StateFlow -> intValue() -> if-nez decides which card is selected.
+        // Injecting 0 after the first intValue() move-result makes Lifetime always selected.
+        runCatching {
+            val method = PlanSelectorFingerprint.method
+            val intValueIndex = PlanSelectorFingerprint.instructionMatches[0].index
+            val moveResultIndex = intValueIndex + 1
+            val reg = method.getInstruction<OneRegisterInstruction>(moveResultIndex).registerA
+            method.addInstructions(moveResultIndex + 1, "const/4 v$reg, 0x0")
         }
     }
 }
