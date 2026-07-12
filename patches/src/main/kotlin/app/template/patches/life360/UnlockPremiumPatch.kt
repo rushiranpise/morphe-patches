@@ -38,6 +38,10 @@ val life360UnlockPremiumPatch = bytecodePatch(
             FeatureSetIsAvailableFingerprint,
             FeatureSetIsEnabledForAnyCircleFingerprint,
             FeatureSetIsEnabledForCircleFingerprint,
+            FeaturesAccessIsEnabledForActiveCircleFingerprint,
+            FeaturesAccessIsEnabledForAnyCircleFingerprint,
+            FeatureSetIsOnVictimOnlyCollisionDispatchAvailableFingerprint,
+            FeatureSetIsOnVictimOnlyPremiumSosAvailableFingerprint,
         ).forEach { fingerprint ->
             fingerprint.method.apply {
                 clearBody()
@@ -49,6 +53,229 @@ val life360UnlockPremiumPatch = bytecodePatch(
                     """.trimIndent(),
                 )
             }
+        }
+
+        listOf(
+            FeatureSetResolveGpsTrackerForCircleFingerprint to "0x63",
+            FeatureSetResolveLocationHistoryForCircleFingerprint to "0x7fffffff",
+            FeatureSetResolvePlaceAlertsForCircleFingerprint to "0x7fffffff",
+        ).forEach { (fingerprint, value) ->
+            fingerprint.method.apply {
+                clearBody()
+                addInstructions(
+                    0,
+                    """
+                        const v0, $value
+                        return v0
+                    """.trimIndent(),
+                )
+            }
+        }
+
+        listOf(
+            DefaultResolveLocationHistoryForCircleValueFingerprint,
+            DefaultResolvePlaceAlertsForCircleValueFingerprint,
+            PremiumCircleResolvePlaceAlertsForCircleValueFingerprint,
+        ).forEach { fingerprint ->
+            fingerprint.method.apply {
+                clearBody()
+                addInstructions(
+                    0,
+                    """
+                        const v0, 0x7fffffff
+                        invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                        move-result-object v0
+                        return-object v0
+                    """.trimIndent(),
+                )
+            }
+        }
+
+        FeatureSetResolveLocationHistoryPerSkusFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    const v1, 0x7fffffff
+                    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                    move-result-object v1
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        DefaultResolveLocationHistoryPerSkusValueFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    const v1, 0x7fffffff
+                    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                    move-result-object v1
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        FeatureSetIsAvailableForPerSkusFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    sget-object v1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        DefaultResolvePlaceAlertsPerSkusValueFingerprint.method.apply {
+            ensureRegisters(3)
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    new-instance v1, Lcom/life360/android/core/models/AvailablePlaceAlerts${'$'}LimitedAlerts;
+                    const v2, 0x7fffffff
+                    invoke-direct {v1, v2}, Lcom/life360/android/core/models/AvailablePlaceAlerts${'$'}LimitedAlerts;-><init>(I)V
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        FeatureSetResolvePlaceAlertsPerSkusFingerprint.method.apply {
+            ensureRegisters(3)
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    new-instance v1, Lcom/life360/android/core/models/AvailablePlaceAlerts${'$'}LimitedAlerts;
+                    const v2, 0x7fffffff
+                    invoke-direct {v1, v2}, Lcom/life360/android/core/models/AvailablePlaceAlerts${'$'}LimitedAlerts;-><init>(I)V
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        listOf(
+            FeatureSetResolveIdTheftReimbursementForCircleFingerprint,
+            FeatureSetResolveStolenPhoneReimbursementForCircleFingerprint,
+        ).forEach { fingerprint ->
+            fingerprint.method.apply {
+                ensureRegisters(3)
+                clearBody()
+                addInstructions(
+                    0,
+                    """
+                        new-instance v0, Lcom/life360/android/core/models/ReimbursementValue;
+                        const v1, 0xc350
+                        sget-object v2, Lcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;->USD:Lcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;
+                        invoke-direct {v0, v1, v2}, Lcom/life360/android/core/models/ReimbursementValue;-><init>(ILcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;)V
+                        return-object v0
+                    """.trimIndent(),
+                )
+            }
+        }
+
+        FeatureSetResolveRoadsideAssistanceForCircleFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/RoadsideAssistanceValue${'$'}UnlimitedDistance;->INSTANCE:Lcom/life360/android/core/models/RoadsideAssistanceValue${'$'}UnlimitedDistance;
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        FeatureSetResolveSosEmergencyDispatchForCircleFingerprint.method.apply {
+            ensureRegisters(2)
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    new-instance v0, Lcom/life360/android/core/models/PremiumFeature${'$'}SOS${'$'}EmergencyDispatch;
+                    const/4 v1, 0x0
+                    invoke-direct {v0, v1}, Lcom/life360/android/core/models/PremiumFeature${'$'}SOS${'$'}EmergencyDispatch;-><init>(Z)V
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        FeatureSetResolveTileDevicePackageForCircleFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/PremiumFeature${'$'}TileDevicePackage${'$'}StarterPack;->INSTANCE:Lcom/life360/android/core/models/PremiumFeature${'$'}TileDevicePackage${'$'}StarterPack;
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        listOf(
+            FeatureSetResolveIdTheftReimbursementPerSkusFingerprint,
+            FeatureSetResolveStolenPhoneReimbursementPerSkusFingerprint,
+        ).forEach { fingerprint ->
+            fingerprint.method.apply {
+                ensureRegisters(5)
+                clearBody()
+                addInstructions(
+                    0,
+                    """
+                        sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                        new-instance v1, Lcom/life360/android/core/models/ReimbursementValue;
+                        const v2, 0xc350
+                        sget-object v3, Lcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;->USD:Lcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;
+                        invoke-direct {v1, v2, v3}, Lcom/life360/android/core/models/ReimbursementValue;-><init>(ILcom/life360/android/core/models/PremiumFeature${'$'}MembershipCurrency;)V
+                        invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                        move-result-object v0
+                        return-object v0
+                    """.trimIndent(),
+                )
+            }
+        }
+
+        FeatureSetResolveRoadsideAssistancePerSkusFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    sget-object v1, Lcom/life360/android/core/models/RoadsideAssistanceValue${'$'}UnlimitedDistance;->INSTANCE:Lcom/life360/android/core/models/RoadsideAssistanceValue${'$'}UnlimitedDistance;
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
+
+        FeatureSetSkuTileClassicFulfillmentsFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Lcom/life360/android/core/models/Sku;->PLATINUM:Lcom/life360/android/core/models/Sku;
+                    sget-object v1, Lcom/life360/android/core/models/PremiumFeature${'$'}TileDevicePackage${'$'}StarterPack;->INSTANCE:Lcom/life360/android/core/models/PremiumFeature${'$'}TileDevicePackage${'$'}StarterPack;
+                    invoke-static {v0, v1}, Ljava/util/Collections;->singletonMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
         }
 
         listOf(
