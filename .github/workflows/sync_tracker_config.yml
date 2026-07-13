@@ -1,0 +1,48 @@
+name: Sync patches-tracker config
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - patches/src/main/kotlin/app/template/patches/shared/Constants.kt
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-tracker-config
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    name: Dispatch patches-tracker config sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch patches-tracker sync event
+        env:
+          GH_TOKEN: ${{ secrets.PATCHES_TRACKER_TOKEN }}
+          TRACKER_REPO: rushiranpise/patches-tracker
+          TRACKER_EVENT: sync-config-from-constants
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "PATCHES_TRACKER_TOKEN is required to dispatch ${TRACKER_REPO}/${TRACKER_EVENT}."
+            echo "Create a token with Contents: read/write access to ${TRACKER_REPO}, then add it as this repo secret."
+            exit 1
+          fi
+
+          if ! gh api \
+            --method POST \
+            "repos/${TRACKER_REPO}/dispatches" \
+            -f event_type="${TRACKER_EVENT}" \
+            -F client_payload[patches_repo]="${GITHUB_REPOSITORY}" \
+            -F client_payload[patches_ref]="${GITHUB_REF_NAME}" \
+            -F client_payload[patches_sha]="${GITHUB_SHA}"; then
+            echo "::error::Could not dispatch ${TRACKER_REPO}/${TRACKER_EVENT}."
+            echo "PATCHES_TRACKER_TOKEN must have Contents: read/write access to ${TRACKER_REPO}."
+            echo "For a fine-grained PAT, grant repository access to ${TRACKER_REPO} and set Contents to Read and write."
+            exit 1
+          fi
+
+          echo "Dispatched ${TRACKER_REPO}/${TRACKER_EVENT}."
