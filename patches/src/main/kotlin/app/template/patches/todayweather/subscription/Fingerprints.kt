@@ -12,8 +12,8 @@ import app.morphe.patcher.Fingerprint
 internal object BdIsPurchasedFingerprint : Fingerprint(
     returnType = "Z",
     custom = { method, classDef ->
-        classDef.type == "LBd;" &&
-            method.name == "k" &&
+        classDef.type == "LA4;" &&
+            method.name == "hasStableIds" &&
             method.parameters.isEmpty()
     }
 )
@@ -27,8 +27,8 @@ internal object BdIsPurchasedFingerprint : Fingerprint(
 internal object BdIsTrialRestrictedFingerprint : Fingerprint(
     returnType = "Z",
     custom = { method, classDef ->
-        classDef.type == "LBd;" &&
-            method.name == "j" &&
+        classDef.type == "LA4;" &&
+            method.name == "hasStableIds" &&
             method.parameters.isEmpty()
     }
 )

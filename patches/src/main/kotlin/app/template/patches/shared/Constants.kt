@@ -1010,7 +1010,7 @@ object Constants {
         name = "Today Weather",
         packageName = "mobi.lockdown.weather",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
+        targets = listOf(AppTarget(version = "2.5.0-6", versionCode = 756))
     )
 
     // UbikiTouch
