@@ -1,5 +1,6 @@
 package app.template.patches.shared
 
+import app.morphe.patcher.patch.ApkFileType
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 
@@ -1154,5 +1155,13 @@ object Constants {
         packageName = "com.eterno",
         appIconColor = 0xE53935,
         targets = listOf(AppTarget(version = "33.5.4", versionCode = 10310))
+    )
+
+    // ES File Explorer by ES Global / Shenzhen Estrongs Info. Co., Ltd.
+    val ES_EXPLORER_COMPATIBILITY = Compatibility(
+        name = "ES File Explorer",
+        packageName = "com.estrongs.android.pop",
+        appIconColor = 0x1976D2,
+        targets = listOf(AppTarget(version = "4.4.3.7", versionCode = 10353))
     )
 }
