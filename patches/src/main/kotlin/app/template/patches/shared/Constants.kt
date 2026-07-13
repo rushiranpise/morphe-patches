@@ -530,7 +530,7 @@ object Constants {
         name = "UDisc",
         packageName = "com.regasoftware.udisc",
         appIconColor = 0xF47C20,
-        targets = listOf(AppTarget(version = "24.2.1", versionCode = 9928))
+        targets = listOf(AppTarget(version = "24.2.3", versionCode = 9935))
     )
 
     // Snow-Forecast.com
@@ -898,7 +898,7 @@ object Constants {
         name = "Carousell",
         packageName = "com.thecarousell.Carousell",
         appIconColor = 0xE7392C,
-        targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
+        targets = listOf(AppTarget(version = "2.462.7", versionCode = 10793))
     )
 
     val DUOLINGO_COMPATIBILITY = Compatibility(
@@ -1010,7 +1010,7 @@ object Constants {
         name = "Today Weather",
         packageName = "mobi.lockdown.weather",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.5.0-5", versionCode = 755))
+        targets = listOf(AppTarget(version = "2.5.0-6", versionCode = 756))
     )
 
     // UbikiTouch
