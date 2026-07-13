@@ -12,12 +12,20 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.stringOption
 import app.template.patches.duolingo.HasMaxUserInfoConstructorFingerprint
+import app.template.patches.duolingo.LoggedInStateFingerprint
+import app.template.patches.duolingo.UserFingerprint
+import app.template.patches.duolingo.UserHasGoldFieldUsageFingerprint
+import app.template.patches.duolingo.UserIsPaidFieldUsageFingerprint
 import app.template.patches.duolingo.UserSubscriptionInfoFingerprint
+import app.template.patches.duolingo.VideoCallTabCtaButtonStateToStringFingerprint
 import app.template.patches.shared.Constants.DUOLINGO_COMPATIBILITY
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 private fun duolingoSubscriptionFeatureFingerprint(feature: String) = Fingerprint(
     filters = listOf(
@@ -60,6 +68,29 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
     )
 
     execute {
+        fun resolvedField(fingerprint: Fingerprint, label: String): FieldReference =
+            fingerprint.method.instructions
+                .elementAt(fingerprint.instructionMatches.first().index)
+                .let { instruction -> (instruction as? ReferenceInstruction)?.reference as? FieldReference }
+                ?: throw PatchException("Could not resolve Duolingo $label field")
+
+        fun fieldFromToString(fingerprint: Fingerprint, label: String): FieldReference {
+            val stringIndex = fingerprint.method.instructions.indexOfFirst { instruction ->
+                instruction.opcode == Opcode.CONST_STRING &&
+                    ((instruction as? ReferenceInstruction)?.reference as? StringReference)
+                        ?.string
+                        ?.contains(label) == true
+            }
+            if (stringIndex < 0) throw PatchException("Could not find Duolingo $label string")
+
+            return fingerprint.method.instructions
+                .drop(stringIndex + 1)
+                .firstNotNullOfOrNull { instruction ->
+                    (instruction as? ReferenceInstruction)?.reference as? FieldReference
+                }
+                ?: throw PatchException("Could not resolve Duolingo $label field")
+        }
+
         val tier = subscriptionTier ?: "max"
         val productId = when (tier) {
             "max_family" -> "gold_subscription_fam_twelve_month"
@@ -92,6 +123,29 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                         "Ljava/lang/String;",
                     )
             }.apply {
+                val fields = instructions
+                    .mapNotNull { instruction ->
+                        (instruction as? ReferenceInstruction)?.reference as? FieldReference
+                    }
+                    .filter { field -> field.definingClass == "Lcom/duolingo/data/plus/SubscriptionInfo;" }
+                    .distinctBy { field -> "${field.name}:${field.type}" }
+                    .take(10)
+
+                if (fields.size < 10) {
+                    throw PatchException("Could not resolve Duolingo SubscriptionInfo fields")
+                }
+
+                val currencyField = fields[0]
+                val expiryField = fields[1]
+                val trialField = fields[2]
+                val periodLengthField = fields[3]
+                val periodUnitField = fields[4]
+                val productIdField = fields[5]
+                val providerField = fields[6]
+                val activeField = fields[7]
+                val vendorPurchaseIdField = fields[8]
+                val expiryMillisField = fields[9]
+
                 removeInstructions(0, instructions.count())
                 addInstructions(
                     0,
@@ -106,19 +160,19 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                     const-string p8, "GOOGLE_PLAY"
                     const/4 p9, 0x1
                     const-string p10, "$vendorPurchaseId"
-                    iput-object p1, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->a:Ljava/lang/String;
-                    iput-wide p2, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->b:J
-                    iput-boolean p4, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->c:Z
-                    iput p5, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->d:I
-                    iput p6, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->e:I
-                    iput-object p7, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->f:Ljava/lang/String;
-                    iput-object p8, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->g:Ljava/lang/String;
-                    iput-boolean p9, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->h:Z
-                    iput-object p10, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->i:Ljava/lang/String;
+                    iput-object p1, p0, ${currencyField.definingClass}->${currencyField.name}:${currencyField.type}
+                    iput-wide p2, p0, ${expiryField.definingClass}->${expiryField.name}:${expiryField.type}
+                    iput-boolean p4, p0, ${trialField.definingClass}->${trialField.name}:${trialField.type}
+                    iput p5, p0, ${periodLengthField.definingClass}->${periodLengthField.name}:${periodLengthField.type}
+                    iput p6, p0, ${periodUnitField.definingClass}->${periodUnitField.name}:${periodUnitField.type}
+                    iput-object p7, p0, ${productIdField.definingClass}->${productIdField.name}:${productIdField.type}
+                    iput-object p8, p0, ${providerField.definingClass}->${providerField.name}:${providerField.type}
+                    iput-boolean p9, p0, ${activeField.definingClass}->${activeField.name}:${activeField.type}
+                    iput-object p10, p0, ${vendorPurchaseIdField.definingClass}->${vendorPurchaseIdField.name}:${vendorPurchaseIdField.type}
                     sget-object p1, Ljava/util/concurrent/TimeUnit;->SECONDS:Ljava/util/concurrent/TimeUnit;
                     invoke-virtual {p1, p2, p3}, Ljava/util/concurrent/TimeUnit;->toMillis(J)J
                     move-result-wide p1
-                    iput-wide p1, p0, Lcom/duolingo/data/plus/SubscriptionInfo;->j:J
+                    iput-wide p1, p0, ${expiryMillisField.definingClass}->${expiryMillisField.name}:${expiryMillisField.type}
                     return-void
                     """.trimIndent(),
                 )
@@ -148,44 +202,45 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
             tier == "lite" -> "LITE"
             else -> "PREMIUM"
         }
-        val userBooleanFields = mapOf(
-            "Lcom/duolingo/data/user/User;->Q0:Z" to true,
-            "Lcom/duolingo/data/user/User;->y:Z" to (tier != "lite"),
-            "Lcom/duolingo/data/user/User;->P0:Z" to tier.startsWith("max"),
-        )
-        var patchedUserFields = 0
-        mutableClassDefBy("Lcom/duolingo/data/user/User;").methods
-            .filter { method -> method.name == "<init>" }
-            .forEach { method ->
-                method.implementation?.instructions
-                    ?.mapIndexedNotNull { index, instruction ->
-                        val reference = (instruction as? ReferenceInstruction)?.reference?.toString()
-                        val registers = instruction as? TwoRegisterInstruction
-                        when {
-                            instruction.opcode == Opcode.IPUT_BOOLEAN && reference != null && reference in userBooleanFields && registers != null -> {
-                                val value = if (userBooleanFields.getValue(reference)) "0x1" else "0x0"
-                                index to "const/16 v${registers.registerA}, $value"
-                            }
-                            instruction.opcode == Opcode.IPUT_OBJECT &&
-                                reference == "Lcom/duolingo/data/user/User;->A0:Lcom/duolingo/data/user/SubscriberLevel;" &&
-                                registers != null ->
-                                index to "sget-object v${registers.registerA}, Lcom/duolingo/data/user/SubscriberLevel;->$subscriberLevel:Lcom/duolingo/data/user/SubscriberLevel;"
-                            else -> null
-                        }
-                    }
-                    ?.asReversed()
-                    ?.forEach { (index, instruction) ->
-                        method.addInstructions(index, instruction)
-                        patchedUserFields++
-                    }
-            }
+        val userClass = mutableClassDefBy("Lcom/duolingo/data/user/User;")
+        val isPaidField = resolvedField(UserIsPaidFieldUsageFingerprint, "isPaid")
+        val hasGoldField = resolvedField(UserHasGoldFieldUsageFingerprint, "hasGold")
+        val hasPlusField = fieldFromToString(UserFingerprint, "hasPlus")
+        val subscriberLevelField = fieldFromToString(UserFingerprint, "subscriberLevel")
 
-        if (patchedUserFields == 0) {
-            throw PatchException("Could not patch User subscription fields")
+        setOf(isPaidField, hasPlusField, hasGoldField, subscriberLevelField).forEach { field ->
+            userClass.fields
+                .firstOrNull { it.name == field.name }
+                ?.apply { accessFlags = accessFlags and AccessFlags.FINAL.value.inv() }
+        }
+
+        LoggedInStateFingerprint.classDef.methods
+            .first { method -> method.name == "<init>" }
+            .apply {
+                val returnIndex = instructions.indexOfLast { instruction -> instruction.opcode == Opcode.RETURN_VOID }
+                if (returnIndex < 0) throw PatchException("Could not find LoggedIn constructor return")
+
+                addInstructions(
+                    returnIndex,
+                    """
+                    const/4 v0, 0x1
+                    iput-boolean v0, p1, ${isPaidField.definingClass}->${isPaidField.name}:${isPaidField.type}
+                    iput-boolean v0, p1, ${hasPlusField.definingClass}->${hasPlusField.name}:${hasPlusField.type}
+                    const/4 v0, ${if (tier.startsWith("max")) "0x1" else "0x0"}
+                    iput-boolean v0, p1, ${hasGoldField.definingClass}->${hasGoldField.name}:${hasGoldField.type}
+                    sget-object v0, ${subscriberLevelField.type}->$subscriberLevel:${subscriberLevelField.type}
+                    iput-object v0, p1, ${subscriberLevelField.definingClass}->${subscriberLevelField.name}:${subscriberLevelField.type}
+                    """.trimIndent(),
+                )
         }
 
         if (tier.startsWith("max")) {
-            val features = setOf("VIDEO_CALL_IN_PATH", "VIDEO_CALL_IN_PRACTICE_HUB")
+            val features = setOf(
+                "VIDEO_CALL_IN_PATH",
+                "VIDEO_CALL_IN_PRACTICE_HUB",
+                "EXPLAIN_MY_ANSWER",
+                "ROLEPLAY_FOR_INTERMEDIATE_LEARNERS",
+            )
             var patchedFeatures = 0
             features.forEach { feature ->
                 duolingoSubscriptionFeatureFingerprint(feature).matchAll().forEach { match ->
@@ -199,6 +254,33 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
 
             if (patchedFeatures == 0) {
                 throw PatchException("Could not find Max feature checks")
+            }
+
+            VideoCallTabCtaButtonStateToStringFingerprint.method.apply {
+                val upsellField = VideoCallTabCtaButtonStateToStringFingerprint
+                    .instructionMatches
+                    .last()
+                    .index
+                    .let { index -> instructions.elementAt(index) as? ReferenceInstruction }
+                    ?.reference as? FieldReference
+                    ?: throw PatchException("Could not resolve Duolingo Max upsell field")
+
+                val constructor = mutableClassDefBy(upsellField.definingClass)
+                    .methods
+                    .firstOrNull { method -> method.name == "<init>" }
+                    ?: throw PatchException("Could not find Duolingo Max upsell constructor")
+                val setFieldIndex = constructor.instructions.indexOfFirst { instruction ->
+                    (instruction as? ReferenceInstruction)?.reference?.toString() == upsellField.toString()
+                }
+                if (setFieldIndex < 0) {
+                    throw PatchException("Could not find Duolingo Max upsell field assignment")
+                }
+                val register = constructor.instructions
+                    .elementAt(setFieldIndex)
+                    .let { instruction -> (instruction as? TwoRegisterInstruction)?.registerA }
+                    ?: throw PatchException("Could not resolve Duolingo Max upsell register")
+
+                constructor.addInstructions(setFieldIndex, "const/4 v$register, 0x0")
             }
         }
     }
