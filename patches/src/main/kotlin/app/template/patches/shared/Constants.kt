@@ -936,7 +936,7 @@ object Constants {
         name = "JEFIT",
         packageName = "je.fit",
         appIconColor = 0x1A73E8,
-        targets = listOf(AppTarget(version = "17.2.5", versionCode = 2002))
+        targets = listOf(AppTarget(version = "17.2.6", versionCode = 2006))
     )
 
     val LIVESCORE_COMPATIBILITY = Compatibility(
