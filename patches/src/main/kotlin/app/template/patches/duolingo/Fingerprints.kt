@@ -2,6 +2,8 @@ package app.template.patches.duolingo
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.OpcodesFilter
+import app.morphe.patcher.fieldAccess
+import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.AccessFlags
 
@@ -32,12 +34,56 @@ object UserSubscriptionInfoFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
+object LoggedInStateFingerprint : Fingerprint(
+    strings = listOf("LoggedIn(user=", ")"),
+)
+
+object UserFingerprint : Fingerprint(
+    strings = listOf("User(adsConfig=", ", id=", ", betaStatus="),
+)
+
+object UserIsPaidFieldUsageFingerprint : Fingerprint(
+    parameters = listOf(
+        "Lcom/duolingo/data/user/User;",
+        "Lcom/duolingo/data/home/CoursePathInfo;",
+        "Z",
+        "Lcom/duolingo/core/experiments/ExperimentsRepository\$TreatmentRecord;",
+    ),
+    returnType = "Z",
+    filters = listOf(
+        fieldAccess(
+            definingClass = "Lcom/duolingo/data/user/User;",
+            type = "Z",
+        ),
+    ),
+)
+
 object HasMaxUserInfoConstructorFingerprint : Fingerprint(
     definingClass = "Ldre;",
     name = "<init>",
     returnType = "V",
     parameters = listOf("Z", "J"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+)
+
+object UserHasGoldFieldUsageFingerprint : Fingerprint(
+    classFingerprint = Fingerprint(
+        strings = listOf("MaxHooksUserData(isAdmin="),
+    ),
+    filters = listOf(
+        fieldAccess(
+            definingClass = "Lcom/duolingo/data/user/User;",
+            type = "Z",
+        ),
+    ),
+)
+
+object VideoCallTabCtaButtonStateToStringFingerprint : Fingerprint(
+    strings = listOf("VideoCallTabCtaButtonState(userHasMax="),
+    filters = listOf(
+        string(", isEligibleForSecondaryUpsell="),
+        OpcodesFilter.opcodesToFilters(Opcode.IGET_BOOLEAN).first(),
+    ),
 )
 
 object BuildTargetFieldFingerprint : Fingerprint(
