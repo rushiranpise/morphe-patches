@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.12.0",
+  "version": "1.13.0-dev.1",
   "patches": [
     {
       "name": "Add resource file",
@@ -474,6 +474,31 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Disable Tracking",
+      "description": "Disables analytics and telemetry in ES File Explorer",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.estrongs.android.pop",
+          "name": "ES File Explorer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1976D2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.4.3.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -4243,6 +4268,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks premium/lifetime featuers in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.esuper.file.explorer",
+          "name": "Super File",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.5.6.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall.",
       "default": true,
       "dependencies": [],
@@ -5491,6 +5541,31 @@
           "targets": [
             {
               "version": "2.11.1-ad_mob",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP Lifetime",
+      "description": "Unlock Vip Features in APP.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.estrongs.android.pop",
+          "name": "ES File Explorer",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#1976D2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.4.3.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
