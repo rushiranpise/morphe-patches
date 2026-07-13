@@ -75,7 +75,7 @@ object Constants {
         name = "Pialytic",
         packageName = "verbosus.pialytic",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "1.2.8"))
+        targets = listOf(AppTarget(version = "1.3.0", versionCode = 21))
     )
 
     // Snipd — AI Podcast Player
@@ -163,7 +163,7 @@ object Constants {
         name = "Proxyman",
         packageName = "com.proxyman.proxymanandroid",
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = "1.18.0", versionCode = 45))
+        targets = listOf(AppTarget(version = "1.19.0", versionCode = 46))
     )
 
     // SHAREit Premium
@@ -219,7 +219,7 @@ object Constants {
         name = "Canva",
         packageName = "com.canva.editor",
         appIconColor = 0x8B3DFF,
-        targets = listOf(AppTarget(version = "2.367.0", versionCode = 29613027))
+        targets = listOf(AppTarget(version = "2.368.0", versionCode = 29623126))
     )
 
     // Clickmate
@@ -363,7 +363,7 @@ object Constants {
         name = "Waze",
         packageName = "com.waze",
         appIconColor = 0x33CCFF,
-        targets = listOf(AppTarget(version = "5.21.0.0", versionCode = 1030711))
+        targets = listOf(AppTarget(version = "5.21.90.800", versionCode = 1030712))
     )
 
     // AccuWeather — Weather Radar & Forecast
@@ -410,7 +410,7 @@ object Constants {
         packageName = "com.community.mbox.tv",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "1.1.4.0710.03", versionCode = 50040009),
+            AppTarget(version = "3.0.16.0709.03", versionCode = 50020116),
         )
     )
 
@@ -539,7 +539,7 @@ object Constants {
         name = "Snow-Forecast.com",
         packageName = "com.snow_forecast.snowforecast",
         appIconColor = 0xCA0013,
-        targets = listOf(AppTarget(version = "8.0.6", versionCode = 2139))
+        targets = listOf(AppTarget(version = "8.0.8", versionCode = 2145))
     )
 
     // SkinSort
@@ -547,7 +547,7 @@ object Constants {
         name = "SkinSort",
         packageName = "com.skinsort",
         appIconColor = 0x2F7D62,
-        targets = listOf(AppTarget(version = "1.15", versionCode = 25))
+        targets = listOf(AppTarget(version = "1.20", versionCode = 31))
     )
 
     // BlurWall — Blur Wallpaper by Automan
@@ -579,7 +579,7 @@ object Constants {
         name = "NewsBreak",
         packageName = "com.particlenews.newsbreak",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "26.27.0", versionCode = 26270016))
+        targets = listOf(AppTarget(version = "26.28.0", versionCode = 26280034))
     )
 
     // Inmigreat — Immigration Guide & Case Tracker (com.changayaf.inmigreat)
@@ -667,7 +667,7 @@ object Constants {
         name = "Tracked",
         packageName = "com.tracked.mobile",
         appIconColor = 0x020617,
-        targets = listOf(AppTarget(version = "7.0.0", versionCode = 125))
+        targets = listOf(AppTarget(version = "7.1.1", versionCode = 127))
     )
 
     // Toxly
@@ -875,7 +875,7 @@ object Constants {
         name = "AiScore",
         packageName = "com.onesports.score",
         appIconColor = 0x2563EB,
-        targets = listOf(AppTarget(version = "4.2.4", versionCode = 289))
+        targets = listOf(AppTarget(version = "4.2.6", versionCode = 291))
     )
 
     // AMBOSS Medical Knowledge
@@ -951,7 +951,7 @@ object Constants {
         name = "MyRadar",
         packageName = "com.acmeaom.android.myradar",
         appIconColor = 0x1A6FBF,
-        targets = listOf(AppTarget(version = "8.71.2", versionCode = 591))
+        targets = listOf(AppTarget(version = "8.71.3", versionCode = 592))
     )
 
     // Pocket Prep
@@ -1082,7 +1082,7 @@ object Constants {
         name = "Minimal Widgets",
         packageName = "com.jndapp.minimal.widgets",
         appIconColor = 0x212121,
-        targets = listOf(AppTarget(version = "1.0.08", versionCode = 8))
+        targets = listOf(AppTarget(version = "1.1.01", versionCode = 10))
     )
 
     // Anime Depth Wallpapers
@@ -1171,6 +1171,6 @@ object Constants {
         packageName = "com.esuper.file.explorer",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "1.5.6.2", versionCode = 76))
+        targets = listOf(AppTarget(version = "1.5.6.3", versionCode = 77))
     )
 }
