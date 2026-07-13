@@ -1164,4 +1164,13 @@ object Constants {
         appIconColor = 0x1976D2,
         targets = listOf(AppTarget(version = "4.4.3.7", versionCode = 10353))
     )
+
+    // Super File - ES File Explorer by Estrongs/Frames
+    val SUPER_FILE_COMPATIBILITY = Compatibility(
+        name = "Super File",
+        packageName = "com.esuper.file.explorer",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "1.5.6.2", versionCode = 76))
+    )
 }
