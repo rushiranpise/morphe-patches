@@ -410,7 +410,7 @@ object Constants {
         packageName = "com.community.mbox.tv",
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "1.1.4.0710.03", versionCode = 50040009),
+            AppTarget(version = "3.0.16.0709.03", versionCode = 50020116),
         )
     )
 
@@ -936,7 +936,7 @@ object Constants {
         name = "JEFIT",
         packageName = "je.fit",
         appIconColor = 0x1A73E8,
-        targets = listOf(AppTarget(version = "17.2.5", versionCode = 2002))
+        targets = listOf(AppTarget(version = "17.2.6", versionCode = 2006))
     )
 
     val LIVESCORE_COMPATIBILITY = Compatibility(
