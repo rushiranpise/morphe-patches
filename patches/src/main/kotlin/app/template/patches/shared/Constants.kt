@@ -1200,4 +1200,12 @@ object Constants {
         appIconColor = 0x46178F,
         targets = listOf(AppTarget(version = "6.6.7", versionCode = 3246))
     )
+
+    // Parallel Space Pro — Multiple Accounts
+    val PARALLELSPACE_COMPATIBILITY = Compatibility(
+        name = "Parallel Space Pro",
+        packageName = "com.parallel.space.pro",
+        appIconColor = 0x00BCD4,
+        targets = listOf(AppTarget(version = "4.0.9123"))
+    )
 }
