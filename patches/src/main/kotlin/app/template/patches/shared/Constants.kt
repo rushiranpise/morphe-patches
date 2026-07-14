@@ -1173,4 +1173,31 @@ object Constants {
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "1.5.6.3", versionCode = 77))
     )
+
+    // Block Blast!
+    val BLOCKBLAST_COMPATIBILITY = Compatibility(
+        name = "Block Blast!",
+        packageName = "com.block.juggle",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x4CAF50,
+        targets = listOf(AppTarget(version = "10.3.5", versionCode = 10350))
+    )
+
+    // NAVITIME — Japan Travel & Navigation by NAVITIME JAPAN
+    val NAVITIME_COMPATIBILITY = Compatibility(
+        name = "NAVITIME",
+        packageName = "com.navitime.inbound.walk",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x003087,
+        targets = listOf(AppTarget(version = "12.0.1", versionCode = 363))
+    )
+
+    // Kahoot! — no.mobitroll.kahoot.android
+    val KAHOOT_COMPATIBILITY = Compatibility(
+        name = "Kahoot!",
+        packageName = "no.mobitroll.kahoot.android",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x46178F,
+        targets = listOf(AppTarget(version = "6.6.7", versionCode = 3246))
+    )
 }
