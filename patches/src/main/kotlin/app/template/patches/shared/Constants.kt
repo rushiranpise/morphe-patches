@@ -267,7 +267,7 @@ object Constants {
         name = "HTTP Sniffer",
         packageName = "com.anetcapture.mock",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.11.1-ad_mob", versionCode = 133))
+        targets = listOf(AppTarget(version = "2.11.4-ad_mob", versionCode = 136))
     )
 
     // MyPerm — App Permission Manager by darken
@@ -419,7 +419,7 @@ object Constants {
         name = "The Weather Channel",
         packageName = "com.weather.Weather",
         appIconColor = 0x1B6AC9,
-        targets = listOf(AppTarget(version = "16.12.0", versionCode = 1080013138))
+        targets = listOf(AppTarget(version = "16.13.0", versionCode = 1080013222))
     )
 
     // Ninja VPN — Fast & Secure VPN Proxy
@@ -989,7 +989,7 @@ object Constants {
         name = "TradingView",
         packageName = "com.tradingview.tradingviewapp",
         appIconColor = 0x2962FF,
-        targets = listOf(AppTarget(version = "1.20.77.0.1002295", versionCode = 1002295))
+        targets = listOf(AppTarget(version = "1.20.78.0.1002325", versionCode = 1002325))
     )
 
      val WOLFRAMALPHA_COMPATIBILITY = Compatibility(
