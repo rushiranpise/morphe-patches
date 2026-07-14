@@ -1,3 +1,40 @@
+# Rushi's Patches v1.13.0-dev.3
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 218
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.13.0-dev.3.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.13.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.2...v1.13.0-dev.3) (2026-07-14)
+
+### New Patches
+
+* add count down widget ([2612472](https://github.com/rushiranpise/morphe-patches/commit/26124728e19209294145cd28ad697cdf28b6d5b9))
+* add parallel space ([25f200d](https://github.com/rushiranpise/morphe-patches/commit/25f200ddb968bd2861e8cf3854e9ea1cb63677bb))
+* update universal patches ([31273fd](https://github.com/rushiranpise/morphe-patches/commit/31273fdefabfe865b7d5a5df3a4a3cac9400425f))
+
 # Rushi's Patches v1.13.0-dev.2
 Patch source for Morphe.
 **Channel:** dev prerelease  
