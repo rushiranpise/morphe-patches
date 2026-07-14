@@ -20,7 +20,7 @@ internal object ExcludePromotedProfileFingerprint : Fingerprint(
 
 // AdLoadManagerImpl.g() — interstitial ad loader; return Observable.empty()
 internal object AdLoadManagerLoadInterstitialFingerprint : Fingerprint(
-    definingClass = "Lij1/h;",
+    definingClass = "Lsj1/h;",
     name = "g",
     returnType = "Lio/reactivex/r;",
     parameters = listOf(
@@ -33,7 +33,7 @@ internal object AdLoadManagerLoadInterstitialFingerprint : Fingerprint(
 
 // AdLoadManagerImpl.d() — banner/native ad loader; return Observable.empty()
 internal object AdLoadManagerLoadBannerFingerprint : Fingerprint(
-    definingClass = "Lij1/h;",
+    definingClass = "Lsj1/h;",
     name = "d",
     returnType = "Lio/reactivex/r;",
     parameters = listOf(

@@ -181,7 +181,7 @@ val CAROUSELL_COMPATIBILITY = Compatibility(
         name = "Carousell",
         packageName = "com.thecarousell.Carousell",
         appIconColor = 0xE7392C,
-        targets = listOf(AppTarget(version = "2.461.8", versionCode = 10767))
+        targets = listOf(AppTarget(version = "2.462.7", versionCode = 10793))
     )
 
 val CASETRACKER_COMPATIBILITY = Compatibility(
