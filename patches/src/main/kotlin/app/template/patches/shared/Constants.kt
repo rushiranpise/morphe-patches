@@ -1208,4 +1208,13 @@ object Constants {
         appIconColor = 0x00BCD4,
         targets = listOf(AppTarget(version = "4.0.9123"))
     )
+
+    // Countdown Widget by gira
+    val COUNTDOWN_WIDGET_COMPATIBILITY = Compatibility(
+        name = "Countdown Widget",
+        packageName = "me.gira.widget.countdown",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "3.2.0", versionCode = 306))
+    )
 }
