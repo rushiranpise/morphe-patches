@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 
 object Constants {
+
 val ACCUWEATHER_COMPATIBILITY = Compatibility(
         name = "AccuWeather",
         packageName = "com.accuweather.android",
