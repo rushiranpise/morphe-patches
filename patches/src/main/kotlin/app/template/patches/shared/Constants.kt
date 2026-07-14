@@ -430,7 +430,7 @@ val KOMOOT_COMPATIBILITY = Compatibility(
         packageName = "de.komoot.android",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x65AB1E,
-        targets = listOf(AppTarget(version = "2026.28.2", versionCode = 263708003))
+        targets = listOf(AppTarget(version = "2026.29.0", versionCode = 263710002))
     )
 
 val KYPHOSIS_COMPATIBILITY = Compatibility(

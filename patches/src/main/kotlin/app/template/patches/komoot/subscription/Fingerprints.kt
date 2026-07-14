@@ -60,7 +60,7 @@ internal val UserIsPremiumFingerprint = Fingerprint(
  * Called by gpj.s1() to choose the owned vs upsell code path.
  */
 internal val OwnedRegionIsOwnedFingerprint = Fingerprint(
-    definingClass = "Lcin;",
+    definingClass = "Ln2o;",
     name = "n",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
@@ -78,7 +78,7 @@ internal val OwnedRegionIsOwnedFingerprint = Fingerprint(
  * always set to true before H0 even runs, covering all code paths.
  */
 internal val RegionsDataOwnsWorldPackFingerprint = Fingerprint(
-    definingClass = "Lbqr;",
+    definingClass = "Lcn2;",
     name = "g",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
