@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0-dev.1",
+  "version": "1.13.0-dev.2",
   "patches": [
     {
       "name": "Add resource file",
@@ -44,7 +44,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -151,7 +151,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -408,7 +408,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -433,7 +433,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -706,7 +706,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1024,7 +1024,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1113,7 +1113,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1272,7 +1272,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1437,7 +1437,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1587,7 +1587,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.367.0",
+              "version": "2.368.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1797,7 +1797,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1871,7 +1871,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2398,7 +2398,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.21.0.0",
+              "version": "5.21.90.800",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2498,7 +2498,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.2.8",
+              "version": "1.3.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2648,7 +2648,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "17.2.5",
+              "version": "17.2.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2766,6 +2766,31 @@
       "options": []
     },
     {
+      "name": "Unlock Gold",
+      "description": "Unlocks Kahoot! Plus Gold features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "no.mobitroll.kahoot.android",
+          "name": "Kahoot!",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#46178F",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.6.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Lifetime",
       "description": "Unlocks lifetime subscription features in BlockerHero.",
       "default": true,
@@ -2805,7 +2830,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.18.0",
+              "version": "1.19.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3087,7 +3112,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.2.4",
+              "version": "4.2.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3646,7 +3671,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.08",
+              "version": "1.1.01",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3696,7 +3721,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "8.71.2",
+              "version": "8.71.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3746,7 +3771,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4156,7 +4181,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "8.0.6",
+              "version": "8.0.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4281,7 +4306,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.5.6.2",
+              "version": "1.5.6.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5386,6 +5411,31 @@
     },
     {
       "name": "Unlock VIP",
+      "description": "Unlock ViP features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.block.juggle",
+          "name": "Block Blast!",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "10.3.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock VIP",
       "description": "Unlocks Dubox Drive VIP/SVIP (Premium+)",
       "default": true,
       "dependencies": [],
@@ -5650,6 +5700,31 @@
           "targets": [
             {
               "version": "7.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock premium",
+      "description": "Unlocks NAVITIME Japan Travel Premium features in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.navitime.inbound.walk",
+          "name": "NAVITIME",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#003087",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.0.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
