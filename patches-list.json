@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0-dev.2",
+  "version": "1.13.0-dev.3",
   "patches": [
     {
       "name": "Add resource file",
@@ -486,7 +486,7 @@
           "packageName": "com.estrongs.android.pop",
           "name": "ES File Explorer",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1976D2",
           "signatures": null,
           "targets": [
@@ -576,7 +576,7 @@
           "packageName": "com.intsig.camscanner",
           "name": "CamScanner",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#19BCAA",
           "signatures": null,
           "targets": [
@@ -650,7 +650,7 @@
           "packageName": "com.duolingo",
           "name": "Duolingo",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#58CC02",
           "signatures": null,
           "targets": [
@@ -808,7 +808,9 @@
       "name": "Force dark theme",
       "description": "Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode.",
       "default": false,
-      "dependencies": [],
+      "dependencies": [
+        "ResourcePatch"
+      ],
       "compatiblePackages": null,
       "options": []
     },
@@ -2518,7 +2520,7 @@
           "packageName": "com.flightradar24free",
           "name": "Flightradar24",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#327CB5",
           "signatures": null,
           "targets": [
@@ -2543,7 +2545,7 @@
           "packageName": "com.blurams.ipc",
           "name": "Blurams",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -2643,7 +2645,7 @@
           "packageName": "je.fit",
           "name": "JEFIT",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1A73E8",
           "signatures": null,
           "targets": [
@@ -2850,7 +2852,7 @@
           "packageName": "shareit.premium",
           "name": "SHAREit Premium",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#FF4B00",
           "signatures": null,
           "targets": [
@@ -2900,7 +2902,7 @@
           "packageName": "com.tranzmate",
           "name": "Moovit",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#0066FF",
           "signatures": null,
           "targets": [
@@ -2925,7 +2927,7 @@
           "packageName": "com.pixel.al.pixelhabittracker",
           "name": "Pixel Habit Tracker",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#FF6B35",
           "signatures": null,
           "targets": [
@@ -2950,7 +2952,7 @@
           "packageName": "au.com.shiftyjelly.pocketcasts",
           "name": "Pocket Casts",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#F43E37",
           "signatures": null,
           "targets": [
@@ -2980,7 +2982,7 @@
           "packageName": "com.life360.android.safetymapd",
           "name": "Life360",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#5D2DE6",
           "signatures": null,
           "targets": [
@@ -3030,7 +3032,7 @@
           "packageName": "com.snowcorp.stickerly.android",
           "name": "Sticker.ly",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#00ADEF",
           "signatures": null,
           "targets": [
@@ -3082,7 +3084,7 @@
           "packageName": "com.ace.ex.file.manager",
           "name": "Ace Ex File Manager",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -3107,7 +3109,7 @@
           "packageName": "com.onesports.score",
           "name": "AiScore",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#2563EB",
           "signatures": null,
           "targets": [
@@ -3149,31 +3151,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks all premium content in Anatomy by Muscle Motion.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.anatomy",
-          "name": "Anatomy",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.2.1",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks all premium wallpapers.",
       "default": true,
       "dependencies": [],
@@ -3182,7 +3159,7 @@
           "packageName": "com.jndapp.anime.depth.live.wallpaper",
           "name": "Anime Depth Wallpapers",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#6A1B9A",
           "signatures": null,
           "targets": [
@@ -3304,6 +3281,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks all premium features in Countdown Widget",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "me.gira.widget.countdown",
+          "name": "Countdown Widget",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.2.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks premium features in app.",
       "default": true,
       "dependencies": [],
@@ -3362,7 +3364,7 @@
           "packageName": "com.eterno",
           "name": "Dailyhunt",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -3387,7 +3389,7 @@
           "packageName": "com.jndapp.depth.live.wallpaper",
           "name": "Depth Live Wallpaper",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -3439,7 +3441,7 @@
           "packageName": "com.live.flight.tracker",
           "name": "Flightsky",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -3539,7 +3541,7 @@
           "packageName": "com.nexstreaming.app.kinemasterfree",
           "name": "KineMaster",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1B54C8",
           "signatures": null,
           "targets": [
@@ -3564,37 +3566,12 @@
           "packageName": "de.komoot.android",
           "name": "komoot",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#65AB1E",
           "signatures": null,
           "targets": [
             {
               "version": "2026.28.2",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.kyphosis",
-          "name": "Kyphosis",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E65100",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.4.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3614,7 +3591,7 @@
           "packageName": "com.dywx.larkplayer",
           "name": "Lark Player",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1DB954",
           "signatures": null,
           "targets": [
@@ -3666,7 +3643,7 @@
           "packageName": "com.jndapp.minimal.widgets",
           "name": "Minimal Widgets",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#212121",
           "signatures": null,
           "targets": [
@@ -3716,7 +3693,7 @@
           "packageName": "com.acmeaom.android.myradar",
           "name": "MyRadar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1A6FBF",
           "signatures": null,
           "targets": [
@@ -3891,31 +3868,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlock Premium features in app.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "net.pkge.pkge",
-          "name": "pkge",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#2563EB",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "19.0.13",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks Pocket Prep premium subscription gates.",
       "default": true,
       "dependencies": [
@@ -3926,37 +3878,12 @@
           "packageName": "com.pocketprep.android.itcybersecurity",
           "name": "Pocket Prep",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1D5CFF",
           "signatures": null,
           "targets": [
             {
               "version": "3.27.2",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content in Posture Correction by Muscle Motion.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.posture",
-          "name": "Posture",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#00897B",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4076,7 +4003,7 @@
           "packageName": "com.rs.explorer.filemanager",
           "name": "RS File Manager",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#0D47A1",
           "signatures": null,
           "targets": [
@@ -4126,7 +4053,7 @@
           "packageName": "com.appostrophe.scrl",
           "name": "SCRL",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#EFC67A",
           "signatures": null,
           "targets": [
@@ -4226,7 +4153,7 @@
           "packageName": "com.marsvard.stickermakerforwhatsapp",
           "name": "Sticker Maker",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#00A884",
           "signatures": null,
           "targets": [
@@ -4251,37 +4178,12 @@
           "packageName": "com.strava",
           "name": "Strava",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#FC4C02",
           "signatures": null,
           "targets": [
             {
               "version": "471.11",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content in Strength Training by Muscle Motion. Note: Create an exercise plan to access all videos",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.strength.mobile",
-          "name": "Strength Training",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.5.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4331,7 +4233,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.12.0",
+              "version": "16.13.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4351,7 +4253,7 @@
           "packageName": "mobi.lockdown.weather",
           "name": "Today Weather",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -4414,7 +4316,7 @@
           "packageName": "com.mindful.code.studio.toxly.scanner",
           "name": "Toxly",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -4439,12 +4341,12 @@
           "packageName": "com.tradingview.tradingviewapp",
           "name": "TradingView",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#2962FF",
           "signatures": null,
           "targets": [
             {
-              "version": "1.20.77.0.1002295",
+              "version": "1.20.78.0.1002325",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4545,56 +4447,6 @@
           "targets": [
             {
               "version": "50.1.1",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.workout",
-          "name": "Workout",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#C62828",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.2.0",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks all premium content in Yoga by Muscle Motion.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "air.com.musclemotion.yoga",
-          "name": "Yoga",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#7B1FA2",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4816,7 +4668,7 @@
           "packageName": "mega.privacy.android.app",
           "name": "MEGA",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#D9272E",
           "signatures": null,
           "targets": [
@@ -4951,6 +4803,31 @@
           "targets": [
             {
               "version": "5.18",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Pro Features in app.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.parallel.space.pro",
+          "name": "Parallel Space Pro",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00BCD4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.0.9123",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5170,7 +5047,7 @@
           "packageName": "com.wolfram.android.alphapro",
           "name": "WolframAlpha",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#DD1100",
           "signatures": null,
           "targets": [
@@ -5247,7 +5124,7 @@
           "packageName": "com.guochao.faceshow",
           "name": "BuzzCast",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#7C3AED",
           "signatures": null,
           "targets": [
@@ -5272,7 +5149,7 @@
           "packageName": "com.duolingo",
           "name": "Duolingo",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#58CC02",
           "signatures": null,
           "targets": [
@@ -5535,7 +5412,7 @@
           "packageName": "com.playit.videoplayer",
           "name": "PLAYit",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
@@ -5590,7 +5467,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.11.1-ad_mob",
+              "version": "2.11.4-ad_mob",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5610,7 +5487,7 @@
           "packageName": "com.estrongs.android.pop",
           "name": "ES File Explorer",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1976D2",
           "signatures": null,
           "targets": [
@@ -5694,7 +5571,7 @@
           "packageName": "com.androholic.amoledpix",
           "name": "AmoledPix",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#000000",
           "signatures": null,
           "targets": [
@@ -5744,7 +5621,7 @@
           "packageName": "com.MojoFilterMediaLLC.RPGSoundSystem",
           "name": "Pocket Bard",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#6A0DAD",
           "signatures": null,
           "targets": [
@@ -5794,7 +5671,7 @@
           "packageName": "com.nytimes.crossword",
           "name": "NYT Games",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#000000",
           "signatures": null,
           "targets": [
@@ -5819,7 +5696,7 @@
           "packageName": "com.intsig.camscanner",
           "name": "CamScanner",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#19BCAA",
           "signatures": null,
           "targets": [
