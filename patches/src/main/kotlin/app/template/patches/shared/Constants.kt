@@ -576,9 +576,9 @@ val MYRADAR_COMPATIBILITY = Compatibility(
 val NAVITIME_COMPATIBILITY = Compatibility(
         name = "NAVITIME",
         packageName = "com.navitime.inbound.walk",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x003087,
-        targets = listOf(AppTarget(version = "12.0.1", versionCode = 363))
+        targets = listOf(AppTarget(version = "12.0.3", versionCode = 365))
     )
 
 val NETGUARD_COMPATIBILITY = Compatibility(
