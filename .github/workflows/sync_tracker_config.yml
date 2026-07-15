@@ -2,11 +2,11 @@ name: Sync patches-tracker config
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - dev
-    paths:
-      - patches/src/main/kotlin/app/template/patches/shared/Constants.kt
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -57,7 +57,7 @@ jobs:
           git add patches/src/main/kotlin/app/template/patches/shared/Constants.kt
 
           git commit \
-            -m "chore: sort Constants compatibility entries"
+            -m "chore: sort Constants compatibility entries [skip ci]"
 
           git push
 
@@ -83,12 +83,3 @@ jobs:
             -F client_payload[patches_sha]="$(git rev-parse HEAD)"
 
           echo "Dispatched ${TRACKER_REPO}/${TRACKER_EVENT}."
-
-      - name: Trigger dependent workflows
-        if: success()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run "release.yml" --ref "${GITHUB_REF_NAME}"
-
-          echo "Triggered dependent workflows."
