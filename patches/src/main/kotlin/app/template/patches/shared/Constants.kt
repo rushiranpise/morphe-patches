@@ -1139,4 +1139,13 @@ val YOGA_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
     )
+
+    // Android Developer Verifier (system app)
+    val ANDROID_VERIFIER_COMPATIBILITY = Compatibility(
+        name = "Android Developer Verifier",
+        packageName = "com.google.android.verifier",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x4285F4,
+        targets = listOf(AppTarget(version = "1.0.940985764", versionCode = 65319))
+    )
 }
