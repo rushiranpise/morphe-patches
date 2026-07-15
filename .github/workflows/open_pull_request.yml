@@ -1,11 +1,9 @@
 name: Open a PR to main
 
 on:
-  workflow_run:
-    workflows:
-      - Sync patches-tracker config
-    types:
-      - completed
+  push:
+    branches:
+      - dev
   workflow_dispatch:
 
 permissions:
