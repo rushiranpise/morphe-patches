@@ -150,14 +150,14 @@ object SubscriptionDetailsIsTruckFingerprint : Fingerprint(
 
 object BillingPurchaseStarterFingerprint : Fingerprint(
     definingClass = "Lpb/a;",
-    name = "k3",
+    name = "l3",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "LCj/u;",
     parameters = listOf("Landroid/app/Activity;", "Ltb/b;"),
 )
 
 object CurrentSubscriptionFingerprint : Fingerprint(
-    definingClass = "Le9/o2;",
+    definingClass = "Le9/u2;",
     name = "J1",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ltb/a;",

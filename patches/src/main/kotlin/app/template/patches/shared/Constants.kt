@@ -941,7 +941,7 @@ val TOMTOMGO_COMPATIBILITY = Compatibility(
         name = "TomTom GO",
         packageName = "com.tomtom.gplay.navapp",
         appIconColor = 0xDF1B12,
-        targets = listOf(AppTarget(version = "3.6.316-beta", versionCode = 1678657))
+        targets = listOf(AppTarget(version = "3.6.320", versionCode = 1678697))
     )
 
 val TOOMICS_COMPATIBILITY = Compatibility(
