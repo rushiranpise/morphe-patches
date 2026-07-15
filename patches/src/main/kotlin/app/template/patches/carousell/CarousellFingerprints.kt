@@ -20,8 +20,8 @@ internal object ExcludePromotedProfileFingerprint : Fingerprint(
 
 // AdLoadManagerImpl.g() — interstitial ad loader; return Observable.empty()
 internal object AdLoadManagerLoadInterstitialFingerprint : Fingerprint(
-    definingClass = "Lij1/h;",
-    name = "g",
+    definingClass = "Luj1/h;",
+    name = "f",
     returnType = "Lio/reactivex/r;",
     parameters = listOf(
         "Lcom/thecarousell/data/external_ads/model/AdLoadConfigNew;",
@@ -33,8 +33,8 @@ internal object AdLoadManagerLoadInterstitialFingerprint : Fingerprint(
 
 // AdLoadManagerImpl.d() — banner/native ad loader; return Observable.empty()
 internal object AdLoadManagerLoadBannerFingerprint : Fingerprint(
-    definingClass = "Lij1/h;",
-    name = "d",
+    definingClass = "Luj1/h;",
+    name = "c",
     returnType = "Lio/reactivex/r;",
     parameters = listOf(
         "Lcom/thecarousell/data/external_ads/model/AdLoadConfigNew;",
