@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0-dev.3",
+  "version": "1.13.0-dev.4",
   "patches": [
     {
       "name": "Add resource file",
@@ -208,12 +208,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -233,12 +233,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -323,12 +323,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -453,12 +453,12 @@
           "packageName": "com.cloudflare.onedotonedotonedotone",
           "name": "1.1.1.1",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#F48120",
           "signatures": null,
           "targets": [
             {
-              "version": "6.38.7",
+              "version": "6.38.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -527,12 +527,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -601,12 +601,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -763,12 +763,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -915,12 +915,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1220,12 +1220,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1348,12 +1348,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1559,12 +1559,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1642,12 +1642,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1737,12 +1737,12 @@
           "packageName": "com.livescore",
           "name": "LiveScore",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#E30613",
           "signatures": null,
           "targets": [
             {
-              "version": "9.7.1",
+              "version": "9.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1819,12 +1819,12 @@
           "packageName": "com.amazon.mShop.android.shopping",
           "name": "Amazon Shopping",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF9900",
           "signatures": null,
           "targets": [
             {
-              "version": "32.12.4.100",
+              "version": "32.13.0.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2043,12 +2043,12 @@
           "packageName": "com.cloudflare.onedotonedotonedotone",
           "name": "1.1.1.1",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#F48120",
           "signatures": null,
           "targets": [
             {
-              "version": "6.38.7",
+              "version": "6.38.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2370,12 +2370,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2420,12 +2420,12 @@
           "packageName": "com.flightaware.android.liveFlightTracker",
           "name": "FlightAware",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "5.15.4",
+              "version": "5.15.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2570,12 +2570,12 @@
           "packageName": "com.citymapper.app.release",
           "name": "Citymapper",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#00A862",
           "signatures": null,
           "targets": [
             {
-              "version": "11.55.1",
+              "version": "11.55.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2620,12 +2620,12 @@
           "packageName": "com.localaiapp.scoops",
           "name": "Scoopz",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "3.28.0",
+              "version": "3.29.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2670,12 +2670,12 @@
           "packageName": "com.tecso.MigraConnect",
           "name": "MigraConnect",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#2563EB",
           "signatures": null,
           "targets": [
             {
-              "version": "2.8.1",
+              "version": "2.8.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2727,12 +2727,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2927,12 +2927,12 @@
           "packageName": "com.pixel.al.pixelhabittracker",
           "name": "Pixel Habit Tracker",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6B35",
           "signatures": null,
           "targets": [
             {
-              "version": "2.1.1",
+              "version": "2.1.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2988,6 +2988,31 @@
           "targets": [
             {
               "version": "26.25.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Plus",
+      "description": "Forces Clue Plus subscription active, unlocking all premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.clue.android",
+          "name": "Clue Period & Cycle Tracker",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "261.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3264,12 +3289,12 @@
           "packageName": "com.socialnmobile.dictapps.notepad.color.note",
           "name": "ColorNote",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#F2C200",
           "signatures": null,
           "targets": [
             {
-              "version": "4.8.4",
+              "version": "4.8.6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3339,12 +3364,12 @@
           "packageName": "com.newsbreak.crimeradar",
           "name": "Crime Radar",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "26.23.2",
+              "version": "26.27.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3903,12 +3928,12 @@
           "packageName": "ch.protonvpn.android",
           "name": "Proton VPN",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#6D4AFF",
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.16.0",
+              "version": "5.19.43.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4341,12 +4366,12 @@
           "packageName": "com.tradingview.tradingviewapp",
           "name": "TradingView",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#2962FF",
           "signatures": null,
           "targets": [
             {
-              "version": "1.20.78.0.1002325",
+              "version": "1.20.78.1.1002330",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4391,12 +4416,12 @@
           "packageName": "com.wavve.boating.gps",
           "name": "Wavve Boating",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#0077CC",
           "signatures": null,
           "targets": [
             {
-              "version": "5.6.9",
+              "version": "5.7.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4718,12 +4743,12 @@
           "packageName": "eu.darken.myperm",
           "name": "Permission Pilot",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {
-              "version": "2.1.1-rc0",
+              "version": "2.2.0-rc0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5387,12 +5412,12 @@
           "packageName": "com.community.mbox.tv",
           "name": "MovieBox TV",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "1.1.4.0710.03",
+              "version": "1.1.5.0711.03",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5437,12 +5462,12 @@
           "packageName": "com.yatrirailways.yatri",
           "name": "Yatri",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6B00",
           "signatures": null,
           "targets": [
             {
-              "version": "5.0.4",
+              "version": "5.0.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5671,12 +5696,12 @@
           "packageName": "com.nytimes.crossword",
           "name": "NYT Games",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#000000",
           "signatures": null,
           "targets": [
             {
-              "version": "6.33.1",
+              "version": "6.34.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
