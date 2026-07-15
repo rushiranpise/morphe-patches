@@ -1,3 +1,45 @@
+# Rushi's Patches v1.13.0-dev.4
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 213
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.13.0-dev.4.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.13.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.3...v1.13.0-dev.4) (2026-07-15)
+
+### New Patches
+
+* add clue ([5235316](https://github.com/rushiranpise/morphe-patches/commit/52353166c37e4aec692739453b504918150475b9))
+
+### Fixes
+
+* build ([b3fcd55](https://github.com/rushiranpise/morphe-patches/commit/b3fcd55a87b04f14062c9fbe2f167e30900f4fb1))
+* build ([607670e](https://github.com/rushiranpise/morphe-patches/commit/607670e96a8a1e966f6fabfc4376c5b55d77cf1a))
+* build for real XD ([26c50cd](https://github.com/rushiranpise/morphe-patches/commit/26c50cd7913ebc5ec194dfb359247ef7d70f23f7))
+* trading view ([92b2546](https://github.com/rushiranpise/morphe-patches/commit/92b25462d2438978c6d44f6aa0daddf1cf58fc40))
+
 # Rushi's Patches v1.13.0-dev.3
 Patch source for Morphe.
 **Channel:** dev prerelease  
