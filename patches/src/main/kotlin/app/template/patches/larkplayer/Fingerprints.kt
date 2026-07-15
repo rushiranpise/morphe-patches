@@ -20,7 +20,7 @@ internal val HasPurchaseFingerprint = Fingerprint(
         opcode(Opcode.IF_EQZ),
     ),
     custom = { method, classDef ->
-        classDef.type == "Lo/b15;" && method.name == "d"
+        classDef.type == "Lo/a15;" && method.name == "d"
     }
 )
 
@@ -41,7 +41,7 @@ internal val HasHistoryPurchaseFingerprint = Fingerprint(
         opcode(Opcode.IF_EQZ),
     ),
     custom = { method, classDef ->
-        classDef.type == "Lo/b15;" && method.name == "J"
+        classDef.type == "Lo/a15;" && method.name == "J"
     }
 )
 
@@ -70,6 +70,6 @@ internal val IsPermanentFingerprint = Fingerprint(
         opcode(Opcode.INVOKE_DIRECT),
     ),
     custom = { method, classDef ->
-        classDef.type == "Lo/b15;" && method.name == "f"
+        classDef.type == "Lo/a15;" && method.name == "f"
     }
 )

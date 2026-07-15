@@ -445,7 +445,7 @@ val LARK_PLAYER_COMPATIBILITY = Compatibility(
         packageName = "com.dywx.larkplayer",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1DB954,
-        targets = listOf(AppTarget(version = "2026.9.6", versionCode = 2026090609))
+        targets = listOf(AppTarget(version = "2026.10.5", versionCode = 2026100509))
     )
 
 val LAWFULLY_COMPATIBILITY = Compatibility(
