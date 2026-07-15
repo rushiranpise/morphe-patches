@@ -3,6 +3,8 @@ package app.template.patches.tradingview
 import app.morphe.patcher.Fingerprint
 import com.android.tools.smali.dexlib2.AccessFlags
 
+// ── Plan data class (gopro/model/plan/Plan) ──────────────────────────────────
+
 object PlanStringFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
     name = "getProPlan",
@@ -51,6 +53,71 @@ object HoldPeriodFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
+/** Plan.isProPlan()Z — true if user has any paid plan; force true to gate pro-only UI */
+object PlanIsProPlanFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isProPlan",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isAnnualPlan()Z — annual billing; force true (we spoof 1y billing cycle anyway) */
+object PlanIsAnnualPlanFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isAnnualPlan",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isMonthlyPlan()Z — monthly billing; force false */
+object PlanIsMonthlyPlanFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isMonthlyPlan",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isLitePlan2023()Z — lite/free 2023 tier; force false */
+object PlanIsLitePlan2023Fingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isLitePlan2023",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isLitePlan2024()Z — lite/free 2024 tier; force false */
+object PlanIsLitePlan2024Fingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isLitePlan2024",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isLitePlan2024Trial()Z — trial tier; force false */
+object PlanIsLitePlan2024TrialFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isLitePlan2024Trial",
+    returnType = "Z",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+/** Plan.isPaymentsBanned()Boolean — nullable ban flag; force Boolean.FALSE */
+object PlanIsPaymentsBannedFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/Plan;",
+    name = "isPaymentsBanned",
+    returnType = "Ljava/lang/Boolean;",
+    parameters = emptyList(),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+// ── ProPlan$Companion ─────────────────────────────────────────────────────────
+
 object ProPlanCheckFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/ProPlan\$Companion;",
     name = "isPro",
@@ -75,6 +142,17 @@ object PlanLevelFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
+/** ProPlan$Companion.isTrial(String)Z — force false so app never shows trial UI */
+object ProPlanIsTrialFingerprint : Fingerprint(
+    definingClass = "Lcom/tradingview/tradingviewapp/gopro/model/plan/ProPlan\$Companion;",
+    name = "isTrial",
+    returnType = "Z",
+    parameters = listOf("Ljava/lang/String;"),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+)
+
+// ── WebChart entity ───────────────────────────────────────────────────────────
+
 object WebChartUserPlanFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/feature/webchart/implementation/entity/UserPlanEntity;",
     name = "getUserPlan",
@@ -83,6 +161,8 @@ object WebChartUserPlanFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
+// ── Chart model ───────────────────────────────────────────────────────────────
+
 object HiddenFeaturesFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/feature/chart/model/FeatureInfo;",
     name = "getSupportedFeatures",
@@ -90,6 +170,8 @@ object HiddenFeaturesFingerprint : Fingerprint(
     parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
+
+// ── CurrentUser ───────────────────────────────────────────────────────────────
 
 object CurrentUserFreeFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/feature/profile/model/user/CurrentUser;",
@@ -147,6 +229,8 @@ object CurrentUserAnnualUltimateFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
+// ── ProfileServiceImpl ────────────────────────────────────────────────────────
+
 object ProfileServiceAnnualUltimateFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/feature/profile/impl/service/ProfileServiceImpl;",
     name = "userHasAnnualUltimatePlan",
@@ -154,6 +238,8 @@ object ProfileServiceAnnualUltimateFingerprint : Fingerprint(
     parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC),
 )
+
+// ── Badge & menu ──────────────────────────────────────────────────────────────
 
 object PriorityBadgeFingerprint : Fingerprint(
     definingClass = "Lcom/tradingview/tradingviewapp/feature/profile/model/user/BadgeDelegate;",
