@@ -214,6 +214,14 @@ val CITYMAPPER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "11.55.2", versionCode = 1155090))
     )
 
+val CLUE_COMPATIBILITY = Compatibility(
+        name = "Clue Period & Cycle Tracker",
+        packageName = "com.clue.android",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE91E63,
+        targets = listOf(AppTarget(version = "261.0", versionCode = 3180))
+    )
+
 val COLORNOTE_COMPATIBILITY = Compatibility(
         name = "ColorNote",
         packageName = "com.socialnmobile.dictapps.notepad.color.note",
@@ -1130,13 +1138,5 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x7B1FA2,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
-    )
-
-val CLUE_COMPATIBILITY = Compatibility(
-        name = "Clue Period & Cycle Tracker",
-        packageName = "com.clue.android",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE91E63,
-        targets = listOf(AppTarget(version = "261.0", versionCode = 3180))
     )
 }
