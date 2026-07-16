@@ -3,7 +3,6 @@ package app.template.patches.shared.universal
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
@@ -13,11 +12,10 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction35c
-import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
+import org.w3c.dom.Document
 import org.w3c.dom.Element
 
 /*
@@ -122,20 +120,6 @@ val universalPredictiveBackGesturePatch = resourcePatch(
 }
 
 @Suppress("unused")
-val universalAllowAudioPlaybackCapturePatch = resourcePatch(
-    name = "Remove screen capture restriction",
-    description = "Allows audio playback capture in the manifest.",
-    default = false,
-) {
-    execute {
-        document("AndroidManifest.xml").use { doc ->
-            (doc.getElementsByTagName("application").item(0) as? Element)
-                ?.setAttribute("android:allowAudioPlaybackCapture", "true")
-        }
-    }
-}
-
-@Suppress("unused")
 val universalChangeVersionCodePatch = resourcePatch(
     name = "Change version code",
     description = "Changes android:versionCode.",
@@ -191,12 +175,45 @@ val universalRemoveShareTargetsPatch = resourcePatch(
     }
 }
 
+private val universalForceDarkThemeResourcePatch = resourcePatch(
+    description = "Enables Android force-dark and switches common light theme parents to DayNight.",
+) {
+    execute {
+        document("AndroidManifest.xml").use { doc ->
+            (doc.getElementsByTagName("application").item(0) as? Element)
+                ?.setAttribute("android:forceDarkAllowed", "true")
+        }
+
+        listOf(
+            "res/values/styles.xml",
+            "res/values-v21/styles.xml",
+            "res/values-v23/styles.xml",
+            "res/values-v27/styles.xml",
+            "res/values-v29/styles.xml",
+            "res/values-v31/styles.xml",
+        ).forEach { path ->
+            runCatching {
+                document(path).use { doc ->
+                    val styles = doc.getElementsByTagName("style")
+                    for (i in 0 until styles.length) {
+                        val style = styles.item(i) as? Element ?: continue
+                        style.ensureStyleItem(doc, "android:forceDarkAllowed", "true")
+                        style.ensureStyleItem(doc, "android:windowLightStatusBar", "false")
+                        style.ensureStyleItem(doc, "android:windowLightNavigationBar", "false")
+                    }
+                }
+            }
+        }
+    }
+}
+
 @Suppress("unused")
 val universalForceDarkThemePatch = bytecodePatch(
     name = "Force dark theme",
     description = "Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode.",
     default = false,
 ) {
+    dependsOn(universalForceDarkThemeResourcePatch)
     extendWith("extensions/extension.mpe")
 
     execute {
@@ -252,62 +269,34 @@ val universalForceDarkThemePatch = bytecodePatch(
                                     method.replaceInstruction(index + 1, "const/4 v${moveResult.registerA}, 0x2")
                                 }
                             }
+
+                            reference.definingClass == "Landroid/webkit/WebView;" &&
+                                reference.name in setOf("loadUrl", "loadData", "loadDataWithBaseURL") &&
+                                ins != null -> method.addInstructions(
+                                index + 1,
+                                "invoke-static {v${ins.registerC}}, $HELPER->enableWebViewDarkMode(Landroid/webkit/WebView;)V",
+                            )
                         }
                     }
 
-                    val field = (instruction as? ReferenceInstruction)?.reference as? FieldReference ?: return@forEachIndexed
-                    if (field.definingClass == "Landroid/content/res/Configuration;" &&
-                        field.name == "uiMode" &&
-                        field.type == "I"
-                    ) {
-                        val register = (instruction as? OneRegisterInstruction)?.registerA ?: return@forEachIndexed
-                        method.addInstructions(
-                            index + 1,
-                            """
-                                invoke-static {v$register}, $HELPER->forceUiModeNightYes(I)I
-                                move-result v$register
-                            """.trimIndent(),
-                        )
-                    }
+                    // Configuration.uiMode can appear in AppCompat config-copy methods where
+                    // register shapes are verifier-sensitive. AppCompat/UiModeManager hooks cover
+                    // the safe universal path without rewriting those field accesses.
                 }
             }
         }
-    }
-}
 
-@Suppress("unused")
-val universalRemoveScreenshotRestrictionPatch = bytecodePatch(
-    name = "Remove screenshot restriction",
-    description = "Removes FLAG_SECURE and screenshot blocking.",
-    default = false,
-) {
-    extendWith("extensions/extension.mpe")
-
-    execute {
         classDefForEach { classDef ->
             mutableClassDefBy(classDef).methods.forEach { method ->
-                val instructions = method.instructionsOrNull?.toList() ?: return@forEach
-                instructions.forEachIndexed { index, instruction ->
-                    val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference ?: return@forEachIndexed
-                    if (reference.definingClass == "Landroid/view/Window;" && reference.name == "addFlags" && reference.parameterTypes == listOf("I")) {
-                        val ins = instruction as? Instruction35c ?: return@forEachIndexed
-                        method.replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}}, $HELPER->addWindowFlags(Landroid/view/Window;I)V")
-                    }
-                    if (reference.definingClass == "Landroid/view/Window;" && reference.name == "setFlags" && reference.parameterTypes == listOf("I", "I")) {
-                        val ins = instruction as? Instruction35c ?: return@forEachIndexed
-                        method.replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}, v${ins.registerE}}, $HELPER->setWindowFlags(Landroid/view/Window;II)V")
-                    }
-                    if (reference.definingClass == "Landroid/app/Activity;" && reference.name in setOf("registerScreenCaptureCallback", "unregisterScreenCaptureCallback")) {
-                        method.replaceInstruction(index, "nop")
-                    }
-                }
-                instructions.forEachIndexed { index, instruction ->
-                    val field = (instruction as? ReferenceInstruction)?.reference as? FieldReference ?: return@forEachIndexed
-                    if (instruction.opcode == Opcode.IPUT && field.definingClass == "Landroid/view/WindowManager\$LayoutParams;" && field.name == "flags") {
-                        val register = (instruction as? TwoRegisterInstruction)?.registerA ?: return@forEachIndexed
-                        method.addInstructions(index, "and-int/lit16 v$register, v$register, -0x2001")
-                    }
-                }
+                if (method.name != "onPageFinished" ||
+                    method.returnType != "V" ||
+                    method.parameterTypes != listOf("Landroid/webkit/WebView;", "Ljava/lang/String;")
+                ) return@forEach
+
+                method.addInstructions(
+                    0,
+                    "invoke-static {p1}, $HELPER->enableWebViewDarkMode(Landroid/webkit/WebView;)V",
+                )
             }
         }
     }
@@ -434,29 +423,6 @@ val universalHideMockLocationPatch = bytecodePatch(
 }
 
 @Suppress("unused")
-val universalDisablePlayIntegrityPatch = bytecodePatch(
-    name = "Disable Play Integrity",
-    description = "Blocks Play Integrity service binding.",
-    default = false,
-) {
-    extendWith("extensions/extension.mpe")
-    execute {
-        classDefForEach { classDef ->
-            mutableClassDefBy(classDef).methods.forEach { method ->
-                val instructions = method.instructionsOrNull?.toList() ?: return@forEach
-                instructions.forEachIndexed { index, instruction ->
-                    val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference ?: return@forEachIndexed
-                    if (reference.definingClass == "Landroid/content/Context;" && reference.name == "bindService" && reference.parameterTypes.size == 3) {
-                        val ins = instruction as? Instruction35c ?: return@forEachIndexed
-                        method.replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}, v${ins.registerE}, v${ins.registerF}}, $HELPER->bindService(Landroid/content/Context;Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z")
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Suppress("unused")
 val universalHideAdbStatusPatch = bytecodePatch(
     name = "Hide ADB status",
     description = "Hides adb_enabled and development_settings_enabled.",
@@ -550,4 +516,19 @@ private fun MutableMethod.replaceAppOpsCall(index: Int, reference: MethodReferen
         listOf("Ljava/lang/String;", "I", "Ljava/lang/String;") ->
             replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}, v${ins.registerE}, v${ins.registerF}}, $HELPER->${reference.name}(Landroid/app/AppOpsManager;Ljava/lang/String;ILjava/lang/String;)I")
     }
+}
+
+private fun Element.ensureStyleItem(document: Document, name: String, value: String) {
+    val items = getElementsByTagName("item")
+    for (i in 0 until items.length) {
+        val item = items.item(i) as? Element ?: continue
+        if (item.getAttribute("name") == name) {
+            item.textContent = value
+            return
+        }
+    }
+    val item = document.createElement("item")
+    item.setAttribute("name", name)
+    item.textContent = value
+    appendChild(item)
 }
