@@ -3,9 +3,7 @@ package app.template.patches.shared.universal
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
-import app.morphe.patcher.patch.rawResourcePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.stringOption
 import com.android.tools.smali.dexlib2.Opcode
@@ -120,18 +118,6 @@ val universalSpoofWifiPatch = bytecodePatch(
 }
 
 @Suppress("unused")
-val universalNetworkSecurityConfigPatch = resourcePatch(
-    name = "Custom certificates",
-    description = "Adds a permissive network security config with system/user certs.",
-    default = false,
-) {
-    val allowCleartext by stringOption("universalAllowCleartext", "true", title = "Allow cleartext", required = true)
-    execute {
-        writeNetworkSecurityConfig((allowCleartext ?: "true").equals("true", true), true)
-    }
-}
-
-@Suppress("unused")
 val universalOverrideCertificatePinningPatch = resourcePatch(
     name = "Override certificate pinning",
     description = "Forces network security config trust anchors to override pins.",
@@ -141,9 +127,7 @@ val universalOverrideCertificatePinningPatch = resourcePatch(
 }
 
 private val universalExportInternalDataDocumentsProviderResourcePatch = resourcePatch(
-    name = "Export internal data documents provider",
     description = "Registers an extension DocumentsProvider for the app internal data directory.",
-    default = false,
 ) {
     execute {
         document("AndroidManifest.xml").use { doc ->
@@ -170,75 +154,6 @@ val universalExportInternalDataDocumentsProviderPatch = bytecodePatch(
     dependsOn(universalExportInternalDataDocumentsProviderResourcePatch)
     extendWith("extensions/extension.mpe")
     execute {}
-}
-
-@Suppress("unused")
-val universalAddResourcesPatch = rawResourcePatch(
-    name = "Add resource file",
-    description = "Adds or replaces one raw APK file from text options.",
-    default = false,
-) {
-    val targetPath by stringOption("universalAddResourcePath", "res/values/morphe_added.xml", title = "Target path", required = true)
-    val content by stringOption("universalAddResourceContent", "", title = "File content", required = false)
-    execute {
-        val file = get(targetPath ?: "res/values/morphe_added.xml")
-        file.parentFile?.mkdirs()
-        file.writeText(content ?: "")
-    }
-}
-
-@Suppress("unused")
-val universalHexPatch = rawResourcePatch(
-    name = "Hex patch",
-    description = "Replaces one hex byte pattern inside one APK file.",
-    default = false,
-) {
-    val targetPath by stringOption("universalHexTargetPath", "classes.dex", title = "Target path", required = true)
-    val fromHex by stringOption("universalHexFrom", "", title = "Find hex", required = true)
-    val toHex by stringOption("universalHexTo", "", title = "Replace hex", required = true)
-    execute {
-        val find = (fromHex ?: "").hexToBytes()
-        val replace = (toHex ?: "").hexToBytes()
-        if (find.isEmpty() || replace.size > find.size) throw PatchException("Invalid hex pattern")
-        val file = get(targetPath ?: "classes.dex", true)
-        val bytes = file.readBytes()
-        val offset = bytes.indexOf(find)
-        if (offset < 0) throw PatchException("Hex pattern not found")
-        replace.copyInto(bytes, offset)
-        file.writeBytes(bytes)
-    }
-}
-
-@Suppress("unused")
-val universalChangePackageNameReVancedPatch = resourcePatch(
-    name = "Change package name",
-    description = "Changes manifest package and optionally provider/permission authorities.",
-    default = false,
-) {
-    val newPackage by stringOption("universalNewPackageName", "append.morphe", title = "New package or suffix", required = true)
-    val rewriteAuthorities by stringOption("universalRewriteAuthorities", "true", title = "Rewrite authorities", required = true)
-    execute {
-        document("AndroidManifest.xml").use { doc ->
-            val manifest = doc.documentElement
-            val oldPackage = manifest.getAttribute("package")
-            val raw = newPackage ?: "append.morphe"
-            val replacement = if (raw.startsWith(".")) oldPackage + raw else raw
-            manifest.setAttribute("package", replacement)
-            if ((rewriteAuthorities ?: "true").equals("true", true)) {
-                val tags = listOf("provider", "permission", "permission-tree", "permission-group")
-                tags.forEach { tag ->
-                    val nodes = doc.getElementsByTagName(tag)
-                    for (i in 0 until nodes.length) {
-                        val node = nodes.item(i) as? Element ?: continue
-                        listOf("android:name", "android:authorities").forEach { attr ->
-                            val value = node.getAttribute(attr)
-                            if (value.startsWith(oldPackage)) node.setAttribute(attr, value.replaceFirst(oldPackage, replacement))
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 @Suppress("unused")
@@ -324,32 +239,6 @@ val universalSpoofPlayAgeSignalsPatch = bytecodePatch(
                         index + 2,
                         "const/16 v${move.registerA}, $value\ninvoke-static {v${move.registerA}}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;\nmove-result-object v${move.registerA}",
                     )
-                }
-            }
-        }
-    }
-}
-
-@Suppress("unused")
-val universalRemoveAudioCapturePolicyPatch = bytecodePatch(
-    name = "Remove audio capture policy",
-    description = "Forces runtime audio capture policy to ALLOW_CAPTURE_BY_ALL.",
-    default = false,
-) {
-    extendWith("extensions/extension.mpe")
-    execute {
-        classDefForEach { classDef ->
-            mutableClassDefBy(classDef).methods.forEach { method ->
-                val instructions = method.instructionsOrNull?.toList() ?: return@forEach
-                instructions.forEachIndexed { index, instruction ->
-                    val reference = (instruction as? ReferenceInstruction)?.reference as? MethodReference ?: return@forEachIndexed
-                    val ins = instruction as? Instruction35c ?: return@forEachIndexed
-                    if (reference.definingClass == "Landroid/media/AudioAttributes\$Builder;" && reference.name == "setAllowedCapturePolicy") {
-                        method.replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}}, $EXTRA_HELPER->setAllowedCapturePolicy(Landroid/media/AudioAttributes\$Builder;I)Landroid/media/AudioAttributes\$Builder;")
-                    }
-                    if (reference.definingClass == "Landroid/media/AudioManager;" && reference.name == "setAllowedCapturePolicy") {
-                        method.replaceInstruction(index, "invoke-static {v${ins.registerC}, v${ins.registerD}}, $EXTRA_HELPER->setAllowedCapturePolicy(Landroid/media/AudioManager;I)V")
-                    }
                 }
             }
         }
@@ -698,22 +587,3 @@ private fun app.morphe.patcher.patch.ResourcePatchContext.writeNetworkSecurityCo
 }
 
 private fun String.escapeSmali() = replace("\\", "\\\\").replace("\"", "\\\"")
-
-private fun String.hexToBytes(): ByteArray {
-    val clean = replace(Regex("[^0-9A-Fa-f]"), "")
-    if (clean.length % 2 != 0) throw PatchException("Hex string length must be even")
-    return ByteArray(clean.length / 2) { clean.substring(it * 2, it * 2 + 2).toInt(16).toByte() }
-}
-
-private fun ByteArray.indexOf(needle: ByteArray): Int {
-    if (needle.isEmpty() || needle.size > size) return -1
-    for (i in 0..size - needle.size) {
-        var matched = true
-        for (j in needle.indices) if (this[i + j] != needle[j]) {
-            matched = false
-            break
-        }
-        if (matched) return i
-    }
-    return -1
-}
