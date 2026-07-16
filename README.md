@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.13.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.13.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;217 patches total
+> **[v1.13.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.13.1-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;217 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -448,7 +448,7 @@ Bug reports must include:
 <summary><code>#29</code> <strong>Citizen</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
 <br>
 
-**Supported versions:** `0.1300.0`
+**Supported versions:** `0.1301.0`
 
 | Patch | Details |
 |---|---|
@@ -532,7 +532,7 @@ Bug reports must include:
 <summary><code>#36</code> <strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
 <br>
 
-**Supported versions:** `26.27.0`
+**Supported versions:** `26.28.0`
 
 | Patch | Details |
 |---|---|
@@ -623,7 +623,7 @@ Bug reports must include:
 <summary><code>#43</code> <strong>Fitbod</strong> &middot; 1 patch &middot; <code>com.fitbod.fitbod</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.fitbod.fitbod">Play Store</a></summary>
 <br>
 
-**Supported versions:** `8.24.1-0`
+**Supported versions:** `8.25.0-2`
 
 | Patch | Details |
 |---|---|
@@ -731,7 +731,7 @@ Bug reports must include:
 <summary><code>#52</code> <strong>HTTP Sniffer</strong> &middot; 1 patch &middot; <code>com.anetcapture.mock</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.anetcapture.mock">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.11.4-ad_mob`
+**Supported versions:** `2.11.7-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -875,7 +875,7 @@ Bug reports must include:
 <summary><code>#64</code> <strong>Life360</strong> &middot; 1 patch &middot; <code>com.life360.android.safetymapd</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.life360.android.safetymapd">Play Store</a></summary>
 <br>
 
-**Supported versions:** `26.25.0`
+**Supported versions:** `26.26.0`
 
 | Patch | Details |
 |---|---|
@@ -1019,7 +1019,7 @@ Bug reports must include:
 <summary><code>#76</code> <strong>NAVITIME</strong> &middot; 1 patch &middot; <code>com.navitime.inbound.walk</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.navitime.inbound.walk">Play Store</a></summary>
 <br>
 
-**Supported versions:** `12.0.3`
+**Supported versions:** `12.0.4`
 
 | Patch | Details |
 |---|---|
@@ -1175,7 +1175,7 @@ Bug reports must include:
 <summary><code>#89</code> <strong>PictureThis - Plant Identifier</strong> &middot; 1 patch &middot; <code>cn.danatech.xingseus</code> &middot; <a href="https://play.google.com/store/apps/details?id=cn.danatech.xingseus">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.29.0`
+**Supported versions:** `5.30.0`
 
 | Patch | Details |
 |---|---|
@@ -1463,7 +1463,7 @@ Bug reports must include:
 <summary><code>#113</code> <strong>Splitwise</strong> &middot; 1 patch &middot; <code>com.Splitwise.SplitwiseMobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile">Play Store</a></summary>
 <br>
 
-**Supported versions:** `26.7.1`
+**Supported versions:** `26.7.2`
 
 | Patch | Details |
 |---|---|
@@ -1741,7 +1741,7 @@ Bug reports must include:
 <summary><code>#136</code> <strong>Wavve Boating</strong> &middot; 1 patch &middot; <code>com.wavve.boating.gps</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wavve.boating.gps">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.7.0`
+**Supported versions:** `5.7.1`
 
 | Patch | Details |
 |---|---|
