@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0-dev.6",
+  "version": "1.13.0",
   "patches": [
     {
       "name": "Alert Distances",
@@ -5506,12 +5506,12 @@
           "packageName": "com.navitime.inbound.walk",
           "name": "NAVITIME",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#003087",
           "signatures": null,
           "targets": [
             {
-              "version": "12.0.1",
+              "version": "12.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
