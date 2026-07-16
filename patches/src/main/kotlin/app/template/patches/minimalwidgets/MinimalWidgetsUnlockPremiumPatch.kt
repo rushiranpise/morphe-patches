@@ -13,6 +13,13 @@ val minimalWidgetsUnlockPremiumPatch = bytecodePatch(
     compatibleWith(MINIMAL_WIDGETS_COMPATIBILITY)
 
     execute {
+
+        // Noop the pairip entry point — prevents connection to Play licensing service entirely
+        PairIpInitializeLicenseCheckFingerprint.method.addInstructions(0, "return-void")
+
+        // Noop validateResponse — belt-and-suspenders; prevents LicenseCheckException
+        // if processResponse() is somehow reached with a patched/invalid signature
+        PairIpValidateResponseFingerprint.method.addInstructions(0, "return-void")
         // Force isUnlocked(Context) → true. Every widget lock check (PremiumWidgetUtils.isLocked,
         // WidgetsViewModel.isPremiumUnlockedFlow, ColorThemesScreen gate) reads through here.
         PremiumManagerIsUnlockedFingerprint.method.addInstructions(
