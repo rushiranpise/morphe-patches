@@ -1,3 +1,85 @@
+# Rushi's Patches v1.13.0
+Patch source for Morphe.
+**Channel:** stable  
+**Branch:** `main`  
+**Patch count:** 207
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.13.0.mpp` from the release assets below.
+
+## Supported Apps Changed
+
+### Added Apps
+- **Android Developer Verifier** (`com.google.android.verifier`)
+- **Block Blast!** (`com.block.juggle`)
+- **Clue Period & Cycle Tracker** (`com.clue.android`)
+- **Countdown Widget** (`me.gira.widget.countdown`)
+- **ES File Explorer** (`com.estrongs.android.pop`)
+- **Kahoot!** (`no.mobitroll.kahoot.android`)
+- **NAVITIME** (`com.navitime.inbound.walk`)
+- **Parallel Space Pro** (`com.parallel.space.pro`)
+- **Super File** (`com.esuper.file.explorer`)
+
+### Updated App Versions
+- **1.1.1.1** (`com.cloudflare.onedotonedotonedotone`): `6.38.7` -> `6.38.8`
+- **AiScore** (`com.onesports.score`): `4.2.4` -> `4.2.6`
+- **Amazon Shopping** (`com.amazon.mShop.android.shopping`): `32.12.4.100` -> `32.13.0.100`
+- **Canva** (`com.canva.editor`): `2.367.0` -> `2.368.0`
+- **Citymapper** (`com.citymapper.app.release`): `11.55.1` -> `11.55.2`
+- **ColorNote** (`com.socialnmobile.dictapps.notepad.color.note`): `4.8.4` -> `4.8.6`
+- **Crime Radar** (`com.newsbreak.crimeradar`): `26.23.2` -> `26.27.0`
+- **FlightAware** (`com.flightaware.android.liveFlightTracker`): `5.15.4` -> `5.15.5`
+- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.1-ad_mob` -> `2.11.4-ad_mob`
+- **JEFIT** (`je.fit`): `17.2.5` -> `17.2.6`
+- **LiveScore** (`com.livescore`): `9.7.1` -> `9.8`
+- **MigraConnect** (`com.tecso.MigraConnect`): `2.8.1` -> `2.8.2`
+- ...and 17 more
+
+### Removed Apps
+- **Anatomy** (`air.com.musclemotion.anatomy`)
+- **Kyphosis** (`air.com.musclemotion.kyphosis`)
+- **pkge** (`net.pkge.pkge`)
+- **Posture** (`air.com.musclemotion.posture`)
+- **Strength Training** (`air.com.musclemotion.strength.mobile`)
+- **Workout** (`air.com.musclemotion.workout`)
+- **Yoga** (`air.com.musclemotion.yoga`)
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.13.0](https://github.com/rushiranpise/morphe-patches/compare/v1.12.0...v1.13.0) (2026-07-16)
+
+### New Patches
+
+* add clue ([5235316](https://github.com/rushiranpise/morphe-patches/commit/52353166c37e4aec692739453b504918150475b9))
+* add count down widget ([2612472](https://github.com/rushiranpise/morphe-patches/commit/26124728e19209294145cd28ad697cdf28b6d5b9))
+* add es strong ([f1e23ef](https://github.com/rushiranpise/morphe-patches/commit/f1e23efbcffea3b35949915bd3fa50c06276b1e2))
+* add new apps ([78a06d5](https://github.com/rushiranpise/morphe-patches/commit/78a06d5c7f40d5c5c9154fde9613aed39a1feb4b))
+* add parallel space ([25f200d](https://github.com/rushiranpise/morphe-patches/commit/25f200ddb968bd2861e8cf3854e9ea1cb63677bb))
+* add super explorer ([1e26302](https://github.com/rushiranpise/morphe-patches/commit/1e26302512dc40c4be892e2bb8c6d252037aa0e5))
+* androidverifier ([f4d1169](https://github.com/rushiranpise/morphe-patches/commit/f4d1169f692fd6206470056c98f34102933c57ff))
+* update universal patches ([31273fd](https://github.com/rushiranpise/morphe-patches/commit/31273fdefabfe865b7d5a5df3a4a3cac9400425f))
+
+### Fixes
+
+* build ([b3fcd55](https://github.com/rushiranpise/morphe-patches/commit/b3fcd55a87b04f14062c9fbe2f167e30900f4fb1))
+* build ([607670e](https://github.com/rushiranpise/morphe-patches/commit/607670e96a8a1e966f6fabfc4376c5b55d77cf1a))
+* build for real XD ([26c50cd](https://github.com/rushiranpise/morphe-patches/commit/26c50cd7913ebc5ec194dfb359247ef7d70f23f7))
+* remove broken patches ([9dbaf40](https://github.com/rushiranpise/morphe-patches/commit/9dbaf40485ccefc6c46154edafb7dc4776f9b6b7))
+* trading view ([92b2546](https://github.com/rushiranpise/morphe-patches/commit/92b25462d2438978c6d44f6aa0daddf1cf58fc40))
+
 # Rushi's Patches v1.13.0-dev.6
 Patch source for Morphe.
 **Channel:** dev prerelease  
