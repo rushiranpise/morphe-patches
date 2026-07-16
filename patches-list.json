@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0",
+  "version": "1.13.1-dev.1",
   "patches": [
     {
       "name": "Alert Distances",
@@ -186,7 +186,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -211,7 +211,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1473,7 +1473,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2260,7 +2260,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2617,7 +2617,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2867,12 +2867,12 @@
           "packageName": "com.life360.android.safetymapd",
           "name": "Life360",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#5D2DE6",
           "signatures": null,
           "targets": [
             {
-              "version": "26.25.0",
+              "version": "26.26.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3254,7 +3254,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.27.0",
+              "version": "26.28.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3324,12 +3324,12 @@
           "packageName": "com.fitbod.fitbod",
           "name": "Fitbod",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF3D00",
           "signatures": null,
           "targets": [
             {
-              "version": "8.24.1-0",
+              "version": "8.25.0-2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3761,12 +3761,12 @@
           "packageName": "cn.danatech.xingseus",
           "name": "PictureThis - Plant Identifier",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {
-              "version": "5.29.0",
+              "version": "5.30.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4306,7 +4306,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.7.0",
+              "version": "5.7.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4476,12 +4476,12 @@
           "packageName": "sp0n.citizen",
           "name": "Citizen",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#0066FF",
           "signatures": null,
           "targets": [
             {
-              "version": "0.1300.0",
+              "version": "0.1301.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4832,12 +4832,12 @@
           "packageName": "com.Splitwise.SplitwiseMobile",
           "name": "Splitwise",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1CC29F",
           "signatures": null,
           "targets": [
             {
-              "version": "26.7.1",
+              "version": "26.7.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5372,12 +5372,12 @@
           "packageName": "com.anetcapture.mock",
           "name": "HTTP Sniffer",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
             {
-              "version": "2.11.4-ad_mob",
+              "version": "2.11.7-ad_mob",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5511,7 +5511,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.0.3",
+              "version": "12.0.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
