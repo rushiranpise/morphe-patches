@@ -678,7 +678,7 @@ val PIXEL_HABIT_TRACKER_COMPATIBILITY = Compatibility(
         packageName = "com.pixel.al.pixelhabittracker",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = "2.1.2", versionCode = 100063))
+        targets = listOf(AppTarget(version = "2.1.3", versionCode = 100065))
     )
 
 val PKGE_COMPATIBILITY = Compatibility(

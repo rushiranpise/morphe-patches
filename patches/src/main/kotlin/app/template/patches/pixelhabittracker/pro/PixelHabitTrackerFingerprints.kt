@@ -13,7 +13,7 @@ import app.morphe.patcher.Fingerprint
  * Use "billing_prefs" + "pro_purchased" to uniquely match the constructor.
  */
 object PurchaseRepositoryConstructorFingerprint : Fingerprint(
-    definingClass = "Lhh2;",
+    definingClass = "Lfi2;",
     returnType = "V",
     parameters = listOf("Landroid/content/Context;"),
     strings = listOf("billing_prefs", "pro_purchased"),
@@ -28,7 +28,7 @@ object PurchaseRepositoryConstructorFingerprint : Fingerprint(
  * compareAndSet(null, newValue) — first arg is always null (the UNSET sentinel).
  */
 object ProStateSetterFingerprint : Fingerprint(
-    definingClass = "Lhh2;",
+    definingClass = "Lfi2;",
     returnType = "V",
     parameters = listOf("Z"),
     strings = listOf("pro_purchased"),
