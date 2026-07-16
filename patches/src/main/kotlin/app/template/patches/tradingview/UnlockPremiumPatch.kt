@@ -16,24 +16,30 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
     compatibleWith(Constants.TRADINGVIEW_COMPATIBILITY)
 
     execute {
+        // ── Plan string spoofing ──────────────────────────────────────────────
+        // Return "pro_premium_expert" (ULTIMATE) everywhere the plan string is read.
         listOf(
             PlanStringFingerprint,
             NextPlanStringFingerprint,
             WebChartUserPlanFingerprint,
-        ).forEach { fingerprint ->
-            fingerprint.method.apply {
+        ).forEach { fp ->
+            fp.method.apply {
                 clearBody()
                 addInstructions(0, "const-string v0, \"$ULTIMATE_PLAN\"\nreturn-object v0")
             }
         }
 
+        // ── Billing cycle → annual ────────────────────────────────────────────
         BillingCycleFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const-string v0, \"$YEARLY_BILLING\"\nreturn-object v0")
         }
 
+        // ── Boolean gates → true (premium/active) ────────────────────────────
         listOf(
             RenewalActiveFingerprint,
+            PlanIsProPlanFingerprint,
+            PlanIsAnnualPlanFingerprint,
             ProPlanCheckFingerprint,
             ProPremiumOrHigherCheckFingerprint,
             CurrentUserPremiumFingerprint,
@@ -41,26 +47,45 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             CurrentUserAnnualFingerprint,
             CurrentUserAnnualUltimateFingerprint,
             ProfileServiceAnnualUltimateFingerprint,
-        ).forEach { fingerprint ->
-            fingerprint.method.apply {
+        ).forEach { fp ->
+            fp.method.apply {
                 clearBody()
                 addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
         }
 
+        // ── Boolean gates → false (free/problem states) ───────────────────────
         listOf(
             GracePeriodFingerprint,
             HoldPeriodFingerprint,
+            PlanIsMonthlyPlanFingerprint,
+            PlanIsLitePlan2023Fingerprint,
+            PlanIsLitePlan2024Fingerprint,
+            PlanIsLitePlan2024TrialFingerprint,
             CurrentUserFreeFingerprint,
             CurrentUserMonthlyFingerprint,
             CurrentUserPaymentProblemsFingerprint,
-        ).forEach { fingerprint ->
-            fingerprint.method.apply {
+            ProPlanIsTrialFingerprint,
+        ).forEach { fp ->
+            fp.method.apply {
                 clearBody()
                 addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
         }
 
+        // ── isPaymentsBanned → Boolean.FALSE ─────────────────────────────────
+        PlanIsPaymentsBannedFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                    sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+                    return-object v0
+                """,
+            )
+        }
+
+        // ── Plan level → ULTIMATE ─────────────────────────────────────────────
         PlanLevelFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -72,6 +97,9 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             )
         }
 
+        // ── Hidden/locked features → empty list ──────────────────────────────
+        // getSupportedFeatures() returns the list of features locked behind paywall;
+        // returning empty list signals all features are unlocked.
         HiddenFeaturesFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -84,6 +112,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             )
         }
 
+        // ── Badge → Ultimate badge ────────────────────────────────────────────
         PriorityBadgeFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -98,6 +127,8 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             )
         }
 
+        // ── Subscription title → "You are Ultimate" ──────────────────────────
+        // R.string.info_menu_you_are_ultimate = 0x7f130383 (verified in v1.20.77)
         SubscriptionTitleFingerprint.method.apply {
             clearBody()
             addInstructions(
