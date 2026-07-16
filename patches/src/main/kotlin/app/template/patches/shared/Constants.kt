@@ -203,7 +203,8 @@ val CITIZEN_COMPATIBILITY = Compatibility(
         name = "Citizen",
         packageName = "sp0n.citizen",
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "0.1300.0", versionCode = 1134))
+        apkFileType = ApkFileType.APKS,
+        targets = listOf(AppTarget(version = "0.1301.0", versionCode = 1135))
     )
 
 val CITYMAPPER_COMPATIBILITY = Compatibility(
@@ -250,7 +251,7 @@ val CRIMERADAR_COMPATIBILITY = Compatibility(
         packageName = "com.newsbreak.crimeradar",
         appIconColor = 0xE53935,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "26.27.0", versionCode = 26270012))
+        targets = listOf(AppTarget(version = "26.28.0", versionCode = 26280001))
     )
 
 val DAILYHUNT_COMPATIBILITY = Compatibility(
@@ -303,7 +304,8 @@ val FITBOD_COMPATIBILITY = Compatibility(
         name = "Fitbod",
         packageName = "com.fitbod.fitbod",
         appIconColor = 0xFF3D00,
-        targets = listOf(AppTarget(version = "8.24.1-0", versionCode = 10824100))
+        apkFileType = ApkFileType.XAPK,
+        targets = listOf(AppTarget(version = "8.25.0-2", versionCode = 10825002))
     )
 
 val FLIGHTAWARE_COMPATIBILITY = Compatibility(
@@ -369,7 +371,8 @@ val HTTPMOCK_COMPATIBILITY = Compatibility(
         name = "HTTP Sniffer",
         packageName = "com.anetcapture.mock",
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "2.11.4-ad_mob", versionCode = 136))
+        apkFileType = ApkFileType.XAPK,
+        targets = listOf(AppTarget(version = "2.11.7-ad_mob", versionCode = 139))
     )
 
 val IMAGEDATEFIXER_COMPATIBILITY = Compatibility(
@@ -471,9 +474,9 @@ val LAWFULLY_COMPATIBILITY = Compatibility(
 val LIFE360_COMPATIBILITY = Compatibility(
         name = "Life360",
         packageName = "com.life360.android.safetymapd",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x5D2DE6,
-        targets = listOf(AppTarget(version = "26.25.0", versionCode = 2903210))
+        targets = listOf(AppTarget(version = "26.26.0", versionCode = 2905010))
     )
 
 val LIVESCORE_COMPATIBILITY = Compatibility(
@@ -578,7 +581,7 @@ val NAVITIME_COMPATIBILITY = Compatibility(
         packageName = "com.navitime.inbound.walk",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x003087,
-        targets = listOf(AppTarget(version = "12.0.3", versionCode = 365))
+        targets = listOf(AppTarget(version = "12.0.4", versionCode = 366))
     )
 
 val NETGUARD_COMPATIBILITY = Compatibility(
@@ -670,7 +673,8 @@ val PICTURETHIS_COMPATIBILITY = Compatibility(
         name = "PictureThis - Plant Identifier",
         packageName = "cn.danatech.xingseus",
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "5.29.0", versionCode = 5084))
+        apkFileType = ApkFileType.XAPK,
+        targets = listOf(AppTarget(version = "5.30.0", versionCode = 5085))
     )
 
 val PIXEL_HABIT_TRACKER_COMPATIBILITY = Compatibility(
@@ -878,7 +882,8 @@ val SPLITWISE_COMPATIBILITY = Compatibility(
         name = "Splitwise",
         packageName = "com.Splitwise.SplitwiseMobile",
         appIconColor = 0x1CC29F,
-        targets = listOf(AppTarget(version = "26.7.1", versionCode = 948))
+        apkFileType = ApkFileType.APK,
+        targets = listOf(AppTarget(version = "26.7.2", versionCode = 949))
     )
 
 val SPOTANGELS_COMPATIBILITY = Compatibility(
@@ -1071,7 +1076,7 @@ val WAVVE_BOATING_COMPATIBILITY = Compatibility(
         packageName = "com.wavve.boating.gps",
         appIconColor = 0x0077CC,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "5.7.0", versionCode = 3179))
+        targets = listOf(AppTarget(version = "5.7.1", versionCode = 3180))
     )
 
 val WAZE_COMPATIBILITY = Compatibility(
