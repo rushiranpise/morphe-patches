@@ -9,28 +9,26 @@ Implemented here:
 - Enable Android debugging
 - Hide app icon
 - Predictive back gesture
-- Remove screen capture restriction
 - Change version code
 - Set target SDK 34
 - Remove share targets
-- Remove screenshot restriction
+- Force dark theme
 - Hide mock location
-- Disable Play Integrity
 - Hide ADB status
 - Spoof build info
 - Spoof SIM provider
 - Spoof Wi-Fi connection
-- Custom certificates / network security config
 - Override certificate pinning
 - Export internal data DocumentsProvider
-- Add resource file
-- Hex patch
-- Change package name
 - Enable ROM signature spoofing
 - Spoof keystore security level
 - Spoof root of trust
 - Spoof Play age signals
-- Remove runtime audio capture policy
+- Remove ad manifest entries
+- Disable ad SDK calls
+- Disable shake ads
+- Disable clipboard access
+- Hide VPN and proxy
 
 Existing Morphe equivalents:
 - Spoof Pixel device / build info: `shared.pixel.spoofPixelDevicePatch`

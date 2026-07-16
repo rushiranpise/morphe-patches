@@ -89,12 +89,12 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.12.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.12.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;222 patches total
+> **[v1.13.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.13.0-dev.6)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;217 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
 
-**Supported versions:** `6.38.7`
+**Supported versions:** `6.38.8`
 
 | Patch | Details |
 |---|---|
@@ -167,7 +167,7 @@ Bug reports must include:
 <summary><code>#7</code> <strong>AiScore</strong> &middot; 1 patch &middot; <code>com.onesports.score</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.onesports.score">Play Store</a></summary>
 <br>
 
-**Supported versions:** `4.2.4`
+**Supported versions:** `4.2.6`
 
 | Patch | Details |
 |---|---|
@@ -211,7 +211,7 @@ Bug reports must include:
 <summary><code>#10</code> <strong>Amazon Shopping</strong> &middot; 9 patches &middot; <code>com.amazon.mShop.android.shopping</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping">Play Store</a></summary>
 <br>
 
-**Supported versions:** `32.12.4.100`
+**Supported versions:** `32.13.0.100`
 
 | Patch | Details |
 |---|---|
@@ -240,14 +240,14 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#12</code> <strong>Anatomy</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.anatomy</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.anatomy">Play Store</a></summary>
+<summary><code>#12</code> <strong>Android Developer Verifier</strong> &middot; 1 patch &middot; <code>com.google.android.verifier</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.google.android.verifier">Play Store</a></summary>
 <br>
 
-**Supported versions:** `3.2.1`
+**Supported versions:** `1.0.940985764`
 
 | Patch | Details |
 |---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Anatomy by Muscle Motion. |
+| [**Bypass developer verification**](#bypass-developer-verification) | Forces all APK install verification sessions to be bypassed, preventing the verifier from blocking sideloaded or unsigned apps on Android 16+ devices.Important: Requires pushing t... |
 
 </details>
 
@@ -300,7 +300,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#17</code> <strong>Block Puzzle</strong> &middot; 1 patch &middot; <code>game.puzzle.blockpuzzle</code> &middot; <a href="https://play.google.com/store/apps/details?id=game.puzzle.blockpuzzle">Play Store</a></summary>
+<summary><code>#17</code> <strong>Block Blast!</strong> &middot; 1 patch &middot; <code>com.block.juggle</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.block.juggle">Play Store</a></summary>
+<br>
+
+**Supported versions:** `10.3.5`
+
+| Patch | Details |
+|---|---|
+| [**Unlock VIP**](#unlock-vip) | Unlock ViP features in app. |
+
+</details>
+
+<details>
+<summary><code>#18</code> <strong>Block Puzzle</strong> &middot; 1 patch &middot; <code>game.puzzle.blockpuzzle</code> &middot; <a href="https://play.google.com/store/apps/details?id=game.puzzle.blockpuzzle">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.0`
@@ -312,7 +324,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#18</code> <strong>BlockerHero</strong> &middot; 1 patch &middot; <code>com.blockerhero</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.blockerhero">Play Store</a></summary>
+<summary><code>#19</code> <strong>BlockerHero</strong> &middot; 1 patch &middot; <code>com.blockerhero</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.blockerhero">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.5.0`
@@ -324,7 +336,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#19</code> <strong>Blurams</strong> &middot; 1 patch &middot; <code>com.blurams.ipc</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.blurams.ipc">Play Store</a></summary>
+<summary><code>#20</code> <strong>Blurams</strong> &middot; 1 patch &middot; <code>com.blurams.ipc</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.blurams.ipc">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.1049.4.908`
@@ -336,7 +348,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#20</code> <strong>BlurWall</strong> &middot; 1 patch &middot; <code>apps.automan.blurwallpaper</code> &middot; <a href="https://play.google.com/store/apps/details?id=apps.automan.blurwallpaper">Play Store</a></summary>
+<summary><code>#21</code> <strong>BlurWall</strong> &middot; 1 patch &middot; <code>apps.automan.blurwallpaper</code> &middot; <a href="https://play.google.com/store/apps/details?id=apps.automan.blurwallpaper">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.9.2`
@@ -348,7 +360,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#21</code> <strong>BuzzCast</strong> &middot; 1 patch &middot; <code>com.guochao.faceshow</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.guochao.faceshow">Play Store</a></summary>
+<summary><code>#22</code> <strong>BuzzCast</strong> &middot; 1 patch &middot; <code>com.guochao.faceshow</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.guochao.faceshow">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.2.80`
@@ -360,7 +372,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#22</code> <strong>CamScanner</strong> &middot; 2 patches &middot; <code>com.intsig.camscanner</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.intsig.camscanner">Play Store</a></summary>
+<summary><code>#23</code> <strong>CamScanner</strong> &middot; 2 patches &middot; <code>com.intsig.camscanner</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.intsig.camscanner">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.20.5.2606250000`
@@ -373,10 +385,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#23</code> <strong>Canva</strong> &middot; 1 patch &middot; <code>com.canva.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.canva.editor">Play Store</a></summary>
+<summary><code>#24</code> <strong>Canva</strong> &middot; 1 patch &middot; <code>com.canva.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.canva.editor">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.367.0`
+**Supported versions:** `2.368.0`
 
 | Patch | Details |
 |---|---|
@@ -385,7 +397,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#24</code> <strong>Carbon</strong> &middot; 1 patch &middot; <code>com.joincarbon.nutrition</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.joincarbon.nutrition">Play Store</a></summary>
+<summary><code>#25</code> <strong>Carbon</strong> &middot; 1 patch &middot; <code>com.joincarbon.nutrition</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.joincarbon.nutrition">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.76.5784`
@@ -397,7 +409,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#25</code> <strong>Carousell</strong> &middot; 1 patch &middot; <code>com.thecarousell.Carousell</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thecarousell.Carousell">Play Store</a></summary>
+<summary><code>#26</code> <strong>Carousell</strong> &middot; 1 patch &middot; <code>com.thecarousell.Carousell</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thecarousell.Carousell">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.461.8`
@@ -409,7 +421,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#26</code> <strong>Case Tracker</strong> &middot; 1 patch &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
+<summary><code>#27</code> <strong>Case Tracker</strong> &middot; 1 patch &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.5.3`
@@ -421,7 +433,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#27</code> <strong>Cashew</strong> &middot; 1 patch &middot; <code>com.budget.tracker_app</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.budget.tracker_app">Play Store</a></summary>
+<summary><code>#28</code> <strong>Cashew</strong> &middot; 1 patch &middot; <code>com.budget.tracker_app</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.budget.tracker_app">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.6.11`
@@ -433,7 +445,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#28</code> <strong>Citizen</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
+<summary><code>#29</code> <strong>Citizen</strong> &middot; 1 patch &middot; <code>sp0n.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=sp0n.citizen">Play Store</a></summary>
 <br>
 
 **Supported versions:** `0.1300.0`
@@ -445,10 +457,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#29</code> <strong>Citymapper</strong> &middot; 1 patch &middot; <code>com.citymapper.app.release</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.citymapper.app.release">Play Store</a></summary>
+<summary><code>#30</code> <strong>Citymapper</strong> &middot; 1 patch &middot; <code>com.citymapper.app.release</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.citymapper.app.release">Play Store</a></summary>
 <br>
 
-**Supported versions:** `11.55.1`
+**Supported versions:** `11.55.2`
 
 | Patch | Details |
 |---|---|
@@ -457,7 +469,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#30</code> <strong>Clickmate</strong> &middot; 1 patch &middot; <code>com.inscode.autoclicker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.inscode.autoclicker">Play Store</a></summary>
+<summary><code>#31</code> <strong>Clickmate</strong> &middot; 1 patch &middot; <code>com.inscode.autoclicker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.inscode.autoclicker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.1.4`
@@ -469,10 +481,22 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#31</code> <strong>ColorNote</strong> &middot; 1 patch &middot; <code>com.socialnmobile.dictapps.notepad.color.note</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.socialnmobile.dictapps.notepad.color.note">Play Store</a></summary>
+<summary><code>#32</code> <strong>Clue Period &amp; Cycle Tracker</strong> &middot; 1 patch &middot; <code>com.clue.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.clue.android">Play Store</a></summary>
 <br>
 
-**Supported versions:** `4.8.4`
+**Supported versions:** `261.0`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Plus**](#unlock-plus) | Forces Clue Plus subscription active, unlocking all premium features. |
+
+</details>
+
+<details>
+<summary><code>#33</code> <strong>ColorNote</strong> &middot; 1 patch &middot; <code>com.socialnmobile.dictapps.notepad.color.note</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.socialnmobile.dictapps.notepad.color.note">Play Store</a></summary>
+<br>
+
+**Supported versions:** `4.8.6`
 
 | Patch | Details |
 |---|---|
@@ -481,7 +505,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#32</code> <strong>CPU-Z</strong> &middot; 1 patch &middot; <code>com.cpuid.cpu_z</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z">Play Store</a></summary>
+<summary><code>#34</code> <strong>Countdown Widget</strong> &middot; 1 patch &middot; <code>me.gira.widget.countdown</code> &middot; <a href="https://play.google.com/store/apps/details?id=me.gira.widget.countdown">Play Store</a></summary>
+<br>
+
+**Supported versions:** `3.2.0`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks all premium features in Countdown Widget |
+
+</details>
+
+<details>
+<summary><code>#35</code> <strong>CPU-Z</strong> &middot; 1 patch &middot; <code>com.cpuid.cpu_z</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cpuid.cpu_z">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.59`
@@ -493,10 +529,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#33</code> <strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
+<summary><code>#36</code> <strong>Crime Radar</strong> &middot; 6 patches &middot; <code>com.newsbreak.crimeradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar">Play Store</a></summary>
 <br>
 
-**Supported versions:** `26.23.2`
+**Supported versions:** `26.27.0`
 
 | Patch | Details |
 |---|---|
@@ -510,7 +546,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#34</code> <strong>Cube ACR</strong> &middot; 1 patch &middot; <code>com.catalinagroup.callrecorder</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder">Play Store</a></summary>
+<summary><code>#37</code> <strong>Cube ACR</strong> &middot; 1 patch &middot; <code>com.catalinagroup.callrecorder</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.4.281`
@@ -522,7 +558,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#35</code> <strong>Dailyhunt</strong> &middot; 1 patch &middot; <code>com.eterno</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.eterno">Play Store</a></summary>
+<summary><code>#38</code> <strong>Dailyhunt</strong> &middot; 1 patch &middot; <code>com.eterno</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.eterno">Play Store</a></summary>
 <br>
 
 **Supported versions:** `33.5.4`
@@ -534,7 +570,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#36</code> <strong>Depth Live Wallpaper</strong> &middot; 1 patch &middot; <code>com.jndapp.depth.live.wallpaper</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.jndapp.depth.live.wallpaper">Play Store</a></summary>
+<summary><code>#39</code> <strong>Depth Live Wallpaper</strong> &middot; 1 patch &middot; <code>com.jndapp.depth.live.wallpaper</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.jndapp.depth.live.wallpaper">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.1.06`
@@ -546,7 +582,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#37</code> <strong>Duolingo</strong> &middot; 2 patches &middot; <code>com.duolingo</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.duolingo">Play Store</a></summary>
+<summary><code>#40</code> <strong>Duolingo</strong> &middot; 2 patches &middot; <code>com.duolingo</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.duolingo">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.87.6`
@@ -559,7 +595,20 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#38</code> <strong>Excel</strong> &middot; 1 patch &middot; <code>com.microsoft.office.excel</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.excel">Play Store</a></summary>
+<summary><code>#41</code> <strong>ES File Explorer</strong> &middot; 2 patches &middot; <code>com.estrongs.android.pop</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.estrongs.android.pop">Play Store</a></summary>
+<br>
+
+**Supported versions:** `4.4.3.7`
+
+| Patch | Details |
+|---|---|
+| [**Disable Tracking**](#disable-tracking) | Disables analytics and telemetry in ES File Explorer |
+| [**Unlock VIP Lifetime**](#unlock-vip-lifetime) | Unlock Vip Features in APP. |
+
+</details>
+
+<details>
+<summary><code>#42</code> <strong>Excel</strong> &middot; 1 patch &middot; <code>com.microsoft.office.excel</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.excel">Play Store</a></summary>
 <br>
 
 **Supported versions:** `16.0.20131.20080`
@@ -571,7 +620,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#39</code> <strong>Fitbod</strong> &middot; 1 patch &middot; <code>com.fitbod.fitbod</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.fitbod.fitbod">Play Store</a></summary>
+<summary><code>#43</code> <strong>Fitbod</strong> &middot; 1 patch &middot; <code>com.fitbod.fitbod</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.fitbod.fitbod">Play Store</a></summary>
 <br>
 
 **Supported versions:** `8.24.1-0`
@@ -583,10 +632,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#40</code> <strong>FlightAware</strong> &middot; 1 patch &middot; <code>com.flightaware.android.liveFlightTracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.flightaware.android.liveFlightTracker">Play Store</a></summary>
+<summary><code>#44</code> <strong>FlightAware</strong> &middot; 1 patch &middot; <code>com.flightaware.android.liveFlightTracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.flightaware.android.liveFlightTracker">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.15.4`
+**Supported versions:** `5.15.5`
 
 | Patch | Details |
 |---|---|
@@ -595,7 +644,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#41</code> <strong>Flightradar24</strong> &middot; 1 patch &middot; <code>com.flightradar24free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.flightradar24free">Play Store</a></summary>
+<summary><code>#45</code> <strong>Flightradar24</strong> &middot; 1 patch &middot; <code>com.flightradar24free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.flightradar24free">Play Store</a></summary>
 <br>
 
 **Supported versions:** `11.7.0`
@@ -607,7 +656,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#42</code> <strong>Flightsky</strong> &middot; 1 patch &middot; <code>com.live.flight.tracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.live.flight.tracker">Play Store</a></summary>
+<summary><code>#46</code> <strong>Flightsky</strong> &middot; 1 patch &middot; <code>com.live.flight.tracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.live.flight.tracker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.7.1`
@@ -619,7 +668,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#43</code> <strong>Genius Scan</strong> &middot; 1 patch &middot; <code>com.thegrizzlylabs.geniusscan.free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thegrizzlylabs.geniusscan.free">Play Store</a></summary>
+<summary><code>#47</code> <strong>Genius Scan</strong> &middot; 1 patch &middot; <code>com.thegrizzlylabs.geniusscan.free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thegrizzlylabs.geniusscan.free">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.40.0`
@@ -631,7 +680,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#44</code> <strong>Greenify</strong> &middot; 1 patch &middot; <code>com.oasisfeng.greenify</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Play Store</a></summary>
+<summary><code>#48</code> <strong>Greenify</strong> &middot; 1 patch &middot; <code>com.oasisfeng.greenify</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.oasisfeng.greenify">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.1.1`
@@ -643,7 +692,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#45</code> <strong>Hibernator</strong> &middot; 1 patch &middot; <code>com.tafayor.hibernator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.hibernator">Play Store</a></summary>
+<summary><code>#49</code> <strong>Hibernator</strong> &middot; 1 patch &middot; <code>com.tafayor.hibernator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.hibernator">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.56.10`
@@ -655,7 +704,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#46</code> <strong>Historical Calendar</strong> &middot; 1 patch &middot; <code>com.alexandrucene.dayhistory</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.alexandrucene.dayhistory">Play Store</a></summary>
+<summary><code>#50</code> <strong>Historical Calendar</strong> &middot; 1 patch &middot; <code>com.alexandrucene.dayhistory</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.alexandrucene.dayhistory">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.5.4`
@@ -667,7 +716,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#47</code> <strong>Hola VPN Proxy Plus</strong> &middot; 1 patch &middot; <code>org.hola.play</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.hola.play">Play Store</a></summary>
+<summary><code>#51</code> <strong>Hola VPN Proxy Plus</strong> &middot; 1 patch &middot; <code>org.hola.play</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.hola.play">Play Store</a></summary>
 <br>
 
 **Supported versions:** `AARCH64_1.248.400`
@@ -679,10 +728,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#48</code> <strong>HTTP Sniffer</strong> &middot; 1 patch &middot; <code>com.anetcapture.mock</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.anetcapture.mock">Play Store</a></summary>
+<summary><code>#52</code> <strong>HTTP Sniffer</strong> &middot; 1 patch &middot; <code>com.anetcapture.mock</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.anetcapture.mock">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.11.1-ad_mob`
+**Supported versions:** `2.11.4-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -691,7 +740,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#49</code> <strong>Image &amp; Video Date Fixer</strong> &middot; 1 patch &middot; <code>eu.duong.imagedatefixer</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.duong.imagedatefixer">Play Store</a></summary>
+<summary><code>#53</code> <strong>Image &amp; Video Date Fixer</strong> &middot; 1 patch &middot; <code>eu.duong.imagedatefixer</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.duong.imagedatefixer">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.7.1`
@@ -703,7 +752,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#50</code> <strong>Inmigreat</strong> &middot; 1 patch &middot; <code>com.changayaf.inmigreat</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.changayaf.inmigreat">Play Store</a></summary>
+<summary><code>#54</code> <strong>Inmigreat</strong> &middot; 1 patch &middot; <code>com.changayaf.inmigreat</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.changayaf.inmigreat">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.3.4`
@@ -715,7 +764,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#51</code> <strong>Inure App Manager</strong> &middot; 1 patch &middot; <code>app.simple.inure.play</code> &middot; <a href="https://play.google.com/store/apps/details?id=app.simple.inure.play">Play Store</a></summary>
+<summary><code>#55</code> <strong>Inure App Manager</strong> &middot; 1 patch &middot; <code>app.simple.inure.play</code> &middot; <a href="https://play.google.com/store/apps/details?id=app.simple.inure.play">Play Store</a></summary>
 <br>
 
 **Supported versions:** `build107.0.5`
@@ -727,10 +776,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#52</code> <strong>JEFIT</strong> &middot; 1 patch &middot; <code>je.fit</code> &middot; <a href="https://play.google.com/store/apps/details?id=je.fit">Play Store</a></summary>
+<summary><code>#56</code> <strong>JEFIT</strong> &middot; 1 patch &middot; <code>je.fit</code> &middot; <a href="https://play.google.com/store/apps/details?id=je.fit">Play Store</a></summary>
 <br>
 
-**Supported versions:** `17.2.5`
+**Supported versions:** `17.2.6`
 
 | Patch | Details |
 |---|---|
@@ -739,7 +788,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#53</code> <strong>KillApps</strong> &middot; 1 patch &middot; <code>com.tafayor.killall</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.killall">Play Store</a></summary>
+<summary><code>#57</code> <strong>Kahoot!</strong> &middot; 1 patch &middot; <code>no.mobitroll.kahoot.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android">Play Store</a></summary>
+<br>
+
+**Supported versions:** `6.6.7`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Gold**](#unlock-gold) | Unlocks Kahoot! |
+
+</details>
+
+<details>
+<summary><code>#58</code> <strong>KillApps</strong> &middot; 1 patch &middot; <code>com.tafayor.killall</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tafayor.killall">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.57.9`
@@ -751,7 +812,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#54</code> <strong>KineMaster</strong> &middot; 1 patch &middot; <code>com.nexstreaming.app.kinemasterfree</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree">Play Store</a></summary>
+<summary><code>#59</code> <strong>KineMaster</strong> &middot; 1 patch &middot; <code>com.nexstreaming.app.kinemasterfree</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree">Play Store</a></summary>
 <br>
 
 **Supported versions:** `8.1.13.36552.GP`
@@ -763,7 +824,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#55</code> <strong>KineStop</strong> &middot; 1 patch &middot; <code>com.urbandroid.kinestop</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.urbandroid.kinestop">Play Store</a></summary>
+<summary><code>#60</code> <strong>KineStop</strong> &middot; 1 patch &middot; <code>com.urbandroid.kinestop</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.urbandroid.kinestop">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.1`
@@ -775,7 +836,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#56</code> <strong>komoot</strong> &middot; 1 patch &middot; <code>de.komoot.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=de.komoot.android">Play Store</a></summary>
+<summary><code>#61</code> <strong>komoot</strong> &middot; 1 patch &middot; <code>de.komoot.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=de.komoot.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2026.28.2`
@@ -787,19 +848,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#57</code> <strong>Kyphosis</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.kyphosis</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.kyphosis">Play Store</a></summary>
-<br>
-
-**Supported versions:** `1.4.9`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content. |
-
-</details>
-
-<details>
-<summary><code>#58</code> <strong>Lark Player</strong> &middot; 1 patch &middot; <code>com.dywx.larkplayer</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dywx.larkplayer">Play Store</a></summary>
+<summary><code>#62</code> <strong>Lark Player</strong> &middot; 1 patch &middot; <code>com.dywx.larkplayer</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dywx.larkplayer">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2026.9.6`
@@ -811,7 +860,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#59</code> <strong>Lawfully</strong> &middot; 1 patch &middot; <code>com.lawfully.lawfully_ai_tracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.lawfully.lawfully_ai_tracker">Play Store</a></summary>
+<summary><code>#63</code> <strong>Lawfully</strong> &middot; 1 patch &middot; <code>com.lawfully.lawfully_ai_tracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.lawfully.lawfully_ai_tracker">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.7.1`
@@ -823,7 +872,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#60</code> <strong>Life360</strong> &middot; 1 patch &middot; <code>com.life360.android.safetymapd</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.life360.android.safetymapd">Play Store</a></summary>
+<summary><code>#64</code> <strong>Life360</strong> &middot; 1 patch &middot; <code>com.life360.android.safetymapd</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.life360.android.safetymapd">Play Store</a></summary>
 <br>
 
 **Supported versions:** `26.25.0`
@@ -835,10 +884,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#61</code> <strong>LiveScore</strong> &middot; 1 patch &middot; <code>com.livescore</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.livescore">Play Store</a></summary>
+<summary><code>#65</code> <strong>LiveScore</strong> &middot; 1 patch &middot; <code>com.livescore</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.livescore">Play Store</a></summary>
 <br>
 
-**Supported versions:** `9.7.1`
+**Supported versions:** `9.8`
 
 | Patch | Details |
 |---|---|
@@ -847,7 +896,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#62</code> <strong>m-Indicator</strong> &middot; 1 patch &middot; <code>com.mobond.mindicator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mobond.mindicator">Play Store</a></summary>
+<summary><code>#66</code> <strong>m-Indicator</strong> &middot; 1 patch &middot; <code>com.mobond.mindicator</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mobond.mindicator">Play Store</a></summary>
 <br>
 
 **Supported versions:** `18.0.356`
@@ -859,7 +908,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#63</code> <strong>MEGA</strong> &middot; 1 patch &middot; <code>mega.privacy.android.app</code> &middot; <a href="https://play.google.com/store/apps/details?id=mega.privacy.android.app">Play Store</a></summary>
+<summary><code>#67</code> <strong>MEGA</strong> &middot; 1 patch &middot; <code>mega.privacy.android.app</code> &middot; <a href="https://play.google.com/store/apps/details?id=mega.privacy.android.app">Play Store</a></summary>
 <br>
 
 **Supported versions:** `16.9(261881039)(3c7e30562a)`
@@ -871,10 +920,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#64</code> <strong>MigraConnect</strong> &middot; 1 patch &middot; <code>com.tecso.MigraConnect</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tecso.MigraConnect">Play Store</a></summary>
+<summary><code>#68</code> <strong>MigraConnect</strong> &middot; 1 patch &middot; <code>com.tecso.MigraConnect</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tecso.MigraConnect">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.8.1`
+**Supported versions:** `2.8.2`
 
 | Patch | Details |
 |---|---|
@@ -883,10 +932,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#65</code> <strong>Minimal Widgets</strong> &middot; 1 patch &middot; <code>com.jndapp.minimal.widgets</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.jndapp.minimal.widgets">Play Store</a></summary>
+<summary><code>#69</code> <strong>Minimal Widgets</strong> &middot; 1 patch &middot; <code>com.jndapp.minimal.widgets</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.jndapp.minimal.widgets">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.0.08`
+**Supported versions:** `1.1.01`
 
 | Patch | Details |
 |---|---|
@@ -895,7 +944,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#66</code> <strong>ML Manager</strong> &middot; 1 patch &middot; <code>com.javiersantos.mlmanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager">Play Store</a></summary>
+<summary><code>#70</code> <strong>ML Manager</strong> &middot; 1 patch &middot; <code>com.javiersantos.mlmanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.javiersantos.mlmanager">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.0`
@@ -907,7 +956,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#67</code> <strong>Moovit</strong> &middot; 1 patch &middot; <code>com.tranzmate</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tranzmate">Play Store</a></summary>
+<summary><code>#71</code> <strong>Moovit</strong> &middot; 1 patch &middot; <code>com.tranzmate</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tranzmate">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.195.2.1792`
@@ -919,7 +968,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#68</code> <strong>MovieBox</strong> &middot; 1 patch &middot; <code>com.community.oneroom</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.oneroom">Play Store</a></summary>
+<summary><code>#72</code> <strong>MovieBox</strong> &middot; 1 patch &middot; <code>com.community.oneroom</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.oneroom">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.0.16.0709.03`
@@ -931,7 +980,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#69</code> <strong>MovieBox (India)</strong> &middot; 1 patch &middot; <code>com.community.mbox.in</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.mbox.in">Play Store</a></summary>
+<summary><code>#73</code> <strong>MovieBox (India)</strong> &middot; 1 patch &middot; <code>com.community.mbox.in</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.mbox.in">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.0.16.0707.03`
@@ -943,10 +992,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#70</code> <strong>MovieBox TV</strong> &middot; 1 patch &middot; <code>com.community.mbox.tv</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.mbox.tv">Play Store</a></summary>
+<summary><code>#74</code> <strong>MovieBox TV</strong> &middot; 1 patch &middot; <code>com.community.mbox.tv</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.community.mbox.tv">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.1.4.0710.03`
+**Supported versions:** `1.1.5.0711.03`
 
 | Patch | Details |
 |---|---|
@@ -955,10 +1004,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#71</code> <strong>MyRadar</strong> &middot; 1 patch &middot; <code>com.acmeaom.android.myradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.acmeaom.android.myradar">Play Store</a></summary>
+<summary><code>#75</code> <strong>MyRadar</strong> &middot; 1 patch &middot; <code>com.acmeaom.android.myradar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.acmeaom.android.myradar">Play Store</a></summary>
 <br>
 
-**Supported versions:** `8.71.2`
+**Supported versions:** `8.71.3`
 
 | Patch | Details |
 |---|---|
@@ -967,7 +1016,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#72</code> <strong>NetGuard</strong> &middot; 1 patch &middot; <code>eu.faircode.netguard</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.faircode.netguard">Play Store</a></summary>
+<summary><code>#76</code> <strong>NAVITIME</strong> &middot; 1 patch &middot; <code>com.navitime.inbound.walk</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.navitime.inbound.walk">Play Store</a></summary>
+<br>
+
+**Supported versions:** `12.0.1`
+
+| Patch | Details |
+|---|---|
+| [**Unlock premium**](#unlock-premium) | Unlocks NAVITIME Japan Travel Premium features in app |
+
+</details>
+
+<details>
+<summary><code>#77</code> <strong>NetGuard</strong> &middot; 1 patch &middot; <code>eu.faircode.netguard</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.faircode.netguard">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.335`
@@ -979,7 +1040,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#73</code> <strong>NetMonster</strong> &middot; 1 patch &middot; <code>cz.mroczis.netmonster</code> &middot; <a href="https://play.google.com/store/apps/details?id=cz.mroczis.netmonster">Play Store</a></summary>
+<summary><code>#78</code> <strong>NetMonster</strong> &middot; 1 patch &middot; <code>cz.mroczis.netmonster</code> &middot; <a href="https://play.google.com/store/apps/details?id=cz.mroczis.netmonster">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.4.1`
@@ -991,7 +1052,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#74</code> <strong>NetShare</strong> &middot; 1 patch &middot; <code>kha.prog.mikrotik</code> &middot; <a href="https://play.google.com/store/apps/details?id=kha.prog.mikrotik">Play Store</a></summary>
+<summary><code>#79</code> <strong>NetShare</strong> &middot; 1 patch &middot; <code>kha.prog.mikrotik</code> &middot; <a href="https://play.google.com/store/apps/details?id=kha.prog.mikrotik">Play Store</a></summary>
 <br>
 
 **Supported versions:** `277`
@@ -1003,10 +1064,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#75</code> <strong>NewsBreak</strong> &middot; 1 patch &middot; <code>com.particlenews.newsbreak</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.particlenews.newsbreak">Play Store</a></summary>
+<summary><code>#80</code> <strong>NewsBreak</strong> &middot; 1 patch &middot; <code>com.particlenews.newsbreak</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.particlenews.newsbreak">Play Store</a></summary>
 <br>
 
-**Supported versions:** `26.27.0`
+**Supported versions:** `26.28.0`
 
 | Patch | Details |
 |---|---|
@@ -1015,7 +1076,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#76</code> <strong>Ninja VPN</strong> &middot; 1 patch &middot; <code>app.ninjavpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=app.ninjavpn.android">Play Store</a></summary>
+<summary><code>#81</code> <strong>Ninja VPN</strong> &middot; 1 patch &middot; <code>app.ninjavpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=app.ninjavpn.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.4.7`
@@ -1027,10 +1088,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#77</code> <strong>NYT Games</strong> &middot; 1 patch &middot; <code>com.nytimes.crossword</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nytimes.crossword">Play Store</a></summary>
+<summary><code>#82</code> <strong>NYT Games</strong> &middot; 1 patch &middot; <code>com.nytimes.crossword</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nytimes.crossword">Play Store</a></summary>
 <br>
 
-**Supported versions:** `6.33.1`
+**Supported versions:** `6.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1039,7 +1100,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#78</code> <strong>nzb360</strong> &middot; 1 patch &middot; <code>com.kevinforeman.nzb360</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360">Play Store</a></summary>
+<summary><code>#83</code> <strong>nzb360</strong> &middot; 1 patch &middot; <code>com.kevinforeman.nzb360</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360">Play Store</a></summary>
 <br>
 
 **Supported versions:** `23.5`
@@ -1051,10 +1112,22 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#79</code> <strong>Permission Pilot</strong> &middot; 1 patch &middot; <code>eu.darken.myperm</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.darken.myperm">Play Store</a></summary>
+<summary><code>#84</code> <strong>Parallel Space Pro</strong> &middot; 1 patch &middot; <code>com.parallel.space.pro</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.parallel.space.pro">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.1.1-rc0`
+**Supported versions:** `4.0.9123`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Pro**](#unlock-pro) | Unlocks Pro Features in app. |
+
+</details>
+
+<details>
+<summary><code>#85</code> <strong>Permission Pilot</strong> &middot; 1 patch &middot; <code>eu.darken.myperm</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.darken.myperm">Play Store</a></summary>
+<br>
+
+**Supported versions:** `2.2.0-rc0`
 
 | Patch | Details |
 |---|---|
@@ -1063,7 +1136,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#80</code> <strong>Photo Editor</strong> &middot; 1 patch &middot; <code>com.iudesk.android.photo.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor">Play Store</a></summary>
+<summary><code>#86</code> <strong>Photo Editor</strong> &middot; 1 patch &middot; <code>com.iudesk.android.photo.editor</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.iudesk.android.photo.editor">Play Store</a></summary>
 <br>
 
 **Supported versions:** `13.4`
@@ -1075,10 +1148,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#81</code> <strong>Pialytic</strong> &middot; 1 patch &middot; <code>verbosus.pialytic</code> &middot; <a href="https://play.google.com/store/apps/details?id=verbosus.pialytic">Play Store</a></summary>
+<summary><code>#87</code> <strong>Pialytic</strong> &middot; 1 patch &middot; <code>verbosus.pialytic</code> &middot; <a href="https://play.google.com/store/apps/details?id=verbosus.pialytic">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.2.8`
+**Supported versions:** `1.3.0`
 
 | Patch | Details |
 |---|---|
@@ -1087,7 +1160,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#82</code> <strong>Picture Mushroom - Mushroom ID</strong> &middot; 1 patch &middot; <code>com.glority.picturemushroom</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.glority.picturemushroom">Play Store</a></summary>
+<summary><code>#88</code> <strong>Picture Mushroom - Mushroom ID</strong> &middot; 1 patch &middot; <code>com.glority.picturemushroom</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.glority.picturemushroom">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.9.31`
@@ -1099,7 +1172,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#83</code> <strong>PictureThis - Plant Identifier</strong> &middot; 1 patch &middot; <code>cn.danatech.xingseus</code> &middot; <a href="https://play.google.com/store/apps/details?id=cn.danatech.xingseus">Play Store</a></summary>
+<summary><code>#89</code> <strong>PictureThis - Plant Identifier</strong> &middot; 1 patch &middot; <code>cn.danatech.xingseus</code> &middot; <a href="https://play.google.com/store/apps/details?id=cn.danatech.xingseus">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.29.0`
@@ -1111,10 +1184,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#84</code> <strong>Pixel Habit Tracker</strong> &middot; 1 patch &middot; <code>com.pixel.al.pixelhabittracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.pixel.al.pixelhabittracker">Play Store</a></summary>
+<summary><code>#90</code> <strong>Pixel Habit Tracker</strong> &middot; 1 patch &middot; <code>com.pixel.al.pixelhabittracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.pixel.al.pixelhabittracker">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.1.1`
+**Supported versions:** `2.1.2`
 
 | Patch | Details |
 |---|---|
@@ -1123,19 +1196,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#85</code> <strong>pkge</strong> &middot; 1 patch &middot; <code>net.pkge.pkge</code> &middot; <a href="https://play.google.com/store/apps/details?id=net.pkge.pkge">Play Store</a></summary>
-<br>
-
-**Supported versions:** `19.0.13`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlock Premium features in app. |
-
-</details>
-
-<details>
-<summary><code>#86</code> <strong>PLAYit</strong> &middot; 1 patch &middot; <code>com.playit.videoplayer</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.playit.videoplayer">Play Store</a></summary>
+<summary><code>#91</code> <strong>PLAYit</strong> &middot; 1 patch &middot; <code>com.playit.videoplayer</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.playit.videoplayer">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.7.50.12`
@@ -1147,7 +1208,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#87</code> <strong>Pocket Bard</strong> &middot; 1 patch &middot; <code>com.MojoFilterMediaLLC.RPGSoundSystem</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.MojoFilterMediaLLC.RPGSoundSystem">Play Store</a></summary>
+<summary><code>#92</code> <strong>Pocket Bard</strong> &middot; 1 patch &middot; <code>com.MojoFilterMediaLLC.RPGSoundSystem</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.MojoFilterMediaLLC.RPGSoundSystem">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.1.16`
@@ -1159,7 +1220,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#88</code> <strong>Pocket Casts</strong> &middot; 1 patch &middot; <code>au.com.shiftyjelly.pocketcasts</code> &middot; <a href="https://play.google.com/store/apps/details?id=au.com.shiftyjelly.pocketcasts">Play Store</a></summary>
+<summary><code>#93</code> <strong>Pocket Casts</strong> &middot; 1 patch &middot; <code>au.com.shiftyjelly.pocketcasts</code> &middot; <a href="https://play.google.com/store/apps/details?id=au.com.shiftyjelly.pocketcasts">Play Store</a></summary>
 <br>
 
 **Supported versions:** `8.14`
@@ -1171,7 +1232,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#89</code> <strong>Pocket Prep</strong> &middot; 1 patch &middot; <code>com.pocketprep.android.itcybersecurity</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.pocketprep.android.itcybersecurity">Play Store</a></summary>
+<summary><code>#94</code> <strong>Pocket Prep</strong> &middot; 1 patch &middot; <code>com.pocketprep.android.itcybersecurity</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.pocketprep.android.itcybersecurity">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.27.2`
@@ -1183,7 +1244,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#90</code> <strong>Police Scanner</strong> &middot; 1 patch &middot; <code>police.scanner.radio.broadcastify.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen">Play Store</a></summary>
+<summary><code>#95</code> <strong>Police Scanner</strong> &middot; 1 patch &middot; <code>police.scanner.radio.broadcastify.citizen</code> &middot; <a href="https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.29.0-260420093`
@@ -1195,22 +1256,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#91</code> <strong>Posture</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.posture</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.posture">Play Store</a></summary>
+<summary><code>#96</code> <strong>Proton VPN</strong> &middot; 1 patch &middot; <code>ch.protonvpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=ch.protonvpn.android">Play Store</a></summary>
 <br>
 
-**Supported versions:** `3.2.1`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Posture Correction by Muscle Motion. |
-
-</details>
-
-<details>
-<summary><code>#92</code> <strong>Proton VPN</strong> &middot; 1 patch &middot; <code>ch.protonvpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=ch.protonvpn.android">Play Store</a></summary>
-<br>
-
-**Supported versions:** `5.19.16.0`
+**Supported versions:** `5.19.43.0`
 
 | Patch | Details |
 |---|---|
@@ -1219,10 +1268,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#93</code> <strong>Proxyman</strong> &middot; 1 patch &middot; <code>com.proxyman.proxymanandroid</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid">Play Store</a></summary>
+<summary><code>#97</code> <strong>Proxyman</strong> &middot; 1 patch &middot; <code>com.proxyman.proxymanandroid</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.18.0`
+**Supported versions:** `1.19.0`
 
 | Patch | Details |
 |---|---|
@@ -1231,7 +1280,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#94</code> <strong>Psiphon Pro</strong> &middot; 1 patch &middot; <code>com.psiphon3.subscription</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.psiphon3.subscription">Play Store</a></summary>
+<summary><code>#98</code> <strong>Psiphon Pro</strong> &middot; 1 patch &middot; <code>com.psiphon3.subscription</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.psiphon3.subscription">Play Store</a></summary>
 <br>
 
 **Supported versions:** `479`
@@ -1243,7 +1292,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#95</code> <strong>RAR</strong> &middot; 1 patch &middot; <code>com.rarlab.rar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.rarlab.rar">Play Store</a></summary>
+<summary><code>#99</code> <strong>RAR</strong> &middot; 1 patch &middot; <code>com.rarlab.rar</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.rarlab.rar">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.23.build133`
@@ -1255,7 +1304,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#96</code> <strong>RecipeBro</strong> &middot; 1 patch &middot; <code>com.recipebro.cookingbuddy</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.recipebro.cookingbuddy">Play Store</a></summary>
+<summary><code>#100</code> <strong>RecipeBro</strong> &middot; 1 patch &middot; <code>com.recipebro.cookingbuddy</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.recipebro.cookingbuddy">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.3.74`
@@ -1267,7 +1316,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#97</code> <strong>Rename &amp; Organize</strong> &middot; 1 patch &middot; <code>eu.duong.picturemanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.duong.picturemanager">Play Store</a></summary>
+<summary><code>#101</code> <strong>Rename &amp; Organize</strong> &middot; 1 patch &middot; <code>eu.duong.picturemanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.duong.picturemanager">Play Store</a></summary>
 <br>
 
 **Supported versions:** `8.25.1`
@@ -1279,7 +1328,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#98</code> <strong>Rocket Money</strong> &middot; 1 patch &middot; <code>com.truebill</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.truebill">Play Store</a></summary>
+<summary><code>#102</code> <strong>Rocket Money</strong> &middot; 1 patch &middot; <code>com.truebill</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.truebill">Play Store</a></summary>
 <br>
 
 **Supported versions:** `13.15.0`
@@ -1291,7 +1340,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#99</code> <strong>RS File Manager</strong> &middot; 1 patch &middot; <code>com.rs.explorer.filemanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.rs.explorer.filemanager">Play Store</a></summary>
+<summary><code>#103</code> <strong>RS File Manager</strong> &middot; 1 patch &middot; <code>com.rs.explorer.filemanager</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.rs.explorer.filemanager">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.3.0.4`
@@ -1303,7 +1352,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#100</code> <strong>SAI</strong> &middot; 1 patch &middot; <code>com.mtv.sai</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mtv.sai">Play Store</a></summary>
+<summary><code>#104</code> <strong>SAI</strong> &middot; 1 patch &middot; <code>com.mtv.sai</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mtv.sai">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.2.8`
@@ -1315,10 +1364,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#101</code> <strong>Scoopz</strong> &middot; 1 patch &middot; <code>com.localaiapp.scoops</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.localaiapp.scoops">Play Store</a></summary>
+<summary><code>#105</code> <strong>Scoopz</strong> &middot; 1 patch &middot; <code>com.localaiapp.scoops</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.localaiapp.scoops">Play Store</a></summary>
 <br>
 
-**Supported versions:** `3.28.0`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1327,7 +1376,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#102</code> <strong>SCRL</strong> &middot; 1 patch &middot; <code>com.appostrophe.scrl</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.appostrophe.scrl">Play Store</a></summary>
+<summary><code>#106</code> <strong>SCRL</strong> &middot; 1 patch &middot; <code>com.appostrophe.scrl</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.appostrophe.scrl">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.22`
@@ -1339,7 +1388,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#103</code> <strong>SHAREit Premium</strong> &middot; 1 patch &middot; <code>shareit.premium</code> &middot; <a href="https://play.google.com/store/apps/details?id=shareit.premium">Play Store</a></summary>
+<summary><code>#107</code> <strong>SHAREit Premium</strong> &middot; 1 patch &middot; <code>shareit.premium</code> &middot; <a href="https://play.google.com/store/apps/details?id=shareit.premium">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.1.98`
@@ -1351,7 +1400,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#104</code> <strong>Snipd</strong> &middot; 1 patch &middot; <code>ai.topicfinder.podcastdiscovery</code> &middot; <a href="https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery">Play Store</a></summary>
+<summary><code>#108</code> <strong>Snipd</strong> &middot; 1 patch &middot; <code>ai.topicfinder.podcastdiscovery</code> &middot; <a href="https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.1.14`
@@ -1363,10 +1412,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#105</code> <strong>Snow-Forecast.com</strong> &middot; 1 patch &middot; <code>com.snow_forecast.snowforecast</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.snow_forecast.snowforecast">Play Store</a></summary>
+<summary><code>#109</code> <strong>Snow-Forecast.com</strong> &middot; 1 patch &middot; <code>com.snow_forecast.snowforecast</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.snow_forecast.snowforecast">Play Store</a></summary>
 <br>
 
-**Supported versions:** `8.0.6`
+**Supported versions:** `8.0.8`
 
 | Patch | Details |
 |---|---|
@@ -1375,7 +1424,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#106</code> <strong>Social Gamebox</strong> &middot; 1 patch &middot; <code>com.app.social_gamebox</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.app.social_gamebox">Play Store</a></summary>
+<summary><code>#110</code> <strong>Social Gamebox</strong> &middot; 1 patch &middot; <code>com.app.social_gamebox</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.app.social_gamebox">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.1.3`
@@ -1387,7 +1436,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#107</code> <strong>Speedtest</strong> &middot; 1 patch &middot; <code>org.zwanoo.android.speedtest</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest">Play Store</a></summary>
+<summary><code>#111</code> <strong>Speedtest</strong> &middot; 1 patch &middot; <code>org.zwanoo.android.speedtest</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.0.7`
@@ -1399,7 +1448,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#108</code> <strong>SPIN</strong> &middot; 1 patch &middot; <code>com.nationaledtech.spinbrowser</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nationaledtech.spinbrowser">Play Store</a></summary>
+<summary><code>#112</code> <strong>SPIN</strong> &middot; 1 patch &middot; <code>com.nationaledtech.spinbrowser</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.nationaledtech.spinbrowser">Play Store</a></summary>
 <br>
 
 **Supported versions:** `70.3.0`
@@ -1411,7 +1460,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#109</code> <strong>Splitwise</strong> &middot; 1 patch &middot; <code>com.Splitwise.SplitwiseMobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile">Play Store</a></summary>
+<summary><code>#113</code> <strong>Splitwise</strong> &middot; 1 patch &middot; <code>com.Splitwise.SplitwiseMobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile">Play Store</a></summary>
 <br>
 
 **Supported versions:** `26.7.1`
@@ -1423,7 +1472,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#110</code> <strong>SpotAngels</strong> &middot; 1 patch &middot; <code>com.spotangels.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.spotangels.android">Play Store</a></summary>
+<summary><code>#114</code> <strong>SpotAngels</strong> &middot; 1 patch &middot; <code>com.spotangels.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.spotangels.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `15.2.2`
@@ -1435,7 +1484,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#111</code> <strong>Stargazing Hub</strong> &middot; 1 patch &middot; <code>com.twtapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.twtapp">Play Store</a></summary>
+<summary><code>#115</code> <strong>Stargazing Hub</strong> &middot; 1 patch &middot; <code>com.twtapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.twtapp">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.3.1`
@@ -1447,7 +1496,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#112</code> <strong>Sticker Maker</strong> &middot; 1 patch &middot; <code>com.marsvard.stickermakerforwhatsapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.marsvard.stickermakerforwhatsapp">Play Store</a></summary>
+<summary><code>#116</code> <strong>Sticker Maker</strong> &middot; 1 patch &middot; <code>com.marsvard.stickermakerforwhatsapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.marsvard.stickermakerforwhatsapp">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.0.10-5`
@@ -1459,7 +1508,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#113</code> <strong>Sticker.ly</strong> &middot; 1 patch &middot; <code>com.snowcorp.stickerly.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.snowcorp.stickerly.android">Play Store</a></summary>
+<summary><code>#117</code> <strong>Sticker.ly</strong> &middot; 1 patch &middot; <code>com.snowcorp.stickerly.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.snowcorp.stickerly.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.35.0`
@@ -1471,7 +1520,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#114</code> <strong>Strava</strong> &middot; 1 patch &middot; <code>com.strava</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.strava">Play Store</a></summary>
+<summary><code>#118</code> <strong>Strava</strong> &middot; 1 patch &middot; <code>com.strava</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.strava">Play Store</a></summary>
 <br>
 
 **Supported versions:** `471.11`
@@ -1483,19 +1532,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#115</code> <strong>Strength Training</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.strength.mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.strength.mobile">Play Store</a></summary>
-<br>
-
-**Supported versions:** `3.5.1`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Strength Training by Muscle Motion. |
-
-</details>
-
-<details>
-<summary><code>#116</code> <strong>Subway Now</strong> &middot; 1 patch &middot; <code>io.goodservice.theweekendest</code> &middot; <a href="https://play.google.com/store/apps/details?id=io.goodservice.theweekendest">Play Store</a></summary>
+<summary><code>#119</code> <strong>Subway Now</strong> &middot; 1 patch &middot; <code>io.goodservice.theweekendest</code> &middot; <a href="https://play.google.com/store/apps/details?id=io.goodservice.theweekendest">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.2.8`
@@ -1507,7 +1544,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#117</code> <strong>TeraBox</strong> &middot; 1 patch &middot; <code>com.dubox.drive</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dubox.drive">Play Store</a></summary>
+<summary><code>#120</code> <strong>Super File</strong> &middot; 1 patch &middot; <code>com.esuper.file.explorer</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.esuper.file.explorer">Play Store</a></summary>
+<br>
+
+**Supported versions:** `1.5.6.3`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks premium/lifetime featuers in app. |
+
+</details>
+
+<details>
+<summary><code>#121</code> <strong>TeraBox</strong> &middot; 1 patch &middot; <code>com.dubox.drive</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.dubox.drive">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.20.1`
@@ -1519,10 +1568,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#118</code> <strong>The Weather Channel</strong> &middot; 1 patch &middot; <code>com.weather.Weather</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.weather.Weather">Play Store</a></summary>
+<summary><code>#122</code> <strong>The Weather Channel</strong> &middot; 1 patch &middot; <code>com.weather.Weather</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.weather.Weather">Play Store</a></summary>
 <br>
 
-**Supported versions:** `16.12.0`
+**Supported versions:** `16.13.0`
 
 | Patch | Details |
 |---|---|
@@ -1531,7 +1580,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#119</code> <strong>Today Weather</strong> &middot; 1 patch &middot; <code>mobi.lockdown.weather</code> &middot; <a href="https://play.google.com/store/apps/details?id=mobi.lockdown.weather">Play Store</a></summary>
+<summary><code>#123</code> <strong>Today Weather</strong> &middot; 1 patch &middot; <code>mobi.lockdown.weather</code> &middot; <a href="https://play.google.com/store/apps/details?id=mobi.lockdown.weather">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.5.0-5`
@@ -1543,7 +1592,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#120</code> <strong>TomTom GO</strong> &middot; 1 patch &middot; <code>com.tomtom.gplay.navapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp">Play Store</a></summary>
+<summary><code>#124</code> <strong>TomTom GO</strong> &middot; 1 patch &middot; <code>com.tomtom.gplay.navapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp">Play Store</a></summary>
 <br>
 
 **Supported versions:** `3.6.316-beta`
@@ -1555,7 +1604,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#121</code> <strong>Toomics</strong> &middot; 1 patch &middot; <code>com.toomics.global.google</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.toomics.global.google">Play Store</a></summary>
+<summary><code>#125</code> <strong>Toomics</strong> &middot; 1 patch &middot; <code>com.toomics.global.google</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.toomics.global.google">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.6.7`
@@ -1567,7 +1616,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#122</code> <strong>Toxly</strong> &middot; 1 patch &middot; <code>com.mindful.code.studio.toxly.scanner</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mindful.code.studio.toxly.scanner">Play Store</a></summary>
+<summary><code>#126</code> <strong>Toxly</strong> &middot; 1 patch &middot; <code>com.mindful.code.studio.toxly.scanner</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.mindful.code.studio.toxly.scanner">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.16.6`
@@ -1579,7 +1628,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#123</code> <strong>TrackChecker Mobile</strong> &middot; 1 patch &middot; <code>com.metalsoft.trackchecker_mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.metalsoft.trackchecker_mobile">Play Store</a></summary>
+<summary><code>#127</code> <strong>TrackChecker Mobile</strong> &middot; 1 patch &middot; <code>com.metalsoft.trackchecker_mobile</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.metalsoft.trackchecker_mobile">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.29.3`
@@ -1591,10 +1640,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#124</code> <strong>TradingView</strong> &middot; 1 patch &middot; <code>com.tradingview.tradingviewapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp">Play Store</a></summary>
+<summary><code>#128</code> <strong>TradingView</strong> &middot; 1 patch &middot; <code>com.tradingview.tradingviewapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.20.77.0.1002295`
+**Supported versions:** `1.20.78.1.1002330`
 
 | Patch | Details |
 |---|---|
@@ -1603,7 +1652,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#125</code> <strong>Transit</strong> &middot; 1 patch &middot; <code>com.thetransitapp.droid</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thetransitapp.droid">Play Store</a></summary>
+<summary><code>#129</code> <strong>Transit</strong> &middot; 1 patch &middot; <code>com.thetransitapp.droid</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.thetransitapp.droid">Play Store</a></summary>
 <br>
 
 **Supported versions:** `6.1.12`
@@ -1615,7 +1664,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#126</code> <strong>TurboScan</strong> &middot; 1 patch &middot; <code>com.piksoft.turboscan.free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.piksoft.turboscan.free">Play Store</a></summary>
+<summary><code>#130</code> <strong>TurboScan</strong> &middot; 1 patch &middot; <code>com.piksoft.turboscan.free</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.piksoft.turboscan.free">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.7.3`
@@ -1627,7 +1676,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#127</code> <strong>UbikiTouch</strong> &middot; 1 patch &middot; <code>eu.toneiv.ubktouch</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch">Play Store</a></summary>
+<summary><code>#131</code> <strong>UbikiTouch</strong> &middot; 1 patch &middot; <code>eu.toneiv.ubktouch</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.16.13`
@@ -1639,7 +1688,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#128</code> <strong>UDisc</strong> &middot; 1 patch &middot; <code>com.regasoftware.udisc</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.regasoftware.udisc">Play Store</a></summary>
+<summary><code>#132</code> <strong>UDisc</strong> &middot; 1 patch &middot; <code>com.regasoftware.udisc</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.regasoftware.udisc">Play Store</a></summary>
 <br>
 
 **Supported versions:** `24.2.1`
@@ -1651,7 +1700,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#129</code> <strong>Unimote</strong> &middot; 3 patches &middot; <code>sensustech.universal.tv.remote.control</code> &middot; <a href="https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control">Play Store</a></summary>
+<summary><code>#133</code> <strong>Unimote</strong> &middot; 3 patches &middot; <code>sensustech.universal.tv.remote.control</code> &middot; <a href="https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.8.1`
@@ -1665,7 +1714,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#130</code> <strong>Uptodown App Store</strong> &middot; 1 patch &middot; <code>com.uptodown</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.uptodown">Play Store</a></summary>
+<summary><code>#134</code> <strong>Uptodown App Store</strong> &middot; 1 patch &middot; <code>com.uptodown</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.uptodown">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.34`
@@ -1677,7 +1726,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#131</code> <strong>VIZ Manga</strong> &middot; 1 patch &middot; <code>com.vizmanga.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.vizmanga.android">Play Store</a></summary>
+<summary><code>#135</code> <strong>VIZ Manga</strong> &middot; 1 patch &middot; <code>com.vizmanga.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.vizmanga.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.14.0`
@@ -1689,10 +1738,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#132</code> <strong>Wavve Boating</strong> &middot; 1 patch &middot; <code>com.wavve.boating.gps</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wavve.boating.gps">Play Store</a></summary>
+<summary><code>#136</code> <strong>Wavve Boating</strong> &middot; 1 patch &middot; <code>com.wavve.boating.gps</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wavve.boating.gps">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.6.9`
+**Supported versions:** `5.7.0`
 
 | Patch | Details |
 |---|---|
@@ -1701,10 +1750,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#133</code> <strong>Waze</strong> &middot; 12 patches &middot; <code>com.waze</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.waze">Play Store</a></summary>
+<summary><code>#137</code> <strong>Waze</strong> &middot; 12 patches &middot; <code>com.waze</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.waze">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.21.0.0`
+**Supported versions:** `5.21.90.800`
 
 | Patch | Details |
 |---|---|
@@ -1724,7 +1773,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#134</code> <strong>Weawow: Weather &amp; Widget</strong> &middot; 1 patch &middot; <code>com.weawow</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.weawow">Play Store</a></summary>
+<summary><code>#138</code> <strong>Weawow: Weather &amp; Widget</strong> &middot; 1 patch &middot; <code>com.weawow</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.weawow">Play Store</a></summary>
 <br>
 
 **Supported versions:** `7.1.7`
@@ -1736,7 +1785,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#135</code> <strong>Windscribe VPN</strong> &middot; 1 patch &middot; <code>com.windscribe.vpn</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windscribe.vpn">Play Store</a></summary>
+<summary><code>#139</code> <strong>Windscribe VPN</strong> &middot; 1 patch &middot; <code>com.windscribe.vpn</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windscribe.vpn">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.2.2328`
@@ -1748,7 +1797,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#136</code> <strong>Windy</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
+<summary><code>#140</code> <strong>Windy</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `50.1.1`
@@ -1760,7 +1809,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#137</code> <strong>WolframAlpha</strong> &middot; 1 patch &middot; <code>com.wolfram.android.alphapro</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro">Play Store</a></summary>
+<summary><code>#141</code> <strong>WolframAlpha</strong> &middot; 1 patch &middot; <code>com.wolfram.android.alphapro</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.0.8.20260601651`
@@ -1772,7 +1821,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#138</code> <strong>Word</strong> &middot; 1 patch &middot; <code>com.microsoft.office.word</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.word">Play Store</a></summary>
+<summary><code>#142</code> <strong>Word</strong> &middot; 1 patch &middot; <code>com.microsoft.office.word</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.word">Play Store</a></summary>
 <br>
 
 **Supported versions:** `16.0.20131.20080`
@@ -1784,22 +1833,10 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#139</code> <strong>Workout</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.workout</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.workout">Play Store</a></summary>
+<summary><code>#143</code> <strong>Yatri</strong> &middot; 1 patch &middot; <code>com.yatrirailways.yatri</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.yatrirailways.yatri">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.2.0`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content. |
-
-</details>
-
-<details>
-<summary><code>#140</code> <strong>Yatri</strong> &middot; 1 patch &middot; <code>com.yatrirailways.yatri</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.yatrirailways.yatri">Play Store</a></summary>
-<br>
-
-**Supported versions:** `5.0.4`
+**Supported versions:** `5.0.5`
 
 | Patch | Details |
 |---|---|
@@ -1808,28 +1845,12 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#141</code> <strong>Yoga</strong> &middot; 1 patch &middot; <code>air.com.musclemotion.yoga</code> &middot; <a href="https://play.google.com/store/apps/details?id=air.com.musclemotion.yoga">Play Store</a></summary>
-<br>
-
-**Supported versions:** `3.2.1`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium content in Yoga by Muscle Motion. |
-
-</details>
-
-<details>
-<summary><code>#142</code> <strong>Universal</strong> &middot; 44 patches</summary>
+<summary><code>#144</code> <strong>Universal</strong> &middot; 36 patches</summary>
 <br>
 
 | Patch | Details |
 |---|---|
-| [**Add resource file**](#add-resource-file) | Adds or replaces one raw APK file from text options.<br><sub>Options: Target path, File content</sub> |
-| [**Change package name**](#change-package-name) | Changes manifest package and optionally provider/permission authorities.<br><sub>Options: New package or suffix, Rewrite authorities</sub> |
 | [**Change version code**](#change-version-code) | Changes android:versionCode.<br><sub>Options: Version code</sub> |
-| [**Custom certificates**](#custom-certificates) | Adds a permissive network security config with system/user certs.<br><sub>Options: Allow cleartext</sub> |
-| [**Disable Play Integrity**](#disable-play-integrity) | Blocks Play Integrity service binding. |
 | [**Disable ad SDK calls**](#disable-ad-sdk-calls) | No-ops common ad SDK load/show/init/fetch methods in bundled ad packages. |
 | [**Disable clipboard access**](#disable-clipboard-access) | Blocks app clipboard reads and writes. |
 | [**Disable shake ads**](#disable-shake-ads) | Skips SensorManager.registerListener calls that can power shake-to-ad behavior. |
@@ -1841,7 +1862,6 @@ Bug reports must include:
 | [**Fix Firebase after re-signing**](#fix-firebase-after-re-signing) | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. |
 | [**Force dark theme**](#force-dark-theme) | Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode. |
 | [**GmsCore support (MicroG)**](#gmscore-support-microg) | Routes Google Play Services calls through MicroG instead of real GPS.<br><sub>Options: MicroG package name, Main activity class (optional), Custom package name (optional)</sub> |
-| [**Hex patch**](#hex-patch) | Replaces one hex byte pattern inside one APK file.<br><sub>Options: Target path, Find hex, Replace hex</sub> |
 | [**Hide ADB status**](#hide-adb-status) | Hides adb_enabled and development_settings_enabled. |
 | [**Hide VPN and proxy**](#hide-vpn-and-proxy) | Hides common VPN transport/interface and Java proxy property checks. |
 | [**Hide app icon**](#hide-app-icon) | Removes launcher category from MAIN launcher filters. |
@@ -1850,9 +1870,6 @@ Bug reports must include:
 | [**Predictive back gesture**](#predictive-back-gesture) | Enables Android predictive back gesture. |
 | [**Provide Original app certificate**](#provide-original-app-certificate) | By Default it Reads the signing certificate from the original app installed.<br><sub>Options: Path to original APK (if uninstalled), Certificate SHA-1 (manual), Certificate SHA-256 (manual), +1 more</sub> |
 | [**Remove ad manifest entries**](#remove-ad-manifest-entries) | Removes common ad SDK permissions, services, providers, libraries, and metadata. |
-| [**Remove audio capture policy**](#remove-audio-capture-policy) | Forces runtime audio capture policy to ALLOW_CAPTURE_BY_ALL. |
-| [**Remove screen capture restriction**](#remove-screen-capture-restriction) | Allows audio playback capture in the manifest. |
-| [**Remove screenshot restriction**](#remove-screenshot-restriction) | Removes FLAG_SECURE and screenshot blocking. |
 | [**Remove share targets**](#remove-share-targets) | Removes chooser/direct share targets. |
 | [**Set target SDK 34**](#set-target-sdk-34) | Sets targetSdkVersion to 34. |
 | [**Spoof Android ID**](#spoof-android-id) | Spoofs Settings.Secure android_id reads.<br><sub>Options: Android ID</sub> |

@@ -12,11 +12,23 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Window;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import java.lang.reflect.Method;
 
 @SuppressWarnings("unused")
 public final class UniversalPatchHelper {
+    private static final String GENERIC_DARK_CSS =
+        "html,body{background:#121212!important;color:#e8eaed!important;color-scheme:dark!important;}"
+        + "body *{border-color:#303134!important;}"
+        + "input,textarea,select,button{background:#1f1f1f!important;color:#e8eaed!important;border-color:#3c4043!important;}"
+        + "a{color:#8ab4f8!important;}"
+        + "table,thead,tbody,tr,td,th{background-color:transparent!important;color:#e8eaed!important;}"
+        + "pre,code{background:#1f1f1f!important;color:#f1f3f4!important;}"
+        + "dialog,[role=dialog],.modal,.popup,.popover{background:#1f1f1f!important;color:#e8eaed!important;}"
+        + "img,video,canvas,svg,picture{filter:none!important;background:transparent!important;}";
+
     public static void forceDarkTheme(Context context) {
         try {
             Class<?> appCompatDelegate = Class.forName("androidx.appcompat.app.AppCompatDelegate");
@@ -31,6 +43,36 @@ public final class UniversalPatchHelper {
                     ((UiModeManager) service).setApplicationNightMode(2);
                 }
             }
+        } catch (Throwable ignored) {}
+    }
+
+    public static void enableWebViewDarkMode(final WebView webView) {
+        if (webView == null) return;
+        try {
+            WebSettings settings = webView.getSettings();
+            if (settings != null) {
+                try {
+                    WebSettings.class.getMethod("setForceDark", int.class).invoke(settings, 2);
+                } catch (Throwable ignored) {}
+                try {
+                    WebSettings.class.getMethod("setAlgorithmicDarkeningAllowed", boolean.class).invoke(settings, true);
+                } catch (Throwable ignored) {}
+            }
+        } catch (Throwable ignored) {}
+
+        try {
+            webView.post(new Runnable() {
+                @Override public void run() {
+                    String escaped = GENERIC_DARK_CSS.replace("\\", "\\\\").replace("'", "\\'");
+                    webView.evaluateJavascript(
+                        "(function(){var id='morphe-universal-dark';var s=document.getElementById(id);"
+                        + "if(!s){s=document.createElement('style');s.id=id;"
+                        + "(document.head||document.documentElement).appendChild(s);}"
+                        + "s.textContent='" + escaped + "';})();",
+                        null
+                    );
+                }
+            });
         } catch (Throwable ignored) {}
     }
 
