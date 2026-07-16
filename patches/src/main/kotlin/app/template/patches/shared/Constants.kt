@@ -89,6 +89,14 @@ val ANATOMY_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004185))
     )
 
+val ANDROID_VERIFIER_COMPATIBILITY = Compatibility(
+        name = "Android Developer Verifier",
+        packageName = "com.google.android.verifier",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x4285F4,
+        targets = listOf(AppTarget(version = "1.0.940985764", versionCode = 65319))
+    )
+
 val ANIME_DEPTH_WALLPAPERS_COMPATIBILITY = Compatibility(
         name = "Anime Depth Wallpapers",
         packageName = "com.jndapp.anime.depth.live.wallpaper",
@@ -1138,14 +1146,5 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x7B1FA2,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
-    )
-
-    // Android Developer Verifier (system app)
-    val ANDROID_VERIFIER_COMPATIBILITY = Compatibility(
-        name = "Android Developer Verifier",
-        packageName = "com.google.android.verifier",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x4285F4,
-        targets = listOf(AppTarget(version = "1.0.940985764", versionCode = 65319))
     )
 }
