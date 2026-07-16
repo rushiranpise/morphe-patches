@@ -1,3 +1,46 @@
+# Rushi's Patches v1.13.1
+Patch source for Morphe.
+**Channel:** stable  
+**Branch:** `main`  
+**Patch count:** 207
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.13.1.mpp` from the release assets below.
+
+## Supported Apps Changed
+
+### Updated App Versions
+- **Citizen** (`sp0n.citizen`): `0.1300.0` -> `0.1301.0`
+- **Crime Radar** (`com.newsbreak.crimeradar`): `26.27.0` -> `26.28.0`
+- **Fitbod** (`com.fitbod.fitbod`): `8.24.1-0` -> `8.25.0-2`
+- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.4-ad_mob` -> `2.11.7-ad_mob`
+- **Life360** (`com.life360.android.safetymapd`): `26.25.0` -> `26.26.0`
+- **NAVITIME** (`com.navitime.inbound.walk`): `12.0.3` -> `12.0.4`
+- **PictureThis - Plant Identifier** (`cn.danatech.xingseus`): `5.29.0` -> `5.30.0`
+- **Splitwise** (`com.Splitwise.SplitwiseMobile`): `26.7.1` -> `26.7.2`
+- **Wavve Boating** (`com.wavve.boating.gps`): `5.7.0` -> `5.7.1`
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.13.1](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0...v1.13.1) (2026-07-16)
+
+### Fixes
+
+* minimal widgets ([d7e7857](https://github.com/rushiranpise/morphe-patches/commit/d7e7857bba7fbbf8a8d4b1eacd5f3c76cf921050))
+
 # Rushi's Patches v1.13.1-dev.1
 Patch source for Morphe.
 **Channel:** dev prerelease  
