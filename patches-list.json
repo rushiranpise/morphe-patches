@@ -1,34 +1,7 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.0-dev.5",
+  "version": "1.13.0-dev.6",
   "patches": [
-    {
-      "name": "Add resource file",
-      "description": "Adds or replaces one raw APK file from text options.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalAddResourcePath",
-          "title": "Target path",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "res/values/morphe_added.xml",
-          "values": null
-        },
-        {
-          "key": "universalAddResourceContent",
-          "title": "File content",
-          "description": null,
-          "required": false,
-          "type": "kotlin.String",
-          "default": "",
-          "values": null
-        }
-      ]
-    },
     {
       "name": "Alert Distances",
       "description": "Configures radar/camera and hazard alert announcement distances.\nCredits: Waze CGE Mod.\n",
@@ -274,33 +247,6 @@
       "options": []
     },
     {
-      "name": "Change package name",
-      "description": "Changes manifest package and optionally provider/permission authorities.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalNewPackageName",
-          "title": "New package or suffix",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "append.morphe",
-          "values": null
-        },
-        {
-          "key": "universalRewriteAuthorities",
-          "title": "Rewrite authorities",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "true",
-          "values": null
-        }
-      ]
-    },
-    {
       "name": "Change version code",
       "description": "Changes android:versionCode.",
       "default": false,
@@ -314,24 +260,6 @@
           "required": true,
           "type": "kotlin.String",
           "default": "2147483647",
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Custom certificates",
-      "description": "Adds a permissive network security config with system/user certs.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalAllowCleartext",
-          "title": "Allow cleartext",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "true",
           "values": null
         }
       ]
@@ -491,14 +419,6 @@
           ]
         }
       ],
-      "options": []
-    },
-    {
-      "name": "Disable Play Integrity",
-      "description": "Blocks Play Integrity service binding.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
       "options": []
     },
     {
@@ -882,42 +802,6 @@
           "required": false,
           "type": "kotlin.String",
           "default": null,
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Hex patch",
-      "description": "Replaces one hex byte pattern inside one APK file.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalHexTargetPath",
-          "title": "Target path",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "classes.dex",
-          "values": null
-        },
-        {
-          "key": "universalHexFrom",
-          "title": "Find hex",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "",
-          "values": null
-        },
-        {
-          "key": "universalHexTo",
-          "title": "Replace hex",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "",
           "values": null
         }
       ]
@@ -1775,30 +1659,6 @@
           ]
         }
       ],
-      "options": []
-    },
-    {
-      "name": "Remove audio capture policy",
-      "description": "Forces runtime audio capture policy to ALLOW_CAPTURE_BY_ALL.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Remove screen capture restriction",
-      "description": "Allows audio playback capture in the manifest.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Remove screenshot restriction",
-      "description": "Removes FLAG_SECURE and screenshot blocking.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
       "options": []
     },
     {

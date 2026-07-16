@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.13.0-dev.5](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.13.0-dev.5)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;225 patches total
+> **[v1.13.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.13.0-dev.6)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;217 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -1845,16 +1845,12 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#144</code> <strong>Universal</strong> &middot; 44 patches</summary>
+<summary><code>#144</code> <strong>Universal</strong> &middot; 36 patches</summary>
 <br>
 
 | Patch | Details |
 |---|---|
-| [**Add resource file**](#add-resource-file) | Adds or replaces one raw APK file from text options.<br><sub>Options: Target path, File content</sub> |
-| [**Change package name**](#change-package-name) | Changes manifest package and optionally provider/permission authorities.<br><sub>Options: New package or suffix, Rewrite authorities</sub> |
 | [**Change version code**](#change-version-code) | Changes android:versionCode.<br><sub>Options: Version code</sub> |
-| [**Custom certificates**](#custom-certificates) | Adds a permissive network security config with system/user certs.<br><sub>Options: Allow cleartext</sub> |
-| [**Disable Play Integrity**](#disable-play-integrity) | Blocks Play Integrity service binding. |
 | [**Disable ad SDK calls**](#disable-ad-sdk-calls) | No-ops common ad SDK load/show/init/fetch methods in bundled ad packages. |
 | [**Disable clipboard access**](#disable-clipboard-access) | Blocks app clipboard reads and writes. |
 | [**Disable shake ads**](#disable-shake-ads) | Skips SensorManager.registerListener calls that can power shake-to-ad behavior. |
@@ -1866,7 +1862,6 @@ Bug reports must include:
 | [**Fix Firebase after re-signing**](#fix-firebase-after-re-signing) | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. |
 | [**Force dark theme**](#force-dark-theme) | Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode. |
 | [**GmsCore support (MicroG)**](#gmscore-support-microg) | Routes Google Play Services calls through MicroG instead of real GPS.<br><sub>Options: MicroG package name, Main activity class (optional), Custom package name (optional)</sub> |
-| [**Hex patch**](#hex-patch) | Replaces one hex byte pattern inside one APK file.<br><sub>Options: Target path, Find hex, Replace hex</sub> |
 | [**Hide ADB status**](#hide-adb-status) | Hides adb_enabled and development_settings_enabled. |
 | [**Hide VPN and proxy**](#hide-vpn-and-proxy) | Hides common VPN transport/interface and Java proxy property checks. |
 | [**Hide app icon**](#hide-app-icon) | Removes launcher category from MAIN launcher filters. |
@@ -1875,9 +1870,6 @@ Bug reports must include:
 | [**Predictive back gesture**](#predictive-back-gesture) | Enables Android predictive back gesture. |
 | [**Provide Original app certificate**](#provide-original-app-certificate) | By Default it Reads the signing certificate from the original app installed.<br><sub>Options: Path to original APK (if uninstalled), Certificate SHA-1 (manual), Certificate SHA-256 (manual), +1 more</sub> |
 | [**Remove ad manifest entries**](#remove-ad-manifest-entries) | Removes common ad SDK permissions, services, providers, libraries, and metadata. |
-| [**Remove audio capture policy**](#remove-audio-capture-policy) | Forces runtime audio capture policy to ALLOW_CAPTURE_BY_ALL. |
-| [**Remove screen capture restriction**](#remove-screen-capture-restriction) | Allows audio playback capture in the manifest. |
-| [**Remove screenshot restriction**](#remove-screenshot-restriction) | Removes FLAG_SECURE and screenshot blocking. |
 | [**Remove share targets**](#remove-share-targets) | Removes chooser/direct share targets. |
 | [**Set target SDK 34**](#set-target-sdk-34) | Sets targetSdkVersion to 34. |
 | [**Spoof Android ID**](#spoof-android-id) | Spoofs Settings.Secure android_id reads.<br><sub>Options: Android ID</sub> |
