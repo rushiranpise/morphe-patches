@@ -28,7 +28,7 @@ internal val HasAIMealEverFingerprint = Fingerprint(
 
 // hk/a.getHasMoneyPkg() - checks if user has any paid plan (cloud playback gate)
 internal val GetHasMoneyPkgFingerprint = Fingerprint(
-    definingClass = "Lhk/a;",
+    definingClass = "Ljk/a;",
     name = "getHasMoneyPkg",
     returnType = "Z",
     parameters = emptyList(),

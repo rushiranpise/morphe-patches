@@ -129,9 +129,9 @@ val BLOCKPUZZLE_COMPATIBILITY = Compatibility(
 val BLURAMS_COMPATIBILITY = Compatibility(
         name = "Blurams",
         packageName = "com.blurams.ipc",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.1049.4.908", versionCode = 1908))
+        targets = listOf(AppTarget(version = "5.1049.4.919", versionCode = 1919))
     )
 
 val BLURWALL_COMPATIBILITY = Compatibility(
