@@ -1168,4 +1168,12 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x1976D2,
         targets = listOf(AppTarget(version = "2.0.0", versionCode = 10266))
     )
+
+    val BOXBOX_COMPATIBILITY = Compatibility(
+        name = "Box Box",
+        packageName = "club.boxbox.android",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE10600,
+        targets = listOf(AppTarget(version = "5.4.13", versionCode = 256))
+    )
 }
