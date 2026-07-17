@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.1",
+  "version": "1.14.0-dev.1",
   "patches": [
     {
       "name": "Alert Distances",
@@ -1399,6 +1399,31 @@
           "targets": [
             {
               "version": "18.0.356",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Removes ads from TorrDroid.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "intelligems.torrdroid",
+          "name": "TorrDroid",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1976D2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3695,6 +3720,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks premium features after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.monect.portable",
+          "name": "PC Remote - Desktop & Phone",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.3.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all Photo Editor premium features",
       "default": true,
       "dependencies": [],
@@ -4407,6 +4457,31 @@
           "targets": [
             {
               "version": "21.1.13-1-rc",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Box Box Pro",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "club.boxbox.android",
+          "name": "Box Box",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E10600",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.4.13",
               "isExperimental": false,
               "minSdk": null,
               "description": null
