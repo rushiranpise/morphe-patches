@@ -1152,4 +1152,12 @@ val YOGA_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
     )
+
+    val PC_REMOTE_COMPATIBILITY = Compatibility(
+        name = "PC Remote - Desktop & Phone",
+        packageName = "com.monect.portable",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "8.3.5", versionCode = 144))
+    )
 }
