@@ -1160,4 +1160,12 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "8.3.5", versionCode = 144))
     )
+
+    val TORRDROID_COMPATIBILITY = Compatibility(
+        name = "TorrDroid",
+        packageName = "intelligems.torrdroid",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1976D2,
+        targets = listOf(AppTarget(version = "2.0.0", versionCode = 10266))
+    )
 }
