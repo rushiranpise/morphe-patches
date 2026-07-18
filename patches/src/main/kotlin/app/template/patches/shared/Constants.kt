@@ -1176,4 +1176,12 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0xE10600,
         targets = listOf(AppTarget(version = "5.4.13", versionCode = 256))
     )
+
+    val FLUD_COMPATIBILITY = Compatibility(
+        name = "Flud",
+        packageName = "com.delphicoder.flud",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xF16522,
+        targets = listOf(AppTarget(version = "2.0.13", versionCode = 100013352))
+    )
 }
