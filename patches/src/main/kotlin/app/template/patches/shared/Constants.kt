@@ -1184,4 +1184,12 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0xF16522,
         targets = listOf(AppTarget(version = "2.0.13", versionCode = 100013352))
     )
+
+    val MAPY_COMPATIBILITY = Compatibility(
+        name = "Mapy",
+        packageName = "cz.seznam.mapy",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE03C31,
+        targets = listOf(AppTarget(version = "26.7.1", versionCode = 26070102))
+    )
 }
