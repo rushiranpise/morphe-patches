@@ -149,6 +149,14 @@ val BLURWALL_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.9.2", versionCode = 28))
     )
 
+val BOXBOX_COMPATIBILITY = Compatibility(
+        name = "Box Box",
+        packageName = "club.boxbox.android",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE10600,
+        targets = listOf(AppTarget(version = "5.4.13", versionCode = 256))
+    )
+
 val BUZZCAST_COMPATIBILITY = Compatibility(
         name = "BuzzCast",
         packageName = "com.guochao.faceshow",
@@ -340,6 +348,14 @@ val FLIGHTSKY_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.7.1", versionCode = 23))
     )
 
+val FLUD_COMPATIBILITY = Compatibility(
+        name = "Flud",
+        packageName = "com.delphicoder.flud",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xF16522,
+        targets = listOf(AppTarget(version = "2.0.13", versionCode = 100013352))
+    )
+
 val GENIUSSCAN_COMPATIBILITY = Compatibility(
         name = "Genius Scan",
         packageName = "com.thegrizzlylabs.geniusscan.free",
@@ -493,6 +509,14 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         appIconColor = 0xE30613,
         apkFileType = ApkFileType.APK,
         targets = listOf(AppTarget(version = "9.8", versionCode = 2088))
+    )
+
+val MAPY_COMPATIBILITY = Compatibility(
+        name = "Mapy",
+        packageName = "cz.seznam.mapy",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE03C31,
+        targets = listOf(AppTarget(version = "26.7.1", versionCode = 26070102))
     )
 
 val MEGA_COMPATIBILITY = Compatibility(
@@ -654,6 +678,14 @@ val PARALLELSPACE_COMPATIBILITY = Compatibility(
         packageName = "com.parallel.space.pro",
         appIconColor = 0x00BCD4,
         targets = listOf(AppTarget(version = "4.0.9123"))
+    )
+
+val PC_REMOTE_COMPATIBILITY = Compatibility(
+        name = "PC Remote - Desktop & Phone",
+        packageName = "com.monect.portable",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(AppTarget(version = "8.3.5", versionCode = 144))
     )
 
 val PHOTOEDITOR_COMPATIBILITY = Compatibility(
@@ -984,6 +1016,14 @@ val TOOMICS_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.6.7", versionCode = 106))
     )
 
+val TORRDROID_COMPATIBILITY = Compatibility(
+        name = "TorrDroid",
+        packageName = "intelligems.torrdroid",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1976D2,
+        targets = listOf(AppTarget(version = "2.0.0", versionCode = 10266))
+    )
+
 val TOXLY_COMPATIBILITY = Compatibility(
         name = "Toxly",
         packageName = "com.mindful.code.studio.toxly.scanner",
@@ -1151,45 +1191,5 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x7B1FA2,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
-    )
-
-    val PC_REMOTE_COMPATIBILITY = Compatibility(
-        name = "PC Remote - Desktop & Phone",
-        packageName = "com.monect.portable",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "8.3.5", versionCode = 144))
-    )
-
-    val TORRDROID_COMPATIBILITY = Compatibility(
-        name = "TorrDroid",
-        packageName = "intelligems.torrdroid",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "2.0.0", versionCode = 10266))
-    )
-
-    val BOXBOX_COMPATIBILITY = Compatibility(
-        name = "Box Box",
-        packageName = "club.boxbox.android",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE10600,
-        targets = listOf(AppTarget(version = "5.4.13", versionCode = 256))
-    )
-
-    val FLUD_COMPATIBILITY = Compatibility(
-        name = "Flud",
-        packageName = "com.delphicoder.flud",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xF16522,
-        targets = listOf(AppTarget(version = "2.0.13", versionCode = 100013352))
-    )
-
-    val MAPY_COMPATIBILITY = Compatibility(
-        name = "Mapy",
-        packageName = "cz.seznam.mapy",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE03C31,
-        targets = listOf(AppTarget(version = "26.7.1", versionCode = 26070102))
     )
 }
