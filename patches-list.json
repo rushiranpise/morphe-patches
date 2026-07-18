@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.14.0-dev.1",
+  "version": "1.14.0-dev.2",
   "patches": [
     {
       "name": "Alert Distances",
@@ -1374,6 +1374,31 @@
           "targets": [
             {
               "version": "1.6.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Removes all ads in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.delphicoder.flud",
+          "name": "Flud",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#F16522",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.13",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3559,6 +3584,31 @@
           "targets": [
             {
               "version": "6.7.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Premium features in app after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "cz.seznam.mapy",
+          "name": "Mapy",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E03C31",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.7.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
