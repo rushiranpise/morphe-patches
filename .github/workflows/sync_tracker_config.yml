@@ -20,6 +20,7 @@ jobs:
     name: Sort Constants and sync tracker
     runs-on: ubuntu-latest
 
+    # Prevent loop from the auto-generated sorting commit
     if: "!contains(github.event.head_commit.message, 'chore: sort Constants compatibility entries')"
 
     steps:
@@ -36,7 +37,7 @@ jobs:
       - name: Run Constants sorter
         run: |
           python .github/scripts/sort.py
-
+          
       - name: Check if Constants changed
         id: diff
         run: |
@@ -76,10 +77,10 @@ jobs:
 
           gh api \
             --method POST \
-            "repos/${TRACKER_REPO}/dispatche﻿s" \
+            "repos/${TRACKER_REPO}/dispatches" \
             -f event_type="${TRACKER_EVENT}" \
             -F client_payload[patches_repo]="${GITHUB_REPOSITORY}" \
             -F client_payload[patches_ref]="${GITHUB_REF_NAME}" \
-            -F client_payload[patches_sha]="$(git rev-parse HEAD)"
+            -F client_payload[patches_sha]="${GITHUB_SHA}"
 
           echo "Dispatched ${TRACKER_REPO}/${TRACKER_EVENT}."
