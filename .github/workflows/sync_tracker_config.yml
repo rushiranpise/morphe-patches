@@ -2,11 +2,12 @@ name: Sync patches-tracker config
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Release
-    types:
-      - completed
+  push:
+  # workflow_run:
+  #   workflows:
+  #     - Release
+  #   types:
+  #     - completed
 
 permissions:
   contents: write
