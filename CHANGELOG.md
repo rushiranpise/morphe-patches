@@ -1,3 +1,38 @@
+# Rushi's Patches v1.14.0-dev.3
+Patch source for Morphe.
+**Channel:** dev prerelease  
+**Branch:** `dev`  
+**Patch count:** 212
+**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
+**Download:** `patches-1.14.0-dev.3.mpp` from the release assets below.
+> This is a dev prerelease and may be less stable than a stable release.
+
+## Supported Apps Changed
+
+No supported app changes detected.
+
+## Need Help?
+
+If a patch fails, open a bug report and include:
+
+- App version
+- Patch source release/build
+- APK source/type
+- Logs
+
+Use the bug templates so the required details are included:
+https://github.com/rushiranpise/morphe-patches/issues/new/choose
+
+## Verification
+
+Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+
+## [1.14.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.2...v1.14.0-dev.3) (2026-07-19)
+
+### New Patches
+
+* add google photos ([58552d0](https://github.com/rushiranpise/morphe-patches/commit/58552d0154b588ad1b05a2934cf2b9b7d81a002b))
+
 # Rushi's Patches v1.14.0-dev.2
 Patch source for Morphe.
 **Channel:** dev prerelease  
