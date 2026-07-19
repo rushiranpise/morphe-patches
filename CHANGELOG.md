@@ -1,3 +1,9 @@
+## [1.14.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.3...v1.14.0-dev.4) (2026-07-19)
+
+### 🐛 Bug Fixes
+
+* format release notes for update badges ([20fe7b5](https://github.com/rushiranpise/morphe-patches/commit/20fe7b546e9e1facf70b46cedf9ea2dad845d3ed))
+
 ## [1.14.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.2...v1.14.0-dev.3) (2026-07-19)
 
 ### ? New Features
