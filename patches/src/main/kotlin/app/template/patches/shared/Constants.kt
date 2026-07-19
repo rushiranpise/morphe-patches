@@ -363,6 +363,14 @@ val GENIUSSCAN_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "7.40.0", versionCode = 7512))
     )
 
+val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
+        name = "Google Photos",
+        packageName = "com.google.android.apps.photos",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x4285F4,
+        targets = listOf(AppTarget(version = "7.83.0.943371825", versionCode = 52023598))
+    )
+
 val GREENIFY_COMPATIBILITY = Compatibility(
         name = "Greenify",
         packageName = "com.oasisfeng.greenify",
@@ -1194,13 +1202,5 @@ val YOGA_COMPATIBILITY = Compatibility(
         appIconColor = 0x7B1FA2,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "3.2.1", versionCode = 1004178))
-    )
-
-    val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
-        name = "Google Photos",
-        packageName = "com.google.android.apps.photos",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x4285F4,
-        targets = listOf(AppTarget(version = "7.83.0.943371825", versionCode = 52023598))
     )
 }
