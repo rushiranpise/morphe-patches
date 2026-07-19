@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.14.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.14.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;228 patches total
+> **[v1.14.0-dev.4](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.14.0-dev.4)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;228 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -707,7 +707,7 @@ Bug reports must include:
 <summary><code>#50</code> <strong>Google Photos</strong> &middot; 6 patches &middot; <code>com.google.android.apps.photos</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.photos">Play Store</a></summary>
 <br>
 
-**Supported versions:** `7.83.0.943371825`
+**Supported versions:** `7.84.0.949657053`
 
 | Patch | Details |
 |---|---|
@@ -1156,7 +1156,7 @@ Bug reports must include:
 <summary><code>#87</code> <strong>nzb360</strong> &middot; 1 patch &middot; <code>com.kevinforeman.nzb360</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360">Play Store</a></summary>
 <br>
 
-**Supported versions:** `23.5`
+**Supported versions:** `24`
 
 | Patch | Details |
 |---|---|
@@ -1600,7 +1600,7 @@ Bug reports must include:
 <summary><code>#124</code> <strong>Subway Now</strong> &middot; 1 patch &middot; <code>io.goodservice.theweekendest</code> &middot; <a href="https://play.google.com/store/apps/details?id=io.goodservice.theweekendest">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.2.8`
+**Supported versions:** `1.2.10`
 
 | Patch | Details |
 |---|---|
