@@ -366,9 +366,9 @@ val GENIUSSCAN_COMPATIBILITY = Compatibility(
 val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
         name = "Google Photos",
         packageName = "com.google.android.apps.photos",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.APK,
         appIconColor = 0x4285F4,
-        targets = listOf(AppTarget(version = "7.83.0.943371825", versionCode = 52023598))
+        targets = listOf(AppTarget(version = "7.84.0.949657053", versionCode = 52052132))
     )
 
 val GREENIFY_COMPATIBILITY = Compatibility(
@@ -671,7 +671,8 @@ val NZB360_COMPATIBILITY = Compatibility(
         name = "nzb360",
         packageName = "com.kevinforeman.nzb360",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "23.5"))
+        apkFileType = ApkFileType.APK,
+        targets = listOf(AppTarget(version = "24", versionCode = 522))
     )
 
 val ONETAPCLEANER_COMPATIBILITY = Compatibility(
@@ -977,7 +978,8 @@ val SUBWAYNOW_COMPATIBILITY = Compatibility(
         name = "Subway Now",
         packageName = "io.goodservice.theweekendest",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "1.2.8", versionCode = 79))
+        apkFileType = ApkFileType.XAPK,
+        targets = listOf(AppTarget(version = "1.2.10", versionCode = 81))
     )
 
 val SUPER_FILE_COMPATIBILITY = Compatibility(
