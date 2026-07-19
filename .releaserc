@@ -20,21 +20,17 @@
       }
     ],
     [
-      "./.github/scripts/release-notes-plugin.cjs",
+      "@semantic-release/release-notes-generator",
       {
-        "releaseNotesGenerator": {
-          "preset": "conventionalcommits",
-          "presetConfig": {
-            "types": [
-              { "type": "feat", "section": "New Patches", "hidden": false },
-              { "type": "bump", "section": "Updated App Support", "hidden": false },
-              { "type": "fix", "section": "Fixes", "hidden": false },
-              { "type": "perf", "section": "Improvements", "hidden": false },
-              { "type": "build", "section": "Maintenance", "hidden": false },
-              { "type": "docs", "section": "Documentation", "hidden": false },
-              { "type": "chore", "hidden": true }
-            ]
-          }
+        "preset": "conventionalcommits",
+        "presetConfig": {
+          "types": [
+            { "type": "fix", "section": "🐛 Bug Fixes", "hidden": false },
+            { "type": "feat", "section": "✨ New Features", "hidden": false },
+            { "type": "bump", "section": "🚀 Updated App Support", "hidden": false },
+            { "type": "perf", "section": "🔧 Improvements",  "hidden": false },
+            { "type": "build", "hidden": true }
+          ]
         }
       }
     ],

@@ -1,145 +1,45 @@
-# Rushi's Patches v1.13.1
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 207
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.1.mpp` from the release assets below.
+## [1.14.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.3...v1.14.0-dev.4) (2026-07-19)
 
-## Supported Apps Changed
+### 🐛 Bug Fixes
 
-### Updated App Versions
-- **Citizen** (`sp0n.citizen`): `0.1300.0` -> `0.1301.0`
-- **Crime Radar** (`com.newsbreak.crimeradar`): `26.27.0` -> `26.28.0`
-- **Fitbod** (`com.fitbod.fitbod`): `8.24.1-0` -> `8.25.0-2`
-- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.4-ad_mob` -> `2.11.7-ad_mob`
-- **Life360** (`com.life360.android.safetymapd`): `26.25.0` -> `26.26.0`
-- **NAVITIME** (`com.navitime.inbound.walk`): `12.0.3` -> `12.0.4`
-- **PictureThis - Plant Identifier** (`cn.danatech.xingseus`): `5.29.0` -> `5.30.0`
-- **Splitwise** (`com.Splitwise.SplitwiseMobile`): `26.7.1` -> `26.7.2`
-- **Wavve Boating** (`com.wavve.boating.gps`): `5.7.0` -> `5.7.1`
+* format release notes for update badges ([20fe7b5](https://github.com/rushiranpise/morphe-patches/commit/20fe7b546e9e1facf70b46cedf9ea2dad845d3ed))
 
-## Need Help?
+## [1.14.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.2...v1.14.0-dev.3) (2026-07-19)
 
-If a patch fails, open a bug report and include:
+### ? New Features
 
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
+* add google photos ([58552d0](https://github.com/rushiranpise/morphe-patches/commit/58552d0154b588ad1b05a2934cf2b9b7d81a002b))
 
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
+## [1.14.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0-dev.1...v1.14.0-dev.2) (2026-07-18)
 
-## Verification
+### ? New Features
 
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
+* add flud ([ce7c0a1](https://github.com/rushiranpise/morphe-patches/commit/ce7c0a1f4570e4935a0e35ce6dccca37e365d476))
+* add mapy ([eedc71a](https://github.com/rushiranpise/morphe-patches/commit/eedc71ae90ee77bc9a4ea4129212593aa6487a46))
+
+## [1.14.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.13.1...v1.14.0-dev.1) (2026-07-17)
+
+### ? New Features
+
+* add boxbox ([84183bc](https://github.com/rushiranpise/morphe-patches/commit/84183bc87b0368ac06deec0b962f7d1306a64531))
+* add pcremote ([274df88](https://github.com/rushiranpise/morphe-patches/commit/274df888f8dcee59628b6cadf2624b6e09660086))
+* add torrdroid ([6efb2f4](https://github.com/rushiranpise/morphe-patches/commit/6efb2f4cc60cabaddb15da48116a8dcc8c97ca10))
 
 ## [1.13.1](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0...v1.13.1) (2026-07-16)
 
-### Fixes
+### ?? Bug Fixes
 
 * minimal widgets ([d7e7857](https://github.com/rushiranpise/morphe-patches/commit/d7e7857bba7fbbf8a8d4b1eacd5f3c76cf921050))
-
-# Rushi's Patches v1.13.1-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 207
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.1-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
 
 ## [1.13.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0...v1.13.1-dev.1) (2026-07-16)
 
-### Fixes
+### ?? Bug Fixes
 
 * minimal widgets ([d7e7857](https://github.com/rushiranpise/morphe-patches/commit/d7e7857bba7fbbf8a8d4b1eacd5f3c76cf921050))
 
-# Rushi's Patches v1.13.0
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 207
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Added Apps
-- **Android Developer Verifier** (`com.google.android.verifier`)
-- **Block Blast!** (`com.block.juggle`)
-- **Clue Period & Cycle Tracker** (`com.clue.android`)
-- **Countdown Widget** (`me.gira.widget.countdown`)
-- **ES File Explorer** (`com.estrongs.android.pop`)
-- **Kahoot!** (`no.mobitroll.kahoot.android`)
-- **NAVITIME** (`com.navitime.inbound.walk`)
-- **Parallel Space Pro** (`com.parallel.space.pro`)
-- **Super File** (`com.esuper.file.explorer`)
-
-### Updated App Versions
-- **1.1.1.1** (`com.cloudflare.onedotonedotonedotone`): `6.38.7` -> `6.38.8`
-- **AiScore** (`com.onesports.score`): `4.2.4` -> `4.2.6`
-- **Amazon Shopping** (`com.amazon.mShop.android.shopping`): `32.12.4.100` -> `32.13.0.100`
-- **Canva** (`com.canva.editor`): `2.367.0` -> `2.368.0`
-- **Citymapper** (`com.citymapper.app.release`): `11.55.1` -> `11.55.2`
-- **ColorNote** (`com.socialnmobile.dictapps.notepad.color.note`): `4.8.4` -> `4.8.6`
-- **Crime Radar** (`com.newsbreak.crimeradar`): `26.23.2` -> `26.27.0`
-- **FlightAware** (`com.flightaware.android.liveFlightTracker`): `5.15.4` -> `5.15.5`
-- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.1-ad_mob` -> `2.11.4-ad_mob`
-- **JEFIT** (`je.fit`): `17.2.5` -> `17.2.6`
-- **LiveScore** (`com.livescore`): `9.7.1` -> `9.8`
-- **MigraConnect** (`com.tecso.MigraConnect`): `2.8.1` -> `2.8.2`
-- ...and 17 more
-
-### Removed Apps
-- **Anatomy** (`air.com.musclemotion.anatomy`)
-- **Kyphosis** (`air.com.musclemotion.kyphosis`)
-- **pkge** (`net.pkge.pkge`)
-- **Posture** (`air.com.musclemotion.posture`)
-- **Strength Training** (`air.com.musclemotion.strength.mobile`)
-- **Workout** (`air.com.musclemotion.workout`)
-- **Yoga** (`air.com.musclemotion.yoga`)
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0](https://github.com/rushiranpise/morphe-patches/compare/v1.12.0...v1.13.0) (2026-07-16)
 
-### New Patches
+### ? New Features
 
 * add clue ([5235316](https://github.com/rushiranpise/morphe-patches/commit/52353166c37e4aec692739453b504918150475b9))
 * add count down widget ([2612472](https://github.com/rushiranpise/morphe-patches/commit/26124728e19209294145cd28ad697cdf28b6d5b9))
@@ -150,288 +50,63 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * androidverifier ([f4d1169](https://github.com/rushiranpise/morphe-patches/commit/f4d1169f692fd6206470056c98f34102933c57ff))
 * update universal patches ([31273fd](https://github.com/rushiranpise/morphe-patches/commit/31273fdefabfe865b7d5a5df3a4a3cac9400425f))
 
-### Fixes
+### ?? Bug Fixes
 
 * build ([b3fcd55](https://github.com/rushiranpise/morphe-patches/commit/b3fcd55a87b04f14062c9fbe2f167e30900f4fb1))
 * build ([607670e](https://github.com/rushiranpise/morphe-patches/commit/607670e96a8a1e966f6fabfc4376c5b55d77cf1a))
 * build for real XD ([26c50cd](https://github.com/rushiranpise/morphe-patches/commit/26c50cd7913ebc5ec194dfb359247ef7d70f23f7))
 * remove broken patches ([9dbaf40](https://github.com/rushiranpise/morphe-patches/commit/9dbaf40485ccefc6c46154edafb7dc4776f9b6b7))
 * trading view ([92b2546](https://github.com/rushiranpise/morphe-patches/commit/92b25462d2438978c6d44f6aa0daddf1cf58fc40))
-
-# Rushi's Patches v1.13.0-dev.6
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 215
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.6.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
 
 ## [1.13.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.5...v1.13.0-dev.6) (2026-07-16)
 
-### Fixes
+### ?? Bug Fixes
 
 * remove broken patches ([9dbaf40](https://github.com/rushiranpise/morphe-patches/commit/9dbaf40485ccefc6c46154edafb7dc4776f9b6b7))
 
-# Rushi's Patches v1.13.0-dev.5
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 214
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.5.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.4...v1.13.0-dev.5) (2026-07-15)
 
-### New Patches
+### ? New Features
 
 * androidverifier ([f4d1169](https://github.com/rushiranpise/morphe-patches/commit/f4d1169f692fd6206470056c98f34102933c57ff))
 
-# Rushi's Patches v1.13.0-dev.4
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 213
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.4.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.3...v1.13.0-dev.4) (2026-07-15)
 
-### New Patches
+### ? New Features
 
 * add clue ([5235316](https://github.com/rushiranpise/morphe-patches/commit/52353166c37e4aec692739453b504918150475b9))
 
-### Fixes
+### ?? Bug Fixes
 
 * build ([b3fcd55](https://github.com/rushiranpise/morphe-patches/commit/b3fcd55a87b04f14062c9fbe2f167e30900f4fb1))
 * build ([607670e](https://github.com/rushiranpise/morphe-patches/commit/607670e96a8a1e966f6fabfc4376c5b55d77cf1a))
 * build for real XD ([26c50cd](https://github.com/rushiranpise/morphe-patches/commit/26c50cd7913ebc5ec194dfb359247ef7d70f23f7))
 * trading view ([92b2546](https://github.com/rushiranpise/morphe-patches/commit/92b25462d2438978c6d44f6aa0daddf1cf58fc40))
 
-# Rushi's Patches v1.13.0-dev.3
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 218
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.3.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.2...v1.13.0-dev.3) (2026-07-14)
 
-### New Patches
+### ? New Features
 
 * add count down widget ([2612472](https://github.com/rushiranpise/morphe-patches/commit/26124728e19209294145cd28ad697cdf28b6d5b9))
 * add parallel space ([25f200d](https://github.com/rushiranpise/morphe-patches/commit/25f200ddb968bd2861e8cf3854e9ea1cb63677bb))
 * update universal patches ([31273fd](https://github.com/rushiranpise/morphe-patches/commit/31273fdefabfe865b7d5a5df3a4a3cac9400425f))
 
-# Rushi's Patches v1.13.0-dev.2
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 215
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.2.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.13.0-dev.1...v1.13.0-dev.2) (2026-07-14)
 
-### New Patches
+### ? New Features
 
 * add new apps ([78a06d5](https://github.com/rushiranpise/morphe-patches/commit/78a06d5c7f40d5c5c9154fde9613aed39a1feb4b))
 
-# Rushi's Patches v1.13.0-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 212
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.13.0-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.13.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.12.0...v1.13.0-dev.1) (2026-07-13)
 
-### New Patches
+### ? New Features
 
 * add es strong ([f1e23ef](https://github.com/rushiranpise/morphe-patches/commit/f1e23efbcffea3b35949915bd3fa50c06276b1e2))
 * add super explorer ([1e26302](https://github.com/rushiranpise/morphe-patches/commit/1e26302512dc40c4be892e2bb8c6d252037aa0e5))
 
-# Rushi's Patches v1.12.0
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 212
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.12.0.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Added Apps
-- **Ace Ex File Manager** (`com.ace.ex.file.manager`)
-- **Anime Depth Wallpapers** (`com.jndapp.anime.depth.live.wallpaper`)
-- **BuzzCast** (`com.guochao.faceshow`)
-- **Dailyhunt** (`com.eterno`)
-- **Depth Live Wallpaper** (`com.jndapp.depth.live.wallpaper`)
-- **KineMaster** (`com.nexstreaming.app.kinemasterfree`)
-- **komoot** (`de.komoot.android`)
-- **Lark Player** (`com.dywx.larkplayer`)
-- **MEGA** (`mega.privacy.android.app`)
-- **Minimal Widgets** (`com.jndapp.minimal.widgets`)
-- **NYT Games** (`com.nytimes.crossword`)
-- **Pixel Habit Tracker** (`com.pixel.al.pixelhabittracker`)
-- ...and 5 more
-
-### Updated App Versions
-- **Case Tracker** (`com.saldous.casetracker`): `5.5.2` -> `5.5.3`
-- **Cashew** (`com.budget.tracker_app`): `6.5.9` -> `6.6.11`
-- **Citizen** (`sp0n.citizen`): `0.1298.0` -> `0.1300.0`
-- **Fitbod** (`com.fitbod.fitbod`): `8.24.0-1` -> `8.24.1-0`
-- **Inmigreat** (`com.changayaf.inmigreat`): `2.2.83` -> `2.3.4`
-- **MovieBox** (`com.community.oneroom`): `3.0.16.0703.03` -> `3.0.16.0709.03`
-- **MovieBox TV** (`com.community.mbox.tv`): `1.1.1.0702.03` -> `1.1.4.0710.03`
-- **Splitwise** (`com.Splitwise.SplitwiseMobile`): `26.6.3` -> `26.7.1`
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.12.0](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0...v1.12.0) (2026-07-12)
 
-### New Patches
+### ? New Features
 
 * add ace ([6535fc2](https://github.com/rushiranpise/morphe-patches/commit/6535fc23c68398b2a3164788333052ad72d0cfed))
 * add buzzcast ([7d640be](https://github.com/rushiranpise/morphe-patches/commit/7d640bec1b163ca37c9119d3a959a32c971b0c05))
@@ -450,44 +125,15 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add universal patches ([a80ca36](https://github.com/rushiranpise/morphe-patches/commit/a80ca366f446e2d93d271f43b0e87fdd3ea391f5))
 * add uptodown ([f5bbc0e](https://github.com/rushiranpise/morphe-patches/commit/f5bbc0ea9471e2be6cd486070d685ef7d9af647d))
 
-### Fixes
+### ?? Bug Fixes
 
 * dailyhunt ([53561e8](https://github.com/rushiranpise/morphe-patches/commit/53561e8cfb8bf50509f60273d00956f120ebe857))
 * moovit crash ([4d64bc7](https://github.com/rushiranpise/morphe-patches/commit/4d64bc71c7bf92e9e03f90163d1f919f01ea9df8))
 * typo [skip ci] ([d458f73](https://github.com/rushiranpise/morphe-patches/commit/d458f731b58f3b87eb6bd50ddaa1b3afc0121318))
 
-# Rushi's Patches v1.12.0-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 165
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.12.0-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.12.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0...v1.12.0-dev.1) (2026-07-12)
 
-### New Patches
+### ? New Features
 
 * add ace ([6535fc2](https://github.com/rushiranpise/morphe-patches/commit/6535fc23c68398b2a3164788333052ad72d0cfed))
 * add buzzcast ([7d640be](https://github.com/rushiranpise/morphe-patches/commit/7d640bec1b163ca37c9119d3a959a32c971b0c05))
@@ -506,74 +152,14 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add universal patches ([a80ca36](https://github.com/rushiranpise/morphe-patches/commit/a80ca366f446e2d93d271f43b0e87fdd3ea391f5))
 * add uptodown ([f5bbc0e](https://github.com/rushiranpise/morphe-patches/commit/f5bbc0ea9471e2be6cd486070d685ef7d9af647d))
 
-### Fixes
+### ?? Bug Fixes
 
 * dailyhunt ([53561e8](https://github.com/rushiranpise/morphe-patches/commit/53561e8cfb8bf50509f60273d00956f120ebe857))
 * moovit crash ([4d64bc7](https://github.com/rushiranpise/morphe-patches/commit/4d64bc71c7bf92e9e03f90163d1f919f01ea9df8))
 
-# Rushi's Patches v1.11.0
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 165
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Added Apps
-- **AiScore** (`com.onesports.score`)
-- **Amazon India** (`in.amazon.mShop.android.shopping`)
-- **Amazon Shopping** (`com.amazon.mShop.android.shopping`)
-- **AmoledPix** (`com.androholic.amoledpix`)
-- **APKMirror Installer** (`com.apkmirror.helper.prod`)
-- **Block Puzzle** (`game.puzzle.blockpuzzle`)
-- **Blurams** (`com.blurams.ipc`)
-- **Carousell** (`com.thecarousell.Carousell`)
-- **ColorNote** (`com.socialnmobile.dictapps.notepad.color.note`)
-- **Duolingo** (`com.duolingo`)
-- **Excel** (`com.microsoft.office.excel`)
-- **Fitbod** (`com.fitbod.fitbod`)
-- ...and 26 more
-
-### Updated App Versions
-- **AccuWeather** (`com.accuweather.android`): `21.1.11-1-rc` -> `21.1.13-1-rc`
-- **Anatomy** (`air.com.musclemotion.anatomy`): `3.2.0` -> `3.2.1`
-- **CamScanner** (`com.intsig.camscanner`): `7.20.0.2606230000` -> `7.20.5.2606250000`
-- **Canva** (`com.canva.editor`): `2.365.o` -> `2.367.0`
-- **Case Tracker** (`com.saldous.casetracker`): `5.5.1` -> `5.5.2`
-- **Flightradar24** (`com.flightradar24free`): `11.6.1` -> `11.7.0`
-- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.0-ad_mob` -> `2.11.1-ad_mob`
-- **Lawfully** (`com.lawfully.lawfully_ai_tracker`): `6.6.2` -> `6.7.1`
-- **m-Indicator** (`com.mobond.mindicator`): `18.0.352` -> `18.0.356`
-- **Moovit** (`com.tranzmate`): `5.195.0.1789` -> `5.195.2.1792`
-- **MovieBox** (`com.community.oneroom`): `3.0.15.0616.03` -> `3.0.16.0703.03`
-- **NetShare** (`kha.prog.mikrotik`): `UI/link-274` -> `277`
-- ...and 19 more
-
-### Removed Apps
-- **SkinSort** (`com.skinsort`)
-- **Tracked** (`com.tracked.mobile`)
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0](https://github.com/rushiranpise/morphe-patches/compare/v1.10.1...v1.11.0) (2026-07-10)
 
-### New Patches
+### ? New Features
 
 * add aiscore ([b758b02](https://github.com/rushiranpise/morphe-patches/commit/b758b024ca4c1f9b890bb8261e1a25bf5a542dcf))
 * add aiscore ([9884851](https://github.com/rushiranpise/morphe-patches/commit/9884851302d0244e85660716dd1ff651334224c6))
@@ -612,7 +198,7 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * trackercheck ([58a049c](https://github.com/rushiranpise/morphe-patches/commit/58a049cb5fb29a556121a2561d109dedaa5f3e78))
 * vizmanga ([14e3941](https://github.com/rushiranpise/morphe-patches/commit/14e39418d9b3be0478ac83588acb929cba1f7f3d))
 
-### Fixes
+### ?? Bug Fixes
 
 * amazon ([7f9fe2a](https://github.com/rushiranpise/morphe-patches/commit/7f9fe2afa45379173fab5edb974fa8d2978c940b))
 * inject map api keys from actions secrets ([7d5d282](https://github.com/rushiranpise/morphe-patches/commit/7d5d282a29181e196677407d8c415a17b83f8853))
@@ -621,80 +207,22 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * release ([76daaf4](https://github.com/rushiranpise/morphe-patches/commit/76daaf4c0ad922cb9dd08502c6da46108a8d8592))
 * Strength Training ([962d3c1](https://github.com/rushiranpise/morphe-patches/commit/962d3c1cb708f1581b4920f898ad3c41236b1628))
 
-# Rushi's Patches v1.11.0-dev.5
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 163
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0-dev.5.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.4...v1.11.0-dev.5) (2026-07-10)
 
-### New Patches
+### ? New Features
 
 * add life360 ([6b26e06](https://github.com/rushiranpise/morphe-patches/commit/6b26e067124fa4a624e18ee49342140e410b2769))
 * add moviebox india ([a7662ba](https://github.com/rushiranpise/morphe-patches/commit/a7662ba12f5b858dfcb20bdb88f8f95c0ef6cbe9))
 * add todays weather ([ebe3e49](https://github.com/rushiranpise/morphe-patches/commit/ebe3e49a68e37312466cfb2aaac9341e0e9f3f18))
 * add UbikiTouch ([086ac80](https://github.com/rushiranpise/morphe-patches/commit/086ac80378e76a4a5f4f34c515d3ec3b5c7da2b5))
 
-### Fixes
+### ?? Bug Fixes
 
 * amazon ([7f9fe2a](https://github.com/rushiranpise/morphe-patches/commit/7f9fe2afa45379173fab5edb974fa8d2978c940b))
 
-# Rushi's Patches v1.11.0-dev.4
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 141
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0-dev.4.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.3...v1.11.0-dev.4) (2026-07-09)
 
-### New Patches
+### ? New Features
 
 * add aiscore ([b758b02](https://github.com/rushiranpise/morphe-patches/commit/b758b024ca4c1f9b890bb8261e1a25bf5a542dcf))
 * add aiscore ([9884851](https://github.com/rushiranpise/morphe-patches/commit/9884851302d0244e85660716dd1ff651334224c6))
@@ -716,77 +244,19 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add WolframAlpha ([040db33](https://github.com/rushiranpise/morphe-patches/commit/040db33b9a46a59eecc6e496f569cb7a7a914ab0))
 * add word & excel ([1445673](https://github.com/rushiranpise/morphe-patches/commit/1445673f029e958f3fff60f5b490865b05d1514d))
 
-### Fixes
+### ?? Bug Fixes
 
 * livescore ([0d7552a](https://github.com/rushiranpise/morphe-patches/commit/0d7552a4e7733b06c459cddb595eba156af3b7e8))
 
-# Rushi's Patches v1.11.0-dev.3
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 141
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0-dev.3.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.2...v1.11.0-dev.3) (2026-07-07)
 
-### Fixes
+### ?? Bug Fixes
 
 * inject map api keys from actions secrets ([7d5d282](https://github.com/rushiranpise/morphe-patches/commit/7d5d282a29181e196677407d8c415a17b83f8853))
 
-# Rushi's Patches v1.11.0-dev.2
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 122
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0-dev.2.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.11.0-dev.1...v1.11.0-dev.2) (2026-07-07)
 
-### New Patches
+### ? New Features
 
 * add toomics ([808e36c](https://github.com/rushiranpise/morphe-patches/commit/808e36ca6ff58a290a42137c575f169d9c275f8a))
 * amazon ([b1b0c44](https://github.com/rushiranpise/morphe-patches/commit/b1b0c4486c9625f691e95ec8d1e00942e6ca6899))
@@ -801,190 +271,35 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * trackercheck ([3e27c45](https://github.com/rushiranpise/morphe-patches/commit/3e27c45da919fba019109b88cafb301d4b9c30ad))
 * vizmanga ([6d1dbf9](https://github.com/rushiranpise/morphe-patches/commit/6d1dbf93e1ee08b16d969761165979b31703608f))
 
-### Fixes
+### ?? Bug Fixes
 
 * pkge ([6b1904b](https://github.com/rushiranpise/morphe-patches/commit/6b1904bdb14994f3e4cbb0b1781d525e24a3d0d8))
 * release ([8420467](https://github.com/rushiranpise/morphe-patches/commit/84204672d394573d63986c95ab884326b66cf8eb))
 * Strength Training ([eeed1a0](https://github.com/rushiranpise/morphe-patches/commit/eeed1a0c1a74603a37f5a2a8a27674ddfffbecdc))
 
-# Rushi's Patches v1.11.0-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 120
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.11.0-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.11.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.10.1...v1.11.0-dev.1) (2026-07-06)
 
-### New Patches
+### ? New Features
 
 * add picturethis apps ([cc4d7b9](https://github.com/rushiranpise/morphe-patches/commit/cc4d7b9a554219487e95e45dc19b6a449f422fb3))
 
-# Rushi's Patches v1.10.1
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 120
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.1.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Updated App Versions
-- **1Tap Cleaner** (`com.a0soft.gphone.acc.free`): `5.19` -> `5.18`
-- **AccuWeather** (`com.accuweather.android`): `21.1.12-2-rc` -> `21.1.11-1-rc`
-- **Canva** (`com.canva.editor`): `2.367.0` -> `2.365.o`
-- **Case Tracker** (`com.saldous.casetracker`): `5.5.2` -> `5.5.1`
-- **Crime Radar** (`com.newsbreak.crimeradar`): `26.26.0` -> `26.23.2`
-- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.1-ad_mob` -> `2.11.0-ad_mob`
-- **m-Indicator** (`com.mobond.mindicator`): `18.0.356` -> `18.0.352`
-- **MovieBox TV** (`com.community.oneroom`): `3.0.16.0703.03` -> `3.0.15.0616.03`
-- **NetShare** (`kha.prog.mikrotik`): `276` -> `UI/link-274`
-- **Ninja VPN** (`app.ninjavpn.android`): `1.4.7` -> `1.4.6`
-- **Photo Editor** (`com.iudesk.android.photo.editor`): `13.3.1` -> `13.3`
-- **Pialytic** (`verbosus.pialytic`): `1.3.0` -> `1.2.8`
-- ...and 14 more
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.10.1](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0...v1.10.1) (2026-07-06)
 
-### Fixes
+### ?? Bug Fixes
 
 * Remove extra newline in Constants.kt ([32b354f](https://github.com/rushiranpise/morphe-patches/commit/32b354fb1cabd089d57595d613d3ec669a8a0276))
 * restore verified working versions ([fa3a518](https://github.com/rushiranpise/morphe-patches/commit/fa3a518c71936536b5bd14280eef35d0e0212fca))
-
-# Rushi's Patches v1.10.1-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 120
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.1-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
 
 ## [1.10.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0...v1.10.1-dev.1) (2026-07-06)
 
-### Fixes
+### ?? Bug Fixes
 
 * Remove extra newline in Constants.kt ([32b354f](https://github.com/rushiranpise/morphe-patches/commit/32b354fb1cabd089d57595d613d3ec669a8a0276))
 * restore verified working versions ([fa3a518](https://github.com/rushiranpise/morphe-patches/commit/fa3a518c71936536b5bd14280eef35d0e0212fca))
 
-# Rushi's Patches v1.10.0
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 120
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.0.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Added Apps
-- **All Reader** (`alldocumentreader.office.viewer.filereader.pdfviewer`)
-- **CamScanner** (`com.intsig.camscanner`)
-- **Genius Scan** (`com.thegrizzlylabs.geniusscan.free`)
-- **Image & Video Date Fixer** (`eu.duong.imagedatefixer`)
-- **Inure App Manager** (`app.simple.inure.play`)
-- **KineStop** (`com.urbandroid.kinestop`)
-- **pkge** (`net.pkge.pkge`)
-- **Rename & Organize** (`eu.duong.picturemanager`)
-- **SPIN** (`com.nationaledtech.spinbrowser`)
-- **SpotAngels** (`com.spotangels.android`)
-- **Strength Training** (`air.com.musclemotion.strength.mobile`)
-- **Toxly** (`com.mindful.code.studio.toxly.scanner`)
-- ...and 4 more
-
-### Updated App Versions
-- **1Tap Cleaner** (`com.a0soft.gphone.acc.free`): `5.18` -> `5.19`
-- **AccuWeather** (`com.accuweather.android`): `21.1.11-1-rc` -> `21.1.12-2-rc`
-- **Canva** (`com.canva.editor`): `2.365.o` -> `2.367.0`
-- **Case Tracker** (`com.saldous.casetracker`): `5.5.1` -> `5.5.2`
-- **Crime Radar** (`com.newsbreak.crimeradar`): `26.23.2` -> `26.26.0`
-- **HTTP Sniffer** (`com.anetcapture.mock`): `2.11.0-ad_mob` -> `2.11.1-ad_mob`
-- **m-Indicator** (`com.mobond.mindicator`): `18.0.352` -> `18.0.356`
-- **MovieBox TV** (`com.community.oneroom`): `3.0.15.0616.03` -> `3.0.16.0703.03`
-- **NetShare** (`kha.prog.mikrotik`): `UI/link-274` -> `276`
-- **Ninja VPN** (`app.ninjavpn.android`): `1.4.6` -> `1.4.7`
-- **Photo Editor** (`com.iudesk.android.photo.editor`): `13.3` -> `13.3.1`
-- **Pialytic** (`verbosus.pialytic`): `1.2.8` -> `1.3.0`
-- ...and 13 more
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.10.0](https://github.com/rushiranpise/morphe-patches/compare/v1.9.1...v1.10.0) (2026-07-05)
 
-### New Patches
+### ? New Features
 
 * add allreader ([2db39f3](https://github.com/rushiranpise/morphe-patches/commit/2db39f356b3f6eebe1b91ca1aefc0bd4bb51cc12))
 * add camscanner ([ad5617c](https://github.com/rushiranpise/morphe-patches/commit/ad5617c9a08ca492357a2e4f566161a6555e6c53))
@@ -1002,7 +317,7 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add wave boating ([e68a563](https://github.com/rushiranpise/morphe-patches/commit/e68a563b6912e6b89ae5b6cc22424998a3da165f))
 * add weawow ([b52511e](https://github.com/rushiranpise/morphe-patches/commit/b52511e2f26d172bef8da1c5a9b4599c8e496c4e))
 
-### Fixes
+### ?? Bug Fixes
 
 * citizen ([fe2a205](https://github.com/rushiranpise/morphe-patches/commit/fe2a205686a6cdcb795dd8fa2401bcf91b915358))
 * hide dependency patches from patch list ([8c8e999](https://github.com/rushiranpise/morphe-patches/commit/8c8e99941f9297b35177b6e6a6df1f0cbc48a15e))
@@ -1013,73 +328,15 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 
 * update readme ([c0ada5f](https://github.com/rushiranpise/morphe-patches/commit/c0ada5f4d411e7a267e627d5eb65dcde1a6e56b0))
 
-# Rushi's Patches v1.10.0-dev.3
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 120
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.0-dev.3.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.10.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0-dev.2...v1.10.0-dev.3) (2026-07-05)
 
-### Fixes
+### ?? Bug Fixes
 
 * typo ([c97a1ba](https://github.com/rushiranpise/morphe-patches/commit/c97a1ba008a6c95ebc29df1cfae3b616568daf69))
 
-# Rushi's Patches v1.10.0-dev.2
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 117
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.0-dev.2.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.10.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.10.0-dev.1...v1.10.0-dev.2) (2026-07-05)
 
-### New Patches
+### ? New Features
 
 * add allreader ([2db39f3](https://github.com/rushiranpise/morphe-patches/commit/2db39f356b3f6eebe1b91ca1aefc0bd4bb51cc12))
 * add genius scan ([1f09538](https://github.com/rushiranpise/morphe-patches/commit/1f095387fce65009cd3971b8b88b9e472ad0f290))
@@ -1089,7 +346,7 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add turboscan ([f83195f](https://github.com/rushiranpise/morphe-patches/commit/f83195f087c237f24ef27a524ea430880e3d495b))
 * add wave boating ([e68a563](https://github.com/rushiranpise/morphe-patches/commit/e68a563b6912e6b89ae5b6cc22424998a3da165f))
 
-### Fixes
+### ?? Bug Fixes
 
 * hide dependency patches from patch list ([8c8e999](https://github.com/rushiranpise/morphe-patches/commit/8c8e99941f9297b35177b6e6a6df1f0cbc48a15e))
 * inure ([0e8a422](https://github.com/rushiranpise/morphe-patches/commit/0e8a422045f415b9b851e94e095a3017fc351f21))
@@ -1098,47 +355,9 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 
 * update readme ([c0ada5f](https://github.com/rushiranpise/morphe-patches/commit/c0ada5f4d411e7a267e627d5eb65dcde1a6e56b0))
 
-# Rushi's Patches v1.10.0-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 117
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.10.0-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-### Added Apps
-- **CamScanner** (`com.intsig.camscanner`)
-- **Image & Video Date Fixer** (`eu.duong.imagedatefixer`)
-- **Inure App Manager** (`app.simple.inure.play`)
-- **Rename & Organize** (`eu.duong.picturemanager`)
-- **SPIN** (`com.nationaledtech.spinbrowser`)
-- **Strength Training** (`air.com.musclemotion.strength.mobile`)
-- **Toxly** (`com.mindful.code.studio.toxly.scanner`)
-- **Tracked** (`com.tracked.mobile`)
-- **Weawow: Weather & Widget** (`com.weawow`)
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.10.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.9.1...v1.10.0-dev.1) (2026-07-04)
 
-### New Patches
+### ? New Features
 
 * add camscanner ([ad5617c](https://github.com/rushiranpise/morphe-patches/commit/ad5617c9a08ca492357a2e4f566161a6555e6c53))
 * add inure ([82a6cdc](https://github.com/rushiranpise/morphe-patches/commit/82a6cdc3602ddabff0eb8852264368bb5ac6323d))
@@ -1149,134 +368,26 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add tracked ([a97ac19](https://github.com/rushiranpise/morphe-patches/commit/a97ac19507e2e64e653c1a74d9fea3c23a7b6d08))
 * add weawow ([b52511e](https://github.com/rushiranpise/morphe-patches/commit/b52511e2f26d172bef8da1c5a9b4599c8e496c4e))
 
-### Fixes
+### ?? Bug Fixes
 
 * add dependencies patches ([a3e1c4e](https://github.com/rushiranpise/morphe-patches/commit/a3e1c4e86ee00d736226a31ba4bf0fe20c539cf7))
 * citizen ([fe2a205](https://github.com/rushiranpise/morphe-patches/commit/fe2a205686a6cdcb795dd8fa2401bcf91b915358))
 
-# Rushi's Patches v1.9.1
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 107
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.9.1.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.9.1](https://github.com/rushiranpise/morphe-patches/compare/v1.9.0...v1.9.1) (2026-07-03)
 
-### Fixes
+### ?? Bug Fixes
 
 * correct extension path ([c87ac8b](https://github.com/rushiranpise/morphe-patches/commit/c87ac8b2a6727f70fe10df15074c9a29a0cd90cc))
-
-# Rushi's Patches v1.9.1-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 107
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.9.1-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
 
 ## [1.9.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.9.0...v1.9.1-dev.1) (2026-07-03)
 
-### Fixes
+### ?? Bug Fixes
 
 * correct extension path ([c87ac8b](https://github.com/rushiranpise/morphe-patches/commit/c87ac8b2a6727f70fe10df15074c9a29a0cd90cc))
 
-# Rushi's Patches v1.9.0
-Patch source for Morphe.
-**Channel:** stable  
-**Branch:** `main`  
-**Patch count:** 107
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.9.0.mpp` from the release assets below.
-
-## Supported Apps Changed
-
-### Added Apps
-- **BlurWall** (`apps.automan.blurwallpaper`)
-- **Carbon** (`com.joincarbon.nutrition`)
-- **Citymapper** (`com.citymapper.app.release`)
-- **Inmigreat** (`com.changayaf.inmigreat`)
-- **Lawfully** (`com.lawfully.lawfully_ai_tracker`)
-- **MigraConnect** (`com.tecso.MigraConnect`)
-- **Moovit** (`com.tranzmate`)
-- **NewsBreak** (`com.particlenews.newsbreak`)
-- **Police Scanner** (`police.scanner.radio.broadcastify.citizen`)
-- **Scoopz** (`com.localaiapp.scoops`)
-- **SkinSort** (`com.skinsort`)
-- **Snow-Forecast.com** (`com.snow_forecast.snowforecast`)
-- ...and 2 more
-
-### Updated App Versions
-- **AIDA64** (`com.finalwire.aida64`): `2.20` -> `2.21`
-- **CPU-Z** (`com.cpuid.cpu_z`): `1.57` -> `1.59`
-- **MovieBox TV** (`com.community.oneroom`): `1.0.2.0526.03, 3.0.15.0616.03` -> `3.0.15.0616.03`
-- **TeraBox** (`com.dubox.drive`): `4.19.6` -> `4.20.1`
-- **Windy** (`com.windyty.android`): `unknown` -> `50.1.1`
-
-### Removed Apps
-- **Strength Training: Gym Workout** (`air.com.musclemotion.strength.mobile`)
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.9.0](https://github.com/rushiranpise/morphe-patches/compare/v1.8.1...v1.9.0) (2026-07-03)
 
-### New Patches
+### ? New Features
 
 * add blurwall ([571b0a8](https://github.com/rushiranpise/morphe-patches/commit/571b0a8ab2f8389e5e6459308cb75b5c7ade1238))
 * add carbon ([8dd9619](https://github.com/rushiranpise/morphe-patches/commit/8dd96198aa837e27ebe7c3304313abf889cbf6a5))
@@ -1294,7 +405,7 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add udisk ([10ca21b](https://github.com/rushiranpise/morphe-patches/commit/10ca21b2d79846793e877e4e66c69f5530a3d574))
 * add universal patches ([2b6267e](https://github.com/rushiranpise/morphe-patches/commit/2b6267e69c894662a36cc41108587a90d87b9104))
 
-### Fixes
+### ?? Bug Fixes
 
 * case tracker ([1261ec0](https://github.com/rushiranpise/morphe-patches/commit/1261ec07bd664512c8d5b974cca24547b699ef0b))
 * correct patch metadata urls ([cc8eb1e](https://github.com/rushiranpise/morphe-patches/commit/cc8eb1e3dd2a313aa559f996c05d31a9aad2dd2c))
@@ -1321,60 +432,9 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * redesign generated patches table ([f867965](https://github.com/rushiranpise/morphe-patches/commit/f867965693dc05eb25a5369ada15565e7c224d51))
 * require patch version and logs for bug reports ([a0ec45e](https://github.com/rushiranpise/morphe-patches/commit/a0ec45e5c3d11ac84db23fcd1d0fff64f3f114f1))
 
-# Rushi's Patches v1.9.0-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 107
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.9.0-dev.1.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-### Added Apps
-- **BlurWall** (`apps.automan.blurwallpaper`)
-- **Carbon** (`com.joincarbon.nutrition`)
-- **Citymapper** (`com.citymapper.app.release`)
-- **Inmigreat** (`com.changayaf.inmigreat`)
-- **Lawfully** (`com.lawfully.lawfully_ai_tracker`)
-- **MigraConnect** (`com.tecso.MigraConnect`)
-- **Moovit** (`com.tranzmate`)
-- **NewsBreak** (`com.particlenews.newsbreak`)
-- **Police Scanner** (`police.scanner.radio.broadcastify.citizen`)
-- **Scoopz** (`com.localaiapp.scoops`)
-- **SkinSort** (`com.skinsort`)
-- **Snow-Forecast.com** (`com.snow_forecast.snowforecast`)
-- ...and 2 more
-
-### Updated App Versions
-- **AIDA64** (`com.finalwire.aida64`): `2.20` -> `2.21`
-- **CPU-Z** (`com.cpuid.cpu_z`): `1.57` -> `1.59`
-- **MovieBox TV** (`com.community.oneroom`): `1.0.2.0526.03, 3.0.15.0616.03` -> `3.0.15.0616.03`
-- **Windy** (`com.windyty.android`): `unknown` -> `50.1.1`
-
-### Removed Apps
-- **Strength Training** (`air.com.musclemotion.strength.mobile`)
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.9.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.2-dev.2...v1.9.0-dev.1) (2026-07-03)
 
-### New Patches
+### ? New Features
 
 * add blurwall ([571b0a8](https://github.com/rushiranpise/morphe-patches/commit/571b0a8ab2f8389e5e6459308cb75b5c7ade1238))
 * add carbon ([8dd9619](https://github.com/rushiranpise/morphe-patches/commit/8dd96198aa837e27ebe7c3304313abf889cbf6a5))
@@ -1392,44 +452,15 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * add udisk ([10ca21b](https://github.com/rushiranpise/morphe-patches/commit/10ca21b2d79846793e877e4e66c69f5530a3d574))
 * add universal patches ([2b6267e](https://github.com/rushiranpise/morphe-patches/commit/2b6267e69c894662a36cc41108587a90d87b9104))
 
-### Fixes
+### ?? Bug Fixes
 
 * case tracker ([1261ec0](https://github.com/rushiranpise/morphe-patches/commit/1261ec07bd664512c8d5b974cca24547b699ef0b))
 * cpuz ([8c9040e](https://github.com/rushiranpise/morphe-patches/commit/8c9040e1eb729d6b6aa9778ac1a65386ce804dd2))
 * remove broken patch ([e868590](https://github.com/rushiranpise/morphe-patches/commit/e86859061b58ea2317616b317fa361d1fa8eed72))
 
-# Rushi's Patches v1.8.2-dev.2
-Patch source for Morphe.
-**Channel:** dev prerelease  
-**Branch:** `dev`  
-**Patch count:** 85
-**Install in Morphe:** https://morphe.software/add-source?github=rushiranpise/morphe-patches  
-**Download:** `patches-1.8.2-dev.2.mpp` from the release assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-No supported app changes detected.
-
-## Need Help?
-
-If a patch fails, open a bug report and include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp` file you downloaded.
-
 ## [1.8.2-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.8.2-dev.1...v1.8.2-dev.2) (2026-07-03)
 
-### Fixes
+### ?? Bug Fixes
 
 * remove incorrect apk file type metadata ([dfbf6f5](https://github.com/rushiranpise/morphe-patches/commit/dfbf6f53c0f2728ca43f71e948ae0fc975b22cdc))
 
@@ -1438,47 +469,9 @@ Download `SHA256SUMS.txt` from the release assets and compare it with the `.mpp`
 * polish release notes layout ([d529d58](https://github.com/rushiranpise/morphe-patches/commit/d529d580215a8c8140bdb21280a10efb60e8aee0))
 * use original release asset filenames ([c9ccf47](https://github.com/rushiranpise/morphe-patches/commit/c9ccf47bffcabeee5b3f4e8a3eecef894a57aff0))
 
-# Rushi's Patches v1.8.2-dev.1
-Patch source for Morphe.
-**Channel:** dev prerelease
-**Branch:** `dev`
-**Patch count:** 85
-**Install source:** https://morphe.software/add-source?github=rushiranpise/morphe-patches
-**Bundle asset:** download `patches-1.8.2-dev.1.mpp` from the assets below.
-> This is a dev prerelease and may be less stable than a stable release.
-
-## Supported Apps Changed
-
-### Added Apps
-- None
-
-### Updated App Versions
-- TeraBox (com.dubox.drive): 4.19.6 -> 4.20.1
-
-### Removed Apps
-- None
-
-## Reporting Issues
-
-If a patch fails, include:
-
-- App version
-- Patch source release/build
-- APK source/type
-- Logs
-
-Use the bug templates so the required details are included:
-https://github.com/rushiranpise/morphe-patches/issues/new/choose
-
-## Verification
-
-A `SHA256SUMS.txt` asset is attached for verifying the downloaded `.mpp` bundle.
-
-## Changes
-
 ## [1.8.2-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.8.1...v1.8.2-dev.1) (2026-07-02)
 
-### Fixes
+### ?? Bug Fixes
 
 * correct patch metadata urls ([cc8eb1e](https://github.com/rushiranpise/morphe-patches/commit/cc8eb1e3dd2a313aa559f996c05d31a9aad2dd2c))
 * terabox ([e66c010](https://github.com/rushiranpise/morphe-patches/commit/e66c010b6df09743b27f45b06e3804610eacd812))

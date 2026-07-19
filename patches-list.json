@@ -1,7 +1,32 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.13.1",
+  "version": "1.14.0-dev.4",
   "patches": [
+    {
+      "name": "AMOLED dark theme",
+      "description": "Makes Google Photos dark surfaces true black.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
     {
       "name": "Alert Distances",
       "description": "Configures radar/camera and hazard alert announcement distances.\nCredits: Waze CGE Mod.\n",
@@ -231,12 +256,12 @@
           "packageName": "com.google.android.verifier",
           "name": "Android Developer Verifier",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.940985764",
+              "version": "1.0.943911795",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -245,6 +270,50 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Change package name",
+      "description": "Installs Google Photos beside the system Photos app by changing package, permissions, providers, and app name.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "googlePhotosPackageName",
+          "title": "Package name",
+          "description": "Package name for the cloned Google Photos app.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "app.morphe.android.apps.photos",
+          "values": null
+        },
+        {
+          "key": "googlePhotosAppName",
+          "title": "App name",
+          "description": "Launcher name for the cloned Google Photos app.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Photos Morphe",
+          "values": null
+        }
+      ]
     },
     {
       "name": "Change version code",
@@ -586,6 +655,31 @@
       "options": []
     },
     {
+      "name": "Enable DCIM folders backup control",
+      "description": "Allows controlling Camera and other DCIM folder backup individually.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Enable Debug Menu",
       "description": "Enables Duolingo's hidden debug menu in settings.",
       "default": false,
@@ -740,6 +834,31 @@
       "options": []
     },
     {
+      "name": "Fix DCIM folder classification",
+      "description": "Prevents non-Camera DCIM folders from being grouped as Camera.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Fix Firebase after re-signing",
       "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch no other config needed.",
       "default": false,
@@ -757,6 +876,33 @@
         "ResourcePatch"
       ],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "GmsCore support",
+      "description": "Adds MicroG/GmsCore support metadata for Google Photos.",
+      "default": false,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -1385,6 +1531,31 @@
     },
     {
       "name": "Remove Ads",
+      "description": "Removes all ads in app",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.delphicoder.flud",
+          "name": "Flud",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#F16522",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.13-beta02",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
       "description": "Removes interstitial and exit native ads from m-Indicator.",
       "default": true,
       "dependencies": [],
@@ -1410,6 +1581,31 @@
     },
     {
       "name": "Remove Ads",
+      "description": "Removes ads from TorrDroid.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "intelligems.torrdroid",
+          "name": "TorrDroid",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1976D2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
       "description": "Remove in-app ads.",
       "default": true,
       "dependencies": [],
@@ -1418,12 +1614,12 @@
           "packageName": "com.vizmanga.android",
           "name": "VIZ Manga",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "4.14.0",
+              "version": "4.14.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2127,6 +2323,96 @@
       ]
     },
     {
+      "name": "Spoof features",
+      "description": "Spoofs selectable Pixel Photos build and feature flags.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.google.android.apps.photos",
+          "name": "Google Photos",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#4285F4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.84.0.949657053",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "googlePhotosSpoofProfile",
+          "title": "Pixel profile",
+          "description": "Device profile used for Build fields and Pixel feature levels.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "pixel_xl",
+          "values": {
+            "Pixel XL - unlimited original quality": "pixel_xl",
+            "Pixel - unlimited original quality": "pixel",
+            "Pixel 2 - storage saver": "pixel_2",
+            "Pixel 3 XL - storage saver": "pixel_3_xl",
+            "Pixel 3a XL - storage saver": "pixel_3a_xl",
+            "Pixel 4 XL - storage saver": "pixel_4_xl",
+            "Pixel 4a - storage saver": "pixel_4a",
+            "Pixel 5 - storage saver": "pixel_5",
+            "Pixel 5a - storage saver": "pixel_5a",
+            "Pixel 6 Pro - feature gates only": "pixel_6_pro",
+            "Pixel 6a - feature gates only": "pixel_6a",
+            "Pixel 7 - feature gates only": "pixel_7",
+            "Pixel 7 Pro - feature gates only": "pixel_7_pro",
+            "Pixel 7a - feature gates only": "pixel_7a",
+            "Pixel 8 - feature gates only": "pixel_8",
+            "Pixel 8 Pro - Video Boost": "pixel_8_pro",
+            "Pixel 8a - feature gates only": "pixel_8a",
+            "Pixel 9 - AI editing": "pixel_9",
+            "Pixel 9 Pro - AI editing": "pixel_9_pro",
+            "Pixel 9 Pro XL - AI editing": "pixel_9_pro_xl",
+            "Pixel 9a - AI editing": "pixel_9a",
+            "Pixel 10 Pro XL - latest Pixel AI": "pixel_10_pro_xl"
+          }
+        },
+        {
+          "key": "googlePhotosAndroidVersion",
+          "title": "Android version",
+          "description": "Optionally spoof Build.VERSION fields. Follow profile uses the selected Pixel's matching Android version.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "none",
+          "values": {
+            "Do not spoof Android version": "none",
+            "Follow Pixel profile": "follow_profile",
+            "Nougat 7.1.2": "nougat_7_1_2",
+            "Oreo 8.1.0": "oreo_8_1_0",
+            "Pie 9.0": "pie_9_0",
+            "Q 10.0": "q_10_0",
+            "R 11.0": "r_11_0",
+            "S 12.0": "s_12_0",
+            "Android 13": "android_13",
+            "Android 14": "android_14",
+            "Android 15": "android_15",
+            "Android 16": "android_16",
+            "Android 17": "android_17"
+          }
+        },
+        {
+          "key": "googlePhotosOverrideRomFeatureLevels",
+          "title": "Override ROM feature levels",
+          "description": "Force newer Pixel feature flags off when the selected profile should not have them.",
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": true,
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Spoof install source",
       "description": "Makes the app think it was installed from a specific store (default: Google Play).\n\nUseful when an app blocks features or shows errors because it detects it was not installed from the Play Store.\n\nOnly affects what the app itself sees - does not change the real system install record.",
       "default": false,
@@ -2355,12 +2641,12 @@
           "packageName": "com.kevinforeman.nzb360",
           "name": "nzb360",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "23.5",
+              "version": "24",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2530,12 +2816,12 @@
           "packageName": "je.fit",
           "name": "JEFIT",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1A73E8",
           "signatures": null,
           "targets": [
             {
-              "version": "17.2.6",
+              "version": "17.2.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2969,12 +3255,12 @@
           "packageName": "io.goodservice.theweekendest",
           "name": "Subway Now",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "1.2.8",
+              "version": "1.2.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3545,6 +3831,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Premium features in app after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "cz.seznam.mapy",
+          "name": "Mapy",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E03C31",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.7.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlock all premium widgets.",
       "default": true,
       "dependencies": [],
@@ -3553,12 +3864,12 @@
           "packageName": "com.jndapp.minimal.widgets",
           "name": "Minimal Widgets",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#212121",
           "signatures": null,
           "targets": [
             {
-              "version": "1.1.01",
+              "version": "1.3.01",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3684,6 +3995,31 @@
           "targets": [
             {
               "version": "1.4.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks premium features after login.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.monect.portable",
+          "name": "PC Remote - Desktop & Phone",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.3.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4306,7 +4642,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.7.1",
+              "version": "5.7.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4407,6 +4743,31 @@
           "targets": [
             {
               "version": "21.1.13-1-rc",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Box Box Pro",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "club.boxbox.android",
+          "name": "Box Box",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E10600",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.4.13",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5104,12 +5465,12 @@
           "packageName": "com.twtapp",
           "name": "Stargazing Hub",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
             {
-              "version": "3.3.1",
+              "version": "3.3.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5206,12 +5567,12 @@
           "packageName": "com.block.juggle",
           "name": "Block Blast!",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {
-              "version": "10.3.5",
+              "version": "10.3.9",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5454,12 +5815,12 @@
           "packageName": "com.weawow",
           "name": "Weawow: Weather & Widget",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
             {
-              "version": "7.1.7",
+              "version": "7.1.8",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5511,7 +5872,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.0.4",
+              "version": "12.0.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
