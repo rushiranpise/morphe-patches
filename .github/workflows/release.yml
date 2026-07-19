@@ -2,12 +2,12 @@ name: Release
 
 on:
   # push:
-  # workflow_dispatch:
+  workflow_dispatch:
   workflow_run:
     workflows:
-      - Sync patches-tracker config
+      - Sync
     types:
-      - completed  
+      - completed
 
 jobs:
   release:
