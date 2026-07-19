@@ -102,7 +102,10 @@ public final class PixelSpoofHelper {
 
         String[] photosEnabled = {
             "com.google.android.apps.photos.NEXUS_PRELOAD",
-            "com.google.android.apps.photos.nexus_preload"
+            "com.google.android.apps.photos.nexus_preload",
+            "com.google.android.feature.PIXEL_EXPERIENCE",
+            "com.google.android.apps.photos.PIXEL_PRELOAD",
+            "com.google.android.apps.photos.PIXEL_2016_PRELOAD"
         };
         for (String feature : photosEnabled) PHOTOS_ENABLE_FEATURES.add(feature);
 
@@ -122,7 +125,10 @@ public final class PixelSpoofHelper {
             "com.google.android.feature.PIXEL_2024_MIDYEAR_EXPERIENCE",
             "com.google.android.feature.PIXEL_2024_EXPERIENCE",
             "com.google.android.feature.PIXEL_2025_MIDYEAR_EXPERIENCE",
-            "com.google.android.feature.PIXEL_2025_EXPERIENCE"
+            "com.google.android.feature.PIXEL_2025_EXPERIENCE",
+            "com.google.android.feature.PIXEL_2026_MIDYEAR_EXPERIENCE",
+            "com.google.android.feature.PIXEL_2026_EXPERIENCE",
+            "com.google.android.feature.PIXEL_2027_MIDYEAR_EXPERIENCE"
         };
         for (String feature : photosDisabled) PHOTOS_DISABLE_FEATURES.add(feature);
     }

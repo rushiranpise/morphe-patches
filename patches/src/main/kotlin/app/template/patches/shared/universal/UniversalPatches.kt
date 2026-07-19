@@ -17,6 +17,7 @@ import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import org.w3c.dom.Document
 import org.w3c.dom.Element
+import java.io.File
 
 /*
  * Universal patch ports inspired by ReVanced Patches (GPL-3.0):
@@ -26,6 +27,14 @@ import org.w3c.dom.Element
  */
 
 private const val HELPER = "Lapp/template/extension/extension/UniversalPatchHelper;"
+private const val FORCE_DARK_ATTRIBUTE = "android:forceDarkAllowed"
+
+private val targetedForceDarkThemes = setOf(
+    "Theme.CustomAppTheme",
+    "Theme.CustomAppTheme.NoActionBar",
+    "Theme.CustomAppTheme.Transparent",
+    "Theme.CustomAppTheme.TransparentStatusBar",
+)
 
 private val UniversalApplicationOnCreateFingerprint = Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC),
@@ -181,7 +190,7 @@ private val universalForceDarkThemeResourcePatch = resourcePatch(
     execute {
         document("AndroidManifest.xml").use { doc ->
             (doc.getElementsByTagName("application").item(0) as? Element)
-                ?.setAttribute("android:forceDarkAllowed", "true")
+                ?.setAttribute(FORCE_DARK_ATTRIBUTE, "true")
         }
 
         listOf(
@@ -194,16 +203,38 @@ private val universalForceDarkThemeResourcePatch = resourcePatch(
         ).forEach { path ->
             runCatching {
                 document(path).use { doc ->
-                    val styles = doc.getElementsByTagName("style")
-                    for (i in 0 until styles.length) {
-                        val style = styles.item(i) as? Element ?: continue
-                        style.ensureStyleItem(doc, "android:forceDarkAllowed", "true")
-                        style.ensureStyleItem(doc, "android:windowLightStatusBar", "false")
-                        style.ensureStyleItem(doc, "android:windowLightNavigationBar", "false")
-                    }
+                        val styles = doc.getElementsByTagName("style")
+                        for (i in 0 until styles.length) {
+                            val style = styles.item(i) as? Element ?: continue
+                            style.ensureStyleItem(doc, FORCE_DARK_ATTRIBUTE, "true")
+                            style.ensureStyleItem(doc, "android:windowLightStatusBar", "false")
+                            style.ensureStyleItem(doc, "android:windowLightNavigationBar", "false")
+                        }
                 }
             }
         }
+
+        val resDirectory = get("res")
+        if (!resDirectory.isDirectory) return@execute
+
+        resDirectory.walkTopDown()
+            .filter { it.isValuesXml() }
+            .forEach { file ->
+                val source = file.readText()
+                if (!source.contains("<style") || targetedForceDarkThemes.none(source::contains)) {
+                    return@forEach
+                }
+
+                val resourcePath = "res/${file.relativeTo(resDirectory).invariantSeparatorsPath}"
+                document(resourcePath).use { doc ->
+                    val styles = doc.getElementsByTagName("style")
+                    for (i in 0 until styles.length) {
+                        val style = styles.item(i) as? Element ?: continue
+                        if (style.getAttribute("name") !in targetedForceDarkThemes) continue
+                        style.ensureStyleItem(doc, FORCE_DARK_ATTRIBUTE, "true")
+                    }
+                }
+            }
     }
 }
 
@@ -531,4 +562,10 @@ private fun Element.ensureStyleItem(document: Document, name: String, value: Str
     item.setAttribute("name", name)
     item.textContent = value
     appendChild(item)
+}
+
+private fun File.isValuesXml(): Boolean {
+    if (!isFile || !extension.equals("xml", ignoreCase = true)) return false
+    val directoryName = parentFile?.name ?: return false
+    return directoryName == "values" || directoryName.startsWith("values-")
 }
