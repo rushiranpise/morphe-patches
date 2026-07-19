@@ -1,4 +1,4 @@
-name: Sync patches-tracker config
+name: Sync
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   sort-and-sync:
-    name: Sort Constants and sync tracker
+    name: Sync
     runs-on: ubuntu-latest
 
     # Prevent loop from the auto-generated sorting commit
