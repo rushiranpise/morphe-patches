@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.14.0-dev.3",
+  "version": "1.14.0-dev.4",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -12,12 +12,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -281,12 +281,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -664,12 +664,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -843,12 +843,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -890,12 +890,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2332,12 +2332,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.83.0.943371825",
+              "version": "7.84.0.949657053",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2641,12 +2641,12 @@
           "packageName": "com.kevinforeman.nzb360",
           "name": "nzb360",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "23.5",
+              "version": "24",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3255,12 +3255,12 @@
           "packageName": "io.goodservice.theweekendest",
           "name": "Subway Now",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "1.2.8",
+              "version": "1.2.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
