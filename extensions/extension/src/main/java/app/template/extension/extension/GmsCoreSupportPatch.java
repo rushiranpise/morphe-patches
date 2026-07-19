@@ -37,7 +37,10 @@ public class GmsCoreSupportPatch {
                 return;
             }
 
-            String gmsCorePackage = getGmsCoreVendorGroupId() + ".android.gms";
+            String gmsCoreVendor = getGmsCoreVendorGroupId();
+            String gmsCorePackage = gmsCoreVendor.endsWith(".android.gms")
+                    ? gmsCoreVendor
+                    : gmsCoreVendor + ".android.gms";
 
             try {
                 context.getPackageManager()
@@ -52,5 +55,9 @@ public class GmsCoreSupportPatch {
                 ).show();
             }
         } catch (Exception ignored) {}
+    }
+
+    public static void checkGmsCore(Activity activity) {
+        checkGmsCore((Context) activity);
     }
 }
