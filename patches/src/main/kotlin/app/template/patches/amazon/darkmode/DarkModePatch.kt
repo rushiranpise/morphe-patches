@@ -12,12 +12,20 @@ private const val HELPER = "Lapp/template/extension/extension/AmazonHelper;"
 
 private val amazonDarkModeResourcePatch = resourcePatch {
     execute {
-        document("res/values-v29/styles.xml").use { doc ->
-            val items = doc.getElementsByTagName("item")
-            for (i in 0 until items.length) {
-                val item = items.item(i) as? Element ?: continue
-                if (item.getAttribute("name") == "android:forceDarkAllowed")
-                    item.textContent = "true"
+        // Newer Amazon builds keep forceDarkAllowed in values/styles.xml;
+        // older builds used values-v29. Update whichever files exist.
+        listOf(
+            "res/values/styles.xml",
+            "res/values-v29/styles.xml",
+        ).forEach { path ->
+            if (!get(path).exists()) return@forEach
+            document(path).use { doc ->
+                val items = doc.getElementsByTagName("item")
+                for (i in 0 until items.length) {
+                    val item = items.item(i) as? Element ?: continue
+                    if (item.getAttribute("name") == "android:forceDarkAllowed")
+                        item.textContent = "true"
+                }
             }
         }
     }
