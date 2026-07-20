@@ -17,8 +17,7 @@ private val amazonDarkModeResourcePatch = resourcePatch {
         listOf(
             "res/values/styles.xml",
             "res/values-v29/styles.xml",
-        ).forEach { path ->
-            if (!get(path).exists()) return@forEach
+        ).filter { get(it).exists() }.forEach { path ->
             document(path).use { doc ->
                 val items = doc.getElementsByTagName("item")
                 for (i in 0 until items.length) {
