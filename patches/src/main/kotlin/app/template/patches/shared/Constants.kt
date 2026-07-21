@@ -62,7 +62,7 @@ val AMAZON_SHOPPING_COMPATIBILITY = Compatibility(
         packageName = "com.amazon.mShop.android.shopping",
         appIconColor = 0xFF9900,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "32.13.0.100", versionCode = 1241320016))
+        targets = listOf(AppTarget(version = "32.13.2.100", versionCode = 1241320216))
     )
 
 val AMBOSS_COMPATIBILITY = Compatibility(
@@ -160,9 +160,9 @@ val BOXBOX_COMPATIBILITY = Compatibility(
 val BUZZCAST_COMPATIBILITY = Compatibility(
         name = "BuzzCast",
         packageName = "com.guochao.faceshow",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x7C3AED,
-        targets = listOf(AppTarget(version = "3.2.80", versionCode = 3280))
+        targets = listOf(AppTarget(version = "3.2.81", versionCode = 3281))
     )
 
 val CALLRECORDER_COMPATIBILITY = Compatibility(
@@ -184,7 +184,8 @@ val CANVA_COMPATIBILITY = Compatibility(
         name = "Canva",
         packageName = "com.canva.editor",
         appIconColor = 0x8B3DFF,
-        targets = listOf(AppTarget(version = "2.368.0", versionCode = 29623126))
+        apkFileType = ApkFileType.APKS,
+        targets = listOf(AppTarget(version = "2.369.0", versionCode = 29633241))
     )
 
 val CARBON_COMPATIBILITY = Compatibility(
@@ -234,9 +235,9 @@ val CITYMAPPER_COMPATIBILITY = Compatibility(
 val CLUE_COMPATIBILITY = Compatibility(
         name = "Clue Period & Cycle Tracker",
         packageName = "com.clue.android",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0xE91E63,
-        targets = listOf(AppTarget(version = "261.0", versionCode = 3180))
+        targets = listOf(AppTarget(version = "262.0", versionCode = 3181))
     )
 
 val COLORNOTE_COMPATIBILITY = Compatibility(
@@ -500,7 +501,8 @@ val LAWFULLY_COMPATIBILITY = Compatibility(
         name = "Lawfully",
         packageName = "com.lawfully.lawfully_ai_tracker",
         appIconColor = 0x0D47A1,
-        targets = listOf(AppTarget(version = "6.7.1", versionCode = 534))
+        apkFileType = ApkFileType.XAPK,
+        targets = listOf(AppTarget(version = "6.7.2", versionCode = 536))
     )
 
 val LIFE360_COMPATIBILITY = Compatibility(
@@ -530,9 +532,9 @@ val MAPY_COMPATIBILITY = Compatibility(
 val MEGA_COMPATIBILITY = Compatibility(
         name = "MEGA",
         packageName = "mega.privacy.android.app",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.APK,
         appIconColor = 0xD9272E,
-        targets = listOf(AppTarget(version = "16.9(261881039)(3c7e30562a)", versionCode = 261881039))
+        targets = listOf(AppTarget(version = "16.10(261970902)(8daeddaf4d)", versionCode = 261970902))
     )
 
 val MIGRACONNECT_COMPATIBILITY = Compatibility(
@@ -664,7 +666,7 @@ val NYT_GAMES_COMPATIBILITY = Compatibility(
         packageName = "com.nytimes.crossword",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x000000,
-        targets = listOf(AppTarget(version = "6.34.0", versionCode = 6426458))
+        targets = listOf(AppTarget(version = "6.35.0", versionCode = 6426547))
     )
 
 val NZB360_COMPATIBILITY = Compatibility(
@@ -1135,8 +1137,8 @@ val WAVVE_BOATING_COMPATIBILITY = Compatibility(
         name = "Wavve Boating",
         packageName = "com.wavve.boating.gps",
         appIconColor = 0x0077CC,
-        apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "5.7.3", versionCode = 3182))
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(AppTarget(version = "5.7.4", versionCode = 3183))
     )
 
 val WAZE_COMPATIBILITY = Compatibility(
