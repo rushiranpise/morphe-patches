@@ -1069,7 +1069,7 @@ val TRANZMATE_COMPATIBILITY = Compatibility(
         packageName = "com.tranzmate",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x0066FF,
-        targets = listOf(AppTarget(version = "5.195.2.1792", versionCode = 1792))
+        targets = listOf(AppTarget(version = "5.196.0.1794", versionCode = 1794))
     )
 
 val TURBOSCAN_COMPATIBILITY = Compatibility(
