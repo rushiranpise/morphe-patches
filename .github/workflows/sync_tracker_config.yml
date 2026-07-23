@@ -89,9 +89,9 @@ jobs:
 
           echo "Dispatched ${TRACKER_REPO}/${TRACKER_EVENT}."
 
-      # - name: Dispatch release workflow
-      #   if: success()
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
-      #   run: |
-      #     gh workflow run release.yml --ref "${GITHUB_REF_NAME}"
+      - name: Dispatch release workflow
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run release.yml --ref "${GITHUB_REF_NAME}"
