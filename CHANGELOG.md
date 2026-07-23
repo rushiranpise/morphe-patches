@@ -1,3 +1,9 @@
+## [1.15.1-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.15.1-dev.1...v1.15.1-dev.2) (2026-07-23)
+
+### 🐛 Bug Fixes
+
+* trading view ([05dde41](https://github.com/rushiranpise/morphe-patches/commit/05dde4166fd3fefbe5d764564415418db5790107))
+
 ## [1.15.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.15.0...v1.15.1-dev.1) (2026-07-23)
 
 ### 🐛 Bug Fixes
