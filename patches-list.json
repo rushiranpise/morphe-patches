@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.14.0",
+  "version": "1.15.0-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -28,8 +28,33 @@
       "options": []
     },
     {
+      "name": "AccuBattery Premium",
+      "description": "Unlocks AccuBattery Pro by bypassing server offer validity, the Google Play purchase gate, and all UI premium banners.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.digibites.accubattery",
+          "name": "AccuBattery",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#00BCD4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.1.8",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Alert Distances",
-      "description": "Configures radar/camera and hazard alert announcement distances.\nCredits: Waze CGE Mod.\n",
+      "description": "Configures radar/camera and hazard alert announcement distances.\nWrites all key variants (truncated _ + underscore + space) for resilience across versions.\nCredits: Waze CGE Mod.\nOfficial → default values (metres):\nAccident 600→2000 | Alert 600→1000 | Police 600→1000 |\nFreeways 2000→1200 | Highways 1000→900 | Streets 500→700 |\nHazard 600→500 | Heavy Traffic 600→3000 | Between Alerts 300→200",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -136,7 +161,7 @@
     },
     {
       "name": "AutoZoom",
-      "description": "Controls how aggressively the map zooms in/out based on driving speed.\nCredits: Waze Chuppito Mod",
+      "description": "Controls how aggressively the map zooms in/out based on driving speed.\nCredits: Waze Chuppito Mod (Speed Factor 20, Gradient Speed Threshold 60).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -272,6 +297,81 @@
       "options": []
     },
     {
+      "name": "Calimoto Premium",
+      "description": "Unlocks Calimoto LIFETIME membership by spoofing the membership getter.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.calimoto.calimoto",
+          "name": "calimoto",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#FF5722",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.07.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Calm Premium",
+      "description": "Unlocks Calm lifetime subscription",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.calm.android",
+          "name": "Calm: Sleep & Meditation",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#4A90D9",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.99.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Calory Premium",
+      "description": "Unlocks Calory Pro and removes ads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.funnmedia.calory",
+          "name": "Calory - Calorie Counter & Diet",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#FF6B35",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.6.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Change package name",
       "description": "Installs Google Photos beside the system Photos app by changing package, permissions, providers, and app name.",
       "default": false,
@@ -336,7 +436,7 @@
     {
       "name": "Dark mode",
       "description": "Force dark mode for Amazon Shopping.",
-      "default": false,
+      "default": true,
       "dependencies": [
         "ResourcePatch"
       ],
@@ -350,7 +450,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -442,7 +542,7 @@
     },
     {
       "name": "Disable Advil Ad Requests",
-      "description": "Stubs AdvilRequest.getPageUrl() → \"\" so the Advil ad server receives no page URL and returns no ad content. ",
+      "description": "Stubs AdvilRequest.getPageUrl() → \"\" so the Advil ad server receives no page URL and returns no ad content. Target: Lcom/waze/jni/protos/AdvilRequest;->getPageUrl() in classes6.dex (verified ✓).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -546,7 +646,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -607,6 +707,47 @@
     },
     {
       "name": "Disable video autoplay",
+      "description": "Prevents videos from autoplaying in Amazon's in-app WebView pages.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.amazon.mShop.android.shopping",
+          "name": "Amazon Shopping",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.13.2.100",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "in.amazon.mShop.android.shopping",
+          "name": "Amazon India",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9900",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "32.12.4.300",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable video autoplay",
       "description": "Prevents product and ad videos from autoplaying.",
       "default": true,
       "dependencies": [],
@@ -620,7 +761,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -694,7 +835,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.87.6",
+              "version": "6.88.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -732,8 +873,8 @@
     },
     {
       "name": "Enlarged Speedometer",
-      "description": "Increases speedometer digit size for better readability.",
-      "default": false,
+      "description": "Increases speedometer digit size for better readability.\nDefault: speed < 100 → 28sp (orig 20sp), speed ≥ 100 → 21sp (orig 13sp).\nTarget: Lcom/waze/main_screen/h/b/d;->f() in classes6.dex (verified ✓).\nNote: the two const/16 values are non-consecutive (goto between them) — scanned independently.",
+      "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -807,7 +948,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -975,7 +1116,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1067,8 +1208,33 @@
       ]
     },
     {
+      "name": "Manga Plus Premium",
+      "description": "Unlocks the Deluxe subscription.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "jp.co.shueisha.mangaplus",
+          "name": "MANGA Plus by SHUEISHA",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.5.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Map Skin (Vitamin C)",
-      "description": "Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.\n• Night: true black AMOLED background (saves battery, prevents burn-in)\n• Day: warm beige background\n• Larger font labels across the board\n• Wider navigation arrow head for better visibility\n• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow\nCredits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration).",
+      "description": "Applies Chuppito's 'Vitamin C' map skin. All visual values configurable.\n• Night: true black AMOLED background (saves battery, prevents burn-in)\n• Day: warm beige background\n• Larger font labels across the board\n• Wider navigation arrow head for better visibility\n• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow\nNote: skin changes require a fresh APK install; updating an existing patched install may keep cached skin files.\nCredits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1156,8 +1322,33 @@
       ]
     },
     {
+      "name": "Material Capsule Premium",
+      "description": "Unlocks Material Capsule pro.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.pryshedko.mtisland",
+          "name": "Material Capsule",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#6750A4",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "15.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Navigation & Map",
-      "description": "Configures navigation and map behaviour:\n• Nearing destination distance (Credits: CGE Mod)\n• Android Auto head-up alert distances\n• Map turn mode (auto-zoom to upcoming turn)\n• Traffic bar minimum time threshold\n• GPS icon visibility\n• Route notifications (hazard, school zone) both disabled by default\nCredits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys).",
+      "description": "Configures navigation and map behaviour:\n• Nearing destination distance (Credits: CGE Mod)\n• Android Auto head-up alert distances\n• Map turn mode (auto-zoom to upcoming turn)\n• Traffic bar minimum time threshold\n• GPS icon visibility\n• Route notifications (hazard, school zone) — both disabled by default\nCredits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1266,9 +1457,34 @@
       ]
     },
     {
+      "name": "OBD Android Premium Unlock",
+      "description": "Unlocks all premium features including advanced diagnostics, live sensor data, freeze frame, and removes the daily usage quota.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "ai.metaverselabs.obdandroid",
+          "name": "OBD Android",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.9",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Open links in browser",
       "description": "Opens non-Amazon URLs in the default browser instead of the in-app WebView.",
-      "default": false,
+      "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -1280,7 +1496,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1315,8 +1531,33 @@
       "options": []
     },
     {
+      "name": "PodsLink Premium",
+      "description": "Unlocks lifetime pro by bypassing all entitlement checks and poisoning the account cache.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "net.podslink",
+          "name": "PodsLink",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1A73E8",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.3.5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Popup Suppression",
-      "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nCredits: Waze Chuppito Mod.",
+      "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nWrites both Popup_ and Popu__ key variants for version resilience.\nCredits: Waze Chuppito Mod.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1396,7 +1637,7 @@
     {
       "name": "Price history charts",
       "description": "Injects Keepa and CamelCamelCamel price history charts on Amazon product pages.",
-      "default": false,
+      "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -1408,7 +1649,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1481,7 +1722,7 @@
     },
     {
       "name": "Radar Sound (Any Speed)",
-      "description": "Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.\n",
+      "description": "Plays radar/speed camera sound alerts regardless of current speed. Official Waze only alerts when over the speed limit.\nPatches CONFIG_VALUE_ALERTS_PLAY_SPEED_CAMERA_SOUND_BELOW_SPEED_LIMIT (ordinal 632) via setConfigValueBoolNTV on every server config sync.\nTarget: Lcom/waze/ConfigManager;->onConfigSyncedFromServer() in classes5.dex (verified ✓).",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1570,6 +1811,56 @@
           "targets": [
             {
               "version": "18.0.356",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Blocks all ad display across Opera News's five ad networks and all mediation layers (AdsFacade, AppLovin MAX, TopOn, MCSDK, SmartDigiMkt).",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.opera.app.news",
+          "name": "Opera News - Breaking & Local",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#FF1B2A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "14.1.2254.83278",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Removes ads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.yablio.sendfilestotv",
+          "name": "Send Files To TV",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.4.22",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1680,6 +1971,31 @@
       "options": []
     },
     {
+      "name": "Remove Sound Delay",
+      "description": "Removes the 10-minute waiting period before playing a sound on a detected tracker.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.apple.trackerdetect",
+          "name": "Tracker Detect",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#000000",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Watermark",
       "description": "Removes watermarks from Canva exports and previews.",
       "default": true,
@@ -1689,12 +2005,12 @@
           "packageName": "com.canva.editor",
           "name": "Canva",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#8B3DFF",
           "signatures": null,
           "targets": [
             {
-              "version": "2.368.0",
+              "version": "2.369.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1752,7 +2068,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
+              "version": "32.13.2.100",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1807,33 +2123,6 @@
     },
     {
       "name": "Remove ads",
-      "description": "Disables interstitial/banner ad loaders, hides promoted listings and profiles from search feeds.",
-      "default": true,
-      "dependencies": [
-        "ResourcePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.thecarousell.Carousell",
-          "name": "Carousell",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#E7392C",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.461.8",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Remove ads",
       "description": "Disables LiveScore banner, native, and interstitial ad requests.",
       "default": true,
       "dependencies": [],
@@ -1867,7 +2156,7 @@
     },
     {
       "name": "Report Speed Limit",
-      "description": "Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.\n",
+      "description": "Adds a Report option when tapping the speedometer to report wrong or missing speed limits. Not available in the official version.\nKey: Map.Speedometer report speed enable_: 1",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1891,37 +2180,29 @@
       "options": []
     },
     {
-      "name": "Sanitize share links",
-      "description": "Strips tracking parameters from copied/shared Amazon links, leaving only the clean product URL.",
+      "name": "Set target SDK 34",
+      "description": "Sets targetSdkVersion to 34.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Slopes Premium Unlock",
+      "description": "Unlocks all premium features.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.amazon.mShop.android.shopping",
-          "name": "Amazon Shopping",
+          "packageName": "com.consumedbycode.slopes",
+          "name": "Slopes",
           "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF9900",
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "32.13.0.100",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "in.amazon.mShop.android.shopping",
-          "name": "Amazon India",
-          "description": null,
-          "apkFileType": null,
-          "appIconColor": "#FF9900",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "32.12.4.300",
+              "version": "2026.14",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -1932,16 +2213,8 @@
       "options": []
     },
     {
-      "name": "Set target SDK 34",
-      "description": "Sets targetSdkVersion to 34.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Speed Limit Sign",
-      "description": "Sets the speed limit sign style shown on the map.",
+      "description": "Sets the speed limit sign style shown on the map.\n• us (default) — large circular US-style sign, more readable at a glance\n• metric — smaller local-style sign\nKey: Map.Speedometer sign style",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -2557,8 +2830,58 @@
       "options": []
     },
     {
+      "name": "The Athletic Premium",
+      "description": "Bypasses The Athletic article paywall by spoofing the NYT subscription entitlement check.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.theathletic",
+          "name": "The Athletic",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1A1A1A",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "13.141.0",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "TradingView Unlock Premium",
+      "description": "Unlocks Ultimate plan features, disables all paywalls and upgrade dialogs, suppresses payment-banned blocking errors, and grants access to all benefits including bar replay, custom intervals, multiple charts, study-on-study, server-side alerts, and ad-free charts.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tradingview.tradingviewapp",
+          "name": "TradingView",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#2962FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.20.78.1.1002330",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Uncensored Radar / Camera Display",
-      "description": "Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. Enables enforcement alerts via preferences keys:\nCredits: Waze CGE Mod.",
+      "description": "Shows exact fixed and mobile speed camera locations, including those not yet in the official Waze radar zone. Enables enforcement alerts via preferences keys:\nAlerts.Enable Enforcement Alert_ / Alert / Polic_ (truncated + full variants).\nCredits: Waze CGE Mod.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -3078,7 +3401,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.195.2.1792",
+              "version": "5.196.0.1794",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3153,7 +3476,7 @@
           "packageName": "com.life360.android.safetymapd",
           "name": "Life360",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKS",
           "appIconColor": "#5D2DE6",
           "signatures": null,
           "targets": [
@@ -3178,12 +3501,12 @@
           "packageName": "com.clue.android",
           "name": "Clue Period & Cycle Tracker",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#E91E63",
           "signatures": null,
           "targets": [
             {
-              "version": "261.0",
+              "version": "262.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3347,6 +3670,56 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks the Remove Ads purchase in Ampere by bypassing the isProVersion getter, purchase verifier, and payment-needed gate.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.gombosdev.ampere",
+          "name": "Ampere",
+          "description": null,
+          "apkFileType": null,
+          "appIconColor": "#FF9800",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "v4.36.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks AndroPods Pro: voice call integration, assistant control, ear detection auto-pause/resume, and all premium preferences.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "pro.vitalii.andropods",
+          "name": "AndroPods",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1DA1F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.5.28",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all premium wallpapers.",
       "default": true,
       "dependencies": [],
@@ -3361,6 +3734,31 @@
           "targets": [
             {
               "version": "1.0.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks BatteryPods Pro: removes all advertisements and enables premium features including all widget themes and device customization options.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.sumyapplications.bluetooth.earphone",
+          "name": "BatteryPods",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "7.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3438,7 +3836,32 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.76.5784",
+              "version": "2.76.5891",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Charge Meter premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "dev.km.android.chargemeter",
+          "name": "Charge Meter",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.9.7",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3591,6 +4014,31 @@
           "targets": [
             {
               "version": "2.1.06",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Electron premium features",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mahersafadi.electron",
+          "name": "Electron",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#29B6F6",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.0.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3767,7 +4215,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2026.28.2",
+              "version": "2026.29.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3792,7 +4240,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2026.9.6",
+              "version": "2026.10.5",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3814,12 +4262,12 @@
           "packageName": "com.lawfully.lawfully_ai_tracker",
           "name": "Lawfully",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#0D47A1",
           "signatures": null,
           "targets": [
             {
-              "version": "6.7.1",
+              "version": "6.7.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3845,6 +4293,31 @@
           "targets": [
             {
               "version": "26.7.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks all pro features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.pryshedko.materialpods",
+          "name": "MaterialPods",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1B72E8",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "6.70",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3895,6 +4368,31 @@
           "targets": [
             {
               "version": "0.9.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks MobiOffice premium and removes ads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mobisystems.office",
+          "name": "MobiOffice- Word, Excel, Slide",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "16.4.60095",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3995,6 +4493,31 @@
           "targets": [
             {
               "version": "1.4.7",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlock premium features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.brightstripe.parcels",
+          "name": "Parcels — Package Tracker",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#FF6B35",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.0.10",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4174,12 +4697,12 @@
           "packageName": "com.recipebro.cookingbuddy",
           "name": "RecipeBro",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#E65100",
           "signatures": null,
           "targets": [
             {
-              "version": "1.3.74",
+              "version": "1.4.22",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4274,7 +4797,7 @@
           "packageName": "com.mtv.sai",
           "name": "SAI",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -4466,6 +4989,31 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks Tag Tracker PRO: unlimited trackers, advanced detection, full history, and ad-free experience.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.makeevapps.tagtracker",
+          "name": "Tag Tracker: Find Lost Items",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.3.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall.",
       "default": true,
       "dependencies": [],
@@ -4504,7 +5052,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.5.0-5",
+              "version": "2.5.0-6",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4567,32 +5115,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.16.6",
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlock premium features in app.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.tradingview.tradingviewapp",
-          "name": "TradingView",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#2962FF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.20.78.1.1002330",
+              "version": "1.17.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4637,12 +5160,12 @@
           "packageName": "com.wavve.boating.gps",
           "name": "Wavve Boating",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKM",
           "appIconColor": "#0077CC",
           "signatures": null,
           "targets": [
             {
-              "version": "5.7.3",
+              "version": "5.7.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4754,6 +5277,31 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true in the billing Info constructor.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.darken.bluemusic",
+          "name": "Bluetooth Volume Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.4.3",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Unlocks Box Box Pro",
       "default": true,
       "dependencies": [],
@@ -4768,6 +5316,31 @@
           "targets": [
             {
               "version": "5.4.13",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks the Pro.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.darken.capod",
+          "name": "CAPod",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#F5A623",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.2.1",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4939,12 +5512,12 @@
           "packageName": "mega.privacy.android.app",
           "name": "MEGA",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APK",
           "appIconColor": "#D9272E",
           "signatures": null,
           "targets": [
             {
-              "version": "16.9(261881039)(3c7e30562a)",
+              "version": "16.10(261970902)(8daeddaf4d)",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5056,9 +5629,60 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks 1Tap Cleaner PRO: history export, app-group filters, unlimited cache targets, ad removal.",
+      "description": "Unlock Pro features.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.paget96.netspeedindicator",
+          "name": "Network Guru - Net Analyzer",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.9-beta5",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks the Pro upgrade in Octi.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "eu.darken.octi",
+          "name": "Octi",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#FF6F00",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.4",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks 1Tap Cleaner PRO features: history export, app-group filters, unlimited cache targets, and ad removal.",
       "default": true,
       "dependencies": [
+        "BytecodePatch",
         "BytecodePatch",
         "BytecodePatch",
         "BytecodePatch"
@@ -5068,12 +5692,12 @@
           "packageName": "com.a0soft.gphone.acc.free",
           "name": "1Tap Cleaner",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "5.18",
+              "version": "5.21",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5210,6 +5834,31 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks all pro features and removes ads .",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "torrent.search.revolutionv2",
+          "name": "Torrent Search Revolution V2",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.3.2",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Unlocks UbikiTouch Pro features in app.",
       "default": true,
       "dependencies": [],
@@ -5248,7 +5897,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "24.2.1",
+              "version": "24.2.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5334,6 +5983,31 @@
       "options": []
     },
     {
+      "name": "Unlock Remove Ads",
+      "description": "Unlocks the Remove Ads purchase in qBitConnect by injecting IAP ownership flags into SharedPreferences before Flutter reads them.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.bluematter.qbitconnect",
+          "name": "qBitConnect",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#4FC3F7",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.1",
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Royale",
       "description": "Unlocks Transit Royale Membership.",
       "default": true,
@@ -5395,12 +6069,12 @@
           "packageName": "com.guochao.faceshow",
           "name": "BuzzCast",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#7C3AED",
           "signatures": null,
           "targets": [
             {
-              "version": "3.2.80",
+              "version": "3.2.81",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5425,7 +6099,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.87.6",
+              "version": "6.88.2",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5947,7 +6621,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.34.0",
+              "version": "6.35.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
