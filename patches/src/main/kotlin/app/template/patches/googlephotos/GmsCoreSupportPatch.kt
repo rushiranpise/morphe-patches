@@ -344,11 +344,6 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
             replaceInstruction(clearSelectedAccountIndex, "invoke-virtual {p0}, $accountHandlerClass->p()V")
         }
 
-        MapLocationMarkerIconFingerprint.method.addInstructions(
-            0,
-            "const/4 v0, 0x0\nreturn-object v0",
-        )
-
         fun transform(string: String): String? =
             GMS_STRING_REPLACEMENTS[string]
                 ?: transformAppPackageString(string)
