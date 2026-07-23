@@ -724,17 +724,6 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.1.06", versionCode = 35))
     )
 
-val DEVCHECK_COMPATIBILITY = Compatibility(
-        name = "DevCheck - Device & System Info",
-        packageName = "flar2.devcheck",
-        appIconColor = 0x1976D2,
-        apkFileType = ApkFileType.XAPK,
-        targets = listOf(
-            AppTarget(version = "6.46", versionCode = 646),
-            AppTarget(version = "6.46", versionCode = 646),
-        )
-    )
-
 val DICTIONARY_COMPATIBILITY = Compatibility(
         name = "Dictionary.com",
         packageName = "com.tfd.mobile.TfdSearch",
