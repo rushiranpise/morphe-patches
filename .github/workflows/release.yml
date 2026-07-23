@@ -2,14 +2,14 @@ name: Release
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Sync
-    branches:
-      - main
-      - dev
-    types:
-      - completed
+  # workflow_run:
+  #   workflows:
+  #     - Sync
+  #   branches:
+  #     - main
+  #     - dev
+  #   types:
+  #     - completed
 
 jobs:
   release:
