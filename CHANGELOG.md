@@ -1,3 +1,15 @@
+## [1.15.0](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0...v1.15.0) (2026-07-23)
+
+### 🐛 Bug Fixes
+
+* build ([625f7e6](https://github.com/rushiranpise/morphe-patches/commit/625f7e67880ce888514e99f815d88b7cb8545bb5))
+
+### ✨ New Features
+
+* add sai ([aaa5163](https://github.com/rushiranpise/morphe-patches/commit/aaa51635541b49ee830d6190263c799c7847aabf))
+* update & add new apps ([8611906](https://github.com/rushiranpise/morphe-patches/commit/8611906c0e35142e73be18fcf403b6f4d7f93d3a))
+* update &add new apps ([729f9f0](https://github.com/rushiranpise/morphe-patches/commit/729f9f0b5a13ad65ae9f8e1c747de63a13bff6fe))
+
 ## [1.15.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.15.0-dev.1...v1.15.0-dev.2) (2026-07-23)
 
 ### 🐛 Bug Fixes
