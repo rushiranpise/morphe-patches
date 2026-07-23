@@ -1,26 +1,36 @@
 package app.template.patches.pocketprep
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
+import app.morphe.patcher.methodCall
+import com.android.tools.smali.dexlib2.AccessFlags
+
+// ── Subscription instance methods ──────────────────────────────────────────────
+// All methods live on com.pocketprep.android.api.common.Subscription and are
+// stable across APK variants (unobfuscated defining class, obfuscated method names
+// a–g). Fingerprinted by definingClass+name so they match without filters.
 
 internal val SubscriptionIsActiveFingerprint = Fingerprint(
     definingClass = "Lcom/pocketprep/android/api/common/Subscription;",
     name = "g",
     returnType = "Z",
-    parameters = emptyList()
+    parameters = listOf()
 )
 
+// returnType changes per variant: wd9 (itcybersecurity) → cg9 (professional).
+// We don't specify returnType here so it matches any SubscriptionPlan enum name.
 internal val SubscriptionPlanFingerprint = Fingerprint(
     definingClass = "Lcom/pocketprep/android/api/common/Subscription;",
     name = "a",
-    returnType = "Lwd9;",
-    parameters = emptyList()
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf()
 )
 
 internal val SubscriptionIsBundleFingerprint = Fingerprint(
     definingClass = "Lcom/pocketprep/android/api/common/Subscription;",
     name = "b",
     returnType = "Z",
-    parameters = emptyList()
+    parameters = listOf()
 )
 
 internal val SubscriptionSupportsExamFingerprint = Fingerprint(
@@ -51,85 +61,73 @@ internal val SubscriptionTeachForExamFingerprint = Fingerprint(
     parameters = listOf("Ljava/lang/String;")
 )
 
+// ── Subscription utility statics ───────────────────────────────────────────────
+// These moved from ce9 → ig9 between itcybersecurity and professional.
+// Fingerprinted by method signature + body shape (isEmpty + iterator calls)
+// rather than definingClass so they match regardless of which obfuscated
+// class they land in next time.
+
+// hasAnyActiveSubscription(Collection<Subscription>): Z
+// Iterates subscriptions, returns true if any is active. Used as the top-level
+// gate before checking exam-specific entitlement.
 internal val HasAnyActiveSubscriptionFingerprint = Fingerprint(
-    definingClass = "Lce9;",
-    name = "e",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     returnType = "Z",
-    parameters = listOf("Ljava/util/Collection;")
+    parameters = listOf("Ljava/util/Collection;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/util/Collection;",
+            name = "isEmpty",
+            returnType = "Z"
+        ),
+        methodCall(
+            definingClass = "Ljava/util/Iterator;",
+            name = "hasNext",
+            returnType = "Z"
+        )
+    )
 )
 
+// hasActiveSubscriptionForExam(Collection<Subscription>, CompositeKey): Z
+// Checks whether any active subscription covers the specified exam.
 internal val HasActiveSubscriptionForExamFingerprint = Fingerprint(
-    definingClass = "Lce9;",
-    name = "f",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     returnType = "Z",
     parameters = listOf(
         "Ljava/util/Collection;",
         "Lcom/pocketprep/android/api/common/CompositeKey;"
+    ),
+    filters = listOf(
+        methodCall(
+            definingClass = "Ljava/util/Collection;",
+            name = "isEmpty",
+            returnType = "Z"
+        ),
+        methodCall(
+            definingClass = "Ljava/util/Iterator;",
+            name = "hasNext",
+            returnType = "Z"
+        )
     )
 )
 
-internal val ChoosePlanActionFingerprint = Fingerprint(
-    definingClass = "Lw21;",
-    name = "a",
-    returnType = "Ljava/lang/Object;",
-    parameters = listOf("Ljava/lang/Object;")
-)
-
-internal val ConfigureSubjectStateConstructorFingerprint = Fingerprint(
-    definingClass = "Ln09;",
-    name = "<init>",
-    returnType = "V",
+// ── Exam-level subscription status resolver ────────────────────────────────────
+// kg9.l0(ExamMetadata, List<Subscription>): q77
+// The canonical question-pool selector: returns NO_PREMIUM (q77.z) when the
+// subscription list is empty, causing l03.m0() to serve only the free 80-question
+// pool instead of ExamQuestions.b (full bank). Returning q77.B always fixes this.
+// Stable: class kg9 and method l0 have not changed across tested variants.
+internal val ExamSubscriptionStatusFingerprint = Fingerprint(
+    definingClass = "Lkg9;",
+    name = "l0",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    returnType = "Lq77;",
     parameters = listOf(
-        "Lbma;",
         "Lcom/pocketprep/android/api/common/ExamMetadata;",
-        "Z",
-        "I"
+        "Ljava/util/List;"
+    ),
+    filters = listOf(
+        fieldAccess(definingClass = "Lq77;", name = "z", type = "Lq77;"),
+        fieldAccess(definingClass = "Lq77;", name = "B", type = "Lq77;")
     )
 )
-
-internal val ConfigureQuizStateConstructorFingerprint = Fingerprint(
-    definingClass = "Lrg1;",
-    name = "<init>",
-    returnType = "V",
-    parameters = listOf(
-        "Ljava/util/List;",
-        "Lri7;",
-        "Ljava/util/List;",
-        "Lgp8;",
-        "Lqc9;",
-        "Z",
-        "Ljava/util/Set;",
-        "Z",
-        "Z",
-        "Z",
-        "Z",
-        "I",
-        "Z"
-    )
-)
-
-internal val FreeQuestionCounterConstructorFingerprint = Fingerprint(
-    definingClass = "Lm09;",
-    name = "<init>",
-    returnType = "V",
-    parameters = listOf("I", "I", "Z")
-)
-
-internal val PremiumAccessEventConstructorFingerprints = listOf(
-    "Lak7;",
-    "Lc85;",
-    "Lhg1;",
-    "Lil8;",
-    "Lr39;",
-    "Lsa9;",
-    "Lwl9;",
-    "Lyv2;",
-    "Lzv2;"
-).map { definingClass ->
-    Fingerprint(
-        definingClass = definingClass,
-        name = "<init>",
-        returnType = "V",
-        parameters = listOf("Z")
-    )
-}
