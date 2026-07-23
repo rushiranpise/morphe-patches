@@ -13,7 +13,7 @@ private const val ACCOUNT_INFO = "Lnet/podslink/entity/net/AccountInfo;"
 
 @Suppress("unused")
 val podslinkPremiumPatch = bytecodePatch(
-    name = "PodsLink Premium",
+    name = "Unlock Premium",
     description = "Unlocks lifetime pro by bypassing all entitlement checks and poisoning the account cache."
 ) {
     compatibleWith(PODSLINK_COMPATIBILITY)

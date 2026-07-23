@@ -45,7 +45,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
  */
 @Suppress("unused")
 val qBitConnectUnlockPremiumPatch = bytecodePatch(
-    name = "Unlock Remove Ads",
+    name = "Remove Ads",
     description = "Unlocks the Remove Ads purchase in qBitConnect by injecting IAP ownership flags into SharedPreferences before Flutter reads them.",
 ) {
     compatibleWith(QBITCONNECT_COMPATIBILITY)

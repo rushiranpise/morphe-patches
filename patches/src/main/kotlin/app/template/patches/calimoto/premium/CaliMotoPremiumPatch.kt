@@ -24,7 +24,7 @@ import app.template.patches.shared.Constants.CALIMOTO_COMPATIBILITY
 
 @Suppress("unused")
 val calimotoPremiumPatch = bytecodePatch(
-    name = "Calimoto Premium",
+    name = "Unlock Premium",
     description = "Unlocks Calimoto LIFETIME membership by spoofing the membership getter.",
 ) {
     compatibleWith(CALIMOTO_COMPATIBILITY)

@@ -35,7 +35,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val accuBatteryPremiumPatch = bytecodePatch(
-    name = "AccuBattery Premium",
+    name = "Unlock Premium",
     description = "Unlocks AccuBattery Pro by bypassing server offer validity, the Google Play purchase gate, and all UI premium banners.",
     default = true
 ) {
