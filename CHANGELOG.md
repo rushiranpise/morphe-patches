@@ -1,3 +1,9 @@
+## [1.15.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0...v1.15.0-dev.1) (2026-07-23)
+
+### ✨ New Features
+
+* update & add new apps ([8611906](https://github.com/rushiranpise/morphe-patches/commit/8611906c0e35142e73be18fcf403b6f4d7f93d3a))
+
 ## [1.14.0](https://github.com/rushiranpise/morphe-patches/compare/v1.13.1...v1.14.0) (2026-07-19)
 
 ### 🐛 Bug Fixes
