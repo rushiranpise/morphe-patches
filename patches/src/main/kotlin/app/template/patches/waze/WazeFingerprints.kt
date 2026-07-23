@@ -14,7 +14,7 @@ object AdvilRequestGetPageUrlFingerprint : Fingerprint(
 // SpeedometerView update method — contains const/16 20 and const/16 13 text size values
 // [131] const/16 v7, 20  [132] goto  [133] const/16 v7, 13
 object SpeedometerUpdateFingerprint : Fingerprint(
-    definingClass = "Lcom/waze/main_screen/h/b/d;",
+    definingClass = "Lcom/waze/main_screen/g/b/d;",
     strings = listOf("SpeedometerView: Not shown. (speed == ")
 )
 

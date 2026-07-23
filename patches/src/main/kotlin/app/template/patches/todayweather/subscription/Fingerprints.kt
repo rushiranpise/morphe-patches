@@ -12,7 +12,7 @@ import app.morphe.patcher.Fingerprint
 internal object BdIsPurchasedFingerprint : Fingerprint(
     returnType = "Z",
     custom = { method, classDef ->
-        classDef.type == "LBd;" &&
+        classDef.type == "LAd;" &&
             method.name == "k" &&
             method.parameters.isEmpty()
     }
@@ -27,7 +27,7 @@ internal object BdIsPurchasedFingerprint : Fingerprint(
 internal object BdIsTrialRestrictedFingerprint : Fingerprint(
     returnType = "Z",
     custom = { method, classDef ->
-        classDef.type == "LBd;" &&
+        classDef.type == "LAd;" &&
             method.name == "j" &&
             method.parameters.isEmpty()
     }
