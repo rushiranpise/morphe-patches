@@ -2,19 +2,10 @@ name: Release
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Sync
-    branches:
-      - main
-      - dev
-    types:
-      - completed
 
 jobs:
   release:
     name: Release
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     permissions:
       contents: write
       packages: write
@@ -26,7 +17,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          ref: ${{ github.event.workflow_run.head_branch || github.ref }}
+          ref: ${{ github.ref }}
 
       - name: Setup Java
         uses: actions/setup-java@v5
