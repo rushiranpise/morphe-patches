@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.15.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.15.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;265 patches total
+> **[v1.15.1-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.15.1-dev.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;265 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -542,7 +542,7 @@ Bug reports must include:
 <summary><code>#37</code> <strong>Case Tracker</strong> &middot; 1 patch &middot; <code>com.saldous.casetracker</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.5.3`
+**Supported versions:** `5.5.4`
 
 | Patch | Details |
 |---|---|
@@ -837,7 +837,7 @@ Bug reports must include:
 <summary><code>#61</code> <strong>Google Photos</strong> &middot; 6 patches &middot; <code>com.google.android.apps.photos</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.photos">Play Store</a></summary>
 <br>
 
-**Supported versions:** `7.85.0.950510832`
+**Supported versions:** `7.85.0.952162352`
 
 | Patch | Details |
 |---|---|
@@ -1370,7 +1370,7 @@ Bug reports must include:
 <summary><code>#105</code> <strong>Octi</strong> &middot; 1 patch &middot; <code>eu.darken.octi</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.darken.octi">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.0.4`
+**Supported versions:** `1.1.0-rc0`
 
 | Patch | Details |
 |---|---|
@@ -1694,7 +1694,7 @@ Bug reports must include:
 <summary><code>#132</code> <strong>Proton VPN</strong> &middot; 1 patch &middot; <code>ch.protonvpn.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=ch.protonvpn.android">Play Store</a></summary>
 <br>
 
-**Supported versions:** `5.19.43.0`
+**Supported versions:** `5.19.61.0`
 
 | Patch | Details |
 |---|---|
@@ -2066,7 +2066,7 @@ Bug reports must include:
 <summary><code>#163</code> <strong>The Athletic</strong> &middot; 1 patch &middot; <code>com.theathletic</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.theathletic">Play Store</a></summary>
 <br>
 
-**Supported versions:** `13.141.0`
+**Supported versions:** `13.142.0`
 
 | Patch | Details |
 |---|---|
@@ -2138,7 +2138,7 @@ Bug reports must include:
 <summary><code>#169</code> <strong>Torrent Search Revolution V2</strong> &middot; 1 patch &middot; <code>torrent.search.revolutionv2</code> &middot; <a href="https://play.google.com/store/apps/details?id=torrent.search.revolutionv2">Play Store</a></summary>
 <br>
 
-**Supported versions:** `2.3.2`
+**Supported versions:** `2.3.3`
 
 | Patch | Details |
 |---|---|
@@ -2186,7 +2186,7 @@ Bug reports must include:
 <summary><code>#173</code> <strong>TradingView</strong> &middot; 1 patch &middot; <code>com.tradingview.tradingviewapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.20.79.0.1002355`
+**Supported versions:** `1.20.78.1.1002330`
 
 | Patch | Details |
 |---|---|
