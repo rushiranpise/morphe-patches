@@ -1319,9 +1319,9 @@ val TRACKERDETECT_COMPATIBILITY = Compatibility(
 val TRADINGVIEW_COMPATIBILITY = Compatibility(
         name = "TradingView",
         packageName = "com.tradingview.tradingviewapp",
-        apkFileType = ApkFileType.XAPK,
+        apkFileType = ApkFileType.APKS,
         appIconColor = 0x2962FF,
-        targets = listOf(AppTarget(version = "1.20.79.0.1002355", versionCode = 1002355))
+        targets = listOf(AppTarget(version = "1.20.78.1.1002330", versionCode = 1002330))
     )
 
 val TRANZMATE_COMPATIBILITY = Compatibility(
