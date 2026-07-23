@@ -7,7 +7,7 @@ import org.w3c.dom.Element
 
 private const val ORIGINAL_PACKAGE_NAME = "com.google.android.apps.photos"
 private const val DEFAULT_PACKAGE_NAME = "app.morphe.android.apps.photos"
-private const val MARS_AUTHORITY = "app.revanced.android.apps.photos.api.mars"
+private const val LEGACY_MARS_AUTHORITY = "app.revanced.android.apps.photos.api.mars"
 private const val APP_NAME_STRING = "morphe_google_photos_app_name"
 
 // Based on RI-Vanced Universal "Change package name", with Photos-specific provider fixes.
@@ -37,6 +37,7 @@ val googlePhotosChangePackageNamePatch = resourcePatch(
 
     execute {
         val newPackageName = packageName ?: DEFAULT_PACKAGE_NAME
+        val newMarsAuthority = marsAuthorityFor(newPackageName)
 
         document("AndroidManifest.xml").use { document ->
             val manifest = document.documentElement
@@ -45,8 +46,8 @@ val googlePhotosChangePackageNamePatch = resourcePatch(
             replaceNameAttributes(document.getElementsByTagName("permission"), newPackageName)
             replaceNameAttributes(document.getElementsByTagName("uses-permission"), newPackageName)
             replaceComponentPermissions(document.getElementsByTagName("*"), newPackageName)
-            replaceProviderAuthorities(document.getElementsByTagName("provider"), newPackageName)
-            replaceMarsHosts(document.getElementsByTagName("data"))
+            replaceProviderAuthorities(document.getElementsByTagName("provider"), newPackageName, newMarsAuthority)
+            replaceMarsHosts(document.getElementsByTagName("data"), newMarsAuthority)
 
             (document.getElementsByTagName("application").item(0) as? Element)
                 ?.setAttribute("android:label", "@string/$APP_NAME_STRING")
@@ -66,6 +67,8 @@ val googlePhotosChangePackageNamePatch = resourcePatch(
         }
     }
 }
+
+private fun marsAuthorityFor(packageName: String) = "$packageName.api.mars"
 
 private fun replaceNameAttributes(nodes: org.w3c.dom.NodeList, newPackageName: String) {
     for (i in 0 until nodes.length) {
@@ -87,7 +90,11 @@ private fun replaceComponentPermissions(nodes: org.w3c.dom.NodeList, newPackageN
     }
 }
 
-private fun replaceProviderAuthorities(nodes: org.w3c.dom.NodeList, newPackageName: String) {
+private fun replaceProviderAuthorities(
+    nodes: org.w3c.dom.NodeList,
+    newPackageName: String,
+    newMarsAuthority: String,
+) {
     for (i in 0 until nodes.length) {
         val provider = nodes.item(i) as? Element ?: continue
         val authorities = provider.getAttribute("android:authorities")
@@ -98,7 +105,9 @@ private fun replaceProviderAuthorities(nodes: org.w3c.dom.NodeList, newPackageNa
                 authority.startsWith(ORIGINAL_PACKAGE_NAME) ->
                     authority.replace(ORIGINAL_PACKAGE_NAME, newPackageName)
                 authority == "com.google.android.libraries.photos.api.mars" ->
-                    MARS_AUTHORITY
+                    newMarsAuthority
+                authority == LEGACY_MARS_AUTHORITY ->
+                    newMarsAuthority
                 else -> authority
             }
         }
@@ -106,11 +115,12 @@ private fun replaceProviderAuthorities(nodes: org.w3c.dom.NodeList, newPackageNa
     }
 }
 
-private fun replaceMarsHosts(nodes: org.w3c.dom.NodeList) {
+private fun replaceMarsHosts(nodes: org.w3c.dom.NodeList, newMarsAuthority: String) {
     for (i in 0 until nodes.length) {
         val data = nodes.item(i) as? Element ?: continue
-        if (data.getAttribute("android:host") == "com.google.android.libraries.photos.api.mars") {
-            data.setAttribute("android:host", MARS_AUTHORITY)
+        val host = data.getAttribute("android:host")
+        if (host == "com.google.android.libraries.photos.api.mars" || host == LEGACY_MARS_AUTHORITY) {
+            data.setAttribute("android:host", newMarsAuthority)
         }
     }
 }

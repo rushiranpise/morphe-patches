@@ -98,3 +98,10 @@ internal object FrictionlessEligibilityFingerprint : Fingerprint(
             method.referencesIntLiteral(-1)
     },
 )
+
+internal object MapLocationMarkerIconFingerprint : Fingerprint(
+    definingClass = "Lahdq;",
+    name = "c",
+    returnType = "Lanoo;",
+    parameters = listOf("Landroid/content/Context;"),
+)

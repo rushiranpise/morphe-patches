@@ -9,7 +9,7 @@ import app.template.patches.shared.Constants.AMAZON_SHOPPING_COMPATIBILITY
 val amazonOpenLinksInBrowserPatch = bytecodePatch(
     name = "Open links in browser",
     description = "Opens non-Amazon URLs in the default browser instead of the in-app WebView.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(AMAZON_SHOPPING_COMPATIBILITY, AMAZON_IN_COMPATIBILITY)
 

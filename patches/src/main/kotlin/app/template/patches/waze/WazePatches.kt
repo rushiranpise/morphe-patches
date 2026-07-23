@@ -51,6 +51,22 @@ private fun app.morphe.patcher.patch.ResourcePatchContext.ensureBasePrefs() {
     }
 }
 
+private fun normalizeLuaRgbHex(value: String?, fallback: String): String {
+    val cleaned = value
+        ?.trim()
+        ?.removePrefix("#")
+        ?.removePrefix("0x")
+        ?.removePrefix("0X")
+        ?.filter { it in '0'..'9' || it in 'a'..'f' || it in 'A'..'F' }
+        ?: fallback
+
+    return when (cleaned.length) {
+        6 -> cleaned
+        8 -> cleaned.takeLast(6)
+        else -> fallback
+    }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Disable Ads
 //
@@ -92,7 +108,8 @@ val wazeDisableAdsPatch = rawResourcePatch(
 val wazeAdvilStubPatch = bytecodePatch(
     name = "Disable Advil Ad Requests",
     description = "Stubs AdvilRequest.getPageUrl() → \"\" so the Advil ad server receives " +
-        "no page URL and returns no ad content. ",
+        "no page URL and returns no ad content. " +
+        "Target: Lcom/waze/jni/protos/AdvilRequest;->getPageUrl() in classes6.dex (verified ✓).",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -114,6 +131,7 @@ val wazeUncensoredRadarPatch = rawResourcePatch(
     name = "Uncensored Radar / Camera Display",
     description = "Shows exact fixed and mobile speed camera locations, including those not yet " +
         "in the official Waze radar zone. Enables enforcement alerts via preferences keys:\n" +
+        "Alerts.Enable Enforcement Alert_ / Alert / Polic_ (truncated + full variants).\n" +
         "Credits: Waze CGE Mod.",
     default = true
 ) {
@@ -143,7 +161,10 @@ val wazeUncensoredRadarPatch = rawResourcePatch(
 val wazeRadarSoundAnySpeedPatch = bytecodePatch(
     name = "Radar Sound (Any Speed)",
     description = "Plays radar/speed camera sound alerts regardless of current speed. " +
-        "Official Waze only alerts when over the speed limit.\n",
+        "Official Waze only alerts when over the speed limit.\n" +
+        "Patches CONFIG_VALUE_ALERTS_PLAY_SPEED_CAMERA_SOUND_BELOW_SPEED_LIMIT " +
+        "(ordinal 632) via setConfigValueBoolNTV on every server config sync.\n" +
+        "Target: Lcom/waze/ConfigManager;->onConfigSyncedFromServer() in classes5.dex (verified ✓).",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -157,7 +178,7 @@ val wazeRadarSoundAnySpeedPatch = bytecodePatch(
                 move-result-object v0
                 const/16 v1, 632
                 const/4 v2, 0x1
-                invoke-virtual {v0, v1, v2}, Lcom/waze/ConfigManager;->setConfigValueBoolNTV(IZ)V
+                invoke-virtual {v0, v1, v2}, Lcom/waze/ConfigManager;->setConfigValueBoolNTV(I Z)V
                 """.trimIndent()
             )
         }
@@ -172,7 +193,8 @@ val wazeRadarSoundAnySpeedPatch = bytecodePatch(
 val wazeReportSpeedLimitPatch = rawResourcePatch(
     name = "Report Speed Limit",
     description = "Adds a Report option when tapping the speedometer to report wrong or missing " +
-        "speed limits. Not available in the official version.\n",
+        "speed limits. Not available in the official version.\n" +
+        "Key: Map.Speedometer report speed enable_: 1",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -189,7 +211,10 @@ val wazeReportSpeedLimitPatch = rawResourcePatch(
 @Suppress("unused")
 val wazeSpeedLimitSignPatch = rawResourcePatch(
     name = "Speed Limit Sign",
-    description = "Sets the speed limit sign style shown on the map.",
+    description = "Sets the speed limit sign style shown on the map.\n" +
+        "• us (default) — large circular US-style sign, more readable at a glance\n" +
+        "• metric — smaller local-style sign\n" +
+        "Key: Map.Speedometer sign style",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -225,8 +250,12 @@ val wazeSpeedLimitSignPatch = rawResourcePatch(
 @Suppress("unused")
 val wazeSpeedometerTextSizePatch = bytecodePatch(
     name = "Enlarged Speedometer",
-    description = "Increases speedometer digit size for better readability.",
-    default = false
+    description = "Increases speedometer digit size for better readability.\n" +
+        "Default: speed < 100 → 28sp (orig 20sp), speed ≥ 100 → 21sp (orig 13sp).\n" +
+        "Target: Lcom/waze/main_screen/h/b/d;->f() in classes6.dex (verified ✓).\n" +
+        "Note: the two const/16 values are non-consecutive (goto between them) — " +
+        "scanned independently.",
+    default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
 
@@ -280,7 +309,12 @@ val wazeSpeedometerTextSizePatch = bytecodePatch(
 val wazeAlertDistancesPatch = rawResourcePatch(
     name = "Alert Distances",
     description = "Configures radar/camera and hazard alert announcement distances.\n" +
-        "Credits: Waze CGE Mod.\n",
+        "Writes all key variants (truncated _ + underscore + space) for resilience across versions.\n" +
+        "Credits: Waze CGE Mod.\n" +
+        "Official → default values (metres):\n" +
+        "Accident 600→2000 | Alert 600→1000 | Police 600→1000 |\n" +
+        "Freeways 2000→1200 | Highways 1000→900 | Streets 500→700 |\n" +
+        "Hazard 600→500 | Heavy Traffic 600→3000 | Between Alerts 300→200",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -344,6 +378,7 @@ val wazePopupSuppressionPatch = rawResourcePatch(
     name = "Popup Suppression",
     description = "Prevents promotional and ad popups from appearing while driving.\n" +
         "Raises the minimum trigger speed to a near-impossible value so popups never appear.\n" +
+        "Writes both Popup_ and Popu__ key variants for version resilience.\n" +
         "Credits: Waze Chuppito Mod.",
     default = true
 ) {
@@ -393,7 +428,7 @@ val wazeNavigationPatch = rawResourcePatch(
         "• Map turn mode (auto-zoom to upcoming turn)\n" +
         "• Traffic bar minimum time threshold\n" +
         "• GPS icon visibility\n" +
-        "• Route notifications (hazard, school zone) both disabled by default\n" +
+        "• Route notifications (hazard, school zone) — both disabled by default\n" +
         "Credits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys).",
     default = true
 ) {
@@ -446,7 +481,7 @@ val wazeNavigationPatch = rawResourcePatch(
 val wazeAutoZoomPatch = rawResourcePatch(
     name = "AutoZoom",
     description = "Controls how aggressively the map zooms in/out based on driving speed.\n" +
-        "Credits: Waze Chuppito Mod",
+        "Credits: Waze Chuppito Mod (Speed Factor 20, Gradient Speed Threshold 60).",
     default = true
 ) {
     compatibleWith(WAZE_COMPATIBILITY)
@@ -520,6 +555,7 @@ val wazeBlackSkinPatch = rawResourcePatch(
         "• Larger font labels across the board\n" +
         "• Wider navigation arrow head for better visibility\n" +
         "• Custom car 3D models: Batmobile, Riddler, race car, 3D arrow\n" +
+        "Note: skin changes require a fresh APK install; updating an existing patched install may keep cached skin files.\n" +
         "Credits: ALEX02-GTT (skin design), Waze Chuppito Mod (integration).",
     default = true
 ) {
@@ -534,6 +570,9 @@ val wazeBlackSkinPatch = rawResourcePatch(
     val navArrow     by stringOption(key = "navArrow",     default = "10.0",   title = "Nav arrow head width factor",     description = "Default: 10.0 (original: 3.0). Wider = more visible chevron.", required = false)
 
     execute {
+        val normalizedNightBg = normalizeLuaRgbHex(nightBg, "000000")
+        val normalizedDayBg = normalizeLuaRgbHex(dayBg, "ebe7dd")
+
         // Inject base skin Lua files and car models
         for (relPath in SKIN_FILES) {
             val f = get("assets/res/$relPath"); f.parentFile?.mkdirs()
@@ -547,15 +586,15 @@ val wazeBlackSkinPatch = rawResourcePatch(
         // Night skin overrides
         get("assets/res/skins/default/skin_values.night.lua").let { f ->
             if (f.exists()) f.writeText(f.readText()
-                .replace(Regex("map_background = rgb\\(0x[0-9a-fA-F]+\\)"), "map_background = rgb(0x${nightBg ?: "000000"})")
-                .replace(Regex("map_missing = rgb\\(0x[0-9a-fA-F]+\\)"),    "map_missing = rgb(0x${nightBg ?: "000000"})"))
+                .replace(Regex("map_background = rgb\\(0x[0-9a-fA-F]+\\)"), "map_background = rgb(0x$normalizedNightBg)")
+                .replace(Regex("map_missing = rgb\\(0x[0-9a-fA-F]+\\)"),    "map_missing = rgb(0x$normalizedNightBg)"))
         }
 
         // Day skin overrides
         get("assets/res/skins/default/skin_values.day.lua").let { f ->
             if (f.exists()) f.writeText(f.readText()
-                .replace(Regex("map_background = rgb\\(0x[0-9a-fA-F]+\\)"), "map_background = rgb(0x${dayBg ?: "ebe7dd"})")
-                .replace(Regex("map_missing = rgb\\(0x[0-9a-fA-F]+\\)"),    "map_missing = rgb(0x${dayBg ?: "ebe7dd"})"))
+                .replace(Regex("map_background = rgb\\(0x[0-9a-fA-F]+\\)"), "map_background = rgb(0x$normalizedDayBg)")
+                .replace(Regex("map_missing = rgb\\(0x[0-9a-fA-F]+\\)"),    "map_missing = rgb(0x$normalizedDayBg)"))
         }
 
         // Font sizes and nav arrow overrides to skin_structure

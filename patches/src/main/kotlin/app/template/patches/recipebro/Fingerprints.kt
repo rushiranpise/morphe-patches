@@ -23,7 +23,7 @@ internal object GetBooleanFingerprint : Fingerprint(
     definingClass = "Lcom/recipebro/cookingbuddy/client/utils/FeatureFlagResponse;",
     name = "getBoolean",
     returnType = "Z",
-    parameters = listOf("Lqd2;"),
+    parameters = listOf("Ltf2;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
@@ -43,13 +43,13 @@ internal object GetSoftImportLimitFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
 )
 
-// Static method: full descriptor = (Lb9;Lcom/.../CustomerInfo;)La80;
+// Static method: full descriptor = (Lb9;Lcom/.../CustomerInfo;)Lm80;
 // p0 = b9 instance, p1 = CustomerInfo, v0-v6 = true locals (no overlap).
 // v1 = activeSubscriptions Set at instruction index 2 (move-result-object).
 internal object B9CustomerInfoConverterFingerprint : Fingerprint(
     definingClass = "Lb9;",
     name = "a",
-    returnType = "La80;",
+    returnType = "Lm80;",
     parameters = listOf("Lb9;", "Lcom/revenuecat/purchases/kmp/models/CustomerInfo;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
 )

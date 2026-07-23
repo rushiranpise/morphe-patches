@@ -24,9 +24,10 @@ private const val ORIGINAL_PACKAGE_NAME = "com.google.android.apps.photos"
 private const val DEFAULT_PATCHED_PACKAGE_NAME = "app.morphe.android.apps.photos"
 private const val GMS_CORE_VENDOR_GROUP = "app.revanced"
 private const val GMS_CORE_PACKAGE = "app.revanced.android.gms"
-private const val MARS_AUTHORITY = "app.revanced.android.apps.photos.api.mars"
+private const val LEGACY_MARS_AUTHORITY = "app.revanced.android.apps.photos.api.mars"
 private const val EXTENSION_CLASS = "Lapp/template/extension/extension/GmsCoreSupportPatch;"
 private var resolvedPackageName = DEFAULT_PATCHED_PACKAGE_NAME
+private var resolvedMarsAuthority = marsAuthorityFor(DEFAULT_PATCHED_PACKAGE_NAME)
 
 private val GMS_STRING_REPLACEMENTS = mapOf(
     "com.google" to GMS_CORE_VENDOR_GROUP,
@@ -149,7 +150,6 @@ private val GMS_STRING_REPLACEMENTS = mapOf(
     "com.google.firebase.auth.api.gms.service.START" to "app.revanced.firebase.auth.api.gms.service.START",
     "com.google.firebase.dynamiclinks.service.START" to "app.revanced.firebase.dynamiclinks.service.START",
     "com.google.iid.TOKEN_REQUEST" to "app.revanced.iid.TOKEN_REQUEST",
-    "com.google.android.libraries.photos.api.mars" to MARS_AUTHORITY,
     "subscribedfeeds" to "app.revanced.subscribedfeeds",
 )
 
@@ -234,6 +234,7 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
                     } else {
                         manifestPackage
                     }
+                    resolvedMarsAuthority = marsAuthorityFor(resolvedPackageName)
                 }
 
                 val manifest = get("AndroidManifest.xml")
@@ -245,7 +246,8 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
                         "$resolvedPackageName.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
                     "com.google.android.c2dm" to "$GMS_CORE_VENDOR_GROUP.android.c2dm",
                     "com.google.android.libraries.photos.api.mars" to
-                        "$GMS_CORE_VENDOR_GROUP.android.apps.photos.api.mars",
+                        resolvedMarsAuthority,
+                    LEGACY_MARS_AUTHORITY to resolvedMarsAuthority,
                     "</queries>" to "<package android:name=\"$GMS_CORE_PACKAGE\"/></queries>",
                 )
                 manifest.writeText(
@@ -342,10 +344,17 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
             replaceInstruction(clearSelectedAccountIndex, "invoke-virtual {p0}, $accountHandlerClass->p()V")
         }
 
+        MapLocationMarkerIconFingerprint.method.addInstructions(
+            0,
+            "const/4 v0, 0x0\nreturn-object v0",
+        )
+
         fun transform(string: String): String? =
             GMS_STRING_REPLACEMENTS[string]
                 ?: transformAppPackageString(string)
                 ?: when {
+                    string == "com.google.android.libraries.photos.api.mars" -> resolvedMarsAuthority
+                    string == LEGACY_MARS_AUTHORITY -> resolvedMarsAuthority
                     string.startsWith("content://") -> transformContentUri(string)
                     else -> null
                 }
@@ -404,7 +413,8 @@ private fun transformContentUri(string: String): String? {
 
     val replacement = when {
         authority in APP_AUTHORITIES -> authority.prefixOrReplaceAppPackage()
-        authority == "com.google.android.libraries.photos.api.mars" -> MARS_AUTHORITY
+        authority == "com.google.android.libraries.photos.api.mars" -> resolvedMarsAuthority
+        authority == LEGACY_MARS_AUTHORITY -> resolvedMarsAuthority
         authority == "com.google.android.gms" -> GMS_CORE_PACKAGE
         authority == "com.google.android.gsf.gservices" -> "app.revanced.android.gsf.gservices"
         authority == "com.google.settings" -> "app.revanced.settings"
@@ -421,3 +431,5 @@ private fun String.prefixOrReplaceAppPackage(): String =
     } else {
         "$resolvedPackageName.$this"
     }
+
+private fun marsAuthorityFor(packageName: String) = "$packageName.api.mars"
