@@ -3,6 +3,8 @@ name: Sync
 on:
   workflow_dispatch:
   push:
+    branches:
+      - dev
   # workflow_run:
   #   workflows:
   #     - Release

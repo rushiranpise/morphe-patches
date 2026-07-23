@@ -28,7 +28,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val materialCapsulePremiumPatch = bytecodePatch(
-    name = "Material Capsule Premium",
+    name = "Unlock Premium",
     description = "Unlocks Material Capsule pro.",
 ) {
     compatibleWith(MATERIAL_CAPSULE_COMPATIBILITY)

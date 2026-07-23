@@ -7,7 +7,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val tradingViewUnlockPremiumPatch = bytecodePatch(
-    name = "TradingView Unlock Premium",
+    name = "Unlock Premium",
     description = "Unlocks Ultimate plan features, disables all paywalls and upgrade dialogs, " +
         "suppresses payment-banned blocking errors, and grants access to all benefits " +
         "including bar replay, custom intervals, multiple charts, study-on-study, " +

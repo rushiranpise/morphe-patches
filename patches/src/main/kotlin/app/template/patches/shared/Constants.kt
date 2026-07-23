@@ -442,7 +442,7 @@ val CALM_COMPATIBILITY = Compatibility(
     )
 
 val CALORY_COMPATIBILITY = Compatibility(
-        name = "Calory - Calorie Counter & Diet",
+        name = "Calory",
         packageName = "com.funnmedia.calory",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF6B35,
@@ -501,13 +501,6 @@ val CAROUSELL_COMPATIBILITY = Compatibility(
         packageName = "com.thecarousell.Carousell",
         appIconColor = 0xE7392C,
         targets = listOf(AppTarget(version = "2.463.9", versionCode = 10820))
-    )
-
-val CASETRACKER_1P3A_COMPATIBILITY = Compatibility(
-        name = "Case Tracker - Immigration Status",
-        packageName = "com.onepointthreeacres.CaseTracker",
-        appIconColor = 0x2563EB,
-        targets = listOf(AppTarget(version = null))
     )
 
 val CASETRACKER_COMPATIBILITY = Compatibility(
@@ -576,7 +569,7 @@ val CHORDIFY_COMPATIBILITY = Compatibility(
         packageName = "net.chordify.chordify",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x0A8282,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "3.28.0"))
     )
 
 val CITIZEN_COMPATIBILITY = Compatibility(
@@ -1822,15 +1815,87 @@ val POCKETPREP_BEHAVIORAL_HEALTH_COMPATIBILITY = Compatibility(
         packageName = "com.pocketprep.android.behavioralhealth",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = null))
+        targets = listOf(AppTarget(version = "3.28.0"))
     )
 
 val POCKETPREP_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep",
+        name = "Pocket Prep IT Cybersecurity",
         packageName = "com.pocketprep.android.itcybersecurity",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.27.2", versionCode = 424))
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_EMS_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep EMS",
+        packageName = "com.pocketprep.android.ems",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_ESSENTIALS_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Essentials",
+        packageName = "com.pocketprep.android.essentials",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_FITNESS_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Fitness",
+        packageName = "com.pocketprep.android.fitness",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_MAIN_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep",
+        packageName = "com.pocketprep.android.pocketprep",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_MEDICAL_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Medical",
+        packageName = "com.pocketprep.android.medical",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_NURSING_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Nursing",
+        packageName = "com.pocketprep.android.nursing",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_NURSING_SCHOOL_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Nursing School",
+        packageName = "com.pocketprep.android.nursingschool",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_PROFESSIONAL_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Professional",
+        packageName = "com.pocketprep.android.professional",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
+    )
+
+val POCKETPREP_SKILLED_TRADES_COMPATIBILITY = Compatibility(
+        name = "Pocket Prep Skilled Trades",
+        packageName = "com.pocketprep.android.automotive",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1D5CFF,
+        targets = listOf(AppTarget(version = "3.28.0"))
     )
 
 val PODSLINK_COMPATIBILITY = Compatibility(
@@ -1969,13 +2034,6 @@ val RECIPEBRO_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.4.22", versionCode = 1388))
     )
 
-val REMOTEATV_COMPATIBILITY = Compatibility(
-        name = "Remote ATV - Android TV Remote",
-        packageName = "tech.simha.androidtvremote",
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
-    )
-
 val RENAMEORGANIZE_COMPATIBILITY = Compatibility(
         name = "Rename & Organize",
         packageName = "eu.duong.picturemanager",
@@ -2043,13 +2101,6 @@ val SBS_COMPATIBILITY = Compatibility(
         appIconColor = 0xB4A034,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "6.2.5", versionCode = 16343))
-    )
-
-val SCANNERRADIO_COMPATIBILITY = Compatibility(
-        name = "Scanner Radio Pro",
-        packageName = "com.scannerradio",
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = null))
     )
 
 val SCOOPZ_COMPATIBILITY = Compatibility(
@@ -2345,7 +2396,7 @@ val SVPLAYER_COMPATIBILITY = Compatibility(
     )
 
 val TAGTRACKER_COMPATIBILITY = Compatibility(
-        name = "Tag Tracker: Find Lost Items",
+        name = "Tag Tracker",
         packageName = "com.makeevapps.tagtracker",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x2196F3,
@@ -2353,7 +2404,7 @@ val TAGTRACKER_COMPATIBILITY = Compatibility(
     )
 
 val TANGO_COMPATIBILITY = Compatibility(
-        name = "Tango- Live Stream Video Chat",
+        name = "Tango",
         packageName = "com.sgiggle.production",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1A73E8,
@@ -2381,13 +2432,6 @@ val TELEVIZO_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1A73E8,
         targets = listOf(AppTarget(version = "1.9.9.31-g", versionCode = 614))
-    )
-
-val TEMPMAIL_COMPATIBILITY = Compatibility(
-        name = "TempMail",
-        packageName = "com.tempmail",
-        appIconColor = 0xFF6B6B,
-        targets = listOf(AppTarget(version = null))
     )
 
 val TEMPNUMBER_COMPATIBILITY = Compatibility(
@@ -2657,7 +2701,7 @@ val UNIVERSALTV_COMPATIBILITY = Compatibility(
     )
 
 val UPNOTE_COMPATIBILITY = Compatibility(
-        name = "UpNote - Notes, Journal, Diary",
+        name = "UpNote",
         packageName = "com.getupnote.android",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x4A90D9,
@@ -2727,7 +2771,7 @@ val WAZE_COMPATIBILITY = Compatibility(
     )
 
 val WEATHERBUG_COMPATIBILITY = Compatibility(
-        name = "WeatherBug- Weather Forecasts",
+        name = "WeatherBug",
         packageName = "com.aws.android",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xF57C00,
@@ -2743,7 +2787,7 @@ val WEATHERWISE_COMPATIBILITY = Compatibility(
     )
 
 val WEAWOW_COMPATIBILITY = Compatibility(
-        name = "Weawow: Weather & Widget",
+        name = "Weawow",
         packageName = "com.weawow",
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.APK,
@@ -2756,13 +2800,6 @@ val WEBNOVEL_COMPATIBILITY = Compatibility(
         appIconColor = 0x1976D2,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "8.21.1", versionCode = 1211))
-    )
-
-val WHATSAPP_COMPATIBILITY = Compatibility(
-        name = "WhatsApp",
-        packageName = "com.whatsapp",
-        appIconColor = 0x25D366,
-        targets = listOf(AppTarget(version = null))
     )
 
 val WINDSCRIBE_COMPATIBILITY = Compatibility(
@@ -2780,7 +2817,7 @@ val WINDY_COMPATIBILITY = Compatibility(
     )
 
 val WINDYAPP_COMPATIBILITY = Compatibility(
-        name = "Windy: Weather Radar & Forecast",
+        name = "Windy",
         packageName = "co.windyapp.android",
         appIconColor = 0x0FA0EB,
         apkFileType = ApkFileType.APKS,
@@ -2810,7 +2847,7 @@ val WORKOUT_COMPATIBILITY = Compatibility(
     )
 
 val WPS_OFFICE_COMPATIBILITY = Compatibility(
-        name = "WPS Office- Word, Docs, PDF",
+        name = "WPS Office",
         packageName = "cn.wps.moffice_eng",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xE84C3D,
@@ -2863,12 +2900,5 @@ val ZEDGE_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x00B140,
         targets = listOf(AppTarget(version = "9.30.1", versionCode = 93000100))
-    )
-
-val ZOOMEARTH_COMPATIBILITY = Compatibility(
-        name = "Zoom Earth",
-        packageName = "com.neave.zoomearth",
-        appIconColor = 0x1A6FBF,
-        targets = listOf(AppTarget(version = null))
     )
 }

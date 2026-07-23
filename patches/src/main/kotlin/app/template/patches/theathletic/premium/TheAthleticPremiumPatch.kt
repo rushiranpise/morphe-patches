@@ -44,7 +44,7 @@ import com.android.tools.smali.dexlib2.Opcode
 
 @Suppress("unused")
 val theAthleticPremiumPatch = bytecodePatch(
-    name = "The Athletic Premium",
+    name = "Unlock Premium",
     description = "Bypasses The Athletic article paywall by spoofing the NYT subscription entitlement check.",
 ) {
     compatibleWith(THE_ATHLETIC_COMPATIBILITY)

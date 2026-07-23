@@ -44,7 +44,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
  */
 @Suppress("unused")
 val mangaPlusPremiumPatch = bytecodePatch(
-    name = "Manga Plus Premium",
+    name = "Unlock Deluxe",
     description = "Unlocks the Deluxe subscription.",
     default = true
 ) {
