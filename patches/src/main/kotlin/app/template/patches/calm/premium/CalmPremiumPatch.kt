@@ -35,7 +35,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val calmPremiumPatch = bytecodePatch(
-    name = "Calm Premium",
+    name = "Unlock Premium",
     description = "Unlocks Calm lifetime subscription",
 ) {
     compatibleWith(CALM_COMPATIBILITY)

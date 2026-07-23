@@ -19,7 +19,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val caloryPremiumPatch = bytecodePatch(
-    name = "Calory Premium",
+    name = "Unlock Premium",
     description = "Unlocks Calory Pro and removes ads."
 ) {
     compatibleWith(CALORY_COMPATIBILITY)

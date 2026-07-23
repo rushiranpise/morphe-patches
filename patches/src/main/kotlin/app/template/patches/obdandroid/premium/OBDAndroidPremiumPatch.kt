@@ -7,7 +7,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val obdAndroidPremiumPatch = bytecodePatch(
-    name = "OBD Android Premium Unlock",
+    name = "Unlock Premium",
     description = "Unlocks all premium features including advanced diagnostics, live sensor data, freeze frame, and removes the daily usage quota."
 ) {
     compatibleWith(OBD_ANDROID_COMPATIBILITY)

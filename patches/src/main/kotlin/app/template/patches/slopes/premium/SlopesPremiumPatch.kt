@@ -7,7 +7,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val slopesPremiumPatch = bytecodePatch(
-    name = "Slopes Premium Unlock",
+    name = "Unlock Premium",
     description = "Unlocks all premium features."
 ) {
     compatibleWith(SLOPES_COMPATIBILITY)
