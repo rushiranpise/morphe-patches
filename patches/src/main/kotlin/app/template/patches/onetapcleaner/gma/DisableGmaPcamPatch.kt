@@ -10,10 +10,10 @@ import app.template.patches.shared.clearBody
 @Suppress("unused")
 val disableGmaPcamPatch = bytecodePatch(
     description = "Prevents the Google Mobile Ads SDK from executing the cached pcam.jar integrity " +
-        "agent (module 1781199372735). On a re-signed APK, pcam.jar performs an APK signature " +
+        "agent (module 1781541265554). On a re-signed APK, pcam.jar performs an APK signature " +
         "attestation check and calls System.exit(0) on failure — killing the app ~3-4s after " +
         "launch from a GMA(BG) background thread, independently of PairIP's LicenseClient. " +
-        "Pinned by '/1781199372735.jar' which is unique to the obfuscated sm1 loader class.",
+        "Pinned by '/1781541265554.jar' which is unique to the obfuscated sm1 loader class.",
 ) {
     compatibleWith(Constants.ONETAPCLEANER_COMPATIBILITY)
 
@@ -22,10 +22,10 @@ val disableGmaPcamPatch = bytecodePatch(
         // Pinned by the unique jar path string. No-op c()V and d()V (the execute/run methods
         // called by jl0 after setup), and b(File)V (the DexClassLoader setup method).
         // clearBody() required — all three have try-catch blocks.
-        val sm1Class = classDefByStrings("/1781199372735.jar")
+        val sm1Class = classDefByStrings("/1781541265554.jar")
             .firstOrNull()
             ?: throw PatchException(
-                "1Tap Cleaner: GMA pcam loader (1781199372735.jar) not found — GMA SDK version changed.",
+                "1Tap Cleaner: GMA pcam loader not found — GMA SDK version changed.",
             )
         val mutableSm1 = mutableClassDefBy(sm1Class)
 

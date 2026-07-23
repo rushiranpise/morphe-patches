@@ -11,8 +11,8 @@ import app.morphe.patcher.opcode
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.stringOption
-import app.template.patches.duolingo.HasMaxUserInfoConstructorFingerprint
 import app.template.patches.duolingo.LoggedInStateFingerprint
+import app.template.patches.duolingo.MaxHooksUserDataFingerprint
 import app.template.patches.duolingo.UserFingerprint
 import app.template.patches.duolingo.UserHasGoldFieldUsageFingerprint
 import app.template.patches.duolingo.UserIsPaidFieldUsageFingerprint
@@ -192,9 +192,35 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
             }
 
         if (tier.startsWith("max")) {
-            HasMaxUserInfoConstructorFingerprint
-                .match(mutableClassDefBy(HasMaxUserInfoConstructorFingerprint.definingClass!!))
-                .method.addInstructions(0, "const/4 p1, 0x1")
+            val maxHooksClass = MaxHooksUserDataFingerprint.classDef
+            val hasMaxField = MaxHooksUserDataFingerprint.method.instructions
+                .mapNotNull { instruction ->
+                    ((instruction as? ReferenceInstruction)?.reference as? FieldReference)
+                        ?.takeIf { field -> field.definingClass == maxHooksClass.type && field.type == "Z" }
+                }
+                .distinctBy { field -> field.name }
+                .getOrNull(1)
+                ?: throw PatchException("Could not resolve Duolingo MaxHooks hasMax field")
+
+            val constructor = maxHooksClass.methods
+                .firstOrNull { method -> method.name == "<init>" && method.returnType == "V" }
+                ?: throw PatchException("Could not find Duolingo MaxHooks constructor")
+            val setFieldIndex = constructor.instructions.indexOfFirst { instruction ->
+                instruction.opcode == Opcode.IPUT_BOOLEAN &&
+                    (((instruction as? ReferenceInstruction)?.reference as? FieldReference)
+                        ?.let { field ->
+                            field.definingClass == hasMaxField.definingClass &&
+                                field.name == hasMaxField.name &&
+                                field.type == hasMaxField.type
+                        } == true)
+            }
+            if (setFieldIndex < 0) throw PatchException("Could not find Duolingo MaxHooks hasMax assignment")
+
+            val register = constructor.instructions
+                .elementAt(setFieldIndex)
+                .let { instruction -> (instruction as? TwoRegisterInstruction)?.registerA }
+                ?: throw PatchException("Could not resolve Duolingo MaxHooks hasMax register")
+            constructor.addInstructions(setFieldIndex, "const/4 v$register, 0x1")
         }
 
         val subscriberLevel = when {

@@ -69,3 +69,8 @@ fun MutableMethod.returnEarly(value: Boolean) = addInstructions(
     0,
     "const/4 v0, ${if (value) "0x1" else "0x0"}\nreturn v0",
 )
+
+fun MutableMethod.returnEarly(value: Int) = addInstructions(
+    0,
+    "const/16 v0, $value\nreturn v0",
+)

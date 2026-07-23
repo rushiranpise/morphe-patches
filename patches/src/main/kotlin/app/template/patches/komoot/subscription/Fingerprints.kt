@@ -5,7 +5,7 @@ import app.morphe.patcher.opcode
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-// Komoot (de.komoot.android) v2026.28.2
+// Komoot (de.komoot.android) v2026.29.0
 //
 // Premium architecture:
 //   UserV7.k0()Z  — reads field `e` (Boolean) and compares to Boolean.TRUE;
@@ -60,7 +60,7 @@ internal val UserIsPremiumFingerprint = Fingerprint(
  * Called by gpj.s1() to choose the owned vs upsell code path.
  */
 internal val OwnedRegionIsOwnedFingerprint = Fingerprint(
-    definingClass = "Lcin;",
+    definingClass = "Ln2o;",
     name = "n",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
@@ -78,7 +78,7 @@ internal val OwnedRegionIsOwnedFingerprint = Fingerprint(
  * always set to true before H0 even runs, covering all code paths.
  */
 internal val RegionsDataOwnsWorldPackFingerprint = Fingerprint(
-    definingClass = "Lbqr;",
+    definingClass = "Libs;",
     name = "g",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),

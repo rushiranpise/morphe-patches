@@ -9,7 +9,7 @@ val UserAccountClassFingerprint = Fingerprint(
 )
 
 val WatchAccountProFingerprint = Fingerprint(
-    definingClass = "WatchAccountInfo",
+    definingClass = "Lcom/udisc/udiscwearlibrary/WatchAccountInfo;",
     name = "<init>",
     filters = listOf(
         fieldAccess(name = "isPro"),
@@ -27,7 +27,7 @@ val PlayBillingPurchaseListenerFingerprint = Fingerprint(
     definingClass = "Lcom/udisc/android/billing/b;",
     name = "a",
     returnType = "V",
-    parameters = listOf("La70/b;", "Ljava/util/List;"),
+    parameters = listOf("Lb70/b;", "Ljava/util/List;"),
     strings = listOf("acknowledged"),
 )
 
@@ -37,7 +37,7 @@ val AccountSubscriptionConstructorFingerprint = Fingerprint(
         AccessFlags.SYNTHETIC,
         AccessFlags.CONSTRUCTOR,
     ),
-    definingClass = "Lvy/n0;",
+    definingClass = "Lvy/o0;",
     name = "<init>",
     returnType = "V",
     parameters = listOf(
