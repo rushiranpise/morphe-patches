@@ -26,15 +26,15 @@ val carbonUnlockPremiumPatch = rawResourcePatch(
 
         val patched = bytes.forceBooleanGetByIdTrue(
             mapOf(
-                47940 to "isSubscribed"
+                48196 to "isSubscribed"
             )
         ) + bytes.forceBooleanAtOffsetsTrue(
             listOf(
-                0x72A6FD to "settings status isActive 1",
-                0x72A736 to "settings status isActive 2",
-                0x72A8A3 to "settings status isActive 3"
+                0x732151 to "settings status isActive 1",
+                0x73218A to "settings status isActive 2",
+                0x7322F7 to "settings status isActive 3"
             ),
-            28130
+            28230
         )
         if (patched == 0) {
             throw PatchException("No Carbon subscription gates were patched.")

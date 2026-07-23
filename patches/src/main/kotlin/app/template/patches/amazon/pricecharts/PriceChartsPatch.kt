@@ -11,7 +11,7 @@ private const val HELPER = "Lapp/template/extension/extension/AmazonHelper;"
 val amazonPriceChartsPatch = bytecodePatch(
     name = "Price history charts",
     description = "Injects Keepa and CamelCamelCamel price history charts on Amazon product pages.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(AMAZON_SHOPPING_COMPATIBILITY, AMAZON_IN_COMPATIBILITY)
     extendWith("extensions/extension.mpe")

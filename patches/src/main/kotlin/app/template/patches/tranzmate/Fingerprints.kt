@@ -61,7 +61,7 @@ val PromoCellFragmentOnViewCreatedFingerprint = Fingerprint(
 )
 
 val BlockPaywallGateFingerprint = Fingerprint(
-    definingClass = "Lx81;",
+    definingClass = "Ly81;",
     name = "a",
     returnType = "Z",
     parameters = listOf("Lcom/moovit/MoovitActivity;"),
@@ -118,7 +118,7 @@ val ItineraryBlockedSmartTipsBannerFingerprint = Fingerprint(
 )
 
 val MyMoovitPlusGoPremiumCardFingerprint = Fingerprint(
-    definingClass = "Lxy9;",
+    definingClass = "Lzy9;",
     name = "emit",
     returnType = "Ljava/lang/Object;",
     parameters = listOf("Ljava/lang/Object;", "Llx2;"),

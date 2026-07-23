@@ -58,12 +58,12 @@ object UserIsPaidFieldUsageFingerprint : Fingerprint(
     ),
 )
 
-object HasMaxUserInfoConstructorFingerprint : Fingerprint(
-    definingClass = "Ldre;",
-    name = "<init>",
-    returnType = "V",
-    parameters = listOf("Z", "J"),
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+object MaxHooksUserDataFingerprint : Fingerprint(
+    strings = listOf(
+        "MaxHooksUserData(isAdmin=",
+        ", hasMax=",
+        ", plusSubscriptionInventoryItem=",
+    ),
 )
 
 object UserHasGoldFieldUsageFingerprint : Fingerprint(

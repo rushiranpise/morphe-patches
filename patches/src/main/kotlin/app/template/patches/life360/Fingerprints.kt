@@ -350,3 +350,58 @@ internal val PremiumGetAvailableSkusFingerprint = Fingerprint(
     returnType = "Ljava/util/Set;",
     parameters = emptyList(),
 )
+
+// FeaturesAccessImpl.get(String)I — returns server-side integer feature limit (e.g. place_alerts count).
+// Patching to return MAX_VALUE bypasses all numeric limits gated via FeaturesAccess.get().
+internal val FeaturesAccessGetIntForCircleFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/android/settings/features/FeaturesAccessImpl;",
+    name = "get",
+    returnType = "I",
+    parameters = listOf("Ljava/lang/String;"),
+)
+
+// FeaturesAccessImpl.get(String, String)I — per-circle variant of the numeric limit gate.
+internal val FeaturesAccessGetIntFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/android/settings/features/FeaturesAccessImpl;",
+    name = "get",
+    returnType = "I",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+// FeaturesAccessImpl.isEnabled(String, String)Z — per-circle boolean feature gate.
+// Server delivers feature flag JSON; this reads it. Returning true unlocks all boolean gates.
+internal val FeaturesAccessIsEnabledFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/android/settings/features/FeaturesAccessImpl;",
+    name = "isEnabled",
+    returnType = "Z",
+    parameters = listOf("Ljava/lang/String;", "Ljava/lang/String;"),
+)
+
+// CircleFeatures.isPremium()Z — local DB model used by the circle switcher and map UI.
+// Returns true when circle has a non-null skuId. Patched to always return true.
+internal val CircleFeatureIsPremiumFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/model_store/base/localstore/CircleFeatures;",
+    name = "isPremium",
+    returnType = "Z",
+    parameters = emptyList(),
+)
+
+// Premium.membershipTierExperience()MembershipTierExperience — determines if the app shows
+// DUAL_TIER (Silver+Gold) or TRIPLE_TIER (Silver+Gold+Platinum) upgrade screens.
+// Reads availableFeatureSets from server; patch to always return TRIPLE_TIER.
+internal val PremiumMembershipTierExperienceFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/inapppurchase/Premium;",
+    name = "membershipTierExperience",
+    returnType = "Lcom/life360/inapppurchase/MembershipTierExperience;",
+    parameters = emptyList(),
+)
+
+// FeaturesAccessImpl.getLocationUpdateFreq()J — returns location update interval in ms.
+// Free = 300_000ms, Silver = 120_000ms, Gold = 30_000ms, Platinum = 10_000ms (StatsIG).
+// Patch to return 10_000L — Platinum fastest update rate.
+internal val FeaturesAccessGetLocationUpdateFreqFingerprint = Fingerprint(
+    definingClass = "Lcom/life360/android/settings/features/FeaturesAccessImpl;",
+    name = "getLocationUpdateFreq",
+    returnType = "J",
+    parameters = emptyList(),
+)
