@@ -2084,7 +2084,7 @@ val SAI_COMPATIBILITY = Compatibility(
         packageName = "com.mtv.sai",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "2.2.8"))
+        targets = listOf(AppTarget(version = "2.3.1"))
     )
 
 val SAVVY_NAVVY_COMPATIBILITY = Compatibility(
