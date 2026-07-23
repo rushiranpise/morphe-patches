@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.15.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.15.1-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;265 patches total
+> **[v1.15.1-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.15.1-dev.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;265 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 2 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -2186,7 +2186,7 @@ Bug reports must include:
 <summary><code>#173</code> <strong>TradingView</strong> &middot; 1 patch &middot; <code>com.tradingview.tradingviewapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.20.79.0.1002355`
+**Supported versions:** `1.20.78.1.1002330`
 
 | Patch | Details |
 |---|---|

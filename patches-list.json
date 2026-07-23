@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.15.1-dev.1",
+  "version": "1.15.1-dev.2",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -5295,12 +5295,12 @@
           "packageName": "com.tradingview.tradingviewapp",
           "name": "TradingView",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKS",
           "appIconColor": "#2962FF",
           "signatures": null,
           "targets": [
             {
-              "version": "1.20.79.0.1002355",
+              "version": "1.20.78.1.1002330",
               "isExperimental": false,
               "minSdk": null,
               "description": null
