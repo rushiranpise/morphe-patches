@@ -1,3 +1,9 @@
+## [1.15.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.15.0...v1.15.1-dev.1) (2026-07-23)
+
+### 🐛 Bug Fixes
+
+* photos ([b21dec5](https://github.com/rushiranpise/morphe-patches/commit/b21dec59e6419c06e20e8f95c46e44daad01284a))
+
 ## [1.15.0](https://github.com/rushiranpise/morphe-patches/compare/v1.14.0...v1.15.0) (2026-07-23)
 
 ### 🐛 Bug Fixes

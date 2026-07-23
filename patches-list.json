@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.15.0",
+  "version": "1.15.1-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -12,12 +12,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -281,12 +281,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -705,12 +705,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -884,12 +884,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -931,12 +931,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -2405,12 +2405,12 @@
           "packageName": "com.google.android.apps.photos",
           "name": "Google Photos",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#4285F4",
           "signatures": null,
           "targets": [
             {
-              "version": "7.85.0.950510832",
+              "version": "7.85.0.952162352",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -4807,12 +4807,12 @@
           "packageName": "ch.protonvpn.android",
           "name": "Proton VPN",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#6D4AFF",
           "signatures": null,
           "targets": [
             {
-              "version": "5.19.43.0",
+              "version": "5.19.61.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5157,12 +5157,12 @@
           "packageName": "com.theathletic",
           "name": "The Athletic",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1A1A1A",
           "signatures": null,
           "targets": [
             {
-              "version": "13.141.0",
+              "version": "13.142.0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5545,12 +5545,12 @@
           "packageName": "com.saldous.casetracker",
           "name": "Case Tracker",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "5.5.3",
+              "version": "5.5.4",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5847,12 +5847,12 @@
           "packageName": "eu.darken.octi",
           "name": "Octi",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6F00",
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.4",
+              "version": "1.1.0-rc0",
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -6079,12 +6079,12 @@
           "packageName": "torrent.search.revolutionv2",
           "name": "Torrent Search Revolution V2",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "2.3.2",
+              "version": "2.3.3",
               "isExperimental": false,
               "minSdk": null,
               "description": null
