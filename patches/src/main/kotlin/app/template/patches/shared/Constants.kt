@@ -215,9 +215,9 @@ val CALLRECORDER_COMPATIBILITY = Compatibility(
 val CALM_COMPATIBILITY = Compatibility(
         name = "Calm: Sleep & Meditation",
         packageName = "com.calm.android",
-        apkFileType = ApkFileType.XAPK,
+        apkFileType = ApkFileType.APKS,
         appIconColor = 0x4A90D9,
-        targets = listOf(AppTarget(version = "6.100.1", versionCode = 4120448))
+        targets = listOf(AppTarget(version = "6.100.2", versionCode = 4120449))
     )
 
 val CALORY_COMPATIBILITY = Compatibility(
