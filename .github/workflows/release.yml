@@ -28,6 +28,17 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.workflow_run.head_branch || github.ref }}
 
+      - name: Fetch release branches
+        run: |
+          git fetch origin \
+            +refs/heads/main:refs/remotes/origin/main \
+            +refs/heads/dev:refs/remotes/origin/dev \
+            --tags
+
+          git branch --force main origin/main
+          git show-ref --verify --quiet refs/heads/dev || git branch dev origin/dev
+          git checkout "${{ github.event.workflow_run.head_branch || github.ref_name }}"
+
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
