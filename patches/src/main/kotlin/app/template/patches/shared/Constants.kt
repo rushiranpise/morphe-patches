@@ -231,9 +231,9 @@ val CALORY_COMPATIBILITY = Compatibility(
 val CAMSCANNER_COMPATIBILITY = Compatibility(
         name = "CamScanner",
         packageName = "com.intsig.camscanner",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x19BCAA,
-        targets = listOf(AppTarget(version = "7.20.5.2606250000", versionCode = 72051))
+        targets = listOf(AppTarget(version = "7.21.5.2607090000", versionCode = 72151))
     )
 
 val CANVA_COMPATIBILITY = Compatibility(
@@ -761,7 +761,8 @@ val NEWSBREAK_COMPATIBILITY = Compatibility(
         name = "NewsBreak",
         packageName = "com.particlenews.newsbreak",
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "26.28.0", versionCode = 26280034))
+        apkFileType = ApkFileType.APKS,
+        targets = listOf(AppTarget(version = "26.30.1", versionCode = 26300104))
     )
 
 val NINJVAPN_COMPATIBILITY = Compatibility(
