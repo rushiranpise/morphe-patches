@@ -8,14 +8,15 @@ import app.template.patches.shared.returnEarly
 @Suppress("unused")
 val slopesPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks all premium features."
+    description = "Unlocks all premium features.",
 ) {
     compatibleWith(SLOPES_COMPATIBILITY)
 
     execute {
-        // Inject far-future expiration (year 2100 = epoch milli 0x7258118000) into
-        // getPassExpiration(). This method has .registers 4 (v0-v2, p0) so const-wide fits.
-        // getPremiumStatus() calls this and formats the result into a real date string.
+        // Inject a far-future expiration (now + ~63 years, 2_000_000_000
+        // seconds) into the pass/membership-expiration Instant getter.
+        // Whatever downstream status computation reads this value will
+        // treat the pass as perpetually current rather than expired or absent.
         GetPassExpirationFingerprint.method.addInstructions(
             0,
             """
@@ -25,16 +26,13 @@ val slopesPremiumPatch = bytecodePatch(
                 invoke-virtual { v0, v1, v2 }, Ljava/time/Instant;->plusSeconds(J)Ljava/time/Instant;
                 move-result-object v0
                 return-object v0
-            """
+            """.trimIndent(),
         )
 
-        // Force getAutoRenewing() → true so getPremiumStatus() takes the
-        // PassStatus$Subscribed branch (Unlimited Plan) rather than PassStatus$Active.
-        // .registers 2 — returnEarly(true) only needs const/4 + return, no extra registers.
-        GetAutoRenewingFingerprint.method.returnEarly(true)
-
-        // Force isSubscribed() → true to pass the initial gate in getPremiumStatus()
-        // that decides between the Subscribed/Expiring/Active/Inactive branches.
+        // Force the "has an active, non-expired pass" gate to true.
         IsSubscribedFingerprint.method.returnEarly(true)
+
+        // Force the "has any pass/membership on file" gate to true.
+        HasAnyPassFingerprint.method.returnEarly(true)
     }
 }

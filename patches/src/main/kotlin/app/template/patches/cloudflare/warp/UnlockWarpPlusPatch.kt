@@ -5,41 +5,48 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.WARP_COMPATIBILITY
 
 /**
- * Forces WarpPlusState to UNLIMITED on every AccountData instance by intercepting
- * the primary constructor before the field is written.
+ * Spoof WARP+ Unlimited — UI unlock via AccountData constructor intercept.
  *
- * ── Why the previous approach crashed ──────────────────────────────────────────────
- * The original patch injected `iput-object` into WarpDataStore.p() (the getter):
+ * ── What this patches ────────────────────────────────────────────────────────
+ * Cloudflare stores the user's account tier in AccountData.b (WarpPlusState),
+ * deserialised from the /accounts API response field "account_type".
  *
- *   sget-object v0, ...WarpPlusState;->UNLIMITED
- *   sget-object v1, ...AccountData;->j         // static default instance
- *   iput-object v0, v1, ...AccountData;->b     // ← VerifyError here
- *   return-object v1
+ * WarpPlusState enum: FREE | LIMITED | TEAM | UNLIMITED
  *
- * `AccountData.b` is a `final` Kotlin val. The Dalvik/ART verifier enforces
- * that final instance fields may ONLY be written inside the declaring class's
- * own <init> method. Writing it from WarpDataStore.p() — a foreign method —
- * causes a hard Dex VerifyError on class load, crashing the app at launch
- * before any activity is displayed.
+ * By injecting `sget-object p2, WarpPlusState;->UNLIMITED` at index 0 of the
+ * primary constructor, p2 (the accountType parameter) is overwritten with
+ * UNLIMITED before the constructor stores it into the final field `b`.
+ * Every AccountData instance created — including those deserialised from disk
+ * cache — will have accountType == UNLIMITED for the lifetime of the process.
  *
- * ── Correct approach ────────────────────────────────────────────────────────────
- * Intercept AccountData.<init> itself and overwrite parameter p2 (WarpPlusState)
- * with UNLIMITED *before* the constructor stores it into field `b`.
+ * ── Why the constructor (not the getter) ─────────────────────────────────────
+ * AccountData.b is a `final` Kotlin val. ART enforces that final instance fields
+ * may only be written inside the declaring class's own <init> method. Writing it
+ * from any other method (e.g. a WarpDataStore getter override) causes a hard
+ * VerifyError on class load, crashing the app before any activity is displayed.
+ *
+ * ── Stability ────────────────────────────────────────────────────────────────
+ * AccountData is Moshi-serialised: all field names are preserved at runtime via
+ * @Json annotations. R8 cannot rename the class, constructor, or enum values.
+ * WarpPlusState is a sealed enum with @Json names; UNLIMITED is Moshi-kept.
+ * The 9-parameter constructor signature is unique and stable across updates.
+ *
+ * ── Verified v6.38.8 (versionCode 5431) ─────────────────────────────────────
+ * Constructor signature, .registers 11, iput-object p2 → field b: all confirmed
+ * identical to v6.38.7. No structural changes in AccountData or WarpPlusState.
  */
 @Suppress("unused")
 val unlockWarpPlusPatch = bytecodePatch(
     name = "Spoof WARP+ Unlimited UI",
-    description = "Unlocks WARP+ UI locally.",
-    default = true
+    description = "Forces WarpPlusState to UNLIMITED on every AccountData instance by intercepting the primary constructor before the account type field is written.",
+    default = true,
 ) {
     compatibleWith(WARP_COMPATIBILITY)
 
     execute {
         AccountDataConstructorFingerprint.method.addInstructions(
             0,
-            """
-                sget-object p2, Lcom/cloudflare/app/data/warpapi/WarpPlusState;->UNLIMITED:Lcom/cloudflare/app/data/warpapi/WarpPlusState;
-            """
+            "sget-object p2, Lcom/cloudflare/app/data/warpapi/WarpPlusState;->UNLIMITED:Lcom/cloudflare/app/data/warpapi/WarpPlusState;",
         )
     }
 }

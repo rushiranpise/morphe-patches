@@ -26,9 +26,10 @@ internal val HasAIMealEverFingerprint = Fingerprint(
     parameters = emptyList(),
 )
 
-// hk/a.getHasMoneyPkg() - checks if user has any paid plan (cloud playback gate)
+// jk/a.getHasMoneyPkg() - checks if user has any paid plan (cloud playback gate)
+// v5.1049.4.921: class renamed hk/a → jk/a (same method name and signature unchanged)
 internal val GetHasMoneyPkgFingerprint = Fingerprint(
-    definingClass = "Lhk/a;",
+    definingClass = "Ljk/a;",
     name = "getHasMoneyPkg",
     returnType = "Z",
     parameters = emptyList(),
@@ -134,9 +135,9 @@ internal val CloseliIsExpiredFingerprint = Fingerprint(
 
 // ── Source-level patches (server data ingestion) ─────────────────────────────
 
-// b1.parseMealResult() - called after API response; sets aiGoods/basicGoods/hasMoneyPkg
-// Patching this to return true (success) while skipping actual parsing prevents
-// server data from overwriting our patched state
+// b1.parseMealResult() - called after API response; sets aiGoods/basicGoods/hasMoneyPkg.
+// Returning true (success) while skipping actual parsing prevents server data from
+// overwriting our patched state.
 internal val ParseMealResultFingerprint = Fingerprint(
     definingClass = "Lcom/blurams/common/util/b1;",
     name = "parseMealResult",
@@ -144,8 +145,8 @@ internal val ParseMealResultFingerprint = Fingerprint(
     parameters = listOf("Lcom/nhe/clhttpclient/api/model/PurchaseMealResult;"),
 )
 
-// b1.filterPurchase() - splits meal list into aiGoods vs basicGoods lists
-// Patching to no-op prevents empty server lists from clearing our state
+// b1.filterPurchase() - splits meal list into aiGoods vs basicGoods lists.
+// No-op prevents empty server lists from clearing our patched state.
 internal val FilterPurchaseFingerprint = Fingerprint(
     definingClass = "Lcom/blurams/common/util/b1;",
     name = "filterPurchase",

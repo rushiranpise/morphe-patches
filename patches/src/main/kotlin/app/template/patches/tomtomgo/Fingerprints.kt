@@ -4,7 +4,10 @@ import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall
 import com.android.tools.smali.dexlib2.AccessFlags
 
-// Car: qb/a$b CombineLatest combiner → always true
+// ── Car subscription ─────────────────────────────────────────────────────────
+
+// CombineLatest combiner that aggregates per-provider hasActiveSubscriptions booleans.
+// Returning Boolean.TRUE makes the car subscription appear active regardless of server state.
 object HasActiveSubscriptionsCombinerFingerprint : Fingerprint(
     definingClass = "Lqb/a\$b;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
@@ -13,21 +16,22 @@ object HasActiveSubscriptionsCombinerFingerprint : Fingerprint(
     strings = listOf("activeSubscriptionsExistenceList"),
 )
 
-// Car: sb/d$f per-provider mapper → always true
+// Per-provider mapper that checks Collection.isEmpty() on the subscription list.
+// Returning Boolean.TRUE bypasses the isEmpty() check for each provider.
 object HasActiveSubscriptionsMapperFingerprint : Fingerprint(
     definingClass = "Lsb/d\$f;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ljava/lang/Object;",
     parameters = listOf("Ljava/lang/Object;"),
     filters = listOf(
-        methodCall(
-            definingClass = "Ljava/util/Collection;",
-            name = "isEmpty",
-        ),
+        methodCall(definingClass = "Ljava/util/Collection;", name = "isEmpty"),
     ),
 )
 
-// Truck: Db/d default branch (a>=4) reads TRUCK_SUBSCRIPTION_PURCHASED
+// ── Truck subscription ───────────────────────────────────────────────────────
+
+// Default branch of the Db/d state machine (state >= 4).
+// Reads TRUCK_SUBSCRIPTION_PURCHASED preference; returning TRUE bypasses the check.
 object TruckGateDefaultBranchFingerprint : Fingerprint(
     definingClass = "LDb/d;",
     name = "invoke",
@@ -36,7 +40,7 @@ object TruckGateDefaultBranchFingerprint : Fingerprint(
     parameters = emptyList(),
 )
 
-// Truck purchased toast/upsell controller. Returning false prevents post-profile upsell toast.
+// Controls post-profile upsell toast display; returning false suppresses the toast.
 object TruckPurchasedToastGateFingerprint : Fingerprint(
     definingClass = "Lv9/t;",
     name = "a",
@@ -46,7 +50,7 @@ object TruckPurchasedToastGateFingerprint : Fingerprint(
     strings = listOf("com.tomtom.mobile.TRUCK_SUBSCRIPTION_PURCHASED", "com.tomtom.mobile.TRUCK_TOAST_CONSUMED"),
 )
 
-// "Are You A Truck Driver?" create-profile dialog.
+// "Are You A Truck Driver?" create-profile dialog; returning null suppresses it.
 object TruckCreateProfileDialogFingerprint : Fingerprint(
     definingClass = "Le9/x0;",
     name = "Z",
@@ -55,7 +59,7 @@ object TruckCreateProfileDialogFingerprint : Fingerprint(
     parameters = listOf("Landroid/content/Context;", "Landroid/os/Bundle;"),
 )
 
-// Truck: v9/d.a()Z showstopper gate → Purchasely paywall via C0/x.f()
+// Showstopper gate that triggers the Purchasely paywall; returning false disables it.
 object TruckShowstopperGateFingerprint : Fingerprint(
     definingClass = "Lv9/d;",
     name = "a",
@@ -65,7 +69,7 @@ object TruckShowstopperGateFingerprint : Fingerprint(
     strings = listOf("com.tomtom.mobile.MOBILE_LARGE_VEHICLES_DISCOUNT_TOAST_FREE_TRUCK_SUBSCRIPTION_EXPIRATION_DATE"),
 )
 
-// Truck: e9/P0.onClick(a=1) → truck paywall via U3/a->k()
+// NavBanner subscribe button click handler; case a==1 triggers the truck paywall.
 object TruckNavBannerSubscribeFingerprint : Fingerprint(
     definingClass = "Le9/P0;",
     name = "onClick",
@@ -75,9 +79,11 @@ object TruckNavBannerSubscribeFingerprint : Fingerprint(
     strings = listOf("Trial timeline"),
 )
 
-// Truck: e9/l1.Y(Bundle) sets X1=true → subscription screen opens on truck tab
+// Opens the subscription screen scrolled to the truck tab.
+// Returning void at offset 0 prevents the truck tab from ever being set as default.
+// v3.6.320: moved from Le9/l1; to Le9/p1; (same method name Y, same param Bundle).
 object SubscriptionScreenTruckTabFingerprint : Fingerprint(
-    definingClass = "Le9/l1;",
+    definingClass = "Le9/p1;",
     name = "Y",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "V",
@@ -85,12 +91,11 @@ object SubscriptionScreenTruckTabFingerprint : Fingerprint(
     strings = listOf("open_at_truck_subscriptions_page"),
 )
 
-// Truck visibility: e9/C2$d reads MOBILE_REMOTE_SHOW_LARGE_VEHICLES_BANNER_IN_VEHICLE_PROFILE.
-// Defaults to false server-side → truck NavBanner never appears → no truck switch option.
-// Force true so banner always shows. Combined with C2$c (DISMISSED flag, default false),
-// NOT(C2$c)=NOT(false)=true → AND(true, true) → banner visible → user can switch to truck.
+// Remote flag that controls truck NavBanner visibility in vehicle profile.
+// Defaults to false server-side; returning TRUE forces the banner visible.
+// v3.6.320: class renamed from Le9/C2$d; to Le9/J2$d;
 object ShowLargeVehiclesBannerFingerprint : Fingerprint(
-    definingClass = "Le9/C2\$d;",
+    definingClass = "Le9/J2\$d;",
     name = "invoke",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ljava/lang/Object;",
@@ -98,10 +103,7 @@ object ShowLargeVehiclesBannerFingerprint : Fingerprint(
     strings = listOf("com.tomtom.mobile.MOBILE_REMOTE_SHOW_LARGE_VEHICLES_BANNER_IN_VEHICLE_PROFILE"),
 )
 
-// Pc/v.onClick(View) — multi-case click handler for NavBanner message clicks.
-// case a=4 → pswitch_2: triggers truck subscription screen via RxJava chain:
-//   Ld/b(9, e9/D2->a) → De/b(5, e9/C2) → U3/a->k(q6/p->b, false) → e9/l1
-// Pinned by unique "EvConstantSpeedConsumptionsScreen" string (pswitch_0, adjacent case).
+// NavBanner message click handler; case a==4 triggers the truck subscription screen.
 object TruckBannerMessageClickFingerprint : Fingerprint(
     definingClass = "LPc/v;",
     name = "onClick",
@@ -111,11 +113,8 @@ object TruckBannerMessageClickFingerprint : Fingerprint(
     strings = listOf("EvConstantSpeedConsumptionsScreen"),
 )
 
-// ai/i.invoke(Context, bi/a) — Urban Airship in-app message launcher singleton.
-// Called server-side when Airship delivers the truck subscription IAM on app startup.
-// Creates com.urbanairship.android.layout.ui.a and calls a() which starts ModalActivity.
-// Pinned by unique "com.urbanairship.android.layout.ui.EXTRA_DISPLAY_ARGS_LOADER" in ai/h
-// sibling; here we pin via definingClass + both parameter types + name.
+// Urban Airship in-app message launcher; suppressing it prevents the server-triggered
+// truck subscription modal from appearing on startup.
 object AirshipIAMLauncherFingerprint : Fingerprint(
     definingClass = "Lai/i;",
     name = "invoke",
@@ -123,6 +122,8 @@ object AirshipIAMLauncherFingerprint : Fingerprint(
     returnType = "Ljava/lang/Object;",
     parameters = listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
 )
+
+// ── Subscription type helpers ─────────────────────────────────────────────────
 
 object SubscriptionTypeCarFingerprint : Fingerprint(
     definingClass = "Ltb/d;",
@@ -148,16 +149,21 @@ object SubscriptionDetailsIsTruckFingerprint : Fingerprint(
     parameters = listOf("Ltb/b;"),
 )
 
+// Starts a Google Play billing flow for a subscription.
+// Returning Result.success(true) short-circuits the IAP flow without launching Play.
+// v3.6.320: method renamed from k3 to l3 (same params Activity + tb/b, same return CJu).
 object BillingPurchaseStarterFingerprint : Fingerprint(
     definingClass = "Lpb/a;",
-    name = "k3",
+    name = "l3",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "LCj/u;",
     parameters = listOf("Landroid/app/Activity;", "Ltb/b;"),
 )
 
+// Returns the current active subscription (tb/a) from the subscription store (X9/r).
+// v3.6.320: moved from Le9/o2;->J1 to Le9/u2;->J1, store field G1:LX9/p → H1:LX9/r.
 object CurrentSubscriptionFingerprint : Fingerprint(
-    definingClass = "Le9/o2;",
+    definingClass = "Le9/u2;",
     name = "J1",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ltb/a;",

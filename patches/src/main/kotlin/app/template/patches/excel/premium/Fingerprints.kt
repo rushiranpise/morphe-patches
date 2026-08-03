@@ -2,6 +2,8 @@ package app.template.patches.excel.premium
 
 import app.morphe.patcher.Fingerprint
 
+// ── Stable non-obfuscated fingerprints ───────────────────────────────────────
+
 internal val isPremiumPlanUpsellEnabledFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/plat/PlatFeatureGateHelper;",
     name = "isPremiumPlanUpsellEnabled",
@@ -12,69 +14,6 @@ internal val isPremiumPlanUpsellEnabledFingerprint = Fingerprint(
 internal val isEnterpriseViewOLSCheckEnabledFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/plat/PlatFeatureGateHelper;",
     name = "IsEnterpriseViewOLSCheckEnabled",
-    returnType = "Z",
-    parameters = emptyList(),
-)
-/**
- * LicenseStatus.isPremium() — enum method in growth upsell plugin.
- * Returns true only for MANAGED_PREMIUM/UNMANAGED_PREMIUM instances.
- */
-internal val licenseStatusIsPremiumFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/growth/upsellplugin/models/LicenseStatus;",
-    name = "isPremium",
-    returnType = "Z",
-    parameters = emptyList(),
-)
-
-/**
- * SubscriptionData.isTrial() — paywallsdk trial flag.
- * Returning false removes trial badge from paywall UI.
- */
-internal val subscriptionDataIsTrialFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/mobile/paywallsdk/publics/SubscriptionData;",
-    name = "isTrial",
-    returnType = "Z",
-    parameters = emptyList(),
-)
-
-/**
- * licensing.f.g() — native licensing lookup via NativeProxy.Glifu.
- * Returns null when server has no entitlement, causing paywall to show despite
- * HasFamilyPlan/HasPersonalPlan patches. Returning empty LicenseInfo ensures
- * non-null, allowing the Has*Plan patches to return true.
- */
-internal val licensingFGFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/licensing/f;",
-    name = "g",
-    returnType = "Lcom/microsoft/office/licensing/LicenseInfo;",
-    parameters = listOf(
-        "Ljava/lang/String;",
-        "Lcom/microsoft/office/licensing/UserAccountType;",
-        "Ljava/lang/String;",
-        "Z",
-    ),
-)
-
-/**
- * a1$a.y(Context) — subscription status check called at app boot via postAppActivate.
- * Returns true if user has active subscription (skips paywall), false otherwise.
- * Patching to always return true prevents the boot-time PaywallActivity launch.
- */
-internal val subscriptionStatusYFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/inapppurchase/a1\$a;",
-    name = "y",
-    returnType = "Z",
-    parameters = listOf("Landroid/content/Context;"),
-)
-
-/**
- * o7.b() — static method that checks if the current user is eligible for
- * subscription paywall (via p7$a.O() field d). Returns true → PaywallActivity launches.
- * Returning false blocks all LaunchSubscriptionPurchaseFlow paywall paths.
- */
-internal val subscriptionPaywallGateFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/docsui/common/o7;",
-    name = "b",
     returnType = "Z",
     parameters = emptyList(),
 )
@@ -101,9 +40,9 @@ internal val hasPremiumPlanFingerprint = Fingerprint(
 )
 
 /**
- * OHubUtil.GetLicensingState() — returns the LicensingState enum used throughout
- * the UI to determine subscription display. ConsumerPremium hides all "Buy" buttons,
- * shows subscribed status in Backstage, and suppresses all upsell UI.
+ * OHubUtil.GetLicensingState() — returns the LicensingState enum controlling all
+ * subscription UI. ConsumerPremium suppresses all upsell/buy surfaces.
+ * Stable: non-obfuscated public static API.
  */
 internal val getLicensingStateFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/officehub/util/OHubUtil;",
@@ -113,9 +52,33 @@ internal val getLicensingStateFingerprint = Fingerprint(
 )
 
 /**
- * licensing.e.d() — returns LicensingState from the native OLS session (NativeProxy.Gs).
- * Called after server licensing check; overwrites local GetLicensingState with server result.
- * Returning ConsumerPremium prevents OLS_E_ENTITLEMENT_NOT_FOUND from downgrading local state.
+ * SubscriptionData.isTrial() — paywallsdk trial flag.
+ * Stable: non-obfuscated public API in paywallsdk.
+ */
+internal val subscriptionDataIsTrialFingerprint = Fingerprint(
+    definingClass = "Lcom/microsoft/mobile/paywallsdk/publics/SubscriptionData;",
+    name = "isTrial",
+    returnType = "Z",
+    parameters = emptyList(),
+)
+
+/**
+ * LicenseStatus.isPremium() — non-obfuscated enum method in growth/upsellplugin.
+ * Excel retains the non-obfuscated class name (unlike Word which uses 'j').
+ */
+internal val licenseStatusIsPremiumFingerprint = Fingerprint(
+    definingClass = "Lcom/microsoft/office/growth/upsellplugin/models/LicenseStatus;",
+    name = "isPremium",
+    returnType = "Z",
+    parameters = emptyList(),
+)
+
+// ── Obfuscated fingerprints — pinned by return type + params ──────────────────
+
+/**
+ * licensing.e.d() — returns LicensingState from the native OLS session.
+ * Returning ConsumerPremium prevents OLS_E_ENTITLEMENT_NOT_FOUND from
+ * downgrading the local license state after a server check.
  */
 internal val licenseSessionStateFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/licensing/e;",
@@ -125,8 +88,37 @@ internal val licenseSessionStateFingerprint = Fingerprint(
 )
 
 /**
- * AccountProfileInfo.B() — returns field A (boolean hasProfile). False = doughboy/sign-in avatar.
- * Returning true makes MeControl show as signed-in even without a real account.
+ * licensing.f.h(String, UserAccountType, String, Z) → LicenseInfo
+ * Native licensing lookup. Returning an empty (non-null) LicenseInfo ensures
+ * Has*Plan methods are reached and return true.
+ * Method renamed g→h in 16.0.20228; params and return type unchanged (used as pin).
+ */
+internal val licensingFGFingerprint = Fingerprint(
+    definingClass = "Lcom/microsoft/office/licensing/f;",
+    name = "h",
+    returnType = "Lcom/microsoft/office/licensing/LicenseInfo;",
+    parameters = listOf(
+        "Ljava/lang/String;",
+        "Lcom/microsoft/office/licensing/UserAccountType;",
+        "Ljava/lang/String;",
+        "Z",
+    ),
+)
+
+/**
+ * a1$a.y(Context) — subscription status check called at boot via postAppActivate.
+ * Returning true prevents PaywallActivity launch at startup.
+ */
+internal val subscriptionStatusYFingerprint = Fingerprint(
+    definingClass = "Lcom/microsoft/office/inapppurchase/a1\$a;",
+    name = "y",
+    returnType = "Z",
+    parameters = listOf("Landroid/content/Context;"),
+)
+
+/**
+ * AccountProfileInfo.B() — boolean hasProfile field getter.
+ * Returning true makes MeControl render as signed-in without a real account.
  */
 internal val accountProfileInfoHasProfileFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/docsui/common/AccountProfileInfo;",
@@ -136,9 +128,8 @@ internal val accountProfileInfoHasProfileFingerprint = Fingerprint(
 )
 
 /**
- * unifiedStorageQuota.f.b(Identity) — checks if storage quota UI should show for this identity.
- * Crashes with NPE when identity is null (no real account but AccountProfileInfo.B()=true).
- * Returning false safely skips quota display.
+ * unifiedStorageQuota.f.b(Identity) — storage quota UI check.
+ * NPE guard when identity is null. Returning false skips quota display.
  */
 internal val storageQuotaCheckFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/docsui/controls/unifiedStorageQuota/f;",
@@ -148,8 +139,8 @@ internal val storageQuotaCheckFingerprint = Fingerprint(
 )
 
 /**
- * b$n.run() — account switcher dialog runner. Crashes when GetActiveIdentity()=null.
- * Returning void safely skips account dialog when no real account exists.
+ * b$n.run() — account-switcher dialog runner.
+ * Pinned by "layout_inflater" string in body. NPE guard when GetActiveIdentity()=null.
  */
 internal val accountSwitcherRunnableFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/docsui/controls/b\$n;",

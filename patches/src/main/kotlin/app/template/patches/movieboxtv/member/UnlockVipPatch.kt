@@ -247,10 +247,13 @@ val unlockVipPatch = bytecodePatch(
             addInstructions(0, "return-void")
         } ?: throw PatchException("MovieBox: ObserveLoginAction.onLogout()V not found.")
 
-        cls = mutableClassDefByOrNull("Lli/e;")
-            ?: throw PatchException("MovieBox: li.e (AdSdkSkipState) not found.")
+        // li/e (AdSdkSkipState) was removed in v3.0.16.0723.03.
+        // Try li/b (the class that absorbed li/e's ad-skip logic) first, then li/e as fallback.
+        // Both have a()Z returning the MMKV "j376W52LrKvau6r8" boolean.
+        val adSkipCls = mutableClassDefByOrNull("Lli/b;")
+            ?: mutableClassDefByOrNull("Lli/e;")
 
-        cls.methods.firstOrNull {
+        adSkipCls?.methods?.firstOrNull {
             it.name == "a" && it.returnType == "Z" && it.parameterTypes.isEmpty()
         }?.addInstructions(
             0,
@@ -258,7 +261,7 @@ val unlockVipPatch = bytecodePatch(
                 const/4 v0, 0x1
                 return v0
             """.trimIndent(),
-        ) ?: throw PatchException("MovieBox: li.e.a()Z not found.")
+        )
 
         cls = mutableClassDefByOrNull("Lcom/transsion/memberapi/PremiumV2CheckAccessDto;")
             ?: throw PatchException("MovieBox: PremiumV2CheckAccessDto not found.")
@@ -554,18 +557,41 @@ val unlockTvVipPatch = bytecodePatch(
             """.trimIndent(),
         ) ?: throw PatchException("MovieBox TV: BffUserInfoData.isVip() not found.")
 
-        cls = mutableClassDefByOrNull("Lcom/transsion/tvdata/TvServiceLocator;")
-            ?: throw PatchException("MovieBox TV: TvServiceLocator not found.")
+        // TvServiceLocator VIP gate history:
+        //   v1.1.4.0710.03: TvServiceLocator.V()Z was the live boolean VIP check
+        //   v1.1.6.0723.03: V()Z now returns cl.w (VIP repository object, not boolean).
+        //     The boolean check moved to TvServiceLocator.Z()Z, which merely delegates
+        //     to a new singleton: com.transsion.tvdata.x.f29711a.a()Z, which reads a
+        //     MutableStateFlow<Boolean> (default false) set by refreshVipStateFromServer.
+        // Patch the singleton directly — it's the true root and is stable even if
+        // TvServiceLocator's own accessor letter changes again in a future update.
+        val xSingleton = mutableClassDefByOrNull("Lcom/transsion/tvdata/x;")
+        if (xSingleton != null) {
+            xSingleton.methods.firstOrNull {
+                it.name == "a" && it.returnType == "Z" && it.parameterTypes.isEmpty()
+            }?.addInstructions(
+                0,
+                """
+                    const/4 v0, 0x1
+                    return v0
+                """.trimIndent(),
+            ) ?: throw PatchException("MovieBox TV: com.transsion.tvdata.x.a()Z not found.")
+        } else {
+            // Fallback for older versions (e.g. 1.1.4.0710.03) where the VIP flag
+            // lived directly on TvServiceLocator.V()Z.
+            cls = mutableClassDefByOrNull("Lcom/transsion/tvdata/TvServiceLocator;")
+                ?: throw PatchException("MovieBox TV: TvServiceLocator not found.")
 
-        cls.methods.firstOrNull {
-            it.name == "V" && it.returnType == "Z" && it.parameterTypes.isEmpty()
-        }?.addInstructions(
-            0,
-            """
-                const/4 v0, 0x1
-                return v0
-            """.trimIndent(),
-        ) ?: throw PatchException("MovieBox TV: TvServiceLocator.V()Z not found.")
+            cls.methods.firstOrNull {
+                it.name == "V" && it.returnType == "Z" && it.parameterTypes.isEmpty()
+            }?.addInstructions(
+                0,
+                """
+                    const/4 v0, 0x1
+                    return v0
+                """.trimIndent(),
+            ) ?: throw PatchException("MovieBox TV: TvServiceLocator.V()Z not found.")
+        }
 
         cls = mutableClassDefByOrNull("Lcom/transsion/tvdata/bean/BffSubjectInfo;")
             ?: throw PatchException("MovieBox TV: BffSubjectInfo not found.")
