@@ -84,7 +84,6 @@ val AISCORE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "4.2.7", versionCode = 292))
     )
 
-
 val ALLREADER_COMPATIBILITY = Compatibility(
         name = "All Reader",
         packageName = "alldocumentreader.office.viewer.filereader.pdfviewer",
@@ -697,7 +696,6 @@ val MAPY_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "26.7.2", versionCode = 26070203))
     )
 
-
 val MATERIAL_PODS_COMPATIBILITY = Compatibility(
         name = "MaterialPods",
         packageName = "com.pryshedko.materialpods",
@@ -767,6 +765,7 @@ val MONET_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6D00,
         targets = listOf(AppTarget(version = "1.0.67", versionCode = 101))
     )
+
 val MOVIEBOX_COMPATIBILITY = Compatibility(
         name = "MovieBox",
         packageName = "com.community.oneroom",
@@ -1604,7 +1603,7 @@ val WORD_COMPATIBILITY = Compatibility(
         appIconColor = 0x1A237E,
         targets = listOf(AppTarget(version = "16.0.20131.20080", versionCode = 2005201435))
     )
- 
+
 val WRISTWEB_COMPATIBILITY = Compatibility(
         name = "WristBrowser",
         packageName = "com.onnex.wristweb",
