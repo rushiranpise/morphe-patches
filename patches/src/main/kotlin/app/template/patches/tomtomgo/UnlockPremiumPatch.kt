@@ -3,7 +3,6 @@ package app.template.patches.tomtomgo
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.stringOption
 import app.template.patches.shared.Constants.TOMTOMGO_COMPATIBILITY
@@ -18,10 +17,7 @@ val unlockPremiumPatch = bytecodePatch(
     val vehicleType by stringOption(
         key = "vehicleType",
         default = "car",
-        values = mapOf(
-            "Car" to "car",
-            "Truck" to "truck",
-        ),
+        values = mapOf("Car" to "car", "Truck" to "truck"),
         title = "Vehicle type",
         description = "Choose which premium path to unlock.",
     )
@@ -31,26 +27,32 @@ val unlockPremiumPatch = bytecodePatch(
         val primaryType = if (unlockTruck) "c" else "a"
         val fallbackType = if (unlockTruck) "a" else "c"
 
+        // ── CurrentSubscription ───────────────────────────────────────────────
+        // Reads the subscription store (H1:LX9/r) and returns the first match for
+        // the chosen vehicle type (tb/a$b.a=car, tb/a$b.b=both, tb/a$b.c=truck).
+        // v3.6.320: class e9/o2 → e9/u2, store field G1:LX9/p → H1:LX9/r.
         CurrentSubscriptionFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                iget-object v0, p0, Le9/o2;->G1:LX9/p;
+            addInstructions(
+                0,
+                """
+                iget-object v0, p0, Le9/u2;->H1:LX9/r;
                 sget-object v1, Ltb/a${'$'}b;->$primaryType:Ltb/a${'$'}b;
-                invoke-virtual {v0, v1}, LX9/p;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
+                invoke-virtual {v0, v1}, LX9/r;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
                 move-result-object v0
                 invoke-virtual {v0}, Ljava/util/ArrayList;->isEmpty()Z
                 move-result v1
                 if-eqz v1, :cond_found
-                iget-object v0, p0, Le9/o2;->G1:LX9/p;
+                iget-object v0, p0, Le9/u2;->H1:LX9/r;
                 sget-object v1, Ltb/a${'$'}b;->b:Ltb/a${'$'}b;
-                invoke-virtual {v0, v1}, LX9/p;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
+                invoke-virtual {v0, v1}, LX9/r;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
                 move-result-object v0
                 invoke-virtual {v0}, Ljava/util/ArrayList;->isEmpty()Z
                 move-result v1
                 if-eqz v1, :cond_found
-                iget-object v0, p0, Le9/o2;->G1:LX9/p;
+                iget-object v0, p0, Le9/u2;->H1:LX9/r;
                 sget-object v1, Ltb/a${'$'}b;->$fallbackType:Ltb/a${'$'}b;
-                invoke-virtual {v0, v1}, LX9/p;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
+                invoke-virtual {v0, v1}, LX9/r;->a(Ltb/a${'$'}b;)Ljava/util/ArrayList;
                 move-result-object v0
                 invoke-virtual {v0}, Ljava/util/ArrayList;->isEmpty()Z
                 move-result v1
@@ -63,167 +65,166 @@ val unlockPremiumPatch = bytecodePatch(
                 move-result-object v0
                 check-cast v0, Ltb/a;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
-        // Car: combiner always true
+        // ── Car: CombineLatest combiner → always active ───────────────────────
         HasActiveSubscriptionsCombinerFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
-        // Car: mapper always true
+        // ── Car: per-provider mapper → always active ──────────────────────────
         HasActiveSubscriptionsMapperFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
+        // ── Billing: short-circuit IAP flow ──────────────────────────────────
+        // Returns Result.success(true) so billing never actually launches Play.
+        // v3.6.320: method renamed k3 → l3 (same signature).
         BillingPurchaseStarterFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 invoke-static {v0}, LCj/u;->g(Ljava/lang/Object;)LRj/m;
                 move-result-object v0
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
+        // ── Subscription type flags ───────────────────────────────────────────
         if (!unlockTruck) {
+            // Car mode: isCar=true, isTruck=false
             SubscriptionTypeCarFingerprint.method.apply {
                 removeInstructions(0, instructions.size)
-                addInstructions(0, """
-                    const/4 v0, 0x1
-                    return v0
-                """)
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
-
             SubscriptionTypeTruckFingerprint.method.apply {
                 removeInstructions(0, instructions.size)
-                addInstructions(0, """
-                    const/4 v0, 0x0
-                    return v0
-                """)
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
-
             SubscriptionDetailsIsTruckFingerprint.method.apply {
                 removeInstructions(0, instructions.size)
-                addInstructions(0, """
-                    const/4 v0, 0x0
-                    return v0
-                """)
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
-
             return@execute
         }
 
+        // Truck mode: isCar=false, isTruck=true
         SubscriptionTypeCarFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x0
-                return v0
-            """)
+            addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
-
         SubscriptionTypeTruckFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x1
-                return v0
-            """)
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
-
         SubscriptionDetailsIsTruckFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x1
-                return v0
-            """)
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
 
-        // Truck path 1: Db/d default branch (a>=4) → TRUE
+        // ── Truck path 1: Db/d default branch → active ───────────────────────
         TruckGateDefaultBranchFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
-        // Truck path 2: showstopper gate → false
+        // ── Truck path 2: showstopper gate → disabled ─────────────────────────
         TruckShowstopperGateFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x0
-                return v0
-            """)
+            addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
+        // ── Truck path 3: upsell toast gate → disabled ────────────────────────
         TruckPurchasedToastGateFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x0
-                return v0
-            """)
+            addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
+        // ── Truck path 4: "Are You A Truck Driver?" dialog → suppressed ───────
         TruckCreateProfileDialogFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
-                const/4 v0, 0x0
-                return-object v0
-            """)
+            addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
         }
 
-        // Truck path 3: NavBanner dismiss button → no-op
-        TruckNavBannerSubscribeFingerprint.method.addInstructions(0, """
+        // ── Truck path 5: NavBanner subscribe button → no-op for case a==1 ────
+        TruckNavBannerSubscribeFingerprint.method.addInstructions(
+            0,
+            """
             iget v0, p0, Le9/P0;->a:I
             const/4 v1, 0x1
             if-ne v0, v1, :cond_original
             return-void
             :cond_original
-        """)
+            """.trimIndent(),
+        )
 
-        // Truck path 4: subscription screen always on car tab
-        SubscriptionScreenTruckTabFingerprint.method.apply {
-            replaceInstruction(50, "const/4 v0, 0x0")
-            replaceInstruction(57, "const/4 v0, 0x0")
-            replaceInstruction(58, "const/4 v0, 0x0")
-        }
+        // ── Truck path 6: subscription screen truck tab → suppressed ──────────
+        // v3.6.320: moved from Le9/l1;->Y to Le9/p1;->Y.
+        // Replaced fragile replaceInstruction(offset) with addInstructions(0, return-void):
+        // returning immediately prevents the truck tab flag from ever being written.
+        SubscriptionScreenTruckTabFingerprint.method.addInstructions(0, "return-void")
 
-        // Truck path 5: show truck NavBanner
+        // ── Truck path 7: truck NavBanner remote flag → always visible ─────────
+        // v3.6.320: class renamed Le9/C2$d → Le9/J2$d.
         ShowLargeVehiclesBannerFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
 
-        // Truck path 6: NavBanner body tap → no-op
-        TruckBannerMessageClickFingerprint.method.addInstructions(0, """
+        // ── Truck path 8: NavBanner body tap → no-op for case a==4 ───────────
+        TruckBannerMessageClickFingerprint.method.addInstructions(
+            0,
+            """
             iget v0, p0, LPc/v;->a:I
             const/4 v1, 0x4
             if-ne v0, v1, :cond_original
             return-void
             :cond_original
-        """)
+            """.trimIndent(),
+        )
 
-        // Truck path 7: block Urban Airship ModalActivity launch (server-triggered truck IAM).
-        // ai/i.invoke() is a singleton Function2 called when Airship delivers the truck
-        // subscription in-app message on startup. It creates ui/a and calls a() which starts
-        // ModalActivity. Return Unit immediately to suppress all Airship IAMs for this app.
+        // ── Truck path 9: Urban Airship IAM → suppressed ──────────────────────
+        // Suppresses the server-triggered truck subscription in-app message on startup.
         AirshipIAMLauncherFingerprint.method.apply {
             removeInstructions(0, instructions.size)
-            addInstructions(0, """
+            addInstructions(
+                0,
+                """
                 sget-object v0, Lmk/u;->a:Lmk/u;
                 return-object v0
-            """)
+                """.trimIndent(),
+            )
         }
     }
 }

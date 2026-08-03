@@ -1,90 +1,91 @@
 package app.template.patches.pixelhabittracker.pro
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.instructions
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.PIXEL_HABIT_TRACKER_COMPATIBILITY
+import app.template.patches.shared.clearBody
 import app.template.patches.shared.killPairIpFull
 
-// Pixel Habit Tracker (com.pixel.al.pixelhabittracker) — Pro unlock v2
+// Pixel Habit Tracker pro unlock — v2.2.2
 //
-// hh2 = PurchaseRepository
-//   field a:SharedPreferences  — "billing_prefs"
-//   field c:Z                  — in-memory pro flag
-//   field d:Lw43;              — MutableStateFlow<Boolean>
+// Pro state is managed by the PurchaseRepository class (obfuscated name changes
+// every update; was hh2 in v2.1.1, lk2 in v2.2.2). It holds:
+//   field a : SharedPreferences  — "billing_prefs" prefs file
+//   field c : Z                  — in-memory pro boolean flag
+//   field d : MutableStateFlow<Boolean> — (obf name changes; was w43, now k83)
 //
-// w43.i(Object, Object)Z = compareAndSet(expect=null, update=newValue)
+// The UI observes field d (the StateFlow) to react to pro-state changes.
+// SharedPrefs is the persistence layer — read in <init>, written in f(Z)V.
 //
-// FINGERPRINT FIX:
-//   "habit_tracker_pro" is in method c() (line 857), NOT the constructor (ends at 390).
-//   Constructor only has "billing_prefs" + "pro_purchased" → fixed fingerprint.
+// Two patch layers cover the full lifetime:
 //
-// THREE layers:
+//   Layer 1 — Constructor injection (PurchaseRepositoryConstructorFingerprint):
+//     Injects c = true at offset 0, before getBoolean("pro_purchased", false)
+//     runs. Ensures the in-memory flag is true from first construction regardless
+//     of what's in SharedPrefs.
 //
-// Layer 1 — ProStateSetterFingerprint (hh2.f(Z)V):
-//   Replace body: write true to SharedPrefs, set c=true, emit true to StateFlow.
+//   Layer 2 — Setter override (ProStateSetterFingerprint):
+//     Replaces the body of f(Z)V to always write true to SharedPrefs, set c = true,
+//     and emit true to the StateFlow. Handles live billing-client callbacks.
+//     clearBody() is mandatory: the original body has no try-catch, but we clear
+//     it for safety and to avoid double-patching concerns.
 //
-// Layer 2 — PurchaseRepositoryConstructorFingerprint (hh2.<init>(Context)V):
-//   Inject c=true at instruction 0 before getBoolean("pro_purchased", false).
-//
-// Layer 3 — PairIP LVL (com.pairip.licensecheck.LicenseClient):
-//   Lightweight PairIP build (no VMRunner/SignatureCheck native lib).
-//   LicenseContentProvider.onCreate() → LicenseClient.initializeLicenseCheck()
-//   → Play LVL → NOT_LICENSED → paywall/exit on resigned APK.
-//   killPairIpFull() handles the full LicenseClient chain gracefully.
+//   Layer 3 — Pairip LVL (killPairIpFull):
+//     This app ships the LicenseClient-based Pairip variant (no VMRunner /
+//     libpairipcore.so). killPairIpFull() uses mutableClassDefByOrNull so it
+//     gracefully skips absent VMRunner/SignatureCheck classes while still
+//     no-oping LicenseClient.initializeLicenseCheck().
 
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
     name = "Unlock PRO",
-    description = "Unlocks all PRO features in app",
+    description = "Unlocks all PRO features by permanently reporting a purchased state.",
     default = true,
 ) {
     compatibleWith(PIXEL_HABIT_TRACKER_COMPATIBILITY)
 
     execute {
-        // Layer 1: hh2.f(Z)V — always emit true
-        ProStateSetterFingerprint
-            .match(classDefBy(ProStateSetterFingerprint.definingClass!!))
-            .method
-            .apply {
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 p1, 0x1
-                    iput-boolean p1, p0, Lhh2;->c:Z
-                    iget-object v0, p0, Lhh2;->a:Landroid/content/SharedPreferences;
-                    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences${'$'}Editor;
-                    move-result-object v0
-                    const-string v1, "pro_purchased"
-                    invoke-interface {v0, v1, p1}, Landroid/content/SharedPreferences${'$'}Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences${'$'}Editor;
-                    move-result-object v0
-                    invoke-interface {v0}, Landroid/content/SharedPreferences${'$'}Editor;->apply()V
-                    iget-object v0, p0, Lhh2;->d:Lw43;
-                    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-                    invoke-static {p1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-                    move-result-object p1
-                    const/4 v1, 0x0
-                    invoke-virtual {v0, v1, p1}, Lw43;->i(Ljava/lang/Object;Ljava/lang/Object;)Z
-                    return-void
-                    """.trimIndent(),
-                )
-            }
+        // Layer 1: Pre-set c = true in constructor before SharedPrefs read.
+        // Registers: p0 = this, p1 = Context. v0 is the first scratch register.
+        PurchaseRepositoryConstructorFingerprint.method.addInstructions(
+            0,
+            """
+            const/4 v0, 0x1
+            iput-boolean v0, p0, ${PurchaseRepositoryConstructorFingerprint.classDef.type}->c:Z
+            """.trimIndent(),
+        )
 
-        // Layer 2: hh2.<init>(Context)V — pre-set c=true before getBoolean
-        PurchaseRepositoryConstructorFingerprint
-            .match(classDefBy(PurchaseRepositoryConstructorFingerprint.definingClass!!))
-            .method
-            .addInstructions(
+        // Layer 2: Replace f(Z)V body — always force-write true.
+        // The StateFlow emit call uses Lk83;->i(Object;Object;)Z (compareAndSet).
+        // We replicate the original flow with p1 hardcoded to 0x1 (true) so the
+        // UI observer immediately sees a pro state change.
+        val repoType = ProStateSetterFingerprint.classDef.type
+        ProStateSetterFingerprint.method.apply {
+            clearBody()
+            addInstructions(
                 0,
                 """
-                const/4 v0, 0x1
-                iput-boolean v0, p0, Lhh2;->c:Z
+                const/4 p1, 0x1
+                iput-boolean p1, p0, $repoType->c:Z
+                iget-object v0, p0, $repoType->a:Landroid/content/SharedPreferences;
+                invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences${'$'}Editor;
+                move-result-object v0
+                const-string v1, "pro_purchased"
+                invoke-interface {v0, v1, p1}, Landroid/content/SharedPreferences${'$'}Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences${'$'}Editor;
+                move-result-object v0
+                invoke-interface {v0}, Landroid/content/SharedPreferences${'$'}Editor;->apply()V
+                invoke-static {p1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+                move-result-object p1
+                iget-object v0, p0, $repoType->d:${ProStateSetterFingerprint.classDef.fields.first { it.name == "d" }.type}
+                invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
+                const/4 v1, 0x0
+                invoke-virtual {v0, v1, p1}, ${ProStateSetterFingerprint.classDef.fields.first { it.name == "d" }.type}->i(Ljava/lang/Object;Ljava/lang/Object;)Z
+                return-void
                 """.trimIndent(),
             )
+        }
 
-        // Layer 3: PairIP LVL kill
+        // Layer 3: Kill Pairip LVL check.
         killPairIpFull()
     }
 }

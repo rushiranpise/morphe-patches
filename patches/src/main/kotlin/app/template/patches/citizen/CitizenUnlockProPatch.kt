@@ -1,257 +1,139 @@
 package app.template.patches.citizen
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.instructions
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.CITIZEN_COMPATIBILITY
+import app.template.patches.shared.returnEarly
+import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-private fun dismissActivity(@Suppress("UNUSED_PARAMETER") cls: String) =
-    "invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V\n" +
-    "invoke-super {p0}, Landroid/app/Activity;->finish()V\n" +
-    "return-void"
+// Citizen v0.1301.0 — sp0n.citizen
+//
+// ShowPaywallUseCase method semantics (CRITICAL — easy to get backwards):
+//   a(SubscriptionFeature)Z  true = user HAS ACCESS → callers show content
+//                            false = no access     → callers show paywall
+//   c()Z                     true = user IS premium (Plus/Protect active)
+//   d()Z                     true = user IS premium (Protect active specifically)
+//   e()Z                     true = SHOW safety network paywall
+//   f(Boolean)Z              true = SHOW conditional paywall
+//   isPaid()Z on PrivateUser true = user is paid
+//   SafetyCenterPaywallVMGate.s()Z / SafetyNetworkPaywallVMGate.n()Z
+//                            true = user HAS premium access (no paywall)
+//
+// Patch directions:
+//   a() → true  (user always has access)
+//   c() → true  (user always is premium)
+//   d() → true  (user always is premium)
+//   e() → false (never show safety network paywall)
+//   f() → false (never show conditional paywall)
+//   isPaid() → true
+//
+// 9 stable targets (all non-obfuscated):
+//   1. CitizenPlusInfoDTO.getActive()Z → true
+//   2. CitizenProtectInfoDTO.getActive()Z → true
+//   3. PremiumSubscriptionDTO.getSubscriptionState() → TRIAL_ACTIVATED
+//   4. SubscriptionDigest.getSubscriptionState() → TRIAL_ACTIVATED
+//   5. Superwall.internallySetSubscriptionStatus() → return-void
+//   6. MonoSubscription.getEnabled() → true
+//   7. MonoSubscription.isSafetyToolAvailable() → true
+//   8. ClarityEntrypointRepository.getProfileEntrypointEnabled() → true
+//   9. SubscriptionRepository.<init> — seed _currentSubscription with TRIAL_ACTIVATED
 
-// Uses p1 (param register) to avoid requiring .locals >= 1
-private val returnKotlinUnit =
-    "sget-object p1, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
-    "return-object p1"
+private const val SUBSCRIPTION_STATE =
+    "Lsp0n/citizen/data/user/dto/SubscriptionState;"
+private const val SUBSCRIPTION_DIGEST =
+    "Lsp0n/citizen/data/user/dto/SubscriptionDigest;"
+private const val SUBSCRIPTION_REPO =
+    "Lsp0n/citizen/data/user/SubscriptionRepository;"
 
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
-    default = true
+    description = "Unlocks all Citizen Plus and Protect features.",
+    default = true,
 ) {
     compatibleWith(CITIZEN_COMPATIBILITY)
 
     execute {
-        // Layer 2
-        listOf(
-            CitizenPlusInfoGetActiveFingerprint,
-            CitizenProtectInfoGetActiveFingerprint
-        ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
-        }
+        // ── Targets 1+2: Plus/Protect active DTO getters → true ──────────────
+        CitizenPlusInfoDTOGetActiveFingerprint.method.returnEarly(true)
+        CitizenProtectInfoDTOGetActiveFingerprint.method.returnEarly(true)
 
-        // Layer 3
-        SuperwallSetSubscriptionStatusFingerprint
-            .match(classDefBy(SuperwallSetSubscriptionStatusFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
-            }
+        // ── Targets 3+4: SubscriptionState → TRIAL_ACTIVATED ─────────────────
+        // TRIAL_ACTIVATED (case 5) = premium in all packed-switch tables.
+        // ACTIVATED (case 4) = base tier = FREE — do not use ACTIVATED.
+        // .registers 1 in both: p0 = this. Overwrite p0 with enum, return. Safe.
+        val returnTrialActivated =
+            "sget-object p0, $SUBSCRIPTION_STATE->TRIAL_ACTIVATED:$SUBSCRIPTION_STATE\n" +
+            "return-object p0"
 
-        // Layer 4
-        listOf(
-            PrivateUserIsPlusActiveFingerprint,
-            PrivateUserIsProtectActiveFingerprint,
-            PrivateUserIsProtectActiveOrInSetupFingerprint,
-            CitizenProtectInfoDomainGetActiveFingerprint
-        ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
-        }
+        PremiumSubscriptionDTOGetStateFingerprint.method.addInstructions(0, returnTrialActivated)
+        SubscriptionDigestGetStateFingerprint.method.addInstructions(0, returnTrialActivated)
 
-        // Layer 5
-        ShowPaywallUseCaseAFingerprint
-            .match(classDefBy(ShowPaywallUseCaseAFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 p1, 0x1\nreturn p1")
-            }
+        // ── Target 5: Superwall → block server status override ────────────────
+        SuperwallSetSubscriptionStatusFingerprint.method.addInstructions(0, "return-void")
 
-        listOf(
-            ShowPaywallUseCaseCFingerprint,
-            ShowPaywallUseCaseDFingerprint,
-            PrivateUserIsPaidFingerprint
-        ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
-        }
+        // ── Targets 6+7: MonoSubscription feature flags → true ────────────────
+        MonoSubscriptionGetEnabledFingerprint.method.returnEarly(true)
+        MonoSubscriptionIsSafetyToolAvailableFingerprint.method.returnEarly(true)
 
-        // Layer 6
-        SafetyCenterPaywallVMGateFingerprint
-            .match(classDefBy(SafetyCenterPaywallVMGateFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-            }
-
-        // Layer 7
-        SafetyNetworkRemoveExpiredFingerprint
-            .match(classDefBy(SafetyNetworkRemoveExpiredFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
-            }
-
-        // Layer 10
-        ClarityEntrypointVisibleFingerprint
-            .match(classDefBy(ClarityEntrypointVisibleFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;\nreturn-object p1")
-            }
-
-        // Layer 11
-        MonoSubscriptionGetEnabledFingerprint
-            .match(classDefBy(MonoSubscriptionGetEnabledFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
-
-        // Layer 12
+        // ── Target 8: Clarity entrypoint → visible ────────────────────────────
         runCatching {
-            OnboardingOverridePaywallOnCreateFingerprint
-                .match(classDefBy(OnboardingOverridePaywallOnCreateFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, dismissActivity(OnboardingOverridePaywallOnCreateFingerprint.definingClass!!))
-                }
+            ClarityProfileEntrypointEnabledFingerprint.method.returnEarly(true)
         }
 
-        runCatching {
-            InAppOverridePaywallOnCreateFingerprint
-                .match(classDefBy(InAppOverridePaywallOnCreateFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, dismissActivity(InAppOverridePaywallOnCreateFingerprint.definingClass!!))
-                }
+        // ── Target 9: Seed SubscriptionRepository._currentSubscription ───────
+        // Insert BEFORE "const/4 p0, 3" (which overwrites this-ref with int 3).
+        // p0 = register 8 in .registers 15 with 7 params.
+        // Scan for NarrowLiteralInstruction where registerA==8, literal==3.
+        // Save p0→v4 before it is clobbered; use v4 for iget-object.
+        val constructorMethod = SubscriptionRepositoryConstructorFingerprint.method
+        val constP0Index = constructorMethod.implementation!!.instructions.indexOfFirst { instr ->
+            instr is NarrowLiteralInstruction &&
+                instr is OneRegisterInstruction &&
+                (instr as OneRegisterInstruction).registerA == 8 &&
+                (instr as NarrowLiteralInstruction).narrowLiteral == 3
         }
+        require(constP0Index != -1) { "SubscriptionRepository.<init>: const/4 p0, 3 not found" }
 
-        // Layers 13/14/15
-        MonoSubscriptionIsSafetyToolAvailableFingerprint
-            .match(classDefBy(MonoSubscriptionIsSafetyToolAvailableFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
+        constructorMethod.addInstructions(
+            constP0Index,
+            "move-object v4, p0\n" +
+            "new-instance v0, $SUBSCRIPTION_DIGEST\n" +
+            "sget-object v1, $SUBSCRIPTION_STATE->TRIAL_ACTIVATED:$SUBSCRIPTION_STATE\n" +
+            "const/4 v2, 0\n" +
+            "invoke-direct { v0, v1, v2, v2 }, ${SUBSCRIPTION_DIGEST}-><init>(${SUBSCRIPTION_STATE}Ljava/time/Instant;Ljava/time/Instant;)V\n" +
+            "iget-object v3, v4, ${SUBSCRIPTION_REPO}->_currentSubscription:Lgwa;\n" +
+            "invoke-interface { v3, v0 }, Lgwa;->setValue(Ljava/lang/Object;)V",
+        )
 
-        MonoSubscriptionGetHidePremiumOnboardingFingerprint
-            .match(classDefBy(MonoSubscriptionGetHidePremiumOnboardingFingerprint.definingClass!!))
-            .method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-            }
+        // ── ShowPaywallUseCase gates ──────────────────────────────────────────
+        // a(SubscriptionFeature)Z: true = user HAS ACCESS → callers show content.
+        // With c() and d() returning true, a() would naturally return true too,
+        // but we patch directly for belt-and-suspenders.
+        ShowPaywallUseCaseAFingerprint.method.returnEarly(true)
 
-        listOf(
-            MonoSubscriptionGetShowPlusToPremiumEducationFingerprint,
-            MonoSubscriptionGetShowPlusToPremiumProfileBannerFingerprint
-        ).forEach { fp ->
-            fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-            }
-        }
+        // c()Z, d()Z: true = user IS premium. Patch to true.
+        ShowPaywallUseCaseCFingerprint.method.returnEarly(true)
+        ShowPaywallUseCaseDFingerprint.method.returnEarly(true)
 
-        // Layer 17
-        listOf(
-            ClarityMapTooltipUpsellEnabledFingerprint,
-            ClarityRadioClipsUpsellEnabledFingerprint,
-            ClaritySettingsUpsellEnabledFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-            }
-        }
+        // e()Z: true = SHOW safety network paywall. Patch to false.
+        ShowPaywallUseCaseEFingerprint.method.returnEarly(false)
 
-        // Layer 18
-        listOf(
-            PlusV1NeighborhoodTrendsEnabledFingerprint,
-            PlusV1RadioClipsEnabledFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-            }
-        }
+        // f(Boolean)Z: true = SHOW conditional paywall. Patch to false.
+        ShowPaywallUseCaseFFingerprint.method.returnEarly(false)
 
-        // Layer 19
-        runCatching {
-            SuperwallPaywallActivityOnCreateFingerprint
-                .match(classDefBy(SuperwallPaywallActivityOnCreateFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, dismissActivity(SuperwallPaywallActivityOnCreateFingerprint.definingClass!!))
-                }
-        }
+        // isPaid()Z on PrivateUser: true = user is paid. Patch to true.
+        PrivateUserIsPaidFingerprint.method.returnEarly(true)
 
-        // Layer 20
-        listOf(
-            PrivateUserIsProtectEligibleFingerprint,
-            PrivateUserIsProtectSubscriberFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-            }
-        }
+        // ── Paywall Activity dismissals (belt-and-suspenders) ─────────────────
+        // super.onCreate(bundle) + finish() — uses only p0 (this) and p1 (Bundle),
+        // both param registers valid in any Activity.onCreate(Bundle) method.
+        val dismissOnCreate =
+            "invoke-super { p0, p1 }, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V\n" +
+            "invoke-virtual { p0 }, Landroid/app/Activity;->finish()V\n" +
+            "return-void"
 
-        // Removed in v0.1298.0 — runCatching for compat
-        runCatching {
-            MonoSubscriptionIsSafetyNetworkAvailableFingerprint
-                .match(classDefBy(MonoSubscriptionIsSafetyNetworkAvailableFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-        }
-
-        runCatching {
-            SafetyNetworkPaywallVMGateFingerprint
-                .match(classDefBy(SafetyNetworkPaywallVMGateFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-                }
-        }
-
-        // Layer 21
-        runCatching {
-            ClarityProfileEntrypointEnabledFingerprint
-                .match(classDefBy(ClarityProfileEntrypointEnabledFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-        }
-
-        // Layer 22
         listOf(
             ClarityPaywallActivityOnCreateFingerprint,
             ComparePlansActivityOnCreateFingerprint,
@@ -262,197 +144,12 @@ val citizenUnlockProPatch = bytecodePatch(
             SubscriptionCenterActivityOnCreateFingerprint,
             SafetyCenterPaywallActivityOnCreateFingerprint,
             SafetyNetworkEducationActivityOnCreateFingerprint,
-            FamilyPlanBenefitActivityOnCreateFingerprint
+            FamilyPlanBenefitActivityOnCreateFingerprint,
+            SuperwallPaywallActivityOnCreateFingerprint,
         ).forEach { fp ->
             runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, dismissActivity(fp.definingClass!!))
-                }
+                fp.method.addInstructions(0, dismissOnCreate)
             }
-        }
-
-        runCatching {
-            TrustedContactsConfigGetEnabledFingerprint
-                .match(classDefBy(TrustedContactsConfigGetEnabledFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
-        }
-
-        runCatching {
-            PaywallHomescreenTriggerConfigGetEnabledFingerprint
-                .match(classDefBy(PaywallHomescreenTriggerConfigGetEnabledFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x0\nreturn v0")
-                }
-        }
-
-        // Layer 23: Safety Network flow collectors (zp3)
-        listOf(
-            SafetyNetworkSingleInviteFlowCollectorFingerprint,
-            SafetyNetworkPendingInvitesFlowCollectorFingerprint,
-            FamilyPlanBenefitFlowCollectorFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, returnKotlinUnit)
-                }
-            }
-        }
-
-        runCatching {
-            SafetyNetworkEducationFlowCollectorFingerprint
-                .match(classDefBy(SafetyNetworkEducationFlowCollectorFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(
-                        0,
-                        "iget-object p0, p0, Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity\$a\$a\$a;->d:Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity;\n" +
-                        "new-instance p1, Landroid/content/Intent;\n" +
-                        "const-class p2, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
-                        "invoke-direct {p1, p0, p2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
-                        "invoke-virtual {p0, p1}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V\n" +
-                        "invoke-virtual {p0}, Landroid/app/Activity;->finish()V\n" +
-                        "sget-object p0, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
-                        "return-object p0"
-                    )
-                }
-        }
-
-        // Layer 24: MainActivity collectors (gone in v0.1298.0 — runCatching)
-        // Layer 25: PremiumEducational internal collector
-        listOf(
-            MainActivityPaywallFlowCollectorAFingerprint,
-            MainActivityPaywallFlowCollectorBFingerprint,
-            MainActivityPaywallFlowCollectorCFingerprint,
-            MainActivityPaywallFlowCollectorDFingerprint,
-            MainActivityPaywallFlowCollectorEFingerprint,
-            MainActivityPaywallFlowCollectorFFingerprint,
-            MainActivityPaywallFlowCollectorGFingerprint,
-            MainActivityPaywallFlowCollectorHFingerprint,
-            MainActivityPaywallFlowCollectorAbaFingerprint,
-            MainActivityPaywallFlowCollectorBbaFingerprint,
-            MainActivityPaywallFlowCollectorCbaFingerprint,
-            MainActivityPaywallFlowCollectorDbaFingerprint,
-            PremiumEducationalPaywallInternalCollectorFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, returnKotlinUnit)
-                }
-            }
-        }
-
-        // Layers 26+27: Cross-package collectors
-        // EXCLUDED: SafetyZonePaywallFlowCollector — multi-branch nav dispatcher (breaks alert zones)
-        // EXCLUDED: SafetyNetworkActivityPaywallCollector — multi-branch nav dispatcher (breaks safety network)
-        // EXCLUDED: SubscriptionCenterActivityCollector — multi-branch dispatcher
-        listOf(
-            MenuPaywallFlowCollectorFingerprint,         // empty in v0.1298.0 — runCatching safe
-            OnboardingPaywallFlowCollectorFingerprint,   // empty in v0.1298.0 — runCatching safe
-            ProfilePaywallFlowCollectorFingerprint,      // gone in v0.1298.0 — runCatching safe
-            SafetyHomePaywallFlowCollectorFingerprint,   // older builds
-            MyProfileFragmentPaywallCollectorFingerprint, // older builds (h$a$a)
-            SafetyCenterPaywallActivityCollectorFingerprint,
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, returnKotlinUnit)
-                }
-            }
-        }
-
-        listOf(
-            ObfuscatedW50F1PaywallCollectorFingerprint,
-            ObfuscatedW70LPaywallCollectorFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, returnKotlinUnit)
-                }
-            }
-        }
-
-        // PurchasePremiumHelper: v8d (older) + c3d (v0.1298.0+)
-        listOf(
-            PurchasePremiumHelperCreateIntentFingerprint,
-            PurchasePremiumHelperC3DFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
-                }
-            }
-        }
-
-        runCatching {
-            PremiumEducationalPaywallActivityCreateIntentFingerprint
-                .match(classDefBy(PremiumEducationalPaywallActivityCreateIntentFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(
-                        0,
-                        "if-nez p1, :goto_safety_network\n" +
-                        "new-instance v0, Landroid/content/Intent;\n" +
-                        "const-class v1, Lsp0n/citizen/paywall/superwall/PremiumEducationalPaywallActivity;\n" +
-                        "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
-                        "const-string p0, \"ORIGIN\"\n" +
-                        "invoke-virtual {v0, p0, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;\n" +
-                        "move-result-object p0\n" +
-                        "const-string p2, \"LAUNCH_SAFETY_NETWORK\"\n" +
-                        "invoke-virtual {p0, p2, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;\n" +
-                        "move-result-object p0\n" +
-                        "return-object p0\n" +
-                        ":goto_safety_network\n" +
-                        "new-instance v0, Landroid/content/Intent;\n" +
-                        "const-class v1, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
-                        "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
-                        "return-object v0"
-                    )
-                }
-        }
-
-        // NavigationType b1b$h0/i0/u0 (v0.1298.0+ — replaces MainActivity collectors)
-        listOf(
-            NavigationTypeH0PaywallFingerprint,
-            NavigationTypeI0PaywallFingerprint,
-            NavigationTypeU0PaywallFingerprint
-        ).forEach { fp ->
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    removeInstructions(0, instructions.count())
-                    addInstructions(0, returnKotlinUnit)
-                }
-            }
-        }
-
-        // ProtectFabHelper zvc (v0.1298.0+)
-        runCatching {
-            ProtectFabHelperPaywallFingerprint
-                .match(classDefBy(ProtectFabHelperPaywallFingerprint.definingClass!!))
-                .method.apply {
-                    if (implementation == null) return@apply
-                    addInstructions(0, "return-void")
-                }
         }
     }
 }

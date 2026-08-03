@@ -1,175 +1,159 @@
 package app.template.patches.inure.fullversion
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.instructions
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.INURE_COMPATIBILITY
+import app.template.patches.shared.Constants.INURE_GITHUB_COMPATIBILITY
+import app.template.patches.shared.clearBody
+import app.template.patches.shared.returnEarly
 
 /**
- * Unlocks full version in Inure App Manager (app.simple.inure.play).
+ * Unlocks all features in Inure App Manager.
+ * Targets both the Play flavour (app.simple.inure.play) and the GitHub flavour
+ * (app.simple.inure). Class paths are identical across both.
  *
- * ## What's gated
- * - All features behind 15-day trial expiry
- * - Paid purchase check via "is_full_version_" EncryptedSharedPreferences key
- * - Feature access through ScopedFragment.fullVersionCheck()
+ * ## Premium model (build107.2.0)
+ * Inure uses a three-path verification model — no Play Billing SDK:
+ *   1. Companion APK: app.simple.inureunlocker — cert SHA1 verified via IPC broadcast
+ *   2. Gumroad licence key — verified against api.gumroad.com, stored as "has_license_key"
+ *   3. 15-day trial — daysBetween(firstLaunch, today) <= 15
  *
- * ## Patch strategy
+ * On success any path calls TrialPreferences.setFullVersion(true).
  *
- * ### Layer 1 — TrialPreferences.isFullVersion()Z
- * Direct purchase flag reader. Always returning true signals app is bought.
+ * ## Startup gate flow
+ * ```
+ * SplashScreen.onViewCreated()
+ *   ├─ unlockStateChecker()           ← Layer 9: no-op (defence against setFullVersion(false))
+ *   └─ LauncherViewModel.initCheck()
+ *        └─ if (!isFullVersion())     ← Layer 1: always true → skips verifyCertificate()
+ * ```
  *
- * ### Layer 2 — TrialPreferences.isAppFullVersionEnabled()Z
- * Combined flag+trial gate used across feature checks. Always returning true
- * unlocks all features regardless of purchase or elapsed time.
+ * ## Patch layers (11 total)
  *
- * ### Layer 3 — TrialPreferences.isWithinTrialPeriod()Z
- * Returns true while fewer than 15 days since install. Always returning true
- * prevents expiry-based restriction.
+ * ── LOAD-BEARING ─────────────────────────────────────────────────────────────
  *
- * ### Layer 4 — TrialPreferences.isTrialWithoutFull()Z
- * Returns true when trial expired without purchase (triggers nag dialogs).
- * Always returning false suppresses all purchase prompts.
+ * Layer 1  — TrialPreferences.isFullVersion()Z                   → true        [REQUIRED]
+ *   Deepest gate; first branch in isAppFullVersionEnabled() before date math.
+ *   Also the initCheck() gate that skips verifyCertificate() on startup.
  *
- * ### Layer 5 — BaseActivity.fullVersionCheck()Z
- * Inline duplicate of the gate in the Activity base class (no-arg overload).
- * Always returning true prevents the FullVersion dialog at activity level.
+ * Layer 9  — SplashScreen.unlockStateChecker()V                  → GONE+return [REQUIRED]
+ *   Hides daysLeft synchronously in onViewCreated (fixes flicker) and kills
+ *   the setFullVersion(false) call that would overwrite Layer 1.
  *
- * ### Layer 6 — BaseActivity.fullVersionCheck(Function0)Z
- * Overload with onClose lambda; same inline gate. Always returning true
- * skips the dialog and lets the caller proceed.
+ * Layer 10 — TrialPreferences.getFirstLaunchDate()J              → now()       [REQUIRED]
+ *   Root date fix. daysBetween(now, now) = 0 everywhere. All trial checks
+ *   that read this value (50+ callers) see the trial as "started today".
  *
- * ### Layer 7 — SplashScreen.unlockStateChecker()V
- * Called on every launch. Checks for the companion unlocker APK
- * (app.simple.inureunlocker) and calls setFullVersion(false) when absent,
- * actively overwriting our patches. No-op prevents the false deactivation write.
+ * Layer 11 — CalendarUtils.getToday()Date                        → epoch       [REQUIRED]
+ *   Belt-and-suspenders: getToday() = 1970-01-01. daysBetween(firstLaunch,
+ *   epoch) always <= 0 regardless of stored firstLaunchDate.
+ *
+ * ── REDUNDANT (defence-in-depth, kept for future-proofing) ───────────────────
+ *   With Layers 10+11 active, daysBetween is always <= 0, so the following
+ *   date-computing methods already return the correct values. They are kept
+ *   because they cost nothing and guard against future refactors where a
+ *   method might be inlined or the date calls removed.
+ *
+ * Layer 2  — TrialPreferences.isAppFullVersionEnabled()Z         → true        [redundant: L10+11]
+ * Layer 3  — TrialPreferences.isWithinTrialPeriod()Z             → true        [redundant: L10+11]
+ * Layer 4  — TrialPreferences.isTrialWithoutFull()Z              → false       [redundant: L1+L10+11]
+ * Layer 5  — TrialPreferences.hasLicenceKey()Z                   → true        [redundant: L9]
+ * Layer 6  — TrialPreferences.isUnlockerVerificationRequired()Z  → false       [redundant: L9]
+ * Layer 7  — BaseActivity.fullVersionCheck()Z                    → true        [redundant: L10+11]
+ * Layer 8  — BaseActivity.fullVersionCheck(Function0)Z           → true        [redundant: L10+11]
  */
 @Suppress("unused")
 val unlockFullVersionPatch = bytecodePatch(
     name = "Unlock Full Version",
-    description = "Unlocks all features in Inure App Manager.",
+    description = "Unlocks all features in Inure App Manager by bypassing the trial period and companion-app verification checks.",
     default = true
 ) {
     compatibleWith(INURE_COMPATIBILITY)
+    compatibleWith(INURE_GITHUB_COMPATIBILITY)
 
     execute {
-        // ── Layer 1: isFullVersion()Z — always return true ──────────────────
-        IsFullVersionFingerprint
-            .match(classDefBy(IsFullVersionFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 1: isFullVersion()Z → true ─────────────────────────────────
+        IsFullVersionFingerprint.method.returnEarly(true)
 
-        // ── Layer 2: isAppFullVersionEnabled()Z — always return true ─────────
-        IsAppFullVersionEnabledFingerprint
-            .match(classDefBy(IsAppFullVersionEnabledFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 2: isAppFullVersionEnabled()Z → true ───────────────────────
+        IsAppFullVersionEnabledFingerprint.method.returnEarly(true)
 
-        // ── Layer 3: isWithinTrialPeriod()Z — always return true ─────────────
-        IsWithinTrialPeriodFingerprint
-            .match(classDefBy(IsWithinTrialPeriodFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 3: isWithinTrialPeriod()Z → true ───────────────────────────
+        IsWithinTrialPeriodFingerprint.method.returnEarly(true)
 
-        // ── Layer 4: isTrialWithoutFull()Z — always return false ─────────────
-        IsTrialWithoutFullFingerprint
-            .match(classDefBy(IsTrialWithoutFullFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x0
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 4: isTrialWithoutFull()Z → false ───────────────────────────
+        IsTrialWithoutFullFingerprint.method.returnEarly(false)
 
-        // ── Layer 5: BaseActivity.fullVersionCheck()Z — always return true ───
-        BaseActivityFullVersionCheckFingerprint
-            .match(classDefBy(BaseActivityFullVersionCheckFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 5: hasLicenceKey()Z → true ─────────────────────────────────
+        // New in build107.2.0. Routes unlockStateChecker() into the licence key
+        // fast-path before it reaches the companion-APK check + setFullVersion(false).
+        HasLicenceKeyFingerprint.method.returnEarly(true)
 
-        // ── Layer 6: BaseActivity.fullVersionCheck(Function0)Z — always return true ─
-        BaseActivityFullVersionCheckWithCallbackFingerprint
-            .match(classDefBy(BaseActivityFullVersionCheckWithCallbackFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 6: isUnlockerVerificationRequired()Z → false ───────────────
+        // Keeps the "no re-verification" branch active in unlockStateChecker().
+        IsUnlockerVerificationRequiredFingerprint.method.returnEarly(false)
 
-        // ── Layer 7: SplashScreen.unlockStateChecker()V ──────────────────────
-        // Checks for companion unlocker APK; calls setFullVersion(false) if absent.
-        // Also the ONLY place that hides the daysLeft TextView — layout has it
-        // visible by default with hardcoded trial text. Replace body with just
-        // the ViewUtils.gone(daysLeft) call so the view is always hidden.
-        UnlockStateCheckerFingerprint
-            .match(classDefBy(UnlockStateCheckerFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    sget-object v0, Lapp/simple/inure/util/ViewUtils;->INSTANCE:Lapp/simple/inure/util/ViewUtils;
-                    iget-object v1, p0, Lapp/simple/inure/ui/launcher/SplashScreen;->daysLeft:Lapp/simple/inure/decorations/typeface/TypeFaceTextView;
-                    check-cast v1, Landroid/view/View;
-                    invoke-virtual {v0, v1}, Lapp/simple/inure/util/ViewUtils;->gone(Landroid/view/View;)V
-                    return-void
-                    """.trimIndent()
-                )
-            }
+        // ── Layer 7: BaseActivity.fullVersionCheck()Z → true ─────────────────
+        BaseActivityFullVersionCheckFingerprint.method.returnEarly(true)
+
+        // ── Layer 8: BaseActivity.fullVersionCheck(Function0)Z → true ────────
+        BaseActivityFullVersionCheckWithCallbackFingerprint.method.returnEarly(true)
+
+        // ── Layer 10: getFirstLaunchDate()J → System.currentTimeMillis() ─────────
+        // Root fix for the date gate. Makes daysBetween(today, today)=0 in ALL
+        // callers: isWithinTrialPeriod, isAppFullVersionEnabled, getDaysLeft, etc.
+        // The trial always reads as "started today" — expires never.
+        GetFirstLaunchDateFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+                move-result-wide v0
+                return-wide v0
+                """.trimIndent()
+            )
+        }
+
+        // ── Layer 11: CalendarUtils.getToday()Date → new Date(0) ─────────────
+        // Belt-and-suspenders: "today" = 1970-01-01 (epoch). daysBetween any
+        // future firstLaunchDate and epoch is always <= 0, so the trial gate
+        // never expires regardless of what is stored in SharedPreferences.
+        GetTodayFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                new-instance v0, Ljava/util/Date;
+                const-wide/16 v1, 0x0
+                invoke-direct {v0, v1, v2}, Ljava/util/Date;-><init>(J)V
+                return-object v0
+                """.trimIndent()
+            )
+        }
+
+        // ── Layer 9: SplashScreen.unlockStateChecker()V → hide daysLeft + return ──
+        // Belt-and-suspenders: eliminates setFullVersion(false) at the call site.
+        // Also fixes the visible flicker: daysLeft is VISIBLE by default in XML,
+        // and unlockStateChecker() is called synchronously in onViewCreated() right
+        // after daysLeft is assigned via findViewById. A plain returnEarly() leaves
+        // the view visible for one frame before the layout pass, causing a brief
+        // "%s days of trial left" flicker.
+        // Fix: replace the body with setVisibility(GONE) on daysLeft then return.
+        // This is a direct View call — no dependency on ViewUtils, survives refactors.
+        UnlockStateCheckerFingerprint.method.apply {
+            clearBody()
+            addInstructions(
+                0,
+                """
+                iget-object v0, p0, Lapp/simple/inure/ui/launcher/SplashScreen;->daysLeft:Lapp/simple/inure/decorations/typeface/TypeFaceTextView;
+                if-eqz v0, :skip
+                const/16 v1, 0x8
+                invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+                :skip
+                return-void
+                """.trimIndent()
+            )
+        }
     }
 }
