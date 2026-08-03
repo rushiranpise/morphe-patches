@@ -7,10 +7,8 @@ import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructionsOrNull
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
-import app.morphe.patcher.patch.AppTarget
-import app.morphe.patcher.patch.Compatibility
-import app.template.patches.shared.Constants.DUBOXDRIVE_COMPATIBILITY
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.DUBOXDRIVE_COMPATIBILITY
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
@@ -20,9 +18,10 @@ import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
-// ── Cert constants (extracted from original com.dubox.drive APK v4.19.6) ──────
-private const val CERT_SHA1   = "11F8C73FD20D39CF55FD7F3F0F6A88C7E8909858"
-private const val CERT_BASE64 = "MIIDlzCCAn+gAwIBAgIEc6Fu6TANBgkqhkiG9w0BAQsFADB7MRgwFgYDVQQGDA/jgavjgbvjgpPj" +
+// ── Certificate constants (original com.dubox.drive APK, unchanged across versions) ─
+private const val CERT_SHA1 = "11F8C73FD20D39CF55FD7F3F0F6A88C7E8909858"
+private const val CERT_BASE64 =
+    "MIIDlzCCAn+gAwIBAgIEc6Fu6TANBgkqhkiG9w0BAQsFADB7MRgwFgYDVQQGDA/jgavjgbvjgpPj" +
     "gZPjgY8xDzANBgNVBAgMBuadseS6rDESMBAGA1UEBwwJ6YO95riv5Yy6MQ4wDAYDVQQKEwVkdWJv" +
     "eDEaMBgGA1UECwwRcG9wSW7moKrlvI/kvJrnpL4xDjAMBgNVBAMTBWR1Ym94MCAXDTIwMDQyMzA4" +
     "NTU0NVoYDzIxMDIwNjEzMDg1NTQ1WjB7MRgwFgYDVQQGDA/jgavjgbvjgpPjgZPjgY8xDzANBgNV" +
@@ -47,18 +46,20 @@ private const val TARGET_INSTALLER     = "com.android.vending"
 @Suppress("unused")
 val duboxDriveUnlockVipPatch = bytecodePatch(
     name = "Unlock VIP",
-    description = "Unlocks Dubox Drive VIP/SVIP (Premium+)",
+    description = "Unlocks TeraBox / Dubox Drive VIP/SVIP (Premium+).",
 ) {
     compatibleWith(DUBOXDRIVE_COMPATIBILITY)
-
     extendWith("extensions/extension.mpe")
 
     execute {
 
         // ── VipInfo boolean getters → true ────────────────────────────────────
+        // Covers all boolean gates on the local VipInfo cache object.
+        // getHasIapRecord and getCanTrial are new in v4.22.1.
         for (fp in listOf(
             VipInfoIsVip, VipInfoGetCountryLogin, VipInfoGetCountryRegister,
             VipInfoGetHasSpacePri, VipInfoIsSub, VipInfoIsSubSpace,
+            VipInfoGetHasIapRecord, VipInfoGetCanTrial,
         )) {
             fp.match(classDefBy(fp.definingClass!!)).method.apply {
                 if (implementation == null) return@apply
@@ -66,7 +67,7 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             }
         }
 
-        // ── VipInfo int getters → 2 (SVIP) ───────────────────────────────────
+        // ── VipInfo int getters → 2 (SVIP level) ─────────────────────────────
         for (fp in listOf(VipInfoGetLevel, VipInfoGetIdentity)) {
             fp.match(classDefBy(fp.definingClass!!)).method.apply {
                 if (implementation == null) return@apply
@@ -74,7 +75,7 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             }
         }
 
-        // ── VipInfo timestamp getters → 2099 ─────────────────────────────────
+        // ── VipInfo long getters → year 2099 (0xf2bf6800 seconds) ────────────
         for (fp in listOf(VipInfoGetExpireSeconds, VipInfoGetEndTimeNoGrace, VipInfoGetRenewTime)) {
             fp.match(classDefBy(fp.definingClass!!)).method.apply {
                 if (implementation == null) return@apply
@@ -96,7 +97,7 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             addInstructions(0, "const/4 v0, 0x2\nreturn v0")
         }
 
-        // ── MemberInfo timestamp getters → 2099 (millis) ─────────────────────
+        // ── MemberInfo long getters → year 2099 (0x3b453f1a800 millis) ───────
         for (fp in listOf(
             MemberInfoGetEndTime, MemberInfoGetEndTimeNoGrace,
             MemberInfoGetLeftTime, MemberInfoGetRenewTime,
@@ -120,14 +121,18 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
         }
 
         // ── VipRightsManager string-anchored gates → true ────────────────────
-        for (fp in listOf(VipRightsGateI, VipRightsGateJ)) {
+        // VipRightsGateByType:   I(String)Z — general privilege type gate
+        // VipRightsGateNaStudio: j()Z       — NA_STUDIO_CREATE feature gate
+        for (fp in listOf(VipRightsGateByType, VipRightsGateNaStudio)) {
             fp.match(classDefBy(fp.definingClass!!)).method.apply {
                 if (implementation == null) return@apply
                 addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
         }
 
-        // ── VipRightsManager catch-all ()Z methods → true ────────────────────
+        // ── VipRightsManager catch-all ()Z → true ────────────────────────────
+        // Covers all parameterless boolean gates (obfuscated method names like G, H, l, etc.)
+        // without needing individual fingerprints for each one.
         mutableClassDefBy("Lcom/dubox/drive/vip/manager/VipRightsManager;")
             .methods
             .filter { m ->
@@ -138,17 +143,21 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             }
             .forEach { it.addInstructions(0, "const/4 v0, 0x1\nreturn v0") }
 
-        // ── Global VipInfo cache gate (class changes per version) → true ──────
-        for (fp in listOf(GlobalVipGate4182, GlobalVipGate4186, GlobalVipGate4196, GlobalVipGate4201)) {
-            runCatching {
-                fp.match(classDefBy(fp.definingClass!!)).method.apply {
-                    if (implementation == null) return@apply
-                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                }
+        // ── Global VipInfo cache gate → true ──────────────────────────────────
+        // ApisKt.L()Z — unchanged from v4.20.1 to v4.22.1.
+        // runCatching to remain safe if the method is renamed in a future version;
+        // the catch-all VipInfo scanner above covers the underlying isSub() call.
+        runCatching {
+            GlobalVipGate.match(classDefBy(GlobalVipGate.definingClass!!)).method.apply {
+                if (implementation == null) return@apply
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
         }
 
-        // ── Account.T(Context)V — block server-forced logout ──────────────────
+        // ── Account.V(Context)V — block server-forced logout ──────────────────
+        // Method name changed T→V in v4.22.1. Fingerprint now uses stable string
+        // anchors ("mContext" Kotlin null-check + "com.dubox.drive.ACTION_LOGOUT")
+        // so the definingClass+name are used for disambiguation only.
         AccountLogout.match(classDefBy(AccountLogout.definingClass!!)).method.apply {
             if (implementation == null) return@apply
             addInstructions(0, "return-void")
@@ -160,39 +169,46 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             addInstructions(0, "return-void")
         }
 
-        // ── lq/_._____(Activity, RemoteExceptionInfo)Z — account expired gate ─
-        // Called by many API result receivers when server returns ServerBanInfo.
-        // Returns false = "not handled" so the caller proceeds normally.
-        runCatching {
-            AccountExpiredGate.match(classDefBy(AccountExpiredGate.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "const/4 p1, 0x0\nreturn p1")
-            }
+        // ── BaseResultReceiver.onHandlerAccountCommonError — suppress expired popup ─
+        // Triggered by server error codes -6 / -25 (isAccountCommonError).
+        // Server sends "account has expired" (or similar) in the Bundle under key
+        // "com.dubox.drive.server_alert_message". Without patching, the handler
+        // shows the message in a dialog then calls onFailed() → ___.h() →
+        // routes to the login/setup screen.
+        // return-void silences the dialog and prevents the routing.
+        AccountCommonError.match(classDefBy(AccountCommonError.definingClass!!)).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "return-void")
         }
 
-        // ── Passport SDK error parser — suppress "invalid signature" code ─────
-        // ____$_.__(String)I maps "invalid signature" server response → 0x970ff7
-        // → shows "current version carries a risk" blocking login.
+        // ── ___.e(Context)V — suppress cold-start session-expired routing ──────
+        // Called by AccountStartup$__._() (OnLoginCallBack failure handler) when
+        // the stored session token fails validation at every cold launch.
+        // ___.e() creates a base.a router and calls a.______(context) to start
+        // the login/setup Activity — this is what shows the "account has expired"
+        // popup and routes back to setup on every cold start.
+        // Has exactly ONE call site in the codebase — safe to return-void globally.
+        AccountSessionExpiredRouter.match(
+            classDefBy(AccountSessionExpiredRouter.definingClass!!)
+        ).method.apply {
+            if (implementation == null) return@apply
+            addInstructions(0, "return-void")
+        }
+
+        // ── Passport error parser — suppress "invalid signature" code ─────────
+        // ____$_.__(String)I: maps "invalid signature" → 0x970ff5 → login blocked.
+        // Replaced with: return 0  (treated as "no error" by the caller).
         runCatching {
-            PassportSignatureErrorParser.match(classDefBy(PassportSignatureErrorParser.definingClass!!)).method.apply {
+            PassportSignatureErrorParser.match(
+                classDefBy(PassportSignatureErrorParser.definingClass!!)
+            ).method.apply {
                 if (implementation == null) return@apply
                 removeInstructions(0, instructions.count())
                 addInstructions(0, "const/4 p1, 0x0\nreturn p1")
             }
         }
 
-        // ── Login error display safety net ────────────────────────────────────
-        runCatching {
-            AccountFragmentLoginErrorDisplay.match(classDefBy(AccountFragmentLoginErrorDisplay.definingClass!!)).method.apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
-            }
-        }
-
         // ══ SPOOF SIGNATURE VERIFICATION ══════════════════════════════════════
-        // Port of spoofSignatureVerificationPatch — inlines cert, no user input.
-        // Replaces <package-name> and <signature> placeholders in SignatureHookApp.
-
         val sigHookInit = Fingerprint(
             accessFlags = listOf(AccessFlags.STATIC, AccessFlags.CONSTRUCTOR),
             parameters = emptyList(),
@@ -220,23 +236,16 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             if (pkgIdx >= 0) sigHookInit.replaceInstruction(pkgIdx, "const-string v0, \"com.dubox.drive\"")
             if (sigIdx  >= 0) sigHookInit.replaceInstruction(sigIdx,  "const-string v1, \"$CERT_BASE64\"")
 
-            val hookClassType = EXTENSION_CLASS_SIG
             classDefForEach { classDef ->
-                if (classDef.type != hookClassType &&
+                if (classDef.type != EXTENSION_CLASS_SIG &&
                     classDef.superclass == "Landroid/app/Application;"
                 ) {
-                    mutableClassDefBy(classDef).setSuperClass(hookClassType)
+                    mutableClassDefBy(classDef).setSuperClass(EXTENSION_CLASS_SIG)
                 }
             }
-            println("Spoof signature: injected package=com.dubox.drive cert=${CERT_BASE64.take(20)}...")
-        } else {
-            println("Spoof signature: SignatureHookApp not found in extension — skipped.")
         }
 
         // ══ SPOOF FIREBASE CERT HASH ══════════════════════════════════════════
-        // Port of spoofFirebaseCertHashPatch — inlines SHA-1, no user input.
-        // Replaces X-Android-Cert header value before it's sent to Firebase.
-
         val firebaseFp = Fingerprint(
             returnType = "Ljava/net/HttpURLConnection;",
             parameters = listOf("Ljava/net/URL;", "Ljava/lang/String;"),
@@ -263,15 +272,10 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
                 val valueReg = (addReqPropInstr as FiveRegisterInstruction).registerE
                 val insertIdx = instrList.indexOf(addReqPropInstr)
                 firebaseFp.addInstruction(insertIdx, "const-string v$valueReg, \"$CERT_SHA1\"")
-                println("Spoof Firebase cert: injected SHA-1=$CERT_SHA1 at index $insertIdx.")
             }
-        } else {
-            println("Spoof Firebase cert: Firebase Installations SDK not found — skipped.")
         }
 
         // ══ SPOOF INSTALL SOURCE ══════════════════════════════════════════════
-        // Port of spoofInstallSourcePatch — Layer 1 DEX + Layer 2 binder proxy.
-
         val pmClass       = "Landroid/content/pm/PackageManager;"
         val installSrcCls = "Landroid/content/pm/InstallSourceInfo;"
         val sessionCls    = "Landroid/content/pm/PackageInstaller\$SessionInfo;"
@@ -295,7 +299,6 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
                 ) &&
                 parameterTypes.isEmpty() && returnType == "Ljava/lang/String;")
 
-        var installerPatchCount = 0
         classDefForEach { classDef ->
             val hasCalls = classDef.methods.any { m ->
                 m.instructionsOrNull?.any { instr ->
@@ -315,12 +318,10 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
                     val moveRes = instrList.getOrNull(idx + 1) as? OneRegisterInstruction ?: return@forEachIndexed
                     if (moveRes.opcode != Opcode.MOVE_RESULT_OBJECT) return@forEachIndexed
                     method.replaceInstruction(idx + 1, "const-string v${moveRes.registerA}, \"$TARGET_INSTALLER\"")
-                    installerPatchCount++
                 }
             }
         }
 
-        // Layer 2: binder proxy via extension
         val appOnCreate = Fingerprint(
             accessFlags = listOf(AccessFlags.PUBLIC),
             returnType = "V",
@@ -330,15 +331,10 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             },
         ).methodOrNull
 
-        if (appOnCreate != null) {
-            appOnCreate.addInstructions(
-                0,
-                "const-string v0, \"$TARGET_INSTALLER\"\n" +
-                "invoke-static {v0}, $EXTENSION_CLASS_INST->init(Ljava/lang/String;)V",
-            )
-            println("Spoof install source: binder proxy injected, $installerPatchCount DEX call sites patched.")
-        } else {
-            println("Spoof install source: $installerPatchCount DEX call sites patched (no Application.onCreate found).")
-        }
+        appOnCreate?.addInstructions(
+            0,
+            "const-string v0, \"$TARGET_INSTALLER\"\n" +
+            "invoke-static {v0}, $EXTENSION_CLASS_INST->init(Ljava/lang/String;)V",
+        )
     }
 }

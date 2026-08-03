@@ -74,3 +74,36 @@ fun MutableMethod.returnEarly(value: Int) = addInstructions(
     0,
     "const/16 v0, $value\nreturn v0",
 )
+
+/**
+ * Grows the method's register count to [needed] if it is currently smaller.
+ *
+ * `MutableMethodImplementation.registerCount` is a `private final int`.  Growing
+ * it is required when injecting smali code that uses scratch registers beyond
+ * the method's original `.registers N`.
+ *
+ * Smali register semantics for non-static methods with P parameters:
+ *   total = locals + (1 + P)   ← 1 for `this`
+ *   p0 = v[total - 1 - P], p1 = v[total - P], …
+ * Increasing `registerCount` by 1 pushes p0 one slot higher so existing
+ * parameter references (p0/p1/…) remain correct — ART re-derives them from
+ * the count at verification time.
+ *
+ * Only bump count BEFORE calling [clearBody] + [addInstructions]; bumping
+ * after addInstructions has no effect on already-assembled instruction bytes.
+ *
+ * Implemented via reflection on the private field — survives dexlib2/morphe
+ * internal renames as long as the field type remains `int`.
+ */
+fun MutableMethod.ensureRegisters(needed: Int) {
+    val impl = implementation ?: return
+    if (impl.registerCount >= needed) return
+    val field = MutableMethodImplementation::class.java.declaredFields
+        .firstOrNull { it.type == Int::class.javaPrimitiveType }
+        ?.apply { isAccessible = true }
+        ?: throw app.morphe.patcher.patch.PatchException(
+            "MutableMethodImplementation has no int field (registerCount). " +
+                "dexlib2 internal layout changed?",
+        )
+    field.setInt(impl, needed)
+}

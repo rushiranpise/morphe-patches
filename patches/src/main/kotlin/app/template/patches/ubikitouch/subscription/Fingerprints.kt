@@ -5,44 +5,55 @@ import app.morphe.patcher.opcode
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-// UbikiTouch (eu.toneiv.ubktouch) v1.16.13
+// UbikiTouch (eu.toneiv.ubktouch) v1.17.7
 //
 // Premium architecture (Play Billing, product: ubktouch_unlock_pro_version):
-//   gp1.y()Z → reads IS_PURCHASED_PREF from Paper (NoSQL prefs) via ym0.T(m(), false)
-//   gp1.m()Z → decodes XOR-encoded pref key "IS_PURCHASED_PREF"
-//   jg.nvkl() → queries purchases, checks productIds contains "ubktouch_unlock_pro_version"
-//              → calls vh1.w(true) which calls ym0.z0(null, gp1.m(), true, false) to save pref
-//   eu.toneiv.ubktouch.util.xwzp → calls gp1.y() and propagates result via b71.mpow(boolean)
+//   sw1.z()Z  → reads XOR-encoded pref key via sw1.h() → MMKV.decodeBool(key, false)
+//   sw1.h()Z  → Base64+XOR decodes IS_PURCHASED_PREF key ("EwkFCg8IGRIbCR8eBQoIHxw=", key 0x5a)
+//   uh        → purchase callback lambda; calls lo1.w(true) on confirmed purchase
+//   lo1.w(Z)V → writes boolean via Ls31;->L() (SharedPrefs) + broadcasts ACTION_INAPP_UPDATE
+//   z5        → BillingClient query; checks list contains "ubktouch_unlock_pro_version"
 //
-// Patch strategy:
-//   gp1.y() → always return true (primary premium state getter used everywhere)
+// Change from v1.16.13:
+//   OLD: gp1.y()Z — reads IS_PURCHASED_PREF from Paper (NoSQL) via ym0.T(key, false)
+//   NEW: sw1.z()Z — same semantics; backing store migrated Paper → MMKV (com.tencent.mmkv)
+//   gp1 class no longer contains y() — it is now a coroutine/thread-local utility class.
+//   PremiumPropagatorFingerprint dropped: eu.toneiv.ubktouch.util.xwzp became a
+//   system-settings utility; mpow propagation moved into lo1.w() itself.
+//   Patching sw1.z() alone covers all 10+ call sites in the app.
+//
+// Patch strategy: sw1.z() → always return true
 
 /**
- * Matches gp1.y()Z — static method reading IS_PURCHASED_PREF via ym0.T().
- * Forcing true bypasses all premium gates throughout the app.
+ * Matches sw1.z()Z — the sole static premium-state getter in v1.17.7.
+ *
+ * sw1.z() instruction sequence (complete):
+ *   invoke-static {}, Lsw1;->h()Ljava/lang/String;           ← INVOKE_STATIC (XOR-decode key)
+ *   move-result-object v0
+ *   const/4 v1, 0x0                                          ← default false
+ *   invoke-static {v0, v1}, Lsr0;->rqym(Ljava/lang/String;Z)Z  ← INVOKE_STATIC (MMKV read)
+ *   move-result v0
+ *   return v0
+ *
+ * Two-filter ordered pair [INVOKE_STATIC, INVOKE_STATIC] narrows to two candidates:
+ *   · sw1.z()Z  — no CONST_STRING anywhere in the method body
+ *   · df.N()Z   — contains const-string "LOG_ENABLE" before the second INVOKE_STATIC
+ *
+ * The custom predicate excludes df.N() by requiring the absence of any CONST_STRING
+ * opcode in the method body. No obfuscated names appear anywhere in this fingerprint.
  */
 internal val IsPurchasedFingerprint = Fingerprint(
-    definingClass = "Lgp1;",
-    name = "y",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     parameters = emptyList(),
     filters = listOf(
-        opcode(Opcode.INVOKE_STATIC), // gp1.m()
-        opcode(Opcode.INVOKE_STATIC), // ym0.T(key, false)
+        opcode(Opcode.INVOKE_STATIC),  // sw1.h() — XOR-decodes the MMKV pref key
+        opcode(Opcode.INVOKE_STATIC),  // sr0.rqym(String, Z) — reads boolean from MMKV
     ),
-)
-
-/**
- * Matches eu.toneiv.ubktouch.util.xwzp premium propagation method.
- * Calls b71.mpow(boolean) on the binding with the current premium state.
- * Patching to force mpow(true) ensures the accessible service and UI
- * reflect premium even if gp1.y() is only checked lazily.
- */
-internal val PremiumPropagatorFingerprint = Fingerprint(
-    definingClass = "Leu/toneiv/ubktouch/util/xwzp;",
-    returnType = "V",
-    filters = listOf(
-        opcode(Opcode.INVOKE_INTERFACE), // b71.mpow(false)
-    ),
+    custom = { method, _ ->
+        // sw1.z() contains no CONST_STRING (key is XOR-decoded at runtime via sw1.h()).
+        // df.N()Z — the only other static ()Z matching the opcode pair — does contain
+        // const-string "LOG_ENABLE", so this predicate uniquely selects sw1.z().
+        method.implementation?.instructions?.none { it.opcode == Opcode.CONST_STRING } == true
+    },
 )

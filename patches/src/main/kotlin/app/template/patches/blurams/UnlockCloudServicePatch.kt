@@ -35,6 +35,7 @@ val bluramsUnlockCloudServicePatch = bytecodePatch(
         }
 
         // Unlock cloud playback timeline (money pkg gate)
+        // v5.1049.4.921: class renamed hk/a → jk/a, fingerprint updated accordingly
         GetHasMoneyPkgFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const/4 v0, 0x1\nreturn v0")
