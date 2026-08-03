@@ -6,16 +6,20 @@ import app.template.patches.shared.Constants.LARK_PLAYER_COMPATIBILITY
 import app.template.patches.shared.clearBody
 
 /**
- * Unlocks Lark Player Premium by patching the IBillingInfoProvide implementation (o/b15).
+ * Unlocks Lark Player Premium by patching the app's billing-info-provider
+ * implementation.
  *
- * Premium gate chain:
- *   x70.getIBillingInfoProvide() → j80.d (field) → b15
- *   b15 implements Lo/bw2; (IBillingInfoProvide interface):
- *     d()Z  — hasPurchase: returns true if active PurchaseBean != null
- *     J()Z  — hasHistoryPurchase: returns true if PurchaseHistoryRecord != null
+ * Premium gate chain (class names below are obfuscated and rotate every
+ * build — see Fingerprints.kt for how each target is located structurally
+ * instead of by hardcoded name):
+ *   hasPurchase()Z        — true if the cached PurchaseBean != null
+ *   hasHistoryPurchase()Z — true if a cached PurchaseHistoryRecord != null
+ *   isPermanent()Z        — feeds the premium-status computation directly
  *
- * Patching both forces the app to always see an active + historic premium purchase,
- * satisfying all gating checks (settings UI, song list, player features).
+ * All three must be forced true together. Forcing only hasPurchase/
+ * hasHistoryPurchase is not sufficient: the app's premium-status computation
+ * treats "has a purchase but isPermanent==false" as an *expired* subscription,
+ * which immediately closes the in-app-purchase screen the instant it opens.
  */
 @Suppress("unused")
 val larkPlayerUnlockPremiumPatch = bytecodePatch(
@@ -25,7 +29,7 @@ val larkPlayerUnlockPremiumPatch = bytecodePatch(
     compatibleWith(LARK_PLAYER_COMPATIBILITY)
 
     execute {
-        // Patch hasPurchase (active subscription check)
+        // hasPurchase — active purchase check.
         HasPurchaseFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -33,11 +37,11 @@ val larkPlayerUnlockPremiumPatch = bytecodePatch(
                 """
                     const/4 v0, 0x1
                     return v0
-                """.trimIndent()
+                """.trimIndent(),
             )
         }
 
-        // Patch hasHistoryPurchase (any past purchase check)
+        // hasHistoryPurchase — any past purchase check.
         HasHistoryPurchaseFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -45,15 +49,12 @@ val larkPlayerUnlockPremiumPatch = bytecodePatch(
                 """
                     const/4 v0, 0x1
                     return v0
-                """.trimIndent()
+                """.trimIndent(),
             )
         }
 
-        // Patch isPermanent — critical fix for premiumStatus computation:
-        // processMinePremiumData evaluates: if f()Z=true → premiumStatus=1 (permanent).
-        // premiumStatus=1 blocks PayPremiumFragment from opening in SettingsFragment.
-        // Without this: d()Z=true but e() returns null → premiumStatus=3 (expired) →
-        //   PayPremiumFragment opens, sees d()Z=true, calls activity.finish() immediately.
+        // isPermanent — required for premiumStatus to resolve as "permanent"
+        // rather than "expired" (see class doc comment above).
         IsPermanentFingerprint.method.apply {
             clearBody()
             addInstructions(
@@ -61,7 +62,7 @@ val larkPlayerUnlockPremiumPatch = bytecodePatch(
                 """
                     const/4 v0, 0x1
                     return v0
-                """.trimIndent()
+                """.trimIndent(),
             )
         }
     }

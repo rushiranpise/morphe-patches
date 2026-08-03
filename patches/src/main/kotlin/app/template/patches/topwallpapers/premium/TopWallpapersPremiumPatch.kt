@@ -1,0 +1,65 @@
+package app.template.patches.topwallpapers.premium
+
+import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.TOPWALLPAPERS_COMPATIBILITY
+import app.template.patches.shared.returnEarly
+
+/**
+ * Unlocks premium features and removes interstitial ads in HD UHD Live Wallpapers.
+ *
+ * ## Premium architecture (v6.0.1)
+ *
+ * Two independent gate systems:
+ *
+ * ### 1. Pro / Feature unlock — m44.m(SharedPrefs)Z
+ * The real premium gate. Called 20+ times across every preview Activity:
+ * ImageDisplayActivity, VideoDisplayActivity, LiveGlittersPreviewActivity,
+ * CustomGlitterWallpaperActivity, SplashScreenNew, OnBoardingActivity, etc.
+ *
+ * Reads SharedPrefs.getBoolean(ul2.f, false) where ul2.f is a product
+ * purchase flag key (runtime-decrypted via m44.j([I)String — obfuscated).
+ *   true  → pro purchased → unlock content / show "You have unlocked premium features"
+ *   false → not purchased → show upgrade prompts / lock wallpaper download/set
+ *
+ * ### 2. Subscription / Days remaining — AppLoader.c()I
+ * Returns days left on subscription plan. Used in category browser (nq2/jq2):
+ *   c() >= 5  → full premium grid UI, no upgrade banner
+ *   c() <  5  → show "upgrade" overlay on grid
+ * Also controls which wallpaper plans appear as selectable in InAppProActivity.
+ *
+ * ### 3. Interstitial ads — gl0.o(Context, SharedPrefs)Z
+ * Master ad display gate checked by AppLoader.l() before showing IronSource
+ * interstitial and by AppLoader.g() before pre-loading ads.
+ *   true  → show ads (not subscribed)
+ *   false → skip ads (subscribed)
+ *
+ * ## Patches (3 layers)
+ *
+ * Layer 1 — m44.m(SharedPreferences)Z → true   [CRITICAL — unlocks all features]
+ *   The root pro gate. Returning true makes every feature check across
+ *   all Activities see the user as having purchased the pro version.
+ *
+ * Layer 2 — AppLoader.c()I → 127              [unlocks category browser premium UI]
+ *   Returns 127 days (>> 5 threshold) so nq2/jq2 always render premium grid.
+ *
+ * Layer 3 — gl0.o(Context, SharedPreferences)Z → false   [removes interstitial ads]
+ *   AppLoader.l() skips ad show when this returns false.
+ */
+@Suppress("unused")
+val topWallpapersPremiumPatch = bytecodePatch(
+    name = "TopWallpapers Premium",
+    description = "Unlocks all premium wallpapers and removes interstitial ads.",
+) {
+    compatibleWith(TOPWALLPAPERS_COMPATIBILITY)
+
+    execute {
+        // Layer 1: Pro gate → true (unlocks all feature gates across the app)
+        PremiumCheckFingerprint.method.returnEarly(true)
+
+        // Layer 2: Subscription days → 127 (premium category browser UI)
+        SubscriptionCheckFingerprint.method.returnEarly(127)
+
+        // Layer 3: Ad gate → false (skip interstitial ad loading and display)
+        AdGateFingerprint.method.returnEarly(false)
+    }
+}

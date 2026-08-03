@@ -5,6 +5,23 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TRADINGVIEW_COMPATIBILITY
 import app.template.patches.shared.returnEarly
 
+// TradingView premium patch — v1.20.79
+//
+// Architecture changes since v1.20.78:
+//   • ProPlan refactored from String alias → proper Kotlin enum with ULTIMATE,
+//     EXPERT, PRO_PREMIUM, PRO_PLUS, PRO, PRO_LITE + *_TRIAL variants.
+//   • Plan.getProPlan() is now overloaded:
+//       getProPlan()String  — legacy string alias (still present, still patched)
+//       getProPlan()ProPlan — new enum object (callers that use enum unaffected
+//                             because we patch isPro/isProPremiumOrHigher directly)
+//   • UserPlanInfo value class removed — the two UserPlanInfoIsFree /
+//     UserPlanInfoIsPaymentsBanned fingerprints are dropped; their purpose is
+//     fully covered by patching Plan.isPaymentsBanned() and CurrentUser.isFree().
+//   • MenuItemUiMapper.getSubscriptionTitleRes() now accepts ProPlan enum,
+//     not String — fingerprint param descriptor unchanged (same class path).
+//
+// Patch strategy: unchanged from v1.20.78 except for removals listed above.
+
 @Suppress("unused")
 val tradingViewUnlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
@@ -18,9 +35,9 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
     execute {
 
         // ── 1. Plan identity strings ─────────────────────────────────────────
-        // Override plan string to "pro_premium_expert" (Ultimate).
-        // ProPlan$Companion.isPro() / isProPremiumOrHigher() / getPlanLevel() all
-        // key off this string, so they propagate automatically once it's set.
+        // Inject "pro_premium_expert" (Ultimate) into the String-returning overload.
+        // ProPlan$Companion.isPro/isProPremiumOrHigher/getPlanLevel all accept String
+        // and will propagate the correct level automatically.
         PlanStringFingerprint.method.addInstructions(
             0, "const-string v0, \"pro_premium_expert\"\nreturn-object v0",
         )
@@ -32,10 +49,8 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         )
 
         // ── 2. WebChart user plan ────────────────────────────────────────────
-        // The webchart WebView receives the plan string via UserPlanEntity.getUserPlan().
-        // Most server-side limits (bar history, connections) are enforced server-side
-        // and cannot be bypassed; however, the app also uses this locally to decide
-        // which features to expose in the native → web bridge.
+        // UserPlanEntity.getUserPlan() feeds the native→web bridge used by the
+        // WebView chart engine to decide which features to expose locally.
         WebChartUserPlanFingerprint.methodOrNull?.addInstructions(
             0, "const-string v0, \"pro_premium_expert\"\nreturn-object v0",
         )
@@ -45,7 +60,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         ProPremiumOrHigherCheckFingerprint.method.returnEarly(true)
         ProPlanIsTrialFingerprint.method.returnEarly(false)
 
-        // ProPlanLevel.ULTIMATE — return the enum value directly
+        // Return the ULTIMATE enum constant from getPlanLevel().
         PlanLevelFingerprint.method.addInstructions(
             0,
             """
@@ -57,7 +72,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         // ── 4. Plan boolean flags ────────────────────────────────────────────
         PlanIsProPlanFingerprint.method.returnEarly(true)
         RenewalActiveFingerprint.method.returnEarly(true)
-        PlanTrialAvailableFingerprint.method.returnEarly(false) // already "paid", no trial
+        PlanTrialAvailableFingerprint.method.returnEarly(false)
         GracePeriodFingerprint.method.returnEarly(false)
         HoldPeriodFingerprint.method.returnEarly(false)
         IsLitePlan2023Fingerprint.method.returnEarly(false)
@@ -65,12 +80,9 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         IsLitePlan2024TrialFingerprint.method.returnEarly(false)
         IsEarlyBirdOfferAvailableFingerprint.method.returnEarly(false)
 
-        // ── 5. Plan.isPaymentsBanned() — boxed Boolean return ────────────────
-        // This method returns Ljava/lang/Boolean; (nullable boxed), NOT primitive Z.
-        // When the server sets it to true, fetchUserPlanInfo() constructs a
-        // UserPlanInfo with isPaymentsBanned=true, which feeds getBlockingErrorOrNull()
-        // → BannedError, locking the payment management UI.
-        // We return the static Boolean.FALSE constant (boxed false).
+        // ── 5. Plan.isPaymentsBanned() — boxed Boolean ───────────────────────
+        // Returns Ljava/lang/Boolean; (nullable). Boolean.TRUE causes BannedError
+        // → locks the upgrade screen. We return Boolean.FALSE to suppress it.
         PlanIsPaymentsBannedFingerprint.method.addInstructions(
             0,
             """
@@ -84,7 +96,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         CurrentUserPremiumFingerprint.method.returnEarly(true)
         CurrentUserUltimateFingerprint.method.returnEarly(true)
         CurrentUserAnnualFingerprint.method.returnEarly(true)
-        CurrentUserMonthlyFingerprint.methodOrNull?.returnEarly(false) // annual wins
+        CurrentUserMonthlyFingerprint.methodOrNull?.returnEarly(false)
         CurrentUserPaymentProblemsFingerprint.method.returnEarly(false)
         CurrentUserAnnualUltimateFingerprint.method.returnEarly(true)
         CurrentUserGooglePlayMerchantFingerprint.method.returnEarly(true)
@@ -93,21 +105,9 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         // ── 7. ProfileServiceImpl ────────────────────────────────────────────
         ProfileServiceAnnualUltimateFingerprint.method.returnEarly(true)
 
-        // ── 8. UserPlanInfo value-object getters ─────────────────────────────
-        // These are returned by BaseGoProInteractorImpl.fetchUserPlanInfo() and read
-        // downstream by UniversalGoProInteractorImpl and BaseGoProPurchaseDelegateImpl.
-        // Patching the Plan/CurrentUser methods above means fetchUserPlanInfo()
-        // already builds the correct object — but we also lock the getters
-        // directly in case the object was cached before patch took effect.
-        UserPlanInfoIsFreeFingerprint.method.returnEarly(false)
-        UserPlanInfoIsPaymentsBannedFingerprint.method.returnEarly(false)
-
-        // ── 9. Benefits root gate ────────────────────────────────────────────
-        // BenefitsInteractorImpl.hasBenefit() is a suspend function (returns Object).
-        // In Kotlin coroutines the first return from a suspend method must be
-        // either COROUTINE_SUSPENDED or the actual result.
-        // We construct a Boolean.TRUE and return it directly, which is safe because
-        // the suspension machinery will unwrap it at the call-site.
+        // ── 8. Benefits root gate ────────────────────────────────────────────
+        // hasBenefit() is a Kotlin suspend function (returns Object). Returning
+        // Boolean.TRUE immediately is safe — coroutine call-sites unwrap it.
         BenefitsHasBenefitFingerprint.method.addInstructions(
             0,
             """
@@ -116,7 +116,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // ── 10. Paywall / GoPro upgrade dialogs ──────────────────────────────
+        // ── 9. Paywall / GoPro upgrade dialogs ──────────────────────────────
         GoProDispatchActionFingerprint.method.returnEarly()
         PaywallDispatchPaywallObjectFingerprint.method.addInstructions(
             0,
@@ -133,9 +133,8 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // ── 11. Trial / offer suppression ────────────────────────────────────
-        // Returning null means "no trial days available" — prevents the app from
-        // showing trial-start prompts over the patched plan.
+        // ── 10. Trial / offer suppression ────────────────────────────────────
+        // Null means "no trial days available" — prevents trial-start prompts.
         TrialDaysFingerprint.methodOrNull?.addInstructions(
             0,
             """
@@ -144,7 +143,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // ── 12. Native GoPro upgrade bottom-sheet ────────────────────────────
+        // ── 11. Native GoPro upgrade bottom-sheet ────────────────────────────
         NativeGoProAvailableFingerprint.methodOrNull?.addInstructions(
             0,
             """
@@ -154,14 +153,13 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         )
         NativeGoProFeatureToggleFingerprint.methodOrNull?.returnEarly(false)
 
-        // ── 13. Watchlist/list permissions ───────────────────────────────────
+        // ── 12. Watchlist/list permissions ───────────────────────────────────
         FlaggedListsPermissionsFullServiceFingerprint.methodOrNull?.returnEarly(true)
         FlaggedListsPermissionsRestrictedFingerprint.methodOrNull?.returnEarly(false)
 
-        // ── 14. Menu subscription title ──────────────────────────────────────
-        // getSubscriptionTitleRes(ProPlan) returns int (R.string resource ID).
-        // We return the "you_are_ultimate" string resource so the side-menu
-        // always shows "Ultimate" regardless of server account state.
+        // ── 13. Menu subscription title ──────────────────────────────────────
+        // Returns the R.string ID for "You are Ultimate" so the side-menu always
+        // shows Ultimate regardless of the server-side account state.
         SubscriptionTitleFingerprint.methodOrNull?.addInstructions(
             0,
             """

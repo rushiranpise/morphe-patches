@@ -4,6 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.BATTERYGURU_COMPATIBILITY
+import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
@@ -76,25 +77,24 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
 
         mutableBillingRepo.methods.singleOrNull { method ->
             method.returnType == "V" &&
-                method.parameterTypes == listOf("Ljava/lang/Boolean;")
+                method.parameterTypes.map { it.toString() } == listOf("Ljava/lang/Boolean;")
         }?.addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;")
             ?: throw PatchException("Battery Guru: premium state writer not found.")
 
         val planClass = classDefByStrings("SubscriptionPlan(productId=").singleOrNull()
             ?: throw PatchException("Battery Guru: subscription plan model not found or ambiguous.")
         val mutablePlanClass = mutableClassDefBy(planClass)
+        // Constructor: (String, I, Integer, F, <obfuscated-details-class>, Z, Z, Z)
+        // Avoid matching the obfuscated Ljw1; type directly — it changes each release.
+        // Instead match by shape: <init> with exactly 3 boolean (Z) params and 1 float (F).
+        // The synthetic copy constructor has 0 Z params so this uniquely selects the real one.
         mutablePlanClass.methods.singleOrNull { method ->
             method.name == "<init>" &&
-                method.parameterTypes == listOf(
-                    "Ljava/lang/String;",
-                    "I",
-                    "Ljava/lang/Integer;",
-                    "F",
-                    "Ljw1;",
-                    "Z",
-                    "Z",
-                    "Z",
-                )
+                method.parameterTypes.map { it.toString() }.let { params ->
+                    params.count { it == "Z" } == 3 &&
+                    "F" in params &&
+                    "Ljava/lang/String;" in params
+                }
         }?.addInstructions(
             0,
             """
@@ -107,7 +107,7 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
             classDef.methods.forEach { method ->
                 if (
                     method.returnType == "V" &&
-                    method.parameterTypes == listOf("Ljava/lang/Object;") &&
+                    method.parameterTypes.map { it.toString() } == listOf("Ljava/lang/Object;") &&
                     "last_known_subscribed" in method.stringLiterals()
                 ) {
                     cacheWriters += classDef.type to method
@@ -117,11 +117,12 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
         if (cacheWriters.size != 1) {
             throw PatchException("Battery Guru: expected 1 subscribed cache writer, found ${cacheWriters.size}.")
         }
-        mutableClassDefBy(cacheWriters.single().first).methods.single { method ->
+        mutableClassDefBy(cacheWriters.single().first).methods.singleOrNull { method ->
             method.returnType == "V" &&
-                method.parameterTypes == listOf("Ljava/lang/Object;") &&
+                method.parameterTypes.map { it.toString() } == listOf("Ljava/lang/Object;") &&
                 "last_known_subscribed" in method.stringLiterals()
-        }.addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;")
+        }?.addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;")
+            ?: throw PatchException("Battery Guru: subscribed cache writer method not found.")
 
         val premiumUiStateTypes = mutableListOf<String>()
         classDefForEach { classDef ->
@@ -140,42 +141,41 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
         }
 
         val premiumUiState = mutableClassDefBy(premiumUiStateTypes.single())
+        // Force selectedProductId and rewardedProductId to the yearly plan.
+        // Note: in v2.5.0.5 the isSubscribed boolean was removed from PremiumUiState.
+        // p4 is now isBillingConnected — do NOT force it true (triggers billing flows).
+        // The rewarded-ad expiry timestamp (was p14) is still present at p14/p15 (J).
+        // We do not force it because the rewarded ad path is unreachable when the
+        // subscription gate (el5.e()Z) and active premium reader (el5.o()) are patched.
         val forceYearlyUiState = """
             const-string p2, "one_year_subscription"
             const-string p3, "one_year_subscription"
-            const/4 p4, 0x1
-            const/4 p5, 0x1
-            const-wide p14, 0x1d9dbbb8a00L
         """
-        premiumUiState.methods.single { method ->
+        // Constructor: (List, String, String, Z*8, I, I, J)
+        // Match by shape to avoid brittle full param list — the number of booleans
+        // may shift if new fields are added but the anchors (List, String, String, J) are stable.
+        premiumUiState.methods.singleOrNull { method ->
             method.name == "<init>" &&
-                method.parameterTypes == listOf(
-                    "Ljava/util/List;",
-                    "Ljava/lang/String;",
-                    "Ljava/lang/String;",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "Z",
-                    "I",
-                    "I",
-                    "J",
-                )
-        }.addInstructions(0, forceYearlyUiState)
+                method.parameterTypes.map { it.toString() }.let { params ->
+                    params.firstOrNull() == "Ljava/util/List;" &&
+                    params.count { it == "Z" } >= 6 &&
+                    params.lastOrNull() == "J"
+                }
+        }?.addInstructions(0, forceYearlyUiState)
+            ?: throw PatchException("Battery Guru: PremiumUiState constructor not found.")
 
-        val uiStateCopy = premiumUiState.methods.single { method ->
-            method.returnType == premiumUiState.type &&
-                method.parameterTypes.lastOrNull() == "I" &&
-                method.instructionIndexOf("L${premiumUiState.type.removePrefix("L")}-><init>") >= 0
-        }
-        val uiStateCopyInsertIndex = uiStateCopy.instructionIndexOf("L${premiumUiState.type.removePrefix("L")}-><init>")
-        if (uiStateCopyInsertIndex < 0) {
-            throw PatchException("Battery Guru: premium UI state copy insert point not found.")
-        }
+        // The copy method is the only method in PremiumUiState that returns its own type.
+        // It calls the <init> constructor via invoke-direct/range to construct the copy.
+        // We inject forceYearlyUiState just before that invoke-direct/range call.
+        val uiStateCopy = premiumUiState.methods.singleOrNull { method ->
+            method.returnType == premiumUiState.type
+        } ?: throw PatchException("Battery Guru: PremiumUiState copy method not found.")
+
+        val uiStateCopyInsertIndex = uiStateCopy.implementation?.instructions
+            ?.indexOfFirst { it.opcode == Opcode.INVOKE_DIRECT_RANGE }
+            ?.takeIf { it >= 0 }
+            ?: throw PatchException("Battery Guru: PremiumUiState copy invoke-direct/range not found.")
+
         uiStateCopy.addInstructions(uiStateCopyInsertIndex, forceYearlyUiState)
     }
 }

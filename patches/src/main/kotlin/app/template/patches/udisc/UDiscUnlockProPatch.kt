@@ -2,13 +2,15 @@ package app.template.patches.udisc
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.patch.BytecodePatchContext
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.template.patches.shared.Constants.UDISC_COMPATIBILITY
-import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
+// Verified against UDisc 24.2.6 (versionCode 9943). See Fingerprints.kt for the
+// reasoning behind each match strategy and which identifiers are obfuscated.
 @Suppress("unused")
 val uDiscUnlockProPatch = bytecodePatch(
     name = "Unlock Pro",
@@ -25,6 +27,8 @@ val uDiscUnlockProPatch = bytecodePatch(
             "invoke-static {}, Lapp/template/extension/extension/UDiscHelper;->init()V",
         )
 
+        // Force every newly-constructed Account.Subscription to report an active,
+        // far-future paid subscription (platform ordinal 1, status SUBSCRIBED).
         AccountSubscriptionConstructorFingerprint.method.addInstructions(
             0,
             """
@@ -43,6 +47,9 @@ val uDiscUnlockProPatch = bytecodePatch(
         patchUserAccountProGates()
         patchWatchAccountProGate()
 
+        // Auto-acknowledge every locally-tracked pending purchase instead of the
+        // stock purchase-verification flow. See Fingerprints.kt for why this
+        // can't match on the listener's parameter type.
         PlayBillingPurchaseListenerFingerprint.method.addInstructions(
             0,
             """
@@ -67,30 +74,17 @@ val uDiscUnlockProPatch = bytecodePatch(
     }
 }
 
-private fun app.morphe.patcher.patch.BytecodePatchContext.patchUserAccountProGates() {
-    val userAccountClass = UserAccountClassFingerprint.classDef
+private fun BytecodePatchContext.patchUserAccountProGates() {
+    requireSingleMatch(AccountHasEntitlementFingerprint, "UDisc account entitlement gate")
+        .method
+        .returnBooleanEarly(true)
 
-    val isProMethod = userAccountClass.methods.firstOrNull { method ->
-        method.returnType == "Z" &&
-            method.parameterTypes.isEmpty() &&
-            method.implementation?.instructions?.any { instruction ->
-                instruction.opcode == Opcode.IF_LEZ || instruction.opcode == Opcode.IF_GTZ
-            } == true
-    } ?: throw PatchException("UDisc account pro gate not found.")
-
-    val isTrialMethod = userAccountClass.methods.firstOrNull { method ->
-        method.returnType == "Z" &&
-            method.parameterTypes.isEmpty() &&
-            method.implementation?.instructions?.any { instruction ->
-                instruction.opcode == Opcode.SGET_OBJECT
-            } == true
-    } ?: throw PatchException("UDisc account trial gate not found.")
-
-    isProMethod.returnBooleanEarly(true)
-    isTrialMethod.returnBooleanEarly(false)
+    requireSingleMatch(AccountIsTrialingFingerprint, "UDisc account trialing gate")
+        .method
+        .returnBooleanEarly(false)
 }
 
-private fun app.morphe.patcher.patch.BytecodePatchContext.patchWatchAccountProGate() {
+private fun BytecodePatchContext.patchWatchAccountProGate() {
     val watchIsProIndex = WatchAccountProFingerprint.instructionMatches.first().index
     val watchIsProRegister =
         (WatchAccountProFingerprint.method.instructions[watchIsProIndex] as TwoRegisterInstruction).registerA
@@ -98,6 +92,29 @@ private fun app.morphe.patcher.patch.BytecodePatchContext.patchWatchAccountProGa
         watchIsProIndex,
         "const/4 v$watchIsProRegister, 0x1",
     )
+}
+
+/**
+ * Resolves [fingerprint] against the current build and fails loudly if it matches
+ * zero or more than one method, instead of silently patching the wrong target.
+ * Both [AccountHasEntitlementFingerprint] and [AccountIsTrialingFingerprint] are
+ * structural (opcode-shape / referenced-type) matches rather than name-based ones,
+ * since neither underlying method keeps a stable name across app updates -- see
+ * Fingerprints.kt for the full reasoning.
+ */
+private fun BytecodePatchContext.requireSingleMatch(
+    fingerprint: app.morphe.patcher.Fingerprint,
+    description: String,
+): app.morphe.patcher.Match {
+    val matches = fingerprint.matchAllOrNull() ?: emptyList()
+    return when (matches.size) {
+        0 -> throw PatchException("$description not found.")
+        1 -> matches.single()
+        else -> throw PatchException(
+            "$description matched ${matches.size} methods -- expected exactly 1. " +
+                "The structural heuristic in Fingerprints.kt is no longer unique for this app version.",
+        )
+    }
 }
 
 private fun MutableMethod.returnBooleanEarly(value: Boolean) = addInstructions(
