@@ -5,6 +5,23 @@ import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
 import com.android.tools.smali.dexlib2.Opcode
 
+// Pairip's non-obfuscated startup entry point. The ordered filter verifies
+// that it creates a LicenseClient and starts the full license flow.
+internal object PairipCheckLicenseFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "checkLicense",
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+            name = "initializeLicenseCheck",
+            returnType = "V",
+        ),
+    ),
+)
+
+
 // Wallverse's shared Flow-map dispatcher (`ac0.emit`). One of its inlined
 // branches derives `isPremium` by checking whether ANY of the local purchase
 // state DataStore keys in `kz7.h` ("lifetime", "lifetime_50", "monthly",

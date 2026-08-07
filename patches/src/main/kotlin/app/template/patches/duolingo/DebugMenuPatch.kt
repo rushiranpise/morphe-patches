@@ -18,16 +18,24 @@ val duolingoEnableDebugMenuPatch = bytecodePatch(
     compatibleWith(DUOLINGO_COMPATIBILITY)
 
     execute {
+        // BuildTargetFieldFingerprint locates n89 — the debug menu provider class.
+        // The opcode filter chain IGET_OBJECT → IGET_BOOLEAN → IF_EQZ matches the
+        // sequence: iget-object v3, n89.a:Lie3 → iget-boolean v4, ie3.a:Z → if-eqz v4
+        // instructionMatches[0] = IGET_OBJECT (index N)
+        // instructionMatches[0] + 1 = IGET_BOOLEAN → gives us the isDebug FieldReference (ie3.a:Z)
         val isDebugField = BuildTargetFieldFingerprint.method.instructions
             .elementAt(BuildTargetFieldFingerprint.instructionMatches.first().index + 1)
             .let { instruction ->
                 (instruction as? ReferenceInstruction)?.reference as? FieldReference
-            } ?: throw PatchException("Could not find debug field")
+            } ?: throw PatchException("Could not find debug field in n89/DebugMenuProvider")
 
+        // Patch the constructor of the isDebug holder class (Lie3;) to always set a:Z = true.
         mutableClassDefBy(isDebugField.definingClass).methods
             .first { method -> method.name == "<init>" }
             .apply {
-                val returnIndex = instructions.indexOfLast { instruction -> instruction.opcode == Opcode.RETURN_VOID }
+                val returnIndex = instructions.indexOfLast { instruction ->
+                    instruction.opcode == Opcode.RETURN_VOID
+                }
                 if (returnIndex < 0) throw PatchException("Could not find debug provider constructor return")
 
                 addInstructions(

@@ -120,6 +120,13 @@ internal enum class GooglePhotosFeatureLevel(val flags: List<String>) {
             "com.google.android.apps.photos.PIXEL_2026_PRELOAD",
         ),
     ),
+    // Pixel 10 mid-cycle (confirmed in auxl enum, 7.86.0.956040398).
+    // Google switched to feature-experience flags only at this tier — no PRELOAD string.
+    PIXEL_2027_MIDYEAR(
+        listOf(
+            "com.google.android.feature.PIXEL_2027_MIDYEAR_EXPERIENCE",
+        ),
+    ),
 }
 
 internal data class GooglePhotosPixelProfile(
@@ -350,7 +357,7 @@ internal val GOOGLE_PHOTOS_PROFILES = listOf(
         "mustang",
         "Pixel 10 Pro XL",
         "google/mustang/mustang:16/BP1A.250805.005/14000000:user/release-keys",
-        GooglePhotosFeatureLevel.PIXEL_2025,
+        GooglePhotosFeatureLevel.PIXEL_2027_MIDYEAR,
     ),
 ).associateBy { it.key }
 

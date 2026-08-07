@@ -39,14 +39,16 @@ private fun Method.referencesIntLiteral(value: Int) =
 
 private fun ClassDef.hasMethodReferencingString(value: String) = methods.any { it.referencesString(value) }
 
-private fun ClassDef.hasMethodReferencingStringContaining(value: String) =
-    methods.any { it.referencesStringContaining(value) }
-
+// Matches the method that checks whether DCIM folder backup control is disabled.
+// Anchored on stable path literals that are unlikely to change.
 internal object IsDcimFolderBackupControlDisabledFingerprint : Fingerprint(
     returnType = "Z",
     strings = listOf("/dcim", "/mars_files/"),
 )
 
+// Matches the builder setter that marks a LocalMedia item as belonging to a Camera folder.
+// Uses class-level string predicates from the builder's toString() and its required-properties
+// validator, plus a literal 32 that corresponds to the inCameraFolder bitmask.
 internal object LocalMediaInCameraFolderSetterFingerprint : Fingerprint(
     returnType = "V",
     parameters = listOf("Z"),
@@ -57,6 +59,8 @@ internal object LocalMediaInCameraFolderSetterFingerprint : Fingerprint(
     },
 )
 
+// Matches the legacy path-based camera-folder classification method.
+// Used as a graceful-miss fallback (methodOrNull) for older app versions.
 internal object LegacyDcimCameraFolderFingerprint : Fingerprint(
     returnType = "Z",
     custom = { method, _ ->
@@ -65,10 +69,17 @@ internal object LegacyDcimCameraFolderFingerprint : Fingerprint(
     },
 )
 
+// Matches the enum static initialiser that maps feature flags to Pixel generations.
+// The NEXUS_PRELOAD string has been stable across all versions and is the only entry
+// for the original Pixel XL tier, making it a unique and reliable anchor.
 internal object InitializeFeaturesEnumFingerprint : Fingerprint(
     strings = listOf("com.google.android.apps.photos.NEXUS_PRELOAD"),
 )
 
+// Matches the AccountValidityMonitor.onResume-equivalent that enqueues CheckAccountTask.
+// Under MicroG this method clears the selected account, so we suppress it entirely.
+// Anchored on the two log-tag strings that appear in sibling methods of the same class
+// plus the int field access pattern of the target method itself.
 internal object AccountValidityMonitorCheckFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "V",
@@ -86,22 +97,20 @@ internal object AccountValidityMonitorCheckFingerprint : Fingerprint(
     },
 )
 
+// Matches the frictionless-login eligibility check that fires on cold start.
+// Under MicroG this can return false and trigger the code path that clears the
+// selected account.  Using "checkPlayServices" (adopted from De-Vanced) as the
+// second class-level anchor is more stable than "maybeStartFrictionless" which
+// may be inlined or renamed in future R8 passes.
 internal object FrictionlessEligibilityFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Z",
     parameters = listOf(),
     custom = { method, classDef ->
-        classDef.hasMethodReferencingStringContaining("maybeStartFrictionless") &&
+        classDef.hasMethodReferencingString("checkPlayServices") &&
             classDef.hasMethodReferencingString("ProvideFrctAccountTask") &&
             method.referencesMethod("Z", emptyList()) &&
             method.referencesMethod("V", listOf("I")) &&
             method.referencesIntLiteral(-1)
     },
-)
-
-internal object MapLocationMarkerIconFingerprint : Fingerprint(
-    definingClass = "Lahdq;",
-    name = "c",
-    returnType = "Lanoo;",
-    parameters = listOf("Landroid/content/Context;"),
 )

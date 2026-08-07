@@ -181,19 +181,15 @@ val duboxDriveUnlockVipPatch = bytecodePatch(
             addInstructions(0, "return-void")
         }
 
-        // ── ___.e(Context)V — suppress cold-start session-expired routing ──────
-        // Called by AccountStartup$__._() (OnLoginCallBack failure handler) when
-        // the stored session token fails validation at every cold launch.
-        // ___.e() creates a base.a router and calls a.______(context) to start
-        // the login/setup Activity — this is what shows the "account has expired"
-        // popup and routes back to setup on every cold start.
-        // Has exactly ONE call site in the codebase — safe to return-void globally.
-        AccountSessionExpiredRouter.match(
-            classDefBy(AccountSessionExpiredRouter.definingClass!!)
-        ).method.apply {
-            if (implementation == null) return@apply
-            addInstructions(0, "return-void")
-        }
+        // ── OnLoginCallBack._(I) — suppress cold-start login-failure routing ────
+        // AccountStartup$__._() fires when autoLogin() returns errorCode=2
+        // (not licensed) on every cold launch. It calls ___.e(context) to
+        // start the login/setup Activity, then clears account keys and
+        // launches background sync coroutines. return-void kills all routing
+        // and secondary side-effects in one patch, cleanly.
+        mutableClassDefBy("Lcom/dubox/drive/initialize/AccountStartup\$__;")
+            .methods.first { it.name == "_" && it.parameters.map { p -> p.type } == listOf("I") }
+            .addInstructions(0, "return-void")
 
         // ── Passport error parser — suppress "invalid signature" code ─────────
         // ____$_.__(String)I: maps "invalid signature" → 0x970ff5 → login blocked.

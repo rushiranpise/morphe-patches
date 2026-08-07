@@ -8,10 +8,10 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.GOOGLE_PHOTOS_COMPATIBILITY
-import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.ClassDef
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.iface.Method
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
@@ -195,16 +195,10 @@ private val OriginalPackageNameFingerprint = Fingerprint(
     },
 )
 
-private val GooglePlayUtilityFingerprint = Fingerprint(
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    returnType = "I",
-    parameters = listOf("L", "I"),
-    strings = listOf(
-        "This should never happen.",
-        "MetadataValueReader",
-        "com.google.android.gms",
-    ),
-)
+// NOTE: GooglePlayUtilityFingerprint was removed in 7.86 — the "MetadataValueReader" and
+// "This should never happen." string anchors are no longer present in the DEX.
+// The method was already guarded with methodOrNull so its absence was safe; it has been
+// deleted entirely to avoid a misleading dead declaration.
 
 private val ServiceCheckFingerprint = Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
@@ -238,18 +232,33 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
                 }
 
                 val manifest = get("AndroidManifest.xml")
-                val transformations = mapOf(
-                    "package=\"$ORIGINAL_PACKAGE_NAME" to "package=\"$resolvedPackageName",
-                    "android:authorities=\"$ORIGINAL_PACKAGE_NAME" to "android:authorities=\"$resolvedPackageName",
-                    "$ORIGINAL_PACKAGE_NAME.permission.C2D_MESSAGE" to "$resolvedPackageName.permission.C2D_MESSAGE",
-                    "$ORIGINAL_PACKAGE_NAME.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" to
-                        "$resolvedPackageName.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
-                    "com.google.android.c2dm" to "$GMS_CORE_VENDOR_GROUP.android.c2dm",
-                    "com.google.android.libraries.photos.api.mars" to
-                        resolvedMarsAuthority,
-                    LEGACY_MARS_AUTHORITY to resolvedMarsAuthority,
-                    "</queries>" to "<package android:name=\"$GMS_CORE_PACKAGE\"/></queries>",
-                )
+
+                // Only replace ORIGINAL_PACKAGE_NAME occurrences when the manifest still contains
+                // the original package name.  If ChangePackageNamePatch ran first it already
+                // rewrote every occurrence to resolvedPackageName; doing the replacement again
+                // would produce a doubled suffix (e.g. "…photos.xl" → "…photos.xl.xl") because
+                // resolvedPackageName itself starts with ORIGINAL_PACKAGE_NAME.
+                val packageAlreadyChanged = resolvedPackageName != ORIGINAL_PACKAGE_NAME &&
+                    resolvedPackageName != DEFAULT_PATCHED_PACKAGE_NAME
+
+                val transformations = buildMap {
+                    if (!packageAlreadyChanged) {
+                        // ChangePackageNamePatch did not run — we handle the renaming here.
+                        put("package=\"$ORIGINAL_PACKAGE_NAME", "package=\"$resolvedPackageName")
+                        put("android:authorities=\"$ORIGINAL_PACKAGE_NAME", "android:authorities=\"$resolvedPackageName")
+                        put("$ORIGINAL_PACKAGE_NAME.permission.C2D_MESSAGE", "$resolvedPackageName.permission.C2D_MESSAGE")
+                        put(
+                            "$ORIGINAL_PACKAGE_NAME.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+                            "$resolvedPackageName.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+                        )
+                    }
+                    // GMS / c2dm / mars rewrites are always applied regardless of package-rename state.
+                    put("com.google.android.c2dm", "$GMS_CORE_VENDOR_GROUP.android.c2dm")
+                    put("com.google.android.libraries.photos.api.mars", resolvedMarsAuthority)
+                    put(LEGACY_MARS_AUTHORITY, resolvedMarsAuthority)
+                    put("</queries>", "<package android:name=\"$GMS_CORE_PACKAGE\"/></queries>")
+                }
+
                 manifest.writeText(
                     transformations.entries.fold(manifest.readText()) { acc, (from, to) ->
                         acc.replace(from, to)
@@ -320,11 +329,6 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
         )
 
         ServiceCheckFingerprint.method.addInstruction(0, "return-void")
-
-        GooglePlayUtilityFingerprint.methodOrNull?.addInstructions(
-            0,
-            "const/4 p1, 0x0\nreturn p1",
-        )
 
         AccountValidityMonitorCheckFingerprint.method.addInstruction(0, "return-void")
 

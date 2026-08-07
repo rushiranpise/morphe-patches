@@ -1,9 +1,9 @@
 /*
  * Copyright 2025 Morphe.
- * https://github.com/rushiranpise/morphe-patches
+ * https://github.com/MorpheApp/morphe-patches-template
  */
 
-package util
+package app.morphe.util
 
 import app.morphe.patcher.patch.Patch
 import app.morphe.patcher.patch.loadPatchesFromJar
@@ -60,6 +60,7 @@ private fun generatePatchList(version: String, patches: Set<Patch<*>>) {
                     targets = compat.targets.map { target ->
                         JsonCompatibility.Target(
                             version = target.version,
+                            versionCodes = target.versionCodes?.mapKeys { it.key.name },
                             isExperimental = target.isExperimental,
                             minSdk = target.minSdk,
                             description = target.description,
@@ -141,6 +142,7 @@ private class JsonCompatibility(
 ) {
     class Target(
         val version: String?,
+        val versionCodes: Map<String, Int>?,
         val isExperimental: Boolean,
         /** Minimum device SDK version. Null means any SDK version. */
         val minSdk: Int?,

@@ -1,78 +1,123 @@
 package app.template.patches.proxyman
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.literal
+import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
 /**
- * p9/f.a(p9/a)Z — Feature access gate
+ * IsFeatureAllowed(featureEnum)Z — single feature access gate.
  *
- * Checks q9/c1.c.a (r9/b.isPro boolean) then does a packed-switch on the
- * p9/a feature enum ordinal (8 values: UNLIMITED_SSL_PROXYING_ENTRIES,
- * SAFE_LOCK, CUSTOM_FILTER, PIN_DOMAIN, UNLIMITED_BLOCK_LIST_RULES,
- * BODY_EDITOR_ADVANCED_SETTINGS, UNLIMITED_COMPOSE_ENTRIES, PROXYMAN_WIDGET).
- * Returns true if the user is allowed to use the requested feature.
- * Fingerprinted by the iget-boolean on Lr9/b;->a:Z inside a method
- * taking a single enum parameter and returning Z.
+ * Reads LicenseEntitlement.isPro (Lt9/b;->a:Z) first; if false also checks
+ * a secondary boolean supplier. Then packed-switches on the feature enum ordinal.
+ * Returning true grants access to every feature unconditionally.
+ *
+ * Stable anchors (verified v1.21.0 r9/f.a):
+ * - IGET_BOOLEAN on Lt9/b;->a:Z — unique: only this method reads isPro in a Z-returning (L)→Z gate
+ * - methodCall to Ljava/lang/Enum;->ordinal()I — confirms enum switch
+ * - returnType Z + PUBLIC FINAL + one L param
  */
 val IsFeatureAllowedFingerprint = Fingerprint(
-    definingClass = "Lq9/f;",
-    name = "a",
     returnType = "Z",
-    parameters = listOf("Lq9/a;"),
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL)
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf("L"),
+    filters = listOf(
+        fieldAccess(
+            opcode = Opcode.IGET_BOOLEAN,
+            definingClass = "Lt9/b;",
+            name = "a",
+        ),
+        methodCall(
+            definingClass = "Ljava/lang/Enum;",
+            name = "ordinal",
+        ),
+    ),
 )
 
 /**
- * p9/f.b(p9/a)I — Feature usage count gate
+ * GetFeatureLimit(featureEnum)I — feature usage-count gate.
  *
- * Returns Integer.MAX_VALUE (0x7fffffff) for pro users or a low free-tier
- * cap (1–5) for non-pro users, depending on the feature.
- * Returning MAX_VALUE unconditionally grants unlimited usage for all features.
- * Fingerprinted by the 0x7fffffff literal — unique to this method.
+ * Returns 0x7fffffff (MAX_VALUE) for pro users; 1–5 for free users per feature.
+ * Returns MAX_VALUE unconditionally to grant unlimited usage for all features.
+ *
+ * Stable anchor: literal 0x7fffffff — unique to this method.
+ * (Verified v1.21.0 r9/f.b)
  */
 val GetFeatureLimitFingerprint = Fingerprint(
-    definingClass = "Lq9/f;",
-    name = "b",
     returnType = "I",
-    parameters = listOf("Lq9/a;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf("L"),
     filters = listOf(
-        literal(0x7fffffff)
-    )
+        literal(0x7fffffff),
+    ),
 )
 
 /**
- * q9/b.c(q9/c1, J)V — Auto-paywall trigger
+ * AutoPaywallCheck(prefs, timestamp)V — paywall trigger on every resume.
  *
- * Called from MainActivity.onResume() on every foreground. Tracks
- * "auto_paywall_first_foreground_at", "auto_paywall_foreground_count", and
- * "auto_paywall_last_presented_at" in SharedPreferences to decide whether
- * to show the subscription paywall sheet. Checks r9/b.isPro first — if true,
- * skips the paywall. Making this a no-op suppresses the paywall entirely.
- * Fingerprinted by the unique "auto_paywall_first_foreground_at" key.
+ * Tracks "auto_paywall_first_foreground_at" in SharedPreferences; shows the
+ * subscription bottom sheet once count/time thresholds are met unless isPro.
+ * No-op suppresses the paywall unconditionally.
+ *
+ * Stable anchor: "auto_paywall_first_foreground_at" — non-obfuscated SharedPrefs key.
+ * (Verified v1.21.0 s9/b.c)
  */
 val AutoPaywallFingerprint = Fingerprint(
-    definingClass = "Lr9/b;",
-    name = "c",
     returnType = "V",
-    parameters = listOf("Lr9/f1;", "J"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf("L", "J"),
     filters = listOf(
-        string("auto_paywall_first_foreground_at")
-    )
+        string("auto_paywall_first_foreground_at"),
+    ),
 )
 
 /**
- * com.pairip.licensecheck.LicenseClient.checkLicense(Context)V
+ * LicenseEntitlement class locator (classFingerprint).
  *
- * Static entry point for PairIP license validation. Called from
- * Application.attachBaseContext() before the app fully starts.
- * Connects to PairIP's licensing service; on failure/non-purchase
- * launches LicenseActivity (PAYWALL or ERROR) which blocks the app UI.
- * Making this a no-op skips the entire check.
- * Fingerprinted by the unique "Skipping license check in isolated process." log string.
+ * Kotlin-generated toString() contains non-obfuscated field names that
+ * survive R8 renaming because they originate from Kotlin metadata.
+ * (Verified v1.21.0 t9/b)
+ */
+private val LicenseEntitlementClassFingerprint = Fingerprint(
+    strings = listOf("LicenseEntitlement(isPremium="),
+)
+
+/**
+ * LicenseEntitlement constructor — (isPro, planType, expiry, isLifetime, state, ts).
+ *
+ * Data class fields:
+ *   a:Z     = isPro        — master boolean read by every feature gate
+ *   b:enum  = planType     — MONTHLY/QUARTERLY/YEARLY/LIFETIME
+ *   c:Long? = expiryDate   — null for lifetime
+ *   d:Z     = isLifetime   — true for one-time lifetime purchase
+ *   e:enum  = state        — NONE/ACTIVE_SUBSCRIPTION/ACTIVE_LIFETIME/…
+ *   f:J     = timestamp
+ *
+ * Stable anchors:
+ * - classFingerprint via "LicenseEntitlement(isPremium=" toString string
+ * - parameter shape (Z, L, Long?, Z, L, J) unique to this constructor
+ *
+ * planType/state enum class names are read from parameterTypes at patch time
+ * so they auto-adapt to R8 renames without any manual update.
+ * (Verified v1.21.0 t9/b — v1.19.0 s9/b)
+ */
+val UserSubscriptionConstructorFingerprint = Fingerprint(
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+    parameters = listOf("Z", "L", "Ljava/lang/Long;", "Z", "L", "J"),
+    classFingerprint = LicenseEntitlementClassFingerprint,
+)
+
+// ─── PairIP — non-obfuscated SDK classes, stable across all versions ───────
+
+/**
+ * LicenseClient.checkLicense(Context)V — PairIP v2 entry point.
+ *
+ * Called from Application.attachBaseContext(). Connects to PairIP's external
+ * licensing service; on failure launches LicenseActivity which blocks the UI.
  */
 val PairIPCheckLicenseFingerprint = Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
@@ -81,17 +126,15 @@ val PairIPCheckLicenseFingerprint = Fingerprint(
     parameters = listOf("Landroid/content/Context;"),
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     filters = listOf(
-        string("Skipping license check in isolated process.")
-    )
+        string("Skipping license check in isolated process."),
+    ),
 )
 
 /**
- * com.pairip.licensecheck.LicenseActivity.onStart()V
+ * LicenseActivity.onStart()V — PairIP nuclear fallback.
  *
- * Reads "activitytype" Intent extra (PAYWALL=0, ERROR=1).
- * PAYWALL → showPaywallAndCloseApp(); ERROR → showErrorDialog().
- * Both paths block the app behind a sheet or kill it.
- * Returning after super() prevents either branch — fallback layer.
+ * Reads "activitytype" extra; PAYWALL=0 or ERROR=1 both block the app.
+ * Returning after super.onStart() prevents both paths from executing.
  */
 val PairIPLicenseActivityFingerprint = Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseActivity;",
@@ -100,27 +143,6 @@ val PairIPLicenseActivityFingerprint = Fingerprint(
     parameters = emptyList(),
     accessFlags = listOf(AccessFlags.PUBLIC),
     filters = listOf(
-        string("activitytype")
-    )
-)
-
-/**
- * r9/b.<init>(Z, r9/d, Long?, Z, r9/c, J)V — UserSubscription constructor
- *
- * Data class storing subscription state: a=isPro(Z), b=planType(r9/d),
- * c=expiryDate(Long?), d=isLifetime(Z), e=state(r9/c), f=timestamp(J).
- * The isPro field (a) is read by every feature gate and UI state builder.
- *
- * On startup the initial instance is created with isPro=false (no billing result yet),
- * causing the paywall to appear immediately before billing completes.
- * Forcing isPro=true in the constructor makes every instance report pro status.
- *
- * Fingerprinted by the unique parameter signature (Z,r9/d,Long?,Z,r9/c,J).
- */
-val UserSubscriptionConstructorFingerprint = Fingerprint(
-    definingClass = "Ls9/b;",
-    name = "<init>",
-    returnType = "V",
-    parameters = listOf("Z", "Ls9/d;", "Ljava/lang/Long;", "Z", "Ls9/c;", "J"),
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR)
+        string("activitytype"),
+    ),
 )

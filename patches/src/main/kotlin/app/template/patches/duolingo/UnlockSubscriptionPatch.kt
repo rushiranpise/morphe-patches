@@ -11,13 +11,6 @@ import app.morphe.patcher.opcode
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.stringOption
-import app.template.patches.duolingo.LoggedInStateFingerprint
-import app.template.patches.duolingo.MaxHooksUserDataFingerprint
-import app.template.patches.duolingo.UserFingerprint
-import app.template.patches.duolingo.UserHasGoldFieldUsageFingerprint
-import app.template.patches.duolingo.UserIsPaidFieldUsageFingerprint
-import app.template.patches.duolingo.UserSubscriptionInfoFingerprint
-import app.template.patches.duolingo.VideoCallTabCtaButtonStateToStringFingerprint
 import app.template.patches.shared.Constants.DUOLINGO_COMPATIBILITY
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -27,6 +20,8 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
+// Helper: locate a SubscriptionFeatures enum field access in a method and force-return true
+// immediately after the contains() call result, replacing the server-driven boolean.
 private fun duolingoSubscriptionFeatureFingerprint(feature: String) = Fingerprint(
     filters = listOf(
         fieldAccess(
@@ -68,12 +63,17 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
     )
 
     execute {
+        // ── Helpers ────────────────────────────────────────────────────────────
+
+        // Find a FieldReference at the instruction at a given fingerprint match index.
         fun resolvedField(fingerprint: Fingerprint, label: String): FieldReference =
             fingerprint.method.instructions
                 .elementAt(fingerprint.instructionMatches.first().index)
                 .let { instruction -> (instruction as? ReferenceInstruction)?.reference as? FieldReference }
                 ?: throw PatchException("Could not resolve Duolingo $label field")
 
+        // Find a FieldReference in a toString()-style method by the label string
+        // that immediately precedes the field read instruction.
         fun fieldFromToString(fingerprint: Fingerprint, label: String): FieldReference {
             val stringIndex = fingerprint.method.instructions.indexOfFirst { instruction ->
                 instruction.opcode == Opcode.CONST_STRING &&
@@ -82,7 +82,6 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                         ?.contains(label) == true
             }
             if (stringIndex < 0) throw PatchException("Could not find Duolingo $label string")
-
             return fingerprint.method.instructions
                 .drop(stringIndex + 1)
                 .firstNotNullOfOrNull { instruction ->
@@ -91,6 +90,7 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                 ?: throw PatchException("Could not resolve Duolingo $label field")
         }
 
+        // ── Tier metadata ──────────────────────────────────────────────────────
         val tier = subscriptionTier ?: "max"
         val productId = when (tier) {
             "max_family" -> "gold_subscription_fam_twelve_month"
@@ -106,6 +106,12 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
         val vendorPurchaseId = "morphe_$tier"
         val periodLength = 12
 
+        // ── 1. SubscriptionInfo constructor replacement ────────────────────────
+        //
+        // SubscriptionInfo is a Kotlin data class with fields discovered dynamically
+        // from the constructor body. Field order is stable (a..j) and matches
+        // the old implementation — only the expiryMillis (j:J) is computed.
+        // No changes needed in 6.90.3; constructor signature unchanged.
         mutableClassDefBy("Lcom/duolingo/data/plus/SubscriptionInfo;")
             .methods
             .first { method ->
@@ -132,19 +138,20 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                     .take(10)
 
                 if (fields.size < 10) {
-                    throw PatchException("Could not resolve Duolingo SubscriptionInfo fields")
+                    throw PatchException("Could not resolve Duolingo SubscriptionInfo fields (found ${fields.size})")
                 }
 
-                val currencyField = fields[0]
-                val expiryField = fields[1]
-                val trialField = fields[2]
-                val periodLengthField = fields[3]
-                val periodUnitField = fields[4]
-                val productIdField = fields[5]
-                val providerField = fields[6]
-                val activeField = fields[7]
+                // Kotlin destructuring only supports up to component5() on List — use indexed access.
+                val currencyField       = fields[0]
+                val expiryField         = fields[1]
+                val trialField          = fields[2]
+                val periodLengthField   = fields[3]
+                val periodUnitField     = fields[4]
+                val productIdField      = fields[5]
+                val providerField       = fields[6]
+                val activeField         = fields[7]
                 val vendorPurchaseIdField = fields[8]
-                val expiryMillisField = fields[9]
+                val expiryMillisField   = fields[9]
 
                 removeInstructions(0, instructions.count())
                 addInstructions(
@@ -178,6 +185,12 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                 )
             }
 
+        // ── 2. User.s() subscription getter override ──────────────────────────
+        //
+        // User.s() returns the active SubscriptionInfo from inventory lookup.
+        // Replaced with a direct return of the SubscriptionInfo.k singleton,
+        // which holds the fake premium SubscriptionInfo constructed above.
+        // 6.90.3: method renamed r() → s(). Fingerprint updated accordingly.
         UserSubscriptionInfoFingerprint
             .match(mutableClassDefBy(UserSubscriptionInfoFingerprint.definingClass!!))
             .method.apply {
@@ -191,6 +204,12 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                 )
             }
 
+        // ── 3. MaxHooksUserData.hasMax field (MAX tier only) ──────────────────
+        //
+        // x9m (MaxHooksUserData) stores hasMax in field b:Z, sourced from User.P0:Z.
+        // 6.90.3: User.hasGold was renamed to User.P0:Z; semantics unchanged.
+        // The UserHasGoldFieldUsageFingerprint still resolves User.P0:Z correctly
+        // via classFingerprint on x9m's toString strings + fieldAccess(User, Z).
         if (tier.startsWith("max")) {
             val maxHooksClass = MaxHooksUserDataFingerprint.classDef
             val hasMaxField = MaxHooksUserDataFingerprint.method.instructions
@@ -207,12 +226,12 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                 ?: throw PatchException("Could not find Duolingo MaxHooks constructor")
             val setFieldIndex = constructor.instructions.indexOfFirst { instruction ->
                 instruction.opcode == Opcode.IPUT_BOOLEAN &&
-                    (((instruction as? ReferenceInstruction)?.reference as? FieldReference)
+                    ((instruction as? ReferenceInstruction)?.reference as? FieldReference)
                         ?.let { field ->
                             field.definingClass == hasMaxField.definingClass &&
                                 field.name == hasMaxField.name &&
                                 field.type == hasMaxField.type
-                        } == true)
+                        } == true
             }
             if (setFieldIndex < 0) throw PatchException("Could not find Duolingo MaxHooks hasMax assignment")
 
@@ -223,18 +242,32 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
             constructor.addInstructions(setFieldIndex, "const/4 v$register, 0x1")
         }
 
+        // ── 4. User premium fields in LoggedIn constructor ────────────────────
+        //
+        // ef20 (LoggedIn) wraps a User object and is constructed after login.
+        // We inject premium field writes into its <init>(User) before return-void.
+        // p1 = User instance (own-class write would require inner access; since
+        // User fields are final, we strip FINAL first via accessFlags mutation).
+        //
+        // 6.90.3 field mapping (from User.toString() analysis):
+        //   hasPlus:Z           = User.y:Z    (via UserFingerprint ", hasPlus=")
+        //   subscriberLevel     = User.A0:SubscriberLevel (via UserFingerprint ", subscriberLevel=")
+        //   hasGold/MAX flag    = User.P0:Z   (via UserHasGoldFieldUsageFingerprint)
+        //
+        // Note: User.isPaid:Z was REMOVED in 6.90.3. No replacement needed —
+        // subscriberLevel != FREE is the gate for subscription gating logic.
         val subscriberLevel = when {
             tier.startsWith("max") -> "GOLD"
             tier == "lite" -> "LITE"
             else -> "PREMIUM"
         }
         val userClass = mutableClassDefBy("Lcom/duolingo/data/user/User;")
-        val isPaidField = resolvedField(UserIsPaidFieldUsageFingerprint, "isPaid")
-        val hasGoldField = resolvedField(UserHasGoldFieldUsageFingerprint, "hasGold")
+        val hasGoldField = resolvedField(UserHasGoldFieldUsageFingerprint, "hasGold/P0")
         val hasPlusField = fieldFromToString(UserFingerprint, "hasPlus")
         val subscriberLevelField = fieldFromToString(UserFingerprint, "subscriberLevel")
 
-        setOf(isPaidField, hasPlusField, hasGoldField, subscriberLevelField).forEach { field ->
+        // Strip FINAL from all fields we write (ART enforces own-class writes for final fields)
+        setOf(hasPlusField, hasGoldField, subscriberLevelField).forEach { field ->
             userClass.fields
                 .firstOrNull { it.name == field.name }
                 ?.apply { accessFlags = accessFlags and AccessFlags.FINAL.value.inv() }
@@ -243,14 +276,15 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
         LoggedInStateFingerprint.classDef.methods
             .first { method -> method.name == "<init>" }
             .apply {
-                val returnIndex = instructions.indexOfLast { instruction -> instruction.opcode == Opcode.RETURN_VOID }
+                val returnIndex = instructions.indexOfLast { instruction ->
+                    instruction.opcode == Opcode.RETURN_VOID
+                }
                 if (returnIndex < 0) throw PatchException("Could not find LoggedIn constructor return")
 
                 addInstructions(
                     returnIndex,
                     """
                     const/4 v0, 0x1
-                    iput-boolean v0, p1, ${isPaidField.definingClass}->${isPaidField.name}:${isPaidField.type}
                     iput-boolean v0, p1, ${hasPlusField.definingClass}->${hasPlusField.name}:${hasPlusField.type}
                     const/4 v0, ${if (tier.startsWith("max")) "0x1" else "0x0"}
                     iput-boolean v0, p1, ${hasGoldField.definingClass}->${hasGoldField.name}:${hasGoldField.type}
@@ -258,6 +292,24 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                     iput-object v0, p1, ${subscriberLevelField.definingClass}->${subscriberLevelField.name}:${subscriberLevelField.type}
                     """.trimIndent(),
                 )
+            }
+
+        // ── 5. SubscriptionFeatures gating (MAX tier only) ────────────────────
+        //
+        // Max-exclusive features are gated via Set.contains() on the active
+        // subscription's feature set. We force the contains() result to true
+        // at each call site. VideoCallTabCtaButtonState was removed in 6.90.3
+        // (no longer an upsell prompt class); that patch block is gone.
+        // UNLIMITED_HEARTS is patched for all tiers (Super/Max/Lite) since hearts/energy
+        // are gated via SubscriptionFeatures.contains(UNLIMITED_HEARTS) at the session start
+        // check in j2j.emit() — independent of the hasPlus display flag.
+        // VIDEO_CALL_IN_PATH, VIDEO_CALL_IN_PRACTICE_HUB, EXPLAIN_MY_ANSWER, ROLEPLAY are
+        // Max-only features. UNLIMITED_HEARTS applies to all paid tiers.
+        duolingoSubscriptionFeatureFingerprint("UNLIMITED_HEARTS").matchAll().forEach { match ->
+            val moveResultIndex = match.instructionMatches.last().index
+            val register = match.method.instructions
+                .elementAt(moveResultIndex) as OneRegisterInstruction
+            match.method.addInstructions(moveResultIndex + 1, "const/4 v${register.registerA}, 0x1")
         }
 
         if (tier.startsWith("max")) {
@@ -277,36 +329,8 @@ val duolingoUnlockSubscriptionPatch = bytecodePatch(
                     patchedFeatures++
                 }
             }
-
             if (patchedFeatures == 0) {
                 throw PatchException("Could not find Max feature checks")
-            }
-
-            VideoCallTabCtaButtonStateToStringFingerprint.method.apply {
-                val upsellField = VideoCallTabCtaButtonStateToStringFingerprint
-                    .instructionMatches
-                    .last()
-                    .index
-                    .let { index -> instructions.elementAt(index) as? ReferenceInstruction }
-                    ?.reference as? FieldReference
-                    ?: throw PatchException("Could not resolve Duolingo Max upsell field")
-
-                val constructor = mutableClassDefBy(upsellField.definingClass)
-                    .methods
-                    .firstOrNull { method -> method.name == "<init>" }
-                    ?: throw PatchException("Could not find Duolingo Max upsell constructor")
-                val setFieldIndex = constructor.instructions.indexOfFirst { instruction ->
-                    (instruction as? ReferenceInstruction)?.reference?.toString() == upsellField.toString()
-                }
-                if (setFieldIndex < 0) {
-                    throw PatchException("Could not find Duolingo Max upsell field assignment")
-                }
-                val register = constructor.instructions
-                    .elementAt(setFieldIndex)
-                    .let { instruction -> (instruction as? TwoRegisterInstruction)?.registerA }
-                    ?: throw PatchException("Could not resolve Duolingo Max upsell register")
-
-                constructor.addInstructions(setFieldIndex, "const/4 v$register, 0x0")
             }
         }
     }

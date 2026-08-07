@@ -223,30 +223,25 @@ object AccountCommonError : Fingerprint(
     parameters = listOf("Ljava/lang/Object;", "I", "Landroid/os/Bundle;"),
     returnType = "V")
 
-// ══ Cold-start session-expired router ═════════════════════════════════════════
-// ___.e(Context)V — the sole entry point that starts the login/setup UI when the
-// stored session token is found to be invalid at cold launch.
+// ══ OnLoginCallBack failure handler ══════════════════════════════════════════
+// AccountStartup$__._() — the OnLoginCallBack._(int type) implementation that
+// fires when autoLogin() fails at cold start (errorCode=2 = not licensed).
 //
-// Call chain (every cold launch, IO thread):
-//   AccountStartup.init() → Account.autoLogin(context, OnLoginCallBack)
-//     → token validation fails
-//     → OnLoginCallBack._(type) [= AccountStartup$__._()]
-//       → ___.e(context)         ← THIS METHOD — starts login routing
-//       → AccountStartup.g()     ← launches loginAsync (secondary effects)
+// What _() does on failure:
+//   1. ___.e(context)             — starts login/setup Activity (the routing)
+//   2. rm0/______.___()           — clears account key from secure store
+//   3. AccountStartup.g(context)  — launches loginAsync background coroutine
+//   4. AccountStartup.______()/_____() + postDelayed — background sync tasks
 //
-// ___.e() creates a com.dubox.drive.base.a router and calls a.______(context)
-// which starts the login/setup Activity. It has exactly ONE call site in the
-// entire codebase — AccountStartup$__._() — so patching it cannot affect
-// any unrelated flow (confirmed by grep across all 14 DEX files).
+// return-void at index 0 kills all of the above in one patch.
 //
-// Fingerprint: non-obfuscated class path (login.___ is a stable named class);
-// name "e" is obfuscated but the definingClass + parameters + returnType
-// combination is unique, and methodCall(a.______) is a stable structural anchor.
-//
+// Stable anchor: implements OnLoginCallBack; single _(I)V method in class.
+// definingClass path is compiler-generated from AccountStartup single anon
+// OnLoginCallBack — stable across minor updates.
 // DEX: classes10
-object AccountSessionExpiredRouter : Fingerprint(
-    definingClass = "Lcom/dubox/drive/login/___;",
-    name = "e",
-    parameters = listOf("Landroid/content/Context;"),
+object OnLoginCallBackFailure : Fingerprint(
+    definingClass = "Lcom/dubox/drive/initialize/AccountStartup\$__;",
+    name = "_",
+    parameters = listOf("I"),
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC))
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL))
