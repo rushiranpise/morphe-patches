@@ -170,19 +170,41 @@ public class AmazonHelper {
     // ── Price charts ─────────────────────────────────────────────────────────
 
     private static final Map<String, Integer> KEEPA_DOMAINS = new HashMap<>();
+    // CamelCamelCamel locale codes for stores it actually supports.
+    // Stores NOT listed here (amazon.in, amazon.com.mx, amazon.com.br, amazon.nl, amazon.sg,
+    // amazon.ae) are not tracked by CCC — the chart block is skipped for those stores and
+    // only Keepa (which supports all domains) is shown.
+    // CCC link format: camelcamelcamel.com (US, no prefix) / {locale}.camelcamelcamel.com (others)
     private static final Map<String, String> CAMEL_LOCALES = new HashMap<>();
     static {
-        KEEPA_DOMAINS.put("amazon.com", 1);   KEEPA_DOMAINS.put("amazon.co.uk", 2);
-        KEEPA_DOMAINS.put("amazon.de", 3);    KEEPA_DOMAINS.put("amazon.fr", 4);
-        KEEPA_DOMAINS.put("amazon.co.jp", 5); KEEPA_DOMAINS.put("amazon.ca", 6);
-        KEEPA_DOMAINS.put("amazon.it", 8);    KEEPA_DOMAINS.put("amazon.es", 9);
-        KEEPA_DOMAINS.put("amazon.in", 10);   KEEPA_DOMAINS.put("amazon.com.mx", 11);
-        KEEPA_DOMAINS.put("amazon.com.br", 12); KEEPA_DOMAINS.put("amazon.com.au", 13);
-        CAMEL_LOCALES.put("amazon.com", "us"); CAMEL_LOCALES.put("amazon.co.uk", "uk");
-        CAMEL_LOCALES.put("amazon.de", "de");  CAMEL_LOCALES.put("amazon.fr", "fr");
-        CAMEL_LOCALES.put("amazon.co.jp", "jp"); CAMEL_LOCALES.put("amazon.ca", "ca");
-        CAMEL_LOCALES.put("amazon.it", "it");  CAMEL_LOCALES.put("amazon.es", "es");
+        KEEPA_DOMAINS.put("amazon.com", 1);       KEEPA_DOMAINS.put("amazon.co.uk", 2);
+        KEEPA_DOMAINS.put("amazon.de", 3);        KEEPA_DOMAINS.put("amazon.fr", 4);
+        KEEPA_DOMAINS.put("amazon.co.jp", 5);     KEEPA_DOMAINS.put("amazon.ca", 6);
+        KEEPA_DOMAINS.put("amazon.it", 8);        KEEPA_DOMAINS.put("amazon.es", 9);
+        KEEPA_DOMAINS.put("amazon.in", 10);       KEEPA_DOMAINS.put("amazon.com.mx", 11);
+        KEEPA_DOMAINS.put("amazon.com.br", 12);   KEEPA_DOMAINS.put("amazon.com.au", 13);
+        KEEPA_DOMAINS.put("amazon.nl", 14);       KEEPA_DOMAINS.put("amazon.ae", 15);
+        KEEPA_DOMAINS.put("amazon.sa", 16);       KEEPA_DOMAINS.put("amazon.sg", 17);
+        KEEPA_DOMAINS.put("amazon.com.tr", 18);   KEEPA_DOMAINS.put("amazon.se", 19);
+        KEEPA_DOMAINS.put("amazon.pl", 20);       KEEPA_DOMAINS.put("amazon.com.be", 21);
+        // CCC-supported stores only:
+        CAMEL_LOCALES.put("amazon.com",    "us");
+        CAMEL_LOCALES.put("amazon.co.uk",  "uk");
+        CAMEL_LOCALES.put("amazon.de",     "de");
+        CAMEL_LOCALES.put("amazon.fr",     "fr");
+        CAMEL_LOCALES.put("amazon.co.jp",  "jp");
+        CAMEL_LOCALES.put("amazon.ca",     "ca");
+        CAMEL_LOCALES.put("amazon.it",     "it");
+        CAMEL_LOCALES.put("amazon.es",     "es");
         CAMEL_LOCALES.put("amazon.com.au", "au");
+        CAMEL_LOCALES.put("amazon.in",     "in");   // in.camelcamelcamel.com
+    }
+
+    /** Returns the CamelCamelCamel base URL for a given locale code.
+     *  US has no subdomain; all others use {locale}.camelcamelcamel.com. */
+    private static String camelHost(String locale) {
+        if ("us".equals(locale)) return "camelcamelcamel.com";
+        return locale + ".camelcamelcamel.com";
     }
 
     public static void injectPriceCharts(WebView webView, String url) {
@@ -195,8 +217,20 @@ public class AmazonHelper {
         java.util.regex.Matcher dm = java.util.regex.Pattern
             .compile("https?://(?:www\\.)?([a-z.]+amazon[a-z.]+)").matcher(url);
         String domain = dm.find() ? dm.group(1) : "amazon.com";
-        final int keepaId = KEEPA_DOMAINS.containsKey(domain) ? KEEPA_DOMAINS.get(domain) : 1;
-        final String camel = CAMEL_LOCALES.containsKey(domain) ? CAMEL_LOCALES.get(domain) : "us";
+        // Keepa supports every Amazon marketplace — always shown.
+        // Keepa domain ID — null for any store Keepa doesn't track (skip Keepa block).
+        final Integer keepaIdBox = KEEPA_DOMAINS.get(domain);
+        final String keepaBlock;
+        if (keepaIdBox != null) {
+            int keepaId = keepaIdBox;
+            keepaBlock = "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + keepaId + "&asin=" + asin + "',"
+                + "'Keepa','https://keepa.com/#!product/" + keepaId + "-" + asin + "');";
+        } else {
+            keepaBlock = "";
+        }
+        // CCC only supports select locales — null means skip the CCC block entirely.
+        final String camel = CAMEL_LOCALES.get(domain);   // null for unsupported stores
+        final String camelHostStr = camel != null ? camelHost(camel) : null;
         String js = "(function(){var asin='" + asin + "';"
             + "var e=document.getElementById('amznkiller-charts');"
             + "if(e&&e.getAttribute('data-asin')===asin)return;if(e)e.remove();"
@@ -214,10 +248,11 @@ public class AmazonHelper {
             + "var i=document.createElement('img');i.src=src;"
             + "i.style.cssText='width:100%;height:auto;border-radius:4px';"
             + "i.onerror=function(){w.style.display='none';};a.appendChild(i);w.appendChild(a);c.appendChild(w);}"
-            + "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + keepaId + "&asin=" + asin + "',"
-            + "'Keepa','https://keepa.com/#!product/" + keepaId + "-" + asin + "');"
-            + "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
-            + "'CamelCamelCamel','https://camelcamelcamel.com/product/" + asin + "');"
+            + keepaBlock
+            + (camelHostStr != null
+                ? "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
+                  + "'CamelCamelCamel','https://" + camelHostStr + "/product/" + asin + "');"
+                : "")
             + "var anchor=document.getElementById('dp')||document.getElementById('ppd')||document.body;"
             + "anchor.appendChild(c);})();";
         webView.evaluateJavascript(js, null);
@@ -335,7 +370,24 @@ public class AmazonHelper {
         } catch (Exception e) { return url; }
     }
 
-    public static void tintTabIconIfDark(String mode) {
-        // forceDarkAllowed=true (resource patch) handles GPU-level darkening of native views.
+    // ── Tab bar icon tint ─────────────────────────────────────────────────────
+
+    /**
+     * Called at the top of BaseTabController.getTabIcon()→ImageView.
+     * At that point the ImageView hasn't been returned yet — we receive it via
+     * the injection site which passes the result register back here after the
+     * original method body runs. We apply a white SRC_IN ColorFilter so the
+     * icon is visible against a dark background.
+     *
+     * Injection pattern in DarkModePatch (returnLate style):
+     *   invoke-static {v0, vMode}, AmazonHelper->tintTabIconIfDark(ImageView,String)V
+     * where v0 = the ImageView returned by the original method.
+     */
+    public static void tintTabIconIfDark(android.widget.ImageView icon, String mode) {
+        if (icon == null || !isDarkEnabled(mode)) return;
+        icon.setColorFilter(
+            android.graphics.Color.WHITE,
+            android.graphics.PorterDuff.Mode.SRC_IN
+        );
     }
 }

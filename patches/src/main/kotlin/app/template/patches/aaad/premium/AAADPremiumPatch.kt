@@ -28,8 +28,20 @@ import app.template.patches.shared.returnEarly
  *  C) ProStatusHelper.isProUser() / isProValue() → return true
  *     Covers the legacy RTDB path used for old one-time purchase accounts.
  *
- * Note: SubscriptionManager.canLinkBackup() already returns true unconditionally
- * in the source (observed in smali), so no patch is needed for that method.
+ *  D) MainActivityNew.access$setProUser$p(MainActivityNew, Z) → force Z=true
+ *     The install gate in installApp()/installAPK()/requestAuthorizedDownload()
+ *     reads MainActivityNew.isProUser field directly — NOT via SubscriptionManager.
+ *     The field is populated by Firebase RTDB/Stripe callbacks via this synthetic
+ *     setter. Forcing p1=true ensures every callback sets isProUser=true regardless
+ *     of what the server returns.
+ *
+ *  E) MainActivityNew.access$setProStatusLoaded$p(MainActivityNew, Z) → force Z=true
+ *     installApp() checks isProStatusLoaded before isProUser. If false, shows
+ *     "Loading your account status..." toast and returns without installing.
+ *
+ *  F) MainActivityNew.showNotEligibleDialog()V → return-void
+ *     Belt-and-suspenders: suppresses the "Pro is required" popup even if any
+ *     path reaches it despite Layers D and E.
  */
 @Suppress("unused")
 val aaadPremiumPatch = bytecodePatch(
@@ -61,5 +73,18 @@ val aaadPremiumPatch = bytecodePatch(
         // Layer C: Legacy Firebase RTDB pro status checks → always true
         IsProUserFingerprint.method.returnEarly(true)
         IsProValueFingerprint.method.returnEarly(true)
+
+        // Layer D: Force isProUser field=true via the synthetic setter
+        // installApp()/installAPK()/requestAuthorizedDownload() read MainActivityNew.isProUser
+        // directly (not via SubscriptionManager). The field is set by Firebase callbacks
+        // through this synthetic accessor. Forcing p1=true here means every Firebase
+        // response — pro or not — stores true in the field.
+        SetProUserFingerprint.method.addInstructions(0, "const/4 p1, 0x1")
+
+        // Layer E: Force isProStatusLoaded=true so the app never shows the loading toast
+        SetProStatusLoadedFingerprint.method.addInstructions(0, "const/4 p1, 0x1")
+
+        // Layer F: Suppress "Pro is required" install-blocked dialog
+        ShowNotEligibleDialogFingerprint.method.returnEarly()
     }
 }

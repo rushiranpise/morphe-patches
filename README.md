@@ -2669,17 +2669,42 @@ Maybe? Each patch is different, and many features use server-side functionality 
 ### You haven't completed my patch request.. Did you not see it? / Did you forget? / Why do you hate me?
 I did see it. I haven't forgotten. We're good, bro. I'm a one-person "team" who does this stuff in my free time. If it's within my technical capabilities, I'll get around to it at some point.
 
-## Donate
+## ❤️ Donate
 
-I'm a **full‑time student** (read: perpetually broke).
-These patches cost me AI subscription bills, late‑night debugging, and way too much coffee.
+Donations are **completely optional**. There is no requirement to contribute using the project, reporting bugs, sharing feedback, and helping the community are already greatly appreciated.
 
-If you find any of this useful, a small donation would genuinely help me keep the lights on (and keep the AI subscriptions running).
+I'm a **full-time student** (read: perpetually broke 😅). Maintaining these patches comes with costs like AI subscription bills, late-night debugging sessions, and way too much coffee.
 
-**Reach out at:** `rushiranpise17@gmail.com`
-(PayPal, Zelle, UPI)
+If you find this project useful and would like to support its development, a small donation would genuinely help me keep things running (and keep the AI subscriptions active).
 
-Even a small amount makes a difference 🙏
+<details>
+<summary><strong>Show donation methods</strong></summary>
+
+<br>
+
+### 🎁 Google Play Gift Card
+
+1. Visit **https://play.google.com/store/giftcards**
+2. Select a gift card value or enter a custom amount.
+3. Choose **Email** as the delivery method.
+4. Send it to **rushiranpise17@gmail.com**.
+5. Optionally include your name and a short gift message.
+
+### 🇮🇳 Google Pay (UPI)
+
+`rushiranpise17-2@okaxis`
+
+### 💳 PayPal
+
+`rushiforai@gmail.com`
+
+### 🇺🇸 Zelle
+
+`rushiranpise17@gmail.com`
+
+</details>
+
+Even a small amount makes a difference. Thank you for supporting the project! 🙏
 
 ## 📩 Developers
 
