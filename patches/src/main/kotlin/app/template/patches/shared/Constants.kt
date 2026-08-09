@@ -213,7 +213,7 @@ val BATTERYPODS_COMPATIBILITY = Compatibility(
         packageName = "com.sumyapplications.bluetooth.earphone",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.51", versionCode = 7510))
+        targets = listOf(AppTarget(version = "7.52", versionCode = 7520))
     )
 
 val BLOCKBLAST_COMPATIBILITY = Compatibility(
@@ -291,7 +291,7 @@ val BUZZCAST_COMPATIBILITY = Compatibility(
         packageName = "com.guochao.faceshow",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x7C3AED,
-        targets = listOf(AppTarget(version = "3.2.83", versionCode = 3283))
+        targets = listOf(AppTarget(version = "3.2.84", versionCode = 3284))
     )
 
 val CALIMOTO_COMPATIBILITY = Compatibility(
@@ -462,9 +462,9 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
 val DRIVVO_COMPATIBILITY = Compatibility(
         name = "Drivvo",
         packageName = "br.com.ctncardoso.ctncar",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x0077B6,
-        targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
+        targets = listOf(AppTarget(version = "9.6.2", versionCode = 243))
     )
 
 val DUBOXDRIVE_COMPATIBILITY = Compatibility(
@@ -549,7 +549,7 @@ val FLIGHTSKY_COMPATIBILITY = Compatibility(
 val FLUD_COMPATIBILITY = Compatibility(
         name = "Flud",
         packageName = "com.delphicoder.flud",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0xF16522,
         targets = listOf(AppTarget(version = "2.0.14", versionCode = 100014352))
     )
