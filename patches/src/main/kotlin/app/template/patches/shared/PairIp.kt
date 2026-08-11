@@ -2,6 +2,8 @@ package app.template.patches.shared
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.BytecodePatchContext
+import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
@@ -113,11 +115,28 @@ fun BytecodePatchContext.killPairIpFull(
                 return-void
             """.trimIndent())
         }
-    listOf("connectToLicensingService", "lambda\$retryOrThrow\$0", "processResponse", "startPaywallActivity")
+    listOf("connectToLicensingService", "lambda\$retryOrThrow\$0", "processResponse", "startPaywallActivity",
+           "validateResponse", "performLocalInstallerCheck")
         .forEach { name ->
             mutableClassDefByOrNull(lic)?.methods?.firstOrNull { it.name == name }
                 ?.apply { clearBody(); addInstructions(0, "return-void") }
         }
+
+    // performLocalInstallerCheck lives on LicenseClient — returnEarly(true)
+    mutableClassDefByOrNull(lic)?.methods?.firstOrNull { it.name == "performLocalInstallerCheck" }
+        ?.apply { clearBody(); addInstructions(0, "const/4 v0, 0x1\nreturn v0") }
+
+    // validateResponse lives on ResponseValidator
+    val rv = "Lcom/pairip/licensecheck/ResponseValidator;"
+    mutableClassDefByOrNull(rv)?.methods?.firstOrNull { it.name == "validateResponse" }
+        ?.apply { clearBody(); addInstructions(0, "return-void") }
+
+    // Disable repeated background checks via LicenseClient.<clinit>
+    mutableClassDefByOrNull(lic)?.methods?.firstOrNull { it.name == "<clinit>" }
+        ?.addInstructions(0, """
+            const/4 v0, 0x0
+            sput-boolean v0, $lic->repeatedCheckEnabled:Z
+        """.trimIndent())
 
     // Clear all VMRunner.invoke() call sites outside com.pairip.*
     classDefForEach { classDef ->
@@ -144,204 +163,80 @@ fun BytecodePatchContext.killPairIpFull(
     for ((cls, method) in extraNoOps)
         mutableClassDefByOrNull(cls)?.methods?.firstOrNull { it.name == method }
             ?.apply { clearBody(); addInstructions(0, "return-void") }
-
-    initPairipStringHolders()
 }
 
-// ── initPairipStringHolders ───────────────────────────────────────────────────
+// ── Standalone shared patch ───────────────────────────────────────────────────
 
 /**
- * Injects a synthetic `<clinit>()V` into every auto-detected Pairip string-holder
- * class, initialising all static String fields to "" (empty, non-null).
+ * Standalone shared patch — other patches can `dependsOn(disablePairIPLicenseCheckPatch)`.
  *
- * Prevents NPEs caused by null fields when libpairipcore.so is not running.
- * Used as a fallback inside [killPairIpFull]; replaced by [restorePairIpHolders]
- * when a real depairip_strings.tsv is available.
+ * Combines [killPairIpFull] (full VM + license kill) with the rivanced additions:
+ *   - ResponseValidator.validateResponse()         → return-void
+ *   - LicenseClient.performLocalInstallerCheck()  → return true
+ *   - LicenseClient.<clinit> repeatedCheckEnabled → false
  *
- * String holders are detected via [findPairipStringHolders] from PairIpStringLogger.kt:
- * classes with super=Object, no <clinit>, no virtual methods, ≥1 public static String field.
+ * Gracefully skips any method that does not exist (not all apps include all PairIP classes).
  */
-fun BytecodePatchContext.initPairipStringHolders() {
-    val holders = findPairipStringHolders()
-    for ((classType, fields) in holders) {
-        val mutableClass = mutableClassDefByOrNull(classType) ?: continue
-        if (mutableClass.methods.any { it.name == "<clinit>" }) continue
-
-        val sb = StringBuilder()
-        sb.append("const-string v0, \"\"\n")
-        for (field in fields) {
-            sb.append("sput-object v0, $classType->$field:Ljava/lang/String;\n")
-        }
-        sb.append("return-void\n")
-
-        val clinit = com.android.tools.smali.dexlib2.immutable.ImmutableMethod(
-            classType, "<clinit>", emptyList(), "V",
-            AccessFlags.STATIC.value or AccessFlags.CONSTRUCTOR.value,
-            null, null, ImmutableMethodImplementation(1, emptyList(), null, null),
-        ).toMutable()
-        mutableClass.methods.add(clinit)
-        clinit.addInstructions(0, sb.toString())
-    }
-}
-
-// ── patchPairipNative ────────────────────────────────────────────────────────
-
-/**
- * Patches `libpairipcore.so` JNI_OnLoad to return JNI_VERSION_1_6 immediately,
- * bypassing the APK signature hash loop that raises SIGSEGV on re-signed builds.
- *
- * Locates JNI_OnLoad dynamically by parsing the ELF64 .dynsym symbol table —
- * no hardcoded signature or offset required. Works regardless of build variant,
- * SO version, or whether the file comes from a split or merged APK.
- *
- * Steps:
- *   1. Parse ELF64 header → find .dynsym and .dynstr section offsets
- *   2. Walk .dynsym entries → find symbol named "JNI_OnLoad" → get st_value (vaddr)
- *   3. Walk PT_LOAD program headers → map vaddr → file offset
- *   4. Overwrite 12 bytes at file offset:
- *        movz w0, #1, lsl#16  →  w0 = 0x00010000
- *        movk w0, #6          →  w0 = 0x00010006  (JNI_VERSION_1_6)
- *        ret
- *
- * @param libPath  path to libpairipcore.so inside the APK context
- *                 (e.g. "lib/arm64-v8a/libpairipcore.so")
- */
-fun app.morphe.patcher.patch.ResourcePatchContext.patchPairipNative(
-    libPath: String = "lib/arm64-v8a/libpairipcore.so",
+@Suppress("unused")
+val disablePairIPLicenseCheckPatch = bytecodePatch(
+    name = "Disable PairIP license check",
+    description = "Disables PairIP license verification, VM checks, and repeated background checks.",
+    default = false,
 ) {
-    val lib = get(libPath)
-    if (!lib.exists()) throw app.morphe.patcher.patch.PatchException(
-        "$libPath not found — ensure the ABI split is included in the input APKS.",
-    )
+    execute {
+        killPairIpFull()
+    }
+}
 
-    val bytes = lib.readBytes()
+// ── Manifest companion ────────────────────────────────────────────────────────
 
-    fun i32(off: Int) = java.nio.ByteBuffer.wrap(bytes, off, 4)
-        .order(java.nio.ByteOrder.LITTLE_ENDIAN).int
-    fun i64(off: Int) = java.nio.ByteBuffer.wrap(bytes, off, 8)
-        .order(java.nio.ByteOrder.LITTLE_ENDIAN).long
-    fun u32(off: Int) = i32(off).toLong() and 0xFFFFFFFFL
-    fun u64(off: Int) = i64(off)
+/**
+ * Shared manifest-level PairIP bypass.
+ *
+ * Generalised from our cubesolver BypassPairIPManifestPatch. Three operations:
+ *
+ * 1. **Replace Application class** (optional) — PairIP often registers
+ *    `com.pairip.application.Application` as `android:name`. Its
+ *    `attachBaseContext` calls `verifyIntegrity` + `checkLicense` before any
+ *    app code runs. Pass the real app class to skip this.
+ *
+ * 2. **Remove LicenseActivity** — prevents Play Store redirect on check failure.
+ *
+ * 3. **Remove CHECK_LICENSE permission** — `com.android.vending.CHECK_LICENSE`
+ *    declared by all PairIP apps; removing it denies it at OS level.
+ *
+ * Usage:
+ * ```kotlin
+ * dependsOn(pairIPManifestPatch())                         // items 2+3 only
+ * dependsOn(pairIPManifestPatch("com.example.app.MyApp"))  // also replaces app class
+ * ```
+ */
+fun pairIPManifestPatch(replacementAppClass: String? = null) = resourcePatch(
+    name = "PairIP manifest bypass",
+    description = "Removes LicenseActivity and CHECK_LICENSE permission from AndroidManifest. " +
+        "Optionally replaces the PairIP Application class with the real one.",
+    default = false,
+) {
+    execute {
+        document("AndroidManifest.xml").use { doc ->
+            if (replacementAppClass != null) {
+                val app = doc.getElementsByTagName("application").item(0) as? org.w3c.dom.Element
+                app?.setAttribute("android:name", replacementAppClass)
+            }
 
-    // ── 1. Validate ELF magic ────────────────────────────────────────────────
-    if (bytes[0] != 0x7f.toByte() || bytes[1] != 'E'.code.toByte() ||
-        bytes[2] != 'L'.code.toByte() || bytes[3] != 'F'.code.toByte()
-    ) throw app.morphe.patcher.patch.PatchException("$libPath is not a valid ELF file.")
+            val activities = doc.getElementsByTagName("activity")
+            for (i in activities.length - 1 downTo 0) {
+                val el = activities.item(i) as? org.w3c.dom.Element ?: continue
+                if (el.getAttribute("android:name").contains("LicenseActivity"))
+                    el.parentNode.removeChild(el)
+            }
 
-    val is64 = bytes[4] == 2.toByte()
-    if (!is64) throw app.morphe.patcher.patch.PatchException(
-        "$libPath is 32-bit — only arm64-v8a is supported by this patch.",
-    )
-
-    // ── 2. ELF64 header fields ───────────────────────────────────────────────
-    val eShoff    = u64(0x28).toInt()   // section header table offset
-    val eShentsize = (bytes[0x3a].toInt() and 0xff) or ((bytes[0x3b].toInt() and 0xff) shl 8)
-    val eShnum     = (bytes[0x3c].toInt() and 0xff) or ((bytes[0x3d].toInt() and 0xff) shl 8)
-    val eShstrndx  = (bytes[0x3e].toInt() and 0xff) or ((bytes[0x3f].toInt() and 0xff) shl 8)
-    val ePhoff    = u64(0x20).toInt()
-    val ePhentsize = (bytes[0x36].toInt() and 0xff) or ((bytes[0x37].toInt() and 0xff) shl 8)
-    val ePhnum     = (bytes[0x38].toInt() and 0xff) or ((bytes[0x39].toInt() and 0xff) shl 8)
-
-    // ── 3. Find .dynsym and .dynstr via section headers ──────────────────────
-    // First get shstrtab offset to read section names
-    val shstrOff = eShoff + eShstrndx * eShentsize
-    val shstrData = u64(shstrOff + 0x18).toInt()  // sh_offset
-
-    var dynsymOff = -1; var dynsymSize = 0; var dynsymEnt = 0
-    var dynstrOff = -1
-
-    for (i in 0 until eShnum) {
-        val shOff  = eShoff + i * eShentsize
-        val nameIdx = i32(shOff)
-        val shType  = i32(shOff + 4)    // sh_type: 11=DYNSYM, 3=STRTAB
-        val shOffset = u64(shOff + 0x18).toInt()
-        val shSize   = u64(shOff + 0x20).toInt()
-        val shEntsize = u64(shOff + 0x38).toInt()
-
-        // Read section name from shstrtab
-        var nameEnd = shstrData + nameIdx
-        val nameBytes = mutableListOf<Byte>()
-        while (nameEnd < bytes.size && bytes[nameEnd] != 0.toByte()) {
-            nameBytes.add(bytes[nameEnd++])
-        }
-        val name = String(nameBytes.toByteArray())
-
-        when (name) {
-            ".dynsym" -> { dynsymOff = shOffset; dynsymSize = shSize; dynsymEnt = shEntsize }
-            ".dynstr" -> { dynstrOff = shOffset }
+            val permissions = doc.getElementsByTagName("uses-permission")
+            for (i in permissions.length - 1 downTo 0) {
+                val el = permissions.item(i) as? org.w3c.dom.Element ?: continue
+                if (el.getAttribute("android:name").contains("CHECK_LICENSE"))
+                    el.parentNode.removeChild(el)
+            }
         }
     }
-
-    if (dynsymOff < 0) throw app.morphe.patcher.patch.PatchException(
-        "Could not find .dynsym section in $libPath.",
-    )
-    if (dynstrOff < 0) throw app.morphe.patcher.patch.PatchException(
-        "Could not find .dynstr section in $libPath.",
-    )
-
-    // ── 4. Walk .dynsym to find JNI_OnLoad virtual address ──────────────────
-    // ELF64 Sym64: st_name(4) st_info(1) st_other(1) st_shndx(2) st_value(8) st_size(8)
-    val entSize = if (dynsymEnt > 0) dynsymEnt else 24
-    val numSyms = dynsymSize / entSize
-    var jniVaddr = -1L
-
-    for (i in 0 until numSyms) {
-        val symOff  = dynsymOff + i * entSize
-        val nameIdx = i32(symOff)
-        val stValue = u64(symOff + 8)
-
-        // Read symbol name from .dynstr
-        var nOff = dynstrOff + nameIdx
-        val symNameBytes = mutableListOf<Byte>()
-        while (nOff < bytes.size && bytes[nOff] != 0.toByte()) {
-            symNameBytes.add(bytes[nOff++])
-        }
-        val symName = String(symNameBytes.toByteArray())
-
-        if (symName == "JNI_OnLoad") {
-            jniVaddr = stValue
-            break
-        }
-    }
-
-    if (jniVaddr < 0) throw app.morphe.patcher.patch.PatchException(
-        "JNI_OnLoad symbol not found in .dynsym of $libPath — " +
-            "the symbol table may be stripped.",
-    )
-
-    // ── 5. Map JNI_OnLoad vaddr → file offset via PT_LOAD segments ──────────
-    // ELF64 Phdr: p_type(4) p_flags(4) p_offset(8) p_vaddr(8) p_paddr(8) p_filesz(8) ...
-    var jniFileOffset = -1
-
-    for (i in 0 until ePhnum) {
-        val phOff   = ePhoff + i * ePhentsize
-        val pType   = i32(phOff)         // 1 = PT_LOAD
-        if (pType != 1) continue
-        val pOffset = u64(phOff + 8)
-        val pVaddr  = u64(phOff + 16)
-        val pFilesz = u64(phOff + 32)
-
-        if (jniVaddr >= pVaddr && jniVaddr < pVaddr + pFilesz) {
-            jniFileOffset = (pOffset + (jniVaddr - pVaddr)).toInt()
-            break
-        }
-    }
-
-    if (jniFileOffset < 0) throw app.morphe.patcher.patch.PatchException(
-        "Could not map JNI_OnLoad vaddr ${java.lang.Long.toHexString(jniVaddr)} " +
-            "to a file offset in $libPath.",
-    )
-
-    // ── 6. Overwrite first 12 bytes with movz+movk+ret ───────────────────────
-    // ARM64 LE:
-    //   movz w0, #1, lsl#16  →  52 a0 00 20  →  bytes: 20 00 a0 52
-    //   movk w0, #6          →  72 80 00 c0  →  bytes: c0 00 80 72
-    //   ret                  →  d6 5f 03 c0  →  bytes: c0 03 5f d6
-    val patch = byteArrayOf(
-        0x20, 0x00, 0xa0.toByte(), 0x52,
-        0xc0.toByte(), 0x00, 0x80.toByte(), 0x72,
-        0xc0.toByte(), 0x03, 0x5f, 0xd6.toByte(),
-    )
-    patch.copyInto(bytes, jniFileOffset)
-    lib.writeBytes(bytes)
 }

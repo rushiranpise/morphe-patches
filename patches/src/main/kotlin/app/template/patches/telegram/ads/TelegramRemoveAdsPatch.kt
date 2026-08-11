@@ -1,0 +1,39 @@
+package app.template.patches.telegram.ads
+
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
+import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
+import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
+import app.template.patches.telegram.ChatActivityAddSponsoredMessagesFingerprint
+import app.template.patches.telegram.MessageObjectIsSponsoredFingerprint
+import app.template.patches.telegram.MessagesControllerIsSponsoredDisabledFingerprint
+import app.template.patches.telegram.VideoAdsLoadFingerprint
+
+@Suppress("unused")
+val telegramRemoveAdsPatch = bytecodePatch(
+    name = "Remove ads",
+    description = "Removes sponsored messages and video ads from all chats and channels.",
+) {
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+
+    execute {
+        // Block sponsored messages from being injected into the chat list
+        ChatActivityAddSponsoredMessagesFingerprint.method.addInstructions(0, "return-void")
+
+        // Report sponsored as disabled to the server-fetch layer
+        MessagesControllerIsSponsoredDisabledFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x1
+            return v0
+        """)
+
+        // No message object is ever marked as sponsored
+        MessageObjectIsSponsoredFingerprint.method.addInstructions(0, """
+            const/4 v0, 0x0
+            return v0
+        """)
+
+        // Prevent video ad preloading
+        VideoAdsLoadFingerprint.method.addInstructions(0, "return-void")
+    }
+}

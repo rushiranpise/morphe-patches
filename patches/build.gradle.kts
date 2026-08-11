@@ -72,7 +72,7 @@ tasks {
         dependsOn(build)
 
         classpath = sourceSets["main"].runtimeClasspath + patchListGeneratorClasspath
-        mainClass.set("util.PatchListGeneratorKt")
+        mainClass.set("app.morphe.util.PatchListGeneratorKt")
     }
 
     // Used by gradle-semantic-release-plugin.

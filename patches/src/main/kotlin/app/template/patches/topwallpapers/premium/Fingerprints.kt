@@ -3,7 +3,10 @@ package app.template.patches.topwallpapers.premium
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
+import app.morphe.patcher.patch.bytecodePatch
 import com.android.tools.smali.dexlib2.AccessFlags
+import app.template.patches.shared.Constants.TOPWALLPAPERS_COMPATIBILITY
+import app.template.patches.shared.returnEarly
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HD UHD Live Wallpapers - TopWallpapers v6.0.1 (versionCode 114)

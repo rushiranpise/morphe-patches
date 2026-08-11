@@ -1,6 +1,7 @@
 package app.template.patches.wallverse.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.removeInstruction
@@ -17,6 +18,11 @@ val wallverseUnlockPremiumPatch = bytecodePatch(
     compatibleWith(WALLVERSE_COMPATIBILITY)
 
     execute {
+
+        // Application.attachBaseContext calls this before WallverseApp starts.
+        // Returning immediately preserves the original application initialization.
+        PairipCheckLicenseFingerprint.method.addInstructions(0, "return-void")
+        
         // Force the isPremium boolean to always be true right before it is
         // boxed by Boolean.valueOf(Z). This is the single choke point
         // consumed by every premium check in the app (see Fingerprints.kt).
