@@ -49,9 +49,19 @@ private fun MethodReference.isInstallerGetter() =
         parameterTypes.isEmpty() &&
         returnType == "Ljava/lang/String;")
 
+// getPackageSource() returns int 2 (PACKAGE_SOURCE_STORE) — separate predicate
+private fun MethodReference.isPackageSourceGetter() =
+    definingClass == INSTALL_SOURCE_INFO &&
+        name == "getPackageSource" &&
+        parameterTypes.isEmpty() &&
+        returnType == "I"
+
+private const val PACKAGE_SOURCE_STORE = 2  // InstallSourceInfo.PACKAGE_SOURCE_STORE (API 33+)
+
 private fun Instruction.isInstallSourceTarget() =
     opcode in setOf(Opcode.INVOKE_VIRTUAL, Opcode.INVOKE_VIRTUAL_RANGE) &&
-        methodReferenceOrNull()?.isInstallerGetter() == true
+        (methodReferenceOrNull()?.isInstallerGetter() == true ||
+            methodReferenceOrNull()?.isPackageSourceGetter() == true)
 
 private fun Method.hasInstallSourceTarget() =
     instructionsOrNull?.any { it.isInstallSourceTarget() } == true
@@ -109,6 +119,7 @@ val spoofInstallSourcePatch = bytecodePatch(
             "Samsung Galaxy Store" to "com.sec.android.app.samsungapps",
             "Huawei AppGallery" to "com.huawei.appmarket",
             "Amazon Appstore" to "com.amazon.venezia",
+            "Xiaomi GetApps" to "com.xiaomi.mipicks",
             "F-Droid" to "org.fdroid.fdroid",
         ),
         title = "Store to impersonate",
@@ -138,12 +149,17 @@ val spoofInstallSourcePatch = bytecodePatch(
 
                     val moveResult = instructionList.getOrNull(index + 1) as? OneRegisterInstruction
                         ?: return@forEachIndexed
-                    if (moveResult.opcode != Opcode.MOVE_RESULT_OBJECT) return@forEachIndexed
+                    val isIntReturn = instruction.methodReferenceOrNull()?.isPackageSourceGetter() == true
+                    val expectedMoveOpcode = if (isIntReturn) Opcode.MOVE_RESULT else Opcode.MOVE_RESULT_OBJECT
+                    if (moveResult.opcode != expectedMoveOpcode) return@forEachIndexed
 
-                    method.replaceInstruction(
-                        index + 1,
-                        "const-string v${moveResult.registerA}, \"$targetInstaller\"",
-                    )
+                    val reg = moveResult.registerA
+                    val replacement = if (isIntReturn)
+                        "const/4 v$reg, 0x$PACKAGE_SOURCE_STORE"
+                    else
+                        "const-string v$reg, \"$targetInstaller\""
+
+                    method.replaceInstruction(index + 1, replacement)
                     patchedCount++
                 }
             }
