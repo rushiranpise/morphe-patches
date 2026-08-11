@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-03T07:53:08",
-  "description": "## [1.16.0](https://github.com/rushiranpise/morphe-patches/compare/v1.15.1...v1.16.0) (2026-08-03)\n\n### ✨ New Features\n\n* update and add new apps ([ec79ee9](https://github.com/rushiranpise/morphe-patches/commit/ec79ee9c35e567e7eba47ec9f3f4eac059e7d84a))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.16.0/patches-1.16.0.mpp",
+  "created_at": "2026-08-11T17:02:56",
+  "description": "## [1.17.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.17.0-dev.1...v1.17.0-dev.2) (2026-08-11)\n\n### ✨ New Features\n\n* update and add new apps ([e083397](https://github.com/rushiranpise/morphe-patches/commit/e08339719776eb37ee03b325551c2998ffca5c35)), closes [#597](https://github.com/rushiranpise/morphe-patches/issues/597) [#590](https://github.com/rushiranpise/morphe-patches/issues/590) [#575](https://github.com/rushiranpise/morphe-patches/issues/575) [#565](https://github.com/rushiranpise/morphe-patches/issues/565) [#564](https://github.com/rushiranpise/morphe-patches/issues/564) [#561](https://github.com/rushiranpise/morphe-patches/issues/561) [#557](https://github.com/rushiranpise/morphe-patches/issues/557) [#550](https://github.com/rushiranpise/morphe-patches/issues/550)",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.17.0-dev.2/patches-1.17.0-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.16.0"
+  "version": "1.17.0-dev.2"
 }

@@ -5,6 +5,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.INURE_COMPATIBILITY
 import app.template.patches.shared.Constants.INURE_GITHUB_COMPATIBILITY
 import app.template.patches.shared.clearBody
+import app.template.patches.shared.ensureRegisters
 import app.template.patches.shared.returnEarly
 
 /**
@@ -103,7 +104,9 @@ val unlockFullVersionPatch = bytecodePatch(
         // Root fix for the date gate. Makes daysBetween(today, today)=0 in ALL
         // callers: isWithinTrialPeriod, isAppFullVersionEnabled, getDaysLeft, etc.
         // The trial always reads as "started today" — expires never.
+        // ensureRegisters(2): move-result-wide v0 needs v0+v1 pair for the long.
         GetFirstLaunchDateFingerprint.method.apply {
+            ensureRegisters(2)
             clearBody()
             addInstructions(
                 0,
@@ -119,7 +122,11 @@ val unlockFullVersionPatch = bytecodePatch(
         // Belt-and-suspenders: "today" = 1970-01-01 (epoch). daysBetween any
         // future firstLaunchDate and epoch is always <= 0, so the trial gate
         // never expires regardless of what is stored in SharedPreferences.
+        // ensureRegisters(3): new-instance(v0) + const-wide/16(v1,v2) needs 3
+        // registers. clearBody() does not resize registerCount, so we must grow
+        // it first or ART throws VerifyError "wide register index out of range".
         GetTodayFingerprint.method.apply {
+            ensureRegisters(3)
             clearBody()
             addInstructions(
                 0,

@@ -144,3 +144,58 @@ object IsProValueFingerprint : Fingerprint(
         ),
     ),
 )
+
+/**
+ * MainActivityNew.access$setProUser$p(MainActivityNew, Z)V — synthetic field setter
+ *
+ * Kotlin-generated synthetic accessor for the private isProUser field on MainActivityNew.
+ * Called from coroutine inner classes (checkProStatus$1, checkLegacyProStatus$1) when
+ * Firebase RTDB or Stripe/Firebase Functions return the pro status.
+ *
+ * isProUser drives installApp(), installAPK(), requestAuthorizedDownload(),
+ * trackDownload(), checkEligibility(), and updateProStatusUI().
+ *
+ * Forcing p1=true ensures all Firebase callbacks — regardless of what the server
+ * returns — always set isProUser=true on the Activity.
+ *
+ * Smali: .method public static final synthetic access$setProUser$p(Lcom/.../MainActivityNew;Z)V
+ *   iput-boolean p1, p0, Lcom/.../MainActivityNew;->isProUser:Z
+ *   return-void
+ */
+object SetProUserFingerprint : Fingerprint(
+    definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
+    name = "access\$setProUser\$p",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL, AccessFlags.SYNTHETIC),
+    parameters = listOf("Lcom/legs/appsforaa/MainActivityNew;", "Z")
+)
+
+/**
+ * MainActivityNew.access$setProStatusLoaded$p(MainActivityNew, Z)V
+ *
+ * Synthetic setter for isProStatusLoaded. When false, installApp() shows
+ * "Loading your account status..." toast and returns without installing.
+ * Forcing p1=true ensures the app never shows the loading toast.
+ */
+object SetProStatusLoadedFingerprint : Fingerprint(
+    definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
+    name = "access\$setProStatusLoaded\$p",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL, AccessFlags.SYNTHETIC),
+    parameters = listOf("Lcom/legs/appsforaa/MainActivityNew;", "Z")
+)
+
+/**
+ * MainActivityNew.showNotEligibleDialog()V — install-blocked popup
+ *
+ * Shows the "Pro is required" / "not eligible" MaterialAlertDialog when
+ * isProUser=false AND isEligible=false. Belt-and-suspenders: if any
+ * path reaches this despite our field patches, the dialog is suppressed.
+ */
+object ShowNotEligibleDialogFingerprint : Fingerprint(
+    definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
+    name = "showNotEligibleDialog",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = emptyList()
+)

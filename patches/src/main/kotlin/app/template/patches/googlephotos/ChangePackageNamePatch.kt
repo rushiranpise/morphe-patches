@@ -43,8 +43,11 @@ val googlePhotosChangePackageNamePatch = resourcePatch(
             val manifest = document.documentElement
             manifest.setAttribute("package", newPackageName)
 
-            replaceNameAttributes(document.getElementsByTagName("permission"), newPackageName)
-            replaceNameAttributes(document.getElementsByTagName("uses-permission"), newPackageName)
+            // Rename permission strings and activity-alias names.
+            // Component class names (activity, service, receiver, provider, application)
+            // are DEX-class references and are intentionally left unchanged — see
+            // replaceNameAttributes() for the full rationale.
+            replaceNameAttributes(document.getElementsByTagName("*"), newPackageName)
             replaceComponentPermissions(document.getElementsByTagName("*"), newPackageName)
             replaceProviderAuthorities(document.getElementsByTagName("provider"), newPackageName, newMarsAuthority)
             replaceMarsHosts(document.getElementsByTagName("data"), newMarsAuthority)
@@ -70,12 +73,45 @@ val googlePhotosChangePackageNamePatch = resourcePatch(
 
 private fun marsAuthorityFor(packageName: String) = "$packageName.api.mars"
 
+// Replace ORIGINAL_PACKAGE_NAME with newPackageName in a string, but only when the
+// value starts with ORIGINAL_PACKAGE_NAME exactly followed by end-of-string or a
+// non-alpha-numeric boundary character.  This prevents a double-replace if
+// newPackageName itself starts with ORIGINAL_PACKAGE_NAME (e.g. "…photos.xl"):
+//   "…photos.SomeClass"  →  "…photos.xl.SomeClass"  ✓
+//   "…photos.xl.Class"   →  unchanged (already replaced by a prior pass)        ✓
+private fun String.safeReplace(newPackageName: String): String {
+    if (!startsWith(ORIGINAL_PACKAGE_NAME)) return this
+    val after = drop(ORIGINAL_PACKAGE_NAME.length)
+    // Guard: if the character immediately after ORIGINAL is alphanumeric or a dot
+    // that continues into the suffix of newPackageName, this value was already
+    // replaced.  Specifically, if newPackageName starts with ORIGINAL + "." and the
+    // current value already has that extra suffix, skip it.
+    val extraSuffix = newPackageName.removePrefix(ORIGINAL_PACKAGE_NAME)
+    if (extraSuffix.isNotEmpty() && after.startsWith(extraSuffix)) return this
+    return newPackageName + after
+}
+
 private fun replaceNameAttributes(nodes: org.w3c.dom.NodeList, newPackageName: String) {
+    // android:name means different things on different elements:
+    //
+    //   <permission>, <uses-permission>   → permission identifier string   → RENAME
+    //   <activity-alias>                  → alias component label          → RENAME
+    //   <activity>, <service>, <receiver>,
+    //   <provider>, <application>         → DEX class name                → DO NOT RENAME
+    //
+    // DEX class names are never changed by this patch — only the manifest package
+    // attribute changes.  Renaming a DEX-class android:name produces a
+    // ClassNotFoundException at startup (seen with Application and ContentProvider).
+    //
+    // android:parentActivityName, android:targetActivity, android:manageSpaceActivity
+    // are also DEX class references and must NOT be renamed for the same reason.
+    val dexClassElements = setOf("activity", "service", "receiver", "provider", "application")
+
     for (i in 0 until nodes.length) {
         val element = nodes.item(i) as? Element ?: continue
-        val name = element.getAttribute("android:name")
-        if (name.startsWith(ORIGINAL_PACKAGE_NAME)) {
-            element.setAttribute("android:name", name.replace(ORIGINAL_PACKAGE_NAME, newPackageName))
+        val value = element.getAttribute("android:name")
+        if (value.startsWith(ORIGINAL_PACKAGE_NAME) && element.tagName !in dexClassElements) {
+            element.setAttribute("android:name", value.safeReplace(newPackageName))
         }
     }
 }
@@ -85,7 +121,7 @@ private fun replaceComponentPermissions(nodes: org.w3c.dom.NodeList, newPackageN
         val element = nodes.item(i) as? Element ?: continue
         val permission = element.getAttribute("android:permission")
         if (permission.startsWith(ORIGINAL_PACKAGE_NAME)) {
-            element.setAttribute("android:permission", permission.replace(ORIGINAL_PACKAGE_NAME, newPackageName))
+            element.setAttribute("android:permission", permission.safeReplace(newPackageName))
         }
     }
 }
@@ -103,7 +139,7 @@ private fun replaceProviderAuthorities(
         val rewritten = authorities.split(";").joinToString(";") { authority ->
             when {
                 authority.startsWith(ORIGINAL_PACKAGE_NAME) ->
-                    authority.replace(ORIGINAL_PACKAGE_NAME, newPackageName)
+                    authority.safeReplace(newPackageName)
                 authority == "com.google.android.libraries.photos.api.mars" ->
                     newMarsAuthority
                 authority == LEGACY_MARS_AUTHORITY ->

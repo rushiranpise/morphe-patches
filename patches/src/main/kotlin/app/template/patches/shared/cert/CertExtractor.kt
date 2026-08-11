@@ -146,9 +146,11 @@ internal fun extractFromFile(file: File, source: String = "extracted"): Boolean 
  */
 val extractApkCertificatePatch = rawResourcePatch(
     name = "Provide Original app certificate",
-    description = "By Default it Reads the signing certificate from the original app installed. " +
-        "Required for GmsCore, Firebase, and Signature spoof patches. " +
-        "Only fill options below if the original is uninstalled.",
+    description = "Automatically reads the signing certificate from the APK you are patching — " +
+        "no original app installed or file provided needed. " +
+        "Only fill the options below if you are patching an APK that was already re-signed " +
+        "(e.g. a previously patched build): in that case point to the original APK file, " +
+        "or enter the certificate manually.",
     default = false,
 ) {
     val originalApkPath by stringOption(
@@ -191,6 +193,39 @@ val extractApkCertificatePatch = rawResourcePatch(
             log.info("Using pre-seeded cert.")
             return@execute
         }
+
+        // Strategy 0a: packageMetadata.signingCertificates — Morphe parses the APK signing block
+        // (v2/v3) from the input APK before any patch runs. Works for APK, APKS, APKM, XAPK —
+        // Morphe extracts base.apk from split bundles before constructing the patch context.
+        // Zero config, zero file I/O, zero reflection. Most reliable source.
+        try {
+            val cert = packageMetadata.signingCertificates.values.flatten().firstOrNull()
+            if (cert != null) {
+                populateFromEncoded(cert.encoded, "input-apk-signing-block")
+                log.info("Cert auto-extracted from input APK signing block (v2/v3) via packageMetadata")
+                return@execute
+            }
+        } catch (e: Exception) {
+            log.info("packageMetadata signing block strategy skipped: ${e.message}")
+        }
+
+        // Strategy 0b: META-INF v1 signature — fallback for APKs signed only with JAR/v1 scheme.
+        // get() operates on base.apk content so works for all split formats too.
+        try {
+            val metaInfDir = get("META-INF", copy = false)
+            val certFile = metaInfDir.listFiles()
+                ?.firstOrNull { it.isFile && isCertEntry("META-INF/${it.name}") }
+            if (certFile != null) {
+                certFile.inputStream().use { parseCertFromStream(it) }?.let { encoded ->
+                    populateFromEncoded(encoded, "input-apk-v1")
+                    log.info("Cert auto-extracted from input APK META-INF/${certFile.name} (v1)")
+                    return@execute
+                }
+            }
+        } catch (e: Exception) {
+            log.info("Input APK META-INF strategy skipped: ${e.message}")
+        }
+
         val path = originalApkPath
         if (!path.isNullOrBlank()) {
             val file = File(path)

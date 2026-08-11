@@ -1,158 +1,90 @@
 package app.template.patches.proxyman
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.instructions
-import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.PROXYMAN_COMPATIBILITY
+import app.template.patches.shared.returnEarly
 
 /**
  * Unlocks Lifetime in Proxyman — Network Debugger (com.proxyman.proxymanandroid).
  *
- * ## Subscription model
- * - Monthly / Quarterly / Yearly subscription via Google Play Billing
- * - Lifetime one-time purchase via Google Play Billing
- * - Desktop license key (separate — not patched here)
+ * ## Architecture
  *
- * Subscription state is held in r9/b (UserSubscription data class):
- *   a:Z  = isPro          — master boolean read by all feature gates
- *   b:r9/d = planType     — MONTHLY / QUARTERLY / YEARLY / LIFETIME
- *   e:r9/c = state        — NONE / ACTIVE_SUBSCRIPTION / ACTIVE_LIFETIME / …
+ * Proxyman gates features through a data class (Kotlin: LicenseEntitlement) and
+ * two methods: IsFeatureAllowed(featureEnum)Z and GetFeatureLimit(featureEnum)I.
+ * A paywall is shown via SharedPreferences-tracked triggers on MainActivity.onResume.
+ * PairIP v2 adds a licensing SDK that runs before the app starts.
  *
- * The state wrapper q9/c1.c holds the current r9/b instance, updated on every
- * billing query result via q9/u0.h(Purchase)r9/b.
+ * ## Patch layers
  *
- * ## Patch strategy
- *
- * ### Layer 1 — p9/f.a(p9/a)Z — feature access gate
- * The single entry point for all feature-locked checks (SSL proxying cap,
- * Safe Lock, Custom Filter, Pin Domain, Block List, Body Editor, Compose
- * entries, Proxyman Widget). Reads q9/c1.c.a (isPro) then does a packed-switch
- * on the feature ordinal. Always returning true grants access to every feature
- * regardless of subscription state.
- *
- * ### Layer 2 — p9/f.b(p9/a)I — usage count gate
- * Returns the allowed usage count per feature. Pro users receive
- * Integer.MAX_VALUE (0x7fffffff); free users get 1–5. Always returning
- * MAX_VALUE gives unlimited usage counts for all features.
- *
- * ### Layer 3 — q9/b.c(q9/c1, J)V — auto-paywall suppression
- * Triggered on every MainActivity.onResume(). Tracks foreground count and
- * timestamps in SharedPreferences; shows the subscription paywall sheet once
- * conditions are met (≥2 sessions, ≥24 h since install, cooldown elapsed)
- * — unless r9/b.isPro is true. Making this method a no-op prevents the
- * paywall from ever appearing.
- *
- * ### Layer 4 — LicenseClient.checkLicense(Context)V — PairIP bypass
- * PairIP anti-tamper SDK called in Application.attachBaseContext(). Connects
- * to PairIP's external licensing service and on failure launches
- * LicenseActivity (PAYWALL or ERROR), which blocks the entire app UI.
- * Making this a no-op prevents the service connection entirely.
- *
- * ### Layer 5 — LicenseActivity.onStart()V — PairIP nuclear fallback
- * If LicenseActivity is somehow still launched (cached intent, background
- * restart), calling super.onStart() and returning immediately prevents
- * showPaywallAndCloseApp() and showErrorDialog() from executing.
+ * 1. IsFeatureAllowed → true       All feature access checks pass immediately.
+ * 2. GetFeatureLimit → MAX_VALUE   All feature usage counts become unlimited.
+ * 3. AutoPaywall → no-op           Paywall bottom sheet never appears on resume.
+ * 4. LicenseEntitlement ctor       Every subscription state instance reports
+ *                                   isPro=true, planType=LIFETIME, isLifetime=true,
+ *                                   state=ACTIVE_LIFETIME from construction.
+ * 5. PairIP checkLicense → no-op   Licensing service connection never made.
+ * 6. PairIP LicenseActivity        Nuclear fallback — activity exits immediately
+ *                                   if somehow launched despite Layer 5.
  */
 @Suppress("unused")
 val proxymanUnlockLifetimePatch = bytecodePatch(
     name = "Unlock Lifetime",
     description = "Unlocks all Lifetime features in Proxyman.",
-    default = true
+    default = true,
 ) {
     compatibleWith(PROXYMAN_COMPATIBILITY)
 
     execute {
-        // ── Layer 1: p9/f.a(p9/a)Z — always return true ──────────────────────
-        IsFeatureAllowedFingerprint
-            .match(classDefBy(IsFeatureAllowedFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const/4 v0, 0x1
-                    return v0
-                    """.trimIndent()
-                )
-            }
 
-        // ── Layer 2: p9/f.b(p9/a)I — always return Integer.MAX_VALUE ─────────
-        GetFeatureLimitFingerprint
-            .match(classDefBy(GetFeatureLimitFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    const v0, 0x7fffffff
-                    return v0
-                    """.trimIndent()
-                )
-            }
+        // ── 1. Feature access gate → true ─────────────────────────────────────
+        // Located by IGET_BOOLEAN on isPro field in the only Z-returning method
+        // whose class also contains the 0x7fffffff (MAX_VALUE) literal.
+        IsFeatureAllowedFingerprint.method.returnEarly(true)
 
-        // ── Layer 3: q9/b.c(q9/c1,J)V — suppress auto-paywall ────────────────
-        AutoPaywallFingerprint
-            .match(classDefBy(AutoPaywallFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
-            }
+        // ── 2. Feature usage-count gate → MAX_VALUE ────────────────────────────
+        // Located by 0x7fffffff literal. Returns per-feature cap; MAX_VALUE = unlimited.
+        GetFeatureLimitFingerprint.method.addInstructions(
+            0,
+            "const v0, 0x7fffffff\nreturn v0",
+        )
 
-        // ── Layer 4: LicenseClient.checkLicense(Context)V — skip PairIP check ─
-        // Called from Application.attachBaseContext(); bypassing stops the whole
-        // PairIP flow before it connects to the licensing service.
-        PairIPCheckLicenseFingerprint
-            .match(classDefBy(PairIPCheckLicenseFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(0, "return-void")
-            }
+        // ── 3. Auto-paywall → no-op ────────────────────────────────────────────
+        // Located by "auto_paywall_first_foreground_at" SharedPrefs key.
+        AutoPaywallFingerprint.method.returnEarly()
 
-        // ── Layer 5: LicenseActivity.onStart()V — nuclear fallback ────────────
-        // If PairIP somehow still launches LicenseActivity, return after super()
-        // so neither showPaywallAndCloseApp() nor showErrorDialog() is called.
-        PairIPLicenseActivityFingerprint
-            .match(classDefBy(PairIPLicenseActivityFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                removeInstructions(0, instructions.count())
-                addInstructions(
-                    0,
-                    """
-                    invoke-super {p0}, Landroid/app/Activity;->onStart()V
-                    return-void
-                    """.trimIndent()
-                )
-            }
+        // ── 4. LicenseEntitlement constructor → inject Lifetime values ──────────
+        // Located via "LicenseEntitlement(isPremium=" toString anchor + param shape.
+        // The planType and state enum class names drift with R8 every update;
+        // we read them from the method's own parameter type list at patch time,
+        // which is always correct regardless of what letter R8 assigns.
+        val ctor = UserSubscriptionConstructorFingerprint.method
+        val planTypeClass  = ctor.parameterTypes[1].toString() // b:enum (MONTHLY/YEARLY/LIFETIME)
+        val stateClass     = ctor.parameterTypes[4].toString() // e:enum (NONE/ACTIVE_LIFETIME/…)
 
-        // ── Layer 6: r9/b.<init>(Z,...) — force Lifetime in UserSubscription ───
-        // UI shows "Pro" + "Renewal date unavailable" because r9/b has isPro=true
-        // but planType=null, isLifetime=false, state=NONE.
-        // ga/b0 reads r9/b.b (planType): null → "Pro", r9/d.d → "Lifetime Pro"
-        // and r9/b.b==LIFETIME → "Lifetime access unlocked" (no renewal date).
-        // Override all four fields before the constructor iput sequence.
-        UserSubscriptionConstructorFingerprint
-            .match(classDefBy(UserSubscriptionConstructorFingerprint.definingClass!!))
-            .method
-            .apply {
-                if (implementation == null) return@apply
-                addInstructions(
-                    0,
-                    """
-                    const/4 p1, 0x1
-                    sget-object p2, Ls9/d;->d:Ls9/d;
-                    const/4 p4, 0x1
-                    sget-object p5, Ls9/c;->c:Ls9/c;
-                    """.trimIndent()
-                )
-            }
+        ctor.addInstructions(
+            0,
+            // p1 = isPro      → true
+            // p2 = planType   → LIFETIME   (enum field d, 4th value, 0-indexed: a/b/c/d)
+            // p4 = isLifetime → true
+            // p5 = state      → ACTIVE_LIFETIME  (enum field c, 3rd value: a/b/c)
+            """
+                const/4 p1, 0x1
+                sget-object p2, $planTypeClass->d:$planTypeClass
+                const/4 p4, 0x1
+                sget-object p5, $stateClass->c:$stateClass
+            """.trimIndent(),
+        )
+
+        // ── 5. PairIP checkLicense → no-op ────────────────────────────────────
+        PairIPCheckLicenseFingerprint.method.returnEarly()
+
+        // ── 6. PairIP LicenseActivity → nuclear fallback ───────────────────────
+        // Return immediately after super.onStart() so neither
+        // showPaywallAndCloseApp() nor showErrorDialog() executes.
+        PairIPLicenseActivityFingerprint.method.addInstructions(
+            0,
+            "invoke-super {p0}, Landroid/app/Activity;->onStart()V\nreturn-void",
+        )
     }
 }

@@ -15,6 +15,7 @@ android {
 
         envBuildConfigField("CITYMAPPER_MAPS_API_KEY")
         envBuildConfigField("FLIGHTRADAR_MAPS_API_KEY")
+        envBuildConfigField("FUELIO_MAPS_API_KEY")
         envBuildConfigField("NETMONSTER_MAPS_API_KEY")
         envBuildConfigField("SHARED_MAPS_API_KEY")
     }

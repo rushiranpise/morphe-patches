@@ -1,11 +1,14 @@
 package app.template.patches.amazon.darkmode
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.stringOption
 import app.template.patches.shared.Constants.AMAZON_IN_COMPATIBILITY
 import app.template.patches.shared.Constants.AMAZON_SHOPPING_COMPATIBILITY
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import org.w3c.dom.Element
 
 private const val HELPER = "Lapp/template/extension/extension/AmazonHelper;"
@@ -74,13 +77,24 @@ val amazonDarkModePatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // Tab icon tint: .locals 2, v0 available
-        BaseTabControllerGetTabIconFingerprint.method.addInstructions(
-            0,
-            """
-                const-string v0, "$m"
-                invoke-static {v0}, $HELPER->tintTabIconIfDark(Ljava/lang/String;)V
-            """.trimIndent(),
-        )
+        // Tab bar icon tint — inject before every return-object in getTabIcon()
+        // so the returned ImageView has a white SRC_IN filter applied.
+        // getTabIcon() returns Landroid/widget/ImageView; — we intercept the result
+        // register at each return site (working reversed to preserve indices).
+        val tabMethod = BaseTabControllerGetTabIconFingerprint.method
+        val returnIndices = tabMethod.implementation!!.instructions
+            .mapIndexedNotNull { i, instr -> if (instr.opcode == Opcode.RETURN_OBJECT) i else null }
+            .reversed()
+
+        for (idx in returnIndices) {
+            val reg = tabMethod.getInstruction<OneRegisterInstruction>(idx).registerA
+            tabMethod.addInstructions(
+                idx,
+                """
+                    const-string v0, "$m"
+                    invoke-static {v$reg, v0}, $HELPER->tintTabIconIfDark(Landroid/widget/ImageView;Ljava/lang/String;)V
+                """.trimIndent(),
+            )
+        }
     }
 }

@@ -1,6 +1,9 @@
 package app.template.patches.topwallpapers.premium
 
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.methodCall
 import app.morphe.patcher.patch.bytecodePatch
+import com.android.tools.smali.dexlib2.AccessFlags
 import app.template.patches.shared.Constants.TOPWALLPAPERS_COMPATIBILITY
 import app.template.patches.shared.returnEarly
 
@@ -45,6 +48,23 @@ import app.template.patches.shared.returnEarly
  * Layer 3 — gl0.o(Context, SharedPreferences)Z → false   [removes interstitial ads]
  *   AppLoader.l() skips ad show when this returns false.
  */
+
+private val CheckLicenseFingerprint = Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "checkLicense",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/content/Context;")
+)
+
+private val ValidateResponseFingerprint = Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseResponseHelper;",
+    name = "validateResponse",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    parameters = listOf("Landroid/os/Bundle;", "Ljava/lang/String;")
+)
+
 @Suppress("unused")
 val topWallpapersPremiumPatch = bytecodePatch(
     name = "TopWallpapers Premium",
@@ -53,6 +73,13 @@ val topWallpapersPremiumPatch = bytecodePatch(
     compatibleWith(TOPWALLPAPERS_COMPATIBILITY)
 
     execute {
+        // Stop the license check at the entry point — no connection to Play Store LVL
+        CheckLicenseFingerprint.method.returnEarly()
+
+        // Belt-and-suspenders: no-op signature verification so any pending
+        // or background check always passes without throwing LicenseCheckException
+        ValidateResponseFingerprint.method.returnEarly()
+
         // Layer 1: Pro gate → true (unlocks all feature gates across the app)
         PremiumCheckFingerprint.method.returnEarly(true)
 
