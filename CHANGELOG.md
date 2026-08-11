@@ -1,3 +1,9 @@
+## [1.17.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.17.0-dev.1...v1.17.0-dev.2) (2026-08-11)
+
+### ✨ New Features
+
+* update and add new apps ([e083397](https://github.com/rushiranpise/morphe-patches/commit/e08339719776eb37ee03b325551c2998ffca5c35)), closes [#597](https://github.com/rushiranpise/morphe-patches/issues/597) [#590](https://github.com/rushiranpise/morphe-patches/issues/590) [#575](https://github.com/rushiranpise/morphe-patches/issues/575) [#565](https://github.com/rushiranpise/morphe-patches/issues/565) [#564](https://github.com/rushiranpise/morphe-patches/issues/564) [#561](https://github.com/rushiranpise/morphe-patches/issues/561) [#557](https://github.com/rushiranpise/morphe-patches/issues/557) [#550](https://github.com/rushiranpise/morphe-patches/issues/550)
+
 ## [1.17.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.16.0...v1.17.0-dev.1) (2026-08-07)
 
 ### 🐛 Bug Fixes
