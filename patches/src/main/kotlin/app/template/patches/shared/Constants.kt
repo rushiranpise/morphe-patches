@@ -192,6 +192,22 @@ val AUTOCURSOR_COMPATIBILITY = Compatibility(
         )
     )
 
+val AUTOMATE_COMPATIBILITY = Compatibility(
+        name = "Automate",
+        packageName = "com.llamalab.automate",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xFF6600,
+        targets = listOf(AppTarget(version = "1.51.1", versionCode = 262))
+    )
+
+val AVIATE_COMPATIBILITY = Compatibility(
+        name = "Aviate",
+        packageName = "me.highest.aviate",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1A73E8,
+        targets = listOf(AppTarget(version = "1.0.1", versionCode = 201))
+    )
+
 val AWAKE_COMPATIBILITY = Compatibility(
         name = "Awake",
         packageName = "com.mk.awake",
@@ -216,28 +232,20 @@ val BATTERYGURU_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.5.0.6", versionCode = 721))
     )
 
-val AVIATE_COMPATIBILITY = Compatibility(
-        name = "Aviate",
-        packageName = "me.highest.aviate",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1A73E8,
-        targets = listOf(AppTarget(version = "1.0.1", versionCode = 201))
-    )
-
-val AUTOMATE_COMPATIBILITY = Compatibility(
-        name = "Automate",
-        packageName = "com.llamalab.automate",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xFF6600,
-        targets = listOf(AppTarget(version = "1.51.1", versionCode = 262))
-    )
-
 val BATTERYPODS_COMPATIBILITY = Compatibility(
         name = "BatteryPods",
         packageName = "com.sumyapplications.bluetooth.earphone",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x4CAF50,
         targets = listOf(AppTarget(version = "7.52", versionCode = 7520))
+    )
+
+val BLEK_COMPATIBILITY = Compatibility(
+        name = "Bluetooth Keyboard & Mouse",
+        packageName = "io.appground.blek",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1A1A2E,
+        targets = listOf(AppTarget(version = "6.22.0", versionCode = 255))
     )
 
 val BLOCKBLAST_COMPATIBILITY = Compatibility(
@@ -411,14 +419,6 @@ val CITIZEN_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "0.1303.2", versionCode = 1138))
     )
 
-val BLEK_COMPATIBILITY = Compatibility(
-        name = "Bluetooth Keyboard & Mouse",
-        packageName = "io.appground.blek",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = "6.22.0", versionCode = 255))
-    )
-
 val CITYMAPPER_COMPATIBILITY = Compatibility(
         name = "Citymapper",
         packageName = "com.citymapper.app.release",
@@ -473,6 +473,14 @@ val CRIMERADAR_COMPATIBILITY = Compatibility(
         appIconColor = 0xE53935,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "26.32.0", versionCode = 26320003))
+    )
+
+val CUBESOLVER_COMPATIBILITY = Compatibility(
+        name = "Cube Solver",
+        packageName = "com.jeffprod.cubesolver",
+        apkFileType = ApkFileType.APK,   // pre-merge splits: apkeditor m -i <input>.apks -o merged.apk
+        appIconColor = 0xFF6600,
+        targets = listOf(AppTarget(version = "5.0.3", versionCode = 10169))
     )
 
 val DAILYHUNT_COMPATIBILITY = Compatibility(
@@ -600,6 +608,14 @@ val GENIUSSCAN_COMPATIBILITY = Compatibility(
         appIconColor = 0x1565C0,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "7.41.0", versionCode = 7555))
+    )
+
+val GETCONTACT_COMPATIBILITY = Compatibility(
+        name = "Getcontact",
+        packageName = "app.source.getcontact",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x00BCD4,
+        targets = listOf(AppTarget(version = "8.15.0", versionCode = 16468)),
     )
 
 val GLAPP_COMPATIBILITY = Compatibility(
@@ -770,6 +786,14 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         appIconColor = 0xE30613,
         apkFileType = ApkFileType.APK,
         targets = listOf(AppTarget(version = "9.9", versionCode = 2112))
+    )
+
+val MACRODROID_COMPATIBILITY = Compatibility(
+        name = "MacroDroid",
+        packageName = "com.arlosoft.macrodroid",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "5.65.9", versionCode = 896500009))
     )
 
 val MANGA_PLUS_COMPATIBILITY = Compatibility(
@@ -946,30 +970,6 @@ val NETWORKGURU_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "2.0", versionCode = 158))
-    )
-
-val MACRODROID_COMPATIBILITY = Compatibility(
-        name = "MacroDroid",
-        packageName = "com.arlosoft.macrodroid",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "5.65.9", versionCode = 896500009))
-    )    
-
-val GETCONTACT_COMPATIBILITY = Compatibility(
-        name = "Getcontact",
-        packageName = "app.source.getcontact",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x00BCD4,
-        targets = listOf(AppTarget(version = "8.15.0", versionCode = 16468)),
-    )
-
-val CUBESOLVER_COMPATIBILITY = Compatibility(
-        name = "Cube Solver",
-        packageName = "com.jeffprod.cubesolver",
-        apkFileType = ApkFileType.APK,   // pre-merge splits: apkeditor m -i <input>.apks -o merged.apk
-        appIconColor = 0xFF6600,
-        targets = listOf(AppTarget(version = "5.0.3", versionCode = 10169))
     )
 
 val NEWSBREAK_COMPATIBILITY = Compatibility(
@@ -1270,6 +1270,16 @@ val QBITCONNECT_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.0.6", versionCode = 66))
     )
 
+val RAINBOW_WEATHER_COMPATIBILITY = Compatibility(
+        name = "Rainbow Weather",
+        packageName = "com.rainbowmeteo.weather.rainbow.ai",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x5C6BC0,
+        targets = listOf(
+            AppTarget(version = "3.24.0", versionCode = 261)
+        )
+    )
+
 val RAR_COMPATIBILITY = Compatibility(
         name = "RAR",
         packageName = "com.rarlab.rar",
@@ -1371,16 +1381,6 @@ val SHAREIT_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF4B00,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "1.1.98"))
-    )
-
-val RAINBOW_WEATHER_COMPATIBILITY = Compatibility(
-        name = "Rainbow Weather",
-        packageName = "com.rainbowmeteo.weather.rainbow.ai",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x5C6BC0,
-        targets = listOf(
-            AppTarget(version = "3.24.0", versionCode = 261)
-        )
     )
 
 val SHEXA_COMPATIBILITY = Compatibility(
