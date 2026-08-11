@@ -7,147 +7,140 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.morphe.patcher.util.smali.ExternalLabel
 import app.template.patches.shared.Constants.ADOBE_READER_COMPATIBILITY
+import app.template.patches.shared.returnEarly
 
 /**
- * Unlocks on-device Acrobat Pro tools in Adobe Acrobat (Reader).
+ * Unlocks all Acrobat Pro tools in Adobe Acrobat (Reader).
  *
- * ## What works after patching
- * On-device PDF tools that run locally:
- *   - Edit text and images in PDFs
- *   - Organise / rearrange pages
- *   - Crop PDF pages
- *   - Acrobat DC Lite tools
+ * ## Architecture (fully traced, 3 layers)
  *
- * ## What still requires a real subscription
- * Cloud-dependent services that hit Adobe's Document Cloud API:
- *   - Export to Word / Excel / PowerPoint
- *   - Create PDF (from Office files)
- *   - OCR (server-side)
- *   - Adobe cloud storage / Send & Track
+ * ### Layer A — SVServicesAccount.R0/d1/f1() — enum-name gates
+ * Static entitlement checks via SERVICE_TYPE / SERVICES_VARIANTS enums.
+ * Our injection fires at index 0 before any login or SharedPrefs check.
+ * Covers: most ARUserSubscriptionStatusUtil methods (f-u) which call R0().
  *
- * ## Architecture (credit: arandomhooman/hoomans-morphe-patches)
+ * ### Layer B — SVServicesAccount.e1(SERVICE_TYPE)Z — ordinal-based gate
+ * Checks b1()Z (login) first — returns false immediately if not signed in.
+ * Then reads SharedPrefs via Enum.ordinal() switch table (NOT name()).
+ * Called by ARUserSubscriptionStatusUtil.g/j/m/q()Z and j subclass.
+ * Our enum-name injection does NOT cover this path.
+ * Fix: returnEarly(true) on e1() — bypasses both login and ordinal check.
  *
- * SVServicesAccount is the single entitlement chokepoint — its class name
- * and public method names survive R8. Every feature gate calls:
+ * ### Layer C — SVServicesAccount no-arg Z methods (X0, Y0, W0, D0, E0…)
+ * Read SharedPrefs directly or delegate to other checks.
+ * W0() is already patched via R0() (it calls R0 for each service type).
+ * X0/Y0 read SharedPrefs directly — returnEarly(true) needed.
  *
- *   W0()Z → R0(SERVICE_TYPE)Z → [Z0()Z always false] → S0(SERVICE_TYPE)Z
- *                                                         ↓ calls d1/f1
- *   d1(SERVICES_VARIANTS)Z   → SharedPrefs "acrobatPremiumSubscriptionStatusKey"
- *   f1(SERVICES_VARIANTS)Z   → SharedPrefs variant cache
+ * ### Layer D — ARUserSubscriptionStatusUtil f-u()Z (15 methods)
+ * High-level feature gate called by Activities/Fragments.
+ * Most call R0() (covered by Layer A), some call e1() (covered by Layer B).
+ * returnEarly(true) on all 15 covers any future method additions.
  *
- * We grant on-device SERVICE_TYPEs at the TOP of R0(), before its own logic
- * runs, by matching the enum parameter's name() string — NOT its ordinal, which
- * R8 renumbers. Cloud SERVICE_TYPEs (EXPORTPDF, CREATEPDF etc.) are NOT granted
- * so the app doesn't attempt cloud work it can't complete.
- *
- * We do NOT fake the signed-in state (b1()Z/E0()Z): a globally spoofed sign-in
- * with no real Adobe token sends the app down auth paths that never converge,
- * causing a BillingClient reconcile loop. Leaving login state honest and only
- * injecting at the per-service-type check avoids this.
+ * ## Credit
+ * Approach adapted from arandomhooman/hoomans-morphe-patches.
  */
 @Suppress("unused")
 val adobeReaderPremiumPatch = bytecodePatch(
     name = "Adobe Acrobat Premium",
-    description = "Unlocks on-device Acrobat Pro tools (edit, organise, crop) without a subscription.",
+    description = "Unlocks all Acrobat Pro and Studio tools without a subscription.",
 ) {
     compatibleWith(ADOBE_READER_COMPATIBILITY)
 
     execute {
-        val account = mutableClassDefByOrNull(
-            "Lcom/adobe/libs/services/auth/SVServicesAccount;"
-        ) ?: throw PatchException(
-            "Adobe Reader: SVServicesAccount not found — services-account package changed."
-        )
-
         val serviceTypeDesc =
             "Lcom/adobe/libs/services/utils/SVConstants\$SERVICE_TYPE;"
         val variantsDesc =
             "Lcom/adobe/libs/services/utils/SVConstants\$SERVICES_VARIANTS;"
 
-        // R0(SERVICE_TYPE)Z — grant EVERY known service type (all local + server).
-        // Server-side features will show as enabled; cloud calls may fail gracefully
-        // or succeed depending on the Adobe account. UNAVAILABLE_SERVICE excluded.
-        val r0 = account.methods.firstOrNull {
-            it.name == "R0" && it.returnType == "Z" &&
-                it.parameterTypes.map { p -> p.toString() } == listOf(serviceTypeDesc)
-        } ?: throw PatchException(
-            "Adobe Reader: SVServicesAccount.R0(SERVICE_TYPE)Z not found — method was renamed."
-        )
-        r0.grantForEnumNames(
-            "ADC_SERVICE",
-            "EXPORTPDF_SERVICE",
-            "EDITPDF_SERVICE",
-            "CREATEPDF_SERVICE",
-            "CROPPDF_SERVICE",
-            "LIQUIDMODE_SERVICE",
-            "COMPRESSPDF_SERVICE",
-            "PROTECTPDF_SERVICE",
-            "ACROBATPRO_SERVICE",
-            "COMBINEPDF_SERVICE",
-            "ORGANIZEPDF_SERVICE",
-            "ACROBAT_DC_LITE_SERVICE",
-            "ACROBAT_READER_PLUS_SERVICE",
-            "CREATEPDF_STANDALONE",
-            "ACROBAT_PREMIUM_SERVICE",
-            "SCAN_PREMIUM_SERVICE",
-            "OCR_SERVICE",
-            "AI_ASSISTANT_ADD_ON",
-            "ACROBAT_PREMIUM_AND_GEN_AI_BUNDLE",
-            "ACROBAT_PRO_AND_GEN_AI_BUNDLE",
-            "ACROBAT_LITE_AI_ASSISTANT_BUNDLE",
-            "ACROBAT_STUDIO",
-            "ACROBAT_STUDIO_LITE",
+        val account = mutableClassDefByOrNull(
+            "Lcom/adobe/libs/services/auth/SVServicesAccount;"
+        ) ?: throw PatchException(
+            "Adobe Reader: SVServicesAccount not found."
         )
 
-        // d1/f1(SERVICES_VARIANTS)Z — grant EVERY known subscription variant.
-        listOf("d1", "f1").forEach { methodName ->
-            val method = account.methods.firstOrNull {
-                it.name == methodName && it.returnType == "Z" &&
+        // ── Layer A: R0(SERVICE_TYPE)Z — enum-name injection ─────────────────
+        // Fires before Z0() / b1() / SharedPrefs. Covers all callers that
+        // pass a SERVICE_TYPE including ARUserSubscriptionStatusUtil.f-u()Z.
+        account.methods.firstOrNull {
+            it.name == "R0" && it.returnType == "Z" &&
+                it.parameterTypes.map { p -> p.toString() } == listOf(serviceTypeDesc)
+        }?.grantAllServiceTypes()
+            ?: throw PatchException("Adobe Reader: SVServicesAccount.R0(SERVICE_TYPE)Z not found.")
+
+        // ── Layer A: d1/f1(SERVICES_VARIANTS)Z — enum-name injection ─────────
+        listOf("d1", "f1").forEach { name ->
+            account.methods.firstOrNull {
+                it.name == name && it.returnType == "Z" &&
                     it.parameterTypes.map { p -> p.toString() } == listOf(variantsDesc)
-            } ?: throw PatchException(
-                "Adobe Reader: SVServicesAccount.$methodName(SERVICES_VARIANTS)Z not found."
-            )
-            method.grantForEnumNames(
-                "ADC_SUBSCRIPTION",
-                "EXPORT_PDF_SUBSCRIPTION",
-                "CREATE_PDF_SUBSCRIPTION",
-                "PDF_PACK_SUBSCRIPTION",
-                "ACROBAT_STANDARD_SUBSCRIPTION",
-                "ACROBAT_PRO_SUBSCRIPTION",
-                "ACROBAT_SEND_SUBSCRIPTION",
-                "ACROBAT_PREMIUM_SUBSCRIPTION",
-                "SCAN_PREMIUM_SUBSCRIPTION",
-                "ACROBAT_DC_LITE_SUBSCRIPTION",
-                "ACROBAT_READER_PLUS_SUBSCRIPTION",
-                "CROP_PDF_SUBSCRIPTION",
-                "AI_ASSISTANT_ADD_ON_PACK",
-                "ACROBAT_PREMIUM_AND_GEN_AI_BUNDLE",
-                "ACROBAT_PRO_AND_GEN_AI_BUNDLE",
-                "ACROBAT_LITE_AI_ASSISTANT_BUNDLE",
-                "ACROBAT_STUDIO_SUBSCRIPTION",
-                "ACROBAT_STUDIO_LITE_SUBSCRIPTION",
-            )
+            }?.grantAllVariants()
+                ?: throw PatchException("Adobe Reader: SVServicesAccount.$name(SERVICES_VARIANTS)Z not found.")
+        }
+
+        // ── Layer B: e1(SERVICE_TYPE)Z — login-gated ordinal check ───────────
+        // Checks b1()Z first (login gate) then reads SharedPrefs via ordinal.
+        // returnEarly(true) bypasses both. Called by ARUserSubscriptionStatusUtil
+        // g/j/m/q()Z for EDITPDF, ORGANIZEPDF, EXPORTPDF, CREATEPDF.
+        account.methods.firstOrNull {
+            it.name == "e1" && it.returnType == "Z" &&
+                it.parameterTypes.map { p -> p.toString() } == listOf(serviceTypeDesc)
+        }?.returnEarly(true)
+            ?: throw PatchException("Adobe Reader: SVServicesAccount.e1(SERVICE_TYPE)Z not found.")
+
+        // ── Layer C: SharedPrefs-direct no-arg methods ────────────────────────
+        // X0()Z, Y0()Z read SharedPrefs directly (no login gate, no enum).
+        // D0()Z, E0()Z are additional subscription state checks.
+        // O1 and r1 are abstract (no body) — excluded to avoid NPE on null impl.
+        listOf("X0", "Y0", "D0", "E0", "O0", "P0", "P1", "Q0", "Q1",
+               "T", "V", "a1", "c1", "k0", "n1", "t1").forEach { name ->
+            account.methods.firstOrNull { it.name == name && it.returnType == "Z" }
+                ?.returnEarly(true)
+        }
+
+        // ── Layer D: ARUserSubscriptionStatusUtil f-u()Z (15 methods) ────────
+        // High-level feature gates used by Activities/Fragments directly.
+        // All call through R0/e1 but returnEarly(true) provides defence-in-depth.
+        val aru = mutableClassDefByOrNull(
+            "Lcom/adobe/reader/preference/profile/ARUserSubscriptionStatusUtil;"
+        ) ?: throw PatchException("Adobe Reader: ARUserSubscriptionStatusUtil not found.")
+
+        listOf("f","g","h","i","j","l","m","n","o","p","q","r","s","t","u").forEach { name ->
+            aru.methods.firstOrNull { it.name == name && it.returnType == "Z" }
+                ?.returnEarly(true)
         }
     }
 }
 
-/**
- * Inject at index 0: if the enum parameter's name() matches any granted constant,
- * return true immediately; otherwise fall through to the original body.
- * Uses name() not ordinal() — R8 renumbers ordinals but preserves name strings.
- */
-private fun MutableMethod.grantForEnumNames(vararg names: String) {
+private val allServiceTypes = listOf(
+    "ADC_SERVICE", "EXPORTPDF_SERVICE", "EDITPDF_SERVICE", "CREATEPDF_SERVICE",
+    "CROPPDF_SERVICE", "LIQUIDMODE_SERVICE", "COMPRESSPDF_SERVICE", "PROTECTPDF_SERVICE",
+    "ACROBATPRO_SERVICE", "COMBINEPDF_SERVICE", "ORGANIZEPDF_SERVICE",
+    "ACROBAT_DC_LITE_SERVICE", "ACROBAT_READER_PLUS_SERVICE", "CREATEPDF_STANDALONE",
+    "ACROBAT_PREMIUM_SERVICE", "SCAN_PREMIUM_SERVICE", "OCR_SERVICE",
+    "AI_ASSISTANT_ADD_ON", "ACROBAT_PREMIUM_AND_GEN_AI_BUNDLE",
+    "ACROBAT_PRO_AND_GEN_AI_BUNDLE", "ACROBAT_LITE_AI_ASSISTANT_BUNDLE",
+    "ACROBAT_STUDIO", "ACROBAT_STUDIO_LITE",
+)
+
+private val allVariants = listOf(
+    "ADC_SUBSCRIPTION", "EXPORT_PDF_SUBSCRIPTION", "CREATE_PDF_SUBSCRIPTION",
+    "PDF_PACK_SUBSCRIPTION", "ACROBAT_STANDARD_SUBSCRIPTION", "ACROBAT_PRO_SUBSCRIPTION",
+    "ACROBAT_SEND_SUBSCRIPTION", "ACROBAT_PREMIUM_SUBSCRIPTION", "SCAN_PREMIUM_SUBSCRIPTION",
+    "ACROBAT_DC_LITE_SUBSCRIPTION", "ACROBAT_READER_PLUS_SUBSCRIPTION", "CROP_PDF_SUBSCRIPTION",
+    "AI_ASSISTANT_ADD_ON_PACK", "ACROBAT_PREMIUM_AND_GEN_AI_BUNDLE",
+    "ACROBAT_PRO_AND_GEN_AI_BUNDLE", "ACROBAT_LITE_AI_ASSISTANT_BUNDLE",
+    "ACROBAT_STUDIO_SUBSCRIPTION", "ACROBAT_STUDIO_LITE_SUBSCRIPTION",
+)
+
+private fun MutableMethod.grantAllServiceTypes() = grantForEnumNames(allServiceTypes)
+private fun MutableMethod.grantAllVariants() = grantForEnumNames(allVariants)
+
+private fun MutableMethod.grantForEnumNames(names: List<String>) {
     val checks = buildString {
         names.forEach { name ->
-            append(
-                """
-                const-string v1, "$name"
-                invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-                move-result v1
-                if-nez v1, :grant
-                """.trimIndent()
-            )
-            append("\n")
+            append("const-string v1, \"$name\"\n")
+            append("invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z\n")
+            append("move-result v1\n")
+            append("if-nez v1, :grant\n")
         }
     }
     addInstructionsWithLabels(

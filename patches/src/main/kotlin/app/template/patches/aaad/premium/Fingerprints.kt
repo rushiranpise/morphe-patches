@@ -166,7 +166,7 @@ object SetProUserFingerprint : Fingerprint(
     definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
     name = "access\$setProUser\$p",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL, AccessFlags.SYNTHETIC),
     parameters = listOf("Lcom/legs/appsforaa/MainActivityNew;", "Z")
 )
 
@@ -181,7 +181,7 @@ object SetProStatusLoadedFingerprint : Fingerprint(
     definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
     name = "access\$setProStatusLoaded\$p",
     returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL, AccessFlags.SYNTHETIC),
     parameters = listOf("Lcom/legs/appsforaa/MainActivityNew;", "Z")
 )
 

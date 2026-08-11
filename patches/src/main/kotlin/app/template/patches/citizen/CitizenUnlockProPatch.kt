@@ -1,139 +1,228 @@
 package app.template.patches.citizen
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.CITIZEN_COMPATIBILITY
-import app.template.patches.shared.returnEarly
-import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
-import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-// Citizen v0.1301.0 — sp0n.citizen
-//
-// ShowPaywallUseCase method semantics (CRITICAL — easy to get backwards):
-//   a(SubscriptionFeature)Z  true = user HAS ACCESS → callers show content
-//                            false = no access     → callers show paywall
-//   c()Z                     true = user IS premium (Plus/Protect active)
-//   d()Z                     true = user IS premium (Protect active specifically)
-//   e()Z                     true = SHOW safety network paywall
-//   f(Boolean)Z              true = SHOW conditional paywall
-//   isPaid()Z on PrivateUser true = user is paid
-//   SafetyCenterPaywallVMGate.s()Z / SafetyNetworkPaywallVMGate.n()Z
-//                            true = user HAS premium access (no paywall)
-//
-// Patch directions:
-//   a() → true  (user always has access)
-//   c() → true  (user always is premium)
-//   d() → true  (user always is premium)
-//   e() → false (never show safety network paywall)
-//   f() → false (never show conditional paywall)
-//   isPaid() → true
-//
-// 9 stable targets (all non-obfuscated):
-//   1. CitizenPlusInfoDTO.getActive()Z → true
-//   2. CitizenProtectInfoDTO.getActive()Z → true
-//   3. PremiumSubscriptionDTO.getSubscriptionState() → TRIAL_ACTIVATED
-//   4. SubscriptionDigest.getSubscriptionState() → TRIAL_ACTIVATED
-//   5. Superwall.internallySetSubscriptionStatus() → return-void
-//   6. MonoSubscription.getEnabled() → true
-//   7. MonoSubscription.isSafetyToolAvailable() → true
-//   8. ClarityEntrypointRepository.getProfileEntrypointEnabled() → true
-//   9. SubscriptionRepository.<init> — seed _currentSubscription with TRIAL_ACTIVATED
+// move-object/from16 v0, p0 brings p0 into v0 regardless of .registers count,
+// avoiding v23 overflow on high-register-count methods like SuperwallPaywallActivity.
+private val dismissOnCreate =
+    "move-object/from16 v0, p0\n" +
+    "invoke-virtual { v0 }, Landroid/app/Activity;->finish()V\n" +
+    "return-void"
 
-private const val SUBSCRIPTION_STATE =
-    "Lsp0n/citizen/data/user/dto/SubscriptionState;"
-private const val SUBSCRIPTION_DIGEST =
-    "Lsp0n/citizen/data/user/dto/SubscriptionDigest;"
-private const val SUBSCRIPTION_REPO =
-    "Lsp0n/citizen/data/user/SubscriptionRepository;"
+// Uses p1 (param register) to avoid requiring .locals >= 1
+private val returnKotlinUnit =
+    "sget-object p1, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
+    "return-object p1"
 
 @Suppress("unused")
 val citizenUnlockProPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks all Citizen Plus and Protect features.",
-    default = true,
+    description = "Unlocks all Citizen Plus/Protect features: Safety Network, Safety Center, Zones, Live Agent, Offender alerts, Clarity crime map, incident video, and more.",
+    default = true
 ) {
     compatibleWith(CITIZEN_COMPATIBILITY)
 
     execute {
-        // ── Targets 1+2: Plus/Protect active DTO getters → true ──────────────
-        CitizenPlusInfoDTOGetActiveFingerprint.method.returnEarly(true)
-        CitizenProtectInfoDTOGetActiveFingerprint.method.returnEarly(true)
+        // Layer 2: Plus/Protect DTO getters
+        listOf(
+            CitizenPlusInfoGetActiveFingerprint,
+            CitizenProtectInfoGetActiveFingerprint
+        ).forEach { fp ->
+            fp.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
 
-        // ── Targets 3+4: SubscriptionState → TRIAL_ACTIVATED ─────────────────
-        // TRIAL_ACTIVATED (case 5) = premium in all packed-switch tables.
-        // ACTIVATED (case 4) = base tier = FREE — do not use ACTIVATED.
-        // .registers 1 in both: p0 = this. Overwrite p0 with enum, return. Safe.
-        val returnTrialActivated =
-            "sget-object p0, $SUBSCRIPTION_STATE->TRIAL_ACTIVATED:$SUBSCRIPTION_STATE\n" +
-            "return-object p0"
-
-        PremiumSubscriptionDTOGetStateFingerprint.method.addInstructions(0, returnTrialActivated)
-        SubscriptionDigestGetStateFingerprint.method.addInstructions(0, returnTrialActivated)
-
-        // ── Target 5: Superwall → block server status override ────────────────
+        // Layer 3: Kill Superwall at SuperwallInitializer.create() — the androidx.startup
+        // entry point called from SplashActivity.onCreate(). It calls configure$default
+        // then getInstance(). Returning null skips both; Superwall never initializes.
+        // Belt-and-suspenders: also block status override + disable enable gate.
+        SuperwallInitializerCreateFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 p0, 0x0\nreturn-object p0")
+        }
         SuperwallSetSubscriptionStatusFingerprint.method.addInstructions(0, "return-void")
+        AndroidSuperwallGetEnabledFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+        }
 
-        // ── Targets 6+7: MonoSubscription feature flags → true ────────────────
-        MonoSubscriptionGetEnabledFingerprint.method.returnEarly(true)
-        MonoSubscriptionIsSafetyToolAvailableFingerprint.method.returnEarly(true)
+        // Layer 4: Domain model getters
+        listOf(
+            PrivateUserIsPlusActiveFingerprint,
+            PrivateUserIsProtectActiveFingerprint,
+            PrivateUserIsProtectActiveOrInSetupFingerprint,
+            CitizenProtectInfoDomainGetActiveFingerprint
+        ).forEach { fp ->
+            fp.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
 
-        // ── Target 8: Clarity entrypoint → visible ────────────────────────────
+        // Layer 5: ShowPaywallUseCase gates
+        ShowPaywallUseCaseAFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 p1, 0x1\nreturn p1")
+        }
+        listOf(
+            ShowPaywallUseCaseCFingerprint,
+            ShowPaywallUseCaseDFingerprint,
+            PrivateUserIsPaidFingerprint
+        ).forEach { fp ->
+            fp.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+        // e() = true means SHOW safety network paywall; f() = true means SHOW conditional paywall
+        listOf(
+            ShowPaywallUseCaseEFingerprint,
+            ShowPaywallUseCaseFFingerprint
+        ).forEach { fp ->
+            fp.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+        }
+
+        // Layer 6: SafetyCenter paywall VM gate (may be absent in v0.1303.2)
         runCatching {
-            ClarityProfileEntrypointEnabledFingerprint.method.returnEarly(true)
+            SafetyCenterPaywallVMGateFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
         }
 
-        // ── Target 9: Seed SubscriptionRepository._currentSubscription ───────
-        // Insert BEFORE "const/4 p0, 3" (which overwrites this-ref with int 3).
-        // p0 = register 8 in .registers 15 with 7 params.
-        // Scan for NarrowLiteralInstruction where registerA==8, literal==3.
-        // Save p0→v4 before it is clobbered; use v4 for iget-object.
-        val constructorMethod = SubscriptionRepositoryConstructorFingerprint.method
-        val constP0Index = constructorMethod.implementation!!.instructions.indexOfFirst { instr ->
-            instr is NarrowLiteralInstruction &&
-                instr is OneRegisterInstruction &&
-                (instr as OneRegisterInstruction).registerA == 8 &&
-                (instr as NarrowLiteralInstruction).narrowLiteral == 3
+        // Layer 7: Safety Network expiry check
+        SafetyNetworkRemoveExpiredFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
         }
-        require(constP0Index != -1) { "SubscriptionRepository.<init>: const/4 p0, 3 not found" }
 
-        constructorMethod.addInstructions(
-            constP0Index,
-            "move-object v4, p0\n" +
-            "new-instance v0, $SUBSCRIPTION_DIGEST\n" +
-            "sget-object v1, $SUBSCRIPTION_STATE->TRIAL_ACTIVATED:$SUBSCRIPTION_STATE\n" +
-            "const/4 v2, 0\n" +
-            "invoke-direct { v0, v1, v2, v2 }, ${SUBSCRIPTION_DIGEST}-><init>(${SUBSCRIPTION_STATE}Ljava/time/Instant;Ljava/time/Instant;)V\n" +
-            "iget-object v3, v4, ${SUBSCRIPTION_REPO}->_currentSubscription:Lgwa;\n" +
-            "invoke-interface { v3, v0 }, Lgwa;->setValue(Ljava/lang/Object;)V",
-        )
+        // Layer 10: Clarity entrypoint visibility
+        ClarityEntrypointVisibleFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "sget-object p1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;\nreturn-object p1")
+        }
 
-        // ── ShowPaywallUseCase gates ──────────────────────────────────────────
-        // a(SubscriptionFeature)Z: true = user HAS ACCESS → callers show content.
-        // With c() and d() returning true, a() would naturally return true too,
-        // but we patch directly for belt-and-suspenders.
-        ShowPaywallUseCaseAFingerprint.method.returnEarly(true)
+        // Layers 11/13/14/15: MonoSubscription feature flags
+        // getEnabled removed in v0.1303.2 — runCatching protects
+        runCatching {
+            MonoSubscriptionGetEnabledFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+        MonoSubscriptionIsSafetyToolAvailableFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+        MonoSubscriptionGetHidePremiumOnboardingFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+        }
+        listOf(
+            MonoSubscriptionGetShowPlusToPremiumEducationFingerprint,
+            MonoSubscriptionGetShowPlusToPremiumProfileBannerFingerprint
+        ).forEach { fp ->
+            fp.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+        }
 
-        // c()Z, d()Z: true = user IS premium. Patch to true.
-        ShowPaywallUseCaseCFingerprint.method.returnEarly(true)
-        ShowPaywallUseCaseDFingerprint.method.returnEarly(true)
+        // Layer 12: Override paywall Activities
+        runCatching {
+            OnboardingOverridePaywallOnCreateFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, dismissOnCreate)
+            }
+        }
+        runCatching {
+            InAppOverridePaywallOnCreateFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, dismissOnCreate)
+            }
+        }
 
-        // e()Z: true = SHOW safety network paywall. Patch to false.
-        ShowPaywallUseCaseEFingerprint.method.returnEarly(false)
+        // Layer 17: Clarity upsell flags
+        listOf(
+            ClarityMapTooltipUpsellEnabledFingerprint,
+            ClarityRadioClipsUpsellEnabledFingerprint,
+            ClaritySettingsUpsellEnabledFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
 
-        // f(Boolean)Z: true = SHOW conditional paywall. Patch to false.
-        ShowPaywallUseCaseFFingerprint.method.returnEarly(false)
+        // Layer 18: PlusV1 feature flags
+        listOf(
+            PlusV1NeighborhoodTrendsEnabledFingerprint,
+            PlusV1RadioClipsEnabledFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
 
-        // isPaid()Z on PrivateUser: true = user is paid. Patch to true.
-        PrivateUserIsPaidFingerprint.method.returnEarly(true)
+        // Layer 19: SuperwallPaywallActivity dismiss
+        // .registers 25 in this method — move-object/from16 avoids v23 overflow
+        runCatching {
+            SuperwallPaywallActivityOnCreateFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, dismissOnCreate)
+            }
+        }
 
-        // ── Paywall Activity dismissals (belt-and-suspenders) ─────────────────
-        // super.onCreate(bundle) + finish() — uses only p0 (this) and p1 (Bundle),
-        // both param registers valid in any Activity.onCreate(Bundle) method.
-        val dismissOnCreate =
-            "invoke-super { p0, p1 }, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V\n" +
-            "invoke-virtual { p0 }, Landroid/app/Activity;->finish()V\n" +
-            "return-void"
+        // Layer 20: Protect eligibility getters
+        listOf(
+            PrivateUserIsProtectEligibleFingerprint,
+            PrivateUserIsProtectSubscriberFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+                }
+            }
+        }
 
+        // Older builds only
+        runCatching {
+            MonoSubscriptionIsSafetyNetworkAvailableFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+        runCatching {
+            SafetyNetworkPaywallVMGateFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+        }
+
+        // Layer 21: Clarity profile entrypoint
+        runCatching {
+            ClarityProfileEntrypointEnabledFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+
+        // Layer 22: Paywall Activity dismissals
         listOf(
             ClarityPaywallActivityOnCreateFingerprint,
             ComparePlansActivityOnCreateFingerprint,
@@ -145,11 +234,160 @@ val citizenUnlockProPatch = bytecodePatch(
             SafetyCenterPaywallActivityOnCreateFingerprint,
             SafetyNetworkEducationActivityOnCreateFingerprint,
             FamilyPlanBenefitActivityOnCreateFingerprint,
-            SuperwallPaywallActivityOnCreateFingerprint,
+            MultimonthPaywallActivityOnCreateFingerprint,
+            ProtectOnBoardingUpsellActivityOnCreateFingerprint,
+            PostDemoRealCallUpsellActivityOnCreateFingerprint
         ).forEach { fp ->
             runCatching {
-                fp.method.addInstructions(0, dismissOnCreate)
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, dismissOnCreate)
+                }
             }
+        }
+
+        runCatching {
+            TrustedContactsConfigGetEnabledFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x1\nreturn v0")
+            }
+        }
+        runCatching {
+            PaywallHomescreenTriggerConfigGetEnabledFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+            }
+        }
+
+        // Layer 23: Safety Network flow collectors (continuation type nq3 in v0.1303.2)
+        listOf(
+            SafetyNetworkSingleInviteFlowCollectorFingerprint,
+            SafetyNetworkPendingInvitesFlowCollectorFingerprint,
+            FamilyPlanBenefitFlowCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        runCatching {
+            SafetyNetworkEducationFlowCollectorFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(
+                    0,
+                    "iget-object p0, p0, Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity\$a\$a\$a;->d:Lsp0n/citizen/social/safetynetwork/SafetyNetworkEducationActivity;\n" +
+                    "new-instance p1, Landroid/content/Intent;\n" +
+                    "const-class p2, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
+                    "invoke-direct {p1, p0, p2}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                    "invoke-virtual {p0, p1}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V\n" +
+                    "invoke-virtual {p0}, Landroid/app/Activity;->finish()V\n" +
+                    "sget-object p0, Lkotlin/Unit;->a:Lkotlin/Unit;\n" +
+                    "return-object p0"
+                )
+            }
+        }
+
+        // Layers 24+25: MainActivity + PremiumEducational collectors
+        listOf(
+            MainActivityPaywallFlowCollectorAFingerprint,
+            MainActivityPaywallFlowCollectorBFingerprint,
+            MainActivityPaywallFlowCollectorCFingerprint,
+            MainActivityPaywallFlowCollectorDFingerprint,
+            MainActivityPaywallFlowCollectorEFingerprint,
+            MainActivityPaywallFlowCollectorFFingerprint,
+            MainActivityPaywallFlowCollectorGFingerprint,
+            MainActivityPaywallFlowCollectorHFingerprint,
+            MainActivityPaywallFlowCollectorAbaFingerprint,
+            MainActivityPaywallFlowCollectorBbaFingerprint,
+            MainActivityPaywallFlowCollectorCbaFingerprint,
+            MainActivityPaywallFlowCollectorDbaFingerprint,
+            PremiumEducationalPaywallInternalCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // Layers 26+27: Cross-package collectors
+        listOf(
+            MenuPaywallFlowCollectorFingerprint,
+            OnboardingPaywallFlowCollectorFingerprint,
+            ProfilePaywallFlowCollectorFingerprint,
+            SafetyHomePaywallFlowCollectorFingerprint,
+            MyProfileFragmentPaywallCollectorFingerprint,
+            SafetyCenterPaywallActivityCollectorFingerprint,
+            ObfuscatedW50F1PaywallCollectorFingerprint,
+            ObfuscatedW70LPaywallCollectorFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // PurchasePremiumHelper: v8d (older) + c3d (current)
+        listOf(
+            PurchasePremiumHelperCreateIntentFingerprint,
+            PurchasePremiumHelperC3DFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
+                }
+            }
+        }
+
+        runCatching {
+            PremiumEducationalPaywallActivityCreateIntentFingerprint.method.apply {
+                removeInstructions(0, instructions.count())
+                addInstructions(
+                    0,
+                    "if-nez p1, :goto_safety_network\n" +
+                    "new-instance v0, Landroid/content/Intent;\n" +
+                    "const-class v1, Lsp0n/citizen/paywall/superwall/PremiumEducationalPaywallActivity;\n" +
+                    "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                    "const-string p0, \"ORIGIN\"\n" +
+                    "invoke-virtual {v0, p0, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;\n" +
+                    "move-result-object p0\n" +
+                    "const-string p2, \"LAUNCH_SAFETY_NETWORK\"\n" +
+                    "invoke-virtual {p0, p2, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;\n" +
+                    "move-result-object p0\n" +
+                    "return-object p0\n" +
+                    ":goto_safety_network\n" +
+                    "new-instance v0, Landroid/content/Intent;\n" +
+                    "const-class v1, Lsp0n/citizen/social/safetynetwork/SafetyNetworkActivity;\n" +
+                    "invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V\n" +
+                    "return-object v0"
+                )
+            }
+        }
+
+        // NavigationType b1b$h0/i0/u0 — gone in v0.1303.2, runCatching protects
+        listOf(
+            NavigationTypeH0PaywallFingerprint,
+            NavigationTypeI0PaywallFingerprint,
+            NavigationTypeU0PaywallFingerprint
+        ).forEach { fp ->
+            runCatching {
+                fp.method.apply {
+                    removeInstructions(0, instructions.count())
+                    addInstructions(0, returnKotlinUnit)
+                }
+            }
+        }
+
+        // ProtectFabHelper
+        runCatching {
+            ProtectFabHelperPaywallFingerprint.method.addInstructions(0, "return-void")
         }
     }
 }
