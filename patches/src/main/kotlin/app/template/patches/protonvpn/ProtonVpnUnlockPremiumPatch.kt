@@ -145,14 +145,6 @@ private object IsUserPlusOrAboveFingerprint : Fingerprint(
     parameters = listOf()
 )
 
-private object GetHasSubscriptionFingerprint : Fingerprint(
-    definingClass = "Lcom/protonvpn/android/auth/data/VpnUser;",
-    name = "getHasSubscription",
-    returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf()
-)
-
 private object GetUserTierNameFingerprint : Fingerprint(
     definingClass = "Lcom/protonvpn/android/auth/data/VpnUser;",
     name = "getUserTierName",
@@ -323,11 +315,6 @@ val protonVpnUnlockPremiumPatch = bytecodePatch(
         }
 
         IsUserPlusOrAboveFingerprint.method.apply {
-            clearBody()
-            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-        }
-
-        GetHasSubscriptionFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
