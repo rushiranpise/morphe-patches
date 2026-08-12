@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.17.0",
+  "version": "1.18.0-dev.1",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -1286,6 +1286,37 @@
       "options": []
     },
     {
+      "name": "Disable Screenshot Popup",
+      "description": "Suppresses the share prompt that appears after taking a screenshot.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable Tracking",
       "description": "Disables analytics and telemetry in ES File Explorer",
       "default": true,
@@ -2068,6 +2099,141 @@
       "options": []
     },
     {
+      "name": "Hide Ads",
+      "description": "Removes promoted posts and comment ads without requiring Reddit Premium unlock.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Communities Shelf",
+      "description": "Hides the related or suggested communities shelf in subreddits.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Navigation Buttons",
+      "description": "Removes the Create Post button from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Promoted Posts",
+      "description": "Blanks the promoted post render method and forces promoted/ad flags to false at the model layer.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Rufus tab",
       "description": "Removes the Rufus AI assistant tab from Amazon's bottom navigation bar.",
       "default": true,
@@ -2110,6 +2276,70 @@
                 "ARMEABI_V7A": 1241319416,
                 "X86_64": 1241319416,
                 "X86": 1241319416
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Sidebar Components",
+      "description": "Hides About, Resources, and Reddit Pro sections from the community sidebar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Trending Shelves",
+      "description": "Removes Trending Today from the feed and trending searches from the search screen.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3187,6 +3417,37 @@
       "options": []
     },
     {
+      "name": "Remove Subreddit Dialogs",
+      "description": "Suppresses the notification re-enable prompt that appears on subreddit visits.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Watermark",
       "description": "Removes watermarks from Canva exports and previews.",
       "default": true,
@@ -3485,6 +3746,37 @@
                 "ARMEABI_V7A": 1030718,
                 "X86_64": 1030718,
                 "X86": 1030718
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Sanitize Sharing Links",
+      "description": "Returns the raw permalink before UTM tracking parameters are appended to shared Reddit URLs.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7252,6 +7544,42 @@
                 "ARMEABI_V7A": 1502,
                 "X86_64": 1502,
                 "X86": 1502
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Reddit Premium features and removes all ads client-side.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
