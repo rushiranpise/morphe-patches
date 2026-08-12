@@ -1,3 +1,9 @@
+## [1.18.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.4...v1.18.0-dev.5) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+* remove wip patch ([bdf6b85](https://github.com/rushiranpise/morphe-patches/commit/bdf6b85e147b17c4efdd46fe8d8cbbca099602a1))
+
 ## [1.18.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.3...v1.18.0-dev.4) (2026-08-12)
 
 ### 🐛 Bug Fixes
