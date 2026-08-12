@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.0-dev.2",
+  "version": "1.18.0-dev.3",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -295,7 +295,9 @@
       "name": "Anti-delete messages",
       "description": "Prevents messages deleted by other users from being removed locally.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -368,9 +370,88 @@
     },
     {
       "name": "Anti-disappearing media",
-      "description": "Keeps view-once photos, videos, voice messages, and round videos viewable indefinitely.",
+      "description": "Keeps view-once photos, videos and voice messages viewable indefinitely.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.messenger",
+          "name": "Telegram",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69912,
+                "ARMEABI_V7A": 69912,
+                "X86_64": 69912,
+                "X86": 69912
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.messenger.web",
+          "name": "Telegram Web",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69919,
+                "ARMEABI_V7A": 69919,
+                "X86_64": 69919,
+                "X86": 69919
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Anti-screenshot notification",
+      "description": "Blocks screenshot notifications from being sent to the other user.",
+      "default": false,
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -734,9 +815,11 @@
     },
     {
       "name": "Bypass channel restrictions",
-      "description": "Allows opening copyrighted, sensitive, and temporarily disabled channels.",
+      "description": "Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -809,9 +892,11 @@
     },
     {
       "name": "Bypass content restrictions",
-      "description": "Allows saving and forwarding content from restricted channels and chats.",
+      "description": "Allows saving and forwarding content from restricted channels, chats, and users.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -918,6 +1003,7 @@
       "description": "Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK.",
       "default": true,
       "dependencies": [
+        "BytecodePatch",
         "ResourcePatch"
       ],
       "compatiblePackages": [
@@ -1461,10 +1547,151 @@
       "options": []
     },
     {
+      "name": "Disable analytics",
+      "description": "Blocks all Firebase analytics and event tracking in Telegram Plus.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable auto-update",
       "description": "Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion.",
       "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.messenger",
+          "name": "Telegram",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69912,
+                "ARMEABI_V7A": 69912,
+                "X86_64": 69912,
+                "X86": 69912
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.messenger.web",
+          "name": "Telegram Web",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69919,
+                "ARMEABI_V7A": 69919,
+                "X86_64": 69919,
+                "X86": 69919
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable auto-update",
+      "description": "Disables automatic app update checks in Telegram Plus.",
+      "default": true,
       "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable channel switching",
+      "description": "Disables the pull-down gesture that switches to the next unread channel.",
+      "default": false,
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -1811,7 +2038,9 @@
       "name": "Download speed boost",
       "description": "Increases download chunk size to 512 KB and max concurrent requests to 8.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -2141,37 +2370,6 @@
       "options": []
     },
     {
-      "name": "Fix auto-restore crash (internal)",
-      "description": "Spoofs the package name in hWL.<init> so the E2EE backup lookup always resolves to com.facebook.katana. Required by Change package name.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.facebook.katana",
-          "name": "Facebook",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1877F2",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "558.0.0.70.72",
-              "versionCodes": {
-                "ARM64_V8A": 470619290,
-                "ARMEABI_V7A": 470619290,
-                "X86_64": 470619290,
-                "X86": 470619290
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Force Pro",
       "description": "Unlocks Parallel Space Pro features by bypassing all Pro status checks.",
       "default": true,
@@ -2469,6 +2667,39 @@
       "options": []
     },
     {
+      "name": "Hide Reels ads",
+      "description": "Suppresses the Reels ads floating CTA overlay and blocks playable ad activities.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Rufus tab",
       "description": "Removes the Rufus AI assistant tab from Amazon's bottom navigation bar.",
       "default": true,
@@ -2605,7 +2836,9 @@
       "name": "Hide feed ads",
       "description": "Prevents sponsored stories from entering the Facebook main feed pool.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.facebook.katana",
@@ -2784,7 +3017,9 @@
       "name": "Hide sponsored stories",
       "description": "Hides sponsored and promoted ad units in the Facebook main feed by suppressing their visibility dispatch.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.facebook.katana",
@@ -2815,7 +3050,9 @@
       "name": "Hide story ads",
       "description": "Blocks ad insertion, deferred ad fetch, fetch-more-ads, and CTA/dwell tail-loads in Facebook stories.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.facebook.katana",
@@ -2846,7 +3083,9 @@
       "name": "Hide typing indicator",
       "description": "Hides your typing indicator from other users in all chats.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -2892,6 +3131,37 @@
             }
           ]
         },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide typing indicator",
+      "description": "Prevents typing status from being sent in Telegram Plus.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
         {
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
@@ -3011,41 +3281,6 @@
           "values": null
         }
       ]
-    },
-    {
-      "name": "Messenger signature + install source",
-      "description": "Pre-seeds the Facebook signing certificate and enables signature and install-source spoofing.",
-      "default": false,
-      "dependencies": [
-        "RawResourcePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.facebook.orca",
-          "name": "Messenger",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#0084FF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "573.0.0.44.88",
-              "versionCodes": {
-                "ARM64_V8A": 344611864,
-                "ARMEABI_V7A": 344611864,
-                "X86_64": 344611864,
-                "X86": 344611864
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
     },
     {
       "name": "Navigation & Map",
@@ -3289,6 +3524,37 @@
       "options": []
     },
     {
+      "name": "Plus Premium",
+      "description": "Unlocks premium UI and suppresses premium nag dialogs. isPremiumUser returns true only for self to avoid showing premium badges on others.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Popup Suppression",
       "description": "Prevents promotional and ad popups from appearing while driving.\nRaises the minimum trigger speed to a near-impossible value so popups never appear.\nWrites both Popup_ and Popu__ key variants for version resilience.\nCredits: Waze Chuppito Mod.",
       "default": true,
@@ -3371,6 +3637,83 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Premium UI",
+      "description": "Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.messenger",
+          "name": "Telegram",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69912,
+                "ARMEABI_V7A": 69912,
+                "X86_64": 69912,
+                "X86": 69912
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.messenger.web",
+          "name": "Telegram Web",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2",
+              "versionCodes": {
+                "ARM64_V8A": 69919,
+                "ARMEABI_V7A": 69919,
+                "X86_64": 69919,
+                "X86": 69919
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -4166,7 +4509,9 @@
       "name": "Remove ads",
       "description": "Removes sponsored messages and video ads from all chats and channels.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -4212,6 +4557,37 @@
             }
           ]
         },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22448,
+                "ARMEABI_V7A": 22448,
+                "X86_64": 22448,
+                "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ads",
+      "description": "Removes Plus banner ads, native ads, Telegram sponsored messages, and video ads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
         {
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
@@ -4956,7 +5332,9 @@
       "name": "Suppress Meta Verified upsell",
       "description": "Suppresses the Meta Verified subscription prompt that appears after publishing posts.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.facebook.katana",
@@ -5778,7 +6156,9 @@
       "name": "Unlock Meta AI premium features",
       "description": "Unlocks all Facebook Plus benefits and Meta AI premium tier by bypassing the benefit entitlement system and MobileConfig remote flag checks.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "com.facebook.katana",
@@ -8679,7 +9059,9 @@
       "name": "Unlock Premium",
       "description": "Unlocks Telegram Premium features for the current account.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",
@@ -9189,7 +9571,7 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true in the billing Info constructor.",
+      "description": "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -10977,7 +11359,9 @@
       "name": "Voice to music",
       "description": "Plays voice notes in the full music player with seek bar and background playback.",
       "default": false,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "org.telegram.messenger",

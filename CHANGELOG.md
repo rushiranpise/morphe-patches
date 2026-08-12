@@ -1,3 +1,9 @@
+## [1.18.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.2...v1.18.0-dev.3) (2026-08-12)
+
+### ✨ New Features
+
+* update & add new apps ([4aae1c8](https://github.com/rushiranpise/morphe-patches/commit/4aae1c84898cd142386d0fa1bb9fb85e7d79cd08)), closes [#581](https://github.com/rushiranpise/morphe-patches/issues/581) [#569](https://github.com/rushiranpise/morphe-patches/issues/569)
+
 ## [1.18.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.1...v1.18.0-dev.2) (2026-08-12)
 
 ### 🐛 Bug Fixes
