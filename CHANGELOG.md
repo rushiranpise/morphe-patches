@@ -1,3 +1,13 @@
+## [1.18.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.1...v1.18.0-dev.2) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+* tomtomgo ([7228b50](https://github.com/rushiranpise/morphe-patches/commit/7228b50265778fd6a9b403b3b6d76f226251896c)), closes [#598](https://github.com/rushiranpise/morphe-patches/issues/598) [#533](https://github.com/rushiranpise/morphe-patches/issues/533)
+
+### ✨ New Features
+
+* add fb and messenger ([943b02d](https://github.com/rushiranpise/morphe-patches/commit/943b02daf2c4bd48da7c0d8ab2eed812aecfe81c))
+
 ## [1.18.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.17.0...v1.18.0-dev.1) (2026-08-12)
 
 ### ✨ New Features
