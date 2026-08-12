@@ -208,15 +208,6 @@ val AVIATE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.0.1", versionCode = 201))
     )
 
-val REDDIT_COMPATIBILITY = Compatibility(
-        name = "Reddit",
-        packageName = "com.reddit.frontpage",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0xFF4500,
-        targets = listOf(
-            AppTarget(version = "2026.32.0", versionCode = 2632041))
-    )
-
 val AWAKE_COMPATIBILITY = Compatibility(
         name = "Awake",
         packageName = "com.mk.awake",
@@ -1322,6 +1313,15 @@ val RECIPEBRO_COMPATIBILITY = Compatibility(
         appIconColor = 0xE65100,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "1.7.21", versionCode = 1502))
+    )
+
+val REDDIT_COMPATIBILITY = Compatibility(
+        name = "Reddit",
+        packageName = "com.reddit.frontpage",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0xFF4500,
+        targets = listOf(
+            AppTarget(version = "2026.32.0", versionCode = 2632041))
     )
 
 val RELANE_COMPATIBILITY = Compatibility(
