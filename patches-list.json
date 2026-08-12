@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.0-dev.3",
+  "version": "1.18.0-dev.4",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -2656,39 +2656,6 @@
                 "ARMEABI_V7A": 2632041,
                 "X86_64": 2632041,
                 "X86": 2632041
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Reels ads",
-      "description": "Suppresses the Reels ads floating CTA overlay and blocks playable ad activities.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.facebook.katana",
-          "name": "Facebook",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1877F2",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "558.0.0.70.72",
-              "versionCodes": {
-                "ARM64_V8A": 470619290,
-                "ARMEABI_V7A": 470619290,
-                "X86_64": 470619290,
-                "X86": 470619290
               },
               "isExperimental": false,
               "minSdk": null,

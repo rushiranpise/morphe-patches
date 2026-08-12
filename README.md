@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;373 patches total
+> **[v1.18.0-dev.4](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.0-dev.4)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;372 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -934,7 +934,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#69</code> <strong>Facebook</strong> &middot; 7 patches &middot; <code>com.facebook.katana</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.facebook.katana">Play Store</a></summary>
+<summary><code>#69</code> <strong>Facebook</strong> &middot; 6 patches &middot; <code>com.facebook.katana</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.facebook.katana">Play Store</a></summary>
 <br>
 
 **Supported versions:** `558.0.0.70.72`
@@ -942,7 +942,6 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Change package name**](#change-package-name) | Installs Facebook beside the original by renaming the manifest package and provider authorities, removing duplicate permission declarations.<br><sub>Options: Package name, App name</sub> |
-| [**Hide Reels ads**](#hide-reels-ads) | Suppresses the Reels ads floating CTA overlay and blocks playable ad activities. |
 | [**Hide feed ads**](#hide-feed-ads) | Prevents sponsored stories from entering the Facebook main feed pool. |
 | [**Hide sponsored stories**](#hide-sponsored-stories) | Hides sponsored and promoted ad units in the Facebook main feed by suppressing their visibility dispatch. |
 | [**Hide story ads**](#hide-story-ads) | Blocks ad insertion, deferred ad fetch, fetch-more-ads, and CTA/dwell tail-loads in Facebook stories. |
