@@ -327,6 +327,25 @@ val BOXBOX_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.4.15", versionCode = 258))
     )
 
+val FACEBOOK_COMPATIBILITY = Compatibility(
+        name = "Facebook",
+        packageName = "com.facebook.katana",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x1877F2,
+        targets = listOf(
+            AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
+    )
+
+val MESSENGER_COMPATIBILITY = Compatibility(
+        name = "Messenger",
+        packageName = "com.facebook.orca",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x0084FF,
+        targets = listOf(
+            AppTarget(version = "573.0.0.44.88", versionCode = 344611864),
+        )
+    )    
+
 val BUZZCAST_COMPATIBILITY = Compatibility(
         name = "BuzzCast",
         packageName = "com.guochao.faceshow",
