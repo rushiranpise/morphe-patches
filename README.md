@@ -89,7 +89,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.0-dev.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;363 patches total
+> **[v1.18.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;373 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -536,7 +536,7 @@ Bug reports must include:
 
 | Patch | Details |
 |---|---|
-| [**Unlock Pro**](#unlock-pro) | Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true in the billing Info constructor. |
+| [**Unlock Pro**](#unlock-pro) | Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true. |
 
 </details>
 
@@ -942,7 +942,7 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Change package name**](#change-package-name) | Installs Facebook beside the original by renaming the manifest package and provider authorities, removing duplicate permission declarations.<br><sub>Options: Package name, App name</sub> |
-| [**Fix auto-restore crash (internal)**](#fix-auto-restore-crash-internal) | Spoofs the package name in hWL.&lt;init&gt; so the E2EE backup lookup always resolves to com.facebook.katana. |
+| [**Hide Reels ads**](#hide-reels-ads) | Suppresses the Reels ads floating CTA overlay and blocks playable ad activities. |
 | [**Hide feed ads**](#hide-feed-ads) | Prevents sponsored stories from entering the Facebook main feed pool. |
 | [**Hide sponsored stories**](#hide-sponsored-stories) | Hides sponsored and promoted ad units in the Facebook main feed by suppressing their visibility dispatch. |
 | [**Hide story ads**](#hide-story-ads) | Blocks ad insertion, deferred ad fetch, fetch-more-ads, and CTA/dwell tail-loads in Facebook stories. |
@@ -1389,7 +1389,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#106</code> <strong>Messenger</strong> &middot; 11 patches &middot; <code>com.facebook.orca</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.facebook.orca">Play Store</a></summary>
+<summary><code>#106</code> <strong>Messenger</strong> &middot; 10 patches &middot; <code>com.facebook.orca</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.facebook.orca">Play Store</a></summary>
 <br>
 
 **Supported versions:** `573.0.0.44.88`
@@ -1403,7 +1403,6 @@ Bug reports must include:
 | [**Hide inbox ads**](#hide-inbox-ads) | Hides ads in the Messenger inbox. |
 | [**Hide inbox stories and notes tray**](#hide-inbox-stories-and-notes-tray) | Hides the stories and notes horizontal tray at the top of the inbox. |
 | [**Hide inbox subtabs**](#hide-inbox-subtabs) | Hides Home and Channels tabs between active now tray and chats. |
-| [**Messenger signature + install source**](#messenger-signature-install-source) | Pre-seeds the Facebook signing certificate and enables signature and install-source spoofing. |
 | [**Open links externally**](#open-links-externally) | Opens links in the external browser instead of the in-app browser. |
 | [**Remove Meta AI**](#remove-meta-ai) | Removes the Meta AI floating button, drawer items, and search suggestions. |
 | [**Spoof package version**](#spoof-package-version) | Sets a very high version code so the Play Store treats the app as already up to date and never offers an update.<br><sub>Options: Version code</sub> |
@@ -2429,7 +2428,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#191</code> <strong>Telegram</strong> &middot; 11 patches &middot; <code>org.telegram.messenger</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger">Play Store</a></summary>
+<summary><code>#191</code> <strong>Telegram</strong> &middot; 14 patches &middot; <code>org.telegram.messenger</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger">Play Store</a></summary>
 <br>
 
 **Supported versions:** `12.9.2`
@@ -2437,13 +2436,16 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Anti-delete messages**](#anti-delete-messages) | Prevents messages deleted by other users from being removed locally. |
-| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos, voice messages, and round videos viewable indefinitely. |
-| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening copyrighted, sensitive, and temporarily disabled channels. |
-| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels and chats. |
+| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos and voice messages viewable indefinitely. |
+| [**Anti-screenshot notification**](#anti-screenshot-notification) | Blocks screenshot notifications from being sent to the other user. |
+| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
+| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels, chats, and users. |
 | [**Bypass integrity check**](#bypass-integrity-check) | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
 | [**Disable auto-update**](#disable-auto-update) | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| [**Disable channel switching**](#disable-channel-switching) | Disables the pull-down gesture that switches to the next unread channel. |
 | [**Download speed boost**](#download-speed-boost) | Increases download chunk size to 512 KB and max concurrent requests to 8. |
 | [**Hide typing indicator**](#hide-typing-indicator) | Hides your typing indicator from other users in all chats. |
+| [**Premium UI**](#premium-ui) | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
 | [**Remove ads**](#remove-ads) | Removes sponsored messages and video ads from all chats and channels. |
 | [**Unlock Premium**](#unlock-premium) | Unlocks Telegram Premium features for the current account. |
 | [**Voice to music**](#voice-to-music) | Plays voice notes in the full music player with seek bar and background playback. |
@@ -2451,7 +2453,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#192</code> <strong>Telegram Plus</strong> &middot; 11 patches &middot; <code>org.telegram.plus</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.plus">Play Store</a></summary>
+<summary><code>#192</code> <strong>Telegram Plus</strong> &middot; 16 patches &middot; <code>org.telegram.plus</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.plus">Play Store</a></summary>
 <br>
 
 **Supported versions:** `12.9.2.0`
@@ -2459,13 +2461,18 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Anti-delete messages**](#anti-delete-messages) | Prevents messages deleted by other users from being removed locally. |
-| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos, voice messages, and round videos viewable indefinitely. |
-| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening copyrighted, sensitive, and temporarily disabled channels. |
-| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels and chats. |
+| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos and voice messages viewable indefinitely. |
+| [**Anti-screenshot notification**](#anti-screenshot-notification) | Blocks screenshot notifications from being sent to the other user. |
+| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
+| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels, chats, and users. |
 | [**Bypass integrity check**](#bypass-integrity-check) | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
+| [**Disable analytics**](#disable-analytics) | Blocks all Firebase analytics and event tracking in Telegram Plus. |
 | [**Disable auto-update**](#disable-auto-update) | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| [**Disable channel switching**](#disable-channel-switching) | Disables the pull-down gesture that switches to the next unread channel. |
 | [**Download speed boost**](#download-speed-boost) | Increases download chunk size to 512 KB and max concurrent requests to 8. |
 | [**Hide typing indicator**](#hide-typing-indicator) | Hides your typing indicator from other users in all chats. |
+| [**Plus Premium**](#plus-premium) | Unlocks premium UI and suppresses premium nag dialogs. |
+| [**Premium UI**](#premium-ui) | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
 | [**Remove ads**](#remove-ads) | Removes sponsored messages and video ads from all chats and channels. |
 | [**Unlock Premium**](#unlock-premium) | Unlocks Telegram Premium features for the current account. |
 | [**Voice to music**](#voice-to-music) | Plays voice notes in the full music player with seek bar and background playback. |
@@ -2473,7 +2480,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#193</code> <strong>Telegram Web</strong> &middot; 11 patches &middot; <code>org.telegram.messenger.web</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger.web">Play Store</a></summary>
+<summary><code>#193</code> <strong>Telegram Web</strong> &middot; 14 patches &middot; <code>org.telegram.messenger.web</code> &middot; <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger.web">Play Store</a></summary>
 <br>
 
 **Supported versions:** `12.9.2`
@@ -2481,13 +2488,16 @@ Bug reports must include:
 | Patch | Details |
 |---|---|
 | [**Anti-delete messages**](#anti-delete-messages) | Prevents messages deleted by other users from being removed locally. |
-| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos, voice messages, and round videos viewable indefinitely. |
-| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening copyrighted, sensitive, and temporarily disabled channels. |
-| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels and chats. |
+| [**Anti-disappearing media**](#anti-disappearing-media) | Keeps view-once photos, videos and voice messages viewable indefinitely. |
+| [**Anti-screenshot notification**](#anti-screenshot-notification) | Blocks screenshot notifications from being sent to the other user. |
+| [**Bypass channel restrictions**](#bypass-channel-restrictions) | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
+| [**Bypass content restrictions**](#bypass-content-restrictions) | Allows saving and forwarding content from restricted channels, chats, and users. |
 | [**Bypass integrity check**](#bypass-integrity-check) | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
 | [**Disable auto-update**](#disable-auto-update) | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| [**Disable channel switching**](#disable-channel-switching) | Disables the pull-down gesture that switches to the next unread channel. |
 | [**Download speed boost**](#download-speed-boost) | Increases download chunk size to 512 KB and max concurrent requests to 8. |
 | [**Hide typing indicator**](#hide-typing-indicator) | Hides your typing indicator from other users in all chats. |
+| [**Premium UI**](#premium-ui) | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
 | [**Remove ads**](#remove-ads) | Removes sponsored messages and video ads from all chats and channels. |
 | [**Unlock Premium**](#unlock-premium) | Unlocks Telegram Premium features for the current account. |
 | [**Voice to music**](#voice-to-music) | Plays voice notes in the full music player with seek bar and background playback. |
