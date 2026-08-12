@@ -126,9 +126,14 @@ internal val ReelsAdIndicatorPillFingerprint = Fingerprint(
 
 // ─── Neko playable ad activity (non-obfuscated) ─────────────────────────────
 // Verified: classes7/com/facebook/neko/playables/activity/NekoPlayableAdActivity.smali
+//
+// NekoPlayableAdActivity extends FbFragmentActivity (Fragment-based lifecycle).
+// It has NO onCreate() override — lifecycle entry is onActivityCreate(Bundle)V.
+// Targeting onResume()V: simpler, always present, void — returnEarly() stops
+// the ad rendering phase before any content is shown.
 internal val NekoPlayableAdActivityFingerprint = Fingerprint(
     definingClass = "Lcom/facebook/neko/playables/activity/NekoPlayableAdActivity;",
-    name = "onCreate",
+    name = "onResume",
     returnType = "V",
-    parameters = listOf("Landroid/os/Bundle;"),
+    parameters = listOf(),
 )

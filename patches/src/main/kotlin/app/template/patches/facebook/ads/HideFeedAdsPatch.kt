@@ -3,6 +3,7 @@ package app.template.patches.facebook.ads
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.FACEBOOK_COMPATIBILITY
 import app.template.patches.shared.returnEarly
+import app.template.patches.facebook.misc.facebookSignaturePatch
 
 // Blocks sponsored stories from entering the Facebook main feed pool.
 // Ported from github.com/Loukious/FacebookAppAdsRemover (fb571 → 569 mapping).
@@ -30,6 +31,8 @@ val facebookHideFeedAdsPatch = bytecodePatch(
     description = "Prevents sponsored stories from entering the Facebook main feed pool.",
 ) {
     compatibleWith(FACEBOOK_COMPATIBILITY)
+
+    dependsOn(facebookSignaturePatch)
 
     execute {
         // Primary pool gate: A03(GraphQLFeedUnitEdge)Z

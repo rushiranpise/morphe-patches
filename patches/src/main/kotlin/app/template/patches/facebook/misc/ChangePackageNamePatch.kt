@@ -1,12 +1,50 @@
 package app.template.patches.facebook.misc
 
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.methodCall
+import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.stringOption
 import app.template.patches.shared.Constants.FACEBOOK_COMPATIBILITY
+import com.android.tools.smali.dexlib2.AccessFlags
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 
 private const val ORIGINAL_PACKAGE = "com.facebook.katana"
+
+// hWL.<init> calls Context.getPackageName() and matches against a packed-switch
+// table of FB package names. Under a renamed clone, nothing matches → NoSuchElementException.
+// Insert const-string v6, "com.facebook.katana" at index 13 to always resolve correctly.
+// Verified: classes10/X/hWL.smali, com.facebook.katana 569.0.0.42.72.
+private val hWLInitFingerprint = Fingerprint(
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
+    returnType = "V",
+    parameters = listOf(),
+    filters = listOf(
+        methodCall(definingClass = "Landroid/content/Context;", name = "getPackageName"),
+    ),
+    custom = { _, classDef ->
+        classDef.superclass == "Ljava/lang/Object;" &&
+            classDef.fields.any { it.type == "Landroid/content/SharedPreferences;" } &&
+            classDef.fields.any { it.type == "Landroid/content/Context;" }
+    },
+)
+
+// No name/description — hidden from the Morphe Manager UI.
+// Applied automatically by facebookChangePackageNamePatch.
+private val facebookFixAutoRestoreCrashPatch = bytecodePatch(default = false) {
+    compatibleWith(FACEBOOK_COMPATIBILITY)
+
+    dependsOn(facebookSignaturePatch)
+
+    execute {
+        hWLInitFingerprint.method.addInstruction(
+            13,
+            """const-string v6, "com.facebook.katana"""",
+        )
+    }
+}
 private const val DEFAULT_PACKAGE   = "app.morphe.facebook.katana"
 
 // Parallel-install patch for Facebook.

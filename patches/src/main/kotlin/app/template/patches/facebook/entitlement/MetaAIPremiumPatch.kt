@@ -3,6 +3,7 @@ package app.template.patches.facebook.entitlement
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.FACEBOOK_COMPATIBILITY
 import app.template.patches.shared.returnEarly
+import app.template.patches.facebook.misc.facebookSignaturePatch
 
 // Unlocks the full Facebook Plus benefit suite and Meta AI premium features.
 //
@@ -53,6 +54,8 @@ val facebookMetaAIPremiumPatch = bytecodePatch(
     description = "Unlocks all Facebook Plus benefits and Meta AI premium tier by bypassing the benefit entitlement system and MobileConfig remote flag checks.",
 ) {
     compatibleWith(FACEBOOK_COMPATIBILITY)
+
+    dependsOn(facebookSignaturePatch)
 
     execute {
         // ── Benefit system ────────────────────────────────────────────────────

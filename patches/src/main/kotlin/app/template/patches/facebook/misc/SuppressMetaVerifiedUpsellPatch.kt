@@ -28,6 +28,8 @@ val facebookSuppressMetaVerifiedUpsellPatch = bytecodePatch(
 ) {
     compatibleWith(FACEBOOK_COMPATIBILITY)
 
+    dependsOn(facebookSignaturePatch)
+
     execute {
         // A00 returns Ljava/lang/Object; (Kotlin suspend function result).
         // returnEarly(null) injects const/4 v0, 0x0 + return-object v0.

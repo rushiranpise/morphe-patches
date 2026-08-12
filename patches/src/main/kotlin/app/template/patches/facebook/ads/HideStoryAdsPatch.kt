@@ -3,6 +3,7 @@ package app.template.patches.facebook.ads
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.FACEBOOK_COMPATIBILITY
 import app.template.patches.shared.returnEarly
+import app.template.patches.facebook.misc.facebookSignaturePatch
 
 // Ported from meridianfresco/morphe-meta-patches (forked from ReVanced).
 // Targets the five Redex-obfuscated Runnable inner classes of AdBucketDataSourceUtil.
@@ -15,6 +16,8 @@ val facebookHideStoryAdsPatch = bytecodePatch(
     description = "Blocks ad insertion, deferred ad fetch, fetch-more-ads, and CTA/dwell tail-loads in Facebook stories.",
 ) {
     compatibleWith(FACEBOOK_COMPATIBILITY)
+
+    dependsOn(facebookSignaturePatch)
 
     execute {
         AdsInsertionMethodFingerprint.method.returnEarly()
