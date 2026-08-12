@@ -318,25 +318,6 @@ val BOXBOX_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.4.15", versionCode = 258))
     )
 
-val FACEBOOK_COMPATIBILITY = Compatibility(
-        name = "Facebook",
-        packageName = "com.facebook.katana",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0x1877F2,
-        targets = listOf(
-            AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
-    )
-
-val MESSENGER_COMPATIBILITY = Compatibility(
-        name = "Messenger",
-        packageName = "com.facebook.orca",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0x0084FF,
-        targets = listOf(
-            AppTarget(version = "573.0.0.44.88", versionCode = 344611864),
-        )
-    )    
-
 val BUZZCAST_COMPATIBILITY = Compatibility(
         name = "BuzzCast",
         packageName = "com.guochao.faceshow",
@@ -563,6 +544,15 @@ val EXCEL_COMPATIBILITY = Compatibility(
         packageName = "com.microsoft.office.excel",
         appIconColor = 0x1B5E20,
         targets = listOf(AppTarget(version = "16.0.20228.20090", versionCode = 16843309))
+    )
+
+val FACEBOOK_COMPATIBILITY = Compatibility(
+        name = "Facebook",
+        packageName = "com.facebook.katana",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x1877F2,
+        targets = listOf(
+            AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
     )
 
 val FITBOD_COMPATIBILITY = Compatibility(
@@ -845,6 +835,16 @@ val MEGA_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0xD9272E,
         targets = listOf(AppTarget(version = "16.10(261970902)(8daeddaf4d)", versionCode = 261970902))
+    )
+
+val MESSENGER_COMPATIBILITY = Compatibility(
+        name = "Messenger",
+        packageName = "com.facebook.orca",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x0084FF,
+        targets = listOf(
+            AppTarget(version = "573.0.0.44.88", versionCode = 344611864),
+        )
     )
 
 val MIGRACONNECT_COMPATIBILITY = Compatibility(
