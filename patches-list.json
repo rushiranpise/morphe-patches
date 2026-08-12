@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.0-dev.1",
+  "version": "1.18.0-dev.2",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -992,6 +992,58 @@
     },
     {
       "name": "Change package name",
+      "description": "Installs Facebook beside the original by renaming the manifest package and provider authorities, removing duplicate permission declarations.",
+      "default": false,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "facebookPackageName",
+          "title": "Package name",
+          "description": "Package name for the cloned Facebook app.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "app.morphe.facebook.katana",
+          "values": null
+        },
+        {
+          "key": "facebookAppName",
+          "title": "App name",
+          "description": "Launcher label shown in the home screen for the cloned Facebook.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Facebook Morphe",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Change package name",
       "description": "Installs Google Photos beside the system Photos app by changing package, permissions, providers, and app name.",
       "default": false,
       "dependencies": [],
@@ -1036,6 +1088,59 @@
           "required": true,
           "type": "kotlin.String",
           "default": "Photos Morphe",
+          "values": null
+        }
+      ]
+    },
+    {
+      "name": "Change package name",
+      "description": "Installs Messenger beside the original by renaming the manifest package and provider authorities, removing duplicate permission declarations.",
+      "default": false,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "messengerPackageName",
+          "title": "Package name",
+          "description": "Package name for the cloned Messenger app.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "app.morphe.messenger.orca",
+          "values": null
+        },
+        {
+          "key": "messengerAppName",
+          "title": "App name",
+          "description": "Launcher label for the cloned Messenger.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "Messenger Morphe",
           "values": null
         }
       ]
@@ -1439,6 +1544,39 @@
       "options": []
     },
     {
+      "name": "Disable media transcoding",
+      "description": "Sends photos and videos at original quality without re-encoding.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable search suggestions tracking",
       "description": "Prevents search keypress and focus events from being sent with suggestion requests.",
       "default": true,
@@ -1520,6 +1658,39 @@
                 "ARMEABI_V7A": 72151,
                 "X86_64": 72151,
                 "X86": 72151
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable typing indicator",
+      "description": "Disables the indicator while typing a message.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1970,6 +2141,37 @@
       "options": []
     },
     {
+      "name": "Fix auto-restore crash (internal)",
+      "description": "Spoofs the package name in hWL.<init> so the E2EE backup lookup always resolves to com.facebook.katana. Required by Change package name.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Force Pro",
       "description": "Unlocks Parallel Space Pro features by bypassing all Pro status checks.",
       "default": true,
@@ -2157,6 +2359,39 @@
                 "ARMEABI_V7A": 2632041,
                 "X86_64": 2632041,
                 "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Facebook buttons",
+      "description": "Hides buttons and shortcuts that open Facebook.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2367,6 +2602,136 @@
       "options": []
     },
     {
+      "name": "Hide feed ads",
+      "description": "Prevents sponsored stories from entering the Facebook main feed pool.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide inbox ads",
+      "description": "Hides ads in the Messenger inbox.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide inbox stories and notes tray",
+      "description": "Hides the stories and notes horizontal tray at the top of the inbox.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide inbox subtabs",
+      "description": "Hides Home and Channels tabs between active now tray and chats.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide mock location",
       "description": "Hides mock-location signals from app checks.",
       "default": false,
@@ -2414,6 +2779,68 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Hide sponsored stories",
+      "description": "Hides sponsored and promoted ad units in the Facebook main feed by suppressing their visibility dispatch.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide story ads",
+      "description": "Blocks ad insertion, deferred ad fetch, fetch-more-ads, and CTA/dwell tail-loads in Facebook stories.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Hide typing indicator",
@@ -2586,6 +3013,41 @@
       ]
     },
     {
+      "name": "Messenger signature + install source",
+      "description": "Pre-seeds the Facebook signing certificate and enables signature and install-source spoofing.",
+      "default": false,
+      "dependencies": [
+        "RawResourcePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Navigation & Map",
       "description": "Configures navigation and map behaviour:\n• Nearing destination distance (Credits: CGE Mod)\n• Android Auto head-up alert distances\n• Map turn mode (auto-zoom to upcoming turn)\n• Traffic bar minimum time threshold\n• GPS icon visibility\n• Route notifications (hazard, school zone) — both disabled by default\nCredits: Waze CGE Mod (nearing destination), Waze Chuppito (remaining keys).",
       "default": true,
@@ -2700,6 +3162,39 @@
           }
         }
       ]
+    },
+    {
+      "name": "Open links externally",
+      "description": "Opens links in the external browser instead of the in-app browser.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Open links in browser",
@@ -3375,6 +3870,39 @@
                 "ARMEABI_V7A": 26320003,
                 "X86_64": 26320003,
                 "X86": 26320003
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Meta AI",
+      "description": "Removes the Meta AI floating button, drawer items, and search suggestions.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4320,6 +4848,49 @@
       "options": []
     },
     {
+      "name": "Spoof package version",
+      "description": "Sets a very high version code so the Play Store treats the app as already up to date and never offers an update.",
+      "default": false,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.orca",
+          "name": "Messenger",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0084FF",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "573.0.0.44.88",
+              "versionCodes": {
+                "ARM64_V8A": 344611864,
+                "ARMEABI_V7A": 344611864,
+                "X86_64": 344611864,
+                "X86": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": [
+        {
+          "key": "messengerVersionCode",
+          "title": "Version code",
+          "description": "The version code to set. Must be higher than the Play Store version to suppress updates. Defaults to the maximum value.",
+          "required": true,
+          "type": "kotlin.String",
+          "default": "2147483647",
+          "values": null
+        }
+      ]
+    },
+    {
       "name": "Spoof root of trust",
       "description": "Spoofs common RootOfTrust verified boot getters.",
       "default": false,
@@ -4380,6 +4951,37 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Suppress Meta Verified upsell",
+      "description": "Suppresses the Meta Verified subscription prompt that appears after publishing posts.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Suppress Paywall",
@@ -5162,6 +5764,37 @@
                 "ARMEABI_V7A": 10330100,
                 "X86_64": 10330100,
                 "X86": 10330100
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Meta AI premium features",
+      "description": "Unlocks all Facebook Plus benefits and Meta AI premium tier by bypassing the benefit entitlement system and MobileConfig remote flag checks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.facebook.katana",
+          "name": "Facebook",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#1877F2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "558.0.0.70.72",
+              "versionCodes": {
+                "ARM64_V8A": 470619290,
+                "ARMEABI_V7A": 470619290,
+                "X86_64": 470619290,
+                "X86": 470619290
               },
               "isExperimental": false,
               "minSdk": null,

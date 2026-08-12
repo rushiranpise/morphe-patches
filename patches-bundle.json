@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-12T00:01:42",
-  "description": "## [1.18.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.17.0...v1.18.0-dev.1) (2026-08-12)\n\n### ✨ New Features\n\n* add reddit ([53c5a58](https://github.com/rushiranpise/morphe-patches/commit/53c5a586cd24bd2e820993d78c7260c3b2d737b5))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.18.0-dev.1/patches-1.18.0-dev.1.mpp",
+  "created_at": "2026-08-12T00:24:19",
+  "description": "## [1.18.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.1...v1.18.0-dev.2) (2026-08-12)\n\n### 🐛 Bug Fixes\n\n* tomtomgo ([7228b50](https://github.com/rushiranpise/morphe-patches/commit/7228b50265778fd6a9b403b3b6d76f226251896c)), closes [#598](https://github.com/rushiranpise/morphe-patches/issues/598) [#533](https://github.com/rushiranpise/morphe-patches/issues/533)\n\n### ✨ New Features\n\n* add fb and messenger ([943b02d](https://github.com/rushiranpise/morphe-patches/commit/943b02daf2c4bd48da7c0d8ab2eed812aecfe81c))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.18.0-dev.2/patches-1.18.0-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.18.0-dev.1"
+  "version": "1.18.0-dev.2"
 }
