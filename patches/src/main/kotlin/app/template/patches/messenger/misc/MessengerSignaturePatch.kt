@@ -2,7 +2,6 @@ package app.template.patches.messenger.misc
 
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.rawResourcePatch
-import app.template.patches.shared.Constants.MESSENGER_COMPATIBILITY
 import app.template.patches.shared.cert.seedCert
 import app.template.patches.shared.installer.spoofInstallSourcePatch
 import app.template.patches.shared.signature.spoofSignatureVerificationPatch
@@ -32,15 +31,9 @@ private val messengerCertSeedPatch = rawResourcePatch(default = false) {
     }
 }
 
+// No name/description — unnamed patches are not shown in the Morphe Manager UI.
 // Applied automatically as a dependency of every user-facing Messenger patch.
-// Wires cert seed + signature spoof + install-source spoof in one step.
-internal val messengerSignaturePatch = bytecodePatch(
-    name = "Messenger signature + install source",
-    description = "Pre-seeds the Facebook signing certificate and enables signature and install-source spoofing.",
-    default = false,
-) {
-    compatibleWith(MESSENGER_COMPATIBILITY)
-
+internal val messengerSignaturePatch = bytecodePatch(default = false) {
     dependsOn(
         messengerCertSeedPatch,
         spoofSignatureVerificationPatch,

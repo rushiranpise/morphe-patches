@@ -3,6 +3,7 @@ package app.template.patches.telegram.ads
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
+import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.BlockingUpdateViewShowFingerprint
@@ -18,6 +19,7 @@ val telegramDisableAutoUpdatePatch = bytecodePatch(
         "and the proxy sponsor channel insertion.",
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    dependsOn(telegramSpoofDependency())
 
     execute {
         // Suppress update checks at the LaunchActivity level

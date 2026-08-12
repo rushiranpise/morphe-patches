@@ -507,3 +507,165 @@ val MessageObjectIsMusicFingerprint = Fingerprint(
         ),
     ),
 )
+
+// ─── Anti-disappearing media (additional) ────────────────────────────────────
+
+// MessageObject.needDrawBluredPreview()Z — blurs self-destructing media previews.
+// Present in both Web and Plus. Returning false prevents the blurred overlay.
+val MessageObjectNeedDrawBluredPreviewFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessageObject;",
+    name = "needDrawBluredPreview",
+    returnType = "Z",
+    parameters = listOf(),
+)
+
+// ─── Anti-screenshot notification ─────────────────────────────────────────────
+
+// SendMessagesHelper.sendScreenshotMessage(User,I,Message)V
+// Notifies the other user when you screenshot a conversation.
+val SendScreenshotMessageUserFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/SendMessagesHelper;",
+    name = "sendScreenshotMessage",
+    returnType = "V",
+    parameters = listOf(
+        "Lorg/telegram/tgnet/TLRPC\$User;",
+        "I",
+        "Lorg/telegram/tgnet/TLRPC\$Message;",
+    ),
+)
+
+// SecretChatHelper.sendScreenshotMessage(EncryptedChat,ArrayList,Message)V
+val SendScreenshotMessageSecretFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/SecretChatHelper;",
+    name = "sendScreenshotMessage",
+    returnType = "V",
+    parameters = listOf(
+        "Lorg/telegram/tgnet/TLRPC\$EncryptedChat;",
+        "Ljava/util/ArrayList;",
+        "Lorg/telegram/tgnet/TLRPC\$Message;",
+    ),
+)
+
+// ─── User no-forwards (missing from original set) ─────────────────────────────
+
+val MessagesControllerIsUserNoForwardsLongFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "isUserNoForwards",
+    returnType = "Z",
+    parameters = listOf("J"),
+)
+
+val MessagesControllerIsUserNoForwardsUserFullFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "isUserNoForwards",
+    returnType = "Z",
+    parameters = listOf("Lorg/telegram/tgnet/TLRPC\$UserFull;"),
+)
+
+// ─── Channel switching (Killergram / NoAds) ───────────────────────────────────
+
+// Web: getNextUnreadDialog()Dialog (no params)
+// Plus: getNextUnreadDialog(JIIZ[I)Dialog (5 params — different signature)
+// Omit parameters for cross-variant compat; method name + returnType + PUBLIC STATIC is unique
+val ChatPullingDownDrawableGetNextFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ChatPullingDownDrawable;",
+    name = "getNextUnreadDialog",
+    returnType = "Lorg/telegram/tgnet/TLRPC\$Dialog;",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+)
+
+val ChatPullingDownDrawableDrawBottomPanelFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ChatPullingDownDrawable;",
+    name = "drawBottomPanel",
+    returnType = "V",
+)
+
+val ChatPullingDownDrawableNeedDrawBottomPanelFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ChatPullingDownDrawable;",
+    name = "needDrawBottomPanel",
+    returnType = "Z",
+)
+
+// ─── Premium account count / device class (Killergram) ───────────────────────
+
+val UserConfigGetMaxAccountCountFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/UserConfig;",
+    name = "getMaxAccountCount",
+    returnType = "I",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+)
+
+val UserConfigHasPremiumOnAccountsFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/UserConfig;",
+    name = "hasPremiumOnAccounts",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+)
+
+val SharedConfigGetDevicePerformanceClassFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/SharedConfig;",
+    name = "getDevicePerformanceClass",
+    returnType = "I",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+)
+
+// ─── Sponsored messages count (NoAds) ────────────────────────────────────────
+
+val ChatActivityGetSponsoredMessagesCountFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ChatActivity;",
+    name = "getSponsoredMessagesCount",
+    returnType = "I",
+    // Web=private, Plus=public final — omit accessFlags for cross-variant compat
+)
+
+// MessagesController.getSponsoredMessages(J) — fetches sponsored msg cache entry
+val MessagesControllerGetSponsoredMessagesFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "getSponsoredMessages",
+    returnType = "Lorg/telegram/messenger/MessagesController\$SponsoredMessagesInfo;",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = listOf("J"),
+)
+
+// ─── Copyright / restriction message bypass ───────────────────────────────────
+
+// MessageObject.updateMessageText() — called at construction and on refresh.
+// When getRestrictionReason returns non-null, this sets isRestrictedMessage=true
+// and replaces messageText with the copyright string.
+// Patching getRestrictionReason→null already prevents this, but patching
+// updateMessageText directly gives belt-and-suspenders protection.
+val MessageObjectUpdateMessageTextFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessageObject;",
+    name = "updateMessageText",
+    returnType = "V",
+    parameters = listOf(),
+    accessFlags = listOf(AccessFlags.PUBLIC),
+)
+
+
+// DialogCell.buildLayout()V — calls getRestrictionReason twice; we use matchAll on the
+// getRestrictionReason methodCall filter to find and neutralise both result registers.
+val DialogCellBuildLayoutFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/Cells/DialogCell;",
+    name = "buildLayout",
+    returnType = "V",
+    filters = listOf(
+        methodCall(
+            definingClass = "Lorg/telegram/messenger/MessagesController;",
+            name = "getRestrictionReason",
+        ),
+    ),
+)
+
+// DialogCell.updateMessageThumbs()V — also calls getRestrictionReason
+val DialogCellUpdateMessageThumbsFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/Cells/DialogCell;",
+    name = "updateMessageThumbs",
+    returnType = "V",
+    filters = listOf(
+        methodCall(
+            definingClass = "Lorg/telegram/messenger/MessagesController;",
+            name = "getRestrictionReason",
+        ),
+    ),
+)

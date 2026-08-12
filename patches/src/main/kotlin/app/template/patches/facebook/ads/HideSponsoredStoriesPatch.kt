@@ -3,6 +3,7 @@ package app.template.patches.facebook.ads
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.FACEBOOK_COMPATIBILITY
 import app.template.patches.shared.returnEarly
+import app.template.patches.facebook.misc.facebookSignaturePatch
 
 // Targets the ad-unit visibility dispatcher in 2UY.A06 (classes13).
 //
@@ -21,6 +22,8 @@ val facebookHideSponsoredStoriesPatch = bytecodePatch(
     description = "Hides sponsored and promoted ad units in the Facebook main feed by suppressing their visibility dispatch.",
 ) {
     compatibleWith(FACEBOOK_COMPATIBILITY)
+
+    dependsOn(facebookSignaturePatch)
 
     execute {
         // A06 returns Ljava/lang/String; — must use returnEarly(null), not returnEarly().

@@ -2,7 +2,6 @@ package app.template.patches.facebook.misc
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall
-import com.android.tools.smali.dexlib2.AccessFlags
 
 // ─── Meta Verified after-post upsell suppressor ──────────────────────────────
 // Verified: classes13/com/facebook/nme/fbafterpostupsell/impl/
@@ -44,32 +43,3 @@ internal val MetaVerifiedUpsellFingerprint = Fingerprint(
     },
 )
 
-// ─── hWL.<init> — E2EE backup package name lookup ────────────────────────────
-// Verified: classes10/X/hWL.smali → constructor <init>()V
-//
-// hWL calls Context.getPackageName() then matches against a packed-switch table.
-// When installed under a renamed package, the lookup fails → NoSuchElementException.
-// Fix: inject const-string v6, "com.facebook.katana" after move-result-object v6.
-//
-// Fingerprint: PUBLIC CONSTRUCTOR, no params +
-// filter on Context.getPackageName() (stable Android SDK method) +
-// custom: classDef has SharedPreferences field AND Context field.
-internal val hWLInitFingerprint = Fingerprint(
-    accessFlags = listOf(
-        AccessFlags.PUBLIC,
-        AccessFlags.CONSTRUCTOR,
-    ),
-    returnType = "V",
-    parameters = listOf(),
-    filters = listOf(
-        methodCall(
-            definingClass = "Landroid/content/Context;",
-            name = "getPackageName",
-        ),
-    ),
-    custom = { _, classDef ->
-        classDef.superclass == "Ljava/lang/Object;" &&
-            classDef.fields.any { it.type == "Landroid/content/SharedPreferences;" } &&
-            classDef.fields.any { it.type == "Landroid/content/Context;" }
-    },
-)
