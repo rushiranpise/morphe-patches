@@ -9,7 +9,7 @@ import app.template.patches.messenger.misc.messengerSignaturePatch
 // Sets the versionCode to Int.MAX_VALUE so the Play Store considers the app
 // already up to date and never offers an update prompt.
 //
-// Current versionCode for v573.0.0.44.88 is 344611864.
+// Current versionCodes for v573.0.0.44.88 are 344611781 (armv7) and 344611864 (arm64).
 // Defaults to 2147483647 (Int.MAX_VALUE).
 //
 // Verified against com.facebook.orca 573.0.0.44.88.

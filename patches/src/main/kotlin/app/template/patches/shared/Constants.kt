@@ -3,6 +3,7 @@ package app.template.patches.shared
 import app.morphe.patcher.patch.ApkFileType
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
+import app.morphe.patcher.patch.SupportedAbi
 
 object Constants {
 
@@ -843,7 +844,13 @@ val MESSENGER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0x0084FF,
         targets = listOf(
-            AppTarget(version = "573.0.0.44.88", versionCode = 344611864),
+            AppTarget(
+                version = "573.0.0.44.88",
+                versionCodes = mapOf(
+                    SupportedAbi.ARMEABI_V7A to 344611781,
+                    SupportedAbi.ARM64_V8A to 344611864
+                )
+            ),
         )
     )
 
