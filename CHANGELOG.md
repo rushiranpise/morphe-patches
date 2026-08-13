@@ -1,3 +1,9 @@
+## [1.18.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.5...v1.18.0-dev.6) (2026-08-13)
+
+### 🐛 Bug Fixes
+
+* **messenger:** use per-abi version codes for 573.0.0.44.88 ([38fe3d4](https://github.com/rushiranpise/morphe-patches/commit/38fe3d494b4bfa8fcfc13844e014e25b65baaf9f))
+
 ## [1.18.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0-dev.4...v1.18.0-dev.5) (2026-08-12)
 
 ### 🐛 Bug Fixes
