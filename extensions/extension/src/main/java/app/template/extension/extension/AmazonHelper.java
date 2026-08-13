@@ -214,8 +214,10 @@ public class AmazonHelper {
             .matcher(url);
         if (!m.find()) return;
         final String asin = m.group(1);
+        // [a-z.]* (not +) — with + the regex backtracks and "www." ends up in the
+        // captured domain, so the Keepa/CCC map lookups miss and no charts show.
         java.util.regex.Matcher dm = java.util.regex.Pattern
-            .compile("https?://(?:www\\.)?([a-z.]+amazon[a-z.]+)").matcher(url);
+            .compile("https?://(?:www\\.)?([a-z.]*amazon[a-z.]+)").matcher(url);
         String domain = dm.find() ? dm.group(1) : "amazon.com";
         // Keepa supports every Amazon marketplace — always shown.
         // Keepa domain ID — null for any store Keepa doesn't track (skip Keepa block).
@@ -253,8 +255,15 @@ public class AmazonHelper {
                 ? "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
                   + "'CamelCamelCamel','https://" + camelHostStr + "/product/" + asin + "');"
                 : "")
-            + "var anchor=document.getElementById('dp')||document.getElementById('ppd')||document.body;"
-            + "anchor.appendChild(c);})();";
+            // Put the charts right under the price block. Amazon uses different ids
+            // for the price container depending on page type, so try the known ones
+            // and fall back to the end of the page if none exist.
+            + "var price=document.querySelector('#corePrice_feature_div,"
+            + "#corePriceDisplay_mobile_feature_div,#corePriceDisplay_desktop_feature_div,"
+            + "#apex_mobile,#apex_desktop,[id^=corePrice]');"
+            + "if(price&&price.parentNode){price.parentNode.insertBefore(c,price.nextSibling);}"
+            + "else{(document.getElementById('dp')||document.getElementById('ppd')||document.body).appendChild(c);}"
+            + "})();";
         webView.evaluateJavascript(js, null);
     }
 
