@@ -1,5 +1,6 @@
 package app.template.patches.pocketprep
 
+import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
@@ -14,6 +15,11 @@ import app.template.patches.shared.Constants.POCKETPREP_NURSING_COMPATIBILITY
 import app.template.patches.shared.Constants.POCKETPREP_NURSING_SCHOOL_COMPATIBILITY
 import app.template.patches.shared.Constants.POCKETPREP_PROFESSIONAL_COMPATIBILITY
 import app.template.patches.shared.Constants.POCKETPREP_SKILLED_TRADES_COMPATIBILITY
+import app.template.patches.shared.findMutableMethodOf
+import app.template.patches.shared.getReference
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
+import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import org.w3c.dom.Element
 
 private val ALL_VARIANTS = arrayOf(
@@ -117,21 +123,51 @@ val pocketPrepUnlockPremiumPatch = bytecodePatch(
         HasActiveSubscriptionForExamFingerprint.method
             .addInstructions(0, "const/4 v0, 0x1\nreturn v0")
 
-        // ── Exam-level question pool selector → always PREMIUM_FROM_CURRENT_BUNDLE
+        // ── Exam-level question pool selector → always PREMIUM_FROM_CURRENT_BUNDLE ──
         //
-        // cg9.I(ExamMetadata, List<Subscription>): e87  (was kg9.l0 → q77 in ≤3.27.x)
+        // Finds the subscription status enum by its developer-defined string literals
+        // "NO_PREMIUM" and "PREMIUM_FROM_CURRENT_BUNDLE" (never obfuscated — these are
+        // enum value names that appear in the static initializer and in server responses).
         //
-        // This is the single gate that controls which question set is served.
-        // When the return value is e87.z (NO_PREMIUM), the caller (l03.m0 or equivalent)
-        // reads only ExamQuestions.c (≈80 isFree=true questions). Returning
-        // e87.B (PREMIUM_FROM_CURRENT_BUNDLE) makes it read ExamQuestions.b
-        // (the full bank). The fingerprint targets the enum field accesses inside
-        // the method body so it survives the class/method rename on next update.
-        // If the status enum class is renamed again, update `returnType` in
-        // ExamSubscriptionStatusFingerprint to match.
-        ExamSubscriptionStatusFingerprint.method.addInstructions(
-            0,
-            "sget-object v0, Le87;->B:Le87;\nreturn-object v0"
-        )
+        // Then finds the resolver method on any class by:
+        //   - return type == status enum type
+        //   - parameters == (ExamMetadata, List)
+        //   - PUBLIC FINAL (not static)
+        //
+        // The PREMIUM_FROM_CURRENT_BUNDLE field name is derived from the clinit sput that
+        // immediately follows the const-string instruction in the static initializer.
+        // Zero hardcoded obfuscated names anywhere in this block.
+        val statusEnumClassDef = SubscriptionStatusEnumFingerprint.originalClassDef
+        val statusEnumType = statusEnumClassDef.type
+
+        // Derive the field name for PREMIUM_FROM_CURRENT_BUNDLE from the clinit body.
+        val clinit = statusEnumClassDef.methods.first { it.name == "<clinit>" }
+        val instructions = clinit.implementation!!.instructions.toList()
+        val premiumStringIdx = instructions.indexOfFirst { insn ->
+            insn.getReference<StringReference>()?.string == "PREMIUM_FROM_CURRENT_BUNDLE"
+        }
+        require(premiumStringIdx >= 0) { "PocketPrep: PREMIUM_FROM_CURRENT_BUNDLE string not found in clinit" }
+        // The sput-object storing this enum value appears within a few instructions after the const-string.
+        val premiumFieldName = instructions.drop(premiumStringIdx + 1)
+            .firstNotNullOfOrNull { insn -> insn.getReference<FieldReference>()?.name }
+            ?: throw PatchException("PocketPrep: PREMIUM_FROM_CURRENT_BUNDLE field not found in clinit sput")
+
+        // Find the resolver method by return type + parameters — no class or method name hardcoded.
+        val examMetadataType = "Lcom/pocketprep/android/api/common/ExamMetadata;"
+        classDefForEach { classDef ->
+            classDef.methods.firstOrNull { method ->
+                method.returnType == statusEnumType &&
+                    method.parameterTypes.size == 2 &&
+                    method.parameterTypes[0] == examMetadataType &&
+                    method.parameterTypes[1] == "Ljava/util/List;" &&
+                    !AccessFlags.STATIC.isSet(method.accessFlags)
+            }?.let { method ->
+                mutableClassDefBy(classDef).findMutableMethodOf(method).addInstructions(
+                    0,
+                    "sget-object v0, $statusEnumType->$premiumFieldName:$statusEnumType\nreturn-object v0"
+                )
+                return@classDefForEach
+            }
+        }
     }
 }

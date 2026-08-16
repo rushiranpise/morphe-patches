@@ -157,7 +157,7 @@ public class FuelioHelper {
 
     private static void spoofApiKey(android.content.pm.ApplicationInfo info) {
         if (info.metaData == null) info.metaData = new android.os.Bundle();
-        info.metaData.putString("com.google.android.maps.v2.API_KEY", ApiKeys.FUELIO_MAPS);
+        info.metaData.putString("com.google.android.maps.v2.API_KEY", ApiKeys.SHARED_MAPS);
     }
 
     private static byte[] hexToBytes(String s) {

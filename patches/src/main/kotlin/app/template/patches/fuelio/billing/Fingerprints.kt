@@ -1,31 +1,46 @@
 package app.template.patches.fuelio.billing
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
+import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
+// ── Architecture note (v10.3.2 → v10.3.3) ────────────────────────────────────
+//
+// ProFeatureManager class was removed; its logic is now in Lel5;.
+// The two separate map$1$2 / map$2$2 emitters are merged into Lve0;.h().
+// BuyViewModel$1$1 is gone — replaced by Lr7; (obfuscated coroutine dispatcher).
+// LiveData.j() obfuscated to La74;->i(). DestinationScreen enum obfuscated to Lhc0;.
+// FirebaseRemoteConfigRepository methods renamed from c()/d() to stable non-obfuscated names.
+// DEX count reduced from 3 → 2 (classes merged into classes.dex + classes2.dex).
+//
 // ── IsPremiumFingerprint ──────────────────────────────────────────────────────
 //
-// Targets: ProFeatureManager.b()Z  [classes3.dex]
+// Targets: el5.b()Z  [classes.dex]
 //
-// Synchronous isPremium() gate. Reads MutableStateFlow<Boolean> `d` via
-// getValue() + Boolean.booleanValue(). Gates all in-app feature access.
+// Synchronous isPremium() gate. Reads MutableStateFlow<Boolean> (field d:Lst6;)
+// via Lst6;->getValue() + Boolean.booleanValue(). Gates all in-app feature access.
 //
-// definingClass non-obfuscated — stable across versions.
-// Sole public final ()Z method on this class.
+// v10.3.2: definingClass = Lcom/kajda/fuelio/billing/ProFeatureManager; (non-obfuscated)
+// v10.3.3: class fully obfuscated to Lel5; — use stable filter anchors instead.
 //
-// Smali instruction order:
-//   invoke-interface  MutableStateFlow;->getValue()      ← filter[0]
-//   invoke-virtual    Boolean;->booleanValue()Z          ← filter[1]
+// Smali (el5.smali, v10.3.3):
+//   .method public final b()Z
+//     iget-object p0, p0, Lel5;->d:Lst6;
+//     invoke-virtual {p0}, Lst6;->getValue()Ljava/lang/Object;
+//     check-cast p0, Ljava/lang/Boolean;
+//     invoke-virtual {p0}, Boolean;->booleanValue()Z    ← filter[1]
+//     return p0
 //
 object IsPremiumFingerprint : Fingerprint(
-    definingClass = "Lcom/kajda/fuelio/billing/ProFeatureManager;",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
     filters = listOf(
         methodCall(
-            definingClass = "Lkotlinx/coroutines/flow/MutableStateFlow;",
+            definingClass = "Lst6;",
             name = "getValue",
         ),
         methodCall(
@@ -33,56 +48,47 @@ object IsPremiumFingerprint : Fingerprint(
             name = "booleanValue",
         ),
     ),
+    custom = { method, _ ->
+        // Restrict to el5.b() — many classes use getValue+booleanValue.
+        // el5 is uniquely identified by having exactly ONE getValue call
+        // (not a coroutine — no packed-switch, no state machine overhead).
+        (method.implementation?.instructions?.count() ?: Int.MAX_VALUE) < 20
+    },
 )
 
-// ── HasPremiumEmitFingerprint ─────────────────────────────────────────────────
+// ── SubscriptionEmitFingerprint ───────────────────────────────────────────────
 //
-// Targets: SubscriptionDataRepository$special$$inlined$map$2$2.emit()
-//          [classes3.dex]
+// Targets: ve0.h(Object, Li41;)Object  [classes.dex]
 //
-// hasPremium flow collector. Feeds BuyState.b.
+// Merged coroutine state machine that handles BOTH subscription flow emissions
+// in a single packed-switch method (was two separate classes in v10.3.2):
 //
-// Filter anchors (ArrayList.contains is unambiguous — one occurrence,
-// unlike Purchase.a() which also appears for a Timber log call):
-//   [0] ArrayList;->contains()    line 98
-//   [1] Boolean;->valueOf(Z)      line 103
+//   Branch A — hasPremium:
+//     ArrayList.contains(skuId) → Boolean.valueOf(result)    ← filter[0,1]
 //
-object HasPremiumEmitFingerprint : Fingerprint(
-    definingClass = "Lcom/kajda/fuelio/billing/SubscriptionDataRepository\$special\$\$inlined\$map\$2\$2;",
+//   Branch B — hasRenewablePremium:
+//     ArrayList.contains(skuId) → JSONObject.optBoolean("autoRenewing")  ← filter[2,3]
+//     → Boolean.valueOf(result)
+//
+// Patching this single method (clearBody → return Boolean.TRUE) covers both
+// hasPremium and hasRenewablePremium in one shot.
+//
+// Stable anchors: "fuelio_subscription" (store key, version-stable) + contains + optBoolean.
+//
+// Smali (ve0.smali, v10.3.3):
+//   .method public final h(Ljava/lang/Object;Li41;)Ljava/lang/Object;
+//     const-string v3, "fuelio_subscription"           ← filter[0]
+//     ...
+//     invoke-virtual ArrayList;->contains(Object)Z     ← filter[1]
+//     ...
+//     invoke-virtual JSONObject;->optBoolean(String)Z  ← filter[2]
+//
+object SubscriptionEmitFingerprint : Fingerprint(
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Ljava/lang/Object;", "Lkotlin/coroutines/Continuation;"),
+    parameters = listOf("Ljava/lang/Object;", "Li41;"),
     filters = listOf(
-        methodCall(
-            definingClass = "Ljava/util/ArrayList;",
-            name = "contains",
-        ),
-        methodCall(
-            definingClass = "Ljava/lang/Boolean;",
-            name = "valueOf",
-        ),
-    ),
-)
-
-// ── HasRenewablePremiumEmitFingerprint ────────────────────────────────────────
-//
-// Targets: SubscriptionDataRepository$special$$inlined$map$1$2.emit()
-//          [classes3.dex]
-//
-// hasRenewablePremium flow collector. Feeds BuyState.a.
-// Distinguished from map$2$2 by the extra JSONObject.optBoolean call.
-//
-// Filter anchors:
-//   [0] ArrayList;->contains()      line 98
-//   [1] JSONObject;->optBoolean()   line 103
-//   [2] Boolean;->valueOf(Z)        line 108
-//
-object HasRenewablePremiumEmitFingerprint : Fingerprint(
-    definingClass = "Lcom/kajda/fuelio/billing/SubscriptionDataRepository\$special\$\$inlined\$map\$1\$2;",
-    returnType = "Ljava/lang/Object;",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Ljava/lang/Object;", "Lkotlin/coroutines/Continuation;"),
-    filters = listOf(
+        string("fuelio_subscription"),
         methodCall(
             definingClass = "Ljava/util/ArrayList;",
             name = "contains",
@@ -91,85 +97,90 @@ object HasRenewablePremiumEmitFingerprint : Fingerprint(
             definingClass = "Lorg/json/JSONObject;",
             name = "optBoolean",
         ),
-        methodCall(
-            definingClass = "Ljava/lang/Boolean;",
-            name = "valueOf",
-        ),
     ),
 )
 
 // ── DestinationScreenFingerprint ──────────────────────────────────────────────
 //
-// Targets: BuyViewModel$1$1.invokeSuspend()  [classes3.dex]
+// Targets: r7.p(Object)Object  [classes.dex]
 //
-// The flow collector lambda that reads BuyState.a / BuyState.b and posts
-// a DestinationScreen enum value to BuyViewModel.g (MutableLiveData).
-// BuyFragment observes g and navigates accordingly:
-//   PREMIUM_RENEWABLE_PROFILE → profile screen (PRO user)
-//   PREMIUM_PROFILE           → profile screen (PRO, no autorenew)
-//   SUBSCRIPTIONS_OPTIONS_SCREEN → paywall (what we see)
+// Coroutine state machine that reads BuyState (Lgc0;) and posts a DestinationScreen
+// enum value (Lhc0;) to a MutableLiveData-equivalent (La74;) via ->i().
 //
-// Patching this method to always post PREMIUM_RENEWABLE_PROFILE eliminates
-// the paywall screen entirely — BuyFragment navigates away immediately.
+// Dispatch logic at pswitch_8b4 (r7.smali ~line 4366):
+//   check-cast v0, Lgc0;                          BuyState cast (opcode, not invoke)
+//   iget-object v2, v0, Lgc0;->a                  read hasRenewablePremium
+//   invoke-static Llo3;->f() → if-eqz :cond_8dc   branch if false
+//   sget-object v0, Lhc0;->s:Lhc0;               PREMIUM_RENEWABLE_PROFILE ← filter[0]
+//   invoke-virtual {v1,v0}, La74;->i(Object)V     postValue                 ← filter[1]
+//   :cond_8dc  iget-object gc0.b (hasPremium) ...
+//   sget-object Lhc0;->t / La74;->i()
+//   :cond_8f5
+//   sget-object Lhc0;->q / La74;->i()
 //
-// definingClass non-obfuscated — stable.
-// returnType Object (suspend fun). No parameters (coroutine state machine).
-// Filter anchors — two consecutive LiveData.j() calls on the same object,
-// one for PREMIUM_RENEWABLE_PROFILE, one for SUBSCRIPTIONS_OPTIONS_SCREEN:
-//   [0] LiveData;->j()   ← first post (PREMIUM_RENEWABLE_PROFILE branch)
-//   [1] LiveData;->j()   ← second post (PREMIUM_PROFILE branch)
+// WHY PREVIOUS FILTER FAILED:
+//   filter[0] used methodCall(Lgc0;-><init>) — r7.p() never CALLS gc0.<init>.
+//   It only check-casts to Lgc0; which is a DEX opcode, not an invoke instruction.
+//   methodCall filters only match invoke-* opcodes. check-cast is unreachable.
 //
-// We only need to match to confirm we're in the right method; then
-// clearBody + inject sget PREMIUM_RENEWABLE_PROFILE + invoke j + return.
+// CORRECT anchors (verified unique across entire classes.dex):
+//   [0] fieldAccess(SGET_OBJECT, Lhc0;, "s") — hc0.s (PREMIUM_RENEWABLE_PROFILE sget)
+//       appears ONLY in r7.smali across the entire DEX.
+//   [1] methodCall(La74;->i(Object)V)         — postValue, immediately after.
+//
+// Smali evidence (r7.smali lines 4399–4401):
+//   sget-object v0, Lhc0;->s:Lhc0;           ← filter[0] fieldAccess SGET_OBJECT
+//   invoke-virtual {v1,v0}, La74;->i(Obj)V   ← filter[1] methodCall
 //
 object DestinationScreenFingerprint : Fingerprint(
-    definingClass = "Lcom/kajda/fuelio/ui/paywall/BuyViewModel\$1\$1;",
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf("Ljava/lang/Object;"),
     filters = listOf(
-        methodCall(
-            definingClass = "Landroidx/lifecycle/LiveData;",
-            name = "j",
+        fieldAccess(
+            opcode = Opcode.SGET_OBJECT,
+            definingClass = "Lhc0;",
+            name = "s",
         ),
         methodCall(
-            definingClass = "Landroidx/lifecycle/LiveData;",
-            name = "j",
+            definingClass = "La74;",
+            name = "i",
+            returnType = "V",
+            parameters = listOf("Ljava/lang/Object;"),
         ),
     ),
 )
 
 // ── AwaitAccessFingerprint ────────────────────────────────────────────────────
 //
-// Targets: ProFeatureManager.a(ContinuationImpl)Object  [classes3.dex]
+// Targets: el5.a(Lk41;)Object  [classes.dex]
 //
-// Async suspend gate — awaitAccess(). Called by coroutine-based feature checks
-// (StationsOnRoute, ReportResult, etc). Suspends on CompletableDeferred.f
-// (BillingClient ready signal), then reads MutableStateFlow.d.getValue()
-// and returns the Boolean object. Callers do .booleanValue() + if-nez branch;
-// false → navigate to ActionGlobalBuypro (paywall).
+// Async suspend gate. Awaits a coroutine Deferred (via Lrq3;->z()), then reads
+// MutableStateFlow.d.getValue() and returns the Boolean object. Callers do
+// .booleanValue() + if-nez → false routes to ActionGlobalBuypro paywall.
 //
-// Patch: clearBody + return Boolean.TRUE immediately, bypassing the
-// CompletableDeferred await and the StateFlow read entirely.
+// v10.3.2: definingClass = ProFeatureManager; param = ContinuationImpl
+// v10.3.3: el5.a(Lk41;)Object — Lk41; is the new continuation type
 //
-// Unique anchors in smali instruction order:
-//   [0] Deferred;->m()        ← await() call on CompletableDeferred.f
-//   [1] MutableStateFlow;->getValue()  ← reads premium state after await
+// Patch: clearBody + return Boolean.TRUE immediately.
+// Stable anchors: both methods (b and a) are on el5, identified by param Lk41;.
 //
-// definingClass non-obfuscated — stable across versions.
+// Smali (el5.smali, v10.3.3):
+//   .method public final a(Lk41;)Ljava/lang/Object;
+//     ... (coroutine state machine preamble)
+//     invoke-virtual {p1, v0}, Lrq3;->z(Lk41;)Ljava/lang/Object;  ← Deferred.await
+//     ...
+//     iget-object p0, p0, Lel5;->d:Lst6;
+//     invoke-virtual {p0}, Lst6;->getValue()Ljava/lang/Object;     ← StateFlow read
+//     return-object p0
 //
 object AwaitAccessFingerprint : Fingerprint(
-    definingClass = "Lcom/kajda/fuelio/billing/ProFeatureManager;",
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Lkotlin/coroutines/jvm/internal/ContinuationImpl;"),
+    parameters = listOf("Lk41;"),
     filters = listOf(
         methodCall(
-            definingClass = "Lkotlinx/coroutines/Deferred;",
-            name = "m",
-        ),
-        methodCall(
-            definingClass = "Lkotlinx/coroutines/flow/MutableStateFlow;",
+            definingClass = "Lst6;",
             name = "getValue",
         ),
     ),
@@ -177,7 +188,7 @@ object AwaitAccessFingerprint : Fingerprint(
 
 // ── FuelioApplicationOnCreateFingerprint ──────────────────────────────────────
 //
-// Targets: FuelioApplication.onCreate()V  [classes3.dex]
+// Targets: FuelioApplication.onCreate()V  [classes.dex]
 //
 // Fuelio's Application subclass. Injection point for FuelioHelper.init()
 // which installs the IPackageManager proxy before Google Maps SDK reads
@@ -195,59 +206,35 @@ object FuelioApplicationOnCreateFingerprint : Fingerprint(
 
 // ── PromoEnabledFingerprint ───────────────────────────────────────────────────
 //
-// Targets: FirebaseRemoteConfigRepository.c()Z  [classes3.dex]
+// Targets: FirebaseRemoteConfigRepository.isPromo30Enabled()Z  [classes.dex]
 //
-// Returns true when Firebase Remote Config "promo30_enabled" == true AND
-// build is eligible. Guards the "Limited Promo / 30% OFF" banner in the
-// dashboard composable. Patch to return false to suppress the promo banner
-// for PRO users who already have premium unlocked.
+// v10.3.2: obfuscated to c()Z — identified via string("promo30_enabled") + custom method.name=="c"
+// v10.3.3: de-obfuscated to isPromo30Enabled()Z — use stable name directly.
 //
-// Both c() and d() ("promo30_enabled_home") share the same structure.
-// Use string anchor "promo30_enabled" (without "_home") to target c() only.
-//
-// Smali: FirebaseRemoteConfigRepository.smali, method c()Z
-//   const-string "promo30_enabled"  ← filter[0]
-//   invoke-virtual FirebaseRemoteConfig;->getBoolean()Z
+// Patch to return false: suppresses the "Limited Promo / 30% OFF" dashboard banner
+// for users who already have premium unlocked.
 //
 object PromoEnabledFingerprint : Fingerprint(
     definingClass = "Lcom/kajda/fuelio/ui/promo/FirebaseRemoteConfigRepository;",
+    name = "isPromo30Enabled",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
-    filters = listOf(
-        app.morphe.patcher.string("promo30_enabled"),
-        methodCall(
-            definingClass = "Lcom/google/firebase/remoteconfig/FirebaseRemoteConfig;",
-            name = "getBoolean",
-        ),
-    ),
-    custom = { method, _ ->
-        // c() uses "promo30_enabled", d() uses "promo30_enabled_home"
-        // The string filter above matches "promo30_enabled" in both — but
-        // "promo30_enabled" is a prefix of "promo30_enabled_home", so
-        // string() will also match the "_home" variant. Use custom to
-        // restrict to c() only by checking method name.
-        method.name == "c"
-    },
 )
 
 // ── PromoHomeEnabledFingerprint ───────────────────────────────────────────────
 //
-// Targets: FirebaseRemoteConfigRepository.d()Z  [classes3.dex]
+// Targets: FirebaseRemoteConfigRepository.isPromo30EnabledHome()Z  [classes.dex]
 //
-// Same as c() but reads "promo30_enabled_home" — the home-screen variant.
-// Also guards the dashboard promo banner (checked alongside c()).
+// v10.3.2: obfuscated to d()Z
+// v10.3.3: de-obfuscated to isPromo30EnabledHome()Z — use stable name directly.
+//
+// Same rationale as PromoEnabledFingerprint — suppresses the home-screen promo banner.
 //
 object PromoHomeEnabledFingerprint : Fingerprint(
     definingClass = "Lcom/kajda/fuelio/ui/promo/FirebaseRemoteConfigRepository;",
+    name = "isPromo30EnabledHome",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
-    filters = listOf(
-        app.morphe.patcher.string("promo30_enabled_home"),
-        methodCall(
-            definingClass = "Lcom/google/firebase/remoteconfig/FirebaseRemoteConfig;",
-            name = "getBoolean",
-        ),
-    ),
 )

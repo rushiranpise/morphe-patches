@@ -7,69 +7,61 @@ import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
 // ════════════════════════════════════════════════════════════════════════════════
-// Flightradar24 Fingerprints — verified against 11.8.0 (versionCode 110807310)
+// Flightradar24 Fingerprints — verified against 11.9.0 (versionCode 110900000)
 //
 // Stability guide:
 //   STABLE    — uses only non-obfuscated SDK/app class names → survives R8 reruns
 //   OBFUSCATED — references a name that changes on every R8 run; review on update
+//
+// Update history:
+//   11.8.0 → 11.9.0:
+//     - BillingPurchasesProviderIsValidFingerprint REMOVED. "Lip1;" was recycled
+//       by R8 into an unrelated synthetic lambda (R8$$SyntheticClass) — the
+//       b(WorkSpec)Z method no longer exists on it. The WorkManager billing
+//       constraint gate was removed from the app in this version.
+//     - Tier mapper class: e0f/ecf → b7f (classes2). Enum type: Lo0f$a; → Lp5f$a;
+//       Business enum field: h = Business in BOTH versions — no smali change needed.
+//     - Tier enum analytics class: now Ldwd; (fields: b=Free, c=Silver, d=Gold, e=Business)
+//     - User class: oye → p5f. Tier methods: isGold=p()Z, isBusiness=n()Z,
+//       isSilver=r()Z, isBasic=m()Z. All string-based fingerprints are STABLE.
 // ════════════════════════════════════════════════════════════════════════════════
-
-// ─── Billing network-constraint gate ─────────────────────────────────────────
-//
-// [OBFUSCATED] ip1 = ContraintControllers.kt (WorkManager network constraint).
-// b(WorkSpec)Z reads WorkSpec→constraints→requiresNetwork and returns it.
-// Patched to always return true so the billing work-request proceeds offline.
-//
-// To find the new name after an update:
-//   grep -r "ContraintControllers" smali/ --include="*.smali" -l
-// Then pick the class whose c()I returns const/4 5 (NETWORK_TYPE_CONNECTED).
-// DEX: classes
-val BillingPurchasesProviderIsValidFingerprint = Fingerprint(
-    definingClass = "Lip1;",
-    name = "b",
-    returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("L"),
-)
 
 // ─── Subscription tier checks (User class) ───────────────────────────────────
 //
 // [OBFUSCATED class, STABLE anchors]
-// The User class exposes one no-arg instance method per tier that:
-//   1. iget-objects the UserData field directly (no getUserData() call)
-//   2. invoke-statics the tier-string mapper with that UserData
-//   3. const-strings the tier literal and calls String.equals()
+// The User class (p5f in 11.9.0, oye in 11.8.0) exposes one no-arg PUBLIC FINAL
+// instance method per tier that compares the tier-string field against a literal:
+//
+//   const-string v0, "Gold"
+//   invoke-virtual {v1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+//   return v0
 //
 // Fingerprint anchors: strings=[TierName] + returnType=Z + PUBLIC FINAL + no params.
-// Confirmed unique across all DEX files in 11.8.0 (only collision candidates are
-// enum <clinit>s and JSON adapters — none have PUBLIC FINAL ()Z signature).
-//
-// NOTE: earlier versions of this fingerprint used a methodCall(UserData.getUserData)
-// filter. That was wrong — these methods never call getUserData(); they iget-object
-// the field directly. The filter was removed; strings alone are unique.
+// Unique across all DEX files in 11.9.0 — no collision with enum <clinit> or JSON
+// adapters (those are STATIC or have parameters).
 
-// isGold — tier string == "Gold"
+// p()Z — tier string == "Gold"
 val UserIsGoldFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     strings = listOf("Gold"),
 )
 
-// isBusiness — tier string == "Business"
+// n()Z — tier string == "Business"
 val UserIsBusinessFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     strings = listOf("Business"),
 )
 
-// isSilver — tier string == "Silver" (patched false → Gold check takes precedence)
+// r()Z — tier string == "Silver" (patched false → Gold check takes precedence)
 val UserIsSilverFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     strings = listOf("Silver"),
 )
 
-// isBasic — tier string == "Basic" (patched false — Basic = unauthenticated/free)
+// m()Z — tier string == "Basic" (patched false — Basic = unauthenticated/free)
 val UserIsBasicFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
@@ -106,12 +98,15 @@ val UserHasAlertsFingerprint = Fingerprint(
 // ─── Subscription tier mapper ─────────────────────────────────────────────────
 //
 // [OBFUSCATED class, STABLE anchors]
-// e2f (classes2) hosts two static mappers:
+// b7f (classes2, 11.9.0) hosts two static mappers:
 //   b(UserData)String  — returns the tier name string
-//   a(UserData)Loye$a; — maps the string to the tier enum
-// Both are patched to hard-return "Business" / the Business enum constant.
+//   a(UserData)Lp5f$a; — maps the string to the tier enum
+//
+// Update note: The tier enum type changed Lo0f$a; → Lp5f$a; in 11.9.0, but the
+// Business field is still named "h" in both. EcfGetSubscriptionTierEnumFingerprint
+// reads the returnType at patch-time and uses it directly — no smali edit needed.
 
-// e2f.b(UserData)String
+// b7f.b(UserData)String
 // [STABLE] anchors: parameters + methodCall(UserDataSubscriptionsItem.getName) + strings=["Basic"]
 val EcfGetSubscriptionTierFingerprint = Fingerprint(
     returnType = "Ljava/lang/String;",
@@ -126,8 +121,9 @@ val EcfGetSubscriptionTierFingerprint = Fingerprint(
     ),
 )
 
-// e2f.a(UserData)Loye$a; / Lo0f$a;
+// b7f.a(UserData)Lp5f$a;
 // [STABLE] Only one PUBLIC STATIC FINAL method takes UserData and returns a type ending in "$a;"
+// The returnType is read at patch time and used directly in the sget-object instruction.
 val EcfGetSubscriptionTierEnumFingerprint = Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     parameters = listOf("Lcom/flightradar24free/models/account/UserData;"),

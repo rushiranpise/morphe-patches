@@ -319,6 +319,14 @@ val BOXBOX_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.4.15", versionCode = 258))
     )
 
+val BUBBLEUPNP_COMPATIBILITY = Compatibility(
+        name = "BubbleUPnP",
+        packageName = "com.bubblesoft.android.bubbleupnp",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x2196F3,
+        targets = listOf(AppTarget(version = "4.6.5.1", versionCode = 3000929))
+    )
+
 val BUZZCAST_COMPATIBILITY = Compatibility(
         name = "BuzzCast",
         packageName = "com.guochao.faceshow",
@@ -402,6 +410,14 @@ val CASHEW_COMPATIBILITY = Compatibility(
         packageName = "com.budget.tracker_app",
         appIconColor = 0xFFB300,
         targets = listOf(AppTarget(version = "6.6.11", versionCode = 510))
+    )
+
+val CAST_TO_TV_COMPATIBILITY = Compatibility(
+        name = "Cast to TV - XCast",
+        packageName = "cast.video.screenmirroring.casttotv",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "2.5.3.1", versionCode = 253102))
     )
 
 val CHARGEMETER_COMPATIBILITY = Compatibility(
@@ -556,6 +572,25 @@ val FACEBOOK_COMPATIBILITY = Compatibility(
             AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
     )
 
+val FEEM_COMPATIBILITY = Compatibility(
+        name = "Feem",
+        packageName = "com.feeperfect.airsend.android",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x4350AF,
+        targets = listOf(
+            AppTarget(version = "6.10.0", versionCode = 6010000)
+        )
+    )
+
+val FILE_MANAGER_PLUS_COMPATIBILITY = Compatibility(
+        name = "File Manager - Files, PDF, Zip",
+        packageName = "com.alphainventor.filemanager",
+        appIconColor = 0xFF7043,
+        targets = listOf(
+            AppTarget(version = "3.8.2", versionCode = 2103082)
+        )
+    )
+
 val FITBOD_COMPATIBILITY = Compatibility(
         name = "Fitbod",
         packageName = "com.fitbod.fitbod",
@@ -681,6 +716,14 @@ val HTTPMOCK_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.11.7-ad_mob", versionCode = 139))
     )
 
+val HYDROCOACH_COMPATIBILITY = Compatibility(
+        name = "Hydro Coach",
+        packageName = "com.codium.hydrocoach",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x0288D1,
+        targets = listOf(AppTarget(version = "5.1.9", versionCode = 541))
+    )
+
 val IMAGEDATEFIXER_COMPATIBILITY = Compatibility(
         name = "Image & Video Date Fixer",
         packageName = "eu.duong.imagedatefixer",
@@ -782,6 +825,55 @@ val LAWFULLY_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "6.7.5", versionCode = 542))
     )
 
+val LEAP_FITNESS_WOMEN_COMPATIBILITY = Compatibility(
+        name = "Women Workout - Female Fitness",
+        packageName = "women.workout.female.fitness",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "2.3.5", versionCode = 142))
+    )
+
+val LEAP_HEIGHTINCREASE_COMPATIBILITY = Compatibility(
+        name = "Height Increase - Taller Exercise",
+        packageName = "increaseheightworkout.heightincreaseexercise.tallerexercise",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "1.1.17", versionCode = 66))
+    )
+
+val LEAP_HOMEWORKOUT_COMPATIBILITY = Compatibility(
+        name = "Home Workout - No Equipment",
+        packageName = "homeworkout.homeworkouts.noequipment",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "1.7.7", versionCode = 151))
+    )
+
+val LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY = Compatibility(
+        name = "Lose Weight App for Women",
+        packageName = "loseweightapp.loseweightappforwomen.womenworkoutathome",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "2.4.0", versionCode = 107))
+    )
+
+val LEAP_PLANK_COMPATIBILITY = Compatibility(
+        name = "Plank Workout",
+        packageName = "fat.burnning.plank.fitness.loseweight",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "1.4.3", versionCode = 51))
+    )
+
+val LEAP_FITNESS_ALL = arrayOf(
+    LEAP_PLANK_COMPATIBILITY,
+    LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY,
+    LEAP_HEIGHTINCREASE_COMPATIBILITY,
+    LEAP_HOMEWORKOUT_COMPATIBILITY,
+    LEAP_FITNESS_WOMEN_COMPATIBILITY,
+
+)
+
 val LIFE360_COMPATIBILITY = Compatibility(
         name = "Life360",
         packageName = "com.life360.android.safetymapd",
@@ -838,6 +930,14 @@ val MEGA_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "16.10(261970902)(8daeddaf4d)", versionCode = 261970902))
     )
 
+val MEOW_COMPATIBILITY = Compatibility(
+        name = "Money Manager- Budget & Meow",
+        packageName = "com.glgjing.money.manager.bookkeeping.meow",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF6B9E,
+        targets = listOf(AppTarget(version = "1.9.9", versionCode = 79))
+    )
+
 val MESSENGER_COMPATIBILITY = Compatibility(
         name = "Messenger",
         packageName = "com.facebook.orca",
@@ -852,6 +952,14 @@ val MESSENGER_COMPATIBILITY = Compatibility(
                 )
             ),
         )
+    )
+
+val METEOBLUE_COMPATIBILITY = Compatibility(
+        name = "meteoblue Weather",
+        packageName = "com.meteoblue.droid",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x0077CC,
+        targets = listOf(AppTarget(version = "Cirrus Uncinus 3.0.4", versionCode = 27024))
     )
 
 val MIGRACONNECT_COMPATIBILITY = Compatibility(
@@ -1264,6 +1372,14 @@ val POLICESCANNER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.29.0-260420093"))
     )
 
+val PROTON_PASS_COMPATIBILITY = Compatibility(
+        name = "Proton Pass: Password Manager",
+        packageName = "proton.android.pass",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x6D4AFF,
+        targets = listOf(AppTarget(version = "1.40.3", versionCode = 14003373))
+    )
+
 val PROTONVPN_COMPATIBILITY = Compatibility(
         name = "Proton VPN",
         packageName = "ch.protonvpn.android",
@@ -1408,6 +1524,14 @@ val SEND_FILES_TO_TV_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
         targets = listOf(AppTarget(version = "1.4.22", versionCode = 69))
+    )
+
+val SERVER_AUDITOR_COMPATIBILITY = Compatibility(
+        name = "Server Auditor",
+        packageName = "com.server.auditor.ssh.client",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x1A73E8,
+        targets = listOf(AppTarget(version = "7.8.0", versionCode = 933))
     )
 
 val SHAREIT_COMPATIBILITY = Compatibility(
@@ -1815,6 +1939,24 @@ val WEAWOW_COMPATIBILITY = Compatibility(
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.APK,
         targets = listOf(AppTarget(version = "7.1.8", versionCode = 718))
+    )
+
+val WETTERONLINE_COMPATIBILITY = Compatibility(
+        name = "WetterOnline - Wetter und Radar",
+        packageName = "de.wetteronline.wetterapp",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x0066CC,
+        targets = listOf(
+            AppTarget(version = "2026.16.1", versionCode = 2280443)
+        )
+    )
+
+val WIDGET2026_COMPATIBILITY = Compatibility(
+        name = "Widget 2026- Aesthetic Widgets",
+        packageName = "com.remi.widget",
+        apkFileType = ApkFileType.XAPK,
+        appIconColor = 0xFF6B35,
+        targets = listOf(AppTarget(version = "85.1.4", versionCode = 116))
     )
 
 val WINDSCRIBE_COMPATIBILITY = Compatibility(

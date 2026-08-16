@@ -7,50 +7,53 @@ import app.template.patches.shared.Constants.TRANZMATE_COMPATIBILITY
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 
-// Tranzmate (Moovit+) premium patch — v5.197.0.1799
-//
-// Patch layers:
-//
-//  1. MoovitHelper.init() — extension side-car for any runtime hooks.
-//
-//  2. SubscriptionStateFingerprint — b()Z in the "subscribed_skus" SharedPrefs
-//     wrapper; always returns true (subscribed).
-//
-//  3. AdUnitResolverFingerprint — g(AdSource)String; returns "" to suppress
-//     all ad unit ID lookups.
-//
-//  4. MoovitAdView / MoovitBannerAdView — setAdSource: hide the views
-//     (GONE) before any ad loading occurs.
-//
-//  5. SubscriptionPackageStateFingerprint — always returns ACTIVE so every
-//     feature-gate that checks package state sees an active subscription.
-//
-//  6. SafeRideCalculateStateFingerprint — same: always returns ACTIVE.
-//
-//  7. BlockPaywallGateFingerprint — a(MoovitActivity)Z; returns false
-//     (paywall gate disabled). Class was Ly81; in v5.196, Lw81; in v5.197;
-//     pinned by "block_paywall" string anchor in Fingerprints.kt.
-//
-//  8. BlockPaywallActivityOnReadyFingerprint — immediately calls
-//     relaunchCallingActivity() so the blocking screen dismisses itself.
-//
-//  9. MoovitPlusOnboardingActivityFingerprint — calls V0() (the
-//     finish+relaunch helper, renamed from P0() in v5.196) then returns.
-//
-// 10. Upgrade / purchase UI suppression — finish() or setVisibility(GONE) on
-//     MoovitPlusActivity, HelpCenter, MenuItem, AdFreeMenuItem, PackagePopup,
-//     PurchaseFragment, PurchaseOffersFragment, OnboardingPrePurchaseFragment,
-//     FreemiumPopupFragment, PromoCellFragment.
-//
-// 11. ItineraryBlockedSmartTipsBannerFingerprint — replaces the MOVE_RESULT
-//     feeding the isSmartTips boolean with const/4 v6, 0x0, routing the flow
-//     to the insight-banner path and suppressing the smart tips upsell. Class
-//     was Lmy6; in v5.196, Liy6; in v5.197; param Llx2; → Lix2;.
-//
-// 12. MyMoovitPlusGoPremiumCardFingerprint — replaces the VISIBLE branch's
-//     "move v9, v2" (index 38) with "move v9, v3" so the card is always GONE.
-//     Class was Lzy9; in v5.196, Lbz9; in v5.197; param Llx2; → Lix2;.
-
+/**
+ * Tranzmate (Moovit+) premium patch — v5.197.1.1801
+ *
+ * ## Patch layers
+ *
+ * 1. **MoovitApplication.onCreate** — extension side-car initialiser.
+ *
+ * 2. **SubscriptionStateFingerprint** — b()Z in the "subscribed_skus"
+ *    SharedPrefs wrapper; always returns true (subscribed).
+ *
+ * 3. **AdUnitResolverFingerprint** — f(AdSource)String (was g() in v5.197.0);
+ *    returns "" to suppress all ad unit ID lookups.
+ *    Fingerprinted by "is_ads_free_version" string, not method name.
+ *
+ * 4. **MoovitAdView / MoovitBannerAdView.setAdSource** — hides the views
+ *    (GONE) before any ad loading occurs.
+ *
+ * 5. **SubscriptionPackageStateFingerprint** — always returns ACTIVE so every
+ *    feature gate sees an active subscription.
+ *
+ * 6. **SafeRideCalculateStateFingerprint** — same: always returns ACTIVE.
+ *
+ * 7. **BlockPaywallGateFingerprint** — a(MoovitActivity)Z; returns false
+ *    (paywall disabled). Class rename history: Ly81 (v5.196) → Lw81 (v5.197.0)
+ *    → Ljh1 (v1801). Anchored by stable "block_paywall" string.
+ *
+ * 8. **BlockPaywallActivity.onReady** — calls relaunchCallingActivity() and
+ *    exits immediately.
+ *
+ * 9. **MoovitPlusOnboardingActivity.onReady** — calls Q0() (finish+relaunch
+ *    helper; was V0() in v5.197.0) then returns.
+ *
+ * 10. **Upgrade / purchase UI suppression** — finish() or GONE on:
+ *     MoovitPlusActivity, HelpCenterMenuItemFragment, MenuItemFragment,
+ *     AdFreeMenuItemFragment, MoovitSubscriptionsPromoCellFragment,
+ *     MoovitPlusPackagePopupFragment, MoovitPlusPurchaseFragment,
+ *     MoovitPlusPurchaseOffersFragment, MoovitPlusOnboardingPrePurchaseFragment,
+ *     FreemiumPopupFragment.
+ *
+ * 11. **ItineraryBlockedSmartTipsBannerFingerprint** (Lwq7; in v1801, was Liy6;
+ *     in v5.197.0) — replaces the MOVE_RESULT before view_blocked_smart_tips_banner
+ *     sget with const/4 v6, 0x0, routing to the insight-banner path.
+ *
+ * 12. **MyMoovitPlusGoPremiumCardFingerprint** (Lr1b; in v1801, was Lbz9; in
+ *     v5.197.0) — replaces "move v9, v2" (VISIBLE branch) with "move v9, v3"
+ *     so the card is always GONE.
+ */
 @Suppress("unused")
 val tranzmatePremiumPatch = bytecodePatch(
     name = "Unlock Moovit+",
@@ -78,7 +81,8 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 3. Ad unit resolver — return empty string to suppress all ads.
+        // 3. Ad unit resolver — return empty string (suppresses all ad unit lookups).
+        //    Method renamed from g() to f() in v1801; fingerprinted by string, not name.
         AdUnitResolverFingerprint.method.addInstructions(
             0,
             """
@@ -97,7 +101,7 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 4b. MoovitBannerAdView — same treatment.
+        // 4b. MoovitBannerAdView — same.
         MoovitBannerAdViewSetSourceFingerprint.method.addInstructions(
             0,
             """
@@ -125,7 +129,7 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 7. Paywall gate — return false (no paywall).
+        // 7. Paywall gate — return false (paywall disabled).
         BlockPaywallGateFingerprint.method.addInstructions(
             0,
             """
@@ -134,7 +138,7 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 8. BlockPaywallActivity — re-launch the calling activity and exit.
+        // 8. BlockPaywallActivity — re-launch calling activity and exit.
         BlockPaywallActivityOnReadyFingerprint.method.addInstructions(
             0,
             """
@@ -143,13 +147,12 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 9. Onboarding — call V0() (renamed from P0() in v5.196) which reads
-        //    "activity_to_start_on_finish" from the intent, starts that activity,
-        //    then calls finish(). This mirrors the original dismiss flow.
+        // 9. Onboarding activity — call Q0() (finish+relaunch helper).
+        //    Was V0() in v5.197.0; renamed to Q0() in v1801.
         MoovitPlusOnboardingActivityFingerprint.method.addInstructions(
             0,
             """
-                invoke-virtual {p0}, Lcom/moovit/app/plus/onboarding/MoovitPlusOnboardingActivity;->V0()V
+                invoke-virtual {p0}, Lcom/moovit/app/plus/onboarding/MoovitPlusOnboardingActivity;->Q0()V
                 return-void
             """.trimIndent(),
         )
@@ -163,9 +166,7 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        MoovitPlusHelpCenterMenuItemFingerprint.method.addInstructions(
-            0, "return-void",
-        )
+        MoovitPlusHelpCenterMenuItemFingerprint.method.addInstructions(0, "return-void")
 
         MoovitPlusMenuItemFingerprint.method.addInstructions(
             0,
@@ -176,8 +177,7 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // AdFreeMenuItem: insert GONE + hide at the penultimate instruction
-        // (just before the final return) so the view is hidden after inflation.
+        // AdFreeMenuItem: hide after view inflation (insert before final return).
         AdFreeMenuItemFingerprint.method.addInstructions(
             AdFreeMenuItemFingerprint.method.implementation!!.instructions.lastIndex,
             """
@@ -203,17 +203,11 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        MoovitPlusPurchaseFragmentFingerprint.method.addInstructions(
-            0, "return-void",
-        )
+        MoovitPlusPurchaseFragmentFingerprint.method.addInstructions(0, "return-void")
 
-        MoovitPlusPurchaseOffersFragmentFingerprint.method.addInstructions(
-            0, "return-void",
-        )
+        MoovitPlusPurchaseOffersFragmentFingerprint.method.addInstructions(0, "return-void")
 
-        MoovitPlusOnboardingPrePurchaseFragmentFingerprint.method.addInstructions(
-            0, "return-void",
-        )
+        MoovitPlusOnboardingPrePurchaseFragmentFingerprint.method.addInstructions(0, "return-void")
 
         FreemiumPopupFragmentFingerprint.method.addInstructions(
             0,
@@ -223,36 +217,43 @@ val tranzmatePremiumPatch = bytecodePatch(
             """.trimIndent(),
         )
 
-        // 11. Smart tips banner — replace the MOVE_RESULT before the
-        //     view_blocked_smart_tips_banner sget with const/4 v6, 0x0.
-        //     This sends the flow down the insight-banner path (opcode index 439).
+        // 11. Smart tips upsell banner — replace the MOVE_RESULT immediately
+        //     before the view_blocked_smart_tips_banner sget with const/4 v6, 0x0.
+        //     The fingerprint now uses fieldAccess to Li4d;->view_blocked_smart_tips_banner
+        //     so instructionMatches[0] IS the sget. We step back to find the
+        //     MOVE_RESULT that precedes it.
+        val smartTipsSgetIndex =
+            ItineraryBlockedSmartTipsBannerFingerprint.instructionMatches[0].index
+
         val smartTipsInstructions =
             ItineraryBlockedSmartTipsBannerFingerprint.method.implementation!!.instructions
-
-        val smartTipsSgetIndex = smartTipsInstructions.indexOfFirst { instruction ->
-            (instruction as? ReferenceInstruction)?.reference.toString()
-                .contains("view_blocked_smart_tips_banner") == true
-        }
-        check(smartTipsSgetIndex > 0) {
-            "Moovit blocked smart tips banner sget not found."
-        }
 
         val smartTipsMoveResultIndex = smartTipsInstructions
             .subList(0, smartTipsSgetIndex)
             .indexOfLast { it.opcode == Opcode.MOVE_RESULT }
-        check(smartTipsMoveResultIndex >= 0) {
-            "Moovit blocked smart tips MOVE_RESULT predecessor not found."
-        }
+        check(smartTipsMoveResultIndex >= 0) { "MOVE_RESULT predecessor to smart tips sget not found." }
 
         ItineraryBlockedSmartTipsBannerFingerprint.method.replaceInstruction(
             smartTipsMoveResultIndex,
             "const/4 v6, 0x0",
         )
 
-        // 12. GoPremiumCard — replace "move v9, v2" (VISIBLE branch, index 38)
-        //     with "move v9, v3" so the card is permanently GONE.
-        //     v2=0 (VISIBLE) and v3=8 (GONE) are set at indices 3 and 4 in the
-        //     same method, so registers are stable regardless of the branch taken.
+        // 13. Favorite location address search — flip c=false → c=true in
+        //     FavoriteLocationEditorActivity.h1(). Instruction index 5 is
+        //     "const/4 v5, 0x0" (p5 in AppSearchLocationCallback constructor
+        //     = field c = addAddressProvider). When false, qn5 geocode provider
+        //     is never registered — only transit stops appear in search results.
+        //     "favorites_editor" string is unique to this method (verified v1801).
+        FavoriteLocationAddressSearchFingerprint.method.replaceInstruction(
+            5,
+            "const/4 v5, 0x1",
+        )
+
+        // 12. Go Premium card — replace "move v9, v2" (VISIBLE branch) with
+        //     "move v9, v3" so the card is permanently GONE.
+        //     Navigates by finding setVisibility after the "goPremiumCard" string
+        //     null-check marker, then steps back 3 instructions. (Lr1b; in v1801,
+        //     was Lbz9; in v5.197.0.)
         val goPremiumInstructions =
             MyMoovitPlusGoPremiumCardFingerprint.method.implementation!!.instructions
 
@@ -260,27 +261,18 @@ val tranzmatePremiumPatch = bytecodePatch(
             (instruction as? ReferenceInstruction)?.reference.toString()
                 .contains("goPremiumCard") == true
         }
-        check(goPremiumStringIndex > 0) {
-            "Moovit+ goPremiumCard null-check marker not found."
-        }
+        check(goPremiumStringIndex > 0) { "goPremiumCard null-check marker not found." }
 
-        // Find the first setVisibility call after the goPremiumCard marker.
-        val setVisibilityOffsetFromMarker = goPremiumInstructions
+        val setVisibilityOffset = goPremiumInstructions
             .drop(goPremiumStringIndex)
             .indexOfFirst { instruction ->
                 (instruction as? ReferenceInstruction)?.reference.toString()
                     .contains("Landroid/view/View;->setVisibility(I)V") == true
             }
-        check(setVisibilityOffsetFromMarker > 0) {
-            "Moovit+ goPremiumCard setVisibility call not found after marker."
-        }
+        check(setVisibilityOffset > 0) { "setVisibility call not found after goPremiumCard marker." }
 
-        val goPremiumSetVisibilityIndex = goPremiumStringIndex + setVisibilityOffsetFromMarker
-
-        // The instruction 3 before setVisibility is "move v9, v2" (VISIBLE branch).
-        // Replace it with "move v9, v3" to force GONE.
         MyMoovitPlusGoPremiumCardFingerprint.method.replaceInstruction(
-            goPremiumSetVisibilityIndex - 3,
+            goPremiumStringIndex + setVisibilityOffset - 3,
             "move v9, v3",
         )
     }
