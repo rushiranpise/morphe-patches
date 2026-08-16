@@ -1,4 +1,4 @@
-package app.template.patches.aviate.license
+package app.template.patches.aviate.premium
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.methodCall

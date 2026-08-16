@@ -3,62 +3,74 @@ package app.template.patches.adguard
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod.Companion.toMutable
-import app.template.patches.shared.Constants.ADGUARD_COMPATIBILITY
+import app.template.patches.shared.Constants.ADGUARD_UNIFIED_COMPATIBILITY
+import app.template.patches.shared.returnEarly
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.builder.MutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 
 /**
- * AdGuard — Unlock Lifetime Premium
+ * AdGuard — Unlock Lifetime Premium (Unified: Phone + Android TV)
  *
  * ## Architecture
  *
  * AdGuard's license state flows through a sealed class hierarchy:
  *
- *   PlusState (interface G0/i)
- *   ├── PaidLicense  — active subscription / purchase
- *   │     fields: licenseKey, licenseType (LicenseType enum), licenseDuration
- *   │              (LicenseDuration sealed), devCount, maxDevCount, keyOwner
- *   ├── Free         — no license
- *   ├── Trial        — trial period
- *   └── (others)
+ *   PlusState (interface I0/i or G0/i depending on version)
+ *   ├── PaidLicense  — active license/subscription
+ *   │     fields: licenseKey, licenseType, licenseDuration, devCount, maxDevCount, keyOwner
+ *   ├── Free, Trial, Expired*, Blocked*, CachedFree, CachedPaid, CachedTrial, Unknown
  *
  *   LicenseDuration
- *   ├── Lifetime     — singleton object
- *   └── (Annual, etc.)
+ *   ├── Lifetime     — singleton object (I0/i$l$a or G0/i$l$a)
+ *   └── WithExpirationDate, WithNextBillingDate, Unknown
  *
- *   LicenseType (enum)
- *   └── Personal, Family, Standard, Beta, Bonus, Custom
+ *   LicenseType (enum) — Custom, Unknown, Personal, Family, Standard, Beta, Bonus
  *
  * ## PlusManager state propagation
  *
- * PlusManager (D0/b) is the single source of truth. State flows through:
+ * PlusManager is the single source of truth for premium state. Five paths:
  *
- *   getCachedPlusState()           — reads in-memory cache (field `l`)
- *                                    falls back to storage, writes back
+ *   getCachedPlusState()         reads in-memory cache; falls back to storage + writes back
+ *   setPlusState(state)          writes to cache + storage + notifies observers
+ *   fetchAndUpdatePlusState(...) network → cache → StateFlow → license screen UI
+ *   fetchPlusStateForPromo(...)  network → MutableLiveData → promo/check-license dialog
+ *   activateLicenseKey(String)   backend re-verification on license screen open
+ *                                (phone: present but not always invoked on screen open;
+ *                                 TV:    always called by TvAboutLicenseViewModel on open)
  *
- *   setPlusState(PlusState)        — persists to storage + notifies observers
+ * ## Patch strategy (5 + 1 layers)
  *
- *   fetchAndUpdatePlusState(...)   — license screen path (AboutLicenseViewModel):
- *                                    network → cache → StateFlow → UI
+ * A static helper `getPaidLicense()` is injected into PlusManager at patch time.
+ * It constructs a synthetic PaidLicense(Family, Lifetime) so all state paths
+ * return premium without consulting the network or on-disk storage.
  *
- *   fetchPlusStateForPromo(...)    — promo/check-license dialog path (PromoViewModel):
- *                                    network → MutableLiveData → dialog decision
- *                                    Free/Unknown → "Check license" dialog → purchase URL
+ * Why Family + Lifetime (not Personal):
+ *   The AboutLicenseViewModel sets `needHidePositiveButton = true` only when
+ *   licenseType == Family AND duration == Lifetime. When true, the "Upgrade"
+ *   and secondary buttons are hidden. With Personal + Lifetime those buttons
+ *   remain visible as upsell prompts — undesirable in a patched build.
  *
- * ## Patch strategy
+ *   Layer 1 — inject `getPaidLicense()` static helper into PlusManager class.
+ *   Layer 2 — getCachedPlusState()       → return getPaidLicense() immediately.
+ *   Layer 3 — setPlusState(incoming)     → replace incoming arg with getPaidLicense().
+ *   Layer 4 — fetchAndUpdatePlusState()  → return getPaidLicense() (license screen).
+ *   Layer 5 — fetchPlusStateForPromo()   → return getPaidLicense() (promo dialog).
+ *   Layer 6 — activateLicenseKey()       → returnEarly() — skip backend re-verify.
+ *              Applied via methodOrNull: gracefully skips on builds where this
+ *              method is absent or its fingerprint changes. When present, prevents
+ *              the "License activated" fallback text on the TV license screen and
+ *              avoids unnecessary network calls on phone.
  *
- * A static helper `getPaidLicense()` is injected into PlusManager. It constructs
- * a synthetic PaidLicense with Lifetime duration and Personal type. All four state
- * propagation methods are patched to return this fake license before any real logic
- * runs, so neither the network path nor the storage path is ever consulted.
+ * ## Version matrix
  *
- *   Layer 1 — inject `getPaidLicense()` static helper into PlusManager.
- *   Layer 2 — getCachedPlusState() returns getPaidLicense() immediately.
- *   Layer 3 — setPlusState(incoming) replaces incoming state with getPaidLicense()
- *              before persisting — prevents a server response from overwriting.
- *   Layer 4 — fetchAndUpdatePlusState() returns getPaidLicense() (license screen).
- *   Layer 5 — fetchPlusStateForPromo() returns getPaidLicense() (promo dialog).
+ *   Version       | Build  | PlusManager | PlusState   | Verified
+ *   4.14.0 phone  | phone  | D0/b        | G0/i        | ✓ (original)
+ *   4.13.1 phone  | phone  | F0/b        | I0/i        | ✓ (this update)
+ *   4.13.0 TV     | TV     | F0/b        | I0/i        | ✓ (original)
+ *
+ * All fingerprints use stable non-obfuscated anchors (developer log strings,
+ * data-class toString literals, opcode shapes) — no obfuscated class/method names.
  */
 @Suppress("unused")
 val adGuardUnlockLifetimePatch = bytecodePatch(
@@ -66,19 +78,17 @@ val adGuardUnlockLifetimePatch = bytecodePatch(
     description = "Unlocks all features locked behind the subscription paywall.",
     default = true,
 ) {
-    compatibleWith(ADGUARD_COMPATIBILITY)
+    compatibleWith(ADGUARD_UNIFIED_COMPATIBILITY)
 
     execute {
-        // Resolve the obfuscated type refs we need for the injected constructor call.
-        // These are read from fingerprint results at patch time — we never hardcode
-        // the obfuscated names (D0/b, G0/i$n, G0/i$m, G0/i$l$a) into the patch.
+        // Resolve obfuscated type refs from fingerprint results — never hardcoded.
         val paidLicenseType = PaidLicenseFingerprint.classDef.type
         val paidLicenseCtor = PaidLicenseFingerprint.method
 
-        // LicenseType enum: second param of PaidLicense <init>
+        // Second constructor param is the LicenseType enum class
         val licenseTypeClass = paidLicenseCtor.parameters[1].type
 
-        // LicenseDuration.Lifetime: single static field on the Lifetime class
+        // LicenseDuration.Lifetime: the single static field on the Lifetime singleton class
         val lifetimeDurationField = LifetimeDurationFingerprint.classDef.staticFields.first()
 
         val plusManagerType = GetPlusStateFingerprint.classDef.type
@@ -87,24 +97,14 @@ val adGuardUnlockLifetimePatch = bytecodePatch(
         // ── Layer 1: inject static helper getPaidLicense() into PlusManager ──────
         //
         // Constructs: PaidLicense("", Family, Lifetime, 1, 9, "")
-        //   licenseKey        = "" (no key needed for Lifetime)
-        //   licenseType       = LicenseType.Family  ← not Personal; see note below
-        //   licenseDuration   = LicenseDuration.Lifetime (singleton)
-        //   licenseDevCount   = 1
-        //   licenseMaxDevCount= 9  (Family plan = up to 9 devices)
-        //   licenseKeyOwner   = "" (nullable — empty string)
+        //   licenseKey         = "" (no real key needed for Lifetime)
+        //   licenseType        = LicenseType.Family
+        //   licenseDuration    = LicenseDuration.Lifetime (singleton)
+        //   licenseDevCount    = 1
+        //   licenseMaxDevCount = 9   (Family plan: up to 9 devices)
+        //   licenseKeyOwner    = ""  (nullable field — empty string)
         //
-        //   Why Family not Personal:
-        //   The ViewModel sets field j=true on the PaidLicense UI state only when
-        //   licenseType==Family && duration==Lifetime. When j=true, i()=true, and the
-        //   Fragment hides both upgrade buttons (a1(d$b) hides "Upgrade" button r,
-        //   T0(b$b) hides secondary button s). With Personal+Lifetime j=false, so
-        //   button r shows "Upgrade" (R.string.about_license_upgrade) as an upsell
-        //   to upgrade from Personal→Family — undesirable for a patched install.
-        //
-        // Injected as a static method so it can be called from any patch layer
-        // without needing a PlusManager instance reference (which is p0 in
-        // non-static methods and would complicate the injection smali).
+        // Static method: callable from patch layers without a PlusManager instance.
         val getPaidLicenseMethod = ImmutableMethod(
             plusManagerType,
             "getPaidLicense",
@@ -140,19 +140,13 @@ val adGuardUnlockLifetimePatch = bytecodePatch(
         """.trimIndent()
 
         // ── Layer 2: getCachedPlusState() — bypass cache + storage read ──────────
-        //
-        // Short-circuits before the iget-object cache read. Any subsequent call
-        // that reads the cached field directly (bypassing this method) is also
-        // covered by Layer 3 which writes the fake license back to storage.
         GetPlusStateFingerprint.method.addInstructions(0, callHelper)
 
         // ── Layer 3: setPlusState(incoming) — override the incoming state ────────
         //
-        // Intercepts at the top of the method, replacing p1 (the incoming PlusState)
-        // with getPaidLicense(). The method then proceeds normally — persisting our
-        // fake license to storage and notifying observers. This closes the loop:
-        // even if a server response triggers setPlusState(Free), it persists
-        // PaidLicense instead, keeping the in-memory and on-disk state consistent.
+        // Replaces p1 (incoming PlusState) with getPaidLicense() before persisting.
+        // Ensures a server response of Free/Trial can never overwrite the fake license
+        // in storage or notify observers with a non-premium state.
         SetPlusStateFingerprint.method.addInstructions(
             0,
             """
@@ -162,18 +156,25 @@ val adGuardUnlockLifetimePatch = bytecodePatch(
         )
 
         // ── Layer 4: fetchAndUpdatePlusState() — license screen path ─────────────
-        //
-        // Returns immediately with getPaidLicense() before the coroutine is
-        // dispatched, so the network call and StateFlow update never occur.
-        // Covers AboutLicenseViewModel → license screen UI.
         StateFlowResolverFingerprint.method.addInstructions(0, callHelper)
 
         // ── Layer 5: fetchPlusStateForPromo() — promo / check-license dialog ─────
         //
-        // Without this, a network response of Free/Unknown triggers
-        // MutableLiveData.postValue(true) on needShowCheckLicenseDialog, which
-        // shows a dialog and opens the purchase URL in Chrome.
-        // Returning PaidLicense prevents the dialog from appearing.
+        // Without this, a Free/Unknown response triggers MutableLiveData.postValue(true)
+        // on needShowCheckLicenseDialog, which opens the purchase URL in Chrome.
         PromoStateFlowResolverFingerprint.method.addInstructions(0, callHelper)
+
+        // ── Layer 6: activateLicenseKey(String) — skip backend re-verification ───
+        //
+        // Present in both phone and TV builds (verified in v4.13.1 phone + v4.13.0 TV).
+        // TV's TvAboutLicenseViewModel always calls this on license screen open;
+        // without it the screen shows "License activated" (error fallback) instead
+        // of the "Lifetime" duration from our synthetic PaidLicense.
+        //
+        // Applied via methodOrNull: gracefully no-ops on builds where this method
+        // is absent or its signature has changed. If Layer 6 is skipped, Layers 2-5
+        // still fully protect the premium state; only the license screen label may
+        // be slightly wrong on TV.
+        LicenseKeyActivateFingerprint.methodOrNull?.returnEarly()
     }
 }
