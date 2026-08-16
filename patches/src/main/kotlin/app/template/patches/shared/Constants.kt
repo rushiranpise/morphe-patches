@@ -1990,7 +1990,6 @@ val WORD_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "16.0.20228.20090", versionCode = 16843309))
     )
 
-
 val YATRI_COMPATIBILITY = Compatibility(
         name = "Yatri",
         packageName = "com.yatrirailways.yatri",
