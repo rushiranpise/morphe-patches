@@ -2,12 +2,12 @@ group = "app.rushiranpise.morphe-patches"
 
 patches {
     about {
-        name = "Rushi's Patches"
-        description = "Patches for apps I like"
+        name = "Doom's Morphe Patches"
+        description = "All patches answer to Doom."
         source = "https://github.com/rushiranpise/morphe-patches"
         author = "rushiranpise"
         contact = "https://github.com/rushiranpise"
-        website = "https://github.com/rushiranpise/morphe-patches"
+        website = "https://morphe.software/add-source?github=rushiranpise/morphe-patches"
         license = "GPLv3"
     }
 }

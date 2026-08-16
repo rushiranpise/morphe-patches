@@ -1,4 +1,8 @@
-# 👋🧩 Rushi's Patches
+<p align="center">
+<img src="patches-bundle.png" width="190">
+</p>
+
+# 👋🧩 Doom's Morphe Patches
 <p align="center">
 
 ![GitHub Release](https://img.shields.io/github/v/release/rushiranpise/morphe-patches?style=for-the-badge)
