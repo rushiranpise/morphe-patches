@@ -58,20 +58,11 @@ val ACTIVITYLAUNCHER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.5.0-dev", versionCode = 20500))
     )
 
-val ADGUARD_COMPATIBILITY = Compatibility(
+val ADGUARD_UNIFIED_COMPATIBILITY = Compatibility(
         name = "AdGuard",
         packageName = "com.adguard.android",
         appIconColor = 0x67B346,
-        apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "4.14.68", versionCode = 10330100)),
-    )
-
-val ADGUARD_TV_COMPATIBILITY = Compatibility(
-        name = "AdGuard for Android TV",
-        packageName = "com.adguard.android",
-        appIconColor = 0x67B346,
-        apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "4.14.68", versionCode = 10330100)),
+        targets = listOf(AppTarget(version = "4.14.0", versionCode = 42218005)),
     )
 
 val ADOBE_READER_COMPATIBILITY = Compatibility(
@@ -80,6 +71,34 @@ val ADOBE_READER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xB30B00,
         targets = listOf(AppTarget(version = "26.7.1.47181", versionCode = 1931947181))
+    )
+
+val ANEXPLORER_COMPATIBILITY = Compatibility(
+        name = "AnExplorer",
+        packageName = "dev.dworks.apps.anexplorer",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0xFF5722,
+        targets = listOf(AppTarget(version = "6.0.6", versionCode = 60604))
+    )
+
+val APPLOCKWATCHER_COMPATIBILITY = Compatibility(
+        name = "AppLock Watcher - App Lock",
+        packageName = "com.domobile.applockwatcher",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "6.3.3", versionCode = 2026073001)
+        )
+    )
+
+val TIKTOK_LITE_COMPATIBILITY = Compatibility(
+        name = "TikTok Lite",
+        packageName = "com.tiktok.lite.go",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0xFE2C55,
+        targets = listOf(
+            AppTarget(version = "44.9.52", versionCode = 440952)
+        )
     )
 
 val ADOBE_SCAN_COMPATIBILITY = Compatibility(
