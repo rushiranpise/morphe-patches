@@ -9,8 +9,8 @@ import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import app.template.patches.shared.Constants.UDISC_COMPATIBILITY
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 
-// Verified against UDisc 24.2.6 (versionCode 9943). See Fingerprints.kt for the
-// reasoning behind each match strategy and which identifiers are obfuscated.
+// Verified against UDisc 24.2.6 (versionCode 9943) and 24.2.8 (versionCode 20235).
+// See Fingerprints.kt for per-fingerprint stability reasoning.
 @Suppress("unused")
 val uDiscUnlockProPatch = bytecodePatch(
     name = "Unlock Pro",
@@ -27,29 +27,23 @@ val uDiscUnlockProPatch = bytecodePatch(
             "invoke-static {}, Lapp/template/extension/extension/UDiscHelper;->init()V",
         )
 
-        // Force every newly-constructed Account.Subscription to report an active,
-        // far-future paid subscription (platform ordinal 1, status SUBSCRIBED).
-        AccountSubscriptionConstructorFingerprint.method.addInstructions(
-            0,
-            """
-                const/4 p1, 0x7
-                invoke-static {}, Lcom/udisc/kmp/account/Account${'$'}Subscription${'$'}Platform;->values()[Lcom/udisc/kmp/account/Account${'$'}Subscription${'$'}Platform;
-                move-result-object p2
-                const/4 v0, 0x1
-                aget-object p2, p2, v0
-                invoke-static {}, Lcom/udisc/kmp/account/Account${'$'}Subscription${'$'}Status;->values()[Lcom/udisc/kmp/account/Account${'$'}Subscription${'$'}Status;
-                move-result-object p3
-                aget-object p3, p3, v0
-                const-string p4, "2099-12-31T00:00:00Z"
-            """.trimIndent(),
-        )
+        // Force every newly-constructed Subscription to be an active, far-future
+        // Google Play paid subscription.
+        //
+        // The Platform (GooglePlayStore) and Status (Subscribed) concrete types are
+        // resolved at patch-execute time from their own fingerprints rather than being
+        // hardcoded. Both types are obfuscated by R8 and their short class names drift
+        // on every build (e.g. Lyy/x1 in 24.2.8, something else in 24.2.9).
+        // Resolving via SubscriptionClassFingerprint / GooglePlayStorePlatformFingerprint /
+        // SubscribedStatusFingerprint (which anchor on stable serialisation strings)
+        // means the inject smali never needs to be updated regardless of rename.
+        patchSubscriptionConstructor()
 
         patchUserAccountProGates()
         patchWatchAccountProGate()
 
         // Auto-acknowledge every locally-tracked pending purchase instead of the
-        // stock purchase-verification flow. See Fingerprints.kt for why this
-        // can't match on the listener's parameter type.
+        // stock purchase-verification flow.
         PlayBillingPurchaseListenerFingerprint.method.addInstructions(
             0,
             """
@@ -74,6 +68,39 @@ val uDiscUnlockProPatch = bytecodePatch(
     }
 }
 
+/**
+ * Injects into the Subscription synthetic constructor so every new Subscription
+ * instance has platform=GooglePlayStore and status=Subscribed, with a far-future
+ * expiry date.
+ *
+ * Platform and Status concrete type descriptors are resolved from their own
+ * fingerprints (anchored on stable serialisation strings) so the injected smali
+ * never contains hardcoded obfuscated class names.
+ */
+private fun BytecodePatchContext.patchSubscriptionConstructor() {
+    // Resolve the obfuscated concrete type names at patch time.
+    val platformType = GooglePlayStorePlatformFingerprint.originalClassDef.type
+    val statusType   = SubscribedStatusFingerprint.originalClassDef.type
+
+    // Resolve the single static-final singleton field name in each class.
+    val platformField = GooglePlayStorePlatformFingerprint.originalClassDef
+        .fields.first { it.accessFlags.and(0x18) == 0x18 } // PUBLIC | STATIC
+        .name
+    val statusField = SubscribedStatusFingerprint.originalClassDef
+        .fields.first { it.accessFlags.and(0x18) == 0x18 }
+        .name
+
+    AccountSubscriptionConstructorFingerprint.method.addInstructions(
+        0,
+        """
+            const/4 p1, 0x7
+            sget-object p2, $platformType->$platformField:$platformType
+            sget-object p3, $statusType->$statusField:$statusType
+            const-string p4, "2099-12-31T00:00:00Z"
+        """.trimIndent(),
+    )
+}
+
 private fun BytecodePatchContext.patchUserAccountProGates() {
     requireSingleMatch(AccountHasEntitlementFingerprint, "UDisc account entitlement gate")
         .method
@@ -95,12 +122,8 @@ private fun BytecodePatchContext.patchWatchAccountProGate() {
 }
 
 /**
- * Resolves [fingerprint] against the current build and fails loudly if it matches
- * zero or more than one method, instead of silently patching the wrong target.
- * Both [AccountHasEntitlementFingerprint] and [AccountIsTrialingFingerprint] are
- * structural (opcode-shape / referenced-type) matches rather than name-based ones,
- * since neither underlying method keeps a stable name across app updates -- see
- * Fingerprints.kt for the full reasoning.
+ * Resolves [fingerprint] and fails loudly if it matches zero or more than one
+ * method, instead of silently patching the wrong target.
  */
 private fun BytecodePatchContext.requireSingleMatch(
     fingerprint: app.morphe.patcher.Fingerprint,
@@ -108,11 +131,11 @@ private fun BytecodePatchContext.requireSingleMatch(
 ): app.morphe.patcher.Match {
     val matches = fingerprint.matchAllOrNull() ?: emptyList()
     return when (matches.size) {
-        0 -> throw PatchException("$description not found.")
-        1 -> matches.single()
+        0    -> throw PatchException("$description not found.")
+        1    -> matches.single()
         else -> throw PatchException(
-            "$description matched ${matches.size} methods -- expected exactly 1. " +
-                "The structural heuristic in Fingerprints.kt is no longer unique for this app version.",
+            "$description matched ${matches.size} methods — expected exactly 1. " +
+                "The structural heuristic in Fingerprints.kt is no longer unique for this build.",
         )
     }
 }

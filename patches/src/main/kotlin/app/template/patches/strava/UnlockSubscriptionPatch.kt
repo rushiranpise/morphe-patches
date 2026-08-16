@@ -2,33 +2,43 @@ package app.template.patches.strava
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.methodCall
 import app.morphe.patcher.patch.bytecodePatch
-import app.morphe.patcher.string
 import app.template.patches.shared.Constants.STRAVA_COMPATIBILITY
 import com.android.tools.smali.dexlib2.AccessFlags
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Strava 474.14 subscription architecture
+// Strava 475.11 subscription architecture
 //
-// pb1/f = SubscriptionDetail domain model (obfuscated, stable in 474.14)
-//   field a:J  = athleteId
-//   field b:Z  = isPremium  ← primary gate (confirmed via toString)
-//   constructor <init>(J, Z[=p3 isPremium], Long?, pb1/i, pb1/j, Product,
-//                       String, pb1/c, pb1/h, Long?, Long?, pb1/e)
-//   instruction 3: iput-boolean p3, p0, Lpb1/f;->b:Z  (own-class write)
+// SubscriptionDetail (com.strava.subscriptions.data.models.SubscriptionDetail)
+//   — now fully non-obfuscated (was pb1/f in v474.14)
+//   field isPremium:Z  ← primary gate for all premium feature checks
 //
-// Three independent construction paths — all pass isPremium as p3:
-//   1. REST    SubscriptionDetailResponseKt.toSubscriptionDetail(Response)
-//   2. GraphQL SubscriptionDetailGraphQLMapper.toDomain(mb1/c$d)
-//   3. DB      SubscriptionDetailLocalDataSource.toSubscriptionDetail(Entity)
-// Forcing p3=1 in <init> covers all three paths in one instruction.
+//   Private constructor (classes6.dex, registers 14):
+//     <init>(JZLjava/lang/Long;SubscriptionState;SubscriptionSubState;
+//            Product;String;RecurringPeriod;SubscriptionPlatform;
+//            Long;Long;StravaProductAccess;)V
+//     ACCESS: private constructor
+//     p1+p2 = athleteId:J (wide), p3 = isPremium:Z
+//     instruction 0: invoke-direct Object.<init>
+//     instruction 1: iput-wide p1 (athleteId)
+//     instruction 2: iput-boolean p3 → isPremium  ← inject here
 //
-// GraphQL SubscriptionStatus adapters (AdpRepository / in-activity gating):
-//   wt/z0.b(qf/f, mf/o)  → vt/b$z0(isSubscribed:Z)
-//   a40/e1.b(qf/f, mf/o) → y30/z$e1(isSubscribed:Z)
+//   Three construction paths — all reach this constructor:
+//     REST:    SubscriptionDetailRestDataSource → toSubscriptionDetail()
+//     GraphQL: SubscriptionDetailGraphQLMapper.toDomain(svi.d) → new SubscriptionDetail(...)
+//     DB:      SubscriptionDetailLocalDataSource.toSubscriptionDetail(entity) via JSON deserializer
 //
-// OTP: RequestOtpLogInNetworkResponse.getUsePassword() [stable, unchanged ✓]
+//   Forcing p3=1 at index 0 of the private constructor covers all three paths.
+//
+// GraphQL adapters for other-athlete subscriptionStatus {isSubscribed}:
+//   Used only for UI display of OTHER athletes (challenges, activity detail,
+//   followers). Not a gate for the current user's premium features.
+//   The v474 obfuscated adapters wt/z0 and a40/e1 no longer exist in v475.
+//   No patch needed — SubscriptionDetail.isPremium=true is sufficient.
+//
+// OTP / password login (classes4.dex):
+//   RequestOtpLogInNetworkResponse.getUsePassword()Z — unchanged from v474.
+//   Fingerprinted by stable non-obfuscated definingClass + name.
 // ─────────────────────────────────────────────────────────────────────────────
 
 @Suppress("unused")
@@ -41,56 +51,28 @@ val unlockSubscriptionPatch = bytecodePatch(
 
     execute {
 
-        // ── DOMAIN MODEL: pb1/f.<init> ─────────────────────────────────────────
+        // ── DOMAIN MODEL: SubscriptionDetail.<init> ───────────────────────────
         //
-        // mutableClassDefBy resolves pb1/f directly by descriptor — the class name
-        // is stable in this version and known from static analysis; no Fingerprint
-        // needed. The single constructor takes isPremium as p3 (J is wide → p1+p2,
-        // so p3 = the Z boolean). const/4 p3, 0x1 at index 0 makes every pb1/f
-        // instance constructed via any path have isPremium=true.
-        // Own-class write: legal even with the FINAL access flag on field b.
-        mutableClassDefBy("Lpb1/f;")
+        // Class is fully non-obfuscated in v475 (was Lpb1/f; in v474).
+        // The private constructor is resolved by definingClass + name directly;
+        // no Fingerprint needed. p3 is the isPremium boolean (p1+p2 = J athleteId).
+        // const/4 p3, 0x1 at index 0 forces isPremium=true for every instance
+        // constructed via REST, GraphQL, or DB deserialization paths.
+        mutableClassDefBy("Lcom/strava/subscriptions/data/models/SubscriptionDetail;")
             .directMethods
-            .first { it.name == "<init>" }
+            .first { it.name == "<init>" && it.accessFlags and AccessFlags.PRIVATE.value != 0 }
             .addInstructions(0, "const/4 p3, 0x1")
 
-        // ── GRAPHQL SUBSCRIPTION STATUS ADAPTERS ──────────────────────────────
-        //
-        // Fingerprint (shared happy-path shape for both adapters):
-        //   parameters = listOf("Lqf/f;", "Lmf/o;")    ← exact b() signature
-        //   methodCall(mf/b$b, "b")     = Apollo next-token reader
-        //   methodCall(Boolean, "booleanValue") = unbox JSON boolean
-        // "isSubscribed" appears only in the error branch — not a valid filter.
-        // custom filter pins each fingerprint to its specific adapter class.
-        for ((adapterClass, statusType) in listOf(
-            "Lwt/z0;" to "Lvt/b\$z0;",
-            "La40/e1;" to "Ly30/z\$e1;",
-        )) {
-            Fingerprint(
-                returnType = "Ljava/lang/Object;",
-                accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-                parameters = listOf("Lqf/f;", "Lmf/o;"),
-                filters = listOf(
-                    methodCall(definingClass = "Lmf/b\$b;", name = "b"),
-                    methodCall(definingClass = "Ljava/lang/Boolean;", name = "booleanValue"),
-                ),
-                custom = { _, classDef -> classDef.type == adapterClass },
-            ).method.addInstructions(
-                0,
-                """
-                    new-instance v0, $statusType
-                    const/4 v1, 0x1
-                    invoke-direct { v0, v1 }, $statusType-><init>(Z)V
-                    return-object v0
-                """.trimIndent(),
-            )
-        }
-
         // ── OTP / PASSWORD LOGIN ───────────────────────────────────────────────
+        //
+        // Stable non-obfuscated fingerprint — unchanged across versions.
+        // Returns true so the app falls through to password login rather than
+        // forcing OTP-only auth flow.
         Fingerprint(
             definingClass = "Lcom/strava/authorization/data/RequestOtpLogInNetworkResponse;",
             name = "getUsePassword",
             returnType = "Z",
+            accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
             parameters = emptyList(),
         ).method.addInstructions(
             0,

@@ -10,7 +10,7 @@ import app.template.patches.shared.clearBody
 import app.template.patches.shared.returnEarly
 import com.android.tools.smali.dexlib2.Opcode
 
-// SAI premium system overview (v2.3.2, versionCode 44):
+// SAI premium system overview (v2.3.3, versionCode 45):
 //
 // ── Pairip (LicenseClient-only variant) ──────────────────────────────────────
 // Application.attachBaseContext() → LicenseClient.checkLicense(Context) [static]
@@ -74,9 +74,9 @@ val saiUnlockProPatch = bytecodePatch(
         SetActiveSubscriptionFingerprint.method.addInstructions(0, "const/4 p2, 0x1")
 
         // 4. Remove the paywall page from the onboarding page list.
-        //    OnboardingPaywallPageFingerprint matches ov6.<init> via:
-        //      filter[0] = sget-object Lvu6;->d (paywall page enum)
-        //      filter[1] = invoke-virtual Lxc5;->add() (the list add immediately after)
+        //    OnboardingPaywallPageFingerprint matches fv6.<init> via:
+        //      filter[0] = sget-object Lmu6;->d (paywall page enum)  [was vu6 in v2.3.2]
+        //      filter[1] = invoke-virtual Lqc5;->add() (the list add immediately after)  [was xc5]
         //    instructionMatches[1] is the add() call — replace it with a const/4 no-op.
         //    The add() return value (Z) is never used, so discarding it is safe.
         //    After replacement the uu6(vu6.d,...) object is constructed but never added;
@@ -88,16 +88,17 @@ val saiUnlockProPatch = bytecodePatch(
 
         // 5. MainActivity paywall FlowCollector — always execute TRUE branch.
         //    .registers 5: v0=sentinel, v1=null; p0→MainActivity, p1→MainActivity.I
+        //    v2.3.3 renames: Lpca;→Lfca;, Lyn5;→Lsn5;, Lr87;→Li87;, Lb49;→Ls39;
         PaywallEmitFingerprint.method.apply {
             clearBody()
             addInstructions(
                 0,
                 """
-                    sget-object v0, Lpca;->a:Lpca;
+                    sget-object v0, Lfca;->a:Lfca;
                     const/4 v1, 0x0
-                    iget-object p0, p0, Lyn5;->b:Lcom/mtv/sai/ui/activities/main/MainActivity;
-                    iget-object p1, p0, Lcom/mtv/sai/ui/activities/main/MainActivity;->I:Lr87;
-                    invoke-virtual {p1, v1}, Lb49;->setValue(Ljava/lang/Object;)V
+                    iget-object p0, p0, Lsn5;->b:Lcom/mtv/sai/ui/activities/main/MainActivity;
+                    iget-object p1, p0, Lcom/mtv/sai/ui/activities/main/MainActivity;->I:Li87;
+                    invoke-virtual {p1, v1}, Ls39;->setValue(Ljava/lang/Object;)V
                     invoke-virtual {p0, v1}, Lcom/mtv/sai/ui/activities/main/MainActivity;->H(Ljava/lang/Integer;)V
                     iput-object v1, p0, Lcom/mtv/sai/ui/activities/main/MainActivity;->K:Ljava/lang/Integer;
                     return-object v0

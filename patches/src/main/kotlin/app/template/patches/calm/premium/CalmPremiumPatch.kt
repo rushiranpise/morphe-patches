@@ -1,88 +1,127 @@
 package app.template.patches.calm.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.CALM_COMPATIBILITY
-import app.template.patches.shared.returnEarly
-
-// Calm 6.99.1 — subscription bypass
-//
-// Gate flow:
-//   Server API → Subscription.valid:Z → UserRepository.isSubscribed() → 20+ UI call sites
-//   Per-content: PackItem.isUnlocked:Z / ActionData.isLocked:Z (server-set)
-//   Display:     Subscription.planDuration / subscriptionPlan → lifetime label
-//   Upsell:      IndividualSubscriptionKt shows SubscriptionUpgradeBanner when
-//                SubscriptionDetails.type == Subscription.Type.Android
-//
-// 9 targets:
-//
-//   Access gates:
-//   1. Subscription.getValid()              → returnEarly(true)
-//   2. UserRepository.isSubscribed()        → returnEarly(true)
-//   3. SubscriptionRefreshResponse.getValid() → returnEarly(true)
-//   4. PackItem.isUnlocked()                → returnEarly(true)
-//   5. ActionData.isLocked()                → returnEarly(false)
-//
-//   Lifetime display:
-//   6. Subscription.getSubscriptionPlan()   → return "lifetime"
-//   7. Subscription.getPlanDuration()       → return "lifetime"
-//   8. Subscription.isLifetime()            → returnEarly(true)
-//
-//   Hide family plan upgrade upsell:
-//   9. Subscription.getSubscriptionType()   → return Subscription.Type.Gift
-//      The upgrade banner in IndividualSubscriptionKt only renders when
-//      type == Subscription.Type.Android. Gift is never Android → banner hidden.
 
 @Suppress("unused")
 val calmPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks Calm lifetime subscription",
+    description = "Unlocks Calm Premium: removes all subscription gates, " +
+        "upsell banners, video session locks, and content locks.",
+    default = true,
 ) {
     compatibleWith(CALM_COMPATIBILITY)
 
     execute {
-        // ── Access gates ─────────────────────────────────────────────────────
+        val returnTrue  = "const/4 v0, 0x1\nreturn v0"
+        val returnFalse = "const/4 v0, 0x0\nreturn v0"
 
-        SubscriptionGetValidFingerprint.method.returnEarly(true)
+        // Layer 1: Subscription.getValid() → true
+        SubscriptionGetValidFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnTrue)
+        }
 
-        UserRepositoryIsSubscribedFingerprint.method.returnEarly(true)
+        // Layer 2: SubscriptionRefreshResponse.getValid() → true
+        SubscriptionRefreshResponseGetValidFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnTrue)
+        }
 
-        SubscriptionRefreshGetValidFingerprint.method.returnEarly(true)
+        // Layer 3: UserRepository.isSubscribed() → true
+        UserRepositoryIsSubscribedFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnTrue)
+        }
 
-        PackItemIsUnlockedFingerprint.method.returnEarly(true)
+        // Layer 4: UserRepository.getHasValidSubscription() → true
+        UserRepositoryGetHasValidSubscriptionFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnTrue)
+        }
 
-        ActionDataIsLockedFingerprint.method.returnEarly(false)
+        // Layer 5: isGuideInFreeAccessLimit(Guide) → false
+        IsGuideInFreeAccessLimitFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnFalse)
+        }
 
-        // ── Lifetime display ─────────────────────────────────────────────────
+        // Layer 6: isFreeAccessSessionLocked(String,Z) → Single.just(false)
+        IsFreeAccessSessionLockedFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(
+                0,
+                """
+                    const/4 v0, 0x0
+                    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+                    move-result-object v0
+                    invoke-static {v0}, Lio/reactivex/Single;->just(Ljava/lang/Object;)Lio/reactivex/Single;
+                    move-result-object v0
+                    return-object v0
+                """.trimIndent(),
+            )
+        }
 
-        SubscriptionGetPlanFingerprint.method.addInstructions(
-            0,
-            """
-                const-string p0, "lifetime"
-                return-object p0
-            """,
-        )
+        // Layer 7: PackViewHolderFactory.getViewHolder() — skip BannerPromo for subscribers
+        //
+        // Inject at the index of new-instance BannerPromoViewHolder (instructionMatches[0]).
+        // When isSubscribed=true: create BlankCellViewHolder and return-object early.
+        // When isSubscribed=false: fall through to original BannerPromoViewHolder creation.
+        //
+        // Register layout at :pswitch_e2 injection point (.registers 15 → v0..v8 locals):
+        //   p0 = PackViewHolderFactory (this) — intact
+        //   p1 = LayoutInflater — intact (needed for inflate)
+        //   p2 = "inflate(...)" string (overwritten from original DisplayStyle param — safe to clobber)
+        //   p3 = DisplayStyle ordinal result (consumed by packed-switch — safe to clobber)
+        //   v0..v5 = used by earlier branches sharing the register frame
+        //   v6, v7 = scratch (unused at this point in :pswitch_e2)
+        //
+        // Register assignments:
+        //   v6  = isSubscribed() bool, then reused as new BlankCellViewHolder instance
+        //   p3  = PackCell$DisplayStyle.Blank (sget-object — clobbers consumed param)
+        //   v7  = PackCellBlankBinding (inflate result)
+        //   p2  = packCellDependenciesBundle (iget-object — clobbers consumed inflate string)
+        //   invoke-direct {v6, p3, v7, p2}  ← 4 distinct registers, no aliasing
+        //
+        // BlankCellViewHolder renders an empty 0-height row — safe for RecyclerView.
+        // Cannot return null: RecyclerView.onCreateViewHolder would NPE immediately.
+        PackViewHolderFactoryGetViewHolderFingerprint.apply {
+            val insertIdx = instructionMatches[0].index
+            method.addInstructionsWithLabels(
+                insertIdx,
+                """
+                    iget-object v6, p0, Lcom/calm/android/packs/PackViewHolderFactory;->userRepository:Lcom/calm/android/core/data/repositories/UserRepository;
+                    invoke-virtual {v6}, Lcom/calm/android/core/data/repositories/UserRepository;->isSubscribed()Z
+                    move-result v6
+                    if-eqz v6, :not_subscribed
+                    new-instance v6, Lcom/calm/android/packs/viewholders/BlankCellViewHolder;
+                    sget-object p3, Lcom/calm/android/data/packs/PackCell${'$'}DisplayStyle;->Blank:Lcom/calm/android/data/packs/PackCell${'$'}DisplayStyle;
+                    invoke-static {p1}, Lcom/calm/android/packs/databinding/PackCellBlankBinding;->inflate(Landroid/view/LayoutInflater;)Lcom/calm/android/packs/databinding/PackCellBlankBinding;
+                    move-result-object v7
+                    iget-object p2, p0, Lcom/calm/android/packs/PackViewHolderFactory;->packCellDependenciesBundle:Lcom/calm/android/data/packs/PackCellDependenciesBundle;
+                    invoke-direct {v6, p3, v7, p2}, Lcom/calm/android/packs/viewholders/BlankCellViewHolder;-><init>(Lcom/calm/android/data/packs/PackCell${'$'}DisplayStyle;Lcom/calm/android/packs/databinding/PackCellBlankBinding;Lcom/calm/android/data/packs/PackCellDependenciesBundle;)V
+                    check-cast v6, Lcom/calm/android/packs/utils/PackCellViewHolder;
+                    return-object v6
+                    :not_subscribed
+                    nop
+                """.trimIndent(),
+            )
+        }
 
-        SubscriptionGetPlanDurationFingerprint.method.addInstructions(
-            0,
-            """
-                const-string p0, "lifetime"
-                return-object p0
-            """,
-        )
+        // Layer 8: PackItem.isUnlocked() → true
+        PackItemIsUnlockedFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnTrue)
+        }
 
-        SubscriptionIsLifetimeFingerprint.method.returnEarly(true)
-
-        // ── Hide family plan upsell ──────────────────────────────────────────
-        // Return Subscription.Type.Gift — not Android, so the upgrade banner
-        // in IndividualSubscriptionKt is never rendered.
-        // getSubscriptionType() has .locals 2 — use v0.
-        SubscriptionGetTypeFingerprint.method.addInstructions(
-            0,
-            """
-                sget-object v0, Lcom/calm/android/data/subscription/Subscription${'$'}Type;->Gift:Lcom/calm/android/data/subscription/Subscription${'$'}Type;
-                return-object v0
-            """,
-        )
+        // Layer 9: ActionData.isLocked() → false
+        ActionDataIsLockedFingerprint.method.apply {
+            removeInstructions(0, instructions.count())
+            addInstructions(0, returnFalse)
+        }
     }
 }

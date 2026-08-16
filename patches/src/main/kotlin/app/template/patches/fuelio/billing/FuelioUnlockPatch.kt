@@ -1,40 +1,28 @@
 package app.template.patches.fuelio.billing
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
-import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.FUELIO_COMPATIBILITY
 import app.template.patches.shared.clearBody
-import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 
-// ── Architecture ─────────────────────────────────────────────────────────────
+// ── Architecture (v10.3.3) ────────────────────────────────────────────────────
 //
-// Six independent premium/maps/promo signal paths:
+// Five premium/promo paths. All coroutine state machines MUST NOT be clearBody'd —
+// the packed-switch dispatch table and register frames make clearBody + inject
+// produce VerifyError ("check-cast on non-reference") and the ART lock verifier
+// warning ("max register v15") at startup. Only non-coroutine methods may use clearBody.
 //
-// Path A — synchronous feature gate
-//   ProFeatureManager.b()Z
+// Safe clearBody methods (no packed-switch, small register frame):
+//   el5.b()Z      — .registers 2, no packed-switch
+//   PromoEnabled, PromoHomeEnabled — .registers small, no packed-switch
 //
-// Path B — dashboard promo banner flow
-//   SubscriptionDataRepository.map$2$2  → BuyState.b (hasPremium)
-//   SubscriptionDataRepository.map$1$2  → BuyState.a (hasRenewablePremium)
-//   → BuyViewModel.j → DashboardViewModel.r() → DashboardViewModel.n
-//   NOTE: n=true shows the promo banner — Paths B+F handle this correctly:
-//   B makes n=true (PRO user recognised), F suppresses the promo cards.
+// Coroutine state machines (addInstructions(0,...) only — short-circuits before switch):
+//   ve0.h()       — .registers 15, packed-switch at instruction 8
+//   el5.a(Lk41;)  — .registers 6,  packed-switch in state machine
 //
-// Path C — BuyFragment paywall screen navigation
-//   BuyViewModel$1$1.invokeSuspend() → posts DestinationScreen to g LiveData
-//
-// Path D — async suspend gate
-//   ProFeatureManager.a(ContinuationImpl)Object — awaitAccess()
-//
-// Path E — Google Maps cert + API key spoof (extension)
-//   FuelioHelper.init() → IPackageManager proxy in FuelioApplication.onCreate()
-//
-// Path F — "Limited Promo" / "30% OFF" banner suppression
-//   FirebaseRemoteConfigRepository.c()  reads "promo30_enabled" from Firebase
-//   FirebaseRemoteConfigRepository.d()  reads "promo30_enabled_home"
-//   Dashboard composable shows promo banner only when either returns true.
-//   PRO users should not see the paywall promo — patch both to return false.
+// Coroutine state machine (replaceInstruction only — must not disturb register frame):
+//   r7.p()        — .registers 43, packed-switch dispatcher
 //
 @Suppress("unused")
 val fuelioUnlockPatch = bytecodePatch(
@@ -48,57 +36,70 @@ val fuelioUnlockPatch = bytecodePatch(
     extendWith("extensions/extension.mpe")
 
     execute {
-        // ── Path A: ProFeatureManager.b()Z → always true ──────────────────────
+
+        // ── Path A: el5.b()Z → always true ───────────────────────────────────
+        // Non-coroutine, .registers 2. clearBody safe.
         IsPremiumFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const/4 v0, 0x1\nreturn v0")
         }
 
-        // ── Path B1: hasPremium flow emitter → always emits true ──────────────
-        val hasPremiumValueOfIndex = HasPremiumEmitFingerprint.instructionMatches[1].index
-        val hasPremiumReg = HasPremiumEmitFingerprint.method
-            .getInstruction<FiveRegisterInstruction>(hasPremiumValueOfIndex).registerC
-        HasPremiumEmitFingerprint.method.addInstructions(
-            hasPremiumValueOfIndex,
-            "const/4 v$hasPremiumReg, 0x1",
-        )
-
-        // ── Path B2: hasRenewablePremium flow emitter → always emits true ─────
-        val hasRenewableValueOfIndex = HasRenewablePremiumEmitFingerprint.instructionMatches[2].index
-        val hasRenewableReg = HasRenewablePremiumEmitFingerprint.method
-            .getInstruction<FiveRegisterInstruction>(hasRenewableValueOfIndex).registerC
-        HasRenewablePremiumEmitFingerprint.method.addInstructions(
-            hasRenewableValueOfIndex,
-            "const/4 v$hasRenewableReg, 0x1",
-        )
-
-        // ── Path C: BuyFragment paywall → always navigate to PRO profile ──────
-        DestinationScreenFingerprint.method.apply {
-            clearBody()
-            addInstructions(
-                0,
-                """
-                iget-object v0, p0, Lcom/kajda/fuelio/ui/paywall/BuyViewModel${'$'}1${'$'}1;->d:Lcom/kajda/fuelio/ui/paywall/BuyViewModel;
-                iget-object v0, v0, Lcom/kajda/fuelio/ui/paywall/BuyViewModel;->g:Landroidx/lifecycle/MutableLiveData;
-                sget-object v1, Lcom/kajda/fuelio/ui/paywall/BuyViewModel${'$'}DestinationScreen;->PREMIUM_RENEWABLE_PROFILE:Lcom/kajda/fuelio/ui/paywall/BuyViewModel${'$'}DestinationScreen;
-                invoke-virtual { v0, v1 }, Landroidx/lifecycle/LiveData;->j(Ljava/lang/Object;)V
-                sget-object v0, Lkotlin/Unit;->a:Lkotlin/Unit;
-                return-object v0
-                """.trimIndent(),
-            )
-        }
-
-        // ── Path D: ProFeatureManager.a() → always return Boolean.TRUE ────────
-        AwaitAccessFingerprint.method.apply {
-            clearBody()
-            addInstructions(
-                0,
-                """
+        // ── Path B: ve0.h(Object, Li41;)Object → always return Boolean.TRUE ──
+        // Coroutine state machine (.registers 15, packed-switch at instruction 8).
+        // DO NOT clearBody — destroys packed-switch data → VerifyError.
+        // addInstructions(0,...) short-circuits before the switch is ever reached.
+        // v0 is safe at index 0: not yet assigned (first use is iget v0, p0, q:I).
+        SubscriptionEmitFingerprint.method.addInstructions(
+            0,
+            """
                 sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
                 return-object v0
-                """.trimIndent(),
-            )
-        }
+            """.trimIndent(),
+        )
+
+        // ── Path C: r7.p(Object)Object → always post PREMIUM_RENEWABLE_PROFILE ─
+        // Coroutine state machine (.registers 43, packed-switch dispatcher).
+        // DO NOT clearBody.
+        //
+        // The pswitch_8b4 dispatch block at ~line 4366:
+        //   [+0]  iget-object v1, Lr7;->x        (LiveData holder)
+        //   [+1]  check-cast v1, Llc0;
+        //   [+2]  iget-object v1, Llc0;->x:Lmp4; (the Lmp4; LiveData)
+        //   [+3]  iget-object v0, Lr7;->w        (BuyState)
+        //   [+4]  check-cast v0, Lgc0;
+        //   [+5]  invoke-static/range Lhq9;->c()
+        //   [+6]  iget-object v2, gc0;->a        (hasRenewablePremium)
+        //   [+7]  sget-object v3, Boolean;->TRUE
+        //   [+8]  invoke-static Llo3;->f()        (Boolean equality check)
+        //   [+9]  move-result v2
+        //   [+10] if-eqz v2, :cond_8dc           ← REPLACE WITH nop
+        //   [+11] sget-object v0, Lid7;->a (analytics log — harmless)
+        //   ...
+        //   [+16] sget-object v0, Lhc0;->s       ← filter[0] match
+        //   [+17] invoke-virtual {v1,v0}, La74;->i() ← filter[1] match
+        //
+        // Replacing if-eqz at (filter[0].index - 6) with nop forces execution to
+        // always fall through to the hc0.s post, skipping cond_8dc (hc0.t/hc0.q).
+        // v1 already holds the valid Lmp4; LiveData — no register pollution.
+        val sgetIndex = DestinationScreenFingerprint.instructionMatches[0].index
+        DestinationScreenFingerprint.method.replaceInstruction(
+            sgetIndex - 6,
+            "nop",
+        )
+
+        // ── Path D: el5.a(Lk41;)Object → always return Boolean.TRUE ──────────
+        // Coroutine state machine (.registers 6).
+        // DO NOT clearBody — the state machine setup and Deferred.await are needed
+        // by the coroutine runtime for bookkeeping on second resume calls.
+        // addInstructions(0,...) short-circuits on first entry before any state check.
+        // v0 is safe at index 0: first use is instance-of v0, p1, Ldl5;
+        AwaitAccessFingerprint.method.addInstructions(
+            0,
+            """
+                sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
+                return-object v0
+            """.trimIndent(),
+        )
 
         // ── Path E: Google Maps cert + API key spoof ──────────────────────────
         FuelioApplicationOnCreateFingerprint.method.addInstructions(
@@ -107,12 +108,11 @@ val fuelioUnlockPatch = bytecodePatch(
         )
 
         // ── Path F: Suppress "Limited Promo" / "30% OFF" banner ──────────────
-        // c() → false: promo30_enabled check returns false → banner hidden
+        // Non-coroutine, small register frame. clearBody safe.
         PromoEnabledFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
-        // d() → false: promo30_enabled_home check returns false → banner hidden
         PromoHomeEnabledFingerprint.method.apply {
             clearBody()
             addInstructions(0, "const/4 v0, 0x0\nreturn v0")

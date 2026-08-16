@@ -12,17 +12,17 @@ import app.template.patches.shared.ensureRegisters
 // ════════════════════════════════════════════════════════════════════════════════
 // Flightradar24 enforces subscription state through three independent layers:
 //
-//   Layer 1 — User object (oye):  boolean methods like isGold(), isBusiness(),
-//             isAdvertsEnabled() that gate in-memory state shown in the UI.
+//   Layer 1 — User object (p5f in 11.9.0, oye in 11.8.0): boolean methods like
+//             isGold(), isBusiness(), isAdvertsEnabled() that gate in-memory state
+//             shown in the UI.
 //
-//   Layer 2 — Subscription tier mapper (e0f): static functions that derive the
-//             tier string ("Gold"/"Business") and enum from UserData.  Called on
-//             every login/refresh.  Patched to hard-return "Business" and the
-//             Business enum constant so the app always thinks the user is a
-//             Business subscriber.
+//   Layer 2 — Subscription tier mapper (b7f in 11.9.0, e0f/ecf in prior versions):
+//             static functions that derive the tier string ("Gold"/"Business") and
+//             enum from UserData. Called on every login/refresh. Patched to
+//             hard-return "Business" and the Business enum constant.
 //
 //   Layer 3 — UserFeatures (non-obfuscated): data class holding boolean/int/String
-//             feature flags populated from the server response.  All is*Enabled()
+//             feature flags populated from the server response. All is*Enabled()
 //             methods and numeric-limit getters are overridden at the call-site level.
 //
 // Additionally:
@@ -34,6 +34,11 @@ import app.template.patches.shared.ensureRegisters
 //   • ClickhandlerExtendedFlightInfo getters for EMS/squawk/airspace/vspeed are
 //     redirected through FlightradarHelper.getAvailability() which grants access
 //     even when the server marks individual fields unavailable.
+//
+// Removed in 11.9.0:
+//   • BillingPurchasesProviderIsValidFingerprint — The WorkManager billing
+//     constraint gate (ContraintControllers.kt) was removed from the app. The
+//     class name "Lip1;" was recycled by R8 for an unrelated synthetic lambda.
 // ════════════════════════════════════════════════════════════════════════════════
 
 private const val HELPER = "Lapp/template/extension/extension/FlightradarHelper;"
@@ -51,14 +56,7 @@ val flightradarUnlockBusinessPatch = bytecodePatch(
 
     execute {
 
-        // ── Layer 1a: Billing network-constraint gate ─────────────────────────
-        // ep1.b(WorkSpec)Z — always return true (constraint always satisfied).
-        BillingPurchasesProviderIsValidFingerprint.method.apply {
-            clearBody()
-            addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-        }
-
-        // ── Layer 1b: User-object tier checks ────────────────────────────────
+        // ── Layer 1: User-object tier checks ──────────────────────────────────
         // Gold and Business → true; Silver and Basic → false (Gold wins).
         // isAdvertsEnabled → false (disable ads for premium experience).
         // hasAlerts → true (alerts allowed).

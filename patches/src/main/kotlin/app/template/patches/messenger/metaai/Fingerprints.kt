@@ -1,85 +1,96 @@
 package app.template.patches.messenger.metaai
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 
-// ─── Meta AI FAB (AiFabComponent render) — classes4/X/7Ey ───────────────────
-// Matches the render() method of the floating Meta AI compose button (AiFabComponent).
-// render() returns LX/1Kh; (a UI component); returning null at index 0 makes the
-// framework render nothing — the FAB disappears.
+// ─── Meta AI FAB render() — classes4/X/7Ey ───────────────────────────────────
+// The render() method of the floating AI compose button. Returning null makes
+// the framework render nothing — the FAB is removed from the layout.
 //
-// Discriminators:
-//   • returns LX/1Kh;  (the component base class)
-//   • parameters = [LX/2C0;]
-//   • strings = ["AiFabComponent"]  (logged in error path within same method)
+// Stable anchors (zero obfuscated references):
+//   • string "fab_expanded"  — UI state key, only in this one class across the APK
+//   • string "AiFabComponent" — component name logged in the error path
+//   • PUBLIC (instance method, not static)
 //
-// Verified: classes4/X/7Ey.smali → render(LX/2C0;)LX/1Kh;
-//   main return-object at line 858, const-string "AiFabComponent" at line 861.
+// "fab_expanded" is unique to this class in classes4 — confirmed 1 match v573.
+// No parameter types used — the two strings alone uniquely identify render().
 //
-// Verified against com.facebook.orca 573.0.0.44.88.
+// Verified: classes4/X/7Ey.smali → render(LX/2C0;)LX/1Kh; — v573.
 internal val MetaAiFabRenderFingerprint = Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC),
-    parameters = listOf("LX/2C0;"),
-    strings = listOf("AiFabComponent"),
+    strings = listOf("fab_expanded", "AiFabComponent"),
 )
 
 // ─── Meta AI Creation drawer item gate — classes7/X/F6D.A00()Z ───────────────
-// F6D.A00()Z is the lazy-loader / gate for the AiCreationFolderItem in the
-// navigation drawer. It checks a kill-switch then constructs the item.
-// Returning false at index 0 skips construction entirely — item is never added
-// to the drawer list in AvB().
+// Private no-arg boolean gate for AiCreationFolderItem in the nav drawer.
 //
-// Discriminators:
-//   • returns Z, no parameters, PRIVATE
-//   • strings = ["com.facebook.messaging.navigation.plugins.aicreationfolder.NavigationAicreationfolderKillSwitch"]
+// Stable anchors (zero obfuscated references):
+//   • methodCall on non-obfuscated AiCreationFolderItem.A00(FbUserSession)Z
+//     (the static visibility gate on the item class itself)
+//   • string "com.facebook.messaging.navigation.plugins.aicreationfolder.folderitem.AiCreationFolderItem"
+//     (the class name logged for diagnostics inside this gate method)
 //
-// Verified: classes7/X/F6D.smali → method private A00()Z, line 92.
+// AiCreationFolderItem is a non-obfuscated class — its descriptor survives R8.
 //
-// Verified against com.facebook.orca 573.0.0.44.88.
+// Verified: classes7/X/F6D.smali → method private A00()Z — v573.
 internal val MetaAiCreationFolderItemFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PRIVATE),
     parameters = listOf(),
-    strings = listOf("com.facebook.messaging.navigation.plugins.aicreationfolder.NavigationAicreationfolderKillSwitch"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/facebook/messaging/navigation/plugins/aicreationfolder/folderitem/AiCreationFolderItem;",
+            name = "A00",
+        ),
+    ),
+    strings = listOf("com.facebook.messaging.navigation.plugins.aicreationfolder.folderitem.AiCreationFolderItem"),
 )
 
 // ─── Meta AI Home drawer item gate — classes7/X/F6D.A01()Z ──────────────────
-// F6D.A01()Z is the lazy-loader / gate for the AiHomeFolderItem.
-// Same structure as A00; discriminated by its unique kill-switch string.
-// Returning false hides the "AI Home" entry from the navigation drawer.
+// Private no-arg boolean gate for AiHomeFolderItem in the nav drawer.
 //
-// Discriminators:
-//   • returns Z, no parameters, PRIVATE
-//   • strings = ["com.facebook.messaging.navigation.plugins.aihomefolder.NavigationAihomefolderKillSwitch"]
+// Stable anchors (zero obfuscated references):
+//   • methodCall on non-obfuscated AiHomeFolderItem.A00(FbUserSession)Z
+//   • string "com.facebook.messaging.navigation.plugins.aihomefolder.folderitem.AiHomeFolderItem"
 //
-// Verified: classes7/X/F6D.smali → method private A01()Z, line 261.
-//
-// Verified against com.facebook.orca 573.0.0.44.88.
+// Verified: classes7/X/F6D.smali → method private A01()Z — v573.
 internal val MetaAiHomeFolderItemFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PRIVATE),
     parameters = listOf(),
-    strings = listOf("com.facebook.messaging.navigation.plugins.aihomefolder.NavigationAihomefolderKillSwitch"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/facebook/messaging/navigation/plugins/aihomefolder/folderitem/AiHomeFolderItem;",
+            name = "A00",
+        ),
+    ),
+    strings = listOf("com.facebook.messaging.navigation.plugins.aihomefolder.folderitem.AiHomeFolderItem"),
 )
 
-// ─── Meta AI in search results gate — classes3/X/5sR.A00() ──────────────────
-// 5sR.A00(1bi, AtomicInteger, I)Z reads the MobileConfig kill-switch for the
-// AI search agent implementations and caches the result.
+// ─── Meta AI search suggestions gate — classes3/X/5sR ────────────────────────
+// Reads the MobileConfig kill-switch for AI search agent implementations.
 // Returning false disables the AI suggestions row in search.
 //
-// Discriminators:
-//   • returns Z
-//   • parameters = [LX/1bi;, Ljava/util/concurrent/atomic/AtomicInteger;, I]
-//   • strings = ["messaging.search.aiagent.implementations.SearchAiagentImplementationsKillSwitch"]
-//   • methodCall on MobileConfigUnsafeContext.Afy
+// Stable anchors (zero obfuscated references):
+//   • methodCall on MobileConfigUnsafeContext;->Afy(J)Z
+//     (stable interface method — MobileConfigUnsafeContext is non-obfuscated SDK)
+//   • string "messaging.search.aiagent.implementations.SearchAiagentImplementationsKillSwitch"
+//     (kill-switch string constant, non-obfuscated)
+//   • PUBLIC STATIC, returns Z
 //
-// Verified: classes3/X/5sR.smali → method public static A00(LX/1bi;...I)Z.
+// MobileConfigUnsafeContext is a Facebook SDK interface — never renamed by R8.
 //
-// Verified against com.facebook.orca 573.0.0.44.88.
+// Verified: classes3/X/5sR.smali → public static A00(...)Z — v573.
 internal val MetaAiSearchFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    parameters = listOf("LX/1bi;", "Ljava/util/concurrent/atomic/AtomicInteger;", "I"),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/facebook/mobileconfig/factory/MobileConfigUnsafeContext;",
+            name = "Afy",
+        ),
+    ),
     strings = listOf("messaging.search.aiagent.implementations.SearchAiagentImplementationsKillSwitch"),
 )

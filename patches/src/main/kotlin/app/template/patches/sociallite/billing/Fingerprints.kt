@@ -5,6 +5,41 @@ import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 
+// ── LicenseCheckFingerprint ───────────────────────────────────────────────────
+//
+// Targets: com.pairip.licensecheck.LicenseClient.checkLicense(Context)V
+//          [classes.dex]
+//
+// Called from com.pairip.application.Application.attachBaseContext(). When the
+// APK signature doesn't match the original Play Store certificate (which it
+// never will after Morphe re-signs), LicenseClient.checkLicense() detects the
+// mismatch and eventually starts LicenseActivity which blocks the UI or calls
+// System.exit(). No VMRunner or libpairipcore.so — this is a lighter Pairip
+// integration that only uses the Play LVL license check path.
+//
+// Smali evidence: com/pairip/licensecheck/LicenseClient.smali
+//   .method public static checkLicense(Landroid/content/Context;)V
+//   ...
+//   invoke-virtual {...}, Landroid/content/Context;->getPackageManager()...
+//   invoke-static  {...}, Lcom/pairip/licensecheck/LicenseResponseHelper;->...
+//
+// The manifest fix (android:name swap) already prevents Application.attachBaseContext
+// from being called at all — this fingerprint is a belt-and-suspenders no-op
+// on the method itself in case it is called through any other path.
+//
+// Access flags: PUBLIC STATIC (class method, no instance)
+// Return type: V
+// Parameter: Landroid/content/Context;
+//
+object LicenseCheckFingerprint : Fingerprint(
+    definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
+    name = "checkLicense",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+    returnType = "V",
+    parameters = listOf("Landroid/content/Context;"),
+)
+
+
 // ── IsPremiumActiveFingerprint ────────────────────────────────────────────────
 //
 // Targets: d8.b1.n()Z  (C1087b1.m2394n — isPremiumActive)
@@ -127,13 +162,18 @@ object SubscriptionTierFingerprint : Fingerprint(
 // Called from F0 (server sync) to guard against server downgrading local Pro:
 //   if (!serverHasPaid && snapshot.a && snapshot.c) → keep Pro, skip writes
 //
-// Smali (classes/d8/s.smali line 239):
+// Smali (classes/d8/s.smali — v2.0.0.45):
 //   .method public final b()Ld8/x;
 //   ...
 //   CustomerInfo;->getEntitlements()EntitlementInfos;
 //   EntitlementInfos;->getActive()Map;
-//   EntitlementInfo;->getProductIdentifier()String;
-//   EntitlementInfo;->getWillRenew()Z
+//   EntitlementInfo;->getExpirationDate()Date;    ← added in 2.0.0.45; picks
+//   EntitlementInfo;->getProductIdentifier()String;    entitlement with latest
+//   EntitlementInfo;->getWillRenew()Z                  expiry date when multiple
+//
+// Filter order must match smali instruction order exactly.
+// getExpirationDate was inserted between getActive and getProductIdentifier in
+// v2.0.0.45 to select the longest-lived entitlement when multiple are active.
 //
 // d8.x constructor: <init>(String purchaseToken, Z hasPaid, Z willAutoRenew)
 //
@@ -149,6 +189,10 @@ object EntitlementSnapshotFingerprint : Fingerprint(
         methodCall(
             definingClass = "Lcom/revenuecat/purchases/EntitlementInfos;",
             name = "getActive",
+        ),
+        methodCall(
+            definingClass = "Lcom/revenuecat/purchases/EntitlementInfo;",
+            name = "getExpirationDate",
         ),
         methodCall(
             definingClass = "Lcom/revenuecat/purchases/EntitlementInfo;",
