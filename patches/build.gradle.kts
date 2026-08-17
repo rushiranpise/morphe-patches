@@ -3,7 +3,7 @@ group = "app.rushiranpise.morphe-patches"
 patches {
     about {
         name = "Doom's Morphe Patches"
-        description = "All patches answer to Doom."
+        description = "New mask, same task. All patches answer to Doom."
         source = "https://github.com/rushiranpise/morphe-patches"
         author = "rushiranpise"
         contact = "https://github.com/rushiranpise"
