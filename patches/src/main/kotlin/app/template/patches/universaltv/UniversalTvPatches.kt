@@ -28,23 +28,7 @@ val universalTvUnlockPremiumPatch = bytecodePatch(
                 removeInstructions(0, instructions.count())
                 addInstructions(0, "const/4 v0, 0x1\nreturn v0")
             }
-    }
-}
 
-/**
- * No-ops s8/f.f(Application)V to prevent the AppOpenAd preloader
- * from starting. The method has an early-return guard on field s8/f.s:Z
- * so prepending return-void is safe regardless of state.
- */
-@Suppress("unused")
-val universalTvDisableAdsPatch = bytecodePatch(
-    name = "Disable Ads",
-    description = "Prevents the AppOpen ad preloader from initialising.",
-    default = true
-) {
-    compatibleWith(UNIVERSALTV_COMPATIBILITY)
-
-    execute {
         AppOpenAdPreloaderFingerprint
             .match()
             .method
@@ -52,23 +36,7 @@ val universalTvDisableAdsPatch = bytecodePatch(
                 if (implementation == null) return@apply
                 addInstructions(0, "return-void")
             }
-    }
-}
 
-/**
- * No-ops s8/f.a()V to suppress the CHECK_PREMIUM LocalBroadcast.
- * The entire method body is inside a try/catch, so we prepend rather
- * than replace to avoid disturbing the exception table.
- */
-@Suppress("unused")
-val universalTvSuppressPaywallPatch = bytecodePatch(
-    name = "Suppress Paywall",
-    description = "Suppresses the in-app paywall.",
-    default = true
-) {
-    compatibleWith(UNIVERSALTV_COMPATIBILITY)
-
-    execute {
         CheckPremiumBroadcastFingerprint
             .match()
             .method

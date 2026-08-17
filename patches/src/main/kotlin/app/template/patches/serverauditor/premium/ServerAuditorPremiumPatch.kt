@@ -63,7 +63,7 @@ private const val USER_TYPE_BUSINESS =
  */
 @Suppress("unused")
 val serverAuditorPremiumPatch = bytecodePatch(
-    name = "Server Auditor Premium",
+    name = "Unlock Business Premium",
     description = "Unlocks Business tier by forcing the UserType mapper to always return UserType\$BusinessTeamOwner.",
     default = true,
 ) {

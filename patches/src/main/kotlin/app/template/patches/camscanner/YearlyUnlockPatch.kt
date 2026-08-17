@@ -6,7 +6,7 @@ import app.template.patches.shared.Constants.CAMSCANNER_COMPATIBILITY
 
 @Suppress("unused")
 val yearlyUnlockPatch = bytecodePatch(
-    name = "Yearly Unlock",
+    name = "Unlock Yearly",
     description = "Unlocks premium features without login. Note: Login Won't Work",
 ) {
     compatibleWith(CAMSCANNER_COMPATIBILITY)

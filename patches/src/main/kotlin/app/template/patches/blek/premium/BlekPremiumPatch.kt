@@ -57,7 +57,7 @@ val blekPairIpBypassPatch = bytecodePatch {
  */
 @Suppress("unused")
 val blekPremiumPatch = bytecodePatch(
-    name = "Blek Premium",
+    name = "Unlock Premium",
     description = "Unlocks all premium features including fullscreen mode and removes the Upgrade navigation item.",
     default = true,
 ) {

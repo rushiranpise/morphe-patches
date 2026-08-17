@@ -33,7 +33,7 @@ import app.template.patches.shared.Constants.HTTPMOCK_COMPATIBILITY
 //
 @Suppress("unused")
 val unlockVipPatch = bytecodePatch(
-    name = "Unlock VIP (Lifetime)",
+    name = "Unlock VIP",
     description = "Forces permanent professional VIP tier, removes ads and upgrade popups, bypasses PairIP.",
 ) {
     compatibleWith(HTTPMOCK_COMPATIBILITY)

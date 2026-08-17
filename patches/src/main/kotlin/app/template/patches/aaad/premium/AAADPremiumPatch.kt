@@ -45,7 +45,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val aaadPremiumPatch = bytecodePatch(
-    name = "AAAD Premium",
+    name = "Unlock Pro",
     description = "Unlocks AAAD Pro subscription features by bypassing Stripe and Firebase subscription checks.",
 ) {
     compatibleWith(AAAD_COMPATIBILITY)
