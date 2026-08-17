@@ -18,7 +18,7 @@ import app.template.patches.shared.Constants.GREENIFY_COMPATIBILITY
  */
 @Suppress("unused")
 val greenifyUnlockDonationPatch = bytecodePatch(
-    name = "Unlock Donation Features",
+    name = "Unlock Donation",
     description = "Unlocks all premium donation features in Greenify.",
     default = true
 ) {

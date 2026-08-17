@@ -40,7 +40,7 @@ import app.template.patches.shared.clearBody
 
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
-    name = "Unlock Premium & Remove Ads",
+    name = "Unlock Pro",
     description = "Unlocks all pro features and removes ads in Hydro Coach by " +
         "forcing the master premium gate, ads gate, and no-ads SKU check to " +
         "return true/false respectively.",

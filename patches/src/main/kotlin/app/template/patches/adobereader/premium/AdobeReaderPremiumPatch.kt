@@ -41,7 +41,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val adobeReaderPremiumPatch = bytecodePatch(
-    name = "Adobe Acrobat Premium",
+    name = "Unlock Pro",
     description = "Unlocks all Acrobat Pro and Studio tools without a subscription.",
 ) {
     compatibleWith(ADOBE_READER_COMPATIBILITY)

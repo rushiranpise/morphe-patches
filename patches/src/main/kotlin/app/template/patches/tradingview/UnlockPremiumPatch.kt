@@ -117,7 +117,7 @@ val tradingViewUnlockPremiumPatch = bytecodePatch(
         )
 
         // ── 9. Paywall / GoPro upgrade dialogs ──────────────────────────────
-        GoProDispatchActionFingerprint.method.returnEarly(null)
+        GoProDispatchActionFingerprint.method.returnEarly()
         PaywallDispatchPaywallObjectFingerprint.method.addInstructions(
             0,
             """

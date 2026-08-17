@@ -6,7 +6,7 @@ import app.template.patches.shared.Constants.TRACKCHECKER_COMPATIBILITY
 
 @Suppress("unused")
 val unlockProPatch = bytecodePatch(
-    name = "Unlock Pro / No Ads",
+    name = "Unlock Pro",
     description = "Unlocks Pro/No Ads feature in app",
 ) {
     compatibleWith(TRACKCHECKER_COMPATIBILITY)

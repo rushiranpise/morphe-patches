@@ -6,7 +6,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val aaEnablerPremiumPatch = bytecodePatch(
-    name = "AAEnabler Premium",
+    name = "Unlock Premium",
     description = "Unlocks premium installation features by bypassing the Firestore license check."
 ) {
     compatibleWith(AAENABLER_COMPATIBILITY)

@@ -27,7 +27,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val vRadioUnlockPatch = bytecodePatch(
-    name = "VRadio Premium",
+    name = "Unlock Premium",
     description = "Unlocks all VRadio premium features by bypassing the SharedPreferences purchase gate.",
     default = true
 ) {

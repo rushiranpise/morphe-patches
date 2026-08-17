@@ -43,7 +43,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val adobeScanPremiumPatch = bytecodePatch(
-    name = "Adobe Scan Premium",
+    name = "Unlock Premium",
     description = "Unlocks all premium scanning and PDF tools in Adobe Scan.",
 ) {
     compatibleWith(ADOBE_SCAN_COMPATIBILITY)

@@ -22,7 +22,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val vyxelPremiumPatch = bytecodePatch(
-    name = "Vyxel Apps Premium",
+    name = "Unlock Premium",
     description = "Unlocks all premium themes (Liquid Glass, Neon Punk, Cyberpunk) by bypassing the Gumroad license key verification."
 ) {
     compatibleWith(VYXEL_COMPATIBILITY)

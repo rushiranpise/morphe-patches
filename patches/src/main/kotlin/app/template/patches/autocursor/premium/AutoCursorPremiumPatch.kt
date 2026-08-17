@@ -19,7 +19,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val autoCursorPremiumPatch = bytecodePatch(
-    name = "Auto Cursor Premium",
+    name = "Unlock Pro",
     description = "Unlocks Auto Cursor Pro by bypassing the local purchase state check.",
     default = true
 ) {
