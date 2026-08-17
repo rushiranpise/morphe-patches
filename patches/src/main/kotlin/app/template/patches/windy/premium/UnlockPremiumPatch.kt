@@ -11,122 +11,112 @@ import app.template.patches.shared.Constants.WINDY_COMPATIBILITY
 //
 //   assets/public/v/<version>/mobile.js
 //
-// The bundle path uses a versioned directory (e.g. "50.1.1.mob.4aea") that
+// The bundle path uses a versioned directory (e.g. "51.0.1.mob.0f9e") that
 // changes each release. The patch locates it dynamically by scanning
 // assets/public/v/ for any subdirectory containing mobile.js — no hardcoded
 // version path needed.
 //
 // ── Subscription model ────────────────────────────────────────────────────────
 //
-// Windy uses a custom Store class (N) backed by SharedPreferences via a
-// localStorage adapter (M). The store system has three levels:
+// Windy uses a custom Store object (P in v51, was N in v50) backed by
+// SharedPreferences via a localStorage adapter. The store system has three
+// levels:
 //
 //   1. In-memory cache (fr: Map)  — fastest, set by setFinally(), cleared on
-//      N.set(key, null) via fr.delete(key).
-//   2. Persistent storage (M)     — SharedPreferences; read on cache miss.
-//   3. Default value (def)        — used when M.get() returns null.
+//      P.set(key, null) via fr.delete(key).
+//   2. Persistent storage         — SharedPreferences; read on cache miss.
+//   3. Default value (def)        — used when storage.get() returns null.
 //
-//   N.get(key): fr.has(key) ? fr.get(key) : M.get() ?? def
+//   P.get(key): fr.has(key) ? fr.get(key) : storage.get() ?? def
 //
 // Two functions control subscription state:
 //
-//   Vl(subscriptionInfo):         "setTier" — called from the server response handler.
-//     - If subscriptionInfo.status === 'active': sets subscription store to the tier
-//       string (e.g. "premium"), sets subscriptionInfo store, adds body class
-//       `subs-${tier}` via Bl(tier).
-//     - Otherwise or if null: calls zl().
+//   uu(subscriptionInfo):         "setTier" — called from the server response.
+//     - If subscriptionInfo.status === 'active': sets subscription store to the
+//       tier string (e.g. "premium"), calls lu(tier) to add body class
+//       `subs-${tier}`.
+//     - Otherwise: calls cu().
 //
-//   zl():                         "clearTier" — called when server says no active sub.
-//     - Reads current subscription value e = N.get('subscription')
-//     - Sets subscription → null (clears fr cache via fr.delete, writes null to M)
-//     - Sets subscriptionInfo → null
+//   cu():                         "clearTier" — called when no active sub.
+//     - Reads current subscription value e = P.get('subscription')
+//     - Clears subscription and subscriptionInfo stores to null
 //     - Removes body class: document.body.classList.remove(`subs-${e}`)
-//     - Emits G('subscription', 'tier/none') for analytics
+//     - Emits analytics: ru('subscription', 'tier/none')
 //
 // Three interconnected gates guard premium features:
 //
-//   subscription store:  def:null → N.get('subscription') == null means no subscription.
+//   subscription store:  def:null → P.get('subscription') === null means free.
 //                        Any non-null string (e.g. "premium") means subscribed.
 //
-//   pr (boolean flag):   pr = !!N.get('subscription')
+//   gr (boolean flag):   gr = !!P.get('subscription')
 //                        Used in premiumOnly store getter shortcut:
-//                          if (premiumOnly && !pr) return def
+//                          if (premiumOnly && !gr) return def
 //                        Guards zoom levels, tile steps, overlay params, etc.
 //
-//   Hl() = hasAny():     Hl = () => N.get('subscription') !== null
-//                        Used for UI: minifest API ?premium param, tile zoom caps,
-//                        1-hour step, premium-calendar body class, paywall component.
+//   du() = hasAny():     du = () => P.get('subscription') !== null
+//                        Used for UI: minifest API ?premium param, tile zoom
+//                        caps, 1-hour step, premium-calendar body class,
+//                        paywall component.
 //
-//   body.subs-{tier}:    CSS class on <body> used by HTML/CSS to hide "Go Premium"
-//                        CTAs and show premium-only UI elements. Added by Bl(tier),
-//                        removed by zl(). Without this class the Go Premium button
-//                        appears even when Hl() returns true.
+//   body.subs-{tier}:    CSS class on <body> used by HTML/CSS to hide "Go
+//                        Premium" CTAs and show premium-only UI elements.
+//                        Added by lu(tier), removed by cu().
 //
 // ── Root cause of popup ───────────────────────────────────────────────────────
 //
-// Without patches, on app launch when the user is NOT logged in:
-//   1. Am() fires → GET account.windy.com/api/info → responds with auth:false
-//   2. km(data, true) else-branch → Vl(null) → zl()
-//   3. zl() clears subscription store to null → Hl()=false, pr=false
-//   4. zl() calls classList.remove('subs-${e}') → body loses the premium class
+// Without patches, on app launch (not logged in):
+//   1. Account API call → responds with auth:false
+//   2. km(data, true) else-branch → uu(null) → cu()
+//   3. cu() clears subscription store to null → du()=false, gr=false
+//   4. cu() calls classList.remove('subs-${e}') → body loses the premium class
 //   5. The Go Premium button (hidden by CSS body.subs-premium) becomes visible
-//   6. P.emit('rqstOpen','subscription') is triggered by premium-only-wrapper
-//
-// With P1–P3 only (previous approach):
-//   - Subscription def is 'premium', Hl() and pr initially true
-//   - But zl() still runs when Am() returns auth:false → clears the store
-//   - setFinally on null: fr.delete('subscription') → next N.get returns def='premium' ✓
-//   - BUT: zl() ALSO removes body.subs-premium → the Go Premium button reappears
-//   - setFinally emits ('subscription', def='premium') → reactive listeners fire
-//     but NONE of them call Bl() to re-add the body class
-//   - Result: premium features work (store returns 'premium') but the UI button shows
+//   6. P.emit('rqstOpen','subscription') triggered by premium-only-wrapper
 //
 // ── Patch strategy ───────────────────────────────────────────────────────────
 //
-// Five same-length in-place byte replacements:
+// Five same-length in-place byte replacements, all targeting v51.0.1:
 //
 //   P1 — subscription store default (99 bytes):
-//     def:null → def:`annual`   — annual plan tier string; makes N.get always
-//     return 'annual'  when no value is cached (after fr.delete or on first read).
-//     allowed:e=>!0 → e=>1 and nativeSync:!0→1 to reclaim exact bytes.
-//     subscriptionInfo.def:null → def:0 (falsy — Ul()/getIssue returns null,
-//     so no subscription warning popup from Kl()/checkAndRenderSubsIssue).
+//     def:null → def:`premium`  — sets store default to the 'premium' tier.
+//     This ensures P.get('subscription') always returns 'premium' on a cache
+//     miss (i.e. after cu() nulls the fr cache entry).
+//     subscriptionInfo.def:null → def:0 — falsy, so fu()/getIssue returns
+//     null → no subscription warning popup.
+//     Byte savings: e=>1 vs e=>!0, nativeSync:1 vs nativeSync:!0.
 //
-//   P2 — pr premium flag init (63 bytes):
-//     pr=!!N.get('subscription') → pr=!0  — forces pr=true immediately at module
-//     load, before Am() fires. Trailing spaces pad to 63 bytes. Defense-in-depth
-//     against premiumOnly store defaults returning free-tier values.
+//   P2 — gr premium flag initialisation (63 bytes):
+//     gr=!!P.get(`subscription`) → gr=!0
+//     Forces gr=true at module load, before the account API call fires.
+//     The N.once listener is preserved but dead-coded via !0||short-circuit.
 //
-//   P3 — Hl() hasAny gate (35 bytes):
-//     Hl=()=>N.get('subscription')!==null → Hl=()=>!0||...
-//     Short-circuits the N.get call. Defense-in-depth. Trailing spaces pad to 35.
+//   P3 — du() hasAny gate (35 bytes):
+//     du=()=>P.get(`subscription`)!==null → du=()=>!0||P.get(`subscription`)
+//     Short-circuits to always return true. P.get call becomes dead code.
 //
-//   P4 — zl() subscription/subscriptionInfo clear (57 bytes):
-//     Removes N.set('subscription',null) and N.set('subscriptionInfo',null) from zl().
-//     Replaced with void 0 (padded to 57). This prevents zl() from:
-//       (a) writing null to SharedPreferences (M.put)
-//       (b) triggering setFinally's emit with def value
-//     subscription remains 'premium' in fr cache; Hl() and pr stay true
-//     even when the server responds with auth:false.
+//   P4 — cu() subscription store clear (57 bytes):
+//     Removes P.set(`subscription`,null),P.set(`subscriptionInfo`,null)
+//     from cu(), replaced with void 0. Prevents cu() from:
+//       (a) writing null to SharedPreferences
+//       (b) evicting the fr cache entry (so P.get returns def='premium')
 //
-//   P5 — zl() body class flip (46 bytes):
-//     classList.remove(`subs-${e}`) → classList.add   (`subs-${e}`)
-//     When zl() fires, instead of removing the body class it ADDS it.
-//     With P4, e = N.get('subscription') = 'premium' (still in fr cache),
-//     so classList.add('subs-premium') runs → Go Premium button stays hidden.
-//     Harmless if zl() is called multiple times: classList.add is idempotent.
+//   P5 — cu() body class direction (46 bytes):
+//     classList.remove(`subs-${e}`) → classList.add(`subs-${e}`)
+//     When cu() fires, e = P.get('subscription') = 'premium' (from P1 def,
+//     since P4 keeps the fr entry intact). classList.add('subs-premium') runs
+//     → Go Premium button stays hidden via CSS. Idempotent.
 //
 // ── Stability notes ──────────────────────────────────────────────────────────
 //
-// All patterns target:
+// All patterns target Windy-internal identifiers that are stable across minor
+// releases:
 //   - Store declaration syntax (structural, version-stable)
-//   - Variable names (pr, Hl, Bl, Vl, zl) that are stable Windy-internal
-//     identifiers referenced in crash reports and non-obfuscated plugin APIs
-//   - The N.get/N.set/N.once store API (public Windy store interface)
+//   - N.get/N.set/N.once store API (public Windy store interface)
 //   - DOM classList API (always stable)
 //
-// PatchException messages include the pattern label and action hint for
-// easy diagnosis when the bundle changes between Windy releases.
+// Variable renames (N→P, pr→gr, Hl→du, Vl→uu, zl→cu) are detected by
+// hunting the semantic patterns, not hardcoded identifiers.
+//
+// PatchException messages include the pattern label and a hint for diagnosis.
 //
 
 private data class JsPatch(val label: String, val original: String, val replacement: String) {
@@ -145,57 +135,77 @@ private data class JsPatch(val label: String, val original: String, val replacem
 private val PATCHES = listOf(
 
     // P1 — subscription store default (99 bytes)
-    // Original : subscription:{def:null,allowed:e=>!0,save:!0,nativeSync:!0},subscriptionInfo:{def:null,allowed:tr},
-    // Replaced : subscription:{def:`annual` ,allowed:e=>1,save:!0,nativeSync:1},subscriptionInfo:{def:0,allowed:tr},
-    // def:`annual`  → N.get always returns 'annual'  on cache miss (after P4 neutralises clear).
-    // e=>1 replaces e=>!0 (same truthy); nativeSync:1 saves the byte versus nativeSync:!0.
-    // subscriptionInfo.def:0 → Ul()/getIssue sees falsy → returns null → no warning popup.
+    //
+    // Original : subscription:{def:null,allowed:e=>!0,save:!0,nativeSync:!0},subscriptionInfo:{def:null,allowed:ir},
+    // Replaced : subscription:{def:`premium`,allowed:e=>1,save:!0,nativeSync:1},subscriptionInfo:{def:0,allowed:ir},
+    //
+    // def:`premium` → P.get always returns 'premium' on cache miss (after P4
+    //   neutralises the fr entry eviction). 'premium' matches the subs-premium
+    //   CSS class that hides the Go Premium button.
+    // allowed:e=>1 replaces e=>!0 (same truthy, saves 1 byte).
+    // nativeSync:1 replaces nativeSync:!0 (same truthy, saves 1 byte).
+    // subscriptionInfo.def:0 → fu()/getIssue receives falsy → returns null →
+    //   no subscription-issue warning popup.
+    // Note: `allowed:ir` (v51) vs `allowed:tr` (v50) — updated for v51.
     JsPatch(
         label        = "subscription store default",
-        original     = "subscription:{def:null,allowed:e=>!0,save:!0,nativeSync:!0},subscriptionInfo:{def:null,allowed:tr},",
-        replacement  = "subscription:{def:`annual` ,allowed:e=>1,save:!0,nativeSync:1},subscriptionInfo:{def:0,allowed:tr},",
+        original     = "subscription:{def:null,allowed:e=>!0,save:!0,nativeSync:!0},subscriptionInfo:{def:null,allowed:ir},",
+        replacement  = "subscription:{def:`premium`,allowed:e=>1,save:!0,nativeSync:1},subscriptionInfo:{def:0,allowed:ir},",
     ),
 
-    // P2 — pr premium flag initialisation (63 bytes)
-    // Original : pr=!!N.get(`subscription`),pr||N.once(`subscription`,e=>pr=!!e)
-    // Replaced : pr=!0,!0||N.once(`subscription`,e=>pr=!0)                      (trailing spaces)
-    // Forces pr=true immediately at module load before Am() fires.
-    // The N.once listener is registered but dead-code (short-circuit !0||).
+    // P2 — gr premium flag initialisation (63 bytes)
+    //
+    // Original : gr=!!P.get(`subscription`),gr||P.once(`subscription`,e=>gr=!!e)
+    // Replaced : gr=!0,!0||P.once(`subscription`,e=>gr=!0)                      (trailing spaces)
+    //
+    // Forces gr=true immediately at module load before the account API fires.
+    // The P.once listener is registered but never runs (short-circuit !0||).
+    // Note: variable renamed pr→gr in v51. Pattern updated accordingly.
     JsPatch(
-        label        = "pr premium flag init",
-        original     = "pr=!!N.get(`subscription`),pr||N.once(`subscription`,e=>pr=!!e)",
-        replacement  = "pr=!0,!0||N.once(`subscription`,e=>pr=!0)                      ",
+        label        = "gr premium flag init",
+        original     = "gr=!!P.get(`subscription`),gr||P.once(`subscription`,e=>gr=!!e)",
+        replacement  = "gr=!0,!0||P.once(`subscription`,e=>gr=!0)                      ",
     ),
 
-    // P3 — Hl() hasAny gate (35 bytes)
-    // Original : Hl=()=>N.get(`subscription`)!==null
-    // Replaced : Hl=()=>!0||N.get(`subscription`)    (trailing spaces)
-    // Short-circuits to always return true. N.get call is dead code.
+    // P3 — du() hasAny gate (35 bytes)
+    //
+    // Original : du=()=>P.get(`subscription`)!==null
+    // Replaced : du=()=>!0||P.get(`subscription`)    (trailing spaces)
+    //
+    // Short-circuits to always return true. P.get call is unreachable.
+    // Note: function renamed Hl→du in v51. Pattern updated accordingly.
     JsPatch(
-        label        = "Hl hasAny gate",
-        original     = "Hl=()=>N.get(`subscription`)!==null",
-        replacement  = "Hl=()=>!0||N.get(`subscription`)   ",
+        label        = "du hasAny gate",
+        original     = "du=()=>P.get(`subscription`)!==null",
+        replacement  = "du=()=>!0||P.get(`subscription`)   ",
     ),
 
-    // P4 — zl() subscription store clear (57 bytes)
-    // Original : N.set(`subscription`,null),N.set(`subscriptionInfo`,null)
+    // P4 — cu() subscription store clear (57 bytes)
+    //
+    // Original : P.set(`subscription`,null),P.set(`subscriptionInfo`,null)
     // Replaced : void 0                                                     (spaces to 57)
-    // Prevents zl() from writing null to M (SharedPrefs) and clearing the fr cache.
-    // subscription stays 'premium' in fr; Hl() and pr remain true after Vl(null).
+    //
+    // Prevents cu() from writing null to SharedPreferences and evicting the
+    // fr in-memory cache. The subscription store continues to return 'premium'
+    // via def even after cu() runs. Keeps du() and gr true post-auth-fail.
+    // Note: store object renamed N→P in v51. Pattern updated accordingly.
     JsPatch(
-        label        = "zl subscription store clear",
-        original     = "N.set(`subscription`,null),N.set(`subscriptionInfo`,null)",
+        label        = "cu subscription store clear",
+        original     = "P.set(`subscription`,null),P.set(`subscriptionInfo`,null)",
         replacement  = "void 0                                                   ",
     ),
 
-    // P5 — zl() body class direction (46 bytes)
+    // P5 — cu() body class direction (46 bytes)
+    //
     // Original : e&&document.body.classList.remove(`subs-${e}`)
     // Replaced : e&&document.body.classList.add   (`subs-${e}`)  (3 spaces after add)
-    // Flips classList.remove to classList.add. When zl() fires, e = N.get('subscription')
-    // = 'premium' (still in fr cache thanks to P4), so classList.add('subs-premium') runs.
-    // This keeps the Go Premium button hidden via CSS. classList.add is idempotent.
+    //
+    // Flips classList.remove → classList.add. When cu() fires:
+    //   e = P.get('subscription') = 'premium' (from P1 def, fr intact via P4)
+    //   classList.add('subs-premium') → Go Premium button stays hidden.
+    // classList.add is idempotent — safe to call multiple times.
     JsPatch(
-        label        = "zl body class direction",
+        label        = "cu body class direction",
         original     = "e&&document.body.classList.remove(`subs-\${e}`)",
         replacement  = "e&&document.body.classList.add   (`subs-\${e}`)",
     ),
@@ -204,9 +214,9 @@ private val PATCHES = listOf(
 @Suppress("unused")
 val windyUnlockPremiumPatch = rawResourcePatch(
     name = "Unlock Premium",
-    description = "Unlocks Windy Pro features by patching the JS bundle. " +
-        "Sets subscription store default to 'annual'  (P1), forces pr=true (P2) " +
-        "and hasAny()=true (P3) at module load. Prevents zl() from clearing the " +
+    description = "Unlocks Windy Pro features by patching the versioned JS bundle. " +
+        "Sets subscription store default to 'premium' (P1), forces gr=true (P2) " +
+        "and hasAny()=true (P3) at module load. Prevents cu() from clearing the " +
         "subscription store (P4) and flips its body class call from remove to add (P5), " +
         "ensuring the 'subs-premium' CSS class persists on <body> even when the server " +
         "reports no active subscription. Unlocks higher tile zoom, 1-hour forecast steps, " +
@@ -218,7 +228,7 @@ val windyUnlockPremiumPatch = rawResourcePatch(
     execute {
         // ── Locate versioned JS bundle ────────────────────────────────────────
         // Scan assets/public/v/ for any subdirectory containing mobile.js.
-        // The directory name is versioned (e.g. "50.1.1.mob.4aea") and changes
+        // The directory name is versioned (e.g. "51.0.1.mob.0f9e") and changes
         // each release — never hardcode it.
         val bundleFile = get("assets/public/v")
             .listFiles()

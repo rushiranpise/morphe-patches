@@ -7,6 +7,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
+import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.CanForwardMessageFingerprint
@@ -15,6 +16,8 @@ import app.template.patches.telegram.ChatActivityIsPeerNoForwardsFingerprint
 import app.template.patches.telegram.MessagesControllerIsChatNoForwardsChatFingerprint
 import app.template.patches.telegram.MessagesControllerIsChatNoForwardsLongFingerprint
 import app.template.patches.telegram.MessagesControllerIsPeerNoForwardsFingerprint
+import app.template.patches.telegram.MessagesControllerIsUserNoForwardsLongFingerprint
+import app.template.patches.telegram.MessagesControllerIsUserNoForwardsUserFullFingerprint
 import app.template.patches.telegram.ProfileActivityIsPeerNoForwardsFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
@@ -22,101 +25,82 @@ import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 @Suppress("unused")
 val telegramBypassContentRestrictionsPatch = bytecodePatch(
     name = "Bypass content restrictions",
-    description = "Allows saving and forwarding content from restricted channels and chats.",
+    description = "Allows saving and forwarding content from restricted channels, chats, and users.",
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    dependsOn(telegramSpoofDependency())
 
     execute {
         // isChatNoForwards — both overloads
-        MessagesControllerIsChatNoForwardsLongFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
-        MessagesControllerIsChatNoForwardsChatFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
+        listOf(
+            MessagesControllerIsChatNoForwardsLongFingerprint,
+            MessagesControllerIsChatNoForwardsChatFingerprint,
+        ).forEach {
+            it.method.addInstructions(0, """
+                const/4 v0, 0x0
+                return v0
+            """)
+        }
 
-        // isPeerNoForwards — all three classes
-        MessagesControllerIsPeerNoForwardsFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
-        ChatActivityIsPeerNoForwardsFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
-        ProfileActivityIsPeerNoForwardsFingerprint.method.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
+        // isUserNoForwards — both overloads (DM forward restrictions)
+        listOf(
+            MessagesControllerIsUserNoForwardsLongFingerprint,
+            MessagesControllerIsUserNoForwardsUserFullFingerprint,
+        ).forEach {
+            it.method.addInstructions(0, """
+                const/4 v0, 0x0
+                return v0
+            """)
+        }
 
-        // MessageObject.canForwardMessage → always true
+        // isPeerNoForwards — all three call sites
+        listOf(
+            MessagesControllerIsPeerNoForwardsFingerprint,
+            ChatActivityIsPeerNoForwardsFingerprint,
+            ProfileActivityIsPeerNoForwardsFingerprint,
+        ).forEach {
+            it.method.addInstructions(0, """
+                const/4 v0, 0x0
+                return v0
+            """)
+        }
+
+        // canForwardMessage → always true
         CanForwardMessageFingerprint.method.addInstructions(0, """
             const/4 v0, 0x1
             return v0
         """)
 
-        // ChatActivity.hasSelectedNoforwardsMessage → always false (forward button always enabled)
+        // hasSelectedNoforwardsMessage → false (forward button always enabled)
         ChatActivityHasSelectedNoforwardsMessageFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
             return v0
         """)
 
-        // Replace ALL reads of TLRPC$Message.noforwards field with const/4 0
-        val msgNoforwardsFilter = fieldAccess(
+        // Patch all TLRPC$Message.noforwards field reads → false
+        Fingerprint(filters = listOf(fieldAccess(
             opcode = Opcode.IGET_BOOLEAN,
             definingClass = "Lorg/telegram/tgnet/TLRPC\$Message;",
             name = "noforwards",
-            type = "Z",
-        )
-        Fingerprint(filters = listOf(msgNoforwardsFilter)).matchAllOrNull()?.forEach { match ->
+        ))).matchAllOrNull()?.forEach { match ->
             match.method.apply {
-                val indices = match.instructionMatches.map { it.index }
-                for (index in indices.reversed()) {
-                    val reg = getInstruction<TwoRegisterInstruction>(index).registerA
-                    replaceInstruction(index, "const/4 v$reg, 0x0")
+                match.instructionMatches.map { it.index }.reversed().forEach { idx ->
+                    val reg = getInstruction<TwoRegisterInstruction>(idx).registerA
+                    replaceInstruction(idx, "const/4 v$reg, 0x0")
                 }
             }
         }
 
-        // Replace ALL reads of TLRPC$Chat.noforwards field with const/4 0
-        val chatNoforwardsFilter = fieldAccess(
+        // Patch all TLRPC$Chat.noforwards field reads → false
+        Fingerprint(filters = listOf(fieldAccess(
             opcode = Opcode.IGET_BOOLEAN,
             definingClass = "Lorg/telegram/tgnet/TLRPC\$Chat;",
             name = "noforwards",
-            type = "Z",
-        )
-        Fingerprint(filters = listOf(chatNoforwardsFilter)).matchAllOrNull()?.forEach { match ->
+        ))).matchAllOrNull()?.forEach { match ->
             match.method.apply {
-                val indices = match.instructionMatches.map { it.index }
-                for (index in indices.reversed()) {
-                    val reg = getInstruction<TwoRegisterInstruction>(index).registerA
-                    replaceInstruction(index, "const/4 v$reg, 0x0")
-                }
-            }
-        }
-
-        // Patch noforwards on request TL types (send/forward)
-        listOf(
-            "Lorg/telegram/tgnet/TLRPC\$TL_messages_forwardMessages;",
-            "Lorg/telegram/tgnet/TLRPC\$TL_messages_sendMessage;",
-            "Lorg/telegram/tgnet/TLRPC\$TL_messages_sendMedia;",
-            "Lorg/telegram/tgnet/TLRPC\$TL_messages_sendMultiMedia;",
-        ).forEach { definingClass ->
-            val filter = fieldAccess(
-                opcode = Opcode.IGET_BOOLEAN,
-                definingClass = definingClass,
-                name = "noforwards",
-                type = "Z",
-            )
-            Fingerprint(filters = listOf(filter)).matchAllOrNull()?.forEach { match ->
-                match.method.apply {
-                    val indices = match.instructionMatches.map { it.index }
-                    for (index in indices.reversed()) {
-                        val reg = getInstruction<TwoRegisterInstruction>(index).registerA
-                        replaceInstruction(index, "const/4 v$reg, 0x0")
-                    }
+                match.instructionMatches.map { it.index }.reversed().forEach { idx ->
+                    val reg = getInstruction<TwoRegisterInstruction>(idx).registerA
+                    replaceInstruction(idx, "const/4 v$reg, 0x0")
                 }
             }
         }

@@ -13,11 +13,11 @@ val unlockProPatch = bytecodePatch(
 
     execute {
         // r43.e() — force subscribed = true
-        noAdsSubFingerprint.method.addInstruction(0, "const/4 v0, 0x1")
-        noAdsSubFingerprint.method.addInstruction(1, "return v0")
+        NoAdsSubFingerprint.method.addInstruction(0, "const/4 v0, 0x1")
+        NoAdsSubFingerprint.method.addInstruction(1, "return v0")
 
         // TC_Application.j() — force shouldShowAds = false
-        shouldShowAdsFingerprint.method.addInstruction(0, "const/4 v0, 0x0")
-        shouldShowAdsFingerprint.method.addInstruction(1, "return v0")
+        ShouldShowAdsFingerprint.method.addInstruction(0, "const/4 v0, 0x0")
+        ShouldShowAdsFingerprint.method.addInstruction(1, "return v0")
     }
 }

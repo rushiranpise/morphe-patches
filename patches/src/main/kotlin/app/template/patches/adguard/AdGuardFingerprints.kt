@@ -12,13 +12,14 @@ import com.android.tools.smali.dexlib2.Opcode
 /**
  * PlusManager class anchor.
  *
- * Obfuscated class names across verified versions:
- *   v4.14.0 phone : D0/b
- *   v4.13.0 TV    : F0/b
- *
  * Anchored on the retry-log string — a developer-written semantic message tied
  * to the retry logic inside PlusManager. Decouples all child fingerprints from
- * the obfuscated class name.
+ * the obfuscated class name, which changes every release.
+ *
+ * Verified stable across:
+ *   v4.14.0 phone : D0/b
+ *   v4.13.1 phone : F0/b   ← NEW
+ *   v4.13.0 TV    : F0/b
  */
 private val PlusManagerClassFingerprint = Fingerprint(
     strings = listOf("Failed to get state from backend. Remaining retry count: "),
@@ -27,11 +28,13 @@ private val PlusManagerClassFingerprint = Fingerprint(
 /**
  * PlusState.PaidLicense class anchor.
  *
- * Obfuscated class names across verified versions:
- *   v4.14.0 phone : G0/i$n
- *   v4.13.0 TV    : I0/i$n
- *
  * Anchored on the Kotlin data-class compiler-generated toString prefix.
+ * This string is emitted by kotlinc unconditionally and survives R8 shaking.
+ *
+ * Verified stable across:
+ *   v4.14.0 phone : G0/i$n
+ *   v4.13.1 phone : I0/i$n   ← NEW
+ *   v4.13.0 TV    : I0/i$n
  */
 private val PaidLicenseClassFingerprint = Fingerprint(
     strings = listOf("PaidLicense(licenseKey="),
@@ -44,22 +47,17 @@ private val PaidLicenseClassFingerprint = Fingerprint(
 /**
  * PlusManager.getCachedPlusState() — cache-aside getter.
  *
- * Verified method names:
- *   v4.14.0 phone : T6()LG0/i
- *   v4.13.0 TV    : P6()LI0/i
- *
  * Reads the in-memory cached PlusState field (IGET_OBJECT). On cache miss,
  * fetches from storage, then writes the result back (IPUT_OBJECT). No params,
- * returns a PlusState object.
+ * returns a PlusState object. Verified unique: only this method in PlusManager
+ * has no params, returns L, and contains both IGET_OBJECT and IPUT_OBJECT.
  *
- * Uniqueness verified exhaustively against all no-param, object-returning
- * methods in PlusManager: only T6/P6 contain both IGET_OBJECT and IPUT_OBJECT.
- *   R6()  : iget=2, iput=0  ← no write-back → excluded
- *   T6/P6 : iget=1, iput=1  ← cache read + write-back → unique match ✓
- *   r6()  : iget=0, iput=0  ← excluded
- *   x0()/t0() : iget=1, iput=0 ← no write-back → excluded
+ * Verified method names across versions:
+ *   v4.14.0 phone : T6()LG0/i
+ *   v4.13.1 phone : P6()LI0/i   ← NEW (same smali shape)
+ *   v4.13.0 TV    : P6()LI0/i
  *
- * Smali pattern (both versions):
+ * Smali pattern (all versions):
  *   iget-object v0, p0, LXX/b;->l:LYY/i;   ← cache read  ← anchor
  *   if-nez v0, :cond_a
  *   invoke-virtual {p0}, LXX/b;->N6()LYY/i; ← storage fallback
@@ -81,30 +79,26 @@ internal val GetPlusStateFingerprint = Fingerprint(
 /**
  * PlusManager.setPlusState(PlusState) — persist + notify.
  *
- * Verified method names:
- *   v4.14.0 phone : Z6(LG0/i)V
- *   v4.13.0 TV    : V6(LI0/i)V
- *
  * Writes the new PlusState into the in-memory cache field (IPUT_OBJECT),
  * persists it to storage, then notifies all registered observers via an
- * interface call (the PlusManagerNotificationAssistant observer, INVOKE_INTERFACE).
+ * interface call (INVOKE_INTERFACE). One PlusState param, void return.
  *
- * ⚠️ False-positive hazard (crash root cause):
- * PlusManager contains other void-1-param methods with INVOKE_INTERFACE:
- *   P6(String)V   : interface=1, iput=0  — license-key activate method
- *   y4(D0/a$d)V   : interface=1, iput=0  — settings listener method
- * Using INVOKE_INTERFACE alone matched P6(String)V, injecting G0.i into a
- * String register → VerifyError crash at startup.
+ * ⚠️ False-positive hazard: PlusManager has other void-1-param methods with
+ * INVOKE_INTERFACE (e.g. the activate-key method). Using INVOKE_INTERFACE alone
+ * can match them and cause a VerifyError crash. IPUT_OBJECT prefix is the
+ * discriminator — only the set-state method performs a cache write-back before
+ * the interface notify. Verified exhaustively across all three target versions.
  *
- * Fix: prefix with IPUT_OBJECT — the cache write-back that only Z6/V6 perform
- * before the interface call. Verified exhaustively: no other void-1-param method
- * in PlusManager has both IPUT_OBJECT and INVOKE_INTERFACE.
+ * Verified method names across versions:
+ *   v4.14.0 phone : Z6(LG0/i)V
+ *   v4.13.1 phone : V6(LI0/i)V   ← NEW (same smali shape)
+ *   v4.13.0 TV    : V6(LI0/i)V
  *
- * Smali pattern (both versions):
- *   iput-object p1, p0, LXX/b;->l:LYY/i;           ← cache write ← anchor
- *   invoke-virtual {p0, p1}, LXX/b;->X6(LYY/i;)V   ← persist to storage
+ * Smali pattern (all versions):
+ *   iput-object p1, p0, LXX/b;->l:LYY/i;          ← cache write ← anchor
+ *   invoke-virtual {p0, p1}, LXX/b;->persist(...)  ← storage persist
  *   iget-object v1, p0, LXX/b;->d:LYY/g;
- *   invoke-interface {v1, p1}, LYY/g;->b(LYY/i;)V  ← notify observers ← anchor
+ *   invoke-interface {v1, p1}, LYY/g;->b(...)      ← notify observers ← anchor
  */
 internal val SetPlusStateFingerprint = Fingerprint(
     classFingerprint = PlusManagerClassFingerprint,
@@ -119,19 +113,18 @@ internal val SetPlusStateFingerprint = Fingerprint(
 /**
  * PlusManager.fetchAndUpdatePlusState(cacheStrategy, retryStrategy) — license screen path.
  *
- * Verified method names:
+ * Dispatches a coroutine to fetch PlusState from the backend. Drives the
+ * AboutLicenseViewModel → license screen StateFlow → UI. Uniquely identified by
+ * INSTANCE_OF on the first parameter followed by INVOKE_VIRTUAL. The only
+ * 2-param, object-returning method in PlusManager with this shape.
+ *
+ * Verified method names across versions:
  *   v4.14.0 phone : U6(LD0/a$a;LD0/a$e;)LG0/i
+ *   v4.13.1 phone : Q6(LF0/a$a;LF0/a$e;)LI0/i   ← NEW (same smali shape)
  *   v4.13.0 TV    : Q6(LF0/a$a;LF0/a$e;)LI0/i
  *
- * Dispatches a coroutine to fetch PlusState from the backend. The result feeds
- * the AboutLicenseViewModel → license screen StateFlow → UI.
- *
- * Uniquely identified by INSTANCE_OF on the first parameter (forceRefresh check)
- * followed by INVOKE_VIRTUAL (the dispatch). The only 2-param, object-returning
- * method in PlusManager with this shape.
- *
- * Smali pattern (both versions):
- *   instance-of v0, p1, LXX/a$a$b;                           ← forceRefresh check ← anchor
+ * Smali pattern (all versions):
+ *   instance-of v0, p1, LXX/a$a$b;                            ← forceRefresh check ← anchor
  *   invoke-virtual {p0, v0, p2}, LXX/b;->S6(ZLX/a$e;)LYY/i; ← dispatch ← anchor
  */
 internal val StateFlowResolverFingerprint = Fingerprint(
@@ -147,24 +140,23 @@ internal val StateFlowResolverFingerprint = Fingerprint(
 /**
  * PlusManager.fetchPlusStateForPromo(cacheStrategy, retryStrategy) — promo dialog path.
  *
- * Verified method names:
+ * Dispatches a coroutine for the promo/check-license dialog. Free/Unknown result
+ * triggers a "Check license" dialog opening the purchase URL in Chrome. Anchored
+ * on Kotlin Intrinsics param-name null-check strings at the method top.
+ *
+ * classFingerprint scopes to PlusManager implementation (excludes the F0/a
+ * interface which has the same strings only in annotation metadata).
+ *
+ * Verified method names across versions:
  *   v4.14.0 phone : D5(LD0/a$a;LD0/a$e;)LG0/i
+ *   v4.13.1 phone : K2(LF0/a$a;LF0/a$e;)LI0/i   ← NEW
  *   v4.13.0 TV    : L2(LF0/a$a;LF0/a$e;)LI0/i
  *
- * Dispatches a coroutine for the promo/check-license dialog. Result drives
- * needShowCheckLicenseDialog via MutableLiveData.postValue(). When Free or
- * Unknown, AdGuard shows a "Check license" dialog that opens the purchase URL.
- *
- * Anchored on "cacheStrategy" then "retryStrategy" — Kotlin Intrinsics param-name
- * null-check strings at the top of the method. classFingerprint scopes to the
- * PlusManager implementation class, excluding the interface (D0/a / F0/a) which
- * has the same strings only in annotation metadata.
- *
- * Smali pattern (both versions):
- *   const-string v0, "cacheStrategy"                                     ← anchor
- *   invoke-static {p1, v0}, kotlin/jvm/internal/p;->g(Object;String;)V
- *   const-string v0, "retryStrategy"                                     ← anchor
- *   invoke-static {p2, v0}, kotlin/jvm/internal/p;->g(Object;String;)V
+ * Smali pattern (all versions):
+ *   const-string v0, "cacheStrategy"                                    ← anchor
+ *   invoke-static {p1, v0}, Lkotlin/jvm/internal/p;->g(...)V
+ *   const-string v0, "retryStrategy"                                    ← anchor
+ *   invoke-static {p2, v0}, Lkotlin/jvm/internal/p;->g(...)V
  */
 internal val PromoStateFlowResolverFingerprint = Fingerprint(
     classFingerprint = PlusManagerClassFingerprint,
@@ -180,6 +172,7 @@ internal val PromoStateFlowResolverFingerprint = Fingerprint(
  *
  * Verified class / signature:
  *   v4.14.0 phone : G0/i$n  (String, G0/i$m, G0/i$l, I, I, String)
+ *   v4.13.1 phone : I0/i$n  (String, I0/i$m, I0/i$l, I, I, String)   ← NEW
  *   v4.13.0 TV    : I0/i$n  (String, I0/i$m, I0/i$l, I, I, String)
  */
 internal val PaidLicenseFingerprint = Fingerprint(
@@ -190,14 +183,13 @@ internal val PaidLicenseFingerprint = Fingerprint(
 /**
  * LicenseDuration.Lifetime singleton — toString() method.
  *
+ * Used at patch time to resolve the singleton static field via
+ * classDef.staticFields.first(). Anchored on string("Lifetime").
+ *
  * Verified class names:
  *   v4.14.0 phone : G0/i$l$a
+ *   v4.13.1 phone : I0/i$l$a   ← NEW
  *   v4.13.0 TV    : I0/i$l$a
- *
- * Used at patch time to resolve the singleton static field via
- * classDef.staticFields.first(). Anchored on string("Lifetime") in the
- * filter rather than name="toString" alone to prevent accidental matches
- * in unrelated classes if class resolution ever broadens.
  */
 internal val LifetimeDurationFingerprint = Fingerprint(
     name = "toString",
@@ -206,47 +198,31 @@ internal val LifetimeDurationFingerprint = Fingerprint(
     ),
 )
 
-// ─────────────────────────────────────────────────────────────────────────────
-// TV-specific fingerprints
-// ─────────────────────────────────────────────────────────────────────────────
-
 /**
- * PlusManager.activateLicenseKey(String) — TV-only license key activation path.
+ * PlusManager.activateLicenseKey(String) — backend re-verification path.
  *
- * Verified method name:
- *   v4.13.0 TV : L6(Ljava/lang/String;)V
+ * Called on license screen open to re-verify any stored key with the backend.
+ * Without a real key this fails and the UI falls back to "License activated"
+ * text instead of displaying the "Lifetime" duration label from our synthetic
+ * PaidLicense. returnEarly() prevents the backend call entirely.
  *
- * Called from the TV license screen (TvAboutLicenseViewModel via synthetic
- * accessor I1). When the license screen opens on TV, it reads any stored
- * license key from storage and calls this method to re-verify it with the
- * backend (via LI0/e interface). Since there is no real key in a patched
- * build, this call fails and the UI falls back to "License activated" text
- * instead of displaying the "Lifetime" duration label from our fake PaidLicense.
+ * Previously documented as TV-only (L6 in TV v4.13.0). Verified that L6 is
+ * also present in Android v4.13.1 with an identical smali shape — making this
+ * fingerprint applicable to both builds. Applied via methodOrNull in the unified
+ * patch so it gracefully no-ops on versions where it doesn't match.
  *
- * Patching → returnEarly() prevents the re-verification entirely. Combined with
- * getCachedPlusState() returning our PaidLicense, the license screen reads
- * the correct Lifetime state and displays it properly.
+ * Verified method names:
+ *   v4.13.1 phone : L6(Ljava/lang/String;)V   ← present; same shape
+ *   v4.13.0 TV    : L6(Ljava/lang/String;)V
+ *   v4.14.0 phone : (verify before applying)
  *
- * Note: L6 already no-ops when called with a null param (if-eqz p1 → return-void).
- * We returnEarly() unconditionally to also cover the case where a stale non-null
- * key string is stored from a previous real activation attempt.
- *
- * NOT present in the phone version (phone uses P6(String)V for the same purpose,
- * but the phone license screen does not call it on open — only on explicit user
- * action). Scoped to TV patch only via ADGUARD_TV_COMPATIBILITY.
- *
- * Smali (F0/b.smali, L6(Ljava/lang/String;)V):
+ * Smali pattern (all verified versions):
  *   if-eqz p1, :cond_c
- *   iget-object v0, p0, LF0/b;->c:LI0/e;
- *   invoke-interface {v0, p1}, LI0/e;->l(Ljava/lang/String;)LI0/d;  ← backend call
- *   iget-object p1, p0, LF0/b;->k:Lc3/a;
- *   invoke-virtual {p1}, Lc3/a;->g()V
+ *   iget-object v0, p0, LXX/b;->c:LYY/e;
+ *   invoke-interface {v0, p1}, LYY/e;->l(Ljava/lang/String;)LYY/d;  ← backend call ← anchor
+ *   ...
  *   :cond_c
  *   return-void
- *
- * Anchored on the PlusManager class + method name "L6" (stable within TV v4.13.0).
- * As an additional guard, the INVOKE_INTERFACE filter confirms the backend
- * activation call is present — preventing a match on other short void-String methods.
  */
 internal val LicenseKeyActivateFingerprint = Fingerprint(
     classFingerprint = PlusManagerClassFingerprint,

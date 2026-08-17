@@ -8,16 +8,9 @@ import com.android.tools.smali.dexlib2.AccessFlags
 // ─── Pairip (DEX-layer only — no VMRunner/StartupLauncher in this variant) ────
 
 /**
- * LicenseClient.checkLicense(Context) — public static; bootstraps the entire
- * Play licensing flow. Returning void here short-circuits before any binder
- * connection is attempted.
- *
- * Smali: classes/com/pairip/licensecheck/LicenseClient.smali
- *   .method public static checkLicense(Landroid/content/Context;)V
- *   invoke-static {}, Lcom/pairip/licensecheck/LicenseClient;->isIsolatedProcess()Z
- *   ...
- *   new-instance v0, Lcom/pairip/licensecheck/LicenseClient;
- *   invoke-virtual {v0}, Lcom/pairip/licensecheck/LicenseClient;->initializeLicenseCheck()V
+ * LicenseClient.checkLicense(Context) — public static.
+ * Short-circuits the entire Play licensing binder connection.
+ * Stable: non-obfuscated com.pairip.* SDK class.
  */
 internal object LicenseCheckFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
@@ -27,13 +20,9 @@ internal object LicenseCheckFingerprint : Fingerprint(
 )
 
 /**
- * LicenseResponseHelper.validateResponse(Bundle, String) — public static;
- * performs RSA/JWS signature verification and throws LicenseCheckException
- * on any tampered response. Belt-and-suspenders in case initializeLicenseCheck
- * somehow runs (e.g. via FULL_CHECK_OK state path).
- *
- * Smali: classes/com/pairip/licensecheck/LicenseResponseHelper.smali
- *   .method public static validateResponse(Landroid/os/Bundle;Ljava/lang/String;)V
+ * LicenseResponseHelper.validateResponse(Bundle, String) — public static.
+ * RSA/JWS signature verification. Belt-and-suspenders bypass.
+ * Stable: non-obfuscated com.pairip.* SDK class.
  */
 internal object LicenseValidateResponseFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseResponseHelper;",
@@ -43,12 +32,9 @@ internal object LicenseValidateResponseFingerprint : Fingerprint(
 )
 
 /**
- * LicenseActivity.closeApp() — private; called when license check fails;
- * launches closeAllTasks() then System.exit(0). No-op prevents any residual
- * LicenseActivity from killing the process.
- *
- * Smali: classes/com/pairip/licensecheck/LicenseActivity.smali
- *   .method private closeApp()V  (line 56)
+ * LicenseActivity.closeApp() — private.
+ * Called on license failure → System.exit(0). No-op prevents process kill.
+ * Stable: non-obfuscated com.pairip.* SDK class.
  */
 internal object LicenseCloseAppFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseActivity;",
@@ -60,39 +46,44 @@ internal object LicenseCloseAppFingerprint : Fingerprint(
 // ─── Billing / Premium ────────────────────────────────────────────────────────
 
 /**
- * ez.e() — isPremium gate; returns true if SKU "premium_v1" OR "premium_yearly"
- * is in SKU_STATE_PURCHASED_AND_ACKNOWLEDGED in the local HashMap.
- * This is the top-level gate consumed by the PremiumStatus (fj3) data class
- * that drives all premium-gated UI across the app.
+ * IsPremiumFingerprint → nz.v()Z
  *
- * Smali: classes/ez.smali  .method public final e()Z  (line 280)
- *   .registers 2
- *   const-string v0, "premium_v1"
- *   iget-object p0, p0, Lez;->v:Luy;
- *   invoke-virtual {p0, v0}, Luy;->h(Ljava/lang/String;)Z
- *   move-result v0
- *   if-nez v0, :cond_15
- *   const-string v0, "premium_yearly"
- *   invoke-virtual {p0, v0}, Luy;->h(Ljava/lang/String;)Z
- *   ...
- *   return p0
+ * Top-level isPremium boolean gate. Calls cz.q("premium_v1") || cz.q("premium_yearly").
+ * Also called directly by xn.<init>(Lnz;) to set the Compose nav initial isPremium
+ * value via rd3.setValue — so patching this covers both the feature gate AND the
+ * nav Upgrade-tab initial state (NavIsPremiumInitFingerprint no longer needed).
+ *
+ * v6.22.0: ez.e()Z calling Luy;->h() ×2
+ * v6.23.1: nz.v()Z calling Lcz;->q() ×2 — uy renamed cz, ez renamed nz
+ *
+ * Smali (nz.smali line 605, v6.23.1):
+ *   .method public final v()Z
+ *     sget-object v0, Lnz;->a:Ljava/lang/String;        ← static "premium_v1" field
+ *     iget-object p0, p0, Lnz;->v:Lcz;
+ *     invoke-virtual {p0, v0}, Lcz;->q(Ljava/lang/String;)Z   ← filter[0]
+ *     move-result v0
+ *     if-nez v0, :cond_15
+ *     const-string v0, "premium_yearly"                 ← filter[1]
+ *     invoke-virtual {p0, v0}, Lcz;->q(Ljava/lang/String;)Z   ← filter[2]
+ *
+ * Filters: first cz.q() call + string("premium_yearly") + second cz.q() call.
+ * This combination is unique to nz.v()Z across the entire DEX.
  */
 internal object IsPremiumFingerprint : Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf(),
     filters = listOf(
-        string("premium_v1"),
         methodCall(
-            definingClass = "Luy;",
-            name = "h",
+            definingClass = "Lcz;",
+            name = "q",
             returnType = "Z",
             parameters = listOf("Ljava/lang/String;"),
         ),
         string("premium_yearly"),
         methodCall(
-            definingClass = "Luy;",
-            name = "h",
+            definingClass = "Lcz;",
+            name = "q",
             returnType = "Z",
             parameters = listOf("Ljava/lang/String;"),
         ),
@@ -100,29 +91,25 @@ internal object IsPremiumFingerprint : Fingerprint(
 )
 
 /**
- * uy.h(String) — per-SKU state query; compares the SKU's StateFlow value
- * against EnumC0200ey.f6015h (SKU_STATE_PURCHASED_AND_ACKNOWLEDGED).
- * Called directly by IsPremiumFingerprint's method and by other scattered
- * premium-gate checks across the UI layer.
+ * SkuStateQueryFingerprint → cz.q(String)Z
  *
- * Smali: classes/uy.smali  .method public final h(Ljava/lang/String;)Z  (line 7729)
- *   .registers 2
- *   iget-object p0, p0, Luy;->d:Ljava/util/HashMap;
- *   invoke-virtual {p0, p1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
- *   move-result-object p0
- *   check-cast p0, Lwf4;
- *   if-eqz p0, :cond_11
- *   invoke-virtual {p0}, Lwf4;->getValue()Ljava/lang/Object;
- *   move-result-object p0
- *   check-cast p0, Ley;
- *   :goto_12
- *   sget-object p1, Ley;->h:Ley;          ← SKU_STATE_PURCHASED_AND_ACKNOWLEDGED
- *   if-ne p0, p1, :cond_18
- *   const/4 p0, 0x1 / const/4 p0, 0x0 / return p0
+ * Per-SKU boolean query. Reads jh4 StateFlow from HashMap, checks against
+ * Lgy;->m (PURCHASED_AND_ACKNOWLEDGED enum constant).
  *
- * Stable filters: HashMap.get call + sget-object on SKU_STATE_PURCHASED_AND_ACKNOWLEDGED
- * field (Ley;->h is the PURCHASED_AND_ACKNOWLEDGED enum constant, never obfuscated
- * in value — the field name h is obfuscated but the containing class Ley is co-located).
+ * v6.22.0: uy.h(String)Z — HashMap.get + Lwf4;->getValue
+ * v6.23.1: cz.q(String)Z — HashMap.get + Ljh4;->getValue  (wf4 → jh4)
+ *
+ * Smali (cz.smali line 4411, v6.23.1):
+ *   .method public final q(Ljava/lang/String;)Z
+ *     iget-object p0, p0, Lcz;->o:Ljava/util/HashMap;
+ *     invoke-virtual {p0, p1}, Ljava/util/HashMap;->get(Object)Object   ← filter[0]
+ *     move-result-object p0
+ *     check-cast p0, Ljh4;
+ *     if-eqz p0, :cond_14
+ *     invoke-virtual {p0}, Ljh4;->getValue()Ljava/lang/Object;          ← filter[1]
+ *     check-cast p0, Lgy;
+ *     sget-object p1, Lgy;->m:Lgy;
+ *     if-ne p0, p1, :cond_1b
  */
 internal object SkuStateQueryFingerprint : Fingerprint(
     returnType = "Z",
@@ -136,7 +123,7 @@ internal object SkuStateQueryFingerprint : Fingerprint(
             parameters = listOf("Ljava/lang/Object;"),
         ),
         methodCall(
-            definingClass = "Lwf4;",
+            definingClass = "Ljh4;",
             name = "getValue",
             returnType = "Ljava/lang/Object;",
             parameters = listOf(),
@@ -145,33 +132,25 @@ internal object SkuStateQueryFingerprint : Fingerprint(
 )
 
 /**
- * uy.c(List) — StateFlow initializer; called once per SKU list in the constructor.
- * Reads SharedPreferences.getInt("SKU_" + skuId, 0) and initialises a wf4 StateFlow
- * per SKU with the persisted EnumC0200ey ordinal (0 = UNPURCHASED by default).
- * The Compose UI observes these wf4 StateFlows reactively via a combine() chain in
- * C0964zn.f24963e — which means patching uy.h() or ez.e() alone is insufficient.
- * We must force the StateFlow initial value to ordinal 3
- * (SKU_STATE_PURCHASED_AND_ACKNOWLEDGED) so the reactive Boolean StateFlow emits
- * true on the first subscription, before any BillingClient response arrives.
+ * SkuStateInitFingerprint → cz.v(List)V
  *
- * Smali: classes/uy.smali  .method public final c(Ljava/util/List;)V  (line 6543)
- *   ...
- *   const-string v3, "SKU_"
- *   invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(...)
- *   invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()
- *   move-result-object v2
- *   const/4 v3, 0x0                          ← DEFAULT 0 = UNPURCHASED (patch target)
- *   invoke-interface {v1, v2, v3}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
- *   move-result v1
- *   invoke-static {}, Ley;->values()[Ley;    ← enum ordinal → enum instance
- *   ...
- *   invoke-static {v1}, Lqe5;->k(Ljava/lang/Object;)Lwf4;  ← creates wf4 StateFlow
+ * Initialises one jh4 StateFlow per SKU from SharedPreferences at startup.
+ * Reads getInt("SKU_"+skuId, 0) and calls Lgy;->values() to map ordinal → enum.
  *
- * Patch: replace the const/4 v3, 0x0 (SharedPrefs default) with const/4 v3, 0x3
- * so the wf4 StateFlow always starts as SKU_STATE_PURCHASED_AND_ACKNOWLEDGED,
- * making the Compose isPremium Boolean StateFlow emit true immediately.
+ * v6.22.0: uy.c(List)V — Ley;->values()[Ley;
+ * v6.23.1: cz.v(List)V — Lgy;->values()[Lgy;  (enum Ley renamed Lgy)
  *
- * Verified unique: only uy.smali contains both "SKU_" const-string AND Ley;->values() call.
+ * Smali (cz.smali line 5276, v6.23.1):
+ *   .method public final v(Ljava/util/List;)V
+ *     ...
+ *     const-string v3, "SKU_"                              ← filter[0]
+ *     ...
+ *     invoke-interface SharedPreferences;->getInt(S,I)I   ← filter[1]
+ *     move-result v1                                       ← patch target: replace with const/4 v1, 0x3
+ *     invoke-static {}, Lgy;->values()[Lgy;               ← filter[2]  (was Ley;->values)
+ *
+ * Patch: replace move-result v1 at (filter[1].index + 1) with const/4 v1, 0x3
+ * → forces every jh4 StateFlow to initialise as PURCHASED_AND_ACKNOWLEDGED (ordinal 3).
  */
 internal object SkuStateInitFingerprint : Fingerprint(
     returnType = "V",
@@ -186,100 +165,38 @@ internal object SkuStateInitFingerprint : Fingerprint(
             parameters = listOf("Ljava/lang/String;", "I"),
         ),
         methodCall(
-            definingClass = "Ley;",
+            definingClass = "Lgy;",
             name = "values",
-            returnType = "[Ley;",
+            returnType = "[Lgy;",
             parameters = listOf(),
         ),
     ),
 )
 
 /**
- * tu5.m8990e — the main Compose navigation composable. Contains the call
- * to collectAsState(C0457ly(wf4_premium_v1, 1), initialValue = Boolean.FALSE)
- * whose result is passed as the `isPremium` boolean to the bottom navigation
- * builder (qe5.m7722n → C0815vm.f20918d).
+ * SkuStateWriteFingerprint → cz.u(String, Lgy;)V
  *
- * C0815vm line 126: `else if (!this.f20918d)` — when f20918d=FALSE, renders the
- * Upgrade nav item via zs5.m10969e(). When f20918d=TRUE, renders the subscription
- * management view instead. So this Boolean.FALSE initial value is the direct gate
- * for the "Upgrade" tab appearing in the bottom navigation bar.
+ * Updates jh4 StateFlow and SharedPreferences when BillingClient reports a
+ * purchase state change. Returning early blocks the overwrite of the
+ * PURCHASED_AND_ACKNOWLEDGED value set by SkuStateInitFingerprint.
  *
- * Smali: classes/tu5.smali  method public static final e(Lql0;Lfd2;Li74;...)V
- *   line 1886: const-string v1, "premium_v1"               ← filter[0]
- *   line 1888: invoke-virtual HashMap->get(Object)Object    ← filter[1]
- *   line 1914: invoke-direct Lly;-><init>(Lwf4;I)V          ← filter[2]  [matches[2]]
- *   line 1917: move-object v0, v1                           ← index+1
- *   line 1922: sget-object v1, Boolean;->FALSE              ← index+2 PATCH TARGET
- *   line 1939: invoke-static Lxv5;->m(...)Ldz2;            ← filter[3]
+ * v6.22.0: uy.u(String, Ley;)V — putInt + Lwf4;->h(Object,Object)Z CAS
+ * v6.23.1: cz.u(String, Lgy;)V — putInt + Ljh4;->i(Object,Object)Z CAS
+ *          (wf4 → jh4, CAS method h → i, enum Ley → Lgy)
  *
- * Patch: replace sget-object v1, Boolean.FALSE
- *              with sget-object v1, Boolean.TRUE
- * Forces isPremium=TRUE as the initial value on the first composition frame,
- * so the bottom nav immediately shows subscription management (not Upgrade button).
- *
- * Verified unique: only tu5.smali contains "premium_v1" + HashMap.get + Lly;<init> + Lxv5;->m.
- */
-internal object NavIsPremiumInitFingerprint : Fingerprint(
-    returnType = "V",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
-    parameters = listOf("Lql0;", "Lfd2;", "Li74;", "Lzn;", "Liz;", "Lir1;", "I"),
-    filters = listOf(
-        string("premium_v1"),
-        methodCall(
-            definingClass = "Ljava/util/HashMap;",
-            name = "get",
-            returnType = "Ljava/lang/Object;",
-            parameters = listOf("Ljava/lang/Object;"),
-        ),
-        methodCall(
-            definingClass = "Lly;",
-            name = "<init>",
-            returnType = "V",
-            parameters = listOf("Lwf4;", "I"),
-        ),
-        methodCall(
-            definingClass = "Lxv5;",
-            name = "m",
-            returnType = "Ldz2;",
-        ),
-    ),
-)
-
-/**
- * uy.u(String, EnumC0200ey) — the wf4 StateFlow updater called by BillingClient
- * callbacks whenever purchase state changes.
- *
- * This method is the root cause of the "pro flag briefly disappears then comes back"
- * race condition: our SkuStateInitFingerprint forces the wf4 StateFlow to start as
- * PURCHASED_AND_ACKNOWLEDGED, but when the BillingClient responds with no active
- * purchases (because we haven't actually bought anything), it calls:
- *   m9379b() → m9384j() → m9386u("premium_v1", SKU_STATE_UNPURCHASED)
- *   → wf4.h(null, EnumC0200ey.UNPURCHASED)  ← overwrites our patched value
- *   → combine() StateFlow emits false → isPremium=false → PRO badges reappear
- *
- * Smali: classes/uy.smali  .method public final u(Ljava/lang/String;Ley;)V  (line 8504)
- *   sget-object v0, SharedPreferences
- *   SharedPreferences.edit() → putInt("SKU_"+str, ordinal) → apply()
- *   iget-object f20298d → HashMap.get(str) → check-cast wf4
- *   if-eqz wf4, :done
- *   const/4 p1, 0x0
- *   invoke-virtual {wf4, p1, p2}, Lwf4;->h(Object, Object)Z  ← StateFlow CAS update
- *   :done return-void
- *
- * Patch: returnEarly() — prevent ALL writes to SharedPrefs and wf4 StateFlow.
- * Safe because:
- *   - SharedPrefs write is irrelevant (SkuStateInitFingerprint bypasses reading it)
- *   - wf4 StateFlow is already PURCHASED_AND_ACKNOWLEDGED from Layer 1 init patch
- *   - All three call sites that pass PURCHASED enum are also blocked, but the wf4
- *     is already in the correct state so no functional impact
- *
- * Unique: only uy.smali has PUBLIC FINAL method with (String, Ley;) params + wf4.h call.
+ * Smali (cz.smali line 5165, v6.23.1):
+ *   .method public final u(Ljava/lang/String;Lgy;)V
+ *     SharedPreferences;->edit()
+ *     SharedPreferences$Editor;->putInt(String,I)               ← filter[0]
+ *     SharedPreferences$Editor;->apply()
+ *     HashMap;->get(Object)
+ *     check-cast Ljh4;
+ *     Ljh4;->i(Object,Object)Z                                  ← filter[1]  (was wf4.h)
  */
 internal object SkuStateWriteFingerprint : Fingerprint(
     returnType = "V",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf("Ljava/lang/String;", "Ley;"),
+    parameters = listOf("Ljava/lang/String;", "Lgy;"),
     filters = listOf(
         methodCall(
             definingClass = "Landroid/content/SharedPreferences\$Editor;",
@@ -288,8 +205,8 @@ internal object SkuStateWriteFingerprint : Fingerprint(
             parameters = listOf("Ljava/lang/String;", "I"),
         ),
         methodCall(
-            definingClass = "Lwf4;",
-            name = "h",
+            definingClass = "Ljh4;",
+            name = "i",
             returnType = "Z",
             parameters = listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
         ),

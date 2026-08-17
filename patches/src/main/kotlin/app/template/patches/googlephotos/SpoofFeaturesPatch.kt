@@ -23,7 +23,7 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 val googlePhotosSpoofFeaturesPatch = bytecodePatch(
     name = "Spoof features",
     description = "Spoofs selectable Pixel Photos build and feature flags.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(GOOGLE_PHOTOS_COMPATIBILITY)
 

@@ -6,32 +6,34 @@ import app.template.patches.shared.Constants.AUTOMATE_COMPATIBILITY
 import app.template.patches.shared.returnEarly
 
 /**
- * Unlock Automate (1.51.1+)
+ * Unlock Automate (1.53.1+)
  *
  * ## Licensing system — Google Play Billing + runtime state field
  *
  * Automate uses Google Play Billing (BillingClient) via the `F3.b` premium manager.
- * The result is cached in `AutomateService.Y1:I`, an instance field with three states:
+ * The result is cached in `AutomateService.Z1:I` (was `Y1:I` in v1.51.1), with states:
  *  - `0` = initial / unknown
- *  - `1` = not premium (billing query returned no valid purchase)
- *  - `3` = premium verified (purchase state=PURCHASED + isAcknowledged=true)
+ *  - `1` = not premium
+ *  - `3` = premium verified
  *
  * ## Feature gate
  *
- * `AutomateService.f(B0, BeginningStatement, Object, Z)Z` is called before each flow run:
- *  1. If `Y1 == 3` → `return true` (premium, unlimited flows)
- *  2. Query `runningStatementCount` — if count ≤ 30 → `return true` (free tier limit)
+ * `AutomateService.f(F0, BeginningStatement, Object, Z)Z` is called before each flow:
+ *  1. If `Z1 == 3` → `return true` (premium, unlimited)
+ *  2. Query `runningStatementCount` — if count ≤ 30 → `return true` (free tier)
  *  3. If count > 30 AND not premium → shows `PremiumPurchaseActivity` → `return false`
  *
  * ## Patch strategy
  *
- * **Patch 1** — `returnEarly(true)` on the gate method `f()`. Every flow execution
- * is always allowed, bypassing both the 30-statement limit and the premium check.
+ * **Patch 1** — `returnEarly(true)` on gate method `f()`. Every flow always allowed.
+ * Fingerprinted by stable `"runningStatementCount"` + `"checkPremiumAllow"` strings.
+ * First param uses `"L"` placeholder (obfuscated: was B0 in v1.51.1, F0 in v1.53.1).
  *
- * **Patch 2** — inject `Y1 = 3` at the top of `onQueryPremiumCompleted()`. This
- * ensures the premium status field is always set to verified before any billing
- * callback logic runs, so the UI (settings preference, premium indicator) also
- * reflects premium status correctly.
+ * **Patch 2** — inject `Z1 = 3` at top of `AutomateService.onQueryPremiumCompleted()`.
+ * Forces premium state field before billing callback processes. Field renamed Y1→Z1 in v1.53.1.
+ *
+ * **Patch 3** — inject `setPremiumPurchase(p1)` at top of `MainFragment.onQueryPremiumCompleted()`.
+ * Forces settings UI to show "You got Premium" / "View order information".
  *
  * @package com.llamalab.automate
  */
@@ -44,17 +46,23 @@ val automatePremiumPatch = bytecodePatch(
     compatibleWith(AUTOMATE_COMPATIBILITY)
 
     execute {
-        // Patch 1: always allow flow execution (bypass count limit and premium check)
+        // Patch 1: always allow flow execution
         AutomatePremiumGateFingerprint.method.returnEarly(true)
 
-        // Patch 2: force premium state field Y1 = 3 before billing callback processes.
-        // const/4 v0, 0x3  → iput v0, p0, AutomateService->Y1:I
-        // Using p0 = this (AutomateService instance) as per smali convention.
+        // Patch 2: force premium state field Z1 = 3 (was Y1 in v1.51.1)
         AutomatePremiumQueryFingerprint.method.addInstructions(
             0,
             """
             const/4 v0, 0x3
-            iput v0, p0, Lcom/llamalab/automate/AutomateService;->Y1:I
+            iput v0, p0, Lcom/llamalab/automate/AutomateService;->Z1:I
+            """.trimIndent()
+        )
+
+        // Patch 3: force settings UI to show "You got Premium"
+        AutomateMainFragmentPremiumFingerprint.method.addInstructions(
+            0,
+            """
+            invoke-direct {p0, p1}, Lcom/llamalab/automate/prefs/MainFragment;->setPremiumPurchase(Lcom/android/billingclient/api/Purchase;)V
             """.trimIndent()
         )
     }

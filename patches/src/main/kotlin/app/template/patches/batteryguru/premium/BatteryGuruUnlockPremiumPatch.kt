@@ -11,12 +11,17 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.StringReference
 
 // Supports:
-//   Battery Guru (Play Store APKS) — v2.5.0.6 (versionCode 721)
-//   Battery Guru Community  (APK)  — v2.5.0.5 (versionCode 714)
+//   Battery Guru (Play Store APKS) — v2.5.0.6 (versionCode 723)
+//   Battery Guru Community  (APK)  — v2.5.0.6 (versionCode 723)
 //
 // Both variants share the same package (com.paget96.batteryguru) and identical
 // billing/premium class structure — same string anchors, same method shapes.
 // The execute block runs unchanged for both; only the Compatibility differs.
+//
+// v723 vs v721: billing repo class renamed hm5/ub1 → tc1 (single class for both variants).
+// tc1 is a larger coroutine class; multiple methods now share "last_product_id".
+// Selected-product reader discriminated from active-premium reader by excluding
+// "video_time" and "rewarded_ad_count" from the singleOrNull condition.
 
 @Suppress("unused")
 val batteryGuruUnlockPremiumPatch = bytecodePatch(
@@ -67,10 +72,16 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
 
         // 2. Selected-product reader: returns Object, takes 1 parameter,
         //    reads "last_product_id" from SharedPreferences.
+        //    v723: tc1 is a larger coroutine class; multiple methods reference "last_product_id".
+        //    Discriminate by requiring absence of "video_time" and "rewarded_ad_count".
         mutableBillingRepo.methods.singleOrNull { method ->
             method.returnType == "Ljava/lang/Object;" &&
                 method.parameterTypes.size == 1 &&
-                "last_product_id" in method.stringLiterals()
+                method.stringLiterals().let { literals ->
+                    "last_product_id" in literals &&
+                        "video_time" !in literals &&
+                        "rewarded_ad_count" !in literals
+                }
         }?.addInstructions(0, "const-string v0, \"one_year_subscription\"\nreturn-object v0")
             ?: throw PatchException("Battery Guru: selected product reader not found.")
 

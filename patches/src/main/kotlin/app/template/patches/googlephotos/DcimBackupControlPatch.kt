@@ -9,7 +9,7 @@ import app.template.patches.shared.returnEarly
 val googlePhotosDcimBackupControlPatch = bytecodePatch(
     name = "Enable DCIM folders backup control",
     description = "Allows controlling Camera and other DCIM folder backup individually.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(GOOGLE_PHOTOS_COMPATIBILITY)
 

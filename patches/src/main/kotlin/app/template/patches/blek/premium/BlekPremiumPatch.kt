@@ -7,17 +7,8 @@ import app.template.patches.shared.Constants.BLEK_COMPATIBILITY
 import app.template.patches.shared.returnEarly
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 
-// ─── Pairip bypass (hidden dependency) ───────────────────────────────────────
+// ─── Pairip bypass ────────────────────────────────────────────────────────────
 
-/**
- * Neutralises all three reachable Pairip DEX layers in this variant.
- * Blek ships the licensecheck variant only — no VMRunner/StartupLauncher/
- * SignatureCheck native VM (confirmed: no libpairipcore.so).
- *
- *  • LicenseClient.checkLicense(Context)       → return-void
- *  • LicenseResponseHelper.validateResponse()  → return-void
- *  • LicenseActivity.closeApp()                → return-void
- */
 @Suppress("unused")
 val blekPairIpBypassPatch = bytecodePatch {
     compatibleWith(BLEK_COMPATIBILITY)
@@ -34,46 +25,35 @@ val blekPairIpBypassPatch = bytecodePatch {
 /**
  * Unlocks all premium features and removes the Upgrade navigation item in Blek.
  *
- * ## Billing architecture
+ * ## Billing architecture changes v6.22.0 → v6.23.1
  *
- * Google Play BillingClient → uy (C0790uy) stores one wf4<EnumC0200ey> StateFlow
- * per SKU in f20298d (HashMap). Ordinal 3 = PURCHASED_AND_ACKNOWLEDGED.
+ *   uy (BillingManager)   → cz   (HashMap field: d → o)
+ *   nz (isPremium helper) → nz   (unchanged; field v now holds cz not uy)
+ *   wf4 (StateFlow)       → jh4  (CAS method h → i)
+ *   Ley (SKU state enum)  → Lgy  (PURCHASED_AND_ACKNOWLEDGED field h → m)
+ *   ez.e()Z               → nz.v()Z  (calls cz.q() ×2)
+ *   uy.h(String)Z         → cz.q(String)Z
+ *   uy.c(List)V           → cz.v(List)V
+ *   uy.u(String,Ley)V     → cz.u(String,Lgy)V
+ *   NavIsPremiumInit      → REMOVED: xn.<init>(Lnz;) now calls nz.v()Z directly
+ *                           to seed the Compose nav LiveData initial value, so
+ *                           patching nz.v()→true covers the nav gate automatically.
  *
- * The reactive chain driving all premium UI:
- *   wf4_premium_v1 / wf4_premium_yearly  (StateFlows in f20298d)
- *     → combine() in C0964zn.f24963e (no3<Boolean>)
- *     → fj3.isPremium (PremiumStatus) → feature gate dialogs
- *     → C0815vm.f20918d → bottom nav Upgrade tab visibility
+ * ## Four-layer patch
  *
- * ## Five-layer patch
+ * Layer 1 — SkuStateInitFingerprint on cz.v(List)V
+ *   Replace move-result v1 (SharedPrefs.getInt ordinal) with const/4 v1, 0x3.
+ *   Forces every jh4 StateFlow to start as PURCHASED_AND_ACKNOWLEDGED (ordinal 3).
  *
- * ### Layer 1 — SkuStateInitFingerprint on uy.c(List)V
- * Replace move-result v1 (SharedPrefs.getInt return) with const/4 v1, 0x3.
- * Forces every wf4 StateFlow to initialise as PURCHASED_AND_ACKNOWLEDGED.
- * NOTE: v3 is dual-use (SharedPrefs default AND C0311hy mode int) — patching
- * const/4 v3 causes ClassCastException. Patching move-result v1 is safe.
+ * Layer 2 — IsPremiumFingerprint on nz.v()Z
+ *   returnEarly(true) — imperative gate + nav initial value (via xn ViewModel).
  *
- * ### Layer 2 — IsPremiumFingerprint on ez.e()Z
- * returnEarly(true) — covers fj3 construction before StateFlow first emission.
+ * Layer 3 — SkuStateQueryFingerprint on cz.q(String)Z
+ *   returnEarly(true) — per-SKU boolean queries bypassing nz.v().
  *
- * ### Layer 3 — SkuStateQueryFingerprint on uy.h(String)Z
- * returnEarly(true) — covers direct per-SKU boolean queries bypassing ez.e().
- *
- * ### Layer 4 — NavIsPremiumInitFingerprint on tu5.m8990e
- * Replace sget-object v1, Boolean.FALSE (collectAsState initial value for the
- * nav isPremium boolean) with sget-object v1, Boolean.TRUE.
- * Gates: C0815vm.f20918d → bottom nav Upgrade tab / "Unlock Pro Forever" entry.
- *
- * ### Layer 5 — SkuStateWriteFingerprint on uy.u(String, EnumC0200ey)V
- * returnEarly() — blocks ALL runtime wf4 StateFlow updates from BillingClient.
- *
- * ROOT CAUSE of the "PRO badge briefly disappears then returns" race:
- * After the BillingClient queries purchases and finds none, it calls:
- *   m9379b() → m9384j() → m9386u("premium_v1", SKU_STATE_UNPURCHASED)
- *   → wf4.h(null, UNPURCHASED) — overwrites the Layer 1 init value
- *   → combine() emits false → isPremium=false → all PRO badges reappear
- * returnEarly() on m9386u prevents this overwrite permanently.
- * Safe: SharedPrefs write is bypassed by Layer 1; wf4 already holds PURCHASED.
+ * Layer 4 — SkuStateWriteFingerprint on cz.u(String,Lgy)V
+ *   returnEarly() — blocks BillingClient from overwriting jh4 StateFlows with
+ *   UNPURCHASED after it finds no active purchases.
  */
 @Suppress("unused")
 val blekPremiumPatch = bytecodePatch(
@@ -85,7 +65,7 @@ val blekPremiumPatch = bytecodePatch(
     dependsOn(blekPairIpBypassPatch)
 
     execute {
-        // ── Layer 1: Force wf4 StateFlow initial ordinal → PURCHASED_AND_ACKNOWLEDGED ──
+        // Layer 1: force jh4 StateFlow initial ordinal → 3 (PURCHASED_AND_ACKNOWLEDGED)
         val getIntIndex = SkuStateInitFingerprint.instructionMatches[1].index
         val moveResultIndex = getIntIndex + 1
         val moveResultReg = SkuStateInitFingerprint.method
@@ -95,26 +75,13 @@ val blekPremiumPatch = bytecodePatch(
             "const/4 v$moveResultReg, 0x3",
         )
 
-        // ── Layer 2: Force imperative isPremium gate → true ──
+        // Layer 2: force isPremium gate → true (also seeds nav initial value via xn ViewModel)
         IsPremiumFingerprint.method.returnEarly(true)
 
-        // ── Layer 3: Force per-SKU direct boolean query → true ──
+        // Layer 3: force per-SKU direct boolean query → true
         SkuStateQueryFingerprint.method.returnEarly(true)
 
-        // ── Layer 4: Force nav isPremium collectAsState initial value → TRUE ──
-        // matches[2] = Lly;-><init> call; +1 = move-object; +2 = sget-object Boolean.FALSE
-        val lyInitIndex = NavIsPremiumInitFingerprint.instructionMatches[2].index
-        val falseIndex = lyInitIndex + 2
-        val falseReg = NavIsPremiumInitFingerprint.method
-            .getInstruction<OneRegisterInstruction>(falseIndex).registerA
-        NavIsPremiumInitFingerprint.method.replaceInstruction(
-            falseIndex,
-            "sget-object v$falseReg, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;",
-        )
-
-        // ── Layer 5: Block BillingClient from overwriting wf4 StateFlow ──
-        // Prevents PURCHASED_AND_ACKNOWLEDGED from being overwritten with UNPURCHASED
-        // when BillingClient reports no active purchases.
+        // Layer 4: block BillingClient from overwriting jh4 StateFlows
         SkuStateWriteFingerprint.method.returnEarly()
     }
 }

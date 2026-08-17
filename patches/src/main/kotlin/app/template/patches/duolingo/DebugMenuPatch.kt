@@ -13,7 +13,7 @@ import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 val duolingoEnableDebugMenuPatch = bytecodePatch(
     name = "Enable Debug Menu",
     description = "Enables Duolingo's hidden debug menu in settings.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(DUOLINGO_COMPATIBILITY)
 

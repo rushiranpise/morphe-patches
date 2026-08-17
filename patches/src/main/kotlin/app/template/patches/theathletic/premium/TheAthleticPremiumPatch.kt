@@ -87,7 +87,8 @@ val theAthleticPremiumPatch = bytecodePatch(
         // Launched on article open; initializes AdScrollBehaviorImpl and registers
         // the initial GAM ad slot. Suppressing this coroutine prevents ALL article ads —
         // both the initial above-the-fold ad and all subsequent scroll-triggered ads.
-        ArticleInitAdConfigFingerprint.method.returnEarly()
+        // invokeSuspend returns Object — must use returnEarly(null), not returnEarly().
+        ArticleInitAdConfigFingerprint.method.returnEarly(null)
 
         // Target 6: Article WebView scroll-triggered ad loader (AdScrollBehaviorImpl).
         // Belt-and-suspenders companion to Target 5 — prevents any residual scroll-based
@@ -102,8 +103,8 @@ val theAthleticPremiumPatch = bytecodePatch(
 
         // Target 8: AdMob / GAM init coroutine.
         // h$a.invokeSuspend() — the only invokeSuspend(Object)Object calling MobileAds.
-        // Returning early prevents SDK init; no ad slots can register on any surface.
-        AdsInitCoroutineFingerprint.method.returnEarly()
+        // Returning null (Object return type) prevents SDK init; no ad slots can register.
+        AdsInitCoroutineFingerprint.method.returnEarly(null)
 
         // Target 8: Malice (MOAT viewability) init.
         // nytplatform/ads/malice/b.a()V — non-obfuscated NYT platform class.

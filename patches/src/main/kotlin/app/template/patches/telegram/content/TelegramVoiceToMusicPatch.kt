@@ -3,6 +3,7 @@ package app.template.patches.telegram.content
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
+import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.MessageObjectIsMusicFingerprint
@@ -31,9 +32,10 @@ import app.template.patches.telegram.MessageObjectIsVoiceFingerprint
 val telegramVoiceToMusicPatch = bytecodePatch(
     name = "Voice to music",
     description = "Plays voice notes in the full music player with seek bar and background playback.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    dependsOn(telegramSpoofDependency())
 
     execute {
         // isVoice() → always false: stops the voice-note UI from rendering
