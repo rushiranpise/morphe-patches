@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.2",
+  "version": "1.18.3-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -8576,37 +8576,6 @@
                 "ARMEABI_V7A": 3188,
                 "X86_64": 3188,
                 "X86": 3188
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks premium and unblocks logo screen freeze by bypassing billing callbacks and all local access checks.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "de.wetteronline.wetterapp",
-          "name": "WetterOnline",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#0066CC",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.16.1",
-              "versionCodes": {
-                "ARM64_V8A": 2280443,
-                "ARMEABI_V7A": 2280443,
-                "X86_64": 2280443,
-                "X86": 2280443
               },
               "isExperimental": false,
               "minSdk": null,
