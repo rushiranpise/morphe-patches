@@ -1417,6 +1417,13 @@ val MALWAREBYTES_COMPATIBILITY = Compatibility(
         )
     )
 
+val PROTONMAIL_COMPATIBILITY = Compatibility(
+        name = "Proton Mail",
+        packageName = "ch.protonmail.android",
+        appIconColor = 0x6D4AFF,
+        targets = listOf(AppTarget(version = "7.11.0", versionCode = 18139))
+    )
+
 val PROTON_PASS_COMPATIBILITY = Compatibility(
         name = "Proton Pass",
         packageName = "proton.android.pass",
