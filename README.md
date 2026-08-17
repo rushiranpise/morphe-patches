@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;387 patches total
+> **[v1.18.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.1-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;387 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -2355,7 +2355,7 @@ Bug reports must include:
 <summary><code>#185</code> <strong>SD Maid SE</strong> &middot; 1 patch &middot; <code>eu.darken.sdmse</code> &middot; <a href="https://play.google.com/store/apps/details?id=eu.darken.sdmse">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.7.5-rc0`
+**Supported versions:** `2.0.2-rc0`
 
 | Patch | Details |
 |---|---|
