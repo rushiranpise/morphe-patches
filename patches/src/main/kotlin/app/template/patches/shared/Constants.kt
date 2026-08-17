@@ -305,7 +305,7 @@ val BLURWALL_COMPATIBILITY = Compatibility(
     )
 
 val BOLDVOICE_COMPATIBILITY = Compatibility(
-        name = "BoldVoice: American Accent",
+        name = "BoldVoice",
         packageName = "com.wellocution.androidapp",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF5A36,
@@ -352,7 +352,7 @@ val CALLRECORDER_COMPATIBILITY = Compatibility(
     )
 
 val CALM_COMPATIBILITY = Compatibility(
-        name = "Calm: Sleep & Meditation",
+        name = "Calm",
         packageName = "com.calm.android",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x4A90D9,
@@ -414,7 +414,7 @@ val CASHEW_COMPATIBILITY = Compatibility(
     )
 
 val CAST_TO_TV_COMPATIBILITY = Compatibility(
-        name = "Cast to TV - XCast",
+        name = "Cast to TV",
         packageName = "cast.video.screenmirroring.casttotv",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0xE53935,
@@ -504,7 +504,7 @@ val CRIMERADAR_COMPATIBILITY = Compatibility(
 val CUBESOLVER_COMPATIBILITY = Compatibility(
         name = "Cube Solver",
         packageName = "com.jeffprod.cubesolver",
-        apkFileType = ApkFileType.APK,   // pre-merge splits: apkeditor m -i <input>.apks -o merged.apk
+        apkFileType = ApkFileType.APK,
         appIconColor = 0xFF6600,
         targets = listOf(AppTarget(version = "5.0.3", versionCode = 10169))
     )
@@ -592,7 +592,7 @@ val FEEM_COMPATIBILITY = Compatibility(
     )
 
 val FILE_MANAGER_PLUS_COMPATIBILITY = Compatibility(
-        name = "File Manager - Files, PDF, Zip",
+        name = "File Manager",
         packageName = "com.alphainventor.filemanager",
         appIconColor = 0xFF7043,
         targets = listOf(
@@ -835,7 +835,7 @@ val LAWFULLY_COMPATIBILITY = Compatibility(
     )
 
 val LEAP_FITNESS_WOMEN_COMPATIBILITY = Compatibility(
-        name = "Women Workout - Female Fitness",
+        name = "Women Workout",
         packageName = "women.workout.female.fitness",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF5722,
@@ -843,7 +843,7 @@ val LEAP_FITNESS_WOMEN_COMPATIBILITY = Compatibility(
     )
 
 val LEAP_HEIGHTINCREASE_COMPATIBILITY = Compatibility(
-        name = "Height Increase - Taller Exercise",
+        name = "Height Increase",
         packageName = "increaseheightworkout.heightincreaseexercise.tallerexercise",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF5722,
@@ -851,7 +851,7 @@ val LEAP_HEIGHTINCREASE_COMPATIBILITY = Compatibility(
     )
 
 val LEAP_HOMEWORKOUT_COMPATIBILITY = Compatibility(
-        name = "Home Workout - No Equipment",
+        name = "Home Workout",
         packageName = "homeworkout.homeworkouts.noequipment",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF5722,
@@ -940,7 +940,7 @@ val MEGA_COMPATIBILITY = Compatibility(
     )
 
 val MEOW_COMPATIBILITY = Compatibility(
-        name = "Money Manager- Budget & Meow",
+        name = "Money Manager",
         packageName = "com.glgjing.money.manager.bookkeeping.meow",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF6B9E,
@@ -1018,7 +1018,7 @@ val MLMANAGER_COMPATIBILITY = Compatibility(
     )
 
 val MOBIOFFICE_COMPATIBILITY = Compatibility(
-        name = "MobiOffice- Word, Excel, Slide",
+        name = "MobiOffice",
         packageName = "com.mobisystems.office",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
@@ -1181,7 +1181,7 @@ val ONETAPCLEANER_COMPATIBILITY = Compatibility(
     )
 
 val OPERA_NEWS_COMPATIBILITY = Compatibility(
-        name = "Opera News - Breaking & Local",
+        name = "Opera News",
         packageName = "com.opera.app.news",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF1B2A,
@@ -1220,7 +1220,7 @@ val PARK4NIGHT_COMPATIBILITY = Compatibility(
     )
 
 val PC_REMOTE_COMPATIBILITY = Compatibility(
-        name = "PC Remote - Desktop & Phone",
+        name = "PC Remote",
         packageName = "com.monect.portable",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
@@ -1242,14 +1242,14 @@ val PIALYTIC_COMPATIBILITY = Compatibility(
     )
 
 val PICTUREMUSHROOM_COMPATIBILITY = Compatibility(
-        name = "Picture Mushroom - Mushroom ID",
+        name = "Picture Mushroom",
         packageName = "com.glority.picturemushroom",
         appIconColor = 0x7A4A24,
         targets = listOf(AppTarget(version = "2.9.31", versionCode = 90))
     )
 
 val PICTURETHIS_COMPATIBILITY = Compatibility(
-        name = "PictureThis - Plant Identifier",
+        name = "PictureThis",
         packageName = "cn.danatech.xingseus",
         appIconColor = 0x4CAF50,
         apkFileType = ApkFileType.APKM,
@@ -1392,7 +1392,7 @@ val POLICESCANNER_COMPATIBILITY = Compatibility(
     )
 
 val PROTON_PASS_COMPATIBILITY = Compatibility(
-        name = "Proton Pass: Password Manager",
+        name = "Proton Pass",
         packageName = "proton.android.pass",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x6D4AFF,
@@ -1415,7 +1415,7 @@ val PROTONVPN_COMPATIBILITY = Compatibility(
     )
 
 val PROXYMAN_COMPATIBILITY = Compatibility(
-        name = "Proxyman - Network Debugger",
+        name = "Proxyman",
         packageName = "com.proxyman.proxymanandroid",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF6B35,
@@ -1945,7 +1945,7 @@ val WAZE_COMPATIBILITY = Compatibility(
     )
 
 val WEAWOW_COMPATIBILITY = Compatibility(
-        name = "Weawow: Weather & Widget",
+        name = "Weawow",
         packageName = "com.weawow",
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.APK,
@@ -1953,7 +1953,7 @@ val WEAWOW_COMPATIBILITY = Compatibility(
     )
 
 val WETTERONLINE_COMPATIBILITY = Compatibility(
-        name = "WetterOnline - Wetter und Radar",
+        name = "WetterOnline",
         packageName = "de.wetteronline.wetterapp",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x0066CC,
@@ -1963,7 +1963,7 @@ val WETTERONLINE_COMPATIBILITY = Compatibility(
     )
 
 val WIDGET2026_COMPATIBILITY = Compatibility(
-        name = "Widget 2026- Aesthetic Widgets",
+        name = "Widget 2026",
         packageName = "com.remi.widget",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF6B35,
