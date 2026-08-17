@@ -1068,6 +1068,16 @@ val MYPERM_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.2.0-rc0", versionCode = 20200000))
     )
 
+val PILLO_COMPATIBILITY = Compatibility(
+        name = "pillo",
+        packageName = "xyz.rtrvr.pillo",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF69B4.toInt(),
+        targets = listOf(
+            AppTarget(version = "0.6.18", versionCode = 432)
+        )
+    )
+
 val MYRADAR_COMPATIBILITY = Compatibility(
         name = "MyRadar",
         packageName = "com.acmeaom.android.myradar",
