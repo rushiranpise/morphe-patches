@@ -75,7 +75,7 @@ private val  aviateLicensePatch = bytecodePatch(default = false){
 
 @Suppress("unused")
 val aviatePremiumPatch = rawResourcePatch(
-    name = "Aviate Premium",
+    name = "Unlock Pro",
     description = "Unlocks Aviate Pro and Lifetime Pro by patching the Hermes JS subscription gate."
 ) {
     compatibleWith(AVIATE_COMPATIBILITY)

@@ -29,7 +29,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val aaadSecurityBypassPatch = bytecodePatch(
-    name = "AAAD Security Bypass",
+    name = "Security Bypass",
     description = "Disables AAAD's anti-tamper, anti-debug, and integrity checks to allow running on patched installations.",
 ) {
     compatibleWith(AAAD_COMPATIBILITY)

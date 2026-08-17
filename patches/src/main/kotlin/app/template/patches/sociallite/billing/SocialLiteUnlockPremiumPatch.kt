@@ -154,7 +154,7 @@ private val socialLitePairIpManifestPatch = resourcePatch(
 //
 @Suppress("unused")
 val socialLiteUnlockPremiumPatch = bytecodePatch(
-    name = "Unlock Family Plan",
+    name = "Unlock Family Pro",
     description = "Unlocks SocialLite Pro by: (1) forcing isPremiumActive() to " +
         "return true; (2) forcing getSubscriptionTier() to return 'pro', enabling " +
         "all Pro-tier features gated by hasProFeatures(); (3) forcing hasProFeatures() " +

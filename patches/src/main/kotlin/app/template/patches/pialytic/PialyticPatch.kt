@@ -17,7 +17,7 @@ private fun dismissActivity(@Suppress("UNUSED_PARAMETER") cls: String) =
 
 @Suppress("unused")
 val pialyticUnlockAllPatch = bytecodePatch(
-    name = "Unlock All Features",
+    name = "Unlock Premium",
     description = "Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access.",
     default = true
 ) {
