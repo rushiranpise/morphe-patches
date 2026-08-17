@@ -1391,6 +1391,32 @@ val POLICESCANNER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.29.0-260420093"))
     )
 
+val NEWSBREAK_COMPATIBILITY = Compatibility(
+        name = "NewsBreak",
+        packageName = "com.particlenews.newsbreak",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE31837,
+        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
+    )
+
+val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
+        name = "NewsBreak Lite",
+        packageName = "com.particlenews.newsbreaklite",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE31837,
+        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330013))
+    )
+
+val MALWAREBYTES_COMPATIBILITY = Compatibility(
+        name = "Malwarebytes Mobile Security",
+        packageName = "org.malwarebytes.antimalware",
+        apkFileType = ApkFileType.XAPK,
+        appIconColor = 0x0066FF,
+        targets = listOf(
+            AppTarget(version = "5.27.0+564", versionCode = 52700564)
+        )
+    )
+
 val PROTON_PASS_COMPATIBILITY = Compatibility(
         name = "Proton Pass",
         packageName = "proton.android.pass",
