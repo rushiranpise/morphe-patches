@@ -43,7 +43,7 @@ private val CsRInitFingerprint = Fingerprint(
 
 // Fixes the encrypted-backup auto-restore crash that occurs when the app runs
 // under a renamed package. Applied automatically by ChangePackageNamePatch.
-private val messengerFixAutoRestoreCrashPatch = bytecodePatch(default = false) {
+private val messengerFixAutoRestoreCrashPatch = bytecodePatch(default = true) {
     compatibleWith(MESSENGER_COMPATIBILITY)
 
     execute {
@@ -69,7 +69,7 @@ private val messengerFixAutoRestoreCrashPatch = bytecodePatch(default = false) {
 val messengerChangePackageNamePatch = resourcePatch(
     name = "Change package name",
     description = "Installs Messenger beside the original by renaming the manifest package and provider authorities, removing duplicate permission declarations.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(MESSENGER_COMPATIBILITY)
 

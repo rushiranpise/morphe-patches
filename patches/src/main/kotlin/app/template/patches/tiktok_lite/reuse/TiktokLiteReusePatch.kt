@@ -8,7 +8,7 @@ import app.template.patches.shared.Constants.TIKTOK_LITE_COMPATIBILITY
 val tiktokLiteReusePatch = bytecodePatch(
     name = "TikTok Lite Enable Duet and Stitch",
     description = "Unlocks Duet and Stitch on all videos regardless of creator permission settings.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)
 

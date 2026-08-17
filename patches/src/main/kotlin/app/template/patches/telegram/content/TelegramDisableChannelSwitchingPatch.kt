@@ -14,7 +14,7 @@ import app.template.patches.telegram.ChatPullingDownDrawableNeedDrawBottomPanelF
 val telegramDisableChannelSwitchingPatch = bytecodePatch(
     name = "Disable channel switching",
     description = "Disables the pull-down gesture that switches to the next unread channel.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())

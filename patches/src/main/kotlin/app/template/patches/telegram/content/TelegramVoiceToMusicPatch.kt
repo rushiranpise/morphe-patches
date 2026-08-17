@@ -32,7 +32,7 @@ import app.template.patches.telegram.MessageObjectIsVoiceFingerprint
 val telegramVoiceToMusicPatch = bytecodePatch(
     name = "Voice to music",
     description = "Plays voice notes in the full music player with seek bar and background playback.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())

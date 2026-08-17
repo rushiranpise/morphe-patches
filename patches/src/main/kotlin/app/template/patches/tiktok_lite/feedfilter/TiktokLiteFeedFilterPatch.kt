@@ -58,7 +58,7 @@ val tiktokLiteFeedFilterPatch = bytecodePatch(
 val tiktokLiteHideLivePatch = bytecodePatch(
     name = "TikTok Lite Hide Live Cards",
     description = "Removes live stream cards from the TikTok Lite home feed.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)
 

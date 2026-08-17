@@ -13,7 +13,7 @@ import app.template.patches.telegram.SendScreenshotMessageUserFingerprint
 val telegramAntiScreenshotNotificationPatch = bytecodePatch(
     name = "Anti-screenshot notification",
     description = "Blocks screenshot notifications from being sent to the other user.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
