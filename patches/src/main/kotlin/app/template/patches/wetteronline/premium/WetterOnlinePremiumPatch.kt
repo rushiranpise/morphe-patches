@@ -32,7 +32,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val wetterOnlinePremiumPatch = bytecodePatch(
-    name = "WetterOnline Premium",
+    name = "Unlock Premium",
     description = "Unlocks premium and unblocks logo screen freeze by bypassing billing callbacks and all local access checks.",
 ) {
     compatibleWith(WETTERONLINE_COMPATIBILITY)

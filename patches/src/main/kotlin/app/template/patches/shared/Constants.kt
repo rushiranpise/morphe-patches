@@ -219,7 +219,7 @@ val AWAKE_COMPATIBILITY = Compatibility(
     )
 
 val BATTERYGURU_COMMUNITY_COMPATIBILITY = Compatibility(
-        name = "Battery Guru Community",
+        name = "Battery Guru",
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x1B7080,

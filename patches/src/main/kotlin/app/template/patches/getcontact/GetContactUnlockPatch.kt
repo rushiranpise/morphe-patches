@@ -46,7 +46,7 @@ import app.template.patches.shared.Constants.GETCONTACT_COMPATIBILITY
  */
 @Suppress("unused")
 val getContactUnlockPatch = bytecodePatch(
-    name = "Unlock Premium Features",
+    name = "Unlock Premium",
     description = "Unlocks Getcontact Premium Yearly (Tariff 10) — patches all 28 subscription model getters including trial, usage limits, and plan identity.",
     default = true,
 ) {

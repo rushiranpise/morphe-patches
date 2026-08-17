@@ -8,7 +8,7 @@ import com.android.tools.smali.dexlib2.Opcode
 
 @Suppress("unused")
 val turboScanUnlockProPatch = bytecodePatch(
-    name = "Unlock Pro features",
+    name = "Unlock Pro",
     description = "Unlock Pro features in app.",
     default = true,
 ) {

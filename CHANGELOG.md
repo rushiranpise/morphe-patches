@@ -1,3 +1,9 @@
+## [1.18.2-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.1...v1.18.2-dev.1) (2026-08-17)
+
+### 🐛 Bug Fixes
+
+* clean up ([560c5ff](https://github.com/rushiranpise/morphe-patches/commit/560c5ffa21889b5929ac51756b603656958e8966))
+
 ## [1.18.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0...v1.18.1) (2026-08-17)
 
 ### 🐛 Bug Fixes

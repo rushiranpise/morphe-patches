@@ -71,7 +71,7 @@ import app.template.patches.shared.Constants.OXYGENUPDATER_COMPATIBILITY
  */
 @Suppress("unused")
 val oxygenUpdaterPremiumPatch = bytecodePatch(
-    name = "Oxygen Updater — Remove Ads",
+    name = "Remove Ads",
     description = "Unlocks the ad-free experience by spoofing the purchase state as acknowledged.",
     default = true,
 ) {

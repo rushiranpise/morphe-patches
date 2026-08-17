@@ -6,7 +6,7 @@ import app.template.patches.shared.Constants.TIKTOK_LITE_COMPATIBILITY
 
 @Suppress("unused")
 val tiktokLiteRemoveAdsPatch = bytecodePatch(
-    name = "TikTok Lite Remove Ads",
+    name = "Remove Ads",
     description = "Removes feed ads, splash ads, and soft ads from TikTok Lite.",
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)

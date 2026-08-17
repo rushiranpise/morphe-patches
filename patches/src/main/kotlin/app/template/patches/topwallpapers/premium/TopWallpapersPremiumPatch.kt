@@ -100,7 +100,7 @@ private val ValidateResponseFingerprint = Fingerprint(
 
 @Suppress("unused")
 val topWallpapersPremiumPatch = bytecodePatch(
-    name = "TopWallpapers Premium",
+    name = "Unlock Premium",
     description = "Unlocks all premium wallpapers and removes interstitial ads.",
 ) {
     compatibleWith(TOPWALLPAPERS_COMPATIBILITY)

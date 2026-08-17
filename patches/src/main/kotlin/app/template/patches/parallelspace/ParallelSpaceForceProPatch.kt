@@ -24,7 +24,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val parallelSpaceForceProPatch = bytecodePatch(
-    name = "Force Pro",
+    name = "Unlock Pro",
     description = "Unlocks Parallel Space Pro subscription features by bypassing all Pro status checks.",
 ) {
     compatibleWith(PARALLELSPACE_COMPATIBILITY)

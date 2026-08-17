@@ -32,7 +32,7 @@ private const val FAKE_PURCHASE_SIG = "morphe"
 
 @Suppress("unused")
 val removeAdsPatch = bytecodePatch(
-    name = "Remove Ads / Unlock Premium",
+    name = "Unlock Premium",
     description = "Forces the subscription gate to report an unlimited subscription, " +
         "removing ads and the upgrade prompt. Constructs a minimal fake Purchase " +
         "to prevent NPE/IOOB in call sites that dereference getProducts().get(0).",
