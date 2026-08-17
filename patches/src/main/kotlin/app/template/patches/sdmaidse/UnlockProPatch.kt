@@ -13,60 +13,71 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
-// UpgradeRepoGplay$Info.<init>(BillingData, Throwable, int)V   [classes.dex]
+// UpgradeRepoGplay$Info.<init>(Z, BillingData, Throwable, Z)V   [classes.dex]
 //
-// The Info data class constructor computes isPro:Z from the purchase list:
+// The Info data class constructor computes isPro:Z from the purchase/grace-period check:
 //
 //   this.isPro = (!upgrades.isEmpty() || gracePeriod)
 //
-// Smali verified (1.7.5-rc0, .registers 21, single constructor):
-//   :L19  const/4 v3, 0            ← isEmpty=true AND gracePeriod=false
-//   :L20  const/4 v3, 1
-//   :L21  iput-boolean v3, v0, ->isPro:Z   ← smali line 443
-//   ...rest of constructor (upgradedAt)...
-//   return-void
+// Smali verified (2.0.2-rc0, .registers 22, real constructor):
+//   :L15   const/4 v2, 0
+//   :L16   const/4 v2, 1
+//   :L17
+//           iput-boolean v2, v0, ...UpgradeRepoGplay$Info;->isPro:Z   ← line 425
+//   ...
+//           iput-object v4, v0, ...->upgradedAt:Ljava/time/Instant;
+//           return-void                                                  ← line 555
 //
-// NOTE: constructor uses .registers 21 so `this` is moved to v0 early:
-//   move-object/from16 v0, p0
-// Injecting via const/4 + iput-boolean into v0 at end of method is safe.
+// v0 = this (moved from p0 early via move-object/from16 v0, p0).
+// v1 is a free scratch register at end-of-method.
+// Injection: const/4 v1, 0x1 / iput-boolean v1, v0, ->isPro:Z immediately before return-void.
 //
-// Stable anchor: non-obfuscated app-owned definingClass + name + full parameter list.
-// Only one constructor on this class; no filter needed.
+// NOTE: constructor parameter order changed between 1.7.5-rc0 and 2.0.2-rc0:
+//   1.7.5-rc0:  (BillingData, Throwable, int)
+//   2.0.2-rc0:  (Z, BillingData, Throwable, Z)   ← gracePeriod moved to p1, isSettled added as p4
+//
+// Anchor: non-obfuscated app-owned definingClass + name + full non-obfuscated parameter list.
+// Only one real (non-synthetic) constructor on this class; no filter needed.
 private val UpgradeInfoConstructorFingerprint = Fingerprint(
     definingClass = "Leu/darken/sdmse/common/upgrade/core/UpgradeRepoGplay\$Info;",
     name = "<init>",
     returnType = "V",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.CONSTRUCTOR),
     parameters = listOf(
+        "Z",
         "Leu/darken/sdmse/common/upgrade/core/billing/BillingData;",
         "Ljava/lang/Throwable;",
-        "I",
+        "Z",
     ),
 )
 
-// RangesKt.isPro(UpgradeRepo, Continuation)Object   [classes.dex]
+// UpgradeRepoExtensionsKt.isPro(UpgradeRepoGplay, ContinuationImpl)Object   [classes.dex]
 //
-// Kotlin coroutine extension function, relocated to kotlin.ranges.RangesKt by R8.
+// Kotlin coroutine extension function for isPro, compiled into the non-obfuscated
+// UpgradeRepoExtensionsKt class (moved from RangesKt in 1.7.5-rc0).
+//
 // After awaiting the first emission from UpgradeRepoGplay.upgradeInfo, reads
 // Info.isPro and boxes it as Boolean:
 //
 //   iget-boolean p0, p1, ...UpgradeRepoGplay$Info;->isPro:Z
-//   invoke-static { p0 }, Ljava/lang/Boolean;->valueOf(Z)
+//   invoke-static { p0 }, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 //   return-object p0
 //
 // Fix: return Boolean.TRUE at method entry — short-circuits the coroutine state
 // machine and bypasses the billing flow read entirely.
 //
-// Stable anchor: non-obfuscated app-owned UpgradeRepo type in the parameter list.
-// SD Maid SE uses plain Continuation (unlike BlueMusic which uses ContinuationImpl).
+// Anchor: FULLY non-obfuscated — app-owned class (eu.darken.*), app-owned UpgradeRepoGplay
+// receiver, and kotlin.coroutines.jvm.internal.ContinuationImpl (stable SDK class).
+// This fingerprint will NOT break on R8 re-obfuscation because none of these names
+// are short R8-generated identifiers.
 private val IsProSuspendFingerprint = Fingerprint(
-    definingClass = "Lkotlin/ranges/RangesKt;",
+    definingClass = "Leu/darken/sdmse/common/upgrade/UpgradeRepoExtensionsKt;",
     name = "isPro",
     returnType = "Ljava/lang/Object;",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL, AccessFlags.STATIC),
     parameters = listOf(
-        "Leu/darken/sdmse/common/upgrade/UpgradeRepo;",
-        "Lkotlin/coroutines/Continuation;",
+        "Leu/darken/sdmse/common/upgrade/core/UpgradeRepoGplay;",
+        "Lkotlin/coroutines/jvm/internal/ContinuationImpl;",
     ),
 )
 
@@ -78,24 +89,26 @@ private val IsProSuspendFingerprint = Fingerprint(
  * ### Layer 1 — UpgradeInfoConstructorFingerprint: force isPro=true at construction
  *
  * `UpgradeRepoGplay$Info.<init>` writes `isPro` near the end of the constructor.
- * We locate the RETURN_VOID, verify the `isPro` write exists, then inject
- * `const/4 v0, 0x1 / iput-boolean v0, p0, ->isPro:Z` immediately before return,
+ * We verify the `isPro` write exists, then inject
+ * `const/4 v1, 0x1 / iput-boolean v1, v0, ->isPro:Z` immediately before RETURN_VOID,
  * overriding whatever the billing logic decided.
  *
- * Note: `this` is in v0 (moved early via `move-object/from16 v0, p0`) so `v0`
- * is safe to reuse for the boolean value here at end-of-method.
+ * Note: `this` is in v0 (moved early via `move-object/from16 v0, p0`); v1 is free
+ * scratch at end-of-method and safe to clobber.
  *
  * ### Layer 2 — IsProSuspendFingerprint: short-circuit the isPro() coroutine
  *
- * `RangesKt.isPro()` awaits `upgradeInfo` and then reads `Info.isPro`. Returning
- * `Boolean.TRUE` at entry skips the coroutine entirely.
+ * `UpgradeRepoExtensionsKt.isPro()` awaits `upgradeInfo` and reads `Info.isPro`.
+ * Returning `Boolean.TRUE` at entry skips the coroutine entirely.
+ * Both the class and both parameter types are non-obfuscated app/SDK names —
+ * this fingerprint is stable across R8 rebuilds.
  *
  * ### Layer 3 — classDefForEach IGET scan: replace all cached field reads
  *
  * Every compiled method that reads `UpgradeRepoGplay$Info.isPro` via IGET_BOOLEAN
- * gets the load replaced with `const/4 vREG, 0x1`. This covers the 28 call-sites
- * across MainViewModel, Swiper, FlowShell, IPCFunnel, SAFSetupCardVH, etc.
- * At least one such site must exist or the patch throws to surface stale fingerprints.
+ * gets the load replaced with `const/4 vREG, 0x1`. This covers all call-sites
+ * across ViewModels, Swipers, Shells, etc.
+ * At least one such site must exist or the patch throws to surface stale state.
  */
 @Suppress("unused")
 val sdMaidSeUnlockProPatch = bytecodePatch(
