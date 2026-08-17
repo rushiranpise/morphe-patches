@@ -44,6 +44,35 @@ import app.template.patches.shared.Constants.AVIATE_COMPATIBILITY
  *   v1.0.1 (versionCode=201): fn #6699, #7657, #7659, #15648 (old offsets)
  *   v1.1.0-beta.1 (versionCode=202): fn #6791, #7761, #7763, #15987 (current)
  */
+
+
+private const val LICENSE_CLIENT = "Lcom/pairip/licensecheck/LicenseClient;"
+private const val LICENSE_CHECK_STATE = "Lcom/pairip/licensecheck/LicenseClient\$LicenseCheckState;"
+
+private val  aviateLicensePatch = bytecodePatch(default = false){
+    compatibleWith(AVIATE_COMPATIBILITY)
+
+    execute {
+        // 1. Force responseCode=LICENSED (0x0) before processResponse branches on it.
+        //    Without this, re-signed APKs receive NOT_LICENSED and are killed.
+        ProcessLicenseResponseFingerprint.method.addInstruction(
+            0,
+            "const/4 p1, 0x0"
+        )
+
+        // 2. Skip cryptographic signature validation.
+        //    validateResponse() always throws LicenseCheckException on re-signed APKs
+        //    because the APK signature no longer matches the original certificate.
+        ValidateLicenseResponseFingerprint.method.returnEarly()
+
+        // 3. Block the license check at the entry point.
+        //    checkLicense(Context) is the public API called at app startup.
+        //    Returning early prevents any connection to Google Play licensing service.
+        CheckLicenseFingerprint.method.returnEarly()
+    }
+}
+
+
 @Suppress("unused")
 val aviatePremiumPatch = rawResourcePatch(
     name = "Aviate Premium",
@@ -87,31 +116,4 @@ val aviatePremiumPatch = rawResourcePatch(
 
         setOf(subscriptionProviderInit, refreshCallbackNoop, computeIsPro, isProUser)
     })
-}
-
-
-private const val LICENSE_CLIENT = "Lcom/pairip/licensecheck/LicenseClient;"
-private const val LICENSE_CHECK_STATE = "Lcom/pairip/licensecheck/LicenseClient\$LicenseCheckState;"
-
-private val  aviateLicensePatch = bytecodePatch(default = false){
-    compatibleWith(AVIATE_COMPATIBILITY)
-
-    execute {
-        // 1. Force responseCode=LICENSED (0x0) before processResponse branches on it.
-        //    Without this, re-signed APKs receive NOT_LICENSED and are killed.
-        ProcessLicenseResponseFingerprint.method.addInstruction(
-            0,
-            "const/4 p1, 0x0"
-        )
-
-        // 2. Skip cryptographic signature validation.
-        //    validateResponse() always throws LicenseCheckException on re-signed APKs
-        //    because the APK signature no longer matches the original certificate.
-        ValidateLicenseResponseFingerprint.method.returnEarly()
-
-        // 3. Block the license check at the entry point.
-        //    checkLicense(Context) is the public API called at app startup.
-        //    Returning early prevents any connection to Google Play licensing service.
-        CheckLicenseFingerprint.method.returnEarly()
-    }
 }
