@@ -1125,22 +1125,6 @@ val NEWSBREAK_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
     )
 
-val NEWSBREAK_COMPATIBILITY = Compatibility(
-        name = "NewsBreak",
-        packageName = "com.particlenews.newsbreak",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE31837,
-        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
-    )
-
-val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
-        name = "NewsBreak Lite",
-        packageName = "com.particlenews.newsbreaklite",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE31837,
-        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330013))
-    )
-
 val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
         name = "NewsBreak Lite",
         packageName = "com.particlenews.newsbreaklite",
@@ -1423,13 +1407,6 @@ val PROTON_PASS_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x6D4AFF,
         targets = listOf(AppTarget(version = "1.40.3", versionCode = 14003373))
-    )
-
-val PROTONMAIL_COMPATIBILITY = Compatibility(
-        name = "Proton Mail",
-        packageName = "ch.protonmail.android",
-        appIconColor = 0x6D4AFF,
-        targets = listOf(AppTarget(version = "7.11.0", versionCode = 18139))
     )
 
 val PROTONMAIL_COMPATIBILITY = Compatibility(
