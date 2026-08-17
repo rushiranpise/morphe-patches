@@ -907,6 +907,16 @@ val MACRODROID_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.65.9", versionCode = 896500009))
     )
 
+val MALWAREBYTES_COMPATIBILITY = Compatibility(
+        name = "Malwarebytes Mobile Security",
+        packageName = "org.malwarebytes.antimalware",
+        apkFileType = ApkFileType.XAPK,
+        appIconColor = 0x0066FF,
+        targets = listOf(
+            AppTarget(version = "5.27.0+564", versionCode = 52700564)
+        )
+    )
+
 val MANGA_PLUS_COMPATIBILITY = Compatibility(
         name = "MANGA Plus by SHUEISHA",
         packageName = "jp.co.shueisha.mangaplus",
@@ -1068,16 +1078,6 @@ val MYPERM_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.2.0-rc0", versionCode = 20200000))
     )
 
-val PILLO_COMPATIBILITY = Compatibility(
-        name = "pillo",
-        packageName = "xyz.rtrvr.pillo",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xFF69B4.toInt(),
-        targets = listOf(
-            AppTarget(version = "0.6.18", versionCode = 432)
-        )
-    )
-
 val MYRADAR_COMPATIBILITY = Compatibility(
         name = "MyRadar",
         packageName = "com.acmeaom.android.myradar",
@@ -1123,6 +1123,22 @@ val NEWSBREAK_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xE31837,
         targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
+    )
+
+val NEWSBREAK_COMPATIBILITY = Compatibility(
+        name = "NewsBreak",
+        packageName = "com.particlenews.newsbreak",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE31837,
+        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
+    )
+
+val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
+        name = "NewsBreak Lite",
+        packageName = "com.particlenews.newsbreaklite",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE31837,
+        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330013))
     )
 
 val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
@@ -1254,6 +1270,16 @@ val PICTURETHIS_COMPATIBILITY = Compatibility(
         appIconColor = 0x4CAF50,
         apkFileType = ApkFileType.APKM,
         targets = listOf(AppTarget(version = "5.33.1", versionCode = 5090))
+    )
+
+val PILLO_COMPATIBILITY = Compatibility(
+        name = "pillo",
+        packageName = "xyz.rtrvr.pillo",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF69B4.toInt(),
+        targets = listOf(
+            AppTarget(version = "0.6.18", versionCode = 432)
+        )
     )
 
 val PIXEL_HABIT_TRACKER_COMPATIBILITY = Compatibility(
@@ -1391,30 +1417,12 @@ val POLICESCANNER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.29.0-260420093"))
     )
 
-val NEWSBREAK_COMPATIBILITY = Compatibility(
-        name = "NewsBreak",
-        packageName = "com.particlenews.newsbreak",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE31837,
-        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330030))
-    )
-
-val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
-        name = "NewsBreak Lite",
-        packageName = "com.particlenews.newsbreaklite",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE31837,
-        targets = listOf(AppTarget(version = "26.33.0", versionCode = 26330013))
-    )
-
-val MALWAREBYTES_COMPATIBILITY = Compatibility(
-        name = "Malwarebytes Mobile Security",
-        packageName = "org.malwarebytes.antimalware",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x0066FF,
-        targets = listOf(
-            AppTarget(version = "5.27.0+564", versionCode = 52700564)
-        )
+val PROTON_PASS_COMPATIBILITY = Compatibility(
+        name = "Proton Pass",
+        packageName = "proton.android.pass",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x6D4AFF,
+        targets = listOf(AppTarget(version = "1.40.3", versionCode = 14003373))
     )
 
 val PROTONMAIL_COMPATIBILITY = Compatibility(
@@ -1422,14 +1430,6 @@ val PROTONMAIL_COMPATIBILITY = Compatibility(
         packageName = "ch.protonmail.android",
         appIconColor = 0x6D4AFF,
         targets = listOf(AppTarget(version = "7.11.0", versionCode = 18139))
-    )
-
-val PROTON_PASS_COMPATIBILITY = Compatibility(
-        name = "Proton Pass",
-        packageName = "proton.android.pass",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x6D4AFF,
-        targets = listOf(AppTarget(version = "1.40.3", versionCode = 14003373))
     )
 
 val PROTONMAIL_COMPATIBILITY = Compatibility(
