@@ -309,7 +309,7 @@ val BOLDVOICE_COMPATIBILITY = Compatibility(
         packageName = "com.wellocution.androidapp",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0xFF5A36,
-        targets = listOf(AppTarget(version = "4.3.9", versionCode = 388))
+        targets = listOf(AppTarget(version = "4.6.1", versionCode = 410))
     )
 
 val BOXBOX_COMPATIBILITY = Compatibility(
