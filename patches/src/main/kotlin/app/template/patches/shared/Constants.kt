@@ -1549,9 +1549,9 @@ val SCRL_COMPATIBILITY = Compatibility(
 val SD_MAID_SE_COMPATIBILITY = Compatibility(
         name = "SD Maid SE",
         packageName = "eu.darken.sdmse",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.APKM,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "1.7.5-rc0", versionCode = 10705000))
+        targets = listOf(AppTarget(version = "2.0.2-rc0", versionCode = 20002000))
     )
 
 val SEND_FILES_TO_TV_COMPATIBILITY = Compatibility(
