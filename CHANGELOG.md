@@ -1,3 +1,9 @@
+## [1.18.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0...v1.18.1) (2026-08-17)
+
+### 🐛 Bug Fixes
+
+* sdmaid ([3b2c745](https://github.com/rushiranpise/morphe-patches/commit/3b2c74544928ebc230ccd4c6beed6270bd07a90b))
+
 ## [1.18.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.0...v1.18.1-dev.1) (2026-08-17)
 
 ### 🐛 Bug Fixes
