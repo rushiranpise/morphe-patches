@@ -3,10 +3,9 @@ package app.template.extension.extension;
 import app.template.extension.BuildConfig;
 
 final class ApiKeys {
-    static final String CITYMAPPER_MAPS = BuildConfig.CITYMAPPER_MAPS_API_KEY;
+    // Flightradar24 keys its map to a user-supplied key (see UseMapsApiKeyPatch),
+    // so it stays on its own dedicated key rather than the shared one.
     static final String FLIGHTRADAR_MAPS = BuildConfig.FLIGHTRADAR_MAPS_API_KEY;
-    static final String FUELIO_MAPS = BuildConfig.FUELIO_MAPS_API_KEY;
-    static final String NETMONSTER_MAPS = BuildConfig.NETMONSTER_MAPS_API_KEY;
     static final String SHARED_MAPS = BuildConfig.SHARED_MAPS_API_KEY;
 
     private ApiKeys() {

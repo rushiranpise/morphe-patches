@@ -1,7 +1,6 @@
 package app.template.patches.pocketprep
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.methodCall
 import com.android.tools.smali.dexlib2.AccessFlags
 
@@ -112,29 +111,23 @@ internal val HasActiveSubscriptionForExamFingerprint = Fingerprint(
 // This method maps (ExamMetadata, List<Subscription>) → SubscriptionStatusEnum and
 // is the single gate that decides whether the full question bank is served.
 //
-// Version history (obfuscated class and method name change every release):
-//   ≤3.27.x : kg9.l0(ExamMetadata, List) → q77   (q77.z=NO_PREMIUM, q77.B=PREMIUM_FROM_CURRENT_BUNDLE)
-//   3.28.1  : cg9.I(ExamMetadata, List)  → e87   (e87.z=NO_PREMIUM, e87.B=PREMIUM_FROM_CURRENT_BUNDLE)
+// Version history (obfuscated class/method/enum rename every release):
+//   ≤3.27.x : kg9.l0(ExamMetadata, List) → q77
+//   3.28.1  : cg9.I (ExamMetadata, List) → e87
 //
-// We fingerprint by the two stable enum field accesses inside the method body
-// (NO_PREMIUM / PREMIUM_FROM_CURRENT_BUNDLE), which always appear in this order,
-// so the fingerprint survives the class/method rename on next update.
-// The return type e87 is specified explicitly because it is also obfuscated and
-// could collide with other (ExamMetadata, List) methods in future versions.
-// Update `returnType` here if the status enum is renamed again.
+// Stable anchor: the status enum is the ONLY class in the DEX containing both the
+// string constants "NO_PREMIUM" and "PREMIUM_FROM_CURRENT_BUNDLE" in its static
+// initializer. These are developer-defined enum value names — never obfuscated.
+// We resolve the enum class by those strings, derive its type at execute time, then
+// find the resolver method by (ExamMetadata, List) params + that return type.
 //
-// Patch: sget-object v0, Le87;->B:Le87; / return-object v0
-// always returns PREMIUM_FROM_CURRENT_BUNDLE, making the question-pool selector
-// serve the full bank (ExamQuestions.b) instead of the free subset (ExamQuestions.c).
-internal val ExamSubscriptionStatusFingerprint = Fingerprint(
-    returnType = "Le87;",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = listOf(
-        "Lcom/pocketprep/android/api/common/ExamMetadata;",
-        "Ljava/util/List;"
-    ),
-    filters = listOf(
-        fieldAccess(definingClass = "Le87;", name = "z", type = "Le87;"),
-        fieldAccess(definingClass = "Le87;", name = "B", type = "Le87;")
-    )
+// This makes the patch zero-obfuscated-names: no Le87;, no Lcg9;, no field "B" hardcoded.
+// The PREMIUM_FROM_CURRENT_BUNDLE field name is also derived from the clinit sput that
+// immediately follows the const-string in the static initializer.
+//
+// Fingerprint: anchored on the status enum class via its developer string literals.
+// The resolver method itself is found in execute{} by signature (not by Fingerprint.match),
+// so no obfuscated class or method name appears in any fingerprint declaration.
+internal val SubscriptionStatusEnumFingerprint = Fingerprint(
+    strings = listOf("NO_PREMIUM", "PREMIUM_FROM_CURRENT_BUNDLE"),
 )

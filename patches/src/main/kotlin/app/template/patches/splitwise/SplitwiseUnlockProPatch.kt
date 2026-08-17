@@ -124,13 +124,16 @@ val splitwiseUnlockProPatch = bytecodePatch(
         //
         // Returning null from getProAdConfiguration() removes the upsell card.
         // Returning null from getProSubscriptionConfiguration() also removes the
-        // pro section card — the Account tab shows neither upsell nor pro card,
-        // which is clean. The original method has .registers 2 (only p0+v0 valid)
-        // so constructing a fake ProSubscriptionConfiguration inline would need
-        // v0-v3 → register index out of range VerifyError. Use returnEarly(null)
-        // for both to stay within the 2-register frame.
-        ProAccountCardGetProAdConfigurationFingerprint.method.returnEarly()
-        ProAccountCardGetProSubscriptionConfigurationFingerprint.method.returnEarly()
+        // pro section card — the Account tab shows neither upsell nor pro card.
+        //
+        // IMPORTANT:
+        // These methods return objects, not void. Use returnEarly(null), not
+        // returnEarly().
+        //
+        // returnEarly() without parameters only works for void (V) methods.
+        
+        ProAccountCardGetProAdConfigurationFingerprint.method.returnEarly(null)
+        ProAccountCardGetProSubscriptionConfigurationFingerprint.method.returnEarly(null)
 
         // ── Layer 4: Feature unlocks ────────────────────────────────────────────
 

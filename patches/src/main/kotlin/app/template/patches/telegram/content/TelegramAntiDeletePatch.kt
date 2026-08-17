@@ -3,6 +3,7 @@ package app.template.patches.telegram.content
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
+import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.DeleteMessagesByPushFingerprint
@@ -16,6 +17,7 @@ val telegramAntiDeletePatch = bytecodePatch(
     description = "Prevents messages deleted by other users from being removed locally.",
 ) {
     compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    dependsOn(telegramSpoofDependency())
 
     execute {
         // markMessagesAsDeleted(JIZZ) — p4=Z is the async/local-only flag.

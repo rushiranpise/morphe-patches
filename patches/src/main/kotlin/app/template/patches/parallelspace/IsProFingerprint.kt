@@ -1,111 +1,110 @@
 package app.template.patches.parallelspace
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.methodCall
+import app.morphe.patcher.literal
+import app.morphe.patcher.opcode
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
-// Parallel Space Pro v4.0.9159
+// Parallel Space Pro v4.0.9162
 //
 // PRO STATUS ARCHITECTURE
-// Pro state is stored in SharedPreferences via j11 (the app's SP singleton).
-// Key: SPConstant.BILLING_PURCHASE_CURRENT_STATE = "bpcs"
-// Value: int — 2 = Pro/purchased, 1 = pending, 0 = free
+// The app stores Pro state in SharedPreferences under the key "bpcs"
+// (SPConstant.BILLING_PURCHASE_CURRENT_STATE — stable, non-obfuscated constant).
+// Value: int — 2 = Pro, 1 = pending/expired, 0 = free.
 //
-// j11.c(String) = SharedPreferences.getInt(key, 0)
-// j11.i(int, String) = SharedPreferences.putInt(key, value)
+// Purchase model: SUBSCRIPTION (monthly/yearly via Google Play Billing).
+// There is no server-side license validation — all checks are client-side.
 //
-// CHANGED FROM v4.0.9123:
-// Old target: com/lbe/parallel/ad.k()Z — class ad no longer contains this method.
-// New target: com/lbe/parallel/ee.l()Z — primary isPro getter (re-reads SP).
-//             com/lbe/parallel/ee.k()Z — cached isPro getter (reads field ee.b).
-//             com/lbe/parallel/le.g()V — Pro status notifier (calls r50.e() if Pro).
+// There are TWO distinct isPro code paths, both must be patched:
 //
-// ── Fingerprint 1: ee.l()Z — primary isPro getter ────────────────────────────
-// Re-reads bpcs from SharedPreferences via j11.c(), updates field ee.b,
-// then compares to 2 and returns boolean.
+//   PATH A — BillingClient gate (td.J()Z):
+//     Synchronized method; reads td.b:I (runtime billing state updated by Play Billing).
+//     Called by be.d()Z (the billing manager's public gateway) and billing internals.
 //
-// SMALI VERIFIED (classes.dex):
-//   .method public final l()Z  .registers 3
-//   [000] invoke-static {}, j11.b()j11          ← SP singleton
-//   [002] const-string v1, "bpcs"
-//   [003] invoke-virtual { v0, v1 }, j11.c(String)I
-//   [004] move-result v0
-//   [005] iput v0, p0, ee.b:I                   ← update cache
-//   [006] const/4 v1, 2
-//   [007] if-ne v0, v1, :L0                     ← not pro
-//   [008] const/4 v0, 1
-//          goto :L1
-//   :L0  const/4 v0, 0
-//   :L1  return v0
+//   PATH B — Direct SP read (de.l()Z):
+//     Reads "bpcs" directly from SharedPreferences. Called from SplashActivity,
+//     CloneAndIncognitoInstallActivity, HomeView (n40.smali × 2), and other UI
+//     entry points that do NOT go through be.d(). Patching PATH A alone leaves
+//     all these callers locked.
 //
-// Fingerprinted by: string("bpcs") + methodCall(j11, "c") in exact order.
-// definingClass + name is already unique, but filters add confidence.
-internal object IsProRefreshFingerprint : Fingerprint(
-    definingClass = "Lcom/lbe/parallel/ee;",
-    name = "l",
+// ── Fingerprint 1: td.J()Z — synchronized BillingClient isPro gate ──────────
+//
+// SMALI VERIFIED (classes.dex, v4.0.9162):
+//   .class public final Lcom/lbe/parallel/td;
+//   .method public final J()Z  .registers 5
+//   [0]  iget-object v0, p0, td->a:Object
+//   [1]  monitor-enter v0                           ← instructionMatches[0] (MONITOR_ENTER)
+//   [2]  iget v1, p0, td->b:I                      (runtime bpcs int)
+//   [3]  const/4 v2, 0x2                            ← instructionMatches[1] (literal 2)
+//   [4]  const/4 v3, 0x0
+//   [5]  if-ne v1, v2, :cond_15                    ← PATCH: nop  [monitorIdx + 4]
+//   [6]  iget-object v1, p0, td->i:zzar
+//   [7]  if-eqz v1, :cond_15                       ← PATCH: nop  [monitorIdx + 6]
+//   [8]  iget-object v1, p0, td->j:dm1
+//   [9]  if-eqz v1, :cond_15                       ← PATCH: nop  [monitorIdx + 8]
+//   [10] const/4 v3, 0x1
+//   [11] goto :goto_15
+//   [12] move-exception v1
+//   [13] goto :goto_17
+//   [14] :cond_15/:goto_15  monitor-exit v0
+//   [15] return v3
+//   [16] monitor-exit v0
+//   [17] throw v1
+//
+// PATCH: nop [9], [7], [5] in reverse order → always reaches [10] const v3=1 → return true.
+// monitor-enter/exit is preserved. returnEarly(true) is NOT safe here (skips monitor-enter).
+//
+// FINGERPRINT ANCHORS — fully update-proof, no type names:
+//   opcode(MONITOR_ENTER)  — structural marker of the synchronized isPro gate.
+//   literal(2L)            — the "bpcs == 2 means Pro" comparison value.
+//
+// UPDATE HISTORY:
+//   v4.0.9162: was anchored on fieldAccess(zzar) — WRONG. zzar is a Google Play
+//   Billing SDK internal class name that changes on every billing library update.
+//   Replaced with opcode(MONITOR_ENTER) + literal(2) which are purely structural
+//   and survive Play Billing SDK upgrades. Verified unique in classes.dex.
+internal object IsProGateFingerprint : Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
     filters = listOf(
-        string("bpcs"),
-        methodCall(
-            definingClass = "Lcom/lbe/parallel/j11;",
-            name = "c",
-        ),
+        opcode(Opcode.MONITOR_ENTER),
+        literal(2L),
     ),
 )
 
-// ── Fingerprint 2: ee.k()Z — cached isPro getter ─────────────────────────────
-// Reads field ee.b (int, cached bpcs value), compares to 2, returns boolean.
-// Called frequently in UI path; uses the cached value to avoid SP reads.
+// ── Fingerprint 2: de.l()Z — direct SharedPreferences isPro read ─────────────
 //
-// SMALI VERIFIED (classes.dex):
-//   .method public final k()Z  .registers 3
-//   [000] iget v0, p0, ee.b:I
-//   [001] const/4 v1, 2
-//   [002] if-ne v0, v1, :L0
-//   [003] const/4 v0, 1   goto :L1
-//   :L0  const/4 v0, 0
-//   :L1  return v0
+// SMALI VERIFIED (classes.dex, v4.0.9162):
+//   .class public final Lcom/lbe/parallel/de;   (R8-obfuscated class name)
+//   .method public final l()Z  .registers 3     (R8-obfuscated method name)
+//   [0] invoke-static {}, i11->b()i11           (SP singleton getter)
+//   [1] move-result-object v0
+//   [2] const-string v1, "bpcs"                 ← instructionMatches[0]
+//   [3] invoke-virtual {v0, v1}, i11->c(String)I
+//   [4] move-result v0
+//   [5] iput v0, p0, de->b:I                    (update cache field)
+//   [6] const/4 v1, 0x2
+//   [7] if-ne v0, v1, :cond_11
+//   [8] const/4 v0, 0x1
+//      goto :L
+//   :cond_11  const/4 v0, 0x0
+//   :L  return v0
 //
-// No filters needed — definingClass + name + signature is 100% unique.
-internal object IsProCachedFingerprint : Fingerprint(
-    definingClass = "Lcom/lbe/parallel/ee;",
-    name = "k",
+// PATCH: returnEarly(true) — safe, no monitor, no try/catch.
+//
+// FINGERPRINT ANCHOR — fully update-proof:
+//   string("bpcs") — SPConstant.BILLING_PURCHASE_CURRENT_STATE, a named constant
+//   in the app's own non-obfuscated SPConstant class. Will not change unless the
+//   developers rename their own SP key. Verified unique: the ONLY ()Z method in
+//   classes.dex containing this string.
+internal object IsProDirectFingerprint : Fingerprint(
     returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
-    parameters = emptyList(),
-)
-
-// ── Fingerprint 3: le.g()V — Pro status notifier ─────────────────────────────
-// Called on billing state change. Reads bpcs from SP; if == 2 calls r50.e()
-// which notifies all registered Pro-status listeners in the UI.
-// We nop the if-ne guard at [036] so it ALWAYS notifies as Pro.
-//
-// SMALI VERIFIED (classes.dex):
-//   .method public final g()V  .registers 3
-//   [030-034] j11.b().c("bpcs") → v0 (int)
-//   [035] const/4 v1, 2
-//   [036] if-ne v0, v1, :L2     ← PATCH: nop this → always notify as Pro
-//   [037] iget v0, p0, le.b:r50
-//   [038] invoke-interface { v0 }, r50.e()V    ← notifies listeners
-//   :L2  return-void
-//
-// Anchored by string("bpcs") + methodCall(j11, "c") after the setup block.
-// instructionMatches[1] = methodCall(j11, "c") at index 33.
-// if-ne is at index 36 = methodCallIndex + 3.
-internal object IsProNotifierFingerprint : Fingerprint(
-    definingClass = "Lcom/lbe/parallel/le;",
-    name = "g",
-    returnType = "V",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
     filters = listOf(
         string("bpcs"),
-        methodCall(
-            definingClass = "Lcom/lbe/parallel/j11;",
-            name = "c",
-        ),
     ),
 )

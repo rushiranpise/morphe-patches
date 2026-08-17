@@ -6,19 +6,21 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants
 import app.template.patches.shared.clearBody
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 // Internal: applied automatically as a dependency of Unlock Pro.
 @Suppress("unused")
 val disableAntiTamperPatch = bytecodePatch(
     description = "No-ops the central self-kill dispatcher called by 1Tap Cleaner's anti-tamper " +
         "checks. On a patched build, three independent triggers fire this method: " +
-        "(1) fkp.onActivityCreated — kills if debugger is connected at even-millisecond timestamps; " +
-        "(2) fkp.onActivityDestroyed — kills if ApplicationInfo.FLAG_DEBUGGABLE is set, which " +
+        "(1) p6.onActivityCreated — kills if debugger is connected at even-millisecond timestamps; " +
+        "(2) p6.onActivityDestroyed — kills if ApplicationInfo.FLAG_DEBUGGABLE is set, which " +
         "the Morphe patcher sets in the manifest; " +
-        "(3) aok/hlr — kills on BILLING_UNAVAILABLE / APK cert mismatch from Play Billing. " +
-        "The dispatcher is a no-arg static void method in the utility class pinned by '/cmdline' " +
-        "(reads /proc/<pid>/cmdline for process-name detection). It is the only no-arg static " +
-        "void method in that class, so the selector is unambiguous without inspecting instructions.",
+        "(3) billing result handler — kills on BILLING_UNAVAILABLE / APK cert mismatch. " +
+        "Pinned by '/cmdline' string (the proc-name reader in the same class). " +
+        "Identified within the class by a call to Process.killProcess() — stable across " +
+        "versions even as the class accumulates additional static void utility methods.",
 ) {
     compatibleWith(Constants.ONETAPCLEANER_COMPATIBILITY)
 
@@ -31,16 +33,22 @@ val disableAntiTamperPatch = bytecodePatch(
             )
         val mutableUtil = mutableClassDefBy(utilClass)
 
-        // The kill dispatcher is the sole public static ()V method in this class.
-        // Its name is obfuscated (e.g. \u9c68) but the signature is unique within the class.
+        // The kill dispatcher is the public static no-arg void method that contains a call to
+        // Process.killProcess(). Narrowing by this call is necessary from v5.22 onwards —
+        // the utility class now contains multiple public static void methods, so the previous
+        // "sole no-arg static void" selector is no longer unambiguous.
         val killMethod = mutableUtil.methods.firstOrNull { method ->
             AccessFlags.STATIC.isSet(method.accessFlags) &&
                 AccessFlags.PUBLIC.isSet(method.accessFlags) &&
                 method.returnType == "V" &&
-                method.parameterTypes.isEmpty()
+                method.parameterTypes.isEmpty() &&
+                method.implementation?.instructions?.any { insn ->
+                    insn is ReferenceInstruction &&
+                        (insn.reference as? MethodReference)?.name == "killProcess"
+                } == true
         } ?: throw PatchException(
-            "1Tap Cleaner: kill dispatcher not found in anti-tamper class. " +
-                "Expected exactly one public static ()V method.",
+            "1Tap Cleaner: kill dispatcher not found — expected a public static ()V method " +
+                "calling Process.killProcess() in the '/cmdline' utility class.",
         )
 
         // clearBody() required — the method body has a try-catch block wrapping killProcess.

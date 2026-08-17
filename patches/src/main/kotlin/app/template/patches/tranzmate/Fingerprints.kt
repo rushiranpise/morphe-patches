@@ -1,11 +1,14 @@
 package app.template.patches.tranzmate
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
 
 // ── Application entry point ───────────────────────────────────────────────────
-
+// Non-obfuscated, stable across versions.
+// Moved to classes3 in v1801 (was classes in v5.197.0).
 internal val MoovitApplicationOnCreateFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/MoovitApplication;",
     name = "onCreate",
@@ -13,10 +16,10 @@ internal val MoovitApplicationOnCreateFingerprint = Fingerprint(
 )
 
 // ── Subscription state gate ───────────────────────────────────────────────────
-//
-// classFingerprint resolves the obfuscated SharedPreferences wrapper that holds
-// the "subscribed_skus" list. The inner b()Z method returns isSubscribed.
-// Both the class and method names are obfuscated but the string key is stable.
+// classFingerprint resolves the obfuscated SharedPrefs wrapper that holds the
+// "subscribed_skus" list. The inner b()Z method returns isSubscribed.
+// "subscribed_skus" is a stable, non-obfuscated key.
+// v5.197.0: (unknown), v1801: Lccf;
 internal val SubscriptionStateFingerprint = Fingerprint(
     classFingerprint = Fingerprint(
         strings = listOf("subscribed_skus"),
@@ -26,13 +29,14 @@ internal val SubscriptionStateFingerprint = Fingerprint(
     parameters = emptyList(),
 )
 
-// ── Ad resolution ─────────────────────────────────────────────────────────────
-//
-// Returns the ad unit ID string for a given AdSource. Returning "" suppresses ads.
-// "is_ads_free_version" is a stable remote-config key — not obfuscated.
-//
-// Smali verified (v5.197.0, classes3.dex, Lpg9;->g(AdSource)String):
+// ── Ad unit resolver ──────────────────────────────────────────────────────────
+// Returns the ad unit ID String for a given AdSource. Returning "" suppresses
+// all ads. "is_ads_free_version" is a stable remote-config key.
+// Smali verified (v1801, classes3/rha.smali, method f):
+//   .method public final f(Lcom/moovit/app/ads/AdSource;)Ljava/lang/String;
 //   const-string v1, "is_ads_free_version"
+// Note: was named g() in v5.197.0; renamed to f() in v1801.
+// Fingerprinted by stable param type + string — not method name.
 internal val AdUnitResolverFingerprint = Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "Ljava/lang/String;",
@@ -40,8 +44,9 @@ internal val AdUnitResolverFingerprint = Fingerprint(
     strings = listOf("is_ads_free_version"),
 )
 
-// ── Ad view hide ──────────────────────────────────────────────────────────────
-
+// ── Ad view suppression ───────────────────────────────────────────────────────
+// Non-obfuscated class and method names — stable across versions.
+// MoovitAdView moved to classes6 in v1801; MoovitBannerAdView in classes3.
 internal val MoovitAdViewSetSourceFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/app/ads/MoovitAdView;",
     name = "setAdSource",
@@ -57,9 +62,8 @@ internal val MoovitBannerAdViewSetSourceFingerprint = Fingerprint(
 )
 
 // ── Subscription package state ────────────────────────────────────────────────
-//
 // Non-obfuscated wrapper class; returns the SubscriptionPackageState enum.
-// Both class path and method name stable across versions.
+// Stable class path and method name across versions.
 internal val SubscriptionPackageStateFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/app/subscription/premium/packages/a;",
     name = "b",
@@ -68,7 +72,7 @@ internal val SubscriptionPackageStateFingerprint = Fingerprint(
 )
 
 // ── SafeRide feature gate ─────────────────────────────────────────────────────
-
+// Non-obfuscated package path; returns SubscriptionPackageState enum.
 internal val SafeRideCalculateStateFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/app/subscription/premium/packages/safety/b;",
     name = "a",
@@ -76,14 +80,11 @@ internal val SafeRideCalculateStateFingerprint = Fingerprint(
     parameters = listOf("Lkotlin/coroutines/jvm/internal/ContinuationImpl;"),
 )
 
-// ── Paywall / upgrade UI suppression ──────────────────────────────────────────
-//
-// BlockPaywallGate.a(MoovitActivity)Z — returns true when the paywall should
-// block navigation. Class name obfuscated; pinned via stable "block_paywall" key.
-//
+// ── Paywall gate ──────────────────────────────────────────────────────────────
+// Returns true when the paywall should block navigation.
+// Obfuscated class; anchored by stable "block_paywall" remote-config key string.
 // Class rename history:
-//   v5.196: Ly81;   (classes)
-//   v5.197: Lw81;   (classes3)
+//   v5.196: Ly81    v5.197.0: Lw81    v1801: Ljh1
 internal val BlockPaywallGateFingerprint = Fingerprint(
     name = "a",
     returnType = "Z",
@@ -93,6 +94,8 @@ internal val BlockPaywallGateFingerprint = Fingerprint(
     ),
 )
 
+// ── Paywall / onboarding activity suppression ─────────────────────────────────
+// Non-obfuscated class paths — stable across versions.
 internal val BlockPaywallActivityOnReadyFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/app/plus/paywall/BlockPaywallActivity;",
     name = "onReady",
@@ -114,8 +117,9 @@ internal val MoovitPlusActivityOnReadyFingerprint = Fingerprint(
     parameters = listOf("Landroid/os/Bundle;"),
 )
 
-// ── Subscription / promo UI hide ──────────────────────────────────────────────
-
+// ── Subscription / promo UI suppression ──────────────────────────────────────
+// All non-obfuscated class paths. Fragment DEX locations may move between
+// classes and classes3/6 but the class descriptors remain stable.
 internal val MoovitPlusHelpCenterMenuItemFingerprint = Fingerprint(
     definingClass = "Lcom/moovit/app/plus/MoovitPlusHelpCenterMenuItemFragment;",
     name = "onViewCreated",
@@ -180,53 +184,78 @@ internal val FreemiumPopupFragmentFingerprint = Fingerprint(
 )
 
 // ── Itinerary smart tips upsell banner ────────────────────────────────────────
+// Obfuscated flow emitter. Reads view_blocked_smart_tips_banner resource then
+// shows an upsell banner when the user is not subscribed.
+// The MOVE_RESULT preceding the sget of view_blocked_smart_tips_banner feeds the
+// isSmartTips boolean. Replacing it with const/4 v6, 0x0 routes the flow to
+// the insight-banner path instead.
 //
-// Obfuscated flow emitter: reads view_blocked_smart_tips_banner resource,
-// inflates a ViewStub, and shows an upsell banner when the user is not
-// subscribed. Replacing the MOVE_RESULT that feeds the isSmartTips boolean
-// with const/4 v6, 0x0 sends the flow down the insight-banner path instead,
-// suppressing the smart tips upsell entirely.
+// Stable fingerprint strategy: fieldAccess to Li4d;->view_blocked_smart_tips_banner:I
+// is the unique anchor — this field access only appears in this one emit() method
+// across the entire app. definingClass is intentionally omitted so the fingerprint
+// survives obfuscated class renames. The second parameter is also obfuscated; "L"
+// is used as a wildcard.
 //
-// Class rename history:
-//   v5.196: Lmy6;  params (Object, Llx2;)
-//   v5.197: Liy6;  params (Object, Lix2;)  ← ix2 renamed from lx2
-//
-// Smali verified (v5.197.0, classes6.dex, Liy6;->emit(Object,Lix2;)Object):
-//   invoke-static { v6 }, Llhd;->a(Lvp2;)Z
-//   move-result v6                          ← opcode index 439 (0-based)
-//   ...
-//   sget v8, Lbwb;->view_blocked_smart_tips_banner:I
+// Class rename history (for reference only — no longer needed in fingerprint):
+//   v5.196: Lmy6  v5.197.0: Liy6  v1801: Lwq7
 internal val ItineraryBlockedSmartTipsBannerFingerprint = Fingerprint(
-    definingClass = "Liy6;",
     name = "emit",
     returnType = "Ljava/lang/Object;",
-    parameters = listOf("Ljava/lang/Object;", "Lix2;"),
+    parameters = listOf("Ljava/lang/Object;", "L"),
+    filters = listOf(
+        fieldAccess(
+            opcode = Opcode.SGET,
+            definingClass = "Li4d;",
+            name = "view_blocked_smart_tips_banner",
+            type = "I",
+        ),
+    ),
 )
 
 // ── MyMoovitPlus go-premium card ─────────────────────────────────────────────
+// Obfuscated flow emitter toggling the "Go Premium" card visibility.
+// v7 != 0 → GONE (subscribed). We replace the VISIBLE branch's "move v9, v2"
+// with "move v9, v3" so the card is always GONE.
 //
-// Obfuscated flow emitter that toggles the "Go Premium" card visibility in the
-// MyMoovitPlus fragment. The card is hidden (GONE) when the user is subscribed
-// (v7 != 0) and shown (VISIBLE) when not. We replace the VISIBLE branch's
-// "move v9, v2" with "move v9, v3" so the card is always GONE.
+// Constants (smali verified, v1801, classes6/r1b.smali):
+//   const/4 v2, 0x0   → VISIBLE
+//   const/16 v3, 0x8  → GONE
+//   if-nez v7, :cond_47   ← v7=isPremium
+//   move v9, v2           ← NOT premium branch: replace with move v9, v3
+//   goto :goto_48
+//   move v9, v3           ← premium branch (already GONE)
+//   invoke setVisibility(v9)
 //
-// Class rename history:
-//   v5.196: Lzy9;  params (Object, Llx2;)
-//   v5.197: Lbz9;  params (Object, Lix2;)  ← ix2 renamed from lx2
+// Stable fingerprint strategy: "goPremiumCard" string is the unique anchor —
+// it only appears in this one emit() method across the entire app (verified v1801).
+// definingClass is intentionally omitted to survive obfuscated class renames.
+// The second parameter is also obfuscated; "L" is used as a wildcard.
 //
-// Smali verified (v5.197.0, classes6.dex, Lbz9;->emit(Object,Lix2;)Object):
-//   opcode 3:  const/4 v2, 0    ← VISIBLE constant
-//   opcode 4:  const/16 v3, 8   ← GONE constant
-//   opcode 34: const-string v0, "goPremiumCard"  ← null-check marker
-//   opcode 37: if-nez v7, :L7   ← v7=isPremium; nez=notZero → card already hidden
-//   opcode 38: move v9, v2      ← VISIBLE (isPremium=false) ← replace with move v9, v3
-//   opcode 39: goto :L8
-//   opcode 40: move v9, v3      ← GONE (isPremium=true)
-//   opcode 41: invoke setVisibility(v9)
+// Class rename history (for reference only — no longer needed in fingerprint):
+//   v5.196: Lzy9  v5.197.0: Lbz9  v1801: Lr1b
 internal val MyMoovitPlusGoPremiumCardFingerprint = Fingerprint(
-    definingClass = "Lbz9;",
     name = "emit",
     returnType = "Ljava/lang/Object;",
-    parameters = listOf("Ljava/lang/Object;", "Lix2;"),
+    parameters = listOf("Ljava/lang/Object;", "L"),
     strings = listOf("goPremiumCard"),
+)
+
+// ── FavoriteLocationEditorActivity — address search enabler ──────────────────
+// The "Add Favorite Location" search hardcodes c=false (p5 = 0x0) when
+// constructing AppSearchLocationCallback. This disables the qn5 geocode
+// address provider, so only transit stops appear — exact addresses cannot
+// be set as favorites.
+//
+// Fix: replaceInstruction at index 5 (const/4 v5, 0x0 → const/4 v5, 0x1).
+// This is a Moovit upstream premium gate — not caused by our patches.
+//
+// Fingerprint: non-obfuscated definingClass + unique "favorites_editor" string
+// (only appears in this one method across the entire app, verified v1801).
+internal val FavoriteLocationAddressSearchFingerprint = Fingerprint(
+    definingClass = "Lcom/moovit/app/home/dashboard/FavoriteLocationEditorActivity;",
+    returnType = "V",
+    parameters = emptyList(),
+    filters = listOf(
+        string("favorites_editor"),
+    ),
 )

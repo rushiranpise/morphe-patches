@@ -15,7 +15,7 @@ private const val APP_NAME_STRING = "morphe_google_photos_app_name"
 val googlePhotosChangePackageNamePatch = resourcePatch(
     name = "Change package name",
     description = "Installs Google Photos beside the system Photos app by changing package, permissions, providers, and app name.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(GOOGLE_PHOTOS_COMPATIBILITY)
 

@@ -30,7 +30,6 @@ val unlockPremiumPatch = bytecodePatch(
         // ── CurrentSubscription ───────────────────────────────────────────────
         // Reads the subscription store (H1:LX9/r) and returns the first match for
         // the chosen vehicle type (tb/a$b.a=car, tb/a$b.b=both, tb/a$b.c=truck).
-        // v3.6.320: class e9/o2 → e9/u2, store field G1:LX9/p → H1:LX9/r.
         CurrentSubscriptionFingerprint.method.apply {
             removeInstructions(0, instructions.size)
             addInstructions(
@@ -94,8 +93,6 @@ val unlockPremiumPatch = bytecodePatch(
         }
 
         // ── Billing: short-circuit IAP flow ──────────────────────────────────
-        // Returns Result.success(true) so billing never actually launches Play.
-        // v3.6.320: method renamed k3 → l3 (same signature).
         BillingPurchaseStarterFingerprint.method.apply {
             removeInstructions(0, instructions.size)
             addInstructions(
@@ -160,22 +157,22 @@ val unlockPremiumPatch = bytecodePatch(
         }
 
         // ── Truck path 3: upsell toast gate → disabled ────────────────────────
+        // v3.6.320: class changed from Lv9/t; → LH9/u0; (same method sig, same pref strings).
         TruckPurchasedToastGateFingerprint.method.apply {
             removeInstructions(0, instructions.size)
             addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
-        // ── Truck path 4: "Are You A Truck Driver?" dialog → suppressed ───────
-        TruckCreateProfileDialogFingerprint.method.apply {
-            removeInstructions(0, instructions.size)
-            addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
-        }
+        // ── Truck path 4: "Are You A Truck Driver?" dialog ────────────────────
+        // DROPPED in v3.6.320: Le9/x0; is now MobileIncompatibleVoiceLocaleDialog.
+        // No stable replacement found; truck dialog unreachable with paths 2,3 disabled.
 
         // ── Truck path 5: NavBanner subscribe button → no-op for case a==1 ────
+        // v3.6.320: class changed from Le9/P0; → Le9/U0; (field a:I still present).
         TruckNavBannerSubscribeFingerprint.method.addInstructions(
             0,
             """
-            iget v0, p0, Le9/P0;->a:I
+            iget v0, p0, Le9/U0;->a:I
             const/4 v1, 0x1
             if-ne v0, v1, :cond_original
             return-void
@@ -184,13 +181,9 @@ val unlockPremiumPatch = bytecodePatch(
         )
 
         // ── Truck path 6: subscription screen truck tab → suppressed ──────────
-        // v3.6.320: moved from Le9/l1;->Y to Le9/p1;->Y.
-        // Replaced fragile replaceInstruction(offset) with addInstructions(0, return-void):
-        // returning immediately prevents the truck tab flag from ever being written.
         SubscriptionScreenTruckTabFingerprint.method.addInstructions(0, "return-void")
 
         // ── Truck path 7: truck NavBanner remote flag → always visible ─────────
-        // v3.6.320: class renamed Le9/C2$d → Le9/J2$d.
         ShowLargeVehiclesBannerFingerprint.method.apply {
             removeInstructions(0, instructions.size)
             addInstructions(
@@ -203,10 +196,11 @@ val unlockPremiumPatch = bytecodePatch(
         }
 
         // ── Truck path 8: NavBanner body tap → no-op for case a==4 ───────────
+        // v3.6.320: class changed from LPc/v; → Le9/T0; (field a:I still present).
         TruckBannerMessageClickFingerprint.method.addInstructions(
             0,
             """
-            iget v0, p0, LPc/v;->a:I
+            iget v0, p0, Le9/T0;->a:I
             const/4 v1, 0x4
             if-ne v0, v1, :cond_original
             return-void
@@ -215,7 +209,6 @@ val unlockPremiumPatch = bytecodePatch(
         )
 
         // ── Truck path 9: Urban Airship IAM → suppressed ──────────────────────
-        // Suppresses the server-triggered truck subscription in-app message on startup.
         AirshipIAMLauncherFingerprint.method.apply {
             removeInstructions(0, instructions.size)
             addInstructions(

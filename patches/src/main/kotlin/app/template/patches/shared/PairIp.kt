@@ -96,7 +96,7 @@ fun BytecodePatchContext.killPairIpFull(
     mutableClassDefByOrNull(vm)?.methods?.firstOrNull { it.name == "<clinit>" }
         ?.apply { clearBody(); addInstructions(0, "return-void") }
     mutableClassDefByOrNull(vm)?.methods?.firstOrNull { it.name == "invoke" }
-        ?.returnEarly()
+        ?.apply { clearBody(); addInstructions(0, "const/4 v0, 0x0\nreturn-object v0") }
 
     mutableClassDefByOrNull(sig)?.methods?.firstOrNull { it.name == "verifyIntegrity" }
         ?.apply { clearBody(); addInstructions(0, "return-void") }
