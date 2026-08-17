@@ -12,7 +12,7 @@ private const val EXTENSION_CLASS = "Lapp/template/extension/extension/PhotosDci
 val googlePhotosDcimFolderClassificationPatch = bytecodePatch(
     name = "Fix DCIM folder classification",
     description = "Prevents non-Camera DCIM folders from being grouped as Camera.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(GOOGLE_PHOTOS_COMPATIBILITY)
     extendWith("extensions/extension.mpe")

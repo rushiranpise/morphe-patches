@@ -212,7 +212,7 @@ private val ServiceCheckFingerprint = Fingerprint(
 val googlePhotosGmsCoreSupportPatch = bytecodePatch(
     name = "GmsCore support",
     description = "Adds MicroG/GmsCore support metadata for Google Photos.",
-    default = false,
+    default = true,
 ) {
     compatibleWith(GOOGLE_PHOTOS_COMPATIBILITY)
     extendWith("extensions/extension.mpe")
