@@ -1,3 +1,9 @@
+## [1.18.3-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.2...v1.18.3-dev.1) (2026-08-17)
+
+### 🐛 Bug Fixes
+
+* remove broken patch ([574fe34](https://github.com/rushiranpise/morphe-patches/commit/574fe34d217527bfb035a5913fea35cc5304b221))
+
 ## [1.18.2](https://github.com/rushiranpise/morphe-patches/compare/v1.18.1...v1.18.2) (2026-08-17)
 
 ### 🐛 Bug Fixes

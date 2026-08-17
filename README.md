@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;372 patches total
+> **[v1.18.3-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.3-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;371 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -2984,19 +2984,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#234</code> <strong>WetterOnline</strong> &middot; 1 patch &middot; <code>de.wetteronline.wetterapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=de.wetteronline.wetterapp">Play Store</a></summary>
-<br>
-
-**Supported versions:** `2026.16.1`
-
-| Patch | Details |
-|---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks premium and unblocks logo screen freeze by bypassing billing callbacks and all local access checks. |
-
-</details>
-
-<details>
-<summary><code>#235</code> <strong>Widget 2026</strong> &middot; 1 patch &middot; <code>com.remi.widget</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.remi.widget">Play Store</a></summary>
+<summary><code>#234</code> <strong>Widget 2026</strong> &middot; 1 patch &middot; <code>com.remi.widget</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.remi.widget">Play Store</a></summary>
 <br>
 
 **Supported versions:** `85.1.4`
@@ -3008,7 +2996,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#236</code> <strong>Windscribe VPN</strong> &middot; 1 patch &middot; <code>com.windscribe.vpn</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windscribe.vpn">Play Store</a></summary>
+<summary><code>#235</code> <strong>Windscribe VPN</strong> &middot; 1 patch &middot; <code>com.windscribe.vpn</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windscribe.vpn">Play Store</a></summary>
 <br>
 
 **Supported versions:** `4.2.2328`
@@ -3020,7 +3008,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#237</code> <strong>Windy</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
+<summary><code>#236</code> <strong>Windy</strong> &middot; 1 patch &middot; <code>com.windyty.android</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.windyty.android">Play Store</a></summary>
 <br>
 
 **Supported versions:** `51.0.1`
@@ -3032,7 +3020,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#238</code> <strong>WolframAlpha</strong> &middot; 1 patch &middot; <code>com.wolfram.android.alphapro</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro">Play Store</a></summary>
+<summary><code>#237</code> <strong>WolframAlpha</strong> &middot; 1 patch &middot; <code>com.wolfram.android.alphapro</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro">Play Store</a></summary>
 <br>
 
 **Supported versions:** `1.0.8.20260601651`
@@ -3044,7 +3032,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#239</code> <strong>Women Workout</strong> &middot; 1 patch &middot; <code>women.workout.female.fitness</code> &middot; <a href="https://play.google.com/store/apps/details?id=women.workout.female.fitness">Play Store</a></summary>
+<summary><code>#238</code> <strong>Women Workout</strong> &middot; 1 patch &middot; <code>women.workout.female.fitness</code> &middot; <a href="https://play.google.com/store/apps/details?id=women.workout.female.fitness">Play Store</a></summary>
 <br>
 
 **Supported versions:** `2.3.5`
@@ -3056,7 +3044,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#240</code> <strong>Word</strong> &middot; 1 patch &middot; <code>com.microsoft.office.word</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.word">Play Store</a></summary>
+<summary><code>#239</code> <strong>Word</strong> &middot; 1 patch &middot; <code>com.microsoft.office.word</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.word">Play Store</a></summary>
 <br>
 
 **Supported versions:** `16.0.20228.20090`
@@ -3068,7 +3056,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#241</code> <strong>Yatri</strong> &middot; 1 patch &middot; <code>com.yatrirailways.yatri</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.yatrirailways.yatri">Play Store</a></summary>
+<summary><code>#240</code> <strong>Yatri</strong> &middot; 1 patch &middot; <code>com.yatrirailways.yatri</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.yatrirailways.yatri">Play Store</a></summary>
 <br>
 
 **Supported versions:** `5.0.5`
@@ -3080,7 +3068,7 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#242</code> <strong>Universal</strong> &middot; 38 patches</summary>
+<summary><code>#241</code> <strong>Universal</strong> &middot; 38 patches</summary>
 <br>
 
 | Patch | Details |
