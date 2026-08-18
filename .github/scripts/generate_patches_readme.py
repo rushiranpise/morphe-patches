@@ -3,11 +3,11 @@
 Generates the patches section of README.md from patches-list.json
 and injects it between <!-- PATCHES_START --> / <!-- PATCHES_END --> markers.
 
-Details blocks are expanded (open by default) if:
-  1. Total patch count <= AUTO_EXPAND_THRESHOLD.
-  2. The README marker explicitly says: <!-- PATCHES_START EXPANDED -->
+The README section is a compact one-row-per-app index table. The full
+per-patch details are written to PATCHES.md, where each app gets its own
+`## App (package)` heading so anchors are unique and deep links work.
 
-python3 generate_patches_readme.py <owner/repo> <branch> [patches-list.json] [README.md]
+python3 generate_patches_readme.py <owner/repo> <branch> [patches-list.json] [README.md] [PATCHES.md]
 """
 
 import json
@@ -18,13 +18,14 @@ from pathlib import Path
 
 
 if len(sys.argv) < 3:
-    print("Usage: generate_patches_readme.py <owner/repo> <branch> [json] [README]")
+    print("Usage: generate_patches_readme.py <owner/repo> <branch> [json] [README] [PATCHES]")
     sys.exit(1)
 
 repo_full = sys.argv[1]
 branch = sys.argv[2]
 json_path = Path(sys.argv[3]) if len(sys.argv) > 3 else Path("patches-list.json")
 readme_path = Path(sys.argv[4]) if len(sys.argv) > 4 else Path("README.md")
+patches_path = Path(sys.argv[5]) if len(sys.argv) > 5 else Path("PATCHES.md")
 
 if "/" not in repo_full:
     raise ValueError(f"Invalid repo format: {repo_full} (expected owner/repo)")
@@ -65,8 +66,15 @@ for patch in data["patches"]:
 
 
 def anchor(name):
-    """Convert a patch name to a GitHub-compatible anchor slug."""
-    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", name.lower())).strip("-")
+    """Convert a heading to a GitHub-compatible anchor slug (github-slugger rules).
+
+    Spaces become hyphens, then all non-word characters (dots, parens, slashes,
+    etc.) are removed, so `## 1.1.1.1 (com.foo.bar)` anchors as `#1111-comfoobar`.
+    """
+    slug = re.sub(r"\s+", "-", name.lower())
+    slug = re.sub(r"[^\w\-]+", "", slug)
+    slug = re.sub(r"-+", "-", slug)
+    return slug.strip("-")
 
 
 def play_store_link(package_name):
@@ -74,25 +82,32 @@ def play_store_link(package_name):
     return f"https://play.google.com/store/apps/details?id={package_name}"
 
 
-def description_summary(text, max_length=180):
-    """Keep README rows compact by showing the first useful description line."""
-    first_line = ""
-    for line in (text or "").splitlines():
-        stripped = line.strip()
-        if stripped:
-            first_line = stripped
-            break
+def app_anchor(app_name, package_name):
+    """Unique anchor for an app section heading: `## Name (package)`."""
+    return anchor(f"{app_name} ({package_name})")
 
-    cleaned = re.sub(r"\s+", " ", first_line).strip()
-    if not cleaned:
-        return ""
 
-    match = re.search(r"(?<=[.!?])\s+", cleaned)
-    summary = cleaned[: match.start()].strip() if match else cleaned
-    if len(summary) <= max_length:
-        return summary
+def version_labels(targets):
+    """Supported version labels for a package, experimental ones flagged."""
+    labels = []
+    for target in targets:
+        version = target.get("version")
+        if version is None:
+            continue
+        label = f"experimental {version}" if target.get("isExperimental") else version
+        labels.append(label)
+    return labels
 
-    return summary[: max_length - 1].rstrip() + "..."
+
+def clean_description(text):
+    """Collapse all whitespace in a description into single spaces."""
+    return re.sub(r"\s+", " ", (text or "")).strip()
+
+
+def markdown_cell(text):
+    """Escape HTML and markdown table syntax for use inside a table cell."""
+    text = escape(text, quote=False)
+    return text.replace("|", "\\|").replace("\n", "<br>")
 
 
 def options_summary(options, visible=3):
@@ -111,112 +126,112 @@ def options_summary(options, visible=3):
 
 
 def patches_table(patches):
-    """Render a sorted markdown table of patches with compact details."""
+    """Render a sorted markdown table of patches with full descriptions."""
     rows = [
         "| Patch | Details |",
         "|---|---|",
     ]
 
     for patch in sorted(patches, key=lambda p: p["name"]):
-        patch_anchor = anchor(patch["name"])
-        description = escape(description_summary(patch.get("description") or ""), quote=False)
-        details = description + options_summary(patch.get("options") or [])
-        rows.append(f"| [**{escape(patch['name'])}**](#{patch_anchor}) | {details} |")
+        description = clean_description(patch.get("description") or "")
+        details = markdown_cell(description) + options_summary(patch.get("options") or [])
+        rows.append(f"| **{escape(patch['name'], quote=False)}** | {details} |")
 
     return "\n".join(rows)
 
 
 def versions_line(targets):
     """Render supported versions as compact inline code badges."""
-    if not targets:
+    labels = version_labels(targets)
+    if not labels:
         return ""
-
-    versions = []
-    for target in targets:
-        version = target["version"]
-        if version is None:
-            continue
-
-        label = f"experimental {version}" if target.get("isExperimental") else version
-        versions.append(label)
-
-    if not versions:
-        return ""
-
-    return "**Supported versions:** " + " ".join(f"`{escape(version)}`" for version in versions)
+    return "**Supported versions:** " + " ".join(f"`{escape(label)}`" for label in labels)
 
 
-def details_block(label, count, targets, table, expanded=False, package_name=None, index=None):
-    """Wrap a patches table in a details block with compact metadata."""
-    noun = "patch" if count == 1 else "patches"
-    versions = versions_line(targets)
-    versions_section = f"{versions}\n\n" if versions else ""
-    tag = "<details open>" if expanded else "<details>"
-
-    prefix = f"<code>#{index}</code> " if index is not None else ""
-    summary = f"{prefix}<strong>{escape(label, quote=False)}</strong> &middot; {count} {noun}"
-    if package_name:
-        summary += (
-            f" &middot; <code>{escape(package_name, quote=False)}</code>"
-            f" &middot; <a href=\"{play_store_link(package_name)}\">Play Store</a>"
-        )
-
-    return f"""{tag}
-<summary>{summary}</summary>
-<br>
-
-{versions_section}{table}
-
-</details>"""
+def index_row(index, app_name, package_name, count, labels):
+    """One row of the compact README index table."""
+    app_cell = f"[**{escape(app_name, quote=False)}**](PATCHES.md#{app_anchor(app_name, package_name)})"
+    version_cell = ", ".join(f"`{escape(label)}`" for label in labels) if labels else "—"
+    package_cell = (
+        f"[`{escape(package_name, quote=False)}`]({play_store_link(package_name)})"
+        if package_name
+        else "—"
+    )
+    return f"| {index} | {app_cell} | {count} | {version_cell} | {package_cell} |"
 
 
-def build_content(expanded=False):
-    """Build the full generated patches section."""
+def build_readme_section():
+    """Build the compact app index table for the README."""
     lines = [
         f"> **[v{ver}](https://github.com/{owner}/{repo}/releases/tag/v{ver})**"
         f"&nbsp;&nbsp;&middot;&nbsp;&nbsp;`{branch}`&nbsp;&nbsp;&middot;&nbsp;&nbsp;"
-        f"{total} patches total"
+        f"**{total} patches** across **{len(sorted_packages)} apps**"
+        f"&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)",
+        "",
+        "| # | App | Patches | Version | Package |",
+        "|---|---|---|---|---|",
     ]
 
-    # One details block per app, sorted by app name for predictable scanning.
-    sorted_packages = sorted(by_pkg.items(), key=lambda item: item[1]["name"].lower())
     for index, (package_name, entry) in enumerate(sorted_packages, start=1):
         patches = list(entry["patches"].values())
         lines.append(
-            details_block(
+            index_row(
+                index,
                 entry["name"],
+                package_name,
                 len(patches),
-                entry["targets"],
-                patches_table(patches),
-                expanded,
-                package_name=package_name,
-                index=index,
+                version_labels(entry["targets"]),
             )
         )
-        lines.append("")
 
-    # Universal patches with no specific app.
     if universal:
-        universal_patches = list(universal.values())
-        lines.append(
-            details_block(
-                "Universal",
-                len(universal_patches),
-                [],
-                patches_table(universal_patches),
-                expanded,
-                index=len(sorted_packages) + 1,
-            )
-        )
-        lines.append("")
+        lines.append(index_row(len(sorted_packages) + 1, "Universal", "", len(universal), []))
 
     return "\n".join(lines)
+
+
+def build_patches_doc():
+    """Build the full PATCHES.md reference with one section per app."""
+    sections = [
+        "# Patches",
+        "",
+        f"> Generated from `patches-list.json` — **v{ver}** (`{branch}`) · "
+        f"**{total} patches** across **{len(sorted_packages)} apps** · "
+        f"back to [README](README.md)",
+        "",
+        "---",
+        "",
+    ]
+
+    for package_name, entry in sorted_packages:
+        patches = list(entry["patches"].values())
+        sections.append(f"## {entry['name']} ({package_name})")
+        sections.append("")
+
+        versions = versions_line(entry["targets"])
+        if versions:
+            sections.append(versions)
+            sections.append("")
+
+        sections.append(patches_table(patches))
+        sections.append("")
+        sections.append("---")
+        sections.append("")
+
+    if universal:
+        sections.append("## Universal")
+        sections.append("")
+        sections.append(patches_table(list(universal.values())))
+        sections.append("")
+
+    return "\n".join(sections).rstrip() + "\n"
 
 
 # Build and inject.
 raw_ver = data["version"]
 ver = raw_ver.lstrip("v")
 total = sum(len(entry["patches"]) for entry in by_pkg.values()) + len(universal)
+sorted_packages = sorted(by_pkg.items(), key=lambda item: item[1]["name"].lower())
 
 readme = readme_path.read_text(encoding="utf-8")
 
@@ -228,7 +243,7 @@ marker_match = re.search(START_PATTERN, readme)
 
 if not marker_match or END_MARKER not in readme:
     # Fallback: print to stdout so CI can catch the issue.
-    print(build_content(expanded=False))
+    print(build_readme_section())
     sys.stderr.write(
         f"Markers <!-- PATCHES_START [EXPANDED] --> / {END_MARKER} not found in {readme_path}. "
         "Printed to stdout instead.\n"
@@ -237,14 +252,7 @@ if not marker_match or END_MARKER not in readme:
 
 actual_start = marker_match.group(0)
 
-AUTO_EXPAND_THRESHOLD = 20
-
-# Details blocks are expanded if:
-# 1. Total patch count is small (<= AUTO_EXPAND_THRESHOLD).
-# 2. The README marker explicitly requests it: <!-- PATCHES_START EXPANDED -->.
-expanded = total <= AUTO_EXPAND_THRESHOLD or "EXPANDED" in actual_start
-
-generated = build_content(expanded=expanded)
+generated = build_readme_section()
 new_readme = re.sub(
     rf"{START_PATTERN}.*?{re.escape(END_MARKER)}",
     f"{actual_start}\n{generated}\n{END_MARKER}",
@@ -252,4 +260,8 @@ new_readme = re.sub(
     flags=re.DOTALL,
 )
 readme_path.write_text(new_readme, encoding="utf-8")
-print(f"Injected patches section into {readme_path} (v{ver}, branch={branch}, {total} patches, expanded={expanded})")
+patches_path.write_text(build_patches_doc(), encoding="utf-8")
+print(
+    f"Injected patches section into {readme_path} and wrote {patches_path} "
+    f"(v{ver}, branch={branch}, {total} patches, {len(sorted_packages)} apps)"
+)
