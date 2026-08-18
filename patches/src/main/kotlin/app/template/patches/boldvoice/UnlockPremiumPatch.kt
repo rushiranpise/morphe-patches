@@ -19,7 +19,27 @@ import java.security.MessageDigest
  *   0x5C = Ret   0x73 = LoadConstString   0x76 = LoadConstUndefined (nop pad)
  *   0x78 = LoadConstTrue   0x79 = LoadConstFalse
  *
- * Coverage:
+ * ENTITLEMENT ARCHITECTURE — why we patch multiple layers:
+ *
+ *   Layer 1 — Redux state (patches 1-10):
+ *     isSubscriber / isProSubscriber / subStatus selectors and the state-update
+ *     generator. These cover all standard subscription checks in the UI.
+ *
+ *   Layer 2 — Superwall SDK (patch 16):
+ *     BoldVoice uses Superwall (a paywall SDK) for gating certain features like
+ *     AI chat role-play ("Just Speak"). Superwall runs a PARALLEL entitlement
+ *     check via useFeature('JUST_SPEAK').value.on — a remote flag from the
+ *     Superwall backend, completely independent of Redux state.
+ *     Even with isProSubscriber=true in Redux, Superwall still fires its own
+ *     paywall if the feature is "on" server-side.
+ *     Fix: flip JmpFalse → Jmp at presentSuperwall body+0x002a, so the fallback
+ *     closure (which calls onLoad = "access granted") always fires immediately
+ *     without going through Superwall.shared.register() → native paywall.
+ *
+ *   Layer 3 — upgradeToSuper flag (patches 11-12):
+ *     A separate boolean computed by useUpgradeToSuper, used to show the
+ *     "Upgrade to Super" inline upsell card in role-play lists.
+ *     Independent of both Redux and Superwall.
  *   CORE — subscription state (9 sites):
  *     1. isSubscriber selector           → return true
  *     2. isProSubscriber selector        → return true
@@ -31,8 +51,8 @@ import java.security.MessageDigest
  *   DISPLAY — profile "undefined subscription" (1 site):
  *     10. ?anon_0_ subscriptionData read → force truthy (fixes undefined display)
  *   UPSELL — nag screens (3 sites):
- *     11. GenerativeFirstSaleInterstice  → return-void (Upgrade to Super card)
- *     12. fn#69025 upsell render         → return-void (role-play upsell card)
+ *     11. useUpgradeToSuper              → return false (kills the Upgrade to Super card gate)
+ *     12. GenerativeFirstSaleInterstice  → return-void (AI chat / secondary upsell surface)
  *     13. showPaywallScreen action       → return-void (paywall dispatch)
  *     14. showPaywallScreen selector     → return false
  *   FORCE UPDATE — (1 site):
@@ -139,21 +159,29 @@ val boldVoiceUnlockPremiumPatch = rawResourcePatch(
         )
 
         // ── 11-12. Upsell nag cards ─────────────────────────────────────────
-        // GenerativeFirstSaleInterstice (fn#62925): "Upgrade to Super" card
-        // rendered inline in the role-play list screen.
+        // useUpgradeToSuper (fn#62933) computes whether to show the "Upgrade to Super"
+        // card. It is called inside NewReviewLobbyScreen which does:
+        //   if (upgradeToSuper) jsx(UpsellCard, ...)
+        // Making useUpgradeToSuper return false means upgradeToSuper=false everywhere
+        // → the JmpFalse at NewReviewLobbyScreen body+0x5e9 always skips the card.
+        // This is cleaner than patching the render closure itself (fn#69025)
+        // since React throws on components that return undefined.
 
         bytes.replaceUnique(
-            "Upgrade to Super upsell card",
-            hex("6C 00 01 37 01 00 01 C1 FA 36 0A 00 02 59 37 0B"),
-            hex("76 00 5C 00 76 00 76 00 76 00 76 00 76 00 76 00")
+            "useUpgradeToSuper return false",
+            hex("32 00 6C 05 02 2A 00 00 05 29 04 00 2E 08 04 00"),
+            hex("79 00 5C 00 76 00 76 00 76 00 76 00 76 00 76 00")
         )
 
-        // fn#69025: large unnamed render closure for a second upsell card
-        // shown in the role-play / AI chat screen.
+        // GenerativeUpsellInterstice (fn#62953): the "Upgrade to Super" inline card
+        // rendered between items in the AI Chat > Role-Play and Topic lists.
+        // Receives openUpsellModal prop from GenerativeAiScenarioListScreen.
+        // Return-void makes the component render nothing.
+        // Note: GenerativeFirstSaleInterstice (fn#62925) is a different, separate surface.
 
         bytes.replaceUnique(
-            "role-play upsell card",
-            hex("32 02 6C 00 01 37 10 00 01 BE CD 2A 02 00 10 37"),
+            "GenerativeUpsellInterstice upsell card",
+            hex("32 0C 6C 01 01 37 02 01 01 31 63 2A 0C 00 02 37"),
             hex("76 00 5C 00 76 00 76 00 76 00 76 00 76 00 76 00")
         )
 
@@ -185,6 +213,29 @@ val boldVoiceUnlockPremiumPatch = rawResourcePatch(
             "ForceUpdateScreen no-op",
             hex("29 08 00 2E 00 08 03 36 00 00 01 7A 76 03 51 00 00 03 36 0A 00 02 46 2E 00 08 08 51"),
             hex("76 00 5C 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00 76 00")
+        )
+
+        // ── 16. Superwall paywall bypass ────────────────────────────────────
+        // presentSuperwall (fn#53510) is the JS bridge that calls
+        // Superwall.shared.register(eventName, ...) on the native layer.
+        // This triggers the paywall for gated features (AI chat / Just Speak).
+        //
+        // Body logic:
+        //   +0x025: CreateClosure fallback (calls onLoad + onFallback)
+        //   +0x002a: JmpFalse Addr8:18, r5 → if (!eventName) call fallback → return
+        //   +0x008b–0x00a2: Superwall.shared.register(...) ← actual paywall trigger
+        //
+        // Fix: change JmpFalse (92 12 05) → Jmp (8E 12) + nop pad (76 00).
+        // The unconditional jump makes fallback() always fire immediately,
+        // which calls onLoad(undefined) → the "access granted" callback runs
+        // → feature unlocks without the native Superwall paywall appearing.
+
+        bytes.replaceUnique(
+            "presentSuperwall bypass",
+            // JmpFalse Addr8:18, r5 | GetEnvironment r2 | LoadFromEnvironment r3 ...
+            hex("92 12 05 29 02 00 2E 03"),
+            // Jmp Addr8:18 | nop | GetEnvironment r2 | LoadFromEnvironment r3 ...
+            hex("8E 12 76 00 02 00 2E 03")
         )
 
         bundle.writeBytes(bytes.withUpdatedSha1())
