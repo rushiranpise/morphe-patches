@@ -2007,7 +2007,7 @@ val WORD_COMPATIBILITY = Compatibility(
         name = "Word",
         packageName = "com.microsoft.office.word",
         appIconColor = 0x1A237E,
-        targets = listOf(AppTarget(version = "16.0.20228.20090", versionCode = 16843309))
+        targets = listOf(AppTarget(version = "16.0.20326.20034", versionCode = 2005292347))
     )
 
 val YATRI_COMPATIBILITY = Compatibility(

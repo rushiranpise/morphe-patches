@@ -3,6 +3,7 @@ package app.template.patches.word.premium
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.clearBody
+import app.template.patches.shared.returnEarly
 
 private val wordUnlock365FamilyPatch = bytecodePatch {
     execute {
@@ -51,11 +52,9 @@ private val wordUnlock365FamilyPatch = bytecodePatch {
             """)
         }
 
-        // Boot-time paywall gate — return true so the startup check concludes the
-        // user is subscribed and skips LaunchSubscriptionPurchaseFlow.
-        subscriptionStatusYFingerprint.method.apply {
-            clearBody(); addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-        }
+        // Boot-time paywall dispatcher — m(Context)V calls y/o/r/v in sequence.
+        // return-void silently no-ops the entire dispatch, skipping LaunchSubscriptionPurchaseFlow.
+        subscriptionStatusYFingerprint.method.returnEarly()
 
         // Suppress upsell feature gates.
         isPremiumPlanUpsellEnabledFingerprint.method.apply {
@@ -85,10 +84,6 @@ private val wordUnlock365FamilyPatch = bytecodePatch {
             clearBody(); addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
-        // Skip account-switcher dialog (NPE guard when GetActiveIdentity()=null).
-        accountSwitcherRunnableFingerprint.method.apply {
-            clearBody(); addInstructions(0, "return-void")
-        }
     }
 }
 
