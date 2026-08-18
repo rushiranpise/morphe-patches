@@ -1,3 +1,14 @@
+## [1.18.4-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.3...v1.18.4-dev.1) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* **amazon:** price charts never showed and now sit under the price ([0fba126](https://github.com/rushiranpise/morphe-patches/commit/0fba126c32cad7cbf7eab5d71a4ae13b5f33e6d8))
+* bold voice ([5ceaa8a](https://github.com/rushiranpise/morphe-patches/commit/5ceaa8a12b3fd7ac4c7a6f0b6e2b4daae3cddc3b))
+* Drivvo ([54d58dd](https://github.com/rushiranpise/morphe-patches/commit/54d58ddb9b78c7192f177d76e899c1da81401ea4))
+* todays weather ([b1c55b7](https://github.com/rushiranpise/morphe-patches/commit/b1c55b70ce893ad35d7dac2aa43fa881bdacc89c))
+* update monet ([ca392e2](https://github.com/rushiranpise/morphe-patches/commit/ca392e248e6dd2bef7e1dd4e77bff9edd3e7dba5))
+* update word ([814a766](https://github.com/rushiranpise/morphe-patches/commit/814a76651dad8e827ddd12f2aa8f6bee0418941f))
+
 ## [1.18.3](https://github.com/rushiranpise/morphe-patches/compare/v1.18.2...v1.18.3) (2026-08-17)
 
 ### 🐛 Bug Fixes
