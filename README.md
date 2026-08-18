@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.4-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.4-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;371 patches total
+> **[v1.19.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.19.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;372 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -3068,7 +3068,19 @@ Bug reports must include:
 </details>
 
 <details>
-<summary><code>#241</code> <strong>Universal</strong> &middot; 38 patches</summary>
+<summary><code>#241</code> <strong>Zutobi</strong> &middot; 1 patch &middot; <code>com.driverlicenseapp</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.driverlicenseapp">Play Store</a></summary>
+<br>
+
+**Supported versions:** `4.5.78`
+
+| Patch | Details |
+|---|---|
+| [**Unlock Premium**](#unlock-premium) | Unlocks Driver's Ed premium features by patching the Flutter subscription gate. |
+
+</details>
+
+<details>
+<summary><code>#242</code> <strong>Universal</strong> &middot; 38 patches</summary>
 <br>
 
 | Patch | Details |

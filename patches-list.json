@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.4-dev.1",
+  "version": "1.19.0-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -6143,6 +6143,39 @@
                 "ARMEABI_V7A": 35,
                 "X86_64": 35,
                 "X86": 35
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks Driver's Ed premium features by patching the Flutter subscription gate.",
+      "default": true,
+      "dependencies": [
+        "RawResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.driverlicenseapp",
+          "name": "Zutobi",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.5.78",
+              "versionCodes": {
+                "ARM64_V8A": 102278,
+                "ARMEABI_V7A": 102278,
+                "X86_64": 102278,
+                "X86": 102278
               },
               "isExperimental": false,
               "minSdk": null,

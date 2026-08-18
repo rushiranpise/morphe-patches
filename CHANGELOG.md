@@ -1,3 +1,9 @@
+## [1.19.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.4-dev.1...v1.19.0-dev.1) (2026-08-18)
+
+### ✨ New Features
+
+* add Zutobi ([c28a063](https://github.com/rushiranpise/morphe-patches/commit/c28a063679194d52b60994aa036699bc33a5c6ae))
+
 ## [1.18.4-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.3...v1.18.4-dev.1) (2026-08-18)
 
 ### 🐛 Bug Fixes
