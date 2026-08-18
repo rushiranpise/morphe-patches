@@ -1,3 +1,9 @@
+## [1.19.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.3...v1.19.0-dev.4) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* **verifier:** restrict bypass patch to root mount installs ([f5e2a1d](https://github.com/rushiranpise/morphe-patches/commit/f5e2a1de94d04b8f11787308ee7d98986a98d03e))
+
 ## [1.19.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.2...v1.19.0-dev.3) (2026-08-18)
 
 ### 🐛 Bug Fixes
