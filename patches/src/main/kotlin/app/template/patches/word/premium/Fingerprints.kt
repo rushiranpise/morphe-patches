@@ -1,6 +1,12 @@
 package app.template.patches.word.premium
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
+import app.morphe.patcher.methodCall
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction22c
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 // ── Stable non-obfuscated fingerprints ───────────────────────────────────────
 
@@ -66,30 +72,41 @@ internal val subscriptionDataIsTrialFingerprint = Fingerprint(
 // ── Obfuscated fingerprints — pinned by return type + params (stable across renames) ──
 
 /**
- * licensing.e.d() — returns LicensingState from the native OLS session.
- * Called after server licensing check; overwrites local GetLicensingState with the
- * server result. Returning ConsumerPremium prevents OLS_E_ENTITLEMENT_NOT_FOUND
- * from downgrading the local state.
- * Note: definingClass 'e' and method name 'd' are obfuscated but pinned by unique
- * return type + empty params within the licensing package.
+ * licensing.?.?() — returns LicensingState from the native OLS session via NativeProxy.Gs.
+ * Called after server licensing check; overwrites local GetLicensingState with the server
+ * result. Returning ConsumerPremium prevents OLS_E_ENTITLEMENT_NOT_FOUND downgrading state.
+ *
+ * Stable anchor: methodCall LicensingState.FromInt(I) is non-obfuscated and verified
+ * globally unique to exactly one ()LicensingState method in the app — survives class rename.
+ *
+ * Filter matches smali instruction order in d():
+ *   invoke-static {p0}, LicensingState;->FromInt(I)LicensingState;
  */
 internal val licenseSessionStateFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/licensing/e;",
-    name = "d",
     returnType = "Lcom/microsoft/office/licensing/LicensingState;",
     parameters = emptyList(),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/microsoft/office/licensing/LicensingState;",
+            name = "FromInt",
+        ),
+    ),
 )
 
 /**
- * licensing.f.h(String, UserAccountType, String, Z) → LicenseInfo
- * Native licensing lookup via NativeProxy.Glifu. Returns null when the server has
- * no entitlement, causing paywall to show despite HasFamilyPlan patches.
- * Returning an empty LicenseInfo object ensures non-null, so Has*Plan patches apply.
- * Renamed g→h in 16.0.20228 — params and return type are unchanged and used as pin.
+ * licensing.?.?(String, UserAccountType, String, Z) → LicenseInfo
+ * Native licensing lookup via NativeProxy.Glifu. Returns null when no server entitlement,
+ * causing paywall despite HasFamilyPlan patches. Returning empty LicenseInfo keeps it
+ * non-null so Has*Plan patches apply. Class renamed over time (g→h in 16.0.20228).
+ *
+ * Stable anchor: methodCall NativeProxy.Glifu is non-obfuscated (JNI bridge) and verified
+ * globally unique to exactly one (String,UserAccountType,String,Z)LicenseInfo method.
+ * Survives any future class or method name rename.
+ *
+ * Filter matches smali instruction order in h():
+ *   invoke-static {p1,p0,p3,p4}, NativeProxy;->Glifu(String;IString;Z)LicenseInfo;
  */
 internal val licensingFGFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/licensing/f;",
-    name = "h",
     returnType = "Lcom/microsoft/office/licensing/LicenseInfo;",
     parameters = listOf(
         "Ljava/lang/String;",
@@ -97,65 +114,134 @@ internal val licensingFGFingerprint = Fingerprint(
         "Ljava/lang/String;",
         "Z",
     ),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/microsoft/office/jni/NativeProxy;",
+            name = "Glifu",
+        ),
+    ),
 )
 
 /**
- * growth/upsellplugin/models/j.isPremium() — enum method, returns true only for
- * MANAGED_PREMIUM/UNMANAGED_PREMIUM instances.
- * Class name 'j' is obfuscated; pinned by definingClass + name + unique return type.
+ * upsellplugin/models/?.isPremium()Z — enum method, returns true only for
+ * MANAGED_PREMIUM/UNMANAGED_PREMIUM instances. Class was j, renamed k in 16.0.20326.
+ *
+ * Stable anchor: sget-object MANAGED_PREMIUM is a non-obfuscated enum field
+ * reference inside isPremium(). Verified globally unique to exactly one isPremium()Z
+ * method across the entire app — survives any future enum class rename.
+ *
+ * Filter matches smali instruction order in isPremium():
+ *   sget-object  ?->MANAGED_PREMIUM:?
  */
 internal val licenseStatusIsPremiumFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/growth/upsellplugin/models/j;",
     name = "isPremium",
     returnType = "Z",
     parameters = emptyList(),
+    filters = listOf(
+        fieldAccess(
+            opcode = Opcode.SGET_OBJECT,
+            name = "MANAGED_PREMIUM",
+        ),
+    ),
 )
 
 /**
- * a1$a.y(Context) — subscription status check called at boot via postAppActivate.
- * Returns true if user has active subscription (skips paywall), false otherwise.
- * Patching to always return true prevents PaywallActivity launch at startup.
+ * ?$a.m(Context) — the subscription-check dispatcher. Calls y/o/r/v in sequence;
+ * if any returns true it jumps past the paywall. Patching m() to return-void silently
+ * no-ops the entire dispatch without touching the individual check methods.
+ *
+ * Stable anchor: SubscriptionPurchaseController$EntryPoint->SaveFlowUpsell is a
+ * non-obfuscated enum field sget-object'd inside m(). Verified globally unique to
+ * exactly this one (Context)V static final method — survives any inner-class rename.
+ *
+ * Filter matches smali instruction order in m():
+ *   sget-object  EntryPoint->SaveFlowUpsell   [cond_3a]
  */
 internal val subscriptionStatusYFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/inapppurchase/a1\$a;",
-    name = "y",
-    returnType = "Z",
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     parameters = listOf("Landroid/content/Context;"),
+    filters = listOf(
+        fieldAccess(
+            opcode = Opcode.SGET_OBJECT,
+            definingClass = "Lcom/microsoft/office/inapppurchase/SubscriptionPurchaseController\$EntryPoint;",
+            name = "SaveFlowUpsell",
+        ),
+    ),
 )
 
 /**
- * AccountProfileInfo.B() — returns boolean hasProfile field.
- * False = doughboy/sign-in avatar shown in MeControl.
- * Returning true makes the header render as if a real account is present.
+ * AccountProfileInfo.?() — returns the boolean hasProfile field.
+ * False = doughboy/sign-in avatar in MeControl; true = real account avatar shown.
+ *
+ * Stable anchor: definingClass is non-obfuscated. Method name is R8-renamed every
+ * update (was B()). Identified structurally via custom predicate:
+ *   - public, non-final, non-static ()Z
+ *   - body is exactly 2 instructions: iget-boolean + return (pure field getter, no invoke)
+ *   - reads a Z field on AccountProfileInfo (not on another class)
+ * There are two such getters (isSignedIn and hasProfile). hasProfile is the one whose
+ * backing field is ONLY written by bridge synthetic f(AccountProfileInfo,Z)V — i.e. the
+ * second (AccountProfileInfo,Z)V bridge in declaration order (index 1, after isSignedIn).
+ * We identify it by matching the field name read by that bridge.
  */
 internal val accountProfileInfoHasProfileFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/docsui/common/AccountProfileInfo;",
-    name = "B",
     returnType = "Z",
     parameters = emptyList(),
+    custom = { method, classDef ->
+        // Must be public non-final non-static ()Z with no invoke instructions
+        val flags = method.accessFlags
+        val isCandidate = method.returnType == "Z" &&
+            method.parameters.isEmpty() &&
+            flags and com.android.tools.smali.dexlib2.AccessFlags.FINAL.value == 0 &&
+            flags and com.android.tools.smali.dexlib2.AccessFlags.STATIC.value == 0 &&
+            method.implementation?.instructions?.none {
+                it.opcode.name.startsWith("INVOKE")
+            } == true
+
+        if (!isCandidate) return@Fingerprint false
+
+        // Find the field this getter reads
+        val readField = method.implementation?.instructions
+            ?.filterIsInstance<com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction22c>()
+            ?.firstOrNull { it.opcode == com.android.tools.smali.dexlib2.Opcode.IGET_BOOLEAN }
+            ?.reference as? com.android.tools.smali.dexlib2.iface.reference.FieldReference
+            ?: return@Fingerprint false
+
+        // Find the second bridge (AccountProfileInfo,Z)V — that one writes hasProfile
+        val bridges = classDef.methods
+            .filter { m ->
+                m.accessFlags and com.android.tools.smali.dexlib2.AccessFlags.BRIDGE.value != 0 &&
+                m.accessFlags and com.android.tools.smali.dexlib2.AccessFlags.STATIC.value != 0 &&
+                m.parameters.size == 2 &&
+                m.parameters[0].type == "Lcom/microsoft/office/docsui/common/AccountProfileInfo;" &&
+                m.parameters[1].type == "Z" &&
+                m.returnType == "V"
+            }
+        val hasProfileWriter = bridges.getOrNull(1) ?: return@Fingerprint false
+
+        val writtenField = hasProfileWriter.implementation?.instructions
+            ?.filterIsInstance<com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction22c>()
+            ?.firstOrNull { it.opcode == com.android.tools.smali.dexlib2.Opcode.IPUT_BOOLEAN }
+            ?.reference as? com.android.tools.smali.dexlib2.iface.reference.FieldReference
+            ?: return@Fingerprint false
+
+        readField.name == writtenField.name
+    },
 )
 
 /**
- * unifiedStorageQuota.f.b(Identity) — checks if the storage quota UI should show.
+ * unifiedStorageQuota.?.?(Identity) — checks if the storage quota UI should show.
  * Crashes with NPE when identity is null (no real account but hasProfile=true).
  * Returning false safely skips quota display.
+ *
+ * Stable anchor: (Identity)Z with PUBLIC STATIC FINAL access flags is verified globally
+ * unique to exactly one method in the entire app — no definingClass or name needed.
  */
 internal val storageQuotaCheckFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/docsui/controls/unifiedStorageQuota/f;",
-    name = "b",
     returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),
     parameters = listOf("Lcom/microsoft/office/identity/Identity;"),
 )
 
-/**
- * b$n.run() — account-switcher dialog runner. Crashes when GetActiveIdentity()=null.
- * Pinned by the stable "layout_inflater" string in the body. Returning void safely
- * skips the dialog when no real account exists.
- */
-internal val accountSwitcherRunnableFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/docsui/controls/b\$n;",
-    name = "run",
-    returnType = "V",
-    parameters = emptyList(),
-    strings = listOf("layout_inflater"),
-)
+
