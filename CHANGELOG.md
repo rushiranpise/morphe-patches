@@ -1,3 +1,13 @@
+## [1.19.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.4...v1.19.0-dev.5) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* **amazon:** fall back to link when price chart image fails ([ac61248](https://github.com/rushiranpise/morphe-patches/commit/ac61248ed37db5c3fd192027f82e62e822830c98))
+
+### ✨ New Features
+
+* **amazon:** harden price charts with placeholder gate and SPA re-injection ([2023973](https://github.com/rushiranpise/morphe-patches/commit/20239731406de72bb4c4c284791f35866e8c69e2))
+
 ## [1.19.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.3...v1.19.0-dev.4) (2026-08-18)
 
 ### 🐛 Bug Fixes
