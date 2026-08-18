@@ -60,6 +60,7 @@
           "patches-bundle.json",
           "patches-list.json",
           "README.md",
+          "PATCHES.md",
           "SHA256SUMS.txt"
         ],
         "message": "chore: Release v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
