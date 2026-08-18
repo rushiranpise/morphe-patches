@@ -197,7 +197,6 @@ public class AmazonHelper {
         CAMEL_LOCALES.put("amazon.it",     "it");
         CAMEL_LOCALES.put("amazon.es",     "es");
         CAMEL_LOCALES.put("amazon.com.au", "au");
-        CAMEL_LOCALES.put("amazon.in",     "in");   // in.camelcamelcamel.com
     }
 
     /** Returns the CamelCamelCamel base URL for a given locale code.
@@ -249,7 +248,9 @@ public class AmazonHelper {
             + "var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';"
             + "var i=document.createElement('img');i.src=src;"
             + "i.style.cssText='width:100%;height:auto;border-radius:4px';"
-            + "i.onerror=function(){w.style.display='none';};a.appendChild(i);w.appendChild(a);c.appendChild(w);}"
+            + "i.onerror=function(){a.textContent='Open price history on '+lbl;"
+            + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';};"
+            + "a.appendChild(i);w.appendChild(a);c.appendChild(w);}"
             + keepaBlock
             + (camelHostStr != null
                 ? "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
