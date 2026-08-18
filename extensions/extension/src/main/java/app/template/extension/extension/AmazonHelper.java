@@ -215,16 +215,24 @@ public class AmazonHelper {
         String domain = dm.find() ? dm.group(1) : "amazon.com";
         // The marketplace country code is derived from the domain — no tables.
         final String cc = countryCode(domain);
-        // Keepa tracks most marketplaces — skip only stores its chart endpoint
-        // does not serve (the image endpoint rejects those codes anyway).
-        final String keepaBlock = (cc != null && KEEPA_CODES.contains(cc))
-            ? "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + cc + "&asin=" + asin + "',"
-              + "'Keepa','https://keepa.com/#!product/" + cc + "-" + asin + "');"
-            : "";
-        // CCC only supports select locales — null means skip the CCC block entirely.
+        // Chart URLs are built in JS so the same script can re-inject when Amazon
+        // navigates between products without a full page reload (SPA navigation).
+        // graph.keepa.com sends Access-Control-Allow-Origin so the placeholder gate
+        // can inspect the image size; charts.camelcamelcamel.com does not, so CCC
+        // relies on the img onerror fallback instead of fetch().
+        final String keepaJs = (cc != null && KEEPA_CODES.contains(cc))
+            ? "var keepaUrl='https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + cc + "&asin=';"
+              + "var keepaLink='https://keepa.com/#!product/" + cc + "-';"
+            : "var keepaUrl=null;var keepaLink=null;";
         final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
-        final String camelHostStr = camel != null ? camelHost(camel) : null;
-        String js = "(function(){var asin='" + asin + "';"
+        final String camelJs = (camel != null)
+            ? "var camelUrl='https://charts.camelcamelcamel.com/" + camel + "/';"
+              + "var camelLink='https://" + camelHost(camel) + "/product/';"
+            : "var camelUrl=null;var camelLink=null;";
+        String js = "(function(){var curAsin='" + asin + "';"
+            + keepaJs
+            + camelJs
+            + "function inject(asin){"
             + "var e=document.getElementById('amznkiller-charts');"
             + "if(e&&e.getAttribute('data-asin')===asin)return;if(e)e.remove();"
             + "var c=document.createElement('div');c.id='amznkiller-charts';"
@@ -233,29 +241,60 @@ public class AmazonHelper {
             + "var t=document.createElement('div');"
             + "t.style.cssText='font-weight:bold;font-size:14px;margin-bottom:8px;color:#333';"
             + "t.textContent='Price History';c.appendChild(t);"
-            + "function add(src,lbl,href){var w=document.createElement('div');"
+            + "function toLink(a,lbl){if(!a.querySelector('img'))return;"
+            + "a.textContent='Open price history on '+lbl;"
+            + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';}"
+            + "function add(src,lbl,href,check){var w=document.createElement('div');"
             + "w.style.marginBottom='8px';"
             + "var l=document.createElement('div');"
             + "l.style.cssText='font-size:12px;color:#666;margin-bottom:4px';l.textContent=lbl;w.appendChild(l);"
             + "var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';"
             + "var i=document.createElement('img');i.src=src;"
             + "i.style.cssText='width:100%;height:auto;border-radius:4px';"
-            + "i.onerror=function(){a.textContent='Open price history on '+lbl;"
-            + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';};"
-            + "a.appendChild(i);w.appendChild(a);c.appendChild(w);}"
-            + keepaBlock
-            + (camelHostStr != null
-                ? "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
-                  + "'CamelCamelCamel','https://" + camelHostStr + "/product/" + asin + "');"
-                : "")
-            // Put the charts right under the price block. Amazon uses different ids
-            // for the price container depending on page type, so try the known ones
-            // and fall back to the end of the page if none exist.
-            + "var price=document.querySelector('#corePrice_feature_div,"
-            + "#corePriceDisplay_mobile_feature_div,#corePriceDisplay_desktop_feature_div,"
-            + "#apex_mobile,#apex_desktop,[id^=corePrice]');"
-            + "if(price&&price.parentNode){price.parentNode.insertBefore(c,price.nextSibling);}"
-            + "else{(document.getElementById('dp')||document.getElementById('ppd')||document.body).appendChild(c);}"
+            + "a.appendChild(i);w.appendChild(a);c.appendChild(w);"
+            + "i.onerror=function(){toLink(a,lbl);};"
+            // Placeholder gate: the chart CDNs return a small stub for unknown
+            // ASINs or when the service is degraded; real charts are much larger.
+            // Only used where CORS lets fetch() read the response (Keepa).
+            + "if(check)fetch(src).then(function(r){return r.ok?r.blob():null;})"
+            + ".then(function(b){if(!b||b.size<15000)toLink(a,lbl);})"
+            + ".catch(function(){});}"
+            + "if(keepaUrl)add(keepaUrl+asin,'Keepa',keepaLink+asin,true);"
+            + "if(camelUrl)add(camelUrl+asin,'CamelCamelCamel',camelLink+asin,false);"
+            // Place the charts right under the price block. Amazon uses different
+            // ids per page type, so try the known containers, retry briefly while
+            // the page lazy-loads, and fall back to the end of the page.
+            + "var targets=['#buyBoxAccordion','#corePriceDisplay_desktop_feature_div',"
+            + "'#corePrice_feature_div','#unifiedPrice_feature_div',"
+            + "'#mobileapp_buybox_feature_div','#desktop_buybox','#buybox',"
+            + "'#price_feature_div','#newAccordionRow','#productOverview_feature_div',"
+            + "'#centerCol','#mobileapp_accordion_feature_div','#apex_mobile',"
+            + "'#apex_desktop','[id^=corePrice]'];"
+            + "function place(){for(var i=0;i<targets.length;i++){"
+            + "var el=document.querySelector(targets[i]);"
+            + "if(el&&el.parentNode){el.parentNode.insertBefore(c,el.nextSibling);return true;}}"
+            + "return false;}"
+            + "if(!place()){"
+            + "var fb=document.getElementById('dp')||document.getElementById('ppd');"
+            + "if(fb)fb.appendChild(c);"
+            + "else{var obs=new MutationObserver(function(_,o){if(place())o.disconnect();});"
+            + "obs.observe(document.body||document.documentElement,{childList:true,subtree:true});"
+            + "setTimeout(function(){obs.disconnect();if(!c.parentNode)document.body.appendChild(c);},10000);}"
+            + "}"
+            + "}"
+            // Inject for the current product page, then keep charts in sync when
+            // Amazon's in-app WebView navigates between products (SPA navigation).
+            + "var m0=window.location.href.match(/\\/(?:dp|gp\\/product|gp\\/aw\\/d)\\/([A-Z0-9]{10})/i);"
+            + "if(m0)inject(m0[1]);else if(curAsin)inject(curAsin);"
+            + "if(!window.__amznkillerChartsNav){"
+            + "window.__amznkillerChartsNav=true;"
+            + "var re=/\\/(?:dp|gp\\/product|gp\\/aw\\/d)\\/([A-Z0-9]{10})/i;"
+            + "function onNav(){var m=window.location.href.match(re);if(m)inject(m[1]);}"
+            + "var ps=history.pushState,rs=history.replaceState;"
+            + "history.pushState=function(){ps.apply(this,arguments);setTimeout(onNav,0);};"
+            + "history.replaceState=function(){rs.apply(this,arguments);setTimeout(onNav,0);};"
+            + "window.addEventListener('popstate',onNav);"
+            + "}"
             + "})();";
         webView.evaluateJavascript(js, null);
     }
