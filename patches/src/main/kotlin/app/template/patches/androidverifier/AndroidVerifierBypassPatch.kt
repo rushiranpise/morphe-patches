@@ -1,6 +1,8 @@
 package app.template.patches.androidverifier
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.InstallerType
+import app.morphe.patcher.patch.PatchAvailability
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.ANDROID_VERIFIER_COMPATIBILITY
 
@@ -25,12 +27,20 @@ import app.template.patches.shared.Constants.ANDROID_VERIFIER_COMPATIBILITY
 val androidVerifierBypassPatch = bytecodePatch(
     name = "Bypass developer verification",
     description = "Forces all APK install verification sessions to be bypassed, preventing " +
-        "the verifier from blocking sideloaded or unsigned apps on Android 16+ devices."  + 
+        "the verifier from blocking sideloaded or unsigned apps on Android 16+ devices. " +
+        "Only available for root (mount) installations."  + 
         "Important: Requires pushing the patched APK as a system app replacement (e.g. via Magisk module or ADB with root)" +
         "since the original holds DEVELOPER_VERIFICATION_AGENT permission. ADB installs are exempt from verification regardless.",
     default = true,
 ) {
     compatibleWith(ANDROID_VERIFIER_COMPATIBILITY)
+
+    availability { installer, _ ->
+        when (installer) {
+            InstallerType.MOUNT -> PatchAvailability.ENABLED
+            else -> PatchAvailability.UNAVAILABLE
+        }
+    }
 
     execute {
         // Layer 1 & 2: Immediately report bypass on every verification request.
