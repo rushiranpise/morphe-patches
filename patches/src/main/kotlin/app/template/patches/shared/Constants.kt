@@ -525,6 +525,16 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.1.06", versionCode = 35))
     )
 
+val DRIVERLICENSE_COMPATIBILITY = Compatibility(
+        name = "Zutobi",
+        packageName = "com.driverlicenseapp",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "4.5.78", versionCode = 102278)
+        )
+    )
+
 val DRIVVO_COMPATIBILITY = Compatibility(
         name = "Drivvo",
         packageName = "br.com.ctncardoso.ctncar",
@@ -539,16 +549,6 @@ val DUBOXDRIVE_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x2EAAFF,
         targets = listOf(AppTarget(version = "4.22.6", versionCode = 670))
-    )
-
-val DRIVERLICENSE_COMPATIBILITY = Compatibility(
-        name = "Zutobi",
-        packageName = "com.driverlicenseapp",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1565C0,
-        targets = listOf(
-            AppTarget(version = "4.5.78", versionCode = 102278)
-        )
     )
 
 val DUOLINGO_COMPATIBILITY = Compatibility(
