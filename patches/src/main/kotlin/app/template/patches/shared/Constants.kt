@@ -541,6 +541,16 @@ val DUBOXDRIVE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "4.22.6", versionCode = 670))
     )
 
+val DRIVERLICENSE_COMPATIBILITY = Compatibility(
+        name = "Zutobi",
+        packageName = "com.driverlicenseapp",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "4.5.78", versionCode = 102278)
+        )
+    )
+
 val DUOLINGO_COMPATIBILITY = Compatibility(
         name = "Duolingo",
         packageName = "com.duolingo",
