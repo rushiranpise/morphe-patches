@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.19.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.19.0-dev.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;374 patches total
+> **[v1.19.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.19.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;374 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -1268,7 +1268,7 @@ Bug reports must include:
 
 | Patch | Details |
 |---|---|
-| [**Inure — Unlock Full Version**](#inure-unlock-full-version) | Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager. |
+| [**Unlock Full Version**](#unlock-full-version) | Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager. |
 
 </details>
 
