@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.18.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;371 patches total
+> **[v1.18.4-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.18.4-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;371 patches total
 <details>
 <summary><code>#1</code> <strong>1.1.1.1</strong> &middot; 3 patches &middot; <code>com.cloudflare.onedotonedotonedotone</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone">Play Store</a></summary>
 <br>
@@ -921,7 +921,7 @@ Bug reports must include:
 <summary><code>#68</code> <strong>Drivvo</strong> &middot; 1 patch &middot; <code>br.com.ctncardoso.ctncar</code> &middot; <a href="https://play.google.com/store/apps/details?id=br.com.ctncardoso.ctncar">Play Store</a></summary>
 <br>
 
-**Supported versions:** `9.6.2`
+**Supported versions:** `9.6.1`
 
 | Patch | Details |
 |---|---|
@@ -1576,11 +1576,11 @@ Bug reports must include:
 <summary><code>#121</code> <strong>Monet</strong> &middot; 1 patch &middot; <code>com.klevico.monet</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.klevico.monet">Play Store</a></summary>
 <br>
 
-**Supported versions:** `1.0.67`
+**Supported versions:** `1.0.73`
 
 | Patch | Details |
 |---|---|
-| [**Unlock Premium**](#unlock-premium) | Unlocks all premium features in Monet by forcing the billing cache to always report premium as active. |
+| [**Unlock Premium**](#unlock-premium) | Unlocks all Monet Launcher premium features by forcing the billing cache to always report premium as active. |
 
 </details>
 
@@ -3047,7 +3047,7 @@ Bug reports must include:
 <summary><code>#239</code> <strong>Word</strong> &middot; 1 patch &middot; <code>com.microsoft.office.word</code> &middot; <a href="https://play.google.com/store/apps/details?id=com.microsoft.office.word">Play Store</a></summary>
 <br>
 
-**Supported versions:** `16.0.20228.20090`
+**Supported versions:** `16.0.20326.20034`
 
 | Patch | Details |
 |---|---|
