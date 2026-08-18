@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-18T17:47:27",
-  "description": "## [1.19.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.4-dev.1...v1.19.0-dev.1) (2026-08-18)\n\n### ✨ New Features\n\n* add Zutobi ([c28a063](https://github.com/rushiranpise/morphe-patches/commit/c28a063679194d52b60994aa036699bc33a5c6ae))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.19.0-dev.1/patches-1.19.0-dev.1.mpp",
+  "created_at": "2026-08-18T18:57:06",
+  "description": "## [1.19.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.1...v1.19.0-dev.2) (2026-08-18)\n\n### ✨ New Features\n\n* add inure ([24647d9](https://github.com/rushiranpise/morphe-patches/commit/24647d9acaac90ee1e498609cc60596ac5560072))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.19.0-dev.2/patches-1.19.0-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.19.0-dev.1"
+  "version": "1.19.0-dev.2"
 }

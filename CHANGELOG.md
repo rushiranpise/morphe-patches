@@ -1,3 +1,9 @@
+## [1.19.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.1...v1.19.0-dev.2) (2026-08-18)
+
+### ✨ New Features
+
+* add inure ([24647d9](https://github.com/rushiranpise/morphe-patches/commit/24647d9acaac90ee1e498609cc60596ac5560072))
+
 ## [1.19.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.18.4-dev.1...v1.19.0-dev.1) (2026-08-18)
 
 ### ✨ New Features
