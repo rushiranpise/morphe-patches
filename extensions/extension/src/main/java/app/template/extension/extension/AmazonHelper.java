@@ -21,9 +21,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 public class AmazonHelper {
 
@@ -169,34 +170,28 @@ public class AmazonHelper {
 
     // ── Price charts ─────────────────────────────────────────────────────────
 
-    private static final Map<String, Integer> KEEPA_DOMAINS = new HashMap<>();
-    // CamelCamelCamel locale codes for stores it actually supports.
-    // Stores NOT listed here (amazon.in, amazon.com.mx, amazon.com.br, amazon.nl, amazon.sg,
-    // amazon.ae) are not tracked by CCC — the chart block is skipped for those stores and
-    // only Keepa (which supports all domains) is shown.
-    // CCC link format: camelcamelcamel.com (US, no prefix) / {locale}.camelcamelcamel.com (others)
-    private static final Map<String, String> CAMEL_LOCALES = new HashMap<>();
-    static {
-        KEEPA_DOMAINS.put("amazon.com", 1);       KEEPA_DOMAINS.put("amazon.co.uk", 2);
-        KEEPA_DOMAINS.put("amazon.de", 3);        KEEPA_DOMAINS.put("amazon.fr", 4);
-        KEEPA_DOMAINS.put("amazon.co.jp", 5);     KEEPA_DOMAINS.put("amazon.ca", 6);
-        KEEPA_DOMAINS.put("amazon.it", 8);        KEEPA_DOMAINS.put("amazon.es", 9);
-        KEEPA_DOMAINS.put("amazon.in", 10);       KEEPA_DOMAINS.put("amazon.com.mx", 11);
-        KEEPA_DOMAINS.put("amazon.com.br", 12);   KEEPA_DOMAINS.put("amazon.com.au", 13);
-        KEEPA_DOMAINS.put("amazon.nl", 14);       KEEPA_DOMAINS.put("amazon.ae", 15);
-        KEEPA_DOMAINS.put("amazon.sa", 16);       KEEPA_DOMAINS.put("amazon.sg", 17);
-        KEEPA_DOMAINS.put("amazon.com.tr", 18);   KEEPA_DOMAINS.put("amazon.se", 19);
-        KEEPA_DOMAINS.put("amazon.pl", 20);       KEEPA_DOMAINS.put("amazon.com.be", 21);
-        // CCC-supported stores only:
-        CAMEL_LOCALES.put("amazon.com",    "us");
-        CAMEL_LOCALES.put("amazon.co.uk",  "uk");
-        CAMEL_LOCALES.put("amazon.de",     "de");
-        CAMEL_LOCALES.put("amazon.fr",     "fr");
-        CAMEL_LOCALES.put("amazon.co.jp",  "jp");
-        CAMEL_LOCALES.put("amazon.ca",     "ca");
-        CAMEL_LOCALES.put("amazon.it",     "it");
-        CAMEL_LOCALES.put("amazon.es",     "es");
-        CAMEL_LOCALES.put("amazon.com.au", "au");
+    // Marketplace country codes each provider actually tracks. The code itself
+    // is derived from the Amazon domain at runtime (see countryCode), so no
+    // per-store lookup tables need to be maintained.
+    // graph.keepa.com accepts these codes directly as the `domain` parameter
+    // (verified: us, uk, de, fr, jp, ca, it, es, in, mx, br, au, nl).
+    private static final Set<String> KEEPA_CODES = new HashSet<>(Arrays.asList(
+        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "in", "mx", "br", "au", "nl"));
+    // CCC tracks fewer marketplaces; its link host is {code}.camelcamelcamel.com
+    // except the US which has no subdomain.
+    private static final Set<String> CCC_CODES = new HashSet<>(Arrays.asList(
+        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "au"));
+
+    /** Derives the marketplace country code from an Amazon domain:
+     *  amazon.com → us, amazon.co.uk → uk, amazon.co.jp → jp, amazon.com.au → au,
+     *  everything else → last TLD label (amazon.in → in, amazon.de → de, …). */
+    private static String countryCode(String domain) {
+        if (domain.equals("amazon.com")) return "us";
+        if (domain.endsWith(".co.uk"))  return "uk";
+        if (domain.endsWith(".co.jp"))  return "jp";
+        if (domain.endsWith(".com.au")) return "au";
+        int dot = domain.lastIndexOf('.');
+        return dot >= 0 ? domain.substring(dot + 1) : null;
     }
 
     /** Returns the CamelCamelCamel base URL for a given locale code.
@@ -218,19 +213,16 @@ public class AmazonHelper {
         java.util.regex.Matcher dm = java.util.regex.Pattern
             .compile("https?://(?:www\\.)?([a-z.]*amazon[a-z.]+)").matcher(url);
         String domain = dm.find() ? dm.group(1) : "amazon.com";
-        // Keepa supports every Amazon marketplace — always shown.
-        // Keepa domain ID — null for any store Keepa doesn't track (skip Keepa block).
-        final Integer keepaIdBox = KEEPA_DOMAINS.get(domain);
-        final String keepaBlock;
-        if (keepaIdBox != null) {
-            int keepaId = keepaIdBox;
-            keepaBlock = "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + keepaId + "&asin=" + asin + "',"
-                + "'Keepa','https://keepa.com/#!product/" + keepaId + "-" + asin + "');";
-        } else {
-            keepaBlock = "";
-        }
+        // The marketplace country code is derived from the domain — no tables.
+        final String cc = countryCode(domain);
+        // Keepa tracks most marketplaces — skip only stores its chart endpoint
+        // does not serve (the image endpoint rejects those codes anyway).
+        final String keepaBlock = (cc != null && KEEPA_CODES.contains(cc))
+            ? "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + cc + "&asin=" + asin + "',"
+              + "'Keepa','https://keepa.com/#!product/" + cc + "-" + asin + "');"
+            : "";
         // CCC only supports select locales — null means skip the CCC block entirely.
-        final String camel = CAMEL_LOCALES.get(domain);   // null for unsupported stores
+        final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
         final String camelHostStr = camel != null ? camelHost(camel) : null;
         String js = "(function(){var asin='" + asin + "';"
             + "var e=document.getElementById('amznkiller-charts');"
