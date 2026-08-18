@@ -530,7 +530,7 @@ val DRIVVO_COMPATIBILITY = Compatibility(
         packageName = "br.com.ctncardoso.ctncar",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x0077B6,
-        targets = listOf(AppTarget(version = "9.6.2", versionCode = 243))
+        targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
     )
 
 val DUBOXDRIVE_COMPATIBILITY = Compatibility(
