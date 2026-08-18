@@ -36,7 +36,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val inureUnlockPremiumPatch = bytecodePatch(
-    name = "Inure — Unlock Full Version",
+    name = "Unlock Full Version",
     description = "Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager.",
     default = true,
 ) {
