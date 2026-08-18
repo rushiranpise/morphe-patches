@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.0-dev.1",
+  "version": "1.19.0-dev.2",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -2509,6 +2509,68 @@
                 "ARMEABI_V7A": 22448,
                 "X86_64": 22448,
                 "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Inure — Unlock Full Version",
+      "description": "Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "app.simple.inure.play",
+          "name": "Inure App Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#6200EE",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "build107.2.1",
+              "versionCodes": {
+                "ARM64_V8A": 10721,
+                "ARMEABI_V7A": 10721,
+                "X86_64": 10721,
+                "X86": 10721
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Inure — Unlock Full Version (GitHub)",
+      "description": "Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager (GitHub).",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "app.simple.inure",
+          "name": "Inure App Manager (GitHub)",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#6200EE",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "build107.2.1",
+              "versionCodes": {
+                "ARM64_V8A": 10721,
+                "ARMEABI_V7A": 10721,
+                "X86_64": 10721,
+                "X86": 10721
               },
               "isExperimental": false,
               "minSdk": null,
