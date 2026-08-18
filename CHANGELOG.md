@@ -1,3 +1,9 @@
+## [1.19.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.2...v1.19.0-dev.3) (2026-08-18)
+
+### 🐛 Bug Fixes
+
+* clean up ([30308fb](https://github.com/rushiranpise/morphe-patches/commit/30308fb23a71b5816a06246229c2c74e8fbf3ad2))
+
 ## [1.19.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.1...v1.19.0-dev.2) (2026-08-18)
 
 ### ✨ New Features
