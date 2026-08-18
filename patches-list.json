@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.18.3",
+  "version": "1.18.4-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -6803,7 +6803,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks all premium features in Monet by forcing the billing cache to always report premium as active.",
+      "description": "Unlocks all Monet Launcher premium features by forcing the billing cache to always report premium as active.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -6816,12 +6816,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.67",
+              "version": "1.0.73",
               "versionCodes": {
-                "ARM64_V8A": 101,
-                "ARMEABI_V7A": 101,
-                "X86_64": 101,
-                "X86": 101
+                "ARM64_V8A": 107,
+                "ARMEABI_V7A": 107,
+                "X86_64": 107,
+                "X86": 107
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8272,7 +8272,9 @@
       "name": "Unlock Premium",
       "description": "Unlocks all premium features.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "ResourcePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "mobi.lockdown.weather",
@@ -9033,12 +9035,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "9.6.2",
+              "version": "9.6.1",
               "versionCodes": {
-                "ARM64_V8A": 243,
-                "ARMEABI_V7A": 243,
-                "X86_64": 243,
-                "X86": 243
+                "ARM64_V8A": 242,
+                "ARMEABI_V7A": 242,
+                "X86_64": 242,
+                "X86": 242
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10593,12 +10595,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.0.20228.20090",
+              "version": "16.0.20326.20034",
               "versionCodes": {
-                "ARM64_V8A": 16843309,
-                "ARMEABI_V7A": 16843309,
-                "X86_64": 16843309,
-                "X86": 16843309
+                "ARM64_V8A": 2005292347,
+                "ARMEABI_V7A": 2005292347,
+                "X86_64": 2005292347,
+                "X86": 2005292347
               },
               "isExperimental": false,
               "minSdk": null,
