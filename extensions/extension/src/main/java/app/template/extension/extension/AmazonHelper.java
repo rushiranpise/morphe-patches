@@ -174,9 +174,11 @@ public class AmazonHelper {
     // is derived from the Amazon domain at runtime (see countryCode), so no
     // per-store lookup tables need to be maintained.
     // graph.keepa.com accepts these codes directly as the `domain` parameter
-    // (verified: us, uk, de, fr, jp, ca, it, es, in, mx, br, au, nl).
+    // (verified: us, uk, de, fr, jp, ca, it, es, in, mx, br, nl) but serves no
+    // data for Amazon Australia — every com.au ASIN returns the same static
+    // "no price history available" image — so `au` is excluded here.
     private static final Set<String> KEEPA_CODES = new HashSet<>(Arrays.asList(
-        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "in", "mx", "br", "au", "nl"));
+        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "in", "mx", "br", "nl"));
     // CCC tracks fewer marketplaces; its link host is {code}.camelcamelcamel.com
     // except the US which has no subdomain.
     private static final Set<String> CCC_CODES = new HashSet<>(Arrays.asList(
@@ -201,7 +203,7 @@ public class AmazonHelper {
         return locale + ".camelcamelcamel.com";
     }
 
-    public static void injectPriceCharts(WebView webView, String url) {
+    public static void injectPriceCharts(WebView webView, String url, String period, boolean showToggle) {
         if (webView == null || url == null) return;
         java.util.regex.Matcher m = java.util.regex.Pattern
             .compile("/(?:dp|gp/product|gp/aw/d)/([A-Z0-9]{10})", java.util.regex.Pattern.CASE_INSENSITIVE)
@@ -226,10 +228,17 @@ public class AmazonHelper {
             : "var keepaUrl=null;var keepaLink=null;";
         final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
         final String camelJs = (camel != null)
-            ? "var camelUrl='https://charts.camelcamelcamel.com/" + camel + "/';"
+            ? "var camelBase='https://charts.camelcamelcamel.com/" + camel + "/';"
               + "var camelLink='https://" + camelHost(camel) + "/product/';"
-            : "var camelUrl=null;var camelLink=null;";
+            : "var camelBase=null;var camelLink=null;";
+        // CCC honors `tp` for the time window and `w` for the image width
+        // (a smaller width zooms the chart in). The default period comes from
+        // the patch option; anything unexpected falls back to 1y.
+        final String defPeriod = "3y".equals(period) || "all".equals(period) ? period : "1y";
         String js = "(function(){var curAsin='" + asin + "';"
+            + "var defPeriod='" + defPeriod + "';"
+            + "var showToggle=" + showToggle + ";"
+            + "var periods=[{l:'1Y',v:'1y'},{l:'3Y',v:'3y'},{l:'ALL',v:'all'}];"
             + keepaJs
             + camelJs
             + "function inject(asin){"
@@ -244,7 +253,7 @@ public class AmazonHelper {
             + "function toLink(a,lbl){if(!a.querySelector('img'))return;"
             + "a.textContent='Open price history on '+lbl;"
             + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';}"
-            + "function add(src,lbl,href,check){var w=document.createElement('div');"
+            + "function add(src,lbl,href,check,pBase){var w=document.createElement('div');"
             + "w.style.marginBottom='8px';"
             + "var l=document.createElement('div');"
             + "l.style.cssText='font-size:12px;color:#666;margin-bottom:4px';l.textContent=lbl;w.appendChild(l);"
@@ -258,9 +267,24 @@ public class AmazonHelper {
             // Only used where CORS lets fetch() read the response (Keepa).
             + "if(check)fetch(src).then(function(r){return r.ok?r.blob():null;})"
             + ".then(function(b){if(!b||b.size<15000)toLink(a,lbl);})"
-            + ".catch(function(){});}"
-            + "if(keepaUrl)add(keepaUrl+asin,'Keepa',keepaLink+asin,true);"
-            + "if(camelUrl)add(camelUrl+asin,'CamelCamelCamel',camelLink+asin,false);"
+            + ".catch(function(){});"
+            // Period toggle: swaps the chart image between views without reload.
+            + "if(pBase&&showToggle){"
+            + "var row=document.createElement('div');"
+            + "row.style.cssText='margin-top:4px;';"
+            + "periods.forEach(function(p){"
+            + "var b=document.createElement('button');"
+            + "b.type='button';b.textContent=p.l;"
+            + "b.style.cssText='margin-right:6px;padding:2px 8px;border:1px solid #ccc;border-radius:3px;background:#fff;font-size:11px;color:#333;cursor:pointer';"
+            + "b.onclick=function(){var img=a.querySelector('img');"
+            + "if(!img)return;"
+            + "img.src=pBase+p.v;"
+            + "img.onerror=function(){toLink(a,lbl);};};"
+            + "row.appendChild(b);});"
+            + "w.appendChild(row);}"
+            + "}"
+            + "if(keepaUrl)add(keepaUrl+asin,'Keepa',keepaLink+asin,true,null);"
+            + "if(camelBase)add(camelBase+asin+'?w=625&tp='+defPeriod,'CamelCamelCamel',camelLink+asin,false,camelBase+asin+'?w=625&tp=');"
             // Place the charts right under the price block. Amazon uses different
             // ids per page type, so try the known containers, retry briefly while
             // the page lazy-loads, and fall back to the end of the page.
