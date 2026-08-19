@@ -21,9 +21,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class AmazonHelper {
 
@@ -169,35 +172,40 @@ public class AmazonHelper {
 
     // ── Price charts ─────────────────────────────────────────────────────────
 
-    private static final Map<String, Integer> KEEPA_DOMAINS = new HashMap<>();
-    // CamelCamelCamel locale codes for stores it actually supports.
-    // Stores NOT listed here (amazon.in, amazon.com.mx, amazon.com.br, amazon.nl, amazon.sg,
-    // amazon.ae) are not tracked by CCC — the chart block is skipped for those stores and
-    // only Keepa (which supports all domains) is shown.
-    // CCC link format: camelcamelcamel.com (US, no prefix) / {locale}.camelcamelcamel.com (others)
-    private static final Map<String, String> CAMEL_LOCALES = new HashMap<>();
+    // Marketplace country codes each provider actually tracks. The code itself
+    // is derived from the Amazon domain at runtime (see countryCode), so no
+    // per-store lookup tables need to be maintained.
+    // graph.keepa.com accepts these codes directly as the `domain` parameter
+    // (verified: us, uk, de, fr, jp, ca, it, es, in, mx, br, nl) but serves no
+    // data for Amazon Australia — every com.au ASIN returns the same static
+    // "no price history available" image — so `au` is excluded here.
+    private static final Set<String> KEEPA_CODES = new HashSet<>(Arrays.asList(
+        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "in", "mx", "br", "nl"));
+    // keepa.com product pages need Keepa's numeric marketplace id in the URL
+    // (#!product/{id}-{asin}) — only the chart endpoint accepts country codes.
+    // Verified against graph.keepa.com: domain=it == domain=8, nl == 14, etc.
+    private static final Map<String, Integer> KEEPA_IDS = new HashMap<>();
     static {
-        KEEPA_DOMAINS.put("amazon.com", 1);       KEEPA_DOMAINS.put("amazon.co.uk", 2);
-        KEEPA_DOMAINS.put("amazon.de", 3);        KEEPA_DOMAINS.put("amazon.fr", 4);
-        KEEPA_DOMAINS.put("amazon.co.jp", 5);     KEEPA_DOMAINS.put("amazon.ca", 6);
-        KEEPA_DOMAINS.put("amazon.it", 8);        KEEPA_DOMAINS.put("amazon.es", 9);
-        KEEPA_DOMAINS.put("amazon.in", 10);       KEEPA_DOMAINS.put("amazon.com.mx", 11);
-        KEEPA_DOMAINS.put("amazon.com.br", 12);   KEEPA_DOMAINS.put("amazon.com.au", 13);
-        KEEPA_DOMAINS.put("amazon.nl", 14);       KEEPA_DOMAINS.put("amazon.ae", 15);
-        KEEPA_DOMAINS.put("amazon.sa", 16);       KEEPA_DOMAINS.put("amazon.sg", 17);
-        KEEPA_DOMAINS.put("amazon.com.tr", 18);   KEEPA_DOMAINS.put("amazon.se", 19);
-        KEEPA_DOMAINS.put("amazon.pl", 20);       KEEPA_DOMAINS.put("amazon.com.be", 21);
-        // CCC-supported stores only:
-        CAMEL_LOCALES.put("amazon.com",    "us");
-        CAMEL_LOCALES.put("amazon.co.uk",  "uk");
-        CAMEL_LOCALES.put("amazon.de",     "de");
-        CAMEL_LOCALES.put("amazon.fr",     "fr");
-        CAMEL_LOCALES.put("amazon.co.jp",  "jp");
-        CAMEL_LOCALES.put("amazon.ca",     "ca");
-        CAMEL_LOCALES.put("amazon.it",     "it");
-        CAMEL_LOCALES.put("amazon.es",     "es");
-        CAMEL_LOCALES.put("amazon.com.au", "au");
-        CAMEL_LOCALES.put("amazon.in",     "in");   // in.camelcamelcamel.com
+        KEEPA_IDS.put("us", 1);  KEEPA_IDS.put("uk", 2);  KEEPA_IDS.put("de", 3);
+        KEEPA_IDS.put("fr", 4);  KEEPA_IDS.put("jp", 5);  KEEPA_IDS.put("ca", 6);
+        KEEPA_IDS.put("it", 8);  KEEPA_IDS.put("es", 9);  KEEPA_IDS.put("in", 10);
+        KEEPA_IDS.put("mx", 11); KEEPA_IDS.put("br", 12); KEEPA_IDS.put("nl", 14);
+    }
+    // CCC tracks fewer marketplaces; its link host is {code}.camelcamelcamel.com
+    // except the US which has no subdomain.
+    private static final Set<String> CCC_CODES = new HashSet<>(Arrays.asList(
+        "us", "uk", "de", "fr", "jp", "ca", "it", "es", "au"));
+
+    /** Derives the marketplace country code from an Amazon domain:
+     *  amazon.com → us, amazon.co.uk → uk, amazon.co.jp → jp, amazon.com.au → au,
+     *  everything else → last TLD label (amazon.in → in, amazon.de → de, …). */
+    private static String countryCode(String domain) {
+        if (domain.equals("amazon.com")) return "us";
+        if (domain.endsWith(".co.uk"))  return "uk";
+        if (domain.endsWith(".co.jp"))  return "jp";
+        if (domain.endsWith(".com.au")) return "au";
+        int dot = domain.lastIndexOf('.');
+        return dot >= 0 ? domain.substring(dot + 1) : null;
     }
 
     /** Returns the CamelCamelCamel base URL for a given locale code.
@@ -207,54 +215,150 @@ public class AmazonHelper {
         return locale + ".camelcamelcamel.com";
     }
 
-    public static void injectPriceCharts(WebView webView, String url) {
+    public static void injectPriceCharts(WebView webView, String url, String config) {
         if (webView == null || url == null) return;
         java.util.regex.Matcher m = java.util.regex.Pattern
             .compile("/(?:dp|gp/product|gp/aw/d)/([A-Z0-9]{10})", java.util.regex.Pattern.CASE_INSENSITIVE)
             .matcher(url);
         if (!m.find()) return;
         final String asin = m.group(1);
+        // [a-z.]* (not +) — with + the regex backtracks and "www." ends up in the
+        // captured domain, so the Keepa/CCC map lookups miss and no charts show.
         java.util.regex.Matcher dm = java.util.regex.Pattern
-            .compile("https?://(?:www\\.)?([a-z.]+amazon[a-z.]+)").matcher(url);
+            .compile("https?://(?:www\\.)?([a-z.]*amazon[a-z.]+)").matcher(url);
         String domain = dm.find() ? dm.group(1) : "amazon.com";
-        // Keepa supports every Amazon marketplace — always shown.
-        // Keepa domain ID — null for any store Keepa doesn't track (skip Keepa block).
-        final Integer keepaIdBox = KEEPA_DOMAINS.get(domain);
-        final String keepaBlock;
-        if (keepaIdBox != null) {
-            int keepaId = keepaIdBox;
-            keepaBlock = "add('https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + keepaId + "&asin=" + asin + "',"
-                + "'Keepa','https://keepa.com/#!product/" + keepaId + "-" + asin + "');";
-        } else {
-            keepaBlock = "";
+        // The marketplace country code is derived from the domain — no tables.
+        final String cc = countryCode(domain);
+        // Chart URLs are built in JS so the same script can re-inject when Amazon
+        // navigates between products without a full page reload (SPA navigation).
+        // graph.keepa.com sends Access-Control-Allow-Origin so the placeholder gate
+        // can inspect the image size; charts.camelcamelcamel.com does not, so CCC
+        // relies on the img onerror fallback instead of fetch().
+        // Keepa series from the patch option: new only / new+used / all (adds Amazon).
+        String[] cfgParts = config == null ? new String[0] : config.split("\\|", -1);
+        String keepaSeries = cfgParts.length > 3 ? cfgParts[3] : "all";
+        String used = "new".equals(keepaSeries) ? "0" : "1";
+        String amazon = "all".equals(keepaSeries) ? "1" : "0";
+        final String keepaJs = (cc != null && KEEPA_CODES.contains(cc))
+            ? "var keepaUrl='https://graph.keepa.com/pricehistory.png?used=" + used + "&amazon=" + amazon
+              + "&new=1&domain=" + cc + "&asin=';"
+              + "var keepaLink='https://keepa.com/#!product/" + KEEPA_IDS.get(cc) + "-';"
+            : "var keepaUrl=null;var keepaLink=null;";
+        final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
+        final String camelJs = (camel != null)
+            ? "var camelBase='https://charts.camelcamelcamel.com/" + camel + "/';"
+              + "var camelLink='https://" + camelHost(camel) + "/product/';"
+            : "var camelBase=null;var camelLink=null;";
+        // The patch packs every setting into one pipe-separated config string:
+        // defaultPeriod|showToggle|togglePeriods|keepaSeries|cccType|hideZero|width|collapsed
+        String defPeriod = "1y";
+        if (cfgParts.length > 0) {
+            String p0 = cfgParts[0];
+            if ("1m".equals(p0) || "6m".equals(p0) || "3y".equals(p0)
+                || "5y".equals(p0) || "all".equals(p0)) defPeriod = p0;
         }
-        // CCC only supports select locales — null means skip the CCC block entirely.
-        final String camel = CAMEL_LOCALES.get(domain);   // null for unsupported stores
-        final String camelHostStr = camel != null ? camelHost(camel) : null;
-        String js = "(function(){var asin='" + asin + "';"
+        String js = "(function(){var curAsin='" + asin + "';"
+            + "var cfg='" + config + "'.split('|');"
+            + "var defPeriod='" + defPeriod + "';"
+            + "var showToggle=cfg[1]==='1';"
+            + "var P_LABEL={'1m':'1M','6m':'6M','1y':'1Y','3y':'3Y','5y':'5Y','all':'ALL'};"
+            + "var periods=(cfg[2]||'1m,6m,1y,3y,5y,all').split(',').filter(function(x){return x;}).map(function(v){return {l:P_LABEL[v]||v.toUpperCase(),v:v};});"
+            + "var keepaRange={'1m':30,'6m':180,'1y':365,'3y':1095,'5y':1826};"
+            + "var cccType=cfg[4]||'new_used';"
+            + "var PNG={'new_used':'amazon-new-used','new':'amazon-new','used':'amazon-used'};"
+            + "var hideZero=cfg[5]==='1';"
+            + "var cccWidth=cfg[6]||'625';"
+            + "var collapsed=cfg[7]==='1';"
+            + keepaJs
+            + camelJs
+            + "function inject(asin){"
             + "var e=document.getElementById('amznkiller-charts');"
             + "if(e&&e.getAttribute('data-asin')===asin)return;if(e)e.remove();"
-            + "var c=document.createElement('div');c.id='amznkiller-charts';"
+            + "var c=document.createElement(collapsed?'details':'div');c.id='amznkiller-charts';"
             + "c.setAttribute('data-asin',asin);"
             + "c.style.cssText='margin:16px 0;padding:12px;border:1px solid #ddd;border-radius:8px;background:#fafafa';"
+            + "if(collapsed){"
+            + "var sum=document.createElement('summary');"
+            + "sum.style.cssText='font-weight:bold;font-size:14px;color:#333;cursor:pointer';"
+            + "sum.textContent='Price History';c.appendChild(sum);"
+            + "}else{"
             + "var t=document.createElement('div');"
             + "t.style.cssText='font-weight:bold;font-size:14px;margin-bottom:8px;color:#333';"
-            + "t.textContent='Price History';c.appendChild(t);"
-            + "function add(src,lbl,href){var w=document.createElement('div');"
+            + "t.textContent='Price History';c.appendChild(t);}"
+            + "function toLink(a,lbl){if(!a.querySelector('img'))return;"
+            + "a.textContent='Open price history on '+lbl;"
+            + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';}"
+            + "function add(src,lbl,href,check,rebuild){var w=document.createElement('div');"
             + "w.style.marginBottom='8px';"
             + "var l=document.createElement('div');"
             + "l.style.cssText='font-size:12px;color:#666;margin-bottom:4px';l.textContent=lbl;w.appendChild(l);"
             + "var a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener';"
             + "var i=document.createElement('img');i.src=src;"
             + "i.style.cssText='width:100%;height:auto;border-radius:4px';"
-            + "i.onerror=function(){w.style.display='none';};a.appendChild(i);w.appendChild(a);c.appendChild(w);}"
-            + keepaBlock
-            + (camelHostStr != null
-                ? "add('https://charts.camelcamelcamel.com/" + camel + "/" + asin + "/amazon-new-used.png?force=1&legend=1&tp=all&w=725&h=400',"
-                  + "'CamelCamelCamel','https://" + camelHostStr + "/product/" + asin + "');"
-                : "")
-            + "var anchor=document.getElementById('dp')||document.getElementById('ppd')||document.body;"
-            + "anchor.appendChild(c);})();";
+            + "a.appendChild(i);w.appendChild(a);c.appendChild(w);"
+            + "i.onerror=function(){toLink(a,lbl);};"
+            // Placeholder gate: the chart CDNs return a small stub for unknown
+            // ASINs or when the service is degraded; real charts are much larger.
+            // Only used where CORS lets fetch() read the response (Keepa).
+            + "if(check)fetch(src).then(function(r){return r.ok?r.blob():null;})"
+            + ".then(function(b){if(!b||b.size<15000)toLink(a,lbl);})"
+            + ".catch(function(){});"
+            // Period toggle: swaps the chart image between views without reload.
+            // `&t=` cache-buster forces a fresh render so the new period actually shows.
+            // Keepa takes numeric day counts via `range` (365 / 1095); no range = all time.
+            + "if(rebuild&&showToggle){"
+            + "var row=document.createElement('div');"
+            + "row.style.cssText='margin-top:4px;';"
+            + "periods.forEach(function(p){"
+            + "var b=document.createElement('button');"
+            + "b.type='button';b.textContent=p.l;"
+            + "b.style.cssText='margin-right:6px;padding:2px 8px;border:1px solid #ccc;border-radius:3px;background:#fff;font-size:11px;color:#333;cursor:pointer';"
+            + "b.onclick=function(){var img=a.querySelector('img');"
+            + "if(!img)return;"
+            + "img.src=rebuild(p.v)+'&t='+Date.now();"
+            + "img.onerror=function(){toLink(a,lbl);};};"
+            + "row.appendChild(b);});"
+            + "w.appendChild(row);}"
+            + "}"
+            + "var keepaChart=keepaUrl?keepaUrl+asin+(defPeriod==='all'?'':'&range='+keepaRange[defPeriod]):null;"
+            + "var camelChart=camelBase?camelBase+asin+'/'+(PNG[cccType]||'amazon-new-used')+'.png?force=1&legend=1&w='+cccWidth+'&h=400'+(hideZero?'&zero=0':'')+'&tp=':null;"
+            + "if(keepaChart)add(keepaChart+'&t='+Date.now(),'Keepa',keepaLink+asin,true,function(per){return keepaUrl+asin+(per==='all'?'':'&range='+keepaRange[per]);});"
+            + "if(camelChart)add(camelChart+defPeriod+'&t='+Date.now(),'CamelCamelCamel',camelLink+asin,false,function(per){return camelChart+per;});"
+            // Place the charts right under the price block. Amazon uses different
+            // ids per page type, so try the known containers, retry briefly while
+            // the page lazy-loads, and fall back to the end of the page.
+            + "var targets=['#buyBoxAccordion','#corePriceDisplay_desktop_feature_div',"
+            + "'#corePrice_feature_div','#unifiedPrice_feature_div',"
+            + "'#mobileapp_buybox_feature_div','#desktop_buybox','#buybox',"
+            + "'#price_feature_div','#newAccordionRow','#productOverview_feature_div',"
+            + "'#centerCol','#mobileapp_accordion_feature_div','#apex_mobile',"
+            + "'#apex_desktop','[id^=corePrice]'];"
+            + "function place(){for(var i=0;i<targets.length;i++){"
+            + "var el=document.querySelector(targets[i]);"
+            + "if(el&&el.parentNode){el.parentNode.insertBefore(c,el.nextSibling);return true;}}"
+            + "return false;}"
+            + "if(!place()){"
+            + "var fb=document.getElementById('dp')||document.getElementById('ppd');"
+            + "if(fb)fb.appendChild(c);"
+            + "else{var obs=new MutationObserver(function(_,o){if(place())o.disconnect();});"
+            + "obs.observe(document.body||document.documentElement,{childList:true,subtree:true});"
+            + "setTimeout(function(){obs.disconnect();if(!c.parentNode)document.body.appendChild(c);},10000);}"
+            + "}"
+            + "}"
+            // Inject for the current product page, then keep charts in sync when
+            // Amazon's in-app WebView navigates between products (SPA navigation).
+            + "var m0=window.location.href.match(/\\/(?:dp|gp\\/product|gp\\/aw\\/d)\\/([A-Z0-9]{10})/i);"
+            + "if(m0)inject(m0[1]);else if(curAsin)inject(curAsin);"
+            + "if(!window.__amznkillerChartsNav){"
+            + "window.__amznkillerChartsNav=true;"
+            + "var re=/\\/(?:dp|gp\\/product|gp\\/aw\\/d)\\/([A-Z0-9]{10})/i;"
+            + "function onNav(){var m=window.location.href.match(re);if(m)inject(m[1]);}"
+            + "var ps=history.pushState,rs=history.replaceState;"
+            + "history.pushState=function(){ps.apply(this,arguments);setTimeout(onNav,0);};"
+            + "history.replaceState=function(){rs.apply(this,arguments);setTimeout(onNav,0);};"
+            + "window.addEventListener('popstate',onNav);"
+            + "}"
+            + "})();";
         webView.evaluateJavascript(js, null);
     }
 

@@ -525,12 +525,22 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.1.06", versionCode = 35))
     )
 
+val DRIVERLICENSE_COMPATIBILITY = Compatibility(
+        name = "Zutobi",
+        packageName = "com.driverlicenseapp",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "4.5.78", versionCode = 102278)
+        )
+    )
+
 val DRIVVO_COMPATIBILITY = Compatibility(
         name = "Drivvo",
         packageName = "br.com.ctncardoso.ctncar",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x0077B6,
-        targets = listOf(AppTarget(version = "9.6.2", versionCode = 243))
+        targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
     )
 
 val DUBOXDRIVE_COMPATIBILITY = Compatibility(
@@ -1040,7 +1050,7 @@ val MONET_COMPATIBILITY = Compatibility(
         packageName = "com.klevico.monet",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF6D00,
-        targets = listOf(AppTarget(version = "1.0.67", versionCode = 101))
+        targets = listOf(AppTarget(version = "1.0.73", versionCode = 107))
     )
 
 val MOVIEBOX_COMPATIBILITY = Compatibility(
@@ -2007,7 +2017,7 @@ val WORD_COMPATIBILITY = Compatibility(
         name = "Word",
         packageName = "com.microsoft.office.word",
         appIconColor = 0x1A237E,
-        targets = listOf(AppTarget(version = "16.0.20228.20090", versionCode = 16843309))
+        targets = listOf(AppTarget(version = "16.0.20326.20034", versionCode = 2005292347))
     )
 
 val YATRI_COMPATIBILITY = Compatibility(
