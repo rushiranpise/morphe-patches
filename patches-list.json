@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.0-dev.5",
+  "version": "1.19.0-dev.6",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -2809,7 +2809,125 @@
           ]
         }
       ],
-      "options": []
+      "options": [
+        {
+          "key": "amazonPriceChartPeriod",
+          "title": "Chart period",
+          "description": "Default time range for the price history charts.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "1y",
+          "values": {
+            "1 month": "1m",
+            "6 months": "6m",
+            "1 year": "1y",
+            "3 years": "3y",
+            "5 years": "5y",
+            "All time": "all"
+          }
+        },
+        {
+          "key": "amazonPriceChartToggle",
+          "title": "Show period toggle",
+          "description": "Add period buttons under each chart to switch views.",
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": true,
+          "values": null
+        },
+        {
+          "key": "amazonPriceChartTogglePeriods",
+          "title": "Toggle periods",
+          "description": "Which periods appear in the toggle buttons.",
+          "required": false,
+          "type": "kotlin.collections.List<kotlin.String>",
+          "default": [
+            "1m",
+            "6m",
+            "1y",
+            "3y",
+            "5y",
+            "all"
+          ],
+          "values": {
+            "1 month": [
+              "1m"
+            ],
+            "6 months": [
+              "6m"
+            ],
+            "1 year": [
+              "1y"
+            ],
+            "3 years": [
+              "3y"
+            ],
+            "5 years": [
+              "5y"
+            ],
+            "All time": [
+              "all"
+            ]
+          }
+        },
+        {
+          "key": "amazonKeepaSeries",
+          "title": "Keepa price lines",
+          "description": "Which price series the Keepa chart shows.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "all",
+          "values": {
+            "New only": "new",
+            "New + Used": "new_used",
+            "New + Used + Amazon": "all"
+          }
+        },
+        {
+          "key": "amazonCccChartType",
+          "title": "CamelCamelCamel chart",
+          "description": "Which price lines the CCC chart shows.",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "new_used",
+          "values": {
+            "New + Used": "new_used",
+            "New only": "new",
+            "Used only": "used"
+          }
+        },
+        {
+          "key": "amazonCccHideZero",
+          "title": "Hide zero-price gaps",
+          "description": "Omit flat zero-price segments on the CCC chart.",
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": false,
+          "values": null
+        },
+        {
+          "key": "amazonChartSize",
+          "title": "Chart size",
+          "description": "Width of the CCC chart image (Keepa renders at a fixed size).",
+          "required": false,
+          "type": "kotlin.String",
+          "default": "625",
+          "values": {
+            "Compact": "500",
+            "Default": "625",
+            "Large": "750"
+          }
+        },
+        {
+          "key": "amazonChartsCollapsed",
+          "title": "Start collapsed",
+          "description": "Render the charts inside a collapsed section; tap to expand.",
+          "required": false,
+          "type": "kotlin.Boolean",
+          "default": true,
+          "values": null
+        }
+      ]
     },
     {
       "name": "Provide Original app certificate",
