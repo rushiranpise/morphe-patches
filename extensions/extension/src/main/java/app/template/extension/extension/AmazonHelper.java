@@ -22,8 +22,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class AmazonHelper {
@@ -179,6 +181,16 @@ public class AmazonHelper {
     // "no price history available" image — so `au` is excluded here.
     private static final Set<String> KEEPA_CODES = new HashSet<>(Arrays.asList(
         "us", "uk", "de", "fr", "jp", "ca", "it", "es", "in", "mx", "br", "nl"));
+    // keepa.com product pages need Keepa's numeric marketplace id in the URL
+    // (#!product/{id}-{asin}) — only the chart endpoint accepts country codes.
+    // Verified against graph.keepa.com: domain=it == domain=8, nl == 14, etc.
+    private static final Map<String, Integer> KEEPA_IDS = new HashMap<>();
+    static {
+        KEEPA_IDS.put("us", 1);  KEEPA_IDS.put("uk", 2);  KEEPA_IDS.put("de", 3);
+        KEEPA_IDS.put("fr", 4);  KEEPA_IDS.put("jp", 5);  KEEPA_IDS.put("ca", 6);
+        KEEPA_IDS.put("it", 8);  KEEPA_IDS.put("es", 9);  KEEPA_IDS.put("in", 10);
+        KEEPA_IDS.put("mx", 11); KEEPA_IDS.put("br", 12); KEEPA_IDS.put("nl", 14);
+    }
     // CCC tracks fewer marketplaces; its link host is {code}.camelcamelcamel.com
     // except the US which has no subdomain.
     private static final Set<String> CCC_CODES = new HashSet<>(Arrays.asList(
@@ -224,7 +236,7 @@ public class AmazonHelper {
         // relies on the img onerror fallback instead of fetch().
         final String keepaJs = (cc != null && KEEPA_CODES.contains(cc))
             ? "var keepaUrl='https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + cc + "&asin=';"
-              + "var keepaLink='https://keepa.com/#!product/" + cc + "-';"
+              + "var keepaLink='https://keepa.com/#!product/" + KEEPA_IDS.get(cc) + "-';"
             : "var keepaUrl=null;var keepaLink=null;";
         final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
         final String camelJs = (camel != null)
@@ -269,6 +281,7 @@ public class AmazonHelper {
             + ".then(function(b){if(!b||b.size<15000)toLink(a,lbl);})"
             + ".catch(function(){});"
             // Period toggle: swaps the chart image between views without reload.
+            // `&t=` cache-buster forces a fresh render so the new period actually shows.
             + "if(pBase&&showToggle){"
             + "var row=document.createElement('div');"
             + "row.style.cssText='margin-top:4px;';"
@@ -278,13 +291,14 @@ public class AmazonHelper {
             + "b.style.cssText='margin-right:6px;padding:2px 8px;border:1px solid #ccc;border-radius:3px;background:#fff;font-size:11px;color:#333;cursor:pointer';"
             + "b.onclick=function(){var img=a.querySelector('img');"
             + "if(!img)return;"
-            + "img.src=pBase+p.v;"
+            + "img.src=pBase+p.v+'&t='+Date.now();"
             + "img.onerror=function(){toLink(a,lbl);};};"
             + "row.appendChild(b);});"
             + "w.appendChild(row);}"
             + "}"
+            + "var camelChart=camelBase?camelBase+asin+'/amazon-new-used.png?force=1&legend=1&w=625&h=400&tp=':null;"
             + "if(keepaUrl)add(keepaUrl+asin,'Keepa',keepaLink+asin,true,null);"
-            + "if(camelBase)add(camelBase+asin+'?w=625&tp='+defPeriod,'CamelCamelCamel',camelLink+asin,false,camelBase+asin+'?w=625&tp=');"
+            + "if(camelChart)add(camelChart+defPeriod+'&t='+Date.now(),'CamelCamelCamel',camelLink+asin,false,camelChart);"
             // Place the charts right under the price block. Amazon uses different
             // ids per page type, so try the known containers, retry briefly while
             // the page lazy-loads, and fall back to the end of the page.
