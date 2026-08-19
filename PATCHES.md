@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.19.0-dev.5** (`dev`) · **374 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.19.0-dev.6** (`dev`) · **374 patches** across **243 apps** · back to [README](README.md)
 
 ---
 
@@ -149,7 +149,7 @@
 | **Fix Amazon manifest conflicts** | Updates shared Amazon permissions so other Amazon apps can coexist. |
 | **Hide Rufus tab** | Removes the Rufus AI assistant tab from Amazon's bottom navigation bar. |
 | **Open links in browser** | Opens non-Amazon URLs in the default browser instead of the in-app WebView. |
-| **Price history charts** | Injects Keepa and CamelCamelCamel price history charts on Amazon product pages. |
+| **Price history charts** | Injects Keepa and CamelCamelCamel price history charts on Amazon product pages.<br><sub>Options: Chart period, Show period toggle, Toggle periods, +5 more</sub> |
 | **Remove ads** | Hides sponsored and ad content in Amazon Shopping via CSS injection. |
 
 ---
@@ -166,7 +166,7 @@
 | **Fix Amazon manifest conflicts** | Updates shared Amazon permissions so other Amazon apps can coexist. |
 | **Hide Rufus tab** | Removes the Rufus AI assistant tab from Amazon's bottom navigation bar. |
 | **Open links in browser** | Opens non-Amazon URLs in the default browser instead of the in-app WebView. |
-| **Price history charts** | Injects Keepa and CamelCamelCamel price history charts on Amazon product pages. |
+| **Price history charts** | Injects Keepa and CamelCamelCamel price history charts on Amazon product pages.<br><sub>Options: Chart period, Show period toggle, Toggle periods, +5 more</sub> |
 | **Remove ads** | Hides sponsored and ad content in Amazon Shopping via CSS injection. |
 
 ---
