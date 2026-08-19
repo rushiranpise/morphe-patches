@@ -244,13 +244,15 @@ public class AmazonHelper {
               + "var camelLink='https://" + camelHost(camel) + "/product/';"
             : "var camelBase=null;var camelLink=null;";
         // CCC honors `tp` for the time window and `w` for the image width
-        // (a smaller width zooms the chart in). The default period comes from
-        // the patch option; anything unexpected falls back to 1y.
+        // (a smaller width zooms the chart in); Keepa honors a numeric `range`
+        // in days. The default period comes from the patch option; anything
+        // unexpected falls back to 1y.
         final String defPeriod = "3y".equals(period) || "all".equals(period) ? period : "1y";
         String js = "(function(){var curAsin='" + asin + "';"
             + "var defPeriod='" + defPeriod + "';"
             + "var showToggle=" + showToggle + ";"
             + "var periods=[{l:'1Y',v:'1y'},{l:'3Y',v:'3y'},{l:'ALL',v:'all'}];"
+            + "var keepaRange={'1y':365,'3y':1095};"
             + keepaJs
             + camelJs
             + "function inject(asin){"
@@ -265,7 +267,7 @@ public class AmazonHelper {
             + "function toLink(a,lbl){if(!a.querySelector('img'))return;"
             + "a.textContent='Open price history on '+lbl;"
             + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';}"
-            + "function add(src,lbl,href,check,pBase){var w=document.createElement('div');"
+            + "function add(src,lbl,href,check,rebuild){var w=document.createElement('div');"
             + "w.style.marginBottom='8px';"
             + "var l=document.createElement('div');"
             + "l.style.cssText='font-size:12px;color:#666;margin-bottom:4px';l.textContent=lbl;w.appendChild(l);"
@@ -282,7 +284,8 @@ public class AmazonHelper {
             + ".catch(function(){});"
             // Period toggle: swaps the chart image between views without reload.
             // `&t=` cache-buster forces a fresh render so the new period actually shows.
-            + "if(pBase&&showToggle){"
+            // Keepa takes numeric day counts via `range` (365 / 1095); no range = all time.
+            + "if(rebuild&&showToggle){"
             + "var row=document.createElement('div');"
             + "row.style.cssText='margin-top:4px;';"
             + "periods.forEach(function(p){"
@@ -291,14 +294,15 @@ public class AmazonHelper {
             + "b.style.cssText='margin-right:6px;padding:2px 8px;border:1px solid #ccc;border-radius:3px;background:#fff;font-size:11px;color:#333;cursor:pointer';"
             + "b.onclick=function(){var img=a.querySelector('img');"
             + "if(!img)return;"
-            + "img.src=pBase+p.v+'&t='+Date.now();"
+            + "img.src=rebuild(p.v)+'&t='+Date.now();"
             + "img.onerror=function(){toLink(a,lbl);};};"
             + "row.appendChild(b);});"
             + "w.appendChild(row);}"
             + "}"
+            + "var keepaChart=keepaUrl?keepaUrl+asin+(defPeriod==='all'?'':'&range='+keepaRange[defPeriod]):null;"
             + "var camelChart=camelBase?camelBase+asin+'/amazon-new-used.png?force=1&legend=1&w=625&h=400&tp=':null;"
-            + "if(keepaUrl)add(keepaUrl+asin,'Keepa',keepaLink+asin,true,null);"
-            + "if(camelChart)add(camelChart+defPeriod+'&t='+Date.now(),'CamelCamelCamel',camelLink+asin,false,camelChart);"
+            + "if(keepaChart)add(keepaChart+'&t='+Date.now(),'Keepa',keepaLink+asin,true,function(per){return keepaUrl+asin+(per==='all'?'':'&range='+keepaRange[per]);});"
+            + "if(camelChart)add(camelChart+defPeriod+'&t='+Date.now(),'CamelCamelCamel',camelLink+asin,false,function(per){return camelChart+per;});"
             // Place the charts right under the price block. Amazon uses different
             // ids per page type, so try the known containers, retry briefly while
             // the page lazy-loads, and fall back to the end of the page.
