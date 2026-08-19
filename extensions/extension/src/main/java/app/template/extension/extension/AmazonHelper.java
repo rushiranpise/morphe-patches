@@ -215,7 +215,7 @@ public class AmazonHelper {
         return locale + ".camelcamelcamel.com";
     }
 
-    public static void injectPriceCharts(WebView webView, String url, String period, boolean showToggle) {
+    public static void injectPriceCharts(WebView webView, String url, String config) {
         if (webView == null || url == null) return;
         java.util.regex.Matcher m = java.util.regex.Pattern
             .compile("/(?:dp|gp/product|gp/aw/d)/([A-Z0-9]{10})", java.util.regex.Pattern.CASE_INSENSITIVE)
@@ -234,8 +234,14 @@ public class AmazonHelper {
         // graph.keepa.com sends Access-Control-Allow-Origin so the placeholder gate
         // can inspect the image size; charts.camelcamelcamel.com does not, so CCC
         // relies on the img onerror fallback instead of fetch().
+        // Keepa series from the patch option: new only / new+used / all (adds Amazon).
+        String[] cfgParts = config == null ? new String[0] : config.split("\\|", -1);
+        String keepaSeries = cfgParts.length > 3 ? cfgParts[3] : "all";
+        String used = "new".equals(keepaSeries) ? "0" : "1";
+        String amazon = "all".equals(keepaSeries) ? "1" : "0";
         final String keepaJs = (cc != null && KEEPA_CODES.contains(cc))
-            ? "var keepaUrl='https://graph.keepa.com/pricehistory.png?used=1&amazon=1&new=1&domain=" + cc + "&asin=';"
+            ? "var keepaUrl='https://graph.keepa.com/pricehistory.png?used=" + used + "&amazon=" + amazon
+              + "&new=1&domain=" + cc + "&asin=';"
               + "var keepaLink='https://keepa.com/#!product/" + KEEPA_IDS.get(cc) + "-';"
             : "var keepaUrl=null;var keepaLink=null;";
         final String camel = cc != null && CCC_CODES.contains(cc) ? cc : null;
@@ -243,27 +249,42 @@ public class AmazonHelper {
             ? "var camelBase='https://charts.camelcamelcamel.com/" + camel + "/';"
               + "var camelLink='https://" + camelHost(camel) + "/product/';"
             : "var camelBase=null;var camelLink=null;";
-        // CCC honors `tp` for the time window and `w` for the image width
-        // (a smaller width zooms the chart in); Keepa honors a numeric `range`
-        // in days. The default period comes from the patch option; anything
-        // unexpected falls back to 1y.
-        final String defPeriod = "3y".equals(period) || "all".equals(period) ? period : "1y";
+        // The patch packs every setting into one pipe-separated config string:
+        // defaultPeriod|showToggle|togglePeriods|keepaSeries|cccType|hideZero|width|collapsed
+        String defPeriod = "1y";
+        if (cfgParts.length > 0) {
+            String p0 = cfgParts[0];
+            if ("1m".equals(p0) || "6m".equals(p0) || "3y".equals(p0)
+                || "5y".equals(p0) || "all".equals(p0)) defPeriod = p0;
+        }
         String js = "(function(){var curAsin='" + asin + "';"
+            + "var cfg='" + config + "'.split('|');"
             + "var defPeriod='" + defPeriod + "';"
-            + "var showToggle=" + showToggle + ";"
-            + "var periods=[{l:'1Y',v:'1y'},{l:'3Y',v:'3y'},{l:'ALL',v:'all'}];"
-            + "var keepaRange={'1y':365,'3y':1095};"
+            + "var showToggle=cfg[1]==='1';"
+            + "var P_LABEL={'1m':'1M','6m':'6M','1y':'1Y','3y':'3Y','5y':'5Y','all':'ALL'};"
+            + "var periods=(cfg[2]||'1m,6m,1y,3y,5y,all').split(',').filter(function(x){return x;}).map(function(v){return {l:P_LABEL[v]||v.toUpperCase(),v:v};});"
+            + "var keepaRange={'1m':30,'6m':180,'1y':365,'3y':1095,'5y':1826};"
+            + "var cccType=cfg[4]||'new_used';"
+            + "var PNG={'new_used':'amazon-new-used','new':'amazon-new','used':'amazon-used'};"
+            + "var hideZero=cfg[5]==='1';"
+            + "var cccWidth=cfg[6]||'625';"
+            + "var collapsed=cfg[7]==='1';"
             + keepaJs
             + camelJs
             + "function inject(asin){"
             + "var e=document.getElementById('amznkiller-charts');"
             + "if(e&&e.getAttribute('data-asin')===asin)return;if(e)e.remove();"
-            + "var c=document.createElement('div');c.id='amznkiller-charts';"
+            + "var c=document.createElement(collapsed?'details':'div');c.id='amznkiller-charts';"
             + "c.setAttribute('data-asin',asin);"
             + "c.style.cssText='margin:16px 0;padding:12px;border:1px solid #ddd;border-radius:8px;background:#fafafa';"
+            + "if(collapsed){"
+            + "var sum=document.createElement('summary');"
+            + "sum.style.cssText='font-weight:bold;font-size:14px;color:#333;cursor:pointer';"
+            + "sum.textContent='Price History';c.appendChild(sum);"
+            + "}else{"
             + "var t=document.createElement('div');"
             + "t.style.cssText='font-weight:bold;font-size:14px;margin-bottom:8px;color:#333';"
-            + "t.textContent='Price History';c.appendChild(t);"
+            + "t.textContent='Price History';c.appendChild(t);}"
             + "function toLink(a,lbl){if(!a.querySelector('img'))return;"
             + "a.textContent='Open price history on '+lbl;"
             + "a.style.cssText='font-size:13px;color:#0066c0;text-decoration:underline';}"
@@ -300,7 +321,7 @@ public class AmazonHelper {
             + "w.appendChild(row);}"
             + "}"
             + "var keepaChart=keepaUrl?keepaUrl+asin+(defPeriod==='all'?'':'&range='+keepaRange[defPeriod]):null;"
-            + "var camelChart=camelBase?camelBase+asin+'/amazon-new-used.png?force=1&legend=1&w=625&h=400&tp=':null;"
+            + "var camelChart=camelBase?camelBase+asin+'/'+(PNG[cccType]||'amazon-new-used')+'.png?force=1&legend=1&w='+cccWidth+'&h=400'+(hideZero?'&zero=0':'')+'&tp=':null;"
             + "if(keepaChart)add(keepaChart+'&t='+Date.now(),'Keepa',keepaLink+asin,true,function(per){return keepaUrl+asin+(per==='all'?'':'&range='+keepaRange[per]);});"
             + "if(camelChart)add(camelChart+defPeriod+'&t='+Date.now(),'CamelCamelCamel',camelLink+asin,false,function(per){return camelChart+per;});"
             // Place the charts right under the price block. Amazon uses different
