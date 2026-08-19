@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-17T22:22:53",
-  "description": "## [1.18.3](https://github.com/rushiranpise/morphe-patches/compare/v1.18.2...v1.18.3) (2026-08-17)\n\n### 🐛 Bug Fixes\n\n* remove broken patch ([574fe34](https://github.com/rushiranpise/morphe-patches/commit/574fe34d217527bfb035a5913fea35cc5304b221))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.18.3/patches-1.18.3.mpp",
+  "created_at": "2026-08-19T08:46:24",
+  "description": "## [1.19.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0-dev.5...v1.19.0-dev.6) (2026-08-19)\n\n### 🐛 Bug Fixes\n\n* **amazon:** use canonical CCC chart URL and numeric Keepa marketplace ids ([5ba6ec5](https://github.com/rushiranpise/morphe-patches/commit/5ba6ec53774b560ed42db3eeb14e4ada7a75ec79))\n\n### ✨ New Features\n\n* **amazon:** add chart customization options for Keepa and CCC ([136fe0c](https://github.com/rushiranpise/morphe-patches/commit/136fe0cb6453220bc65e3c676d54b4be484c896b))\n* **amazon:** add period toggle to Keepa chart via numeric range ([dd0de74](https://github.com/rushiranpise/morphe-patches/commit/dd0de7496329f2d8ef86d4fcf0b66d55ffeafa3e))\n* **amazon:** gate Keepa by region and add configurable CCC chart period ([6d00545](https://github.com/rushiranpise/morphe-patches/commit/6d005451a9c68cecf1679b69aa7f9539e1110544))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.19.0-dev.6/patches-1.19.0-dev.6.mpp",
   "signature_download_url": "",
-  "version": "1.18.3"
+  "version": "1.19.0-dev.6"
 }

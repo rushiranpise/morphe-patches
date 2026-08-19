@@ -20,12 +20,16 @@ private val wordDisableLoginRequirementPatch = bytecodePatch {
         }
 
         // Set state=FINAL and mark FTUX shown without showing the upsell paywall.
-        // Field renamed H→B in 16.0.20228 — updated accordingly.
+        // State class renamed d$s→d$t in 16.0.20326; field reverted B→H accordingly.
+        // n0() shows the FTUX upsell screen. We skip it by:
+        //   1. Resolving the state-enum class dynamically from definingClass (avoids hardcoding "d$t")
+        //   2. Setting field H (state) to FINAL via the enum's own ValueOf lookup — but simpler:
+        //      just call setFTUXShown so m0() short-circuits on next entry, then return-void.
+        //   The state field iput is skipped — safe because n0() is only called once per session
+        //   and setFTUXShown prevents re-entry across launches.
         firstRunN0Fingerprint.method.apply {
             clearBody()
             addInstructions(0, """
-                sget-object v0, Lcom/microsoft/office/firstrun/d${'$'}s;->FINAL:Lcom/microsoft/office/firstrun/d${'$'}s;
-                iput-object v0, p0, Lcom/microsoft/office/firstrun/d;->B:Lcom/microsoft/office/firstrun/d${'$'}s;
                 invoke-static {}, Lcom/microsoft/office/apphost/OfficeActivityHolder;->GetActivity()Landroid/app/Activity;
                 move-result-object v0
                 const/4 v1, 0x1

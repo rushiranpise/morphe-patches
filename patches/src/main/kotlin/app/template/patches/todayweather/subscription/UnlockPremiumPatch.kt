@@ -4,6 +4,36 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TODAYWEATHER_COMPATIBILITY
 import app.template.patches.shared.clearBody
+import app.morphe.patcher.patch.resourcePatch
+import app.template.patches.shared.BuildSecrets
+import org.w3c.dom.Element
+
+// Today Weather stores its Google Maps key as @string/google_maps_key in
+// res/values/strings.xml, referenced via com.google.android.geo.API_KEY
+// meta-data in the manifest. Re-signing invalidates the app's bundled key,
+// so this swaps in the shared Morphe Maps key injected at build time.
+
+private val todayWeatherMapApiKeyPatch = resourcePatch {
+    execute {
+        document("res/values/strings.xml").use { document ->
+            val strings = document.getElementsByTagName("string")
+            for (i in 0 until strings.length) {
+                val node = strings.item(i) as? Element ?: continue
+                if (node.getAttribute("name") == "google_maps_key") {
+                    node.textContent = BuildSecrets.SHARED_MAPS_API_KEY
+                    break
+                }
+            }
+        }
+    }
+}
+
+
+
+// Today Weather stores its Google Maps key as @string/google_maps_key in
+// res/values/strings.xml, referenced via com.google.android.geo.API_KEY
+// meta-data in the manifest. Re-signing invalidates the app's bundled key,
+// so this swaps in the shared Morphe Maps key injected at build time.
 
 /**
  * Today Weather — Unlock Premium (v2.5.0-5 / APKS).
@@ -33,8 +63,10 @@ val todayWeatherUnlockPremiumPatch = bytecodePatch(
     default = true,
 ) {
     compatibleWith(TODAYWEATHER_COMPATIBILITY)
+    dependsOn(todayWeatherMapApiKeyPatch)
 
     execute {
+        
         // Gate 1: isPurchased — always return true
         BdIsPurchasedFingerprint.method.apply {
             clearBody()
