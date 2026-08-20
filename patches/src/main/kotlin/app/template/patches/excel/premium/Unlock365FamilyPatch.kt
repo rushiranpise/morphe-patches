@@ -1,6 +1,7 @@
 package app.template.patches.excel.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.returnEarly
 import app.template.patches.shared.clearBody
@@ -76,6 +77,23 @@ private val excelUnlock365FamilyPatch = bytecodePatch {
         // Skip storage quota UI (NPE guard when no real identity).
         storageQuotaCheckFingerprint.method.apply {
             clearBody(); addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+        }
+
+        // b$n.run() builds the account-switcher dialog. It calls GetActiveIdentity()
+        // which returns null when no account is present, then immediately calls
+        // getMetaData() on the result without a null check → NPE crash on main thread.
+        // Fix: insert a null guard after move-result-object v12 (GetActiveIdentity result).
+        // If null, return-void — no dialog shown, no crash.
+        accountSwitcherRunnableFingerprint.apply {
+            val getActiveIdentityIdx = instructionMatches[1].index
+            // move-result-object v12 is always immediately after invoke-virtual GetActiveIdentity
+            val moveResultIdx = getActiveIdentityIdx + 1
+            method.addInstructionsWithLabels(moveResultIdx + 1, """
+                if-nez v12, :has_identity
+                return-void
+                :has_identity
+                nop
+            """)
         }
 
     }
