@@ -1,3 +1,13 @@
+## [1.20.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.1...v1.20.0-dev.2) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* remove telegram ([643e314](https://github.com/rushiranpise/morphe-patches/commit/643e314561adaebdfeed9f5435c1ca50830ccecb))
+
+### ✨ New Features
+
+* add teams ([8a3c4f1](https://github.com/rushiranpise/morphe-patches/commit/8a3c4f133bbf809b894e9ed204e4b412946e9c58))
+
 ## [1.20.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0...v1.20.0-dev.1) (2026-08-20)
 
 ### 🐛 Bug Fixes
