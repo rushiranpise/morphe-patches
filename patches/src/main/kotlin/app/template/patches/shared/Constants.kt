@@ -591,6 +591,16 @@ val FACEBOOK_COMPATIBILITY = Compatibility(
             AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
     )
 
+val PORTDROID_COMPATIBILITY = Compatibility(
+        name = "PortDroid",
+        packageName = "com.stealthcopter.portdroid",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "1.0.7", versionCode = 113)
+        )
+    )
+
 val FEEM_COMPATIBILITY = Compatibility(
         name = "Feem",
         packageName = "com.feeperfect.airsend.android",
