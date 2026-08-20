@@ -85,10 +85,11 @@ internal val checkAndStartSSOIfRequiredFingerprint = Fingerprint(
  * Stable: non-obfuscated public API method.
  * Note: guard string changed to "Sign-in name should not be null or empty." in 16.0.20326.
  */
+// No strings filter — guard string changes between builds. definingClass + name + params
+// are fully non-obfuscated and uniquely identify this method without any string anchor.
 internal val getIdentityForSignInNameFingerprint = Fingerprint(
     definingClass = "Lcom/microsoft/office/identity/IdentityLiblet;",
     name = "GetIdentityForSignInName",
     returnType = "Lcom/microsoft/office/identity/Identity;",
     parameters = listOf("Ljava/lang/String;", "Z", "Z"),
-    strings = listOf("Sign-in name should not be null or empty."),
 )

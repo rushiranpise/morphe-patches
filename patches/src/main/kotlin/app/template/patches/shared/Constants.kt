@@ -579,7 +579,7 @@ val EXCEL_COMPATIBILITY = Compatibility(
         name = "Excel",
         packageName = "com.microsoft.office.excel",
         appIconColor = 0x1B5E20,
-        targets = listOf(AppTarget(version = "16.0.20228.20090", versionCode = 16843309))
+        targets = listOf(AppTarget(version = "16.0.20326.20034", versionCode = 200292347))
     )
 
 val FACEBOOK_COMPATIBILITY = Compatibility(

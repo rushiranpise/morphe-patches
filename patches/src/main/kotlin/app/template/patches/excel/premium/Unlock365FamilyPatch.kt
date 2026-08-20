@@ -2,6 +2,7 @@ package app.template.patches.excel.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
+import app.template.patches.shared.returnEarly
 import app.template.patches.shared.clearBody
 
 private val excelUnlock365FamilyPatch = bytecodePatch {
@@ -46,10 +47,8 @@ private val excelUnlock365FamilyPatch = bytecodePatch {
             """)
         }
 
-        // Boot-time paywall gate — return true to skip LaunchSubscriptionPurchaseFlow.
-        subscriptionStatusYFingerprint.method.apply {
-            clearBody(); addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-        }
+        // Boot-time paywall dispatcher — m(Context)V. return-void no-ops entire dispatch.
+        subscriptionStatusYFingerprint.method.returnEarly()
 
         // Suppress upsell feature gates.
         isPremiumPlanUpsellEnabledFingerprint.method.apply {
@@ -79,10 +78,6 @@ private val excelUnlock365FamilyPatch = bytecodePatch {
             clearBody(); addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
-        // Skip account-switcher dialog (NPE guard when GetActiveIdentity()=null).
-        accountSwitcherRunnableFingerprint.method.apply {
-            clearBody(); addInstructions(0, "return-void")
-        }
     }
 }
 
