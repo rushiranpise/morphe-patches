@@ -18,7 +18,7 @@ val telegramPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Unlocks Telegram Premium features for the current account.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

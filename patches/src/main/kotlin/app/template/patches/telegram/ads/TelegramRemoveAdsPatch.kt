@@ -18,7 +18,7 @@ val telegramRemoveAdsPatch = bytecodePatch(
     name = "Remove ads",
     description = "Removes sponsored messages and video ads from all chats and channels.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

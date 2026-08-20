@@ -18,7 +18,7 @@ val telegramDisableAutoUpdatePatch = bytecodePatch(
     description = "Disables automatic app update checks, the blocking update screen, " +
         "and the proxy sponsor channel insertion.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {
