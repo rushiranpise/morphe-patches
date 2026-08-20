@@ -1008,7 +1008,7 @@ val MONET_COMPATIBILITY = Compatibility(
         packageName = "com.klevico.monet",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF6D00,
-        targets = listOf(AppTarget(version = "1.0.73", versionCode = 107))
+        targets = listOf(AppTarget(version = "1.0.76", versionCode = 110))
     )
 
 val MOVIEBOXTV_COMPATIBILITY = Compatibility(
