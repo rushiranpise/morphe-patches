@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.2** (`dev`) · **360 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.3** (`dev`) · **360 patches** across **243 apps** · back to [README](README.md)
 
 ---
 
@@ -2119,7 +2119,7 @@
 | Patch | Details |
 |---|---|
 | **Privacy Enhancements** | Suppresses outbound read receipts and prevents admin quiet-hours policies from overriding your presence status. |
-| **Unlock Teams Premium &amp; Copilot** | Unlocks Teams Premium features and Microsoft 365 Copilot by overriding the SkypeToken license adapter and all downstream license check methods. |
+| **Unlock Teams** | Unlocks Teams Premium features. |
 
 ---
 

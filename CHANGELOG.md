@@ -1,3 +1,9 @@
+## [1.20.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.2...v1.20.0-dev.3) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* teams description ([41a23e8](https://github.com/rushiranpise/morphe-patches/commit/41a23e882ff6e484996052c189b6f2388efd05ad))
+
 ## [1.20.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.1...v1.20.0-dev.2) (2026-08-20)
 
 ### 🐛 Bug Fixes
