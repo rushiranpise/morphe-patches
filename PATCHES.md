@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.4** (`dev`) · **359 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.5** (`dev`) · **367 patches** across **244 apps** · back to [README](README.md)
 
 ---
 
@@ -1263,7 +1263,7 @@
 
 ## Monet (com.klevico.monet)
 
-**Supported versions:** `1.0.73`
+**Supported versions:** `1.0.76`
 
 | Patch | Details |
 |---|---|
@@ -1483,11 +1483,11 @@
 
 ## Permission Pilot (eu.darken.myperm)
 
-**Supported versions:** `2.2.0-rc0`
+**Supported versions:** `2.2.2-rc0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks all Pro features in app. |
+| **Unlock Pro** | Unlocks Permission Pilot Pro by forcing isPro=true in the billing Info object. |
 
 ---
 
@@ -1508,6 +1508,18 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |
+
+---
+
+## PicsArt (com.picsart.studio)
+
+**Supported versions:** `30.5.5`
+
+| Patch | Details |
+|---|---|
+| **Remove Ads** | Disables PicsArt banner and interstitial ads by forcing the central AdsManager gate to ads-off. |
+| **Remove Watermark** | Removes the PicsArt watermark from exported photos and videos. |
+| **Unlock Premium** | Unlocks PicsArt premium locally: forces the subscription state to subscribed at the data-class root so tools/effects unlock and upgrade prompts are skipped. |
 
 ---
 
@@ -2204,11 +2216,16 @@
 
 | Patch | Details |
 |---|---|
-| **Disable Login Requirement** | Removes mandatory login gate so the app can be browsed without an account. |
+| **Disable Login Requirement** | Removes TikTok Lite mandatory login gate so the app can be browsed without an account. |
+| **Disable Telemetry** | Disables ByteDance analytics by blocking LiteApplogServiceImpl, AppLogNetworkClient, and startup tracker init tasks. |
+| **Downloads** | Enables downloading all videos |
 | **Enable Duet and Stitch** | Unlocks Duet and Stitch on all videos regardless of creator permission settings. |
-| **Feed Filter** | Removes ads, sponsored content, and commerce posts from the home feed. |
-| **Hide Live Cards** | Removes live stream cards from the home feed. |
+| **Feed Filter** | Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed. |
+| **Hide CAPTCHA Popups** | Suppresses browsing CAPTCHA dialogs from SecApiImpl. |
+| **Hide Live Cards** | Removes live stream cards from the TikTok Lite home feed. |
 | **Remove Ads** | Removes feed ads, splash ads, and soft ads from TikTok Lite. |
+| **Sanitize Share URLs** | Removes tracking parameters (utm_campaign, share_link_id) from shared links. |
+| **Stop Video Looping** | Prevents videos from looping automatically after playback ends. |
 
 ---
 
