@@ -859,14 +859,6 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "9.9", versionCode = 2112))
     )
 
-val TEAMS_COMPATIBILITY = Compatibility(
-        name = "Teams",
-        packageName = "com.microsoft.teams",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x6264A7,
-        targets = listOf(AppTarget(version = "1416/1.0.0.2026152302", versionCode = 2026152325))
-    )
-
 val MACRODROID_COMPATIBILITY = Compatibility(
         name = "MacroDroid",
         packageName = "com.arlosoft.macrodroid",
@@ -1658,6 +1650,14 @@ val TAGTRACKER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "1.3.2", versionCode = 19))
+    )
+
+val TEAMS_COMPATIBILITY = Compatibility(
+        name = "Teams",
+        packageName = "com.microsoft.teams",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x6264A7,
+        targets = listOf(AppTarget(version = "1416/1.0.0.2026152302", versionCode = 2026152325))
     )
 
 val TELEGRAM_COMPATIBILITY = Compatibility(
