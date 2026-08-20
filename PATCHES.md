@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.3** (`dev`) · **360 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.4** (`dev`) · **359 patches** across **243 apps** · back to [README](README.md)
 
 ---
 
@@ -730,7 +730,6 @@
 
 | Patch | Details |
 |---|---|
-| **Disable Tracking** | Disables UMeng analytics and crash reporting in ES File Explorer. |
 | **Unlock VIP Lifetime** | Unlocks VIP lifetime features in ES File Explorer. |
 
 ---

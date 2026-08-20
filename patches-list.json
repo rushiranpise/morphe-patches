@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0-dev.3",
+  "version": "1.20.0-dev.4",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -798,37 +798,6 @@
                 "ARMEABI_V7A": 2632041,
                 "X86_64": 2632041,
                 "X86": 2632041
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Disable Tracking",
-      "description": "Disables UMeng analytics and crash reporting in ES File Explorer.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.estrongs.android.pop",
-          "name": "ES File Explorer",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1976D2",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "4.4.3.5",
-              "versionCodes": {
-                "ARM64_V8A": 10351,
-                "ARMEABI_V7A": 10351,
-                "X86_64": 10351,
-                "X86": 10351
               },
               "isExperimental": false,
               "minSdk": null,
