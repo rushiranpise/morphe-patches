@@ -7,7 +7,7 @@ import app.template.patches.shared.Constants.TIKTOK_LITE_COMPATIBILITY
 @Suppress("unused")
 val tiktokLiteDisableLoginPatch = bytecodePatch(
     name = "Disable Login Requirement",
-    description = "Removes mandatory login gate so the app can be browsed without an account.",
+    description = "Removes TikTok Lite mandatory login gate so the app can be browsed without an account.",
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)
 
