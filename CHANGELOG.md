@@ -1,3 +1,15 @@
+## [1.20.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0...v1.20.0-dev.1) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* remove plank ([6514b91](https://github.com/rushiranpise/morphe-patches/commit/6514b91bdf3529a727966a78d24f952a4f937f55))
+* word & excel ([cbab4b2](https://github.com/rushiranpise/morphe-patches/commit/cbab4b2ae87389d9e61b200d673b2f0ae7c41e3a))
+* word/excel ([aee00ce](https://github.com/rushiranpise/morphe-patches/commit/aee00ce8f9b96cb1fafbf45a9667744c72f07895))
+
+### ✨ New Features
+
+* add portdroid ([00a0455](https://github.com/rushiranpise/morphe-patches/commit/00a0455841e668f16009a276d31446736669fddd))
+
 ## [1.19.0](https://github.com/rushiranpise/morphe-patches/compare/v1.18.3...v1.19.0) (2026-08-19)
 
 ### 🐛 Bug Fixes

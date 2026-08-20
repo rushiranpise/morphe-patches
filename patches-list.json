@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.0",
+  "version": "1.20.0-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -4833,12 +4833,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.0.20228.20090",
+              "version": "16.0.20326.20034",
               "versionCodes": {
-                "ARM64_V8A": 16843309,
-                "ARMEABI_V7A": 16843309,
-                "X86_64": 16843309,
-                "X86": 16843309
+                "ARM64_V8A": 200292347,
+                "ARMEABI_V7A": 200292347,
+                "X86_64": 200292347,
+                "X86": 200292347
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9735,6 +9735,37 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks PortDroid Pro features by bypassing the Google Play Billing check, the SharedPreferences pro gate, and the signature tamper check.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.stealthcopter.portdroid",
+          "name": "PortDroid",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.7",
+              "versionCodes": {
+                "ARM64_V8A": 113,
+                "ARMEABI_V7A": 113,
+                "X86_64": 113,
+                "X86": 113
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Removes ads and unlocks the no-ads subscription in RAR.",
       "default": true,
       "dependencies": [],
@@ -10928,28 +10959,6 @@
         "BytecodePatch"
       ],
       "compatiblePackages": [
-        {
-          "packageName": "fat.burnning.plank.fitness.loseweight",
-          "name": "Plank Workout",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#FF5722",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.4.3",
-              "versionCodes": {
-                "ARM64_V8A": 51,
-                "ARMEABI_V7A": 51,
-                "X86_64": 51,
-                "X86": 51
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
         {
           "packageName": "loseweightapp.loseweightappforwomen.womenworkoutathome",
           "name": "Lose Weight App for Women",
