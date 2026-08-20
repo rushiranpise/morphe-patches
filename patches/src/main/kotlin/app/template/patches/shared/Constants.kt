@@ -859,6 +859,14 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "9.9", versionCode = 2112))
     )
 
+val TEAMS_COMPATIBILITY = Compatibility(
+        name = "Teams",
+        packageName = "com.microsoft.teams",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x6264A7,
+        targets = listOf(AppTarget(version = "1416/1.0.0.2026152302", versionCode = 2026152325))
+    )
+
 val MACRODROID_COMPATIBILITY = Compatibility(
         name = "MacroDroid",
         packageName = "com.arlosoft.macrodroid",
