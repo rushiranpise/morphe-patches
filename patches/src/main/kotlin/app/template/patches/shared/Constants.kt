@@ -917,6 +917,14 @@ val MEOW_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.9.9", versionCode = 79))
     )
 
+val PICSART_COMPATIBILITY = Compatibility(
+        name = "PicsArt",
+        packageName = "com.picsart.studio",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE91E63,
+        targets = listOf(AppTarget(version = "30.5.5", versionCode = 993830505))
+    )
+
 val MESSENGER_COMPATIBILITY = Compatibility(
         name = "Messenger",
         packageName = "com.facebook.orca",
