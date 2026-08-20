@@ -1020,12 +1020,14 @@ val MOVIEBOXTV_COMPATIBILITY = Compatibility(
         )
     )
 
-val MYPERM_COMPATIBILITY = Compatibility(
+val COMPATIBILITY_MYPERM = Compatibility(
         name = "Permission Pilot",
         packageName = "eu.darken.myperm",
-        appIconColor = 0x4CAF50,
         apkFileType = ApkFileType.APKM,
-        targets = listOf(AppTarget(version = "2.2.0-rc0", versionCode = 20200000))
+        appIconColor = 0x4CAF50,
+        targets = listOf(
+            AppTarget(version = "2.2.2-rc0", versionCode = 20202000)
+        )
     )
 
 val MYRADAR_COMPATIBILITY = Compatibility(
