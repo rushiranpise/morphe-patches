@@ -13,7 +13,7 @@ val telegramDownloadBoostPatch = bytecodePatch(
     name = "Download speed boost",
     description = "Increases download chunk size to 512 KB and max concurrent requests to 8.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

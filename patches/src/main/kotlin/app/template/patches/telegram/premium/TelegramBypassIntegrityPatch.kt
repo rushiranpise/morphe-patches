@@ -40,7 +40,7 @@ val telegramBypassIntegrityPatch = bytecodePatch(
     name = "Bypass integrity check",
     description = "Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     dependsOn(readPackageNamePatch)

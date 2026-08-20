@@ -13,7 +13,7 @@ val telegramHideTypingPatch = bytecodePatch(
     name = "Hide typing indicator",
     description = "Hides your typing indicator from other users in all chats.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {
