@@ -917,14 +917,6 @@ val MEOW_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.9.9", versionCode = 79))
     )
 
-val PICSART_COMPATIBILITY = Compatibility(
-        name = "PicsArt",
-        packageName = "com.picsart.studio",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0xE91E63,
-        targets = listOf(AppTarget(version = "30.5.5", versionCode = 993830505))
-    )
-
 val MESSENGER_COMPATIBILITY = Compatibility(
         name = "Messenger",
         packageName = "com.facebook.orca",
@@ -1017,16 +1009,6 @@ val MOVIEBOXTV_COMPATIBILITY = Compatibility(
         appIconColor = 0xE53935,
         targets = listOf(
             AppTarget(version = "1.1.6.0723.03", versionCode = 50040011),
-        )
-    )
-
-val COMPATIBILITY_MYPERM = Compatibility(
-        name = "Permission Pilot",
-        packageName = "eu.darken.myperm",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x4CAF50,
-        targets = listOf(
-            AppTarget(version = "2.2.2-rc0", versionCode = 20202000)
         )
     )
 
@@ -1191,6 +1173,14 @@ val PIALYTIC_COMPATIBILITY = Compatibility(
         packageName = "verbosus.pialytic",
         appIconColor = 0x2196F3,
         targets = listOf(AppTarget(version = "1.3.0", versionCode = 21))
+    )
+
+val PICSART_COMPATIBILITY = Compatibility(
+        name = "PicsArt",
+        packageName = "com.picsart.studio",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xE91E63,
+        targets = listOf(AppTarget(version = "30.5.5", versionCode = 993830505))
     )
 
 val PICTUREMUSHROOM_COMPATIBILITY = Compatibility(
@@ -1968,6 +1958,16 @@ val YATRI_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6B00,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.5", versionCode = 1003))
+    )
+
+val COMPATIBILITY_MYPERM = Compatibility(
+        name = "Permission Pilot",
+        packageName = "eu.darken.myperm",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x4CAF50,
+        targets = listOf(
+            AppTarget(version = "2.2.2-rc0", versionCode = 20202000)
+        )
     )
 
 val LEAP_FITNESS_ALL = arrayOf(
