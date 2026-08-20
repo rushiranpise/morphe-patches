@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.19.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.19.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**374 patches** across **243 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.20.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**374 patches** across **243 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -168,7 +168,7 @@ Bug reports must include:
 | 69 | [**Duolingo**](PATCHES.md#duolingo-comduolingo) | 2 | `6.90.3` | [`com.duolingo`](https://play.google.com/store/apps/details?id=com.duolingo) |
 | 70 | [**Electron**](PATCHES.md#electron-commahersafadielectron) | 1 | `3.0.3` | [`com.mahersafadi.electron`](https://play.google.com/store/apps/details?id=com.mahersafadi.electron) |
 | 71 | [**ES File Explorer**](PATCHES.md#es-file-explorer-comestrongsandroidpop) | 2 | `4.4.3.5` | [`com.estrongs.android.pop`](https://play.google.com/store/apps/details?id=com.estrongs.android.pop) |
-| 72 | [**Excel**](PATCHES.md#excel-commicrosoftofficeexcel) | 1 | `16.0.20228.20090` | [`com.microsoft.office.excel`](https://play.google.com/store/apps/details?id=com.microsoft.office.excel) |
+| 72 | [**Excel**](PATCHES.md#excel-commicrosoftofficeexcel) | 1 | `16.0.20326.20034` | [`com.microsoft.office.excel`](https://play.google.com/store/apps/details?id=com.microsoft.office.excel) |
 | 73 | [**Feem**](PATCHES.md#feem-comfeeperfectairsendandroid) | 1 | `6.10.0` | [`com.feeperfect.airsend.android`](https://play.google.com/store/apps/details?id=com.feeperfect.airsend.android) |
 | 74 | [**File Manager**](PATCHES.md#file-manager-comalphainventorfilemanager) | 1 | `3.8.2` | [`com.alphainventor.filemanager`](https://play.google.com/store/apps/details?id=com.alphainventor.filemanager) |
 | 75 | [**Fitbod**](PATCHES.md#fitbod-comfitbodfitbod) | 1 | `8.28.0-2` | [`com.fitbod.fitbod`](https://play.google.com/store/apps/details?id=com.fitbod.fitbod) |
@@ -248,23 +248,23 @@ Bug reports must include:
 | 149 | [**PictureThis**](PATCHES.md#picturethis-cndanatechxingseus) | 1 | `5.33.1` | [`cn.danatech.xingseus`](https://play.google.com/store/apps/details?id=cn.danatech.xingseus) |
 | 150 | [**pillo**](PATCHES.md#pillo-xyzrtrvrpillo) | 1 | `0.6.18` | [`xyz.rtrvr.pillo`](https://play.google.com/store/apps/details?id=xyz.rtrvr.pillo) |
 | 151 | [**Pixel Habit Tracker**](PATCHES.md#pixel-habit-tracker-compixelalpixelhabittracker) | 1 | `2.3.0` | [`com.pixel.al.pixelhabittracker`](https://play.google.com/store/apps/details?id=com.pixel.al.pixelhabittracker) |
-| 152 | [**Plank Workout**](PATCHES.md#plank-workout-fatburnningplankfitnessloseweight) | 1 | `1.4.3` | [`fat.burnning.plank.fitness.loseweight`](https://play.google.com/store/apps/details?id=fat.burnning.plank.fitness.loseweight) |
-| 153 | [**PLAYit**](PATCHES.md#playit-complayitvideoplayer) | 1 | `2.7.50.12` | [`com.playit.videoplayer`](https://play.google.com/store/apps/details?id=com.playit.videoplayer) |
-| 154 | [**Pocket Bard**](PATCHES.md#pocket-bard-commojofiltermediallcrpgsoundsystem) | 1 | `3.1.16` | [`com.MojoFilterMediaLLC.RPGSoundSystem`](https://play.google.com/store/apps/details?id=com.MojoFilterMediaLLC.RPGSoundSystem) |
-| 155 | [**Pocket Casts**](PATCHES.md#pocket-casts-aucomshiftyjellypocketcasts) | 1 | `8.16` | [`au.com.shiftyjelly.pocketcasts`](https://play.google.com/store/apps/details?id=au.com.shiftyjelly.pocketcasts) |
-| 156 | [**Pocket Prep**](PATCHES.md#pocket-prep-compocketprepandroidpocketprep) | 1 | `3.28.1` | [`com.pocketprep.android.pocketprep`](https://play.google.com/store/apps/details?id=com.pocketprep.android.pocketprep) |
-| 157 | [**Pocket Prep Behavioral Health**](PATCHES.md#pocket-prep-behavioral-health-compocketprepandroidbehavioralhealth) | 1 | `3.28.1` | [`com.pocketprep.android.behavioralhealth`](https://play.google.com/store/apps/details?id=com.pocketprep.android.behavioralhealth) |
-| 158 | [**Pocket Prep EMS**](PATCHES.md#pocket-prep-ems-compocketprepandroidems) | 1 | `3.28.1` | [`com.pocketprep.android.ems`](https://play.google.com/store/apps/details?id=com.pocketprep.android.ems) |
-| 159 | [**Pocket Prep Essentials**](PATCHES.md#pocket-prep-essentials-compocketprepandroidessentials) | 1 | `3.28.1` | [`com.pocketprep.android.essentials`](https://play.google.com/store/apps/details?id=com.pocketprep.android.essentials) |
-| 160 | [**Pocket Prep Fitness**](PATCHES.md#pocket-prep-fitness-compocketprepandroidfitness) | 1 | `3.28.1` | [`com.pocketprep.android.fitness`](https://play.google.com/store/apps/details?id=com.pocketprep.android.fitness) |
-| 161 | [**Pocket Prep IT Cybersecurity**](PATCHES.md#pocket-prep-it-cybersecurity-compocketprepandroiditcybersecurity) | 1 | `3.28.1` | [`com.pocketprep.android.itcybersecurity`](https://play.google.com/store/apps/details?id=com.pocketprep.android.itcybersecurity) |
-| 162 | [**Pocket Prep Medical**](PATCHES.md#pocket-prep-medical-compocketprepandroidmedical) | 1 | `3.28.1` | [`com.pocketprep.android.medical`](https://play.google.com/store/apps/details?id=com.pocketprep.android.medical) |
-| 163 | [**Pocket Prep Nursing**](PATCHES.md#pocket-prep-nursing-compocketprepandroidnursing) | 1 | `3.28.1` | [`com.pocketprep.android.nursing`](https://play.google.com/store/apps/details?id=com.pocketprep.android.nursing) |
-| 164 | [**Pocket Prep Nursing School**](PATCHES.md#pocket-prep-nursing-school-compocketprepandroidnursingschool) | 1 | `3.28.1` | [`com.pocketprep.android.nursingschool`](https://play.google.com/store/apps/details?id=com.pocketprep.android.nursingschool) |
-| 165 | [**Pocket Prep Professional**](PATCHES.md#pocket-prep-professional-compocketprepandroidprofessional) | 1 | `3.28.1` | [`com.pocketprep.android.professional`](https://play.google.com/store/apps/details?id=com.pocketprep.android.professional) |
-| 166 | [**Pocket Prep Skilled Trades**](PATCHES.md#pocket-prep-skilled-trades-compocketprepandroidautomotive) | 1 | `3.28.1` | [`com.pocketprep.android.automotive`](https://play.google.com/store/apps/details?id=com.pocketprep.android.automotive) |
-| 167 | [**PodsLink**](PATCHES.md#podslink-netpodslink) | 1 | `1.3.9` | [`net.podslink`](https://play.google.com/store/apps/details?id=net.podslink) |
-| 168 | [**Police Scanner**](PATCHES.md#police-scanner-policescannerradiobroadcastifycitizen) | 1 | `1.29.0-260420093` | [`police.scanner.radio.broadcastify.citizen`](https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen) |
+| 152 | [**PLAYit**](PATCHES.md#playit-complayitvideoplayer) | 1 | `2.7.50.12` | [`com.playit.videoplayer`](https://play.google.com/store/apps/details?id=com.playit.videoplayer) |
+| 153 | [**Pocket Bard**](PATCHES.md#pocket-bard-commojofiltermediallcrpgsoundsystem) | 1 | `3.1.16` | [`com.MojoFilterMediaLLC.RPGSoundSystem`](https://play.google.com/store/apps/details?id=com.MojoFilterMediaLLC.RPGSoundSystem) |
+| 154 | [**Pocket Casts**](PATCHES.md#pocket-casts-aucomshiftyjellypocketcasts) | 1 | `8.16` | [`au.com.shiftyjelly.pocketcasts`](https://play.google.com/store/apps/details?id=au.com.shiftyjelly.pocketcasts) |
+| 155 | [**Pocket Prep**](PATCHES.md#pocket-prep-compocketprepandroidpocketprep) | 1 | `3.28.1` | [`com.pocketprep.android.pocketprep`](https://play.google.com/store/apps/details?id=com.pocketprep.android.pocketprep) |
+| 156 | [**Pocket Prep Behavioral Health**](PATCHES.md#pocket-prep-behavioral-health-compocketprepandroidbehavioralhealth) | 1 | `3.28.1` | [`com.pocketprep.android.behavioralhealth`](https://play.google.com/store/apps/details?id=com.pocketprep.android.behavioralhealth) |
+| 157 | [**Pocket Prep EMS**](PATCHES.md#pocket-prep-ems-compocketprepandroidems) | 1 | `3.28.1` | [`com.pocketprep.android.ems`](https://play.google.com/store/apps/details?id=com.pocketprep.android.ems) |
+| 158 | [**Pocket Prep Essentials**](PATCHES.md#pocket-prep-essentials-compocketprepandroidessentials) | 1 | `3.28.1` | [`com.pocketprep.android.essentials`](https://play.google.com/store/apps/details?id=com.pocketprep.android.essentials) |
+| 159 | [**Pocket Prep Fitness**](PATCHES.md#pocket-prep-fitness-compocketprepandroidfitness) | 1 | `3.28.1` | [`com.pocketprep.android.fitness`](https://play.google.com/store/apps/details?id=com.pocketprep.android.fitness) |
+| 160 | [**Pocket Prep IT Cybersecurity**](PATCHES.md#pocket-prep-it-cybersecurity-compocketprepandroiditcybersecurity) | 1 | `3.28.1` | [`com.pocketprep.android.itcybersecurity`](https://play.google.com/store/apps/details?id=com.pocketprep.android.itcybersecurity) |
+| 161 | [**Pocket Prep Medical**](PATCHES.md#pocket-prep-medical-compocketprepandroidmedical) | 1 | `3.28.1` | [`com.pocketprep.android.medical`](https://play.google.com/store/apps/details?id=com.pocketprep.android.medical) |
+| 162 | [**Pocket Prep Nursing**](PATCHES.md#pocket-prep-nursing-compocketprepandroidnursing) | 1 | `3.28.1` | [`com.pocketprep.android.nursing`](https://play.google.com/store/apps/details?id=com.pocketprep.android.nursing) |
+| 163 | [**Pocket Prep Nursing School**](PATCHES.md#pocket-prep-nursing-school-compocketprepandroidnursingschool) | 1 | `3.28.1` | [`com.pocketprep.android.nursingschool`](https://play.google.com/store/apps/details?id=com.pocketprep.android.nursingschool) |
+| 164 | [**Pocket Prep Professional**](PATCHES.md#pocket-prep-professional-compocketprepandroidprofessional) | 1 | `3.28.1` | [`com.pocketprep.android.professional`](https://play.google.com/store/apps/details?id=com.pocketprep.android.professional) |
+| 165 | [**Pocket Prep Skilled Trades**](PATCHES.md#pocket-prep-skilled-trades-compocketprepandroidautomotive) | 1 | `3.28.1` | [`com.pocketprep.android.automotive`](https://play.google.com/store/apps/details?id=com.pocketprep.android.automotive) |
+| 166 | [**PodsLink**](PATCHES.md#podslink-netpodslink) | 1 | `1.3.9` | [`net.podslink`](https://play.google.com/store/apps/details?id=net.podslink) |
+| 167 | [**Police Scanner**](PATCHES.md#police-scanner-policescannerradiobroadcastifycitizen) | 1 | `1.29.0-260420093` | [`police.scanner.radio.broadcastify.citizen`](https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen) |
+| 168 | [**PortDroid**](PATCHES.md#portdroid-comstealthcopterportdroid) | 1 | `1.0.7` | [`com.stealthcopter.portdroid`](https://play.google.com/store/apps/details?id=com.stealthcopter.portdroid) |
 | 169 | [**Proton Mail**](PATCHES.md#proton-mail-chprotonmailandroid) | 2 | `7.11.0` | [`ch.protonmail.android`](https://play.google.com/store/apps/details?id=ch.protonmail.android) |
 | 170 | [**Proton Pass**](PATCHES.md#proton-pass-protonandroidpass) | 1 | `1.40.3` | [`proton.android.pass`](https://play.google.com/store/apps/details?id=proton.android.pass) |
 | 171 | [**Proton VPN**](PATCHES.md#proton-vpn-chprotonvpnandroid) | 1 | `5.19.78.0` | [`ch.protonvpn.android`](https://play.google.com/store/apps/details?id=ch.protonvpn.android) |

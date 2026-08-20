@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.19.0** (`main`) · **374 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.1** (`dev`) · **374 patches** across **243 apps** · back to [README](README.md)
 
 ---
 
@@ -737,7 +737,7 @@
 
 ## Excel (com.microsoft.office.excel)
 
-**Supported versions:** `16.0.20228.20090`
+**Supported versions:** `16.0.20326.20034`
 
 | Patch | Details |
 |---|---|
@@ -1552,16 +1552,6 @@
 
 ---
 
-## Plank Workout (fat.burnning.plank.fitness.loseweight)
-
-**Supported versions:** `1.4.3`
-
-| Patch | Details |
-|---|---|
-| **Unlock premium** | Unlocks all premium features across all Leap Fitness Group apps by overriding the IapSp isFree checks. |
-
----
-
 ## PLAYit (com.playit.videoplayer)
 
 **Supported versions:** `2.7.50.12`
@@ -1719,6 +1709,16 @@
 | Patch | Details |
 |---|---|
 | **Unlock Pro** | Unlocks premium features in app. |
+
+---
+
+## PortDroid (com.stealthcopter.portdroid)
+
+**Supported versions:** `1.0.7`
+
+| Patch | Details |
+|---|---|
+| **Unlock Pro** | Unlocks PortDroid Pro features by bypassing the Google Play Billing check, the SharedPreferences pro gate, and the signature tamper check. |
 
 ---
 
