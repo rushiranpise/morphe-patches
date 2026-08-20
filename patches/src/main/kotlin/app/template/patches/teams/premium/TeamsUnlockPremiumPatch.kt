@@ -8,9 +8,8 @@ import app.template.patches.teams.integrity.teamsIntegrityBypassDependency
 
 @Suppress("unused")
 val teamsUnlockPremiumPatch = bytecodePatch(
-    name = "Unlock Teams Premium & Copilot",
-    description = "Unlocks Teams Premium features and Microsoft 365 Copilot by overriding " +
-        "the SkypeToken license adapter and all downstream license check methods.",
+    name = "Unlock Teams",
+    description = "Unlocks Teams Premium features.",
     default = true,
 ) {
     compatibleWith(TEAMS_COMPATIBILITY)
