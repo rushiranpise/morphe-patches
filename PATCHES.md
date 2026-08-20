@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.1** (`dev`) · **374 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.2** (`dev`) · **360 patches** across **243 apps** · back to [README](README.md)
 
 ---
 
@@ -2112,26 +2112,14 @@
 
 ---
 
-## Telegram (org.telegram.messenger)
+## Teams (com.microsoft.teams)
 
-**Supported versions:** `12.9.2`
+**Supported versions:** `1416/1.0.0.2026152302`
 
 | Patch | Details |
 |---|---|
-| **Anti-delete messages** | Prevents messages deleted by other users from being removed locally. |
-| **Anti-disappearing media** | Keeps view-once photos, videos and voice messages viewable indefinitely. |
-| **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
-| **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
-| **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
-| **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
-| **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
-| **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
+| **Privacy Enhancements** | Suppresses outbound read receipts and prevents admin quiet-hours policies from overriding your presence status. |
+| **Unlock Teams Premium &amp; Copilot** | Unlocks Teams Premium features and Microsoft 365 Copilot by overriding the SkypeToken license adapter and all downstream license check methods. |
 
 ---
 
@@ -2153,7 +2141,6 @@
 | **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
 | **Plus Premium** | Unlocks premium UI and suppresses premium nag dialogs. isPremiumUser returns true only for self to avoid showing premium badges on others. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
@@ -2176,7 +2163,6 @@
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
