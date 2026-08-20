@@ -886,16 +886,7 @@ val LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.4.0", versionCode = 107))
     )
 
-val LEAP_PLANK_COMPATIBILITY = Compatibility(
-        name = "Plank Workout",
-        packageName = "fat.burnning.plank.fitness.loseweight",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = "1.4.3", versionCode = 51))
-    )
-
 val LEAP_FITNESS_ALL = arrayOf(
-    LEAP_PLANK_COMPATIBILITY,
     LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY,
     LEAP_HEIGHTINCREASE_COMPATIBILITY,
     LEAP_HOMEWORKOUT_COMPATIBILITY,
