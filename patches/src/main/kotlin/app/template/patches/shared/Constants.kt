@@ -421,14 +421,6 @@ val CAST_TO_TV_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.5.3.1", versionCode = 253102))
     )
 
-val CAST_WEB_VIDEO_COMPATIBILITY = Compatibility(
-        name = "Web Video Caster",
-        packageName = "com.instantbits.cast.webvideo",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "6.0.1", versionCode = 8018))
-    )
-
 val CHARGEMETER_COMPATIBILITY = Compatibility(
         name = "Charge Meter",
         packageName = "dev.km.android.chargemeter",
@@ -467,14 +459,6 @@ val COLORNOTE_COMPATIBILITY = Compatibility(
         appIconColor = 0xF2C200,
         apkFileType = ApkFileType.APK,
         targets = listOf(AppTarget(version = "4.8.6", versionCode = 2104860))
-    )
-
-val COMPSUITE_COMPATIBILITY = Compatibility(
-        name = "WearOS Toolset",
-        packageName = "com.gs.complications.suite",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x3D5A80,
-        targets = listOf(AppTarget(version = "6.1.2", versionCode = 11619))
     )
 
 val COUNTDOWN_WIDGET_COMPATIBILITY = Compatibility(
@@ -582,25 +566,6 @@ val EXCEL_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "16.0.20326.20034", versionCode = 200292347))
     )
 
-val FACEBOOK_COMPATIBILITY = Compatibility(
-        name = "Facebook",
-        packageName = "com.facebook.katana",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0x1877F2,
-        targets = listOf(
-            AppTarget(version = "558.0.0.70.72", versionCode = 470619290))
-    )
-
-val PORTDROID_COMPATIBILITY = Compatibility(
-        name = "PortDroid",
-        packageName = "com.stealthcopter.portdroid",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x1565C0,
-        targets = listOf(
-            AppTarget(version = "1.0.7", versionCode = 113)
-        )
-    )
-
 val FEEM_COMPATIBILITY = Compatibility(
         name = "Feem",
         packageName = "com.feeperfect.airsend.android",
@@ -690,14 +655,6 @@ val GETCONTACT_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x00BCD4,
         targets = listOf(AppTarget(version = "8.15.0", versionCode = 16468)),
-    )
-
-val GLAPP_COMPATIBILITY = Compatibility(
-        name = "Glapp",
-        packageName = "io.glapp",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x6B4FBB,
-        targets = listOf(AppTarget(version = "1.1.22", versionCode = 24))
     )
 
 val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
@@ -886,14 +843,6 @@ val LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.4.0", versionCode = 107))
     )
 
-val LEAP_FITNESS_ALL = arrayOf(
-    LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY,
-    LEAP_HEIGHTINCREASE_COMPATIBILITY,
-    LEAP_HOMEWORKOUT_COMPATIBILITY,
-    LEAP_FITNESS_WOMEN_COMPATIBILITY,
-
-)
-
 val LIFE360_COMPATIBILITY = Compatibility(
         name = "Life360",
         packageName = "com.life360.android.safetymapd",
@@ -1052,24 +1001,6 @@ val MONET_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF6D00,
         targets = listOf(AppTarget(version = "1.0.73", versionCode = 107))
-    )
-
-val MOVIEBOX_COMPATIBILITY = Compatibility(
-        name = "MovieBox",
-        packageName = "com.community.oneroom",
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "3.0.16.0723.03", versionCode = 50020117),
-        )
-    )
-
-val MOVIEBOX_IN_COMPATIBILITY = Compatibility(
-        name = "MovieBox (India)",
-        packageName = "com.community.mbox.in",
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "3.0.16.0804.03", versionCode = 50020116),
-        )
     )
 
 val MOVIEBOXTV_COMPATIBILITY = Compatibility(
@@ -1410,6 +1341,16 @@ val POLICESCANNER_COMPATIBILITY = Compatibility(
         packageName = "police.scanner.radio.broadcastify.citizen",
         appIconColor = 0x0D47A1,
         targets = listOf(AppTarget(version = "1.29.0-260420093"))
+    )
+
+val PORTDROID_COMPATIBILITY = Compatibility(
+        name = "PortDroid",
+        packageName = "com.stealthcopter.portdroid",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x1565C0,
+        targets = listOf(
+            AppTarget(version = "1.0.7", versionCode = 113)
+        )
     )
 
 val PROTON_PASS_COMPATIBILITY = Compatibility(
@@ -1957,30 +1898,12 @@ val WAVVE_BOATING_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.7.7", versionCode = 3188))
     )
 
-val WAZE_COMPATIBILITY = Compatibility(
-        name = "Waze",
-        packageName = "com.waze",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x33CCFF,
-        targets = listOf(AppTarget(version = "5.22.0.3", versionCode = 1030718))
-    )
-
 val WEAWOW_COMPATIBILITY = Compatibility(
         name = "Weawow",
         packageName = "com.weawow",
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.APK,
         targets = listOf(AppTarget(version = "7.1.8", versionCode = 718))
-    )
-
-val WETTERONLINE_COMPATIBILITY = Compatibility(
-        name = "WetterOnline",
-        packageName = "de.wetteronline.wetterapp",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x0066CC,
-        targets = listOf(
-            AppTarget(version = "2026.16.1", versionCode = 2280443)
-        )
     )
 
 val WIDGET2026_COMPATIBILITY = Compatibility(
@@ -2028,4 +1951,12 @@ val YATRI_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.5", versionCode = 1003))
     )
+
+val LEAP_FITNESS_ALL = arrayOf(
+    LEAP_LOSEWEIGHT_WOMEN_COMPATIBILITY,
+    LEAP_HEIGHTINCREASE_COMPATIBILITY,
+    LEAP_HOMEWORKOUT_COMPATIBILITY,
+    LEAP_FITNESS_WOMEN_COMPATIBILITY,
+
+)
 }
