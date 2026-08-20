@@ -1,3 +1,16 @@
+## [1.20.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.4...v1.20.0-dev.5) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* build ([cc5ecc1](https://github.com/rushiranpise/morphe-patches/commit/cc5ecc1956175ce963f13dcbc999e6e4b9e4530e))
+* monet launcher ([5f75aa9](https://github.com/rushiranpise/morphe-patches/commit/5f75aa95976355b0de622fb5262a75178d8434cd)), closes [#719](https://github.com/rushiranpise/morphe-patches/issues/719)
+* myperm ([50c4c88](https://github.com/rushiranpise/morphe-patches/commit/50c4c882d2bcaeb40e18f74f219be5bbfdafbda8)), closes [#684](https://github.com/rushiranpise/morphe-patches/issues/684)
+
+### ✨ New Features
+
+* add picsart ([119e497](https://github.com/rushiranpise/morphe-patches/commit/119e4972d45724c71e5af2453aad77faf521e764))
+* tiktok lite add new patches ([3ee74de](https://github.com/rushiranpise/morphe-patches/commit/3ee74de75b3cf53598a38cd59dc482855daeef8b))
+
 ## [1.20.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.3...v1.20.0-dev.4) (2026-08-20)
 
 ### 🐛 Bug Fixes

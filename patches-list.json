@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0-dev.4",
+  "version": "1.20.0-dev.5",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -709,7 +709,7 @@
     },
     {
       "name": "Disable Login Requirement",
-      "description": "Removes mandatory login gate so the app can be browsed without an account.",
+      "description": "Removes TikTok Lite mandatory login gate so the app can be browsed without an account.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -798,6 +798,37 @@
                 "ARMEABI_V7A": 2632041,
                 "X86_64": 2632041,
                 "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable Telemetry",
+      "description": "Disables ByteDance analytics by blocking LiteApplogServiceImpl, AppLogNetworkClient, and startup tracker init tasks.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1312,6 +1343,37 @@
       "options": []
     },
     {
+      "name": "Downloads",
+      "description": "Enables downloading all videos",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Enable Android debugging",
       "description": "Sets android:debuggable=true.",
       "default": false,
@@ -1489,7 +1551,7 @@
     },
     {
       "name": "Feed Filter",
-      "description": "Removes ads, sponsored content, and commerce posts from the home feed.",
+      "description": "Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1747,6 +1809,37 @@
       "options": []
     },
     {
+      "name": "Hide CAPTCHA Popups",
+      "description": "Suppresses browsing CAPTCHA dialogs from SecApiImpl.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Communities Shelf",
       "description": "Hides the related or suggested communities shelf in subreddits.",
       "default": true,
@@ -1812,7 +1905,7 @@
     },
     {
       "name": "Hide Live Cards",
-      "description": "Removes live stream cards from the home feed.",
+      "description": "Removes live stream cards from the TikTok Lite home feed.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -2904,6 +2997,39 @@
     },
     {
       "name": "Remove Ads",
+      "description": "Disables PicsArt banner and interstitial ads by forcing the central AdsManager gate to ads-off.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
       "description": "Unlocks the Remove Ads purchase in qBitConnect by injecting IAP ownership flags into SharedPreferences before Flutter reads them.",
       "default": true,
       "dependencies": [],
@@ -3182,6 +3308,39 @@
       "options": []
     },
     {
+      "name": "Remove Watermark",
+      "description": "Removes the PicsArt watermark from exported photos and videos.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove ad manifest entries",
       "description": "Removes common ad SDK permissions, services, providers, libraries, and metadata.",
       "default": false,
@@ -3437,6 +3596,37 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Sanitize Share URLs",
+      "description": "Removes tracking parameters (utm_campaign, share_link_id) from shared links.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -4091,6 +4281,37 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Stop Video Looping",
+      "description": "Prevents videos from looping automatically after playback ends.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Unlock Ad-Free",
@@ -6712,12 +6933,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.73",
+              "version": "1.0.76",
               "versionCodes": {
-                "ARM64_V8A": 107,
-                "ARMEABI_V7A": 107,
-                "X86_64": 107,
-                "X86": 107
+                "ARM64_V8A": 110,
+                "ARMEABI_V7A": 110,
+                "X86_64": 110,
+                "X86": 110
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7049,6 +7270,39 @@
                 "ARMEABI_V7A": 21,
                 "X86_64": 21,
                 "X86": 21
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks PicsArt premium locally: forces the subscription state to subscribed at the data-class root so tools/effects unlock and upgrade prompts are skipped.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9175,7 +9429,7 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks all Pro features in app.",
+      "description": "Unlocks Permission Pilot Pro by forcing isPro=true in the billing Info object.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -9188,12 +9442,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.0-rc0",
+              "version": "2.2.2-rc0",
               "versionCodes": {
-                "ARM64_V8A": 20200000,
-                "ARMEABI_V7A": 20200000,
-                "X86_64": 20200000,
-                "X86": 20200000
+                "ARM64_V8A": 20202000,
+                "ARMEABI_V7A": 20202000,
+                "X86_64": 20202000,
+                "X86": 20202000
               },
               "isExperimental": false,
               "minSdk": null,
