@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.20.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**360 patches** across **243 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.20.0-dev.4](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.4)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**359 patches** across **243 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -167,7 +167,7 @@ Bug reports must include:
 | 68 | [**Drivvo**](PATCHES.md#drivvo-brcomctncardosoctncar) | 1 | `9.6.1` | [`br.com.ctncardoso.ctncar`](https://play.google.com/store/apps/details?id=br.com.ctncardoso.ctncar) |
 | 69 | [**Duolingo**](PATCHES.md#duolingo-comduolingo) | 2 | `6.90.3` | [`com.duolingo`](https://play.google.com/store/apps/details?id=com.duolingo) |
 | 70 | [**Electron**](PATCHES.md#electron-commahersafadielectron) | 1 | `3.0.3` | [`com.mahersafadi.electron`](https://play.google.com/store/apps/details?id=com.mahersafadi.electron) |
-| 71 | [**ES File Explorer**](PATCHES.md#es-file-explorer-comestrongsandroidpop) | 2 | `4.4.3.5` | [`com.estrongs.android.pop`](https://play.google.com/store/apps/details?id=com.estrongs.android.pop) |
+| 71 | [**ES File Explorer**](PATCHES.md#es-file-explorer-comestrongsandroidpop) | 1 | `4.4.3.5` | [`com.estrongs.android.pop`](https://play.google.com/store/apps/details?id=com.estrongs.android.pop) |
 | 72 | [**Excel**](PATCHES.md#excel-commicrosoftofficeexcel) | 1 | `16.0.20326.20034` | [`com.microsoft.office.excel`](https://play.google.com/store/apps/details?id=com.microsoft.office.excel) |
 | 73 | [**Feem**](PATCHES.md#feem-comfeeperfectairsendandroid) | 1 | `6.10.0` | [`com.feeperfect.airsend.android`](https://play.google.com/store/apps/details?id=com.feeperfect.airsend.android) |
 | 74 | [**File Manager**](PATCHES.md#file-manager-comalphainventorfilemanager) | 1 | `3.8.2` | [`com.alphainventor.filemanager`](https://play.google.com/store/apps/details?id=com.alphainventor.filemanager) |

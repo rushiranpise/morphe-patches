@@ -1,3 +1,9 @@
+## [1.20.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.3...v1.20.0-dev.4) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* esexplorer crash ([61c0b11](https://github.com/rushiranpise/morphe-patches/commit/61c0b114129ff1ec33a721ecbae0c049443f9f19)), closes [#714](https://github.com/rushiranpise/morphe-patches/issues/714)
+
 ## [1.20.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.2...v1.20.0-dev.3) (2026-08-20)
 
 ### 🐛 Bug Fixes
