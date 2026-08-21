@@ -5,7 +5,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.REDDIT_COMPATIBILITY
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Reddit — Fix RedGifs Audio
+// Fix RedGifs Audio
 //
 // RedGifs videos embedded in Reddit posts have no audio and no mute/unmute
 // control.  The root cause (confirmed via HTTP capture by issue reporter):
