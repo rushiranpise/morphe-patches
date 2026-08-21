@@ -1,3 +1,14 @@
+## [1.20.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.7...v1.20.0-dev.8) (2026-08-21)
+
+### 🐛 Bug Fixes
+
+* 1 tap ([c0f12bf](https://github.com/rushiranpise/morphe-patches/commit/c0f12bfbd4d0c9b5abca7d8c7db72fa044582ded)), closes [#711](https://github.com/rushiranpise/morphe-patches/issues/711)
+
+### ✨ New Features
+
+* add dramabox ([1b526a8](https://github.com/rushiranpise/morphe-patches/commit/1b526a8009217f9737307d3d08a760a829d8a45a))
+* add MyAnimeList ([311e3e6](https://github.com/rushiranpise/morphe-patches/commit/311e3e6a325fce6e26de81eff32748a87f439045))
+
 ## [1.20.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.6...v1.20.0-dev.7) (2026-08-21)
 
 ### ✨ New Features
