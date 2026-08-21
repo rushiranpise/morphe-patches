@@ -1126,6 +1126,16 @@ val COMPATIBILITY_ACCPRO = Compatibility(
         )
     )
 
+val MYANIMELIST_COMPATIBILITY = Compatibility(
+        name = "MyAnimeList",
+        packageName = "net.myanimelist.app",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x2E51A2,
+        targets = listOf(
+            AppTarget(version = "2.3.16", versionCode = 2031623)
+        )
+    )
+
 val OPERA_NEWS_COMPATIBILITY = Compatibility(
         name = "Opera News",
         packageName = "com.opera.app.news",
