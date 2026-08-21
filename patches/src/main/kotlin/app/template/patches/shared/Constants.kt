@@ -1020,6 +1020,16 @@ val MYRADAR_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "8.72.0", versionCode = 593))
     )
 
+val DRAMABOX_COMPATIBILITY = Compatibility(
+        name = "DramaBox",
+        packageName = "com.storymatrix.drama",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "5.8.1", versionCode = 581)
+        )
+    )
+
 val NAVITIME_COMPATIBILITY = Compatibility(
         name = "NAVITIME",
         packageName = "com.navitime.inbound.walk",
@@ -1106,12 +1116,14 @@ val OCTI_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.1.0-rc0", versionCode = 10100000))
     )
 
-val ONETAPCLEANER_COMPATIBILITY = Compatibility(
+val COMPATIBILITY_ACCPRO = Compatibility(
         name = "1Tap Cleaner",
         packageName = "com.a0soft.gphone.acc.free",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "5.21", versionCode = 240005219))
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x2196F3,
+        targets = listOf(
+            AppTarget(version = "5.22", versionCode = 240005229)
+        )
     )
 
 val OPERA_NEWS_COMPATIBILITY = Compatibility(
