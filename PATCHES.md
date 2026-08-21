@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.7** (`dev`) · **380 patches** across **245 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.8** (`dev`) · **382 patches** across **247 apps** · back to [README](README.md)
 
 ---
 
@@ -18,11 +18,11 @@
 
 ## 1Tap Cleaner (com.a0soft.gphone.acc.free)
 
-**Supported versions:** `5.21`
+**Supported versions:** `5.22`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks 1Tap Cleaner PRO features: history export, app-group filters, unlimited cache targets, and ad removal. |
+| **Unlock Pro** | Unlocks App Cache Cleaner Pro and removes ads by bypassing Pairip LVL, signature checks, self-destruct, and all upgrade dialogs. |
 
 ---
 
@@ -693,6 +693,16 @@
 
 ---
 
+## DramaBox (com.storymatrix.drama)
+
+**Supported versions:** `5.8.1`
+
+| Patch | Details |
+|---|---|
+| **Unlock Membership** | Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation. |
+
+---
+
 ## Drivvo (br.com.ctncardoso.ctncar)
 
 **Supported versions:** `9.6.1`
@@ -1298,6 +1308,16 @@
 | Patch | Details |
 |---|---|
 | **Unlock VIP** | Unlocks VIP features in MovieBox TV. |
+
+---
+
+## MyAnimeList (net.myanimelist.app)
+
+**Supported versions:** `2.3.16`
+
+| Patch | Details |
+|---|---|
+| **MyAnimeList Supporter** | Spoofs MAL supporter status to suppress all banner, list, and search ads. |
 
 ---
 
