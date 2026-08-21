@@ -1,3 +1,9 @@
+## [1.20.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.8...v1.20.0-dev.9) (2026-08-21)
+
+### ✨ New Features
+
+* reddit add new patches ([6977636](https://github.com/rushiranpise/morphe-patches/commit/6977636bf5e9c002a86c20f98801ca70e59983e9))
+
 ## [1.20.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.7...v1.20.0-dev.8) (2026-08-21)
 
 ### 🐛 Bug Fixes

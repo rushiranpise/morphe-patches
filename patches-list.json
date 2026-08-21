@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0-dev.8",
+  "version": "1.20.0-dev.9",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -2007,6 +2007,37 @@
       "options": []
     },
     {
+      "name": "Hide Answers Tab",
+      "description": "Removes the AI Answers tab from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide CAPTCHA Popups",
       "description": "Suppresses browsing CAPTCHA dialogs from SecApiImpl.",
       "default": true,
@@ -2027,6 +2058,37 @@
                 "ARMEABI_V7A": 440952,
                 "X86_64": 440952,
                 "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Chat Tab",
+      "description": "Removes the Chat button from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2091,6 +2153,37 @@
               "versionCodes": {
                 "ARMEABI_V7A": 344611781,
                 "ARM64_V8A": 344611864
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Games Tab",
+      "description": "Removes the Games tab from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2571,39 +2664,6 @@
                 "ARMEABI_V7A": 10721,
                 "X86_64": 10721,
                 "X86": 10721
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MyAnimeList Supporter",
-      "description": "Spoofs MAL supporter status to suppress all banner, list, and search ads.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "net.myanimelist.app",
-          "name": "MyAnimeList",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#2E51A2",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.3.16",
-              "versionCodes": {
-                "ARM64_V8A": 2031623,
-                "ARMEABI_V7A": 2031623,
-                "X86_64": 2031623,
-                "X86": 2031623
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3879,6 +3939,37 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Show Comment Karma",
+      "description": "Ensures comment karma is surfaced alongside link karma on the profile header.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -10455,6 +10546,39 @@
       "options": []
     },
     {
+      "name": "Unlock Supporter",
+      "description": "Spoofs MAL supporter status to suppress all banner, list, and search ads.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "net.myanimelist.app",
+          "name": "MyAnimeList",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#2E51A2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.3.16",
+              "versionCodes": {
+                "ARM64_V8A": 2031623,
+                "ARMEABI_V7A": 2031623,
+                "X86_64": 2031623,
+                "X86": 2031623
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Teams",
       "description": "Unlocks Teams Premium features.",
       "default": true,
@@ -11343,6 +11467,37 @@
                 "ARMEABI_V7A": 6426830,
                 "X86_64": 6426830,
                 "X86": 6426830
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Username Hider",
+      "description": "Replaces the displayed username with 'u/hidden' for screen-sharing privacy.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,
