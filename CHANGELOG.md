@@ -1,3 +1,9 @@
+## [1.20.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.6...v1.20.0-dev.7) (2026-08-21)
+
+### ✨ New Features
+
+* RedGifs ([7804878](https://github.com/rushiranpise/morphe-patches/commit/780487855121c5b306229f7def0a329a0408209e)), closes [#705](https://github.com/rushiranpise/morphe-patches/issues/705)
+
 ## [1.20.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.5...v1.20.0-dev.6) (2026-08-21)
 
 ### 🐛 Bug Fixes
