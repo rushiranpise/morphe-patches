@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.8** (`dev`) · **382 patches** across **247 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.9** (`dev`) · **387 patches** across **247 apps** · back to [README](README.md)
 
 ---
 
@@ -1317,7 +1317,7 @@
 
 | Patch | Details |
 |---|---|
-| **MyAnimeList Supporter** | Spoofs MAL supporter status to suppress all banner, list, and search ads. |
+| **Unlock Supporter** | Spoofs MAL supporter status to suppress all banner, list, and search ads. |
 
 ---
 
@@ -1863,14 +1863,19 @@
 | **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
 | **Fix RedGifs Audio** | Routes RedGifs embeds through the WebView iframe path so videos play with audio instead of using the silent direct-stream URL. |
 | **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
+| **Hide Answers Tab** | Removes the AI Answers tab from the bottom navigation bar. |
+| **Hide Chat Tab** | Removes the Chat button from the bottom navigation bar. |
 | **Hide Communities Shelf** | Hides the related or suggested communities shelf in subreddits. |
+| **Hide Games Tab** | Removes the Games tab from the bottom navigation bar. |
 | **Hide Navigation Buttons** | Removes the Create Post button from the bottom navigation bar. |
 | **Hide Promoted Posts** | Blanks the promoted post render method and forces promoted/ad flags to false at the model layer. |
 | **Hide Sidebar Components** | Hides About, Resources, and Reddit Pro sections from the community sidebar. |
 | **Hide Trending Shelves** | Removes Trending Today from the feed and trending searches from the search screen. |
 | **Remove Subreddit Dialogs** | Suppresses the notification re-enable prompt that appears on subreddit visits. |
 | **Sanitize Sharing Links** | Returns the raw permalink before UTM tracking parameters are appended to shared Reddit URLs. |
+| **Show Comment Karma** | Ensures comment karma is surfaced alongside link karma on the profile header. |
 | **Unlock Premium** | Unlocks Reddit Premium features and removes all ads client-side. |
+| **Username Hider** | Replaces the displayed username with 'u/hidden' for screen-sharing privacy. |
 
 ---
 
