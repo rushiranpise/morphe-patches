@@ -509,6 +509,16 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.1.06", versionCode = 35))
     )
 
+val DRAMABOX_COMPATIBILITY = Compatibility(
+        name = "DramaBox",
+        packageName = "com.storymatrix.drama",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "5.8.1", versionCode = 581)
+        )
+    )
+
 val DRIVERLICENSE_COMPATIBILITY = Compatibility(
         name = "Zutobi",
         packageName = "com.driverlicenseapp",
@@ -1012,22 +1022,22 @@ val MOVIEBOXTV_COMPATIBILITY = Compatibility(
         )
     )
 
+val MYANIMELIST_COMPATIBILITY = Compatibility(
+        name = "MyAnimeList",
+        packageName = "net.myanimelist.app",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0x2E51A2,
+        targets = listOf(
+            AppTarget(version = "2.3.16", versionCode = 2031623)
+        )
+    )
+
 val MYRADAR_COMPATIBILITY = Compatibility(
         name = "MyRadar",
         packageName = "com.acmeaom.android.myradar",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1A6FBF,
         targets = listOf(AppTarget(version = "8.72.0", versionCode = 593))
-    )
-
-val DRAMABOX_COMPATIBILITY = Compatibility(
-        name = "DramaBox",
-        packageName = "com.storymatrix.drama",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "5.8.1", versionCode = 581)
-        )
     )
 
 val NAVITIME_COMPATIBILITY = Compatibility(
@@ -1114,26 +1124,6 @@ val OCTI_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF6F00,
         targets = listOf(AppTarget(version = "1.1.0-rc0", versionCode = 10100000))
-    )
-
-val COMPATIBILITY_ACCPRO = Compatibility(
-        name = "1Tap Cleaner",
-        packageName = "com.a0soft.gphone.acc.free",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x2196F3,
-        targets = listOf(
-            AppTarget(version = "5.22", versionCode = 240005229)
-        )
-    )
-
-val MYANIMELIST_COMPATIBILITY = Compatibility(
-        name = "MyAnimeList",
-        packageName = "net.myanimelist.app",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x2E51A2,
-        targets = listOf(
-            AppTarget(version = "2.3.16", versionCode = 2031623)
-        )
     )
 
 val OPERA_NEWS_COMPATIBILITY = Compatibility(
@@ -1980,6 +1970,16 @@ val YATRI_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6B00,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.5", versionCode = 1003))
+    )
+
+val COMPATIBILITY_ACCPRO = Compatibility(
+        name = "1Tap Cleaner",
+        packageName = "com.a0soft.gphone.acc.free",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x2196F3,
+        targets = listOf(
+            AppTarget(version = "5.22", versionCode = 240005229)
+        )
     )
 
 val COMPATIBILITY_MYPERM = Compatibility(
