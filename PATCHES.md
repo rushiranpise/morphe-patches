@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.6** (`dev`) · **379 patches** across **245 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.7** (`dev`) · **380 patches** across **245 apps** · back to [README](README.md)
 
 ---
 
@@ -1841,6 +1841,7 @@
 | Patch | Details |
 |---|---|
 | **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
+| **Fix RedGifs Audio** | Routes RedGifs embeds through the WebView iframe path so videos play with audio instead of using the silent direct-stream URL. |
 | **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
 | **Hide Communities Shelf** | Hides the related or suggested communities shelf in subreddits. |
 | **Hide Navigation Buttons** | Removes the Create Post button from the bottom navigation bar. |
