@@ -8,7 +8,7 @@ import app.template.patches.shared.disablePairIPLicenseCheckPatch
 
 @Suppress("unused")
 val myAnimeListSupporterPatch = bytecodePatch(
-    name = "MyAnimeList Supporter",
+    name = "Unlock Supporter",
     description = "Spoofs MAL supporter status to suppress all banner, list, and search ads."
 ) {
     compatibleWith(MYANIMELIST_COMPATIBILITY)
