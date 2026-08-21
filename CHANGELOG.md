@@ -1,3 +1,9 @@
+## [1.20.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.5...v1.20.0-dev.6) (2026-08-21)
+
+### 🐛 Bug Fixes
+
+* telegram ([25f905a](https://github.com/rushiranpise/morphe-patches/commit/25f905a36378f262c41d2aac7fcb92363718563f))
+
 ## [1.20.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.4...v1.20.0-dev.5) (2026-08-20)
 
 ### 🐛 Bug Fixes

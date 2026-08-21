@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.5** (`dev`) · **367 patches** across **244 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.6** (`dev`) · **379 patches** across **245 apps** · back to [README](README.md)
 
 ---
 
@@ -2134,6 +2134,28 @@
 
 ---
 
+## Telegram (org.telegram.messenger)
+
+**Supported versions:** `12.9.2`
+
+| Patch | Details |
+|---|---|
+| **Anti-delete messages** | Prevents messages deleted by other users from being removed locally. |
+| **Anti-disappearing media** | Keeps view-once photos, videos and voice messages viewable indefinitely. |
+| **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
+| **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
+| **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
+| **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
+| **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
+| **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
+
+---
+
 ## Telegram Plus (org.telegram.plus)
 
 **Supported versions:** `12.9.2.0`
@@ -2145,14 +2167,13 @@
 | **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
 | **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
 | **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable analytics** | Blocks all Firebase analytics and event tracking in Telegram Plus. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable analytics** | Blocks Firebase analytics and event tracking in Telegram Plus. FirebaseApp.initializeApp() is preserved so push notifications keep working. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Plus Premium** | Unlocks premium UI and suppresses premium nag dialogs. isPremiumUser returns true only for self to avoid showing premium badges on others. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
@@ -2169,12 +2190,12 @@
 | **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
 | **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
 | **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 

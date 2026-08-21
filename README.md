@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.20.0-dev.5](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.5)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**367 patches** across **244 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.20.0-dev.6](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.6)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**379 patches** across **245 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -305,43 +305,44 @@ Bug reports must include:
 | 206 | [**Super File**](PATCHES.md#super-file-comesuperfileexplorer) | 1 | `1.5.6.3` | [`com.esuper.file.explorer`](https://play.google.com/store/apps/details?id=com.esuper.file.explorer) |
 | 207 | [**Tag Tracker**](PATCHES.md#tag-tracker-commakeevappstagtracker) | 1 | `1.3.2` | [`com.makeevapps.tagtracker`](https://play.google.com/store/apps/details?id=com.makeevapps.tagtracker) |
 | 208 | [**Teams**](PATCHES.md#teams-commicrosoftteams) | 2 | `1416/1.0.0.2026152302` | [`com.microsoft.teams`](https://play.google.com/store/apps/details?id=com.microsoft.teams) |
-| 209 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 15 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
-| 210 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 13 | `12.9.2` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
-| 211 | [**TeraBox**](PATCHES.md#terabox-comduboxdrive) | 1 | `4.22.6` | [`com.dubox.drive`](https://play.google.com/store/apps/details?id=com.dubox.drive) |
-| 212 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.146.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
-| 213 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.16.0` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
-| 214 | [**TikTok Lite**](PATCHES.md#tiktok-lite-comtiktoklitego) | 10 | `44.9.52` | [`com.tiktok.lite.go`](https://play.google.com/store/apps/details?id=com.tiktok.lite.go) |
-| 215 | [**Today Weather**](PATCHES.md#today-weather-mobilockdownweather) | 1 | `2.5.0-6` | [`mobi.lockdown.weather`](https://play.google.com/store/apps/details?id=mobi.lockdown.weather) |
-| 216 | [**TomTom GO**](PATCHES.md#tomtom-go-comtomtomgplaynavapp) | 1 | `3.6.320` | [`com.tomtom.gplay.navapp`](https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp) |
-| 217 | [**Toomics**](PATCHES.md#toomics-comtoomicsglobalgoogle) | 1 | `1.6.7` | [`com.toomics.global.google`](https://play.google.com/store/apps/details?id=com.toomics.global.google) |
-| 218 | [**TorrDroid**](PATCHES.md#torrdroid-intelligemstorrdroid) | 1 | `2.0.3` | [`intelligems.torrdroid`](https://play.google.com/store/apps/details?id=intelligems.torrdroid) |
-| 219 | [**Torrent Search Revolution V2**](PATCHES.md#torrent-search-revolution-v2-torrentsearchrevolutionv2) | 1 | `2.3.3` | [`torrent.search.revolutionv2`](https://play.google.com/store/apps/details?id=torrent.search.revolutionv2) |
-| 220 | [**Toxly**](PATCHES.md#toxly-commindfulcodestudiotoxlyscanner) | 1 | `1.18.16` | [`com.mindful.code.studio.toxly.scanner`](https://play.google.com/store/apps/details?id=com.mindful.code.studio.toxly.scanner) |
-| 221 | [**TrackChecker Mobile**](PATCHES.md#trackchecker-mobile-commetalsofttrackchecker_mobile) | 1 | `2.29.3` | [`com.metalsoft.trackchecker_mobile`](https://play.google.com/store/apps/details?id=com.metalsoft.trackchecker_mobile) |
-| 222 | [**Tracker Detect**](PATCHES.md#tracker-detect-comappletrackerdetect) | 1 | `1.2` | [`com.apple.trackerdetect`](https://play.google.com/store/apps/details?id=com.apple.trackerdetect) |
-| 223 | [**TradingView**](PATCHES.md#tradingview-comtradingviewtradingviewapp) | 1 | `1.20.80.0.1002385` | [`com.tradingview.tradingviewapp`](https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp) |
-| 224 | [**Transit**](PATCHES.md#transit-comthetransitappdroid) | 1 | `6.1.12` | [`com.thetransitapp.droid`](https://play.google.com/store/apps/details?id=com.thetransitapp.droid) |
-| 225 | [**TurboScan**](PATCHES.md#turboscan-compiksoftturboscanfree) | 1 | `1.7.3` | [`com.piksoft.turboscan.free`](https://play.google.com/store/apps/details?id=com.piksoft.turboscan.free) |
-| 226 | [**UbikiTouch**](PATCHES.md#ubikitouch-eutoneivubktouch) | 1 | `1.17.7` | [`eu.toneiv.ubktouch`](https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch) |
-| 227 | [**UDisc**](PATCHES.md#udisc-comregasoftwareudisc) | 1 | `24.2.8` | [`com.regasoftware.udisc`](https://play.google.com/store/apps/details?id=com.regasoftware.udisc) |
-| 228 | [**Unimote**](PATCHES.md#unimote-sensustechuniversaltvremotecontrol) | 1 | `1.8.1` | [`sensustech.universal.tv.remote.control`](https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control) |
-| 229 | [**Uptodown App Store**](PATCHES.md#uptodown-app-store-comuptodown) | 1 | `7.37` | [`com.uptodown`](https://play.google.com/store/apps/details?id=com.uptodown) |
-| 230 | [**USB Hotspot**](PATCHES.md#usb-hotspot-khaprogusbhotspot) | 1 | `1.6` | [`kha.prog.usbhotspot`](https://play.google.com/store/apps/details?id=kha.prog.usbhotspot) |
-| 231 | [**VIZ Manga**](PATCHES.md#viz-manga-comvizmangaandroid) | 1 | `4.14.3` | [`com.vizmanga.android`](https://play.google.com/store/apps/details?id=com.vizmanga.android) |
-| 232 | [**VRadio**](PATCHES.md#vradio-comilvvradio) | 1 | `2.9.2` | [`com.ilv.vradio`](https://play.google.com/store/apps/details?id=com.ilv.vradio) |
-| 233 | [**Vyxel Apps**](PATCHES.md#vyxel-apps-comvytheravyxelapps) | 1 | `1.0.7` | [`com.vythera.vyxelapps`](https://play.google.com/store/apps/details?id=com.vythera.vyxelapps) |
-| 234 | [**Wallverse**](PATCHES.md#wallverse-comwallversewallpapers) | 1 | `4.2` | [`com.wallverse.wallpapers`](https://play.google.com/store/apps/details?id=com.wallverse.wallpapers) |
-| 235 | [**Wavve Boating**](PATCHES.md#wavve-boating-comwavveboatinggps) | 1 | `5.7.7` | [`com.wavve.boating.gps`](https://play.google.com/store/apps/details?id=com.wavve.boating.gps) |
-| 236 | [**Weawow**](PATCHES.md#weawow-comweawow) | 1 | `7.1.8` | [`com.weawow`](https://play.google.com/store/apps/details?id=com.weawow) |
-| 237 | [**Widget 2026**](PATCHES.md#widget-2026-comremiwidget) | 1 | `85.1.4` | [`com.remi.widget`](https://play.google.com/store/apps/details?id=com.remi.widget) |
-| 238 | [**Windscribe VPN**](PATCHES.md#windscribe-vpn-comwindscribevpn) | 1 | `4.2.2328` | [`com.windscribe.vpn`](https://play.google.com/store/apps/details?id=com.windscribe.vpn) |
-| 239 | [**Windy**](PATCHES.md#windy-comwindytyandroid) | 1 | `51.0.1` | [`com.windyty.android`](https://play.google.com/store/apps/details?id=com.windyty.android) |
-| 240 | [**WolframAlpha**](PATCHES.md#wolframalpha-comwolframandroidalphapro) | 1 | `1.0.8.20260601651` | [`com.wolfram.android.alphapro`](https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro) |
-| 241 | [**Women Workout**](PATCHES.md#women-workout-womenworkoutfemalefitness) | 1 | `2.3.5` | [`women.workout.female.fitness`](https://play.google.com/store/apps/details?id=women.workout.female.fitness) |
-| 242 | [**Word**](PATCHES.md#word-commicrosoftofficeword) | 1 | `16.0.20326.20034` | [`com.microsoft.office.word`](https://play.google.com/store/apps/details?id=com.microsoft.office.word) |
-| 243 | [**Yatri**](PATCHES.md#yatri-comyatrirailwaysyatri) | 1 | `5.0.5` | [`com.yatrirailways.yatri`](https://play.google.com/store/apps/details?id=com.yatrirailways.yatri) |
-| 244 | [**Zutobi**](PATCHES.md#zutobi-comdriverlicenseapp) | 1 | `4.5.78` | [`com.driverlicenseapp`](https://play.google.com/store/apps/details?id=com.driverlicenseapp) |
-| 245 | [**Universal**](PATCHES.md#universal) | 38 | — | — |
+| 209 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 13 | `12.9.2` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
+| 210 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 14 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
+| 211 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 13 | `12.9.2` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
+| 212 | [**TeraBox**](PATCHES.md#terabox-comduboxdrive) | 1 | `4.22.6` | [`com.dubox.drive`](https://play.google.com/store/apps/details?id=com.dubox.drive) |
+| 213 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.146.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
+| 214 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.16.0` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
+| 215 | [**TikTok Lite**](PATCHES.md#tiktok-lite-comtiktoklitego) | 10 | `44.9.52` | [`com.tiktok.lite.go`](https://play.google.com/store/apps/details?id=com.tiktok.lite.go) |
+| 216 | [**Today Weather**](PATCHES.md#today-weather-mobilockdownweather) | 1 | `2.5.0-6` | [`mobi.lockdown.weather`](https://play.google.com/store/apps/details?id=mobi.lockdown.weather) |
+| 217 | [**TomTom GO**](PATCHES.md#tomtom-go-comtomtomgplaynavapp) | 1 | `3.6.320` | [`com.tomtom.gplay.navapp`](https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp) |
+| 218 | [**Toomics**](PATCHES.md#toomics-comtoomicsglobalgoogle) | 1 | `1.6.7` | [`com.toomics.global.google`](https://play.google.com/store/apps/details?id=com.toomics.global.google) |
+| 219 | [**TorrDroid**](PATCHES.md#torrdroid-intelligemstorrdroid) | 1 | `2.0.3` | [`intelligems.torrdroid`](https://play.google.com/store/apps/details?id=intelligems.torrdroid) |
+| 220 | [**Torrent Search Revolution V2**](PATCHES.md#torrent-search-revolution-v2-torrentsearchrevolutionv2) | 1 | `2.3.3` | [`torrent.search.revolutionv2`](https://play.google.com/store/apps/details?id=torrent.search.revolutionv2) |
+| 221 | [**Toxly**](PATCHES.md#toxly-commindfulcodestudiotoxlyscanner) | 1 | `1.18.16` | [`com.mindful.code.studio.toxly.scanner`](https://play.google.com/store/apps/details?id=com.mindful.code.studio.toxly.scanner) |
+| 222 | [**TrackChecker Mobile**](PATCHES.md#trackchecker-mobile-commetalsofttrackchecker_mobile) | 1 | `2.29.3` | [`com.metalsoft.trackchecker_mobile`](https://play.google.com/store/apps/details?id=com.metalsoft.trackchecker_mobile) |
+| 223 | [**Tracker Detect**](PATCHES.md#tracker-detect-comappletrackerdetect) | 1 | `1.2` | [`com.apple.trackerdetect`](https://play.google.com/store/apps/details?id=com.apple.trackerdetect) |
+| 224 | [**TradingView**](PATCHES.md#tradingview-comtradingviewtradingviewapp) | 1 | `1.20.80.0.1002385` | [`com.tradingview.tradingviewapp`](https://play.google.com/store/apps/details?id=com.tradingview.tradingviewapp) |
+| 225 | [**Transit**](PATCHES.md#transit-comthetransitappdroid) | 1 | `6.1.12` | [`com.thetransitapp.droid`](https://play.google.com/store/apps/details?id=com.thetransitapp.droid) |
+| 226 | [**TurboScan**](PATCHES.md#turboscan-compiksoftturboscanfree) | 1 | `1.7.3` | [`com.piksoft.turboscan.free`](https://play.google.com/store/apps/details?id=com.piksoft.turboscan.free) |
+| 227 | [**UbikiTouch**](PATCHES.md#ubikitouch-eutoneivubktouch) | 1 | `1.17.7` | [`eu.toneiv.ubktouch`](https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch) |
+| 228 | [**UDisc**](PATCHES.md#udisc-comregasoftwareudisc) | 1 | `24.2.8` | [`com.regasoftware.udisc`](https://play.google.com/store/apps/details?id=com.regasoftware.udisc) |
+| 229 | [**Unimote**](PATCHES.md#unimote-sensustechuniversaltvremotecontrol) | 1 | `1.8.1` | [`sensustech.universal.tv.remote.control`](https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control) |
+| 230 | [**Uptodown App Store**](PATCHES.md#uptodown-app-store-comuptodown) | 1 | `7.37` | [`com.uptodown`](https://play.google.com/store/apps/details?id=com.uptodown) |
+| 231 | [**USB Hotspot**](PATCHES.md#usb-hotspot-khaprogusbhotspot) | 1 | `1.6` | [`kha.prog.usbhotspot`](https://play.google.com/store/apps/details?id=kha.prog.usbhotspot) |
+| 232 | [**VIZ Manga**](PATCHES.md#viz-manga-comvizmangaandroid) | 1 | `4.14.3` | [`com.vizmanga.android`](https://play.google.com/store/apps/details?id=com.vizmanga.android) |
+| 233 | [**VRadio**](PATCHES.md#vradio-comilvvradio) | 1 | `2.9.2` | [`com.ilv.vradio`](https://play.google.com/store/apps/details?id=com.ilv.vradio) |
+| 234 | [**Vyxel Apps**](PATCHES.md#vyxel-apps-comvytheravyxelapps) | 1 | `1.0.7` | [`com.vythera.vyxelapps`](https://play.google.com/store/apps/details?id=com.vythera.vyxelapps) |
+| 235 | [**Wallverse**](PATCHES.md#wallverse-comwallversewallpapers) | 1 | `4.2` | [`com.wallverse.wallpapers`](https://play.google.com/store/apps/details?id=com.wallverse.wallpapers) |
+| 236 | [**Wavve Boating**](PATCHES.md#wavve-boating-comwavveboatinggps) | 1 | `5.7.7` | [`com.wavve.boating.gps`](https://play.google.com/store/apps/details?id=com.wavve.boating.gps) |
+| 237 | [**Weawow**](PATCHES.md#weawow-comweawow) | 1 | `7.1.8` | [`com.weawow`](https://play.google.com/store/apps/details?id=com.weawow) |
+| 238 | [**Widget 2026**](PATCHES.md#widget-2026-comremiwidget) | 1 | `85.1.4` | [`com.remi.widget`](https://play.google.com/store/apps/details?id=com.remi.widget) |
+| 239 | [**Windscribe VPN**](PATCHES.md#windscribe-vpn-comwindscribevpn) | 1 | `4.2.2328` | [`com.windscribe.vpn`](https://play.google.com/store/apps/details?id=com.windscribe.vpn) |
+| 240 | [**Windy**](PATCHES.md#windy-comwindytyandroid) | 1 | `51.0.1` | [`com.windyty.android`](https://play.google.com/store/apps/details?id=com.windyty.android) |
+| 241 | [**WolframAlpha**](PATCHES.md#wolframalpha-comwolframandroidalphapro) | 1 | `1.0.8.20260601651` | [`com.wolfram.android.alphapro`](https://play.google.com/store/apps/details?id=com.wolfram.android.alphapro) |
+| 242 | [**Women Workout**](PATCHES.md#women-workout-womenworkoutfemalefitness) | 1 | `2.3.5` | [`women.workout.female.fitness`](https://play.google.com/store/apps/details?id=women.workout.female.fitness) |
+| 243 | [**Word**](PATCHES.md#word-commicrosoftofficeword) | 1 | `16.0.20326.20034` | [`com.microsoft.office.word`](https://play.google.com/store/apps/details?id=com.microsoft.office.word) |
+| 244 | [**Yatri**](PATCHES.md#yatri-comyatrirailwaysyatri) | 1 | `5.0.5` | [`com.yatrirailways.yatri`](https://play.google.com/store/apps/details?id=com.yatrirailways.yatri) |
+| 245 | [**Zutobi**](PATCHES.md#zutobi-comdriverlicenseapp) | 1 | `4.5.78` | [`com.driverlicenseapp`](https://play.google.com/store/apps/details?id=com.driverlicenseapp) |
+| 246 | [**Universal**](PATCHES.md#universal) | 38 | — | — |
 <!-- PATCHES_END -->
 
 ### 📙 Contributing
