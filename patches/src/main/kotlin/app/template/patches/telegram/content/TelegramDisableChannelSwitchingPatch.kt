@@ -16,7 +16,7 @@ val telegramDisableChannelSwitchingPatch = bytecodePatch(
     description = "Disables the pull-down gesture that switches to the next unread channel.",
     default = true,
 ) {
-    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

@@ -15,7 +15,7 @@ val telegramAntiScreenshotNotificationPatch = bytecodePatch(
     description = "Blocks screenshot notifications from being sent to the other user.",
     default = true,
 ) {
-    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

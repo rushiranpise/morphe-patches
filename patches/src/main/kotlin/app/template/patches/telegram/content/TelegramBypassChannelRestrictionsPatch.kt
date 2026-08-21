@@ -38,7 +38,7 @@ val telegramBypassChannelRestrictionsPatch = bytecodePatch(
     description = "Allows opening, viewing, saving and forwarding content from restricted, " +
         "sensitive, and copyright-restricted channels.",
 ) {
-    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

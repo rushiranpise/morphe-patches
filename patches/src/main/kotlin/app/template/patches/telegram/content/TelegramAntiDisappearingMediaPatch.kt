@@ -28,7 +28,7 @@ val telegramAntiDisappearingMediaPatch = bytecodePatch(
     name = "Anti-disappearing media",
     description = "Keeps view-once photos, videos and voice messages viewable indefinitely.",
 ) {
-    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {
