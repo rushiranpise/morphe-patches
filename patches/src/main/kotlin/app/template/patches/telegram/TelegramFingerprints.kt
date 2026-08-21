@@ -356,12 +356,14 @@ val IsSecretPhotoOrVideoFingerprint = Fingerprint(
     parameters = listOf("Lorg/telegram/tgnet/TLRPC\$Message;"),
 )
 
-// Instance overload only — delegates to static. Simpler and present in both variants.
+// Static overload (I, Message)Z — present in both Web and Plus.
+// Paresh uses this overload. The instance ()Z delegates to this,
+// but targeting the static ensures we hit the actual implementation.
 val ShouldEncryptPhotoOrVideoFingerprint = Fingerprint(
     definingClass = "Lorg/telegram/messenger/MessageObject;",
     name = "shouldEncryptPhotoOrVideo",
     returnType = "Z",
-    parameters = listOf(),
+    parameters = listOf("I", "Lorg/telegram/tgnet/TLRPC\$Message;"),
 )
 
 val IsVoiceOnceFingerprint = Fingerprint(
@@ -668,4 +670,85 @@ val DialogCellUpdateMessageThumbsFingerprint = Fingerprint(
             name = "getRestrictionReason",
         ),
     ),
+)
+
+// ─── Plus-specific (safe to probe via methodOrNull on non-Plus builds) ────────
+
+// MessagesController.premiumFeaturesBlocked()Z
+// Present only in org.telegram.plus — gates "Get Premium" nag dialogs.
+// Using methodOrNull makes this safe to reference in shared patches.
+val PremiumFeaturesBlockedFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "premiumFeaturesBlocked",
+    returnType = "Z",
+)
+
+// org.telegram.plus.update.PlusUpdater.checkAppUpdate(RequestDelegate)V
+val PlusUpdaterCheckAppUpdateFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/update/PlusUpdater;",
+    name = "checkAppUpdate",
+    returnType = "V",
+)
+
+// PlusSettings.isUpdateEnabled()Z
+val PlusSettingsIsUpdateEnabledFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ActionBar/PlusSettings;",
+    name = "isUpdateEnabled",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
+)
+
+// org.telegram.plus.ads.AdsController.adsDisabled()Z
+val AdsControllerAdsDisabledFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/ads/AdsController;",
+    name = "adsDisabled",
+    returnType = "Z",
+)
+
+// org.telegram.plus.ads.AdsInstance.loadAds()V
+val AdsInstanceLoadAdsFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/ads/AdsInstance;",
+    name = "loadAds",
+    returnType = "V",
+)
+
+// org.telegram.plus.ads.AdsInstance.loadNativeAd(...) — returns Z in 12.9.0.1
+val AdsInstanceLoadNativeAdFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/ads/AdsInstance;",
+    name = "loadNativeAd",
+    parameters = listOf(
+        "Landroid/content/Context;",
+        "Z",
+        "Lorg/telegram/plus/ads/AdsInstance\$AdsInstanceInterface;",
+    ),
+)
+
+// MessagesController.sendTyping(JJII)Z — Plus-specific signature
+val PlusSendTypingFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "sendTyping",
+    returnType = "Z",
+    parameters = listOf("J", "J", "I", "I"),
+)
+
+// org.telegram.plus.helpers.AnalyticsHelper fingerprints
+val AnalyticsEnableFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/helpers/AnalyticsHelper;",
+    name = "enableAnalytics",
+    returnType = "V",
+    parameters = listOf("Landroid/app/Application;"),
+)
+
+val AnalyticsTrackEventFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/helpers/AnalyticsHelper;",
+    name = "trackEvent",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;"),
+)
+
+val AnalyticsTrackEventMapFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/helpers/AnalyticsHelper;",
+    name = "trackEvent",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;", "Ljava/util/HashMap;"),
 )

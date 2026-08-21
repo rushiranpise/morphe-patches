@@ -16,7 +16,7 @@ val telegramAntiDeletePatch = bytecodePatch(
     name = "Anti-delete messages",
     description = "Prevents messages deleted by other users from being removed locally.",
 ) {
-    compatibleWith( TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {
