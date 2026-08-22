@@ -2,29 +2,25 @@ package app.template.patches.shared.firebase
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.instructions
+import app.morphe.patcher.methodCall
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.cert.autoSha1
 import app.template.patches.shared.cert.extractApkCertificatePatch
+import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
-// Fingerprint ───────────────────────────────────────────────────────────────
+// ─── Fingerprint 1: openHttpUrlConnection — sets X-Android-Cert header ───────
+//
+// FirebaseInstallationServiceClient.openHttpUrlConnection(URL, String) sets the
+// X-Android-Cert HTTP header to the app's cert SHA-1. We overwrite the value
+// register immediately before addRequestProperty is called.
 
-/**
- * Targets `FirebaseInstallationServiceClient.openHttpUrlConnection()` which sets the
- * `X-Android-Cert` HTTP header to the app's SHA-1 certificate fingerprint.
- *
- * Source: https://github.com/firebase/firebase-android-sdk/blob/c8ada3ce645798bd8bacd5c9b5cb08bdf7254a34/
- *         firebase-installations/src/main/java/com/google/firebase/installations/remote/
- *         FirebaseInstallationServiceClient.java#L495
- *
- * Fixed vs adobo: uses `Fingerprint(...)` style (not `object :`) and avoids adobo's
- * `getReference<T>()` extension — we use standard smali casting instead.
- */
 internal val FirebaseOpenHttpConnectionFingerprint = Fingerprint(
     returnType = "Ljava/net/HttpURLConnection;",
     parameters = listOf("Ljava/net/URL;", "Ljava/lang/String;"),
@@ -34,44 +30,33 @@ internal val FirebaseOpenHttpConnectionFingerprint = Fingerprint(
     ),
 )
 
-// Main patch ────────────────────────────────────────────────────────────────
+// ─── Fingerprint 2: getFingerprintHashForPackage — the source of the SHA-1 ───
+//
+// This private method in FirebaseInstallationServiceClient calls
+// AndroidUtilsLight.getPackageCertificateHashBytes() which uses
+// PackageManagerWrapper (GMS cross-process IPC) to read the signing cert.
+// Because the IPC response is read in GMS/system_server process space,
+// our in-process SignatureHookApp Parcelable hook does NOT intercept it.
+// The real Morphe re-signing cert SHA-1 is returned instead of the original.
+// Overriding this method directly bypasses the IPC boundary entirely.
 
-/**
- * Universal "Spoof Firebase certificate hash" patch — shows in Morphe for **any** app.
- *
- * Ported from jkennethcarino/adobo (SpoofAndroidCertPatch + BaseSpoofAndroidCertPatch).
- *
- * **What it does:**
- * Firebase Installations SDK sends the app's certificate SHA-1 fingerprint in the
- * `X-Android-Cert` HTTP header for every Firebase API call. When the APK is re-signed,
- * this hash changes and Firebase rejects the request, breaking push notifications,
- * Remote Config, Firebase Auth, and any other Firebase service.
- *
- * This patch injects a `const-string` with the original certificate's SHA-1 hash
- * immediately before the `addRequestProperty("X-Android-Cert", ...)` call, replacing
- * the runtime-computed hash before it reaches the network.
- *
- * **Why adobo's version failed in our setup:**
- * - `BaseSpoofAndroidCertPatch` used adobo's `getReference<MethodReference>()` extension
- *   (a Kotlin inline reified helper not available in our patcher). Fixed with standard cast.
- * - `stringMatches.first().index` API is identical in our patcher — no change needed.
- * - `OpenHttpUrlConnectionFingerprint` was declared as `internal object` extending `Fingerprint()`
- *   which requires adobo's secondary constructor. Rewritten as a top-level `val`.
- * - `addInstruction` took `smaliInstructions` (plural, multiline String) in adobo's fork.
- *   Our API uses `addInstruction` (singular) with a single smali line.
- *
- * **Option:**
- * - `certificateHash` — SHA-1 fingerprint (40 hex chars) of the original APK's signing cert.
- *   Find it with: `apksigner verify --print-certs original.apk | grep SHA-1`
- *   or: `keytool -printcert -jarfile original.apk`
- */
+internal val FirebaseFingerprintHashFingerprint = Fingerprint(
+    definingClass = "Lcom/google/firebase/installations/remote/FirebaseInstallationServiceClient;",
+    name = "getFingerprintHashForPackage",
+    returnType = "Ljava/lang/String;",
+    accessFlags = listOf(AccessFlags.PRIVATE),
+    parameters = listOf(),
+)
+
+// ─── Patch ────────────────────────────────────────────────────────────────────
+
 @Suppress("unused")
 val spoofFirebaseCertHashPatch = bytecodePatch(
     name = "Fix Firebase after re-signing",
     description = """
         Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.
 
-        Apply with Original app certificate patch no other config needed.
+        Apply with Original app certificate patch — no other config needed.
     """.trimIndent(),
     default = false,
 ) {
@@ -81,20 +66,36 @@ val spoofFirebaseCertHashPatch = bytecodePatch(
         val hash = autoSha1
             ?.uppercase()
             ?: throw PatchException(
-                "No certificate found in META-INF and no certificateHash supplied. "
-                    + "Provide the 40-char SHA-1 hex fingerprint via the option."
+                "No certificate found in META-INF and no certificateHash supplied. " +
+                    "Provide the 40-char SHA-1 hex fingerprint via the option."
             )
 
+        // ── Fix 1: Override getFingerprintHashForPackage() to return original SHA-1 ──
+        //
+        // This is the authoritative source of the cert hash inside
+        // FirebaseInstallationServiceClient. Patching here means every caller
+        // (the X-Android-Cert header, FID auth, etc.) gets the correct value
+        // without relying on our in-process PackageManager hook reaching GMS.
+        FirebaseFingerprintHashFingerprint.methodOrNull?.addInstructions(0, """
+            const-string v0, "$hash"
+            return-object v0
+        """) ?: run {
+            // Firebase Installations SDK not present — fall through to header-only fix.
+        }
+
+        // ── Fix 2: Also overwrite the header value at the call site ──
+        //
+        // Belt-and-suspenders: some Firebase SDK versions call addRequestProperty
+        // with an inline-computed hash that bypasses getFingerprintHashForPackage.
+        // Patching the call site as well covers those cases.
         val method = FirebaseOpenHttpConnectionFingerprint.methodOrNull
             ?: run {
-                println("Spoof Firebase cert: Firebase Installations SDK not found — patch has no effect.")
+                // Neither fingerprint matched — SDK not present, nothing to do.
                 return@execute
             }
 
-        // Index of the "X-Android-Cert" string match — the addRequestProperty call follows it.
         val xAndroidCertIndex = FirebaseOpenHttpConnectionFingerprint.stringMatches.first().index
 
-        // Walk instructions from xAndroidCertIndex forward to find the addRequestProperty call.
         val instructionList = method.instructions.toList()
         val addRequestPropertyInstr = instructionList
             .drop(xAndroidCertIndex)
@@ -107,17 +108,11 @@ val spoofFirebaseCertHashPatch = bytecodePatch(
                 "Could not find addRequestProperty call after X-Android-Cert string."
             )
 
-        // registerE holds the value argument of addRequestProperty(key, value).
         val valueRegister = (addRequestPropertyInstr as FiveRegisterInstruction).registerE
-
-        // Inject const-string immediately before addRequestProperty so it overwrites
-        // the runtime-computed hash with our original certificate hash.
         val insertIndex = instructionList.indexOf(addRequestPropertyInstr)
         method.addInstruction(
             insertIndex,
             "const-string v$valueRegister, \"$hash\"",
         )
-
-        println("Spoof Firebase cert: injected SHA-1=$hash at instruction index $insertIndex.")
     }
 }

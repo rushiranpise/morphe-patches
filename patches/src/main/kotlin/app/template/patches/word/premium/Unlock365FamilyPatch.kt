@@ -1,6 +1,7 @@
 package app.template.patches.word.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.clearBody
 import app.template.patches.shared.returnEarly
@@ -82,6 +83,19 @@ private val wordUnlock365FamilyPatch = bytecodePatch {
         // Skip storage quota UI (NPE guard when no real identity exists).
         storageQuotaCheckFingerprint.method.apply {
             clearBody(); addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+        }
+
+        // b$n.run() NPE guard — GetActiveIdentity() returns null with no account.
+        // Insert null check after move-result-object v12; return-void if null.
+        accountSwitcherRunnableFingerprint.apply {
+            val getActiveIdentityIdx = instructionMatches[1].index
+            val moveResultIdx = getActiveIdentityIdx + 1
+            method.addInstructionsWithLabels(moveResultIdx + 1, """
+                if-nez v12, :has_identity
+                return-void
+                :has_identity
+                nop
+            """)
         }
 
     }

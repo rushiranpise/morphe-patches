@@ -18,6 +18,8 @@ var is_2026_21_0_or_greater: Boolean by Delegates.notNull()
     private set
 var is_2026_25_0_or_greater: Boolean by Delegates.notNull()
     private set
+var is_2026_32_0_or_greater: Boolean by Delegates.notNull()
+    private set
 
 val versionCheckPatch = bytecodePatch(
     description = "Reddit version gate flags.",
@@ -33,5 +35,6 @@ val versionCheckPatch = bytecodePatch(
         is_2026_18_0_or_greater = isAtLeast("2026.18.0")
         is_2026_21_0_or_greater = isAtLeast("2026.21.0")
         is_2026_25_0_or_greater = isAtLeast("2026.25.0")
+        is_2026_32_0_or_greater = isAtLeast("2026.32.0")
     }
 }

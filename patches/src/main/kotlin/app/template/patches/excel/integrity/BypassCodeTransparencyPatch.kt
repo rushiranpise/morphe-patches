@@ -5,9 +5,10 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.clearBody
 
+// Stable anchor: (Context, CodeTransparencyCheckCallback)V is globally unique to
+// exactly one method in the app — no definingClass or name needed.
+// Class "e0" is obfuscated and will shift; CodeTransparencyCheckCallback is stable.
 private val codeTransparencyCheckFingerprint = Fingerprint(
-    definingClass = "Lcom/microsoft/office/apphost/e0;",
-    name = "c",
     returnType = "V",
     parameters = listOf(
         "Landroid/content/Context;",

@@ -238,6 +238,29 @@ internal val accountProfileInfoHasProfileFingerprint = Fingerprint(
  * Stable anchor: (Identity)Z with PUBLIC STATIC FINAL access flags is verified globally
  * unique to exactly one method in the entire app — no definingClass or name needed.
  */
+/**
+ * ?$n.run() — account-switcher dialog builder. GetActiveIdentity() returns null
+ * when no account is present → NPE on getMetaData() on main thread.
+ * Null guard inserted after move-result-object v12 — if null, return-void.
+ *
+ * Stable anchors: setAccountInfoDialog (unique run()V) + GetActiveIdentity (index locator).
+ */
+internal val accountSwitcherRunnableFingerprint = Fingerprint(
+    name = "run",
+    returnType = "V",
+    parameters = emptyList(),
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/microsoft/office/docsui/common/AccountActionsController;",
+            name = "setAccountInfoDialog",
+        ),
+        methodCall(
+            definingClass = "Lcom/microsoft/office/identity/IdentityLiblet;",
+            name = "GetActiveIdentity",
+        ),
+    ),
+)
+
 internal val storageQuotaCheckFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC, AccessFlags.FINAL),

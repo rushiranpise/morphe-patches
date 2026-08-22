@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.19.0** (`main`) · **374 patches** across **243 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.11** (`dev`) · **387 patches** across **248 apps** · back to [README](README.md)
 
 ---
 
@@ -18,11 +18,11 @@
 
 ## 1Tap Cleaner (com.a0soft.gphone.acc.free)
 
-**Supported versions:** `5.21`
+**Supported versions:** `5.22`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks 1Tap Cleaner PRO features: history export, app-group filters, unlimited cache targets, and ad removal. |
+| **Unlock Pro** | Unlocks App Cache Cleaner Pro and removes ads by bypassing Pairip LVL, signature checks, self-destruct, and all upgrade dialogs. |
 
 ---
 
@@ -333,11 +333,11 @@
 
 ## Beta Maniac (it.mirko.beta)
 
-**Supported versions:** `0.9.4`
+**Supported versions:** `0.10.0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlocks premium in Beta by Mirko. |
+| **Unlock Premium** | Unlocks premium in Beta by Mirko by disabling the ads gate and PairIP license checks. |
 
 ---
 
@@ -693,6 +693,16 @@
 
 ---
 
+## DramaBox (com.storymatrix.drama)
+
+**Supported versions:** `5.8.1`
+
+| Patch | Details |
+|---|---|
+| **Unlock Membership** | Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation. |
+
+---
+
 ## Drivvo (br.com.ctncardoso.ctncar)
 
 **Supported versions:** `9.6.1`
@@ -730,14 +740,13 @@
 
 | Patch | Details |
 |---|---|
-| **Disable Tracking** | Disables UMeng analytics and crash reporting in ES File Explorer. |
 | **Unlock VIP Lifetime** | Unlocks VIP lifetime features in ES File Explorer. |
 
 ---
 
 ## Excel (com.microsoft.office.excel)
 
-**Supported versions:** `16.0.20228.20090`
+**Supported versions:** `16.0.20326.20034`
 
 | Patch | Details |
 |---|---|
@@ -1264,7 +1273,7 @@
 
 ## Monet (com.klevico.monet)
 
-**Supported versions:** `1.0.73`
+**Supported versions:** `1.0.76`
 
 | Patch | Details |
 |---|---|
@@ -1299,6 +1308,16 @@
 | Patch | Details |
 |---|---|
 | **Unlock VIP** | Unlocks VIP features in MovieBox TV. |
+
+---
+
+## MyAnimeList (net.myanimelist.app)
+
+**Supported versions:** `2.3.16`
+
+| Patch | Details |
+|---|---|
+| **Unlock Supporter** | Spoofs MAL supporter status to suppress all banner, list, and search ads. |
 
 ---
 
@@ -1422,6 +1441,16 @@
 
 ---
 
+## Octopi Launcher (com.otp.octopilauncher)
+
+**Supported versions:** `1.88`
+
+| Patch | Details |
+|---|---|
+| **Unlock Pro** | Unlocks Octopi Launcher Pro by returning true from the isPro LiveData getter, bypassing all pro feature gates without modifying billing or database logic. |
+
+---
+
 ## Opera News (com.opera.app.news)
 
 **Supported versions:** `14.1.2254.83278`
@@ -1484,11 +1513,11 @@
 
 ## Permission Pilot (eu.darken.myperm)
 
-**Supported versions:** `2.2.0-rc0`
+**Supported versions:** `2.2.2-rc0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks all Pro features in app. |
+| **Unlock Pro** | Unlocks Permission Pilot Pro by forcing isPro=true in the billing Info object. |
 
 ---
 
@@ -1509,6 +1538,18 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Bypasses PairIP DRM license check, removes all paywalls, and unlocks all premium features including cloud sync and remote access. |
+
+---
+
+## PicsArt (com.picsart.studio)
+
+**Supported versions:** `30.5.5`
+
+| Patch | Details |
+|---|---|
+| **Remove Ads** | Disables PicsArt banner and interstitial ads by forcing the central AdsManager gate to ads-off. |
+| **Remove Watermark** | Removes the PicsArt watermark from exported photos and videos. |
+| **Unlock Premium** | Unlocks PicsArt premium locally: forces the subscription state to subscribed at the data-class root so tools/effects unlock and upgrade prompts are skipped. |
 
 ---
 
@@ -1549,16 +1590,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock PRO** | Unlocks all PRO features by permanently reporting a purchased state. |
-
----
-
-## Plank Workout (fat.burnning.plank.fitness.loseweight)
-
-**Supported versions:** `1.4.3`
-
-| Patch | Details |
-|---|---|
-| **Unlock premium** | Unlocks all premium features across all Leap Fitness Group apps by overriding the IapSp isFree checks. |
 
 ---
 
@@ -1722,6 +1753,16 @@
 
 ---
 
+## PortDroid (com.stealthcopter.portdroid)
+
+**Supported versions:** `1.0.7`
+
+| Patch | Details |
+|---|---|
+| **Unlock Pro** | Unlocks PortDroid Pro features by bypassing the Google Play Billing check, the SharedPreferences pro gate, and the signature tamper check. |
+
+---
+
 ## Proton Mail (ch.protonmail.android)
 
 **Supported versions:** `7.11.0`
@@ -1831,14 +1872,19 @@
 |---|---|
 | **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
 | **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
+| **Hide Answers Tab** | Removes the AI Answers tab from the bottom navigation bar. |
+| **Hide Chat Tab** | Removes the Chat button from the bottom navigation bar. |
 | **Hide Communities Shelf** | Hides the related or suggested communities shelf in subreddits. |
+| **Hide Games Tab** | Removes the Games tab from the bottom navigation bar. |
 | **Hide Navigation Buttons** | Removes the Create Post button from the bottom navigation bar. |
 | **Hide Promoted Posts** | Blanks the promoted post render method and forces promoted/ad flags to false at the model layer. |
 | **Hide Sidebar Components** | Hides About, Resources, and Reddit Pro sections from the community sidebar. |
 | **Hide Trending Shelves** | Removes Trending Today from the feed and trending searches from the search screen. |
 | **Remove Subreddit Dialogs** | Suppresses the notification re-enable prompt that appears on subreddit visits. |
 | **Sanitize Sharing Links** | Returns the raw permalink before UTM tracking parameters are appended to shared Reddit URLs. |
+| **Show Comment Karma** | Ensures comment karma is surfaced alongside link karma on the profile header. |
 | **Unlock Premium** | Unlocks Reddit Premium features and removes all ads client-side. |
+| **Username Hider** | Replaces the displayed username with 'u/hidden' for screen-sharing privacy. |
 
 ---
 
@@ -2112,6 +2158,17 @@
 
 ---
 
+## Teams (com.microsoft.teams)
+
+**Supported versions:** `1416/1.0.0.2026152302`
+
+| Patch | Details |
+|---|---|
+| **Privacy Enhancements** | Suppresses outbound read receipts and prevents admin quiet-hours policies from overriding your presence status. |
+| **Unlock Teams** | Unlocks Teams Premium features. |
+
+---
+
 ## Telegram (org.telegram.messenger)
 
 **Supported versions:** `12.9.2`
@@ -2123,13 +2180,12 @@
 | **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
 | **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
 | **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
@@ -2146,15 +2202,13 @@
 | **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
 | **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
 | **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable analytics** | Blocks all Firebase analytics and event tracking in Telegram Plus. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable analytics** | Blocks Firebase analytics and event tracking in Telegram Plus. FirebaseApp.initializeApp() is preserved so push notifications keep working. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Plus Premium** | Unlocks premium UI and suppresses premium nag dialogs. isPremiumUser returns true only for self to avoid showing premium badges on others. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
@@ -2171,13 +2225,12 @@
 | **Anti-screenshot notification** | Blocks screenshot notifications from being sent to the other user. |
 | **Bypass channel restrictions** | Allows opening, viewing, saving and forwarding content from restricted, sensitive, and copyright-restricted channels. |
 | **Bypass content restrictions** | Allows saving and forwarding content from restricted channels, chats, and users. |
-| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK. |
-| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. |
+| **Bypass integrity check** | Spoofs certificate fingerprint and SafetyNet results so login works on patched APK. |
+| **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
-| **Download speed boost** | Increases download chunk size to 512 KB and max concurrent requests to 8. |
-| **Hide typing indicator** | Hides your typing indicator from other users in all chats. |
-| **Premium UI** | Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches. |
-| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. |
+| **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
+| **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
@@ -2219,11 +2272,16 @@
 
 | Patch | Details |
 |---|---|
-| **Disable Login Requirement** | Removes mandatory login gate so the app can be browsed without an account. |
+| **Disable Login Requirement** | Removes TikTok Lite mandatory login gate so the app can be browsed without an account. |
+| **Disable Telemetry** | Disables ByteDance analytics by blocking LiteApplogServiceImpl, AppLogNetworkClient, and startup tracker init tasks. |
+| **Downloads** | Enables downloading all videos |
 | **Enable Duet and Stitch** | Unlocks Duet and Stitch on all videos regardless of creator permission settings. |
-| **Feed Filter** | Removes ads, sponsored content, and commerce posts from the home feed. |
-| **Hide Live Cards** | Removes live stream cards from the home feed. |
+| **Feed Filter** | Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed. |
+| **Hide CAPTCHA Popups** | Suppresses browsing CAPTCHA dialogs from SecApiImpl. |
+| **Hide Live Cards** | Removes live stream cards from the TikTok Lite home feed. |
 | **Remove Ads** | Removes feed ads, splash ads, and soft ads from TikTok Lite. |
+| **Sanitize Share URLs** | Removes tracking parameters (utm_campaign, share_link_id) from shared links. |
+| **Stop Video Looping** | Prevents videos from looping automatically after playback ends. |
 
 ---
 
@@ -2541,7 +2599,7 @@
 | **Enable debug build target** | Forces compatible BUILD_TARGET debug providers to debug=true. |
 | **Export all activities** | Makes all activities exportable. |
 | **Export internal data documents provider** | Registers an extension DocumentsProvider for the app internal data directory. |
-| **Fix Firebase after re-signing** | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. Apply with Original app certificate patch no other config needed. |
+| **Fix Firebase after re-signing** | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. Apply with Original app certificate patch — no other config needed. |
 | **Force dark theme** | Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode. |
 | **GmsCore support (MicroG)** | Routes Google Play Services calls through MicroG instead of real GPS. Works for: Google apps (YouTube, Maps, News, Photos) and third-party apps using classic Google Sign-In (Android 13 and below). Does not work for: Android 14+ Credential Manager sign-in (most modern third-party apps), Play Integrity / SafetyNet checks, or apps with custom auth. Requires MicroG RE installed. Apply with Original app certificate patch.<br><sub>Options: MicroG package name, Main activity class (optional), Custom package name (optional)</sub> |
 | **Hide ADB status** | Hides adb_enabled and development_settings_enabled. |

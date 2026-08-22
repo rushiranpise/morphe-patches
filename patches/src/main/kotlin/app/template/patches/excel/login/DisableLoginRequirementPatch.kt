@@ -18,13 +18,12 @@ private val excelDisableLoginRequirementPatch = bytecodePatch {
             """)
         }
 
-        // Set state=FINAL and mark FTUX shown without showing the upsell paywall.
-        // Field renamed H→B in 16.0.20228.
+        // Mark FTUX shown and return — skips the upsell paywall.
+        // No state-field iput needed: setFTUXShown prevents re-entry across launches,
+        // and n0() is only called once per session anyway.
         firstRunN0Fingerprint.method.apply {
             clearBody()
             addInstructions(0, """
-                sget-object v0, Lcom/microsoft/office/firstrun/d${'$'}s;->FINAL:Lcom/microsoft/office/firstrun/d${'$'}s;
-                iput-object v0, p0, Lcom/microsoft/office/firstrun/d;->B:Lcom/microsoft/office/firstrun/d${'$'}s;
                 invoke-static {}, Lcom/microsoft/office/apphost/OfficeActivityHolder;->GetActivity()Landroid/app/Activity;
                 move-result-object v0
                 const/4 v1, 0x1
@@ -40,9 +39,17 @@ private val excelDisableLoginRequirementPatch = bytecodePatch {
                 new-instance v0, Lcom/microsoft/office/officehub/objectmodel/TaskResult;
                 const/4 v1, 0x0
                 invoke-direct {v0, v1}, Lcom/microsoft/office/officehub/objectmodel/TaskResult;-><init>(I)V
-                invoke-interface {p3, v0}, Lcom/microsoft/office/officehub/objectmodel/IOnTaskCompleteListener;->onTaskComplete(Lcom/microsoft/office/officehub/objectmodel/TaskResult;)V
+                invoke-interface {p2, v0}, Lcom/microsoft/office/officehub/objectmodel/IOnTaskCompleteListener;->onTaskComplete(Lcom/microsoft/office/officehub/objectmodel/TaskResult;)V
                 return-void
             """)
+        }
+
+
+        // Return null when sign-in name is null/empty — prevents IllegalArgumentException
+        // crash on Timer-0 thread when no real account is present.
+        getIdentityForSignInNameFingerprint.method.apply {
+            clearBody()
+            addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
         }
 
         // Return false — SSO not required. Targets the public wrapper since
