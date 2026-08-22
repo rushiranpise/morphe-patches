@@ -568,7 +568,7 @@ val ES_EXPLORER_COMPATIBILITY = Compatibility(
         packageName = "com.estrongs.android.pop",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x1976D2,
-        targets = listOf(AppTarget(version = "4.4.3.5", versionCode = 10351))
+        targets = listOf(AppTarget(version = "4.4.3.7", versionCode = 10353))
     )
 
 val EXCEL_COMPATIBILITY = Compatibility(
