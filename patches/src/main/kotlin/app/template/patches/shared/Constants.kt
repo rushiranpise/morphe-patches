@@ -986,8 +986,9 @@ val MINIMAL_WIDGETS_COMPATIBILITY = Compatibility(
 val MIRKO_COMPATIBILITY = Compatibility(
         name = "Beta Maniac",
         packageName = "it.mirko.beta",
+        apkFileType = ApkFileType.APKM,
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = "0.9.4"))
+        targets = listOf(AppTarget(version = "0.10.0", versionCode = 152))
     )
 
 val MLMANAGER_COMPATIBILITY = Compatibility(
