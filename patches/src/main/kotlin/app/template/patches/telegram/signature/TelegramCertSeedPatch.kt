@@ -53,8 +53,22 @@ private const val TELEGRAM_PLUS_CERT =
 
 internal val telegramCertSeedPatch = rawResourcePatch(default = false) {
     execute {
-        seedCert(TELEGRAM_CERT)
-        seedCert(TELEGRAM_PLUS_CERT)
+        // Seed only the cert that belongs to the package being patched.
+        // seedCert() uses last-write-wins for autoSha1, so calling both unconditionally
+        // meant patching web always ended up with Plus cert SHA-1 (49EBB9) as autoSha1
+        // — wrong value fed into spoofFirebaseCertHashPatch and getFingerprintHashForPackage.
+        //
+        // rawResourcePatch has no implicit packageName binding — read it from the manifest.
+        val pkg = Regex("""package="([^"]+)"""")
+            .find(get("AndroidManifest.xml").readText())
+            ?.groupValues?.get(1)
+            ?: "unknown"
+
+        if (pkg == "org.telegram.plus") {
+            seedCert(TELEGRAM_PLUS_CERT)
+        } else {
+            seedCert(TELEGRAM_CERT)  // org.telegram.messenger + org.telegram.messenger.web
+        }
     }
 }
 
