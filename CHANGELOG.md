@@ -1,3 +1,14 @@
+## [1.20.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.9...v1.20.0-dev.10) (2026-08-22)
+
+### 🐛 Bug Fixes
+
+* betamaniac ([7fb8f40](https://github.com/rushiranpise/morphe-patches/commit/7fb8f401248c28ebeffbafafc9ef5de9b51a18ce)), closes [#726](https://github.com/rushiranpise/morphe-patches/issues/726)
+* telegram login ([343b189](https://github.com/rushiranpise/morphe-patches/commit/343b189e3c4f769236ac32d4fa6f0735bc85dba9))
+
+### ✨ New Features
+
+* add Octopi Launcher ([dcd78fc](https://github.com/rushiranpise/morphe-patches/commit/dcd78fc1f44a559ffd0e37a0d83666c1e3de8460))
+
 ## [1.20.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.8...v1.20.0-dev.9) (2026-08-21)
 
 ### ✨ New Features

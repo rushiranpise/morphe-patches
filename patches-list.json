@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0-dev.9",
+  "version": "1.20.0-dev.10",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -1833,7 +1833,7 @@
     },
     {
       "name": "Fix Firebase after re-signing",
-      "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch no other config needed.",
+      "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch — no other config needed.",
       "default": false,
       "dependencies": [
         "RawResourcePatch"
@@ -7167,21 +7167,28 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks premium in Beta by Mirko.",
+      "description": "Unlocks premium in Beta by Mirko by disabling the ads gate and PairIP license checks.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "it.mirko.beta",
           "name": "Beta Maniac",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
             {
-              "version": "0.9.4",
-              "versionCodes": null,
+              "version": "0.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 152,
+                "ARMEABI_V7A": 152,
+                "X86_64": 152,
+                "X86": 152
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -9903,6 +9910,37 @@
                 "ARMEABI_V7A": 10100000,
                 "X86_64": 10100000,
                 "X86": 10100000
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks Octopi Launcher Pro by returning true from the isPro LiveData getter, bypassing all pro feature gates without modifying billing or database logic.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.otp.octopilauncher",
+          "name": "Octopi Launcher",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#FF6600",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.88",
+              "versionCodes": {
+                "ARM64_V8A": 2161,
+                "ARMEABI_V7A": 2161,
+                "X86_64": 2161,
+                "X86": 2161
               },
               "isExperimental": false,
               "minSdk": null,
