@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.9** (`dev`) · **387 patches** across **247 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.10** (`dev`) · **388 patches** across **248 apps** · back to [README](README.md)
 
 ---
 
@@ -333,11 +333,11 @@
 
 ## Beta Maniac (it.mirko.beta)
 
-**Supported versions:** `0.9.4`
+**Supported versions:** `0.10.0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlocks premium in Beta by Mirko. |
+| **Unlock Premium** | Unlocks premium in Beta by Mirko by disabling the ads gate and PairIP license checks. |
 
 ---
 
@@ -1438,6 +1438,16 @@
 | Patch | Details |
 |---|---|
 | **Unlock Pro** | Unlocks the Pro upgrade in Octi. |
+
+---
+
+## Octopi Launcher (com.otp.octopilauncher)
+
+**Supported versions:** `1.88`
+
+| Patch | Details |
+|---|---|
+| **Unlock Pro** | Unlocks Octopi Launcher Pro by returning true from the isPro LiveData getter, bypassing all pro feature gates without modifying billing or database logic. |
 
 ---
 
@@ -2590,7 +2600,7 @@
 | **Enable debug build target** | Forces compatible BUILD_TARGET debug providers to debug=true. |
 | **Export all activities** | Makes all activities exportable. |
 | **Export internal data documents provider** | Registers an extension DocumentsProvider for the app internal data directory. |
-| **Fix Firebase after re-signing** | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. Apply with Original app certificate patch no other config needed. |
+| **Fix Firebase after re-signing** | Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate. Apply with Original app certificate patch — no other config needed. |
 | **Force dark theme** | Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode. |
 | **GmsCore support (MicroG)** | Routes Google Play Services calls through MicroG instead of real GPS. Works for: Google apps (YouTube, Maps, News, Photos) and third-party apps using classic Google Sign-In (Android 13 and below). Does not work for: Android 14+ Credential Manager sign-in (most modern third-party apps), Play Integrity / SafetyNet checks, or apps with custom auth. Requires MicroG RE installed. Apply with Original app certificate patch.<br><sub>Options: MicroG package name, Main activity class (optional), Custom package name (optional)</sub> |
 | **Hide ADB status** | Hides adb_enabled and development_settings_enabled. |
