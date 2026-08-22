@@ -991,6 +991,14 @@ val MIRKO_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "0.10.0", versionCode = 152))
     )
 
+val OCTOPILAUNCHER_COMPATIBILITY = Compatibility(
+        name = "Octopi Launcher",
+        packageName = "com.otp.octopilauncher",
+        apkFileType = ApkFileType.APKS,
+        appIconColor = 0xFF6600,
+        targets = listOf(AppTarget(version = "1.88", versionCode = 2161))
+    )
+
 val MLMANAGER_COMPATIBILITY = Compatibility(
         name = "ML Manager",
         packageName = "com.javiersantos.mlmanager",
