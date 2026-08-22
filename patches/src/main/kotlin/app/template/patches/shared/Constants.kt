@@ -805,7 +805,7 @@ val KOMOOT_COMPATIBILITY = Compatibility(
         packageName = "de.komoot.android",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x65AB1E,
-        targets = listOf(AppTarget(version = "2026.32.2", versionCode = 263805003))
+        targets = listOf(AppTarget(version = "2026.34.2", versionCode = 263821002))
     )
 
 val LARK_PLAYER_COMPATIBILITY = Compatibility(
@@ -1863,7 +1863,7 @@ val UDISC_COMPATIBILITY = Compatibility(
         packageName = "com.regasoftware.udisc",
         appIconColor = 0xF47C20,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "24.2.9", versionCode = 20288))
+        targets = listOf(AppTarget(version = "24.2.10", versionCode = 20517))
     )
 
 val UNIVERSALTV_COMPATIBILITY = Compatibility(
@@ -1935,7 +1935,7 @@ val WAVVE_BOATING_COMPATIBILITY = Compatibility(
         packageName = "com.wavve.boating.gps",
         appIconColor = 0x0077CC,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "5.7.7", versionCode = 3188))
+        targets = listOf(AppTarget(version = "5.7.8", versionCode = 3189))
     )
 
 val WEAWOW_COMPATIBILITY = Compatibility(
