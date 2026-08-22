@@ -1,3 +1,9 @@
+## [1.20.0-dev.11](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.10...v1.20.0-dev.11) (2026-08-22)
+
+### 🐛 Bug Fixes
+
+* remove patch ([b3743b5](https://github.com/rushiranpise/morphe-patches/commit/b3743b5a706d72cb8c35dc755027a9264701178e))
+
 ## [1.20.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.9...v1.20.0-dev.10) (2026-08-22)
 
 ### 🐛 Bug Fixes

@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.10** (`dev`) · **388 patches** across **248 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0-dev.11** (`dev`) · **387 patches** across **248 apps** · back to [README](README.md)
 
 ---
 
@@ -1871,7 +1871,6 @@
 | Patch | Details |
 |---|---|
 | **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
-| **Fix RedGifs Audio** | Routes RedGifs embeds through the WebView iframe path so videos play with audio instead of using the silent direct-stream URL. |
 | **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
 | **Hide Answers Tab** | Removes the AI Answers tab from the bottom navigation bar. |
 | **Hide Chat Tab** | Removes the Chat button from the bottom navigation bar. |
