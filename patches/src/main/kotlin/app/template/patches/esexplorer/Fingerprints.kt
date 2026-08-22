@@ -6,14 +6,14 @@ import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-// ES File Explorer (com.estrongs.android.pop) v4.4.3.5
+// ES File Explorer (com.estrongs.android.pop) v4.4.3.7
 //
 // APP ARCHITECTURE OVERVIEW
 // Framework: Native Java/Kotlin, targetSdk 30, R8 obfuscation.
 // Non-obfuscated packages preserved under com.estrongs.android.pop.
 // All internal es.* classes are R8-obfuscated (single/short names change each version).
 //
-// VIP GATE CHAIN (v4.4.3.5):
+// VIP GATE CHAIN (v4.4.3.7):
 //   t05.t()Z (PremiumManager)  — 46 callers — the main client-side isVip gate
 //     → zx4.L0() (PopSharedPreferences singleton)
 //     → zx4.G2()Z
@@ -46,7 +46,7 @@ import com.android.tools.smali.dexlib2.Opcode
 //   non-obfuscated class/field references, or stable SP key string constants.
 //   None of the new fingerprints contain any obfuscated class or method names.
 //
-// Constants version updated: 4.4.3.7 / 10353 → 4.4.3.5 / 10351.
+// Constants version updated: 4.4.3.7 / 10353.
 
 // ── t05.t()Z — main isVip gate (46 callers) ──────────────────────────────────
 //
@@ -181,7 +181,7 @@ internal val SuppressAlertPrefFingerprint = Fingerprint(
 //   - com.estrongs.android.pop.app.account.util.b (NON-OBFUSCATED package + class)
 //   - method name "t" has remained stable across versions
 //   No filters needed — unique within the class.
-private const val ES_ACCOUNT_MANAGER = "Lcom/estrongs/android/pop/app/account/util/b;"
+private const val ES_ACCOUNT_MANAGER = "Lcom/estrongs.android.pop/app/account/util/b;"
 
 internal val AccountLoginFingerprint = Fingerprint(
     returnType = "Z",
@@ -210,27 +210,39 @@ internal val AccountInfoIsVipFingerprint = Fingerprint(
     parameters = emptyList(),
 )
 
-// ── FexApplication.M()V — UMeng analytics init ───────────────────────────────
+// ── UMeng Analytics & Telemetry — UMConfigure & UMCrash ───────────────────────
 //
-// SMALI VERIFIED (classes.dex, v4.4.3.5):
-//   .class public Lcom/estrongs/android/pop/FexApplication;
-//   .method public final M()V
-//   Contains: UMConfigure.preInit(ctx, key, "China") + UMConfigure.init(..., "China", ...)
-//             + UMCrash.registerUMCrashCallback(...)
+// SMALI VERIFIED (classes.dex, v4.4.3.5 & v4.4.3.7):
+//   .class public Lcom/umeng/commonsdk/UMConfigure;
+//   .method public static preInit(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)V
+//   .method public static init(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+//   .class public Lcom/umeng/umcrash/UMCrash;
+//   .method public static registerUMCrashCallback(Lcom/umeng/umcrash/IUMCrashCallbackWithType;)V
 //
-// FINGERPRINT: string("China") (the analytics channel arg) + non-obfuscated FexApplication class.
-//   UMConfigure is a non-obfuscated third-party SDK class — stable methodCall anchor.
-//   class+method "M" used as secondary anchor via classFingerprint implicitly through
-//   custom predicate to narrow to the correct method in FexApplication.
-private const val FEXAPP = "Lcom/estrongs/android/pop/FexApplication;"
+// FINGERPRINT: non-obfuscated third-party SDK class & method names.
+//   Nooping these directly prevents UMeng tracking initialization while leaving
+//   FexApplication.M()V intact so that Handler initialization (this.g = new Handler())
+//   runs safely without triggering NullPointerException (NPE) crashes.
+private const val UM_CONFIGURE = "Lcom/umeng/commonsdk/UMConfigure;"
+private const val UM_CRASH = "Lcom/umeng/umcrash/UMCrash;"
 
-internal val AnalyticsInitFingerprint = Fingerprint(
+internal val UMConfigurePreInitFingerprint = Fingerprint(
     returnType = "V",
-    parameters = emptyList(),
-    filters = listOf(
-        string("China"),
-    ),
     custom = { method, classDef ->
-        classDef.type == FEXAPP && method.name == "M"
+        classDef.type == UM_CONFIGURE && method.name == "preInit"
+    },
+)
+
+internal val UMConfigureInitFingerprint = Fingerprint(
+    returnType = "V",
+    custom = { method, classDef ->
+        classDef.type == UM_CONFIGURE && method.name == "init"
+    },
+)
+
+internal val UMCrashRegisterCallbackFingerprint = Fingerprint(
+    returnType = "V",
+    custom = { method, classDef ->
+        classDef.type == UM_CRASH && method.name == "registerUMCrashCallback"
     },
 )
