@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0-dev.10",
+  "version": "1.20.0-dev.11",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -1839,37 +1839,6 @@
         "RawResourcePatch"
       ],
       "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Fix RedGifs Audio",
-      "description": "Routes RedGifs embeds through the WebView iframe path so videos play with audio instead of using the silent direct-stream URL.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.32.0",
-              "versionCodes": {
-                "ARM64_V8A": 2632041,
-                "ARMEABI_V7A": 2632041,
-                "X86_64": 2632041,
-                "X86": 2632041
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
       "options": []
     },
     {

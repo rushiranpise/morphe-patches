@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.20.0-dev.10](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.10)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**388 patches** across **248 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.20.0-dev.11](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.20.0-dev.11)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**387 patches** across **248 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -279,7 +279,7 @@ Bug reports must include:
 | 180 | [**RAR**](PATCHES.md#rar-comrarlabrar) | 1 | `7.23.build134` | [`com.rarlab.rar`](https://play.google.com/store/apps/details?id=com.rarlab.rar) |
 | 181 | [**re-Link**](PATCHES.md#re-link-comcuriouscompanyrelink) | 1 | `2.0.13` | [`com.curiouscompany.relink`](https://play.google.com/store/apps/details?id=com.curiouscompany.relink) |
 | 182 | [**RecipeBro**](PATCHES.md#recipebro-comrecipebrocookingbuddy) | 1 | `1.7.21` | [`com.recipebro.cookingbuddy`](https://play.google.com/store/apps/details?id=com.recipebro.cookingbuddy) |
-| 183 | [**Reddit**](PATCHES.md#reddit-comredditfrontpage) | 16 | `2026.32.0` | [`com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage) |
+| 183 | [**Reddit**](PATCHES.md#reddit-comredditfrontpage) | 15 | `2026.32.0` | [`com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage) |
 | 184 | [**Relane VPN**](PATCHES.md#relane-vpn-xorsandrelane) | 1 | `2026073010.0.0` | [`xorsand.relane`](https://play.google.com/store/apps/details?id=xorsand.relane) |
 | 185 | [**Rename &amp; Organize**](PATCHES.md#rename-organize-euduongpicturemanager) | 1 | `8.30.0` | [`eu.duong.picturemanager`](https://play.google.com/store/apps/details?id=eu.duong.picturemanager) |
 | 186 | [**Rocket Money**](PATCHES.md#rocket-money-comtruebill) | 1 | `13.15.0` | [`com.truebill`](https://play.google.com/store/apps/details?id=com.truebill) |
