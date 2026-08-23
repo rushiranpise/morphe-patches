@@ -1,12 +1,12 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0-dev.11** (`dev`) · **387 patches** across **248 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.20.0** (`main`) · **388 patches** across **248 apps** · back to [README](README.md)
 
 ---
 
 ## 1.1.1.1 (com.cloudflare.onedotonedotonedotone)
 
-**Supported versions:** `6.38.8`
+**Supported versions:** `6.38.9`
 
 | Patch | Details |
 |---|---|
@@ -59,7 +59,7 @@
 
 ## AccuWeather (com.accuweather.android)
 
-**Supported versions:** `21.1.14-5-rc`
+**Supported versions:** `21.1.15-3-rc`
 
 | Patch | Details |
 |---|---|
@@ -79,7 +79,7 @@
 
 ## AdGuard (com.adguard.android)
 
-**Supported versions:** `4.14.0`
+**Supported versions:** `4.14.68`
 
 | Patch | Details |
 |---|---|
@@ -139,7 +139,7 @@
 
 ## Amazon India (in.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.12.4.300`
+**Supported versions:** `32.15.0.300`
 
 | Patch | Details |
 |---|---|
@@ -193,7 +193,7 @@
 
 ## Android Developer Verifier (com.google.android.verifier)
 
-**Supported versions:** `1.0.943911795`
+**Supported versions:** `1.0.958871038`
 
 | Patch | Details |
 |---|---|
@@ -223,7 +223,7 @@
 
 ## Anime Depth Wallpapers (com.jndapp.anime.depth.live.wallpaper)
 
-**Supported versions:** `1.0.4`
+**Supported versions:** `1.1.2`
 
 | Patch | Details |
 |---|---|
@@ -283,7 +283,7 @@
 
 ## Automate (com.llamalab.automate)
 
-**Supported versions:** `1.51.1`
+**Supported versions:** `1.53.2`
 
 | Patch | Details |
 |---|---|
@@ -313,7 +313,7 @@
 
 ## Battery Guru (com.paget96.batteryguru)
 
-**Supported versions:** `2.5.0.6`
+**Supported versions:** `2.5.0.7`
 
 | Patch | Details |
 |---|---|
@@ -453,7 +453,7 @@
 
 ## BuzzCast (com.guochao.faceshow)
 
-**Supported versions:** `3.2.84`
+**Supported versions:** `3.2.85`
 
 | Patch | Details |
 |---|---|
@@ -463,7 +463,7 @@
 
 ## calimoto (com.calimoto.calimoto)
 
-**Supported versions:** `2026.07.6`
+**Supported versions:** `2026.08.2`
 
 | Patch | Details |
 |---|---|
@@ -473,7 +473,7 @@
 
 ## Calm (com.calm.android)
 
-**Supported versions:** `6.101.1`
+**Supported versions:** `6.102`
 
 | Patch | Details |
 |---|---|
@@ -483,7 +483,7 @@
 
 ## Calory (com.funnmedia.calory)
 
-**Supported versions:** `3.7.1`
+**Supported versions:** `3.8`
 
 | Patch | Details |
 |---|---|
@@ -504,7 +504,7 @@
 
 ## Canva (com.canva.editor)
 
-**Supported versions:** `2.372.0`
+**Supported versions:** `2.374.0`
 
 | Patch | Details |
 |---|---|
@@ -534,7 +534,7 @@
 
 ## Case Tracker (com.saldous.casetracker)
 
-**Supported versions:** `5.5.5`
+**Supported versions:** `5.5.6`
 
 | Patch | Details |
 |---|---|
@@ -584,7 +584,7 @@
 
 ## Citymapper (com.citymapper.app.release)
 
-**Supported versions:** `11.56.2`
+**Supported versions:** `11.57.1`
 
 | Patch | Details |
 |---|---|
@@ -604,7 +604,7 @@
 
 ## Clue Period & Cycle Tracker (com.clue.android)
 
-**Supported versions:** `264.0`
+**Supported versions:** `266.0`
 
 | Patch | Details |
 |---|---|
@@ -644,7 +644,7 @@
 
 ## Crime Radar (com.newsbreak.crimeradar)
 
-**Supported versions:** `26.33.0`
+**Supported versions:** `26.33.1`
 
 | Patch | Details |
 |---|---|
@@ -664,7 +664,7 @@
 
 ## Cube Solver (com.jeffprod.cubesolver)
 
-**Supported versions:** `5.0.3`
+**Supported versions:** `5.0.4`
 
 | Patch | Details |
 |---|---|
@@ -695,7 +695,7 @@
 
 ## DramaBox (com.storymatrix.drama)
 
-**Supported versions:** `5.8.1`
+**Supported versions:** `6.6.0`
 
 | Patch | Details |
 |---|---|
@@ -736,10 +736,11 @@
 
 ## ES File Explorer (com.estrongs.android.pop)
 
-**Supported versions:** `4.4.3.5`
+**Supported versions:** `4.4.3.7`
 
 | Patch | Details |
 |---|---|
+| **Disable Tracking** | Disables UMeng analytics and crash reporting in ES File Explorer. |
 | **Unlock VIP Lifetime** | Unlocks VIP lifetime features in ES File Explorer. |
 
 ---
@@ -776,7 +777,7 @@
 
 ## Fitbod (com.fitbod.fitbod)
 
-**Supported versions:** `8.28.0-2`
+**Supported versions:** `8.30.0-0`
 
 | Patch | Details |
 |---|---|
@@ -786,7 +787,7 @@
 
 ## Fitia (com.nutrition.technologies.Fitia)
 
-**Supported versions:** `25.1.4`
+**Supported versions:** `25.1.12`
 
 | Patch | Details |
 |---|---|
@@ -826,7 +827,7 @@
 
 ## Flud (com.delphicoder.flud)
 
-**Supported versions:** `2.0.14`
+**Supported versions:** `2.0.15`
 
 | Patch | Details |
 |---|---|
@@ -856,7 +857,7 @@
 
 ## Getcontact (app.source.getcontact)
 
-**Supported versions:** `8.15.0`
+**Supported versions:** `8.16.0`
 
 | Patch | Details |
 |---|---|
@@ -866,7 +867,7 @@
 
 ## Google Photos (com.google.android.apps.photos)
 
-**Supported versions:** `7.87.0.957333026`
+**Supported versions:** `7.89.0.968035987`
 
 | Patch | Details |
 |---|---|
@@ -941,7 +942,7 @@
 
 ## Home Workout (homeworkout.homeworkouts.noequipment)
 
-**Supported versions:** `1.7.7`
+**Supported versions:** `1.7.8`
 
 | Patch | Details |
 |---|---|
@@ -951,7 +952,7 @@
 
 ## HTTP Sniffer (com.anetcapture.mock)
 
-**Supported versions:** `2.3.5-ad_mob`
+**Supported versions:** `2.3.6-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -981,7 +982,7 @@
 
 ## Inmigreat (com.changayaf.inmigreat)
 
-**Supported versions:** `2.3.36`
+**Supported versions:** `2.3.50`
 
 | Patch | Details |
 |---|---|
@@ -1061,7 +1062,7 @@
 
 ## komoot (de.komoot.android)
 
-**Supported versions:** `2026.32.2`
+**Supported versions:** `2026.34.2`
 
 | Patch | Details |
 |---|---|
@@ -1081,7 +1082,7 @@
 
 ## Lawfully (com.lawfully.lawfully_ai_tracker)
 
-**Supported versions:** `6.7.5`
+**Supported versions:** `6.8.1`
 
 | Patch | Details |
 |---|---|
@@ -1091,7 +1092,7 @@
 
 ## Life360 (com.life360.android.safetymapd)
 
-**Supported versions:** `26.29.0`
+**Supported versions:** `26.31.0`
 
 | Patch | Details |
 |---|---|
@@ -1101,7 +1102,7 @@
 
 ## LiveScore (com.livescore)
 
-**Supported versions:** `9.9`
+**Supported versions:** `10.0`
 
 | Patch | Details |
 |---|---|
@@ -1121,7 +1122,7 @@
 
 ## m-Indicator (com.mobond.mindicator)
 
-**Supported versions:** `18.0.362`
+**Supported versions:** `18.0.364`
 
 | Patch | Details |
 |---|---|
@@ -1131,7 +1132,7 @@
 
 ## MacroDroid (com.arlosoft.macrodroid)
 
-**Supported versions:** `5.65.9`
+**Supported versions:** `5.66.9`
 
 | Patch | Details |
 |---|---|
@@ -1181,7 +1182,7 @@
 
 ## MEGA (mega.privacy.android.app)
 
-**Supported versions:** `16.10(261970902)(8daeddaf4d)`
+**Supported versions:** `16.11.1(262250408)(9a6c828835)`
 
 | Patch | Details |
 |---|---|
@@ -1191,7 +1192,7 @@
 
 ## Messenger (com.facebook.orca)
 
-**Supported versions:** `573.0.0.44.88`
+**Supported versions:** `575.0.0.48.90`
 
 | Patch | Details |
 |---|---|
@@ -1243,7 +1244,7 @@
 
 ## Minimal Widgets (com.jndapp.minimal.widgets)
 
-**Supported versions:** `1.1.01`
+**Supported versions:** `2.1.02`
 
 | Patch | Details |
 |---|---|
@@ -1303,7 +1304,7 @@
 
 ## MovieBox TV (com.community.mbox.tv)
 
-**Supported versions:** `1.1.6.0723.03`
+**Supported versions:** `1.1.9.0820.03`
 
 | Patch | Details |
 |---|---|
@@ -1333,7 +1334,7 @@
 
 ## NAVITIME (com.navitime.inbound.walk)
 
-**Supported versions:** `12.0.10`
+**Supported versions:** `12.1.0`
 
 | Patch | Details |
 |---|---|
@@ -1373,7 +1374,7 @@
 
 ## NewsBreak (com.particlenews.newsbreak)
 
-**Supported versions:** `26.33.0`
+**Supported versions:** `26.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1403,7 +1404,7 @@
 
 ## NYT Games (com.nytimes.crossword)
 
-**Supported versions:** `6.36.1`
+**Supported versions:** `6.38.0`
 
 | Patch | Details |
 |---|---|
@@ -1413,7 +1414,7 @@
 
 ## nzb360 (com.kevinforeman.nzb360)
 
-**Supported versions:** `24.3`
+**Supported versions:** `24.4.1`
 
 | Patch | Details |
 |---|---|
@@ -1433,7 +1434,7 @@
 
 ## Octi (eu.darken.octi)
 
-**Supported versions:** `1.1.0-rc0`
+**Supported versions:** `1.2.1-rc0`
 
 | Patch | Details |
 |---|---|
@@ -1453,7 +1454,7 @@
 
 ## Opera News (com.opera.app.news)
 
-**Supported versions:** `14.1.2254.83278`
+**Supported versions:** `14.2.2254.84245`
 
 | Patch | Details |
 |---|---|
@@ -1473,7 +1474,7 @@
 
 ## Parallel Space Pro (com.parallel.space.pro)
 
-**Supported versions:** `4.0.9159`
+**Supported versions:** `4.0.9162`
 
 | Patch | Details |
 |---|---|
@@ -1493,7 +1494,7 @@
 
 ## Park4Night (fr.tramb.park4night)
 
-**Supported versions:** `7.1.60`
+**Supported versions:** `7.1.62`
 
 | Patch | Details |
 |---|---|
@@ -1523,7 +1524,7 @@
 
 ## Photo Editor (com.iudesk.android.photo.editor)
 
-**Supported versions:** `13.5`
+**Supported versions:** `13.6`
 
 | Patch | Details |
 |---|---|
@@ -1533,7 +1534,7 @@
 
 ## Pialytic (verbosus.pialytic)
 
-**Supported versions:** `1.3.0`
+**Supported versions:** `1.3.1`
 
 | Patch | Details |
 |---|---|
@@ -1565,7 +1566,7 @@
 
 ## PictureThis (cn.danatech.xingseus)
 
-**Supported versions:** `5.33.1`
+**Supported versions:** `5.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1585,7 +1586,7 @@
 
 ## Pixel Habit Tracker (com.pixel.al.pixelhabittracker)
 
-**Supported versions:** `2.3.0`
+**Supported versions:** `2.3.1`
 
 | Patch | Details |
 |---|---|
@@ -1605,7 +1606,7 @@
 
 ## Pocket Bard (com.MojoFilterMediaLLC.RPGSoundSystem)
 
-**Supported versions:** `3.1.16`
+**Supported versions:** `3.1.17`
 
 | Patch | Details |
 |---|---|
@@ -1625,7 +1626,7 @@
 
 ## Pocket Prep (com.pocketprep.android.pocketprep)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1635,7 +1636,7 @@
 
 ## Pocket Prep Behavioral Health (com.pocketprep.android.behavioralhealth)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1645,7 +1646,7 @@
 
 ## Pocket Prep EMS (com.pocketprep.android.ems)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1665,7 +1666,7 @@
 
 ## Pocket Prep Fitness (com.pocketprep.android.fitness)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1675,7 +1676,7 @@
 
 ## Pocket Prep IT Cybersecurity (com.pocketprep.android.itcybersecurity)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1685,7 +1686,7 @@
 
 ## Pocket Prep Medical (com.pocketprep.android.medical)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1695,7 +1696,7 @@
 
 ## Pocket Prep Nursing (com.pocketprep.android.nursing)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1715,7 +1716,7 @@
 
 ## Pocket Prep Professional (com.pocketprep.android.professional)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1725,7 +1726,7 @@
 
 ## Pocket Prep Skilled Trades (com.pocketprep.android.automotive)
 
-**Supported versions:** `3.28.1`
+**Supported versions:** `3.29.0`
 
 | Patch | Details |
 |---|---|
@@ -1765,7 +1766,7 @@
 
 ## Proton Mail (ch.protonmail.android)
 
-**Supported versions:** `7.11.0`
+**Supported versions:** `7.11.4`
 
 | Patch | Details |
 |---|---|
@@ -1866,7 +1867,7 @@
 
 ## Reddit (com.reddit.frontpage)
 
-**Supported versions:** `2026.32.0`
+**Supported versions:** `2026.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1940,7 +1941,7 @@
 
 ## Scoopz (com.localaiapp.scoops)
 
-**Supported versions:** `3.31.0`
+**Supported versions:** `3.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1960,7 +1961,7 @@
 
 ## SD Maid SE (eu.darken.sdmse)
 
-**Supported versions:** `2.0.2-rc0`
+**Supported versions:** `2.0.3-rc0`
 
 | Patch | Details |
 |---|---|
@@ -1980,7 +1981,7 @@
 
 ## Server Auditor (com.server.auditor.ssh.client)
 
-**Supported versions:** `7.8.0`
+**Supported versions:** `7.8.1`
 
 | Patch | Details |
 |---|---|
@@ -2010,7 +2011,7 @@
 
 ## Snipd (ai.topicfinder.podcastdiscovery)
 
-**Supported versions:** `4.1.18`
+**Supported versions:** `4.1.19`
 
 | Patch | Details |
 |---|---|
@@ -2090,7 +2091,7 @@
 
 ## Stargazing Hub (com.twtapp)
 
-**Supported versions:** `3.3.3`
+**Supported versions:** `3.4.1`
 
 | Patch | Details |
 |---|---|
@@ -2110,7 +2111,7 @@
 
 ## Sticker.ly (com.snowcorp.stickerly.android)
 
-**Supported versions:** `3.36.1`
+**Supported versions:** `3.37.0`
 
 | Patch | Details |
 |---|---|
@@ -2120,7 +2121,7 @@
 
 ## Strava (com.strava)
 
-**Supported versions:** `475.11`
+**Supported versions:** `477.14`
 
 | Patch | Details |
 |---|---|
@@ -2171,7 +2172,7 @@
 
 ## Telegram (org.telegram.messenger)
 
-**Supported versions:** `12.9.2`
+**Supported versions:** `12.10.0`
 
 | Patch | Details |
 |---|---|
@@ -2238,7 +2239,7 @@
 
 ## TeraBox (com.dubox.drive)
 
-**Supported versions:** `4.22.6`
+**Supported versions:** `4.23.5`
 
 | Patch | Details |
 |---|---|
@@ -2248,7 +2249,7 @@
 
 ## The Athletic (com.theathletic)
 
-**Supported versions:** `13.146.0`
+**Supported versions:** `13.147.0`
 
 | Patch | Details |
 |---|---|
@@ -2258,7 +2259,7 @@
 
 ## The Weather Channel (com.weather.Weather)
 
-**Supported versions:** `16.16.0`
+**Supported versions:** `16.18.1`
 
 | Patch | Details |
 |---|---|
@@ -2307,7 +2308,7 @@
 
 ## Toomics (com.toomics.global.google)
 
-**Supported versions:** `1.6.7`
+**Supported versions:** `1.6.8`
 
 | Patch | Details |
 |---|---|
@@ -2337,7 +2338,7 @@
 
 ## Toxly (com.mindful.code.studio.toxly.scanner)
 
-**Supported versions:** `1.18.16`
+**Supported versions:** `1.20.1`
 
 | Patch | Details |
 |---|---|
@@ -2377,7 +2378,7 @@
 
 ## Transit (com.thetransitapp.droid)
 
-**Supported versions:** `6.1.12`
+**Supported versions:** `6.2.3`
 
 | Patch | Details |
 |---|---|
@@ -2397,7 +2398,7 @@
 
 ## UbikiTouch (eu.toneiv.ubktouch)
 
-**Supported versions:** `1.17.7`
+**Supported versions:** `1.17.8`
 
 | Patch | Details |
 |---|---|
@@ -2407,7 +2408,7 @@
 
 ## UDisc (com.regasoftware.udisc)
 
-**Supported versions:** `24.2.8`
+**Supported versions:** `24.2.10`
 
 | Patch | Details |
 |---|---|
@@ -2457,7 +2458,7 @@
 
 ## VRadio (com.ilv.vradio)
 
-**Supported versions:** `2.9.2`
+**Supported versions:** `2.9.3`
 
 | Patch | Details |
 |---|---|
@@ -2487,7 +2488,7 @@
 
 ## Wavve Boating (com.wavve.boating.gps)
 
-**Supported versions:** `5.7.7`
+**Supported versions:** `5.7.8`
 
 | Patch | Details |
 |---|---|
@@ -2567,7 +2568,7 @@
 
 ## Yatri (com.yatrirailways.yatri)
 
-**Supported versions:** `5.0.5`
+**Supported versions:** `5.0.6`
 
 | Patch | Details |
 |---|---|
