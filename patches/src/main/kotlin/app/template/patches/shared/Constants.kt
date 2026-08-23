@@ -939,8 +939,9 @@ val MESSENGER_COMPATIBILITY = Compatibility(
             AppTarget(
                 version = "575.0.0.48.90",
                 versionCodes = mapOf(
-                    SupportedAbi.ARMEABI_V7A to 344611781,
-                    SupportedAbi.ARM64_V8A to 344611864, versionCode = 345012838)
+                    SupportedAbi.ARMEABI_V7A to 345012838,
+                    SupportedAbi.ARM64_V8A to 345012840
+                )
             ),
         )
     )
