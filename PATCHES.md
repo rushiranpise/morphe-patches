@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.20.0** (`main`) · **388 patches** across **248 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.0-dev.1** (`dev`) · **394 patches** across **252 apps** · back to [README](README.md)
 
 ---
 
@@ -393,11 +393,11 @@
 
 ## Bluetooth Volume Manager (eu.darken.bluemusic)
 
-**Supported versions:** `3.4.3`
+**Supported versions:** `3.5.0-rc0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true. |
+| **Unlock Pro** | Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isPro=true. |
 
 ---
 
@@ -423,7 +423,7 @@
 
 ## BoldVoice (com.wellocution.androidapp)
 
-**Supported versions:** `4.6.1`
+**Supported versions:** `4.6.6`
 
 | Patch | Details |
 |---|---|
@@ -514,7 +514,7 @@
 
 ## CAPod (eu.darken.capod)
 
-**Supported versions:** `5.2.1`
+**Supported versions:** `5.2.3-rc0`
 
 | Patch | Details |
 |---|---|
@@ -690,6 +690,18 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Unlocks all premium wallpapers. |
+
+---
+
+## DooFlix (com.king.moja)
+
+**Supported versions:** `9.8`
+
+| Patch | Details |
+|---|---|
+| **Bypass Protections** | Bypasses DNS blocker gate and tamper class detection. |
+| **Remove Ads** | Disables AdMob, Unity, IMA SDK, and WebView pre-roll ads in the player. |
+| **Remove Reward Service** | Removes nodepointer background SDK and bypasses forced update screen. |
 
 ---
 
@@ -1302,13 +1314,33 @@
 
 ---
 
-## MovieBox TV (com.community.mbox.tv)
+## MovieBox (com.community.oneroom)
 
-**Supported versions:** `1.1.9.0820.03`
+**Supported versions:** `4.0.01.0813.02`
 
 | Patch | Details |
 |---|---|
-| **Unlock VIP** | Unlocks VIP features in MovieBox TV. |
+| **All-In-One** | Unlocks VIP premium, removes ads and upsells, bypasses region lock and force update, unlocks HD and downloads, enables 5 parallel downloads. |
+
+---
+
+## MovieBox India (com.community.mbox.in)
+
+**Supported versions:** `4.0.01.0813.02`
+
+| Patch | Details |
+|---|---|
+| **All-In-One** | Unlocks VIP premium, removes ads and upsells, bypasses region lock and force update, unlocks HD and downloads, enables 5 parallel downloads. |
+
+---
+
+## MovieBox TV (com.community.mbox.tv)
+
+**Supported versions:** `1.1.8.0814.03`
+
+| Patch | Details |
+|---|---|
+| **All-In-One** | Unlocks TV premium, removes ads and upsells, bypasses region lock and force update. |
 
 ---
 
@@ -1399,6 +1431,16 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Unlocks Ninja VPN premium. |
+
+---
+
+## Nova Launcher (com.teslacoilsw.launcher)
+
+**Supported versions:** `8.8.8`
+
+| Patch | Details |
+|---|---|
+| **Unlock Prime** | Unlocks Nova Launcher Prime by bypassing the static isPrime gate, forcing the runtime prime state to true on startup, and bypassing the subscription-active verification check. |
 
 ---
 
@@ -1929,13 +1971,13 @@
 
 ---
 
-## SAI (com.mtv.sai)
+## SAI Split APKs Installer (com.mtv.sai)
 
-**Supported versions:** `2.3.3`
+**Supported versions:** `2.4.0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Pro** | Unlocks SAI Pro by bypassing Pairip, removing the onboarding paywall slide from the page list, and suppressing the MainActivity subscription overlay. |
+| **Unlock Premium** | Unlocks SAI Split APKs Installer premium by bypassing RevenueCat entitlement checks using stable SDK-anchored fingerprints. |
 
 ---
 
