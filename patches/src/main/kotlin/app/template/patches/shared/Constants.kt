@@ -23,7 +23,7 @@ val AAENABLER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0x1A73E8,
         targets = listOf(
-            AppTarget(version = "1.0.2")
+            AppTarget(version = "v1.0.7", versionCode = 7)
         )
     )
 
