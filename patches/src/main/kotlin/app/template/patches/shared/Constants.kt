@@ -314,6 +314,14 @@ val BOLDVOICE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "4.6.6", versionCode = 415))
     )
 
+val COMPATIBILITY_DOOFLIX = Compatibility(
+        name = "DooFlix",
+        packageName = "com.king.moja",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "9.8"))
+    )
+
 val BOXBOX_COMPATIBILITY = Compatibility(
         name = "Box Box",
         packageName = "club.boxbox.android",
