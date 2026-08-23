@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.20.0",
+  "version": "1.21.0-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -23,6 +23,90 @@
                 "ARMEABI_V7A": 52244454,
                 "X86_64": 52244454,
                 "X86": 52244454
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "All-In-One",
+      "description": "Unlocks VIP premium, removes ads and upsells, bypasses region lock and force update, unlocks HD and downloads, enables 5 parallel downloads.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.community.oneroom",
+          "name": "MovieBox",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.0.01.0813.02",
+              "versionCodes": {
+                "ARM64_V8A": 50020121,
+                "ARMEABI_V7A": 50020121,
+                "X86_64": 50020121,
+                "X86": 50020121
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "com.community.mbox.in",
+          "name": "MovieBox India",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.0.01.0813.02",
+              "versionCodes": {
+                "ARM64_V8A": 50020121,
+                "ARMEABI_V7A": 50020121,
+                "X86_64": 50020121,
+                "X86": 50020121
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "All-In-One",
+      "description": "Unlocks TV premium, removes ads and upsells, bypasses region lock and force update.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.community.mbox.tv",
+          "name": "MovieBox TV",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.1.8.0814.03",
+              "versionCodes": {
+                "ARM64_V8A": 50040013,
+                "ARMEABI_V7A": 50040013,
+                "X86_64": 50040013,
+                "X86": 50040013
               },
               "isExperimental": false,
               "minSdk": null,
@@ -317,6 +401,32 @@
                 "ARMEABI_V7A": 345012838,
                 "ARM64_V8A": 345012840
               },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Bypass Protections",
+      "description": "Bypasses DNS blocker gate and tamper class detection.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.king.moja",
+          "name": "DooFlix",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8",
+              "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -3124,6 +3234,36 @@
     },
     {
       "name": "Remove Ads",
+      "description": "Disables AdMob, Unity, IMA SDK, and WebView pre-roll ads in the player.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.king.moja",
+          "name": "DooFlix",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
       "description": "Removes all ads in app",
       "default": true,
       "dependencies": [],
@@ -3456,6 +3596,32 @@
                 "ARMEABI_V7A": 345012838,
                 "ARM64_V8A": 345012840
               },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Reward Service",
+      "description": "Removes nodepointer background SDK and bypasses forced update screen.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.king.moja",
+          "name": "DooFlix",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8",
+              "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -6119,12 +6285,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.6.1",
+              "version": "4.6.6",
               "versionCodes": {
-                "ARM64_V8A": 410,
-                "ARMEABI_V7A": 410,
-                "X86_64": 410,
-                "X86": 410
+                "ARM64_V8A": 415,
+                "ARMEABI_V7A": 415,
+                "X86_64": 415,
+                "X86": 415
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8295,6 +8461,39 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Unlocks SAI Split APKs Installer premium by bypassing RevenueCat entitlement checks using stable SDK-anchored fingerprints.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.mtv.sai",
+          "name": "SAI Split APKs Installer",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#1976D2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.4.0",
+              "versionCodes": {
+                "ARM64_V8A": 46,
+                "ARMEABI_V7A": 46,
+                "X86_64": 46,
+                "X86": 46
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks all premium feature in app.",
       "default": true,
       "dependencies": [],
@@ -9179,6 +9378,37 @@
       "options": []
     },
     {
+      "name": "Unlock Prime",
+      "description": "Unlocks Nova Launcher Prime by bypassing the static isPrime gate, forcing the runtime prime state to true on startup, and bypassing the subscription-active verification check.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.teslacoilsw.launcher",
+          "name": "Nova Launcher",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "8.8.8",
+              "versionCodes": {
+                "ARM64_V8A": 88800,
+                "ARMEABI_V7A": 88800,
+                "X86_64": 88800,
+                "X86": 88800
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Pro",
       "description": "Unlocks AAAD Pro subscription features by bypassing Stripe and Firebase subscription checks.",
       "default": true,
@@ -9338,7 +9568,7 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true.",
+      "description": "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isPro=true.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -9351,12 +9581,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.4.3",
+              "version": "3.5.0-rc0",
               "versionCodes": {
-                "ARM64_V8A": 30403000,
-                "ARMEABI_V7A": 30403000,
-                "X86_64": 30403000,
-                "X86": 30403000
+                "ARM64_V8A": 30500000,
+                "ARMEABI_V7A": 30500000,
+                "X86_64": 30500000,
+                "X86": 30500000
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9408,17 +9638,17 @@
           "packageName": "eu.darken.capod",
           "name": "CAPod",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#F5A623",
           "signatures": null,
           "targets": [
             {
-              "version": "5.2.1",
+              "version": "5.2.3-rc0",
               "versionCodes": {
-                "ARM64_V8A": 50201000,
-                "ARMEABI_V7A": 50201000,
-                "X86_64": 50201000,
-                "X86": 50201000
+                "ARM64_V8A": 50203000,
+                "ARMEABI_V7A": 50203000,
+                "X86_64": 50203000,
+                "X86": 50203000
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10065,37 +10295,6 @@
                 "ARMEABI_V7A": 134,
                 "X86_64": 134,
                 "X86": 134
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Pro",
-      "description": "Unlocks SAI Pro by bypassing Pairip, removing the onboarding paywall slide from the page list, and suppressing the MainActivity subscription overlay.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.mtv.sai",
-          "name": "SAI",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.3.3",
-              "versionCodes": {
-                "ARM64_V8A": 45,
-                "ARMEABI_V7A": 45,
-                "X86_64": 45,
-                "X86": 45
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10998,37 +11197,6 @@
                 "ARMEABI_V7A": 79,
                 "X86_64": 79,
                 "X86": 79
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock VIP",
-      "description": "Unlocks VIP features in MovieBox TV.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.community.mbox.tv",
-          "name": "MovieBox TV",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#E53935",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.1.9.0820.03",
-              "versionCodes": {
-                "ARM64_V8A": 50040014,
-                "ARMEABI_V7A": 50040014,
-                "X86_64": 50040014,
-                "X86": 50040014
               },
               "isExperimental": false,
               "minSdk": null,
