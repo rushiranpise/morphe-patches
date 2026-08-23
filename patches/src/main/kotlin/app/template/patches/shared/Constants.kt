@@ -287,7 +287,7 @@ val BLUETOOTH_VOLUME_MANAGER_COMPATIBILITY = Compatibility(
         packageName = "eu.darken.bluemusic",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "3.4.3", versionCode = 30403000))
+        targets = listOf(AppTarget(version = "3.5.0-rc0", versionCode = 30500000))
     )
 
 val BLURAMS_COMPATIBILITY = Compatibility(
@@ -396,9 +396,9 @@ val CANVA_COMPATIBILITY = Compatibility(
 val CAPOD_COMPATIBILITY = Compatibility(
         name = "CAPod",
         packageName = "eu.darken.capod",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0xF5A623,
-        targets = listOf(AppTarget(version = "5.2.1", versionCode = 50201000))
+        targets = listOf(AppTarget(version = "5.2.3-rc0", versionCode = 50203000))
     )
 
 val CARBON_COMPATIBILITY = Compatibility(
