@@ -1511,12 +1511,14 @@ val RS_EXPLORER_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "2.3.0.4", versionCode = 239))
     )
 
-val SAI_COMPATIBILITY = Compatibility(
-        name = "SAI",
+val COMPATIBILITY_SAI = Compatibility(
+        name = "SAI Split APKs Installer",
         packageName = "com.mtv.sai",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "2.3.3", versionCode = 45))
+        apkFileType = ApkFileType.XAPK,
+        appIconColor = 0x1976D2,
+        targets = listOf(
+            AppTarget(version = "2.4.0", versionCode = 46)
+        )
     )
 
 val SCOOPZ_COMPATIBILITY = Compatibility(
