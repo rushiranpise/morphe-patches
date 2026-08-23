@@ -4,7 +4,7 @@ import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.ES_EXPLORER_COMPATIBILITY
 import app.template.patches.shared.returnEarly
 
-// ES File Explorer (com.estrongs.android.pop) v4.4.3.5
+// ES File Explorer (com.estrongs.android.pop) v4.4.3.7
 //
 // CHANGED FROM v4.4.3.7:
 //   Old: two-step noop — FexApplication.M()V (UMeng) + x07.a(String, x07$d)V (telemetry thread).
@@ -32,6 +32,8 @@ val esExplorerDisableTrackingPatch = bytecodePatch(
 
     execute {
         // Noop UMeng init — kills UMConfigure.preInit/init and UMCrash in one call
-        AnalyticsInitFingerprint.method.returnEarly()
+        UMConfigurePreInitFingerprint.method.returnEarly()
+        UMConfigureInitFingerprint.method.returnEarly()
+        UMCrashRegisterCallbackFingerprint.method.returnEarly()
     }
 }

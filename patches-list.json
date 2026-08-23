@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.19.0",
+  "version": "1.20.0-dev.11",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -513,7 +513,7 @@
     },
     {
       "name": "Bypass integrity check",
-      "description": "Spoofs certificate fingerprint and SafetyNet results so login works on a patched APK.",
+      "description": "Spoofs certificate fingerprint and SafetyNet results so login works on patched APK.",
       "default": true,
       "dependencies": [
         "BytecodePatch",
@@ -841,7 +841,7 @@
     },
     {
       "name": "Disable Login Requirement",
-      "description": "Removes mandatory login gate so the app can be browsed without an account.",
+      "description": "Removes TikTok Lite mandatory login gate so the app can be browsed without an account.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -941,26 +941,26 @@
       "options": []
     },
     {
-      "name": "Disable Tracking",
-      "description": "Disables UMeng analytics and crash reporting in ES File Explorer.",
+      "name": "Disable Telemetry",
+      "description": "Disables ByteDance analytics by blocking LiteApplogServiceImpl, AppLogNetworkClient, and startup tracker init tasks.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.estrongs.android.pop",
-          "name": "ES File Explorer",
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
           "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#1976D2",
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
           "signatures": null,
           "targets": [
             {
-              "version": "4.4.3.5",
+              "version": "44.9.52",
               "versionCodes": {
-                "ARM64_V8A": 10351,
-                "ARMEABI_V7A": 10351,
-                "X86_64": 10351,
-                "X86": 10351
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
               },
               "isExperimental": false,
               "minSdk": null,
@@ -981,7 +981,7 @@
     },
     {
       "name": "Disable analytics",
-      "description": "Blocks all Firebase analytics and event tracking in Telegram Plus.",
+      "description": "Blocks Firebase analytics and event tracking in Telegram Plus. FirebaseApp.initializeApp() is preserved so push notifications keep working.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1012,7 +1012,7 @@
     },
     {
       "name": "Disable auto-update",
-      "description": "Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion.",
+      "description": "Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag.",
       "default": true,
       "dependencies": [
         "BytecodePatch"
@@ -1062,37 +1062,6 @@
             }
           ]
         },
-        {
-          "packageName": "org.telegram.plus",
-          "name": "Telegram Plus",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2.0",
-              "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Disable auto-update",
-      "description": "Disables automatic app update checks in Telegram Plus.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
         {
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
@@ -1465,7 +1434,7 @@
     },
     {
       "name": "Download speed boost",
-      "description": "Increases download chunk size to 512 KB and max concurrent requests to 8.",
+      "description": "Increases download chunk size to 1 MB and max concurrent requests to 12.",
       "default": true,
       "dependencies": [
         "BytecodePatch"
@@ -1530,6 +1499,37 @@
                 "ARMEABI_V7A": 22448,
                 "X86_64": 22448,
                 "X86": 22448
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Downloads",
+      "description": "Enables downloading all videos",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1718,7 +1718,7 @@
     },
     {
       "name": "Feed Filter",
-      "description": "Removes ads, sponsored content, and commerce posts from the home feed.",
+      "description": "Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -1833,7 +1833,7 @@
     },
     {
       "name": "Fix Firebase after re-signing",
-      "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch no other config needed.",
+      "description": "Fixes Firebase services (push notifications, Remote Config, Firebase Auth) that break after Morphe re-signs the app with a different certificate.\n\nApply with Original app certificate patch — no other config needed.",
       "default": false,
       "dependencies": [
         "RawResourcePatch"
@@ -1976,6 +1976,99 @@
       "options": []
     },
     {
+      "name": "Hide Answers Tab",
+      "description": "Removes the AI Answers tab from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide CAPTCHA Popups",
+      "description": "Suppresses browsing CAPTCHA dialogs from SecApiImpl.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Chat Tab",
+      "description": "Removes the Chat button from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Communities Shelf",
       "description": "Hides the related or suggested communities shelf in subreddits.",
       "default": true,
@@ -2040,8 +2133,39 @@
       "options": []
     },
     {
+      "name": "Hide Games Tab",
+      "description": "Removes the Games tab from the bottom navigation bar.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Live Cards",
-      "description": "Removes live stream cards from the home feed.",
+      "description": "Removes live stream cards from the TikTok Lite home feed.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -2413,7 +2537,7 @@
     },
     {
       "name": "Hide typing indicator",
-      "description": "Hides your typing indicator from other users in all chats.",
+      "description": "Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher.",
       "default": true,
       "dependencies": [
         "BytecodePatch"
@@ -2463,37 +2587,6 @@
             }
           ]
         },
-        {
-          "packageName": "org.telegram.plus",
-          "name": "Telegram Plus",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2.0",
-              "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide typing indicator",
-      "description": "Prevents typing status from being sent in Telegram Plus.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
         {
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
@@ -2643,119 +2736,11 @@
       "options": []
     },
     {
-      "name": "Plus Premium",
-      "description": "Unlocks premium UI and suppresses premium nag dialogs. isPremiumUser returns true only for self to avoid showing premium badges on others.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "org.telegram.plus",
-          "name": "Telegram Plus",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2.0",
-              "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Predictive back gesture",
       "description": "Enables Android predictive back gesture.",
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Premium UI",
-      "description": "Hides story strip, allows saving stories, suppresses story/translate nags, enables swipe-back everywhere, and suppresses pinned message server fetches.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "org.telegram.messenger",
-          "name": "Telegram",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2",
-              "versionCodes": {
-                "ARM64_V8A": 69912,
-                "ARMEABI_V7A": 69912,
-                "X86_64": 69912,
-                "X86": 69912
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "org.telegram.messenger.web",
-          "name": "Telegram Web",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2",
-              "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "org.telegram.plus",
-          "name": "Telegram Plus",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2.0",
-              "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
       "options": []
     },
     {
@@ -2928,6 +2913,39 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Privacy Enhancements",
+      "description": "Suppresses outbound read receipts and prevents admin quiet-hours policies from overriding your presence status.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.microsoft.teams",
+          "name": "Teams",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#6264A7",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1416/1.0.0.2026152302",
+              "versionCodes": {
+                "ARM64_V8A": 2026152325,
+                "ARMEABI_V7A": 2026152325,
+                "X86_64": 2026152325,
+                "X86": 2026152325
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Provide Original app certificate",
@@ -3187,6 +3205,39 @@
                 "ARMEABI_V7A": 135,
                 "X86_64": 135,
                 "X86": 135
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove Ads",
+      "description": "Disables PicsArt banner and interstitial ads by forcing the central AdsManager gate to ads-off.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3477,6 +3528,39 @@
       "options": []
     },
     {
+      "name": "Remove Watermark",
+      "description": "Removes the PicsArt watermark from exported photos and videos.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove ad manifest entries",
       "description": "Removes common ad SDK permissions, services, providers, libraries, and metadata.",
       "default": false,
@@ -3634,7 +3718,7 @@
     },
     {
       "name": "Remove ads",
-      "description": "Removes sponsored messages and video ads from all chats and channels.",
+      "description": "Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads.",
       "default": true,
       "dependencies": [
         "BytecodePatch"
@@ -3710,37 +3794,6 @@
       "options": []
     },
     {
-      "name": "Remove ads",
-      "description": "Removes Plus banner ads, native ads, Telegram sponsored messages, and video ads.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "org.telegram.plus",
-          "name": "Telegram Plus",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#2CA5E0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "12.9.2.0",
-              "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Remove internet permission",
       "description": "Removes the INTERNET permission so the app cannot access the network at all. Blocks all trackers, analytics and ads from phoning home, but also disables any legitimate online features. Only enable for apps you want fully offline.",
       "default": false,
@@ -3754,6 +3807,37 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Sanitize Share URLs",
+      "description": "Removes tracking parameters (utm_campaign, share_link_id) from shared links.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -3824,6 +3908,37 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Show Comment Karma",
+      "description": "Ensures comment karma is surfaced alongside link karma on the profile header.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -4410,6 +4525,37 @@
       ]
     },
     {
+      "name": "Stop Video Looping",
+      "description": "Prevents videos from looping automatically after playback ends.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.tiktok.lite.go",
+          "name": "TikTok Lite",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FE2C55",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "44.9.52",
+              "versionCodes": {
+                "ARM64_V8A": 440952,
+                "ARMEABI_V7A": 440952,
+                "X86_64": 440952,
+                "X86": 440952
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Unlock Ad-Free",
       "description": "Forces FlightAware ad-free subscribed state.",
       "default": true,
@@ -4833,12 +4979,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "16.0.20228.20090",
+              "version": "16.0.20326.20034",
               "versionCodes": {
-                "ARM64_V8A": 16843309,
-                "ARMEABI_V7A": 16843309,
-                "X86_64": 16843309,
-                "X86": 16843309
+                "ARM64_V8A": 200292347,
+                "ARMEABI_V7A": 200292347,
+                "X86_64": 200292347,
+                "X86": 200292347
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5056,6 +5202,37 @@
                 "ARMEABI_V7A": 42218005,
                 "X86_64": 42218005,
                 "X86": 42218005
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Membership",
+      "description": "Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.storymatrix.drama",
+          "name": "DramaBox",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#E53935",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.8.1",
+              "versionCodes": {
+                "ARM64_V8A": 581,
+                "ARMEABI_V7A": 581,
+                "X86_64": 581,
+                "X86": 581
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6959,21 +7136,28 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks premium in Beta by Mirko.",
+      "description": "Unlocks premium in Beta by Mirko by disabling the ads gate and PairIP license checks.",
       "default": true,
-      "dependencies": [],
+      "dependencies": [
+        "BytecodePatch"
+      ],
       "compatiblePackages": [
         {
           "packageName": "it.mirko.beta",
           "name": "Beta Maniac",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
             {
-              "version": "0.9.4",
-              "versionCodes": null,
+              "version": "0.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 152,
+                "ARMEABI_V7A": 152,
+                "X86_64": 152,
+                "X86": 152
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -7029,12 +7213,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.73",
+              "version": "1.0.76",
               "versionCodes": {
-                "ARM64_V8A": 107,
-                "ARMEABI_V7A": 107,
-                "X86_64": 107,
-                "X86": 107
+                "ARM64_V8A": 110,
+                "ARMEABI_V7A": 110,
+                "X86_64": 110,
+                "X86": 110
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7366,6 +7550,39 @@
                 "ARMEABI_V7A": 21,
                 "X86_64": 21,
                 "X86": 21
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
+      "description": "Unlocks PicsArt premium locally: forces the subscription state to subscribed at the data-class root so tools/effects unlock and upgrade prompts are skipped.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.picsart.studio",
+          "name": "PicsArt",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#E91E63",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "30.5.5",
+              "versionCodes": {
+                "ARM64_V8A": 993830505,
+                "ARMEABI_V7A": 993830505,
+                "X86_64": 993830505,
+                "X86": 993830505
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8958,6 +9175,42 @@
     },
     {
       "name": "Unlock Pro",
+      "description": "Unlocks App Cache Cleaner Pro and removes ads by bypassing Pairip LVL, signature checks, self-destruct, and all upgrade dialogs.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch",
+        "BytecodePatch",
+        "BytecodePatch",
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.a0soft.gphone.acc.free",
+          "name": "1Tap Cleaner",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#2196F3",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "5.22",
+              "versionCodes": {
+                "ARM64_V8A": 240005229,
+                "ARMEABI_V7A": 240005229,
+                "X86_64": 240005229,
+                "X86": 240005229
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
       "description": "Unlocks all Acrobat Pro and Studio tools without a subscription.",
       "default": true,
       "dependencies": [],
@@ -9514,7 +9767,7 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks all Pro features in app.",
+      "description": "Unlocks Permission Pilot Pro by forcing isPro=true in the billing Info object.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -9527,12 +9780,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.0-rc0",
+              "version": "2.2.2-rc0",
               "versionCodes": {
-                "ARM64_V8A": 20200000,
-                "ARMEABI_V7A": 20200000,
-                "X86_64": 20200000,
-                "X86": 20200000
+                "ARM64_V8A": 20202000,
+                "ARMEABI_V7A": 20202000,
+                "X86_64": 20202000,
+                "X86": 20202000
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9638,34 +9891,25 @@
     },
     {
       "name": "Unlock Pro",
-      "description": "Unlocks 1Tap Cleaner PRO features: history export, app-group filters, unlimited cache targets, and ad removal.",
+      "description": "Unlocks Octopi Launcher Pro by returning true from the isPro LiveData getter, bypassing all pro feature gates without modifying billing or database logic.",
       "default": true,
-      "dependencies": [
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.a0soft.gphone.acc.free",
-          "name": "1Tap Cleaner",
+          "packageName": "com.otp.octopilauncher",
+          "name": "Octopi Launcher",
           "description": null,
           "apkFileType": "APKS",
-          "appIconColor": "#1565C0",
+          "appIconColor": "#FF6600",
           "signatures": null,
           "targets": [
             {
-              "version": "5.21",
+              "version": "1.88",
               "versionCodes": {
-                "ARM64_V8A": 240005219,
-                "ARMEABI_V7A": 240005219,
-                "X86_64": 240005219,
-                "X86": 240005219
+                "ARM64_V8A": 2161,
+                "ARMEABI_V7A": 2161,
+                "X86_64": 2161,
+                "X86": 2161
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9724,6 +9968,37 @@
             {
               "version": "1.29.0-260420093",
               "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Pro",
+      "description": "Unlocks PortDroid Pro features by bypassing the Google Play Billing check, the SharedPreferences pro gate, and the signature tamper check.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.stealthcopter.portdroid",
+          "name": "PortDroid",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1565C0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1.0.7",
+              "versionCodes": {
+                "ARM64_V8A": 113,
+                "ARMEABI_V7A": 113,
+                "X86_64": 113,
+                "X86": 113
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -10267,6 +10542,72 @@
                 "ARMEABI_V7A": 3030302,
                 "X86_64": 3030302,
                 "X86": 3030302
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Supporter",
+      "description": "Spoofs MAL supporter status to suppress all banner, list, and search ads.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "net.myanimelist.app",
+          "name": "MyAnimeList",
+          "description": null,
+          "apkFileType": "APKS",
+          "appIconColor": "#2E51A2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.3.16",
+              "versionCodes": {
+                "ARM64_V8A": 2031623,
+                "ARMEABI_V7A": 2031623,
+                "X86_64": 2031623,
+                "X86": 2031623
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Teams",
+      "description": "Unlocks Teams Premium features.",
+      "default": true,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.microsoft.teams",
+          "name": "Teams",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#6264A7",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "1416/1.0.0.2026152302",
+              "versionCodes": {
+                "ARM64_V8A": 2026152325,
+                "ARMEABI_V7A": 2026152325,
+                "X86_64": 2026152325,
+                "X86": 2026152325
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10929,28 +11270,6 @@
       ],
       "compatiblePackages": [
         {
-          "packageName": "fat.burnning.plank.fitness.loseweight",
-          "name": "Plank Workout",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#FF5722",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.4.3",
-              "versionCodes": {
-                "ARM64_V8A": 51,
-                "ARMEABI_V7A": 51,
-                "X86_64": 51,
-                "X86": 51
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
           "packageName": "loseweightapp.loseweightappforwomen.womenworkoutathome",
           "name": "Lose Weight App for Women",
           "description": null,
@@ -11155,6 +11474,37 @@
                 "ARMEABI_V7A": 6426830,
                 "X86_64": 6426830,
                 "X86": 6426830
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Username Hider",
+      "description": "Replaces the displayed username with 'u/hidden' for screen-sharing privacy.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.32.0",
+              "versionCodes": {
+                "ARM64_V8A": 2632041,
+                "ARMEABI_V7A": 2632041,
+                "X86_64": 2632041,
+                "X86": 2632041
               },
               "isExperimental": false,
               "minSdk": null,

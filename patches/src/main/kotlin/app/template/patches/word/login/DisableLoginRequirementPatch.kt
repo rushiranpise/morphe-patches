@@ -46,9 +46,17 @@ private val wordDisableLoginRequirementPatch = bytecodePatch {
                 new-instance v0, Lcom/microsoft/office/officehub/objectmodel/TaskResult;
                 const/4 v1, 0x0
                 invoke-direct {v0, v1}, Lcom/microsoft/office/officehub/objectmodel/TaskResult;-><init>(I)V
-                invoke-interface {p3, v0}, Lcom/microsoft/office/officehub/objectmodel/IOnTaskCompleteListener;->onTaskComplete(Lcom/microsoft/office/officehub/objectmodel/TaskResult;)V
+                invoke-interface {p2, v0}, Lcom/microsoft/office/officehub/objectmodel/IOnTaskCompleteListener;->onTaskComplete(Lcom/microsoft/office/officehub/objectmodel/TaskResult;)V
                 return-void
             """)
+        }
+
+
+        // Return null when sign-in name is null/empty — prevents IllegalArgumentException
+        // crash on Timer-0 thread when no real account is present.
+        getIdentityForSignInNameFingerprint.method.apply {
+            clearBody()
+            addInstructions(0, "const/4 v0, 0x0\nreturn-object v0")
         }
 
         // Return false — SSO not required — so the app opens directly on ProtocolActivation
