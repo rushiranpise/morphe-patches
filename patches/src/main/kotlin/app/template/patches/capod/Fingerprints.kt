@@ -1,34 +1,27 @@
 package app.template.patches.capod
 
 import app.morphe.patcher.Fingerprint
-import app.morphe.patcher.methodCall
 import com.android.tools.smali.dexlib2.AccessFlags
 
 // UpgradeRepoGplay$Info.isPro()Z   [classes.dex]
 //
-// CAPod exposes a direct isPro() method on the Info data class (unlike BVM/SD Maid
-// which use an isUpgraded boolean field). The method checks billingData -> getProSku()
-// (a PurchasedSku object, null if not purchased) and falls back to gracePeriod.
+// 5.2.3 change: isPro() is now a simple field getter — the old billingData-based
+// body that called access$getProSku(BillingData) is gone. The Companion class no
+// longer exists and access$getProSku was removed entirely. isPro is now a pre-computed
+// field written in the constructor (same pattern as BVM 3.5.0).
 //
-// Smali verified (.registers 3, PUBLIC FINAL):
-//   iget-object v0, p0, ->billingData
-//   if-eqz v0, :L0
-//   invoke-static {v0}, UpgradeRepoGplay$Companion.access$getProSku(BillingData)PurchasedSku
-//   move-result-object v0
-//   [null check → gracePeriod fallback → return Z]
+// Smali verified (5.2.3-rc0, .registers 1, PUBLIC FINAL):
+//   iget-boolean p0, p0, Leu/darken/capod/common/upgrade/core/UpgradeRepoGplay$Info;->isPro:Z
+//   return p0
 //
-// Fingerprint: stable non-obfuscated class path + methodCall to access$getProSku.
-// This is the only Z-returning no-param method in this class calling getProSku.
+// Fingerprint: stable non-obfuscated class path + method name + return type + access flags.
+// No filters needed — definingClass + name uniquely identifies this method.
+// The old methodCall(access$getProSku) filter was only needed to disambiguate from
+// gracePeriod fallback logic; now the method is a trivial getter, no filter required.
 val IsProFingerprint = Fingerprint(
     definingClass = "Leu/darken/capod/common/upgrade/core/UpgradeRepoGplay\$Info;",
     name = "isPro",
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = emptyList(),
-    filters = listOf(
-        methodCall(
-            definingClass = "Leu/darken/capod/common/upgrade/core/UpgradeRepoGplay\$Companion;",
-            name = "access\$getProSku",
-        ),
-    ),
 )

@@ -12,64 +12,53 @@ import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
+private const val INFO = "Leu/darken/bluemusic/upgrade/core/UpgradeRepoGplay\$Info;"
+
 /**
- * Unlocks the Pro upgrade in Bluetooth Volume Manager (BlueMusic).
+ * Unlocks Pro in Bluetooth Volume Manager (BlueMusic).
  *
- * ## Strategy — three-layer defence
+ * ## 3.5.0 changes vs 3.4.x
  *
- * ### Layer 1 — InfoConstructorFingerprint: force isUpgraded=true at construction
+ * - `isUpgraded:Z` field renamed to `isPro:Z` — old InfoConstructorFingerprint and
+ *   isUpgraded classDefForEach scan both dead.
+ * - `UStringsKt.isPro()` coroutine shim (IsProSuspendFingerprint) is gone — R8 inlined it.
+ * - Constructor signature changed from `(BillingData, Throwable, int)` to
+ *   `(Z, BillingData, Throwable, Z)` — primary constructor now receives gracePeriod as p1.
  *
- * `UpgradeRepoGplay$Info.<init>` computes `isUpgraded` from the purchase list:
+ * ## Strategy — two-layer, both anchored on stable non-obfuscated names
  *
- * ```smali
- * :L18  move v1, v2              ← v1=0 if no upgrades and no grace period
- * :L19  iput-boolean v1, p0, ->isUpgraded:Z
- * ```
+ * ### Layer 1 — InfoConstructorFingerprint: force isPro=true at construction
  *
- * We read the value register (registerA of the matched iput-boolean) at patch time
- * and inject `const/4 vREG, 0x1` immediately before it. This forces `isUpgraded=true`
- * into every `Info` object, regardless of what billing returned.
+ * The primary constructor computes isPro from the purchase list and writes it:
+ *   iput-boolean v6, v0, ...Info;->isPro:Z
  *
- * ### Layer 2 — IsProSuspendFingerprint: short-circuit the isPro coroutine
+ * We read v6 (registerA of matched iput-boolean) and inject `const/4 v6, 0x1`
+ * immediately before the write. Every Info object is born with isPro=true.
  *
- * `UStringsKt.isPro()` awaits the first emission of `UpgradeRepoGplay.upgradeInfo`
- * and then reads `Info.isUpgraded`. Returning `Boolean.TRUE` at entry skips the
- * entire coroutine state machine — no billing flow is ever consumed.
+ * ### Layer 2 — classDefForEach IGET_BOOLEAN scan: cover all cached reads
  *
- * ### Layer 3 — classDefForEach IGET scan: replace all cached reads
+ * Any method that reads Info->isPro:Z via IGET_BOOLEAN gets the field load
+ * replaced with `const/4 vREG, 0x1`. This covers UI lambdas and coroutines
+ * that hold a live Info reference and read the field directly (21 sites in 3.5.0).
  *
- * Any compiled method that reads `UpgradeRepoGplay$Info.isUpgraded` via IGET_BOOLEAN
- * gets the field load replaced with `const/4 vREG, 0x1`. This covers UI lambdas and
- * other coroutines that hold a live `Info` reference and read the field directly.
- *
- * ## SKUs (orientation only)
- *   - IAP: `upgrade.premium.rewrite.v3` (current), `upgrade.premium` (legacy)
- *   - Sub: `upgrade.pro`
+ * Both layers use only non-obfuscated, app-owned class/field names — stable across
+ * R8 rebuilds as long as the billing architecture stays the same.
  */
 @Suppress("unused")
 val bluetoothVolumeManagerPremiumPatch = bytecodePatch(
     name = "Unlock Pro",
-    description = "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isUpgraded=true.",
+    description = "Unlocks the Pro upgrade in Bluetooth Volume Manager by forcing isPro=true.",
 ) {
     compatibleWith(BLUETOOTH_VOLUME_MANAGER_COMPATIBILITY)
 
     execute {
-        // Layer 1: force isUpgraded=true in the Info constructor.
+        // Layer 1: force isPro=true in the Info constructor.
         val iputIndex = InfoConstructorFingerprint.instructionMatches[0].index
         val valueReg = InfoConstructorFingerprint.instructionMatches[0]
             .getInstruction<TwoRegisterInstruction>().registerA
         InfoConstructorFingerprint.method.addInstructions(iputIndex, "const/4 v$valueReg, 0x1")
 
-        // Layer 2: short-circuit the isPro() coroutine entry point.
-        IsProSuspendFingerprint.method.addInstructions(
-            0,
-            """
-                sget-object v0, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-                return-object v0
-            """.trimIndent(),
-        )
-
-        // Layer 3: replace every IGET_BOOLEAN of UpgradeRepoGplay$Info.isUpgraded with const true.
+        // Layer 2: replace every IGET_BOOLEAN of UpgradeRepoGplay$Info.isPro with const true.
         var patchedReads = 0
         classDefForEach { classDef ->
             mutableClassDefBy(classDef).methods.forEach { method ->
@@ -78,8 +67,8 @@ val bluetoothVolumeManagerPremiumPatch = bytecodePatch(
                     if (instruction.opcode != Opcode.IGET_BOOLEAN) return@forEachIndexed
                     val ref = (instruction as? ReferenceInstruction)?.reference as? FieldReference
                         ?: return@forEachIndexed
-                    if (ref.definingClass != "Leu/darken/bluemusic/upgrade/core/UpgradeRepoGplay\$Info;" ||
-                        ref.name != "isUpgraded" ||
+                    if (ref.definingClass != INFO ||
+                        ref.name != "isPro" ||
                         ref.type != "Z"
                     ) return@forEachIndexed
 
@@ -92,7 +81,7 @@ val bluetoothVolumeManagerPremiumPatch = bytecodePatch(
         }
 
         if (patchedReads == 0) {
-            throw PatchException("No UpgradeRepoGplay\$Info.isUpgraded reads found — fingerprint may be stale.")
+            throw PatchException("No UpgradeRepoGplay\$Info.isPro reads found — field may have been renamed again.")
         }
     }
 }
