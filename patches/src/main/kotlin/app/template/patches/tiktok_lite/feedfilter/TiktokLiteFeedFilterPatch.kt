@@ -7,7 +7,7 @@ import app.template.patches.shared.Constants.TIKTOK_LITE_COMPATIBILITY
 @Suppress("unused")
 val tiktokLiteFeedFilterPatch = bytecodePatch(
     name = "Feed Filter",
-    description = "Removes ads, sponsored content, and commerce posts from the home feed.",
+    description = "Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed.",
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)
 
@@ -57,7 +57,7 @@ val tiktokLiteFeedFilterPatch = bytecodePatch(
 @Suppress("unused")
 val tiktokLiteHideLivePatch = bytecodePatch(
     name = "Hide Live Cards",
-    description = "Removes live stream cards from the home feed.",
+    description = "Removes live stream cards from the TikTok Lite home feed.",
     default = true,
 ) {
     compatibleWith(TIKTOK_LITE_COMPATIBILITY)

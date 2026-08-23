@@ -1,3 +1,96 @@
+## [1.20.0-dev.11](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.10...v1.20.0-dev.11) (2026-08-22)
+
+### 🐛 Bug Fixes
+
+* remove patch ([b3743b5](https://github.com/rushiranpise/morphe-patches/commit/b3743b5a706d72cb8c35dc755027a9264701178e))
+
+## [1.20.0-dev.10](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.9...v1.20.0-dev.10) (2026-08-22)
+
+### 🐛 Bug Fixes
+
+* betamaniac ([7fb8f40](https://github.com/rushiranpise/morphe-patches/commit/7fb8f401248c28ebeffbafafc9ef5de9b51a18ce)), closes [#726](https://github.com/rushiranpise/morphe-patches/issues/726)
+* telegram login ([343b189](https://github.com/rushiranpise/morphe-patches/commit/343b189e3c4f769236ac32d4fa6f0735bc85dba9))
+
+### ✨ New Features
+
+* add Octopi Launcher ([dcd78fc](https://github.com/rushiranpise/morphe-patches/commit/dcd78fc1f44a559ffd0e37a0d83666c1e3de8460))
+
+## [1.20.0-dev.9](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.8...v1.20.0-dev.9) (2026-08-21)
+
+### ✨ New Features
+
+* reddit add new patches ([6977636](https://github.com/rushiranpise/morphe-patches/commit/6977636bf5e9c002a86c20f98801ca70e59983e9))
+
+## [1.20.0-dev.8](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.7...v1.20.0-dev.8) (2026-08-21)
+
+### 🐛 Bug Fixes
+
+* 1 tap ([c0f12bf](https://github.com/rushiranpise/morphe-patches/commit/c0f12bfbd4d0c9b5abca7d8c7db72fa044582ded)), closes [#711](https://github.com/rushiranpise/morphe-patches/issues/711)
+
+### ✨ New Features
+
+* add dramabox ([1b526a8](https://github.com/rushiranpise/morphe-patches/commit/1b526a8009217f9737307d3d08a760a829d8a45a))
+* add MyAnimeList ([311e3e6](https://github.com/rushiranpise/morphe-patches/commit/311e3e6a325fce6e26de81eff32748a87f439045))
+
+## [1.20.0-dev.7](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.6...v1.20.0-dev.7) (2026-08-21)
+
+### ✨ New Features
+
+* RedGifs ([7804878](https://github.com/rushiranpise/morphe-patches/commit/780487855121c5b306229f7def0a329a0408209e)), closes [#705](https://github.com/rushiranpise/morphe-patches/issues/705)
+
+## [1.20.0-dev.6](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.5...v1.20.0-dev.6) (2026-08-21)
+
+### 🐛 Bug Fixes
+
+* telegram ([25f905a](https://github.com/rushiranpise/morphe-patches/commit/25f905a36378f262c41d2aac7fcb92363718563f))
+
+## [1.20.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.4...v1.20.0-dev.5) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* build ([cc5ecc1](https://github.com/rushiranpise/morphe-patches/commit/cc5ecc1956175ce963f13dcbc999e6e4b9e4530e))
+* monet launcher ([5f75aa9](https://github.com/rushiranpise/morphe-patches/commit/5f75aa95976355b0de622fb5262a75178d8434cd)), closes [#719](https://github.com/rushiranpise/morphe-patches/issues/719)
+* myperm ([50c4c88](https://github.com/rushiranpise/morphe-patches/commit/50c4c882d2bcaeb40e18f74f219be5bbfdafbda8)), closes [#684](https://github.com/rushiranpise/morphe-patches/issues/684)
+
+### ✨ New Features
+
+* add picsart ([119e497](https://github.com/rushiranpise/morphe-patches/commit/119e4972d45724c71e5af2453aad77faf521e764))
+* tiktok lite add new patches ([3ee74de](https://github.com/rushiranpise/morphe-patches/commit/3ee74de75b3cf53598a38cd59dc482855daeef8b))
+
+## [1.20.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.3...v1.20.0-dev.4) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* esexplorer crash ([61c0b11](https://github.com/rushiranpise/morphe-patches/commit/61c0b114129ff1ec33a721ecbae0c049443f9f19)), closes [#714](https://github.com/rushiranpise/morphe-patches/issues/714)
+
+## [1.20.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.2...v1.20.0-dev.3) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* teams description ([41a23e8](https://github.com/rushiranpise/morphe-patches/commit/41a23e882ff6e484996052c189b6f2388efd05ad))
+
+## [1.20.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0-dev.1...v1.20.0-dev.2) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* remove telegram ([643e314](https://github.com/rushiranpise/morphe-patches/commit/643e314561adaebdfeed9f5435c1ca50830ccecb))
+
+### ✨ New Features
+
+* add teams ([8a3c4f1](https://github.com/rushiranpise/morphe-patches/commit/8a3c4f133bbf809b894e9ed204e4b412946e9c58))
+
+## [1.20.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.19.0...v1.20.0-dev.1) (2026-08-20)
+
+### 🐛 Bug Fixes
+
+* remove plank ([6514b91](https://github.com/rushiranpise/morphe-patches/commit/6514b91bdf3529a727966a78d24f952a4f937f55))
+* word & excel ([cbab4b2](https://github.com/rushiranpise/morphe-patches/commit/cbab4b2ae87389d9e61b200d673b2f0ae7c41e3a))
+* word/excel ([aee00ce](https://github.com/rushiranpise/morphe-patches/commit/aee00ce8f9b96cb1fafbf45a9667744c72f07895))
+
+### ✨ New Features
+
+* add portdroid ([00a0455](https://github.com/rushiranpise/morphe-patches/commit/00a0455841e668f16009a276d31446736669fddd))
+
 ## [1.19.0](https://github.com/rushiranpise/morphe-patches/compare/v1.18.3...v1.19.0) (2026-08-19)
 
 ### 🐛 Bug Fixes

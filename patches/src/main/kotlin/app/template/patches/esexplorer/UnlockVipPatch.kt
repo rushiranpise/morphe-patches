@@ -61,8 +61,8 @@ val esExplorerUnlockVipPatch = bytecodePatch(
         // Gate 4b: expiry timestamp — Long.MAX_VALUE = never expires
         VipExpireTimeFingerprint.method.returnEarly(Long.MAX_VALUE)
 
-        // Signature check: return true (pretend official build)
-        SignatureCheckFingerprint.method.returnEarly(true)
+        // Signature check: return true (pretend official build, if fingerprint present in version)
+        SignatureCheckFingerprint.methodOrNull?.returnEarly(true)
 
         // Alert suppression: return true (skip nb1.c() entirely in calling code)
         SuppressAlertPrefFingerprint.method.returnEarly(true)
