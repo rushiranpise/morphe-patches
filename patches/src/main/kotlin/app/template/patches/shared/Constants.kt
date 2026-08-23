@@ -314,14 +314,6 @@ val BOLDVOICE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "4.6.6", versionCode = 415))
     )
 
-val COMPATIBILITY_DOOFLIX = Compatibility(
-        name = "DooFlix",
-        packageName = "com.king.moja",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "9.8"))
-    )
-
 val BOXBOX_COMPATIBILITY = Compatibility(
         name = "Box Box",
         packageName = "club.boxbox.android",
@@ -1035,16 +1027,6 @@ val MOVIEBOX_COMPATIBILITY = Compatibility(
         )
     )
 
-val MOVIEBOXIN_COMPATIBILITY = Compatibility(
-        name = "MovieBox India",
-        packageName = "com.community.mbox.in",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "4.0.01.0813.02", versionCode = 50020121)
-        )
-    )
-
 val MOVIEBOX_TV_COMPATIBILITY = Compatibility(
         name = "MovieBox TV",
         packageName = "com.community.mbox.tv",
@@ -1055,12 +1037,14 @@ val MOVIEBOX_TV_COMPATIBILITY = Compatibility(
         )
     )
 
-val NOVA_LAUNCHER_COMPATIBILITY = Compatibility(
-        name = "Nova Launcher",
-        packageName = "com.teslacoilsw.launcher",
+val MOVIEBOXIN_COMPATIBILITY = Compatibility(
+        name = "MovieBox India",
+        packageName = "com.community.mbox.in",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "8.8.8", versionCode = 88800))
+        targets = listOf(
+            AppTarget(version = "4.0.01.0813.02", versionCode = 50020121)
+        )
     )
 
 val MYANIMELIST_COMPATIBILITY = Compatibility(
@@ -1133,6 +1117,14 @@ val NINJVAPN_COMPATIBILITY = Compatibility(
         packageName = "app.ninjavpn.android",
         appIconColor = 0x1A1A2E,
         targets = listOf(AppTarget(version = "1.4.7", versionCode = 44))
+    )
+
+val NOVA_LAUNCHER_COMPATIBILITY = Compatibility(
+        name = "Nova Launcher",
+        packageName = "com.teslacoilsw.launcher",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "8.8.8", versionCode = 88800))
     )
 
 val NYT_GAMES_COMPATIBILITY = Compatibility(
@@ -1537,16 +1529,6 @@ val RS_EXPLORER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x0D47A1,
         targets = listOf(AppTarget(version = "2.3.0.4", versionCode = 239))
-    )
-
-val COMPATIBILITY_SAI = Compatibility(
-        name = "SAI Split APKs Installer",
-        packageName = "com.mtv.sai",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1976D2,
-        targets = listOf(
-            AppTarget(version = "2.4.0", versionCode = 46)
-        )
     )
 
 val SCOOPZ_COMPATIBILITY = Compatibility(
@@ -2029,6 +2011,24 @@ val YATRI_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6B00,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.6", versionCode = 1013))
+    )
+
+val COMPATIBILITY_DOOFLIX = Compatibility(
+        name = "DooFlix",
+        packageName = "com.king.moja",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "9.8"))
+    )
+
+val COMPATIBILITY_SAI = Compatibility(
+        name = "SAI Split APKs Installer",
+        packageName = "com.mtv.sai",
+        apkFileType = ApkFileType.XAPK,
+        appIconColor = 0x1976D2,
+        targets = listOf(
+            AppTarget(version = "2.4.0", versionCode = 46)
+        )
     )
 
 val COMPATIBILITY_ACCPRO = Compatibility(
