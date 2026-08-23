@@ -1025,13 +1025,33 @@ val MONET_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.0.76", versionCode = 110))
     )
 
-val MOVIEBOXTV_COMPATIBILITY = Compatibility(
+val MOVIEBOX_COMPATIBILITY = Compatibility(
+        name = "MovieBox",
+        packageName = "com.community.oneroom",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "4.0.01.0813.02", versionCode = 50020121)
+        )
+    )
+
+val MOVIEBOXIN_COMPATIBILITY = Compatibility(
+        name = "MovieBox India",
+        packageName = "com.community.mbox.in",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(
+            AppTarget(version = "4.0.01.0813.02", versionCode = 50020121)
+        )
+    )
+
+val MOVIEBOX_TV_COMPATIBILITY = Compatibility(
         name = "MovieBox TV",
         packageName = "com.community.mbox.tv",
-        appIconColor = 0xE53935,
         apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "1.1.9.0820.03", versionCode = 50040014),
+            AppTarget(version = "1.1.8.0814.03", versionCode = 50040013)
         )
     )
 
