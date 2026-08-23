@@ -1055,6 +1055,14 @@ val MOVIEBOX_TV_COMPATIBILITY = Compatibility(
         )
     )
 
+val NOVA_LAUNCHER_COMPATIBILITY = Compatibility(
+        name = "Nova Launcher",
+        packageName = "com.teslacoilsw.launcher",
+        apkFileType = ApkFileType.APK,
+        appIconColor = 0xE53935,
+        targets = listOf(AppTarget(version = "8.8.8", versionCode = 88800))
+    )
+
 val MYANIMELIST_COMPATIBILITY = Compatibility(
         name = "MyAnimeList",
         packageName = "net.myanimelist.app",
