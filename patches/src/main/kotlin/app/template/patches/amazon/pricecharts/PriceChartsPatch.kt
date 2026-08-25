@@ -113,6 +113,10 @@ val amazonPriceChartsPatch = bytecodePatch(
             size ?: "625",
             if (collapsed ?: true) "1" else "0",
         ).joinToString("|")
+            // Option values are constrained to this charset before they reach a
+            // smali string; the extension additionally validates each field and
+            // JSON-encodes it before any JavaScript is generated.
+            .filter { it.isLetterOrDigit() || it == ',' || it == '|' || it == '_' }
 
         // Non-jumpstarted: p1=WebView, p2=url (method has 10 registers, v0 free)
         MShopWebViewClientOnPageFinishedFingerprint.method.addInstructions(
