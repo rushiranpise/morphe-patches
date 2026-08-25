@@ -371,25 +371,14 @@ public class AmazonHelper {
         + "[class*=badgeMessage]{background-color:transparent!important}"
         + ".a-button-primary,.a-button-oneclick{color-scheme:only light!important}";
 
-    private static boolean isDarkEnabled(String mode) {
+    private static boolean isDarkEnabled(String mode, android.view.View view) {
         if ("on".equals(mode)) return true;
-        if ("follow_system".equals(mode)) {
-            try {
-                android.app.Application app = currentApp();
-                if (app == null) return false;
-                int uiMode = app.getResources().getConfiguration().uiMode;
-                return (uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
-                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-            } catch (Exception e) { return false; }
+        if ("follow_system".equals(mode) && view != null) {
+            int uiMode = view.getResources().getConfiguration().uiMode;
+            return (uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
         }
         return false;
-    }
-
-    private static android.app.Application currentApp() {
-        try {
-            return (android.app.Application) Class.forName("android.app.ActivityThread")
-                .getMethod("currentApplication").invoke(null);
-        } catch (Exception e) { return null; }
     }
 
     /**
@@ -397,7 +386,7 @@ public class AmazonHelper {
      * dark mode works offline and cannot be altered by any external repository.
      */
     public static void injectDarkMode(WebView webView, String mode) {
-        if (webView == null || !isDarkEnabled(mode)) return;
+        if (webView == null || !isDarkEnabled(mode, webView)) return;
         webView.evaluateJavascript(
             "(function(css){var id='morphe-amazon-dark';"
             + "var s=document.getElementById(id);"
@@ -456,7 +445,7 @@ public class AmazonHelper {
      * the icon stays visible against a dark background.
      */
     public static void tintTabIconIfDark(android.widget.ImageView icon, String mode) {
-        if (icon == null || !isDarkEnabled(mode)) return;
+        if (icon == null || !isDarkEnabled(mode, icon)) return;
         icon.setColorFilter(
             android.graphics.Color.WHITE,
             android.graphics.PorterDuff.Mode.SRC_IN
