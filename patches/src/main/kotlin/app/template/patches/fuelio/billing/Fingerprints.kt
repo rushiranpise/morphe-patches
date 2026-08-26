@@ -7,29 +7,33 @@ import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-// ── Architecture note (v10.3.2 → v10.3.3) ────────────────────────────────────
+// ── Architecture note (v10.3.2 → v10.3.3 → v10.3.4) ─────────────────────────
 //
-// ProFeatureManager class was removed; its logic is now in Lel5;.
-// The two separate map$1$2 / map$2$2 emitters are merged into Lve0;.h().
-// BuyViewModel$1$1 is gone — replaced by Lr7; (obfuscated coroutine dispatcher).
-// LiveData.j() obfuscated to La74;->i(). DestinationScreen enum obfuscated to Lhc0;.
-// FirebaseRemoteConfigRepository methods renamed from c()/d() to stable non-obfuscated names.
-// DEX count reduced from 3 → 2 (classes merged into classes.dex + classes2.dex).
+// v10.3.3: ProFeatureManager removed → Lel5;. map$1$2/map$2$2 merged → Lve0;.h().
+//   BuyViewModel$1$1 gone → Lr7;. LiveData La74;->i(). Enum Lhc0;.
+//   FirebaseRemoteConfigRepository methods renamed from c()/d() to stable names.
+//   DEX count 3 → 2.
+//
+// v10.3.4: ProFeatureManager renamed el5 → fl5. StateFlow type Lst6 → Ltt6.
+//   LiveData type La74 → Lb74 (->i() method name unchanged).
+//   All other types/structure identical to v10.3.3.
 //
 // ── IsPremiumFingerprint ──────────────────────────────────────────────────────
 //
-// Targets: el5.b()Z  [classes.dex]
+// Targets: fl5.b()Z  [classes.dex]
 //
-// Synchronous isPremium() gate. Reads MutableStateFlow<Boolean> (field d:Lst6;)
-// via Lst6;->getValue() + Boolean.booleanValue(). Gates all in-app feature access.
+// Synchronous isPremium() gate. Reads MutableStateFlow<Boolean> (field d:Ltt6;)
+// via Ltt6;->getValue() + Boolean.booleanValue(). Gates all in-app feature access.
 //
 // v10.3.2: definingClass = Lcom/kajda/fuelio/billing/ProFeatureManager; (non-obfuscated)
-// v10.3.3: class fully obfuscated to Lel5; — use stable filter anchors instead.
+// v10.3.3: class obfuscated to Lel5;, StateFlow type Lst6;
+// v10.3.4: class renamed to Lfl5;, StateFlow type renamed to Ltt6;
+//   No definingClass — use stable filter anchors only.
 //
-// Smali (el5.smali, v10.3.3):
+// Smali (fl5.smali, v10.3.4):
 //   .method public final b()Z
-//     iget-object p0, p0, Lel5;->d:Lst6;
-//     invoke-virtual {p0}, Lst6;->getValue()Ljava/lang/Object;
+//     iget-object p0, p0, Lfl5;->d:Ltt6;
+//     invoke-virtual {p0}, Ltt6;->getValue()Ljava/lang/Object;
 //     check-cast p0, Ljava/lang/Boolean;
 //     invoke-virtual {p0}, Boolean;->booleanValue()Z    ← filter[1]
 //     return p0
@@ -40,7 +44,7 @@ object IsPremiumFingerprint : Fingerprint(
     parameters = emptyList(),
     filters = listOf(
         methodCall(
-            definingClass = "Lst6;",
+            definingClass = "Ltt6;",
             name = "getValue",
         ),
         methodCall(
@@ -49,8 +53,8 @@ object IsPremiumFingerprint : Fingerprint(
         ),
     ),
     custom = { method, _ ->
-        // Restrict to el5.b() — many classes use getValue+booleanValue.
-        // el5 is uniquely identified by having exactly ONE getValue call
+        // Restrict to fl5.b() — many classes use getValue+booleanValue.
+        // fl5 is uniquely identified by having exactly ONE getValue call
         // (not a coroutine — no packed-switch, no state machine overhead).
         (method.implementation?.instructions?.count() ?: Int.MAX_VALUE) < 20
     },
@@ -128,9 +132,9 @@ object SubscriptionEmitFingerprint : Fingerprint(
 //       appears ONLY in r7.smali across the entire DEX.
 //   [1] methodCall(La74;->i(Object)V)         — postValue, immediately after.
 //
-// Smali evidence (r7.smali lines 4399–4401):
+// Smali evidence (r7.smali, v10.3.4, verified sget@1134, if-eqz@1128, offset=6 unchanged):
 //   sget-object v0, Lhc0;->s:Lhc0;           ← filter[0] fieldAccess SGET_OBJECT
-//   invoke-virtual {v1,v0}, La74;->i(Obj)V   ← filter[1] methodCall
+//   invoke-virtual {v1,v0}, Lb74;->i(Obj)V   ← filter[1] methodCall (La74→Lb74 in v10.3.4)
 //
 object DestinationScreenFingerprint : Fingerprint(
     returnType = "Ljava/lang/Object;",
@@ -143,7 +147,7 @@ object DestinationScreenFingerprint : Fingerprint(
             name = "s",
         ),
         methodCall(
-            definingClass = "La74;",
+            definingClass = "Lb74;",
             name = "i",
             returnType = "V",
             parameters = listOf("Ljava/lang/Object;"),
@@ -161,17 +165,18 @@ object DestinationScreenFingerprint : Fingerprint(
 //
 // v10.3.2: definingClass = ProFeatureManager; param = ContinuationImpl
 // v10.3.3: el5.a(Lk41;)Object — Lk41; is the new continuation type
+// v10.3.4: fl5.a(Lk41;)Object — same param, StateFlow type Lst6→Ltt6
 //
 // Patch: clearBody + return Boolean.TRUE immediately.
-// Stable anchors: both methods (b and a) are on el5, identified by param Lk41;.
+// Stable anchors: identified by param Lk41; + getValue on StateFlow type.
 //
-// Smali (el5.smali, v10.3.3):
+// Smali (fl5.smali, v10.3.4):
 //   .method public final a(Lk41;)Ljava/lang/Object;
 //     ... (coroutine state machine preamble)
 //     invoke-virtual {p1, v0}, Lrq3;->z(Lk41;)Ljava/lang/Object;  ← Deferred.await
 //     ...
-//     iget-object p0, p0, Lel5;->d:Lst6;
-//     invoke-virtual {p0}, Lst6;->getValue()Ljava/lang/Object;     ← StateFlow read
+//     iget-object p0, p0, Lfl5;->d:Ltt6;
+//     invoke-virtual {p0}, Ltt6;->getValue()Ljava/lang/Object;     ← StateFlow read
 //     return-object p0
 //
 object AwaitAccessFingerprint : Fingerprint(
@@ -180,7 +185,7 @@ object AwaitAccessFingerprint : Fingerprint(
     parameters = listOf("Lk41;"),
     filters = listOf(
         methodCall(
-            definingClass = "Lst6;",
+            definingClass = "Ltt6;",
             name = "getValue",
         ),
     ),
