@@ -742,7 +742,7 @@ val INSCODE_AUTOCLICKER_COMPATIBILITY = Compatibility(
         packageName = "com.inscode.autoclicker",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.1.4", versionCode = 680))
+        targets = listOf(AppTarget(version = "7.1.5", versionCode = 686))
     )
 
 val INURE_COMPATIBILITY = Compatibility(
