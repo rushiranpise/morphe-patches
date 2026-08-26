@@ -648,9 +648,9 @@ val FLUD_COMPATIBILITY = Compatibility(
 val FUELIO_COMPATIBILITY = Compatibility(
         name = "Fuelio",
         packageName = "com.kajda.fuelio",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF6B00,
-        targets = listOf(AppTarget(version = "10.3.3", versionCode = 3437))
+        targets = listOf(AppTarget(version = "10.3.4", versionCode = 3438))
     )
 
 val GENIUSSCAN_COMPATIBILITY = Compatibility(
@@ -696,7 +696,7 @@ val HISTORICALCALENDAR_COMPATIBILITY = Compatibility(
         name = "Historical Calendar",
         packageName = "com.alexandrucene.dayhistory",
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "7.5.4", versionCode = 376))
+        targets = listOf(AppTarget(version = "7.5.5", versionCode = 377))
     )
 
 val HOLAVPN_COMPATIBILITY = Compatibility(
@@ -1619,9 +1619,9 @@ val SOCIALGAMEBOX_COMPATIBILITY = Compatibility(
 val SOCIALLITE_COMPATIBILITY = Compatibility(
         name = "SocialLite",
         packageName = "com.sociallite.android",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x5B5EA6,
-        targets = listOf(AppTarget(version = "2.0.0.45", versionCode = 73))
+        targets = listOf(AppTarget(version = "2.0.0.59", versionCode = 87))
     )
 
 val SPEEDTEST_COMPATIBILITY = Compatibility(
