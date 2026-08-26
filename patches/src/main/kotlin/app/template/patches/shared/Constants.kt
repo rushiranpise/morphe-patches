@@ -1822,7 +1822,7 @@ val TRADINGVIEW_COMPATIBILITY = Compatibility(
         name = "TradingView",
         packageName = "com.tradingview.tradingviewapp",
         apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x2962FF,
+        appIconColor = 0x000000,
         targets = listOf(
             AppTarget(version = "1.20.80.0.1002385", versionCode = 1002385),
         )
