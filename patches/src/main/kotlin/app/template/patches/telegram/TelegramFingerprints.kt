@@ -6,6 +6,8 @@ import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 // ════════════════════════════════════════════════════════════════════════════════
 // Telegram shared fingerprints
@@ -240,19 +242,33 @@ val CreateNoAccessAlertFingerprint = Fingerprint(
 val LoadFullChatErrorFingerprint = Fingerprint(
     definingClass = "Lorg/telegram/messenger/MessagesController;",
     returnType = "V",
-    parameters = listOf("Lorg/telegram/tgnet/TLRPC\$TL_error;", "J"),
+    // 12.9.2: private synthetic lambda, params = (TL_error;J)
+    // 12.10.0: R8 promoted to public static synthetic, added MessagesController as first param
+    // Omit parameters so both generations match.
     filters = listOf(
         methodCall(
             definingClass = "Lorg/telegram/messenger/MessagesController;",
             name = "checkChannelError",
         ),
     ),
+    // R8 name is unstable — exclude the NotificationCenter variant (GetChannelDiff)
+    // by ensuring HashSet.remove is present in the body
+    // LoadFullChat lambda calls HashSet.remove; GetChannelDiff calls postNotificationName.
+    // This distinguishes the two without relying on unstable R8-generated method names.
+    custom = { method, _ ->
+        method.implementation?.instructions?.any { instr ->
+            val ref = (instr as? ReferenceInstruction)?.reference as? MethodReference
+            ref?.definingClass == "Ljava/util/HashSet;" && ref.name == "remove"
+        } == true
+    },
 )
 
 val GetChannelDiffErrorFingerprint = Fingerprint(
     definingClass = "Lorg/telegram/messenger/MessagesController;",
     returnType = "V",
-    parameters = listOf("Lorg/telegram/tgnet/TLRPC\$TL_error;", "J"),
+    // 12.9.2: private synthetic lambda, params = (TL_error;J)
+    // 12.10.0: R8 promoted to public static synthetic; params = (MessagesController;TL_error;J)
+    // Omit parameters so both generations match.
     filters = listOf(
         methodCall(
             definingClass = "Lorg/telegram/messenger/MessagesController;",
@@ -260,7 +276,7 @@ val GetChannelDiffErrorFingerprint = Fingerprint(
         ),
         methodCall(
             definingClass = "Lorg/telegram/messenger/NotificationCenter;",
-            name = "lambda\$postNotificationNameOnUIThread\$1",
+            name = "postNotificationName",
         ),
     ),
 )
