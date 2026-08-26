@@ -140,5 +140,6 @@ val redditUnlockPremiumPatch = bytecodePatch(
                 dynFp.method.addInstructions(matchIdx, "const/4 v$reg, 0x1")
             }
         }
+
     }
 }
