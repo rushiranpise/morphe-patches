@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.0-dev.1** (`dev`) · **394 patches** across **252 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.0-dev.2** (`dev`) · **399 patches** across **252 apps** · back to [README](README.md)
 
 ---
 
@@ -39,7 +39,7 @@
 
 ## AAEnabler (com.aaenabler.app)
 
-**Supported versions:** `1.0.2`
+**Supported versions:** `v1.0.7`
 
 | Patch | Details |
 |---|---|
@@ -594,7 +594,7 @@
 
 ## Clickmate (com.inscode.autoclicker)
 
-**Supported versions:** `7.1.4`
+**Supported versions:** `7.1.5`
 
 | Patch | Details |
 |---|---|
@@ -707,7 +707,7 @@
 
 ## DramaBox (com.storymatrix.drama)
 
-**Supported versions:** `6.6.0`
+**Supported versions:** `5.8.1`
 
 | Patch | Details |
 |---|---|
@@ -849,7 +849,7 @@
 
 ## Fuelio (com.kajda.fuelio)
 
-**Supported versions:** `10.3.3`
+**Supported versions:** `10.3.4`
 
 | Patch | Details |
 |---|---|
@@ -934,11 +934,11 @@
 
 ## Historical Calendar (com.alexandrucene.dayhistory)
 
-**Supported versions:** `7.5.4`
+**Supported versions:** `7.5.5`
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlock Premium features in app. |
+| **Unlock Premium** | Unlocks all premium features in Historical Calendar by forcing the isPremium gate to return true. |
 
 ---
 
@@ -1916,11 +1916,16 @@
 | **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
 | **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
 | **Hide Answers Tab** | Removes the AI Answers tab from the bottom navigation bar. |
+| **Hide Awards** | Removes award icons and badges from posts and comments. |
 | **Hide Chat Tab** | Removes the Chat button from the bottom navigation bar. |
+| **Hide Comment Score** | Hides vote counts on all comments. |
 | **Hide Communities Shelf** | Hides the related or suggested communities shelf in subreddits. |
 | **Hide Games Tab** | Removes the Games tab from the bottom navigation bar. |
+| **Hide NSFW Posts** | Hides NSFW posts from the feed by treating all posts as SFW. |
 | **Hide Navigation Buttons** | Removes the Create Post button from the bottom navigation bar. |
+| **Hide Post Score** | Hides vote counts on all posts in the feed. |
 | **Hide Promoted Posts** | Blanks the promoted post render method and forces promoted/ad flags to false at the model layer. |
+| **Hide Repost Button** | Removes the repost (crosspost) button from all posts. |
 | **Hide Sidebar Components** | Hides About, Resources, and Reddit Pro sections from the community sidebar. |
 | **Hide Trending Shelves** | Removes Trending Today from the feed and trending searches from the search screen. |
 | **Remove Subreddit Dialogs** | Suppresses the notification re-enable prompt that appears on subreddit visits. |
@@ -2083,11 +2088,11 @@
 
 ## SocialLite (com.sociallite.android)
 
-**Supported versions:** `2.0.0.45`
+**Supported versions:** `2.0.0.59`
 
 | Patch | Details |
 |---|---|
-| **Unlock Family Pro** | Unlocks SocialLite Pro by: (1) forcing isPremiumActive() to return true; (2) forcing getSubscriptionTier() to return 'pro', enabling all Pro-tier features gated by hasProFeatures(); (3) forcing hasProFeatures() itself to return true as defense-in-depth; (4) faking the RevenueCat entitlement snapshot to prevent the server sync from downgrading the premium state on subsequent launches. |
+| **Unlock Premium** | Bypasses PairIP DRM and unlocks all SocialLite Pro features. |
 
 ---
 
@@ -2259,7 +2264,7 @@
 
 ## Telegram Web (org.telegram.messenger.web)
 
-**Supported versions:** `12.9.2`
+**Supported versions:** `12.10.0`
 
 | Patch | Details |
 |---|---|
