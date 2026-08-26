@@ -1,3 +1,15 @@
+## [1.21.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.1...v1.21.0-dev.2) (2026-08-26)
+
+### 🐛 Bug Fixes
+
+* avoid private API for Amazon dark mode ([31c913c](https://github.com/rushiranpise/morphe-patches/commit/31c913caed2f72e2b07b9b269f77a7ec3ec58d25))
+* clickmate ([2d711e8](https://github.com/rushiranpise/morphe-patches/commit/2d711e896a911cc7da301c2734ed23066435c6ee))
+* dramabox version ([0cc703e](https://github.com/rushiranpise/morphe-patches/commit/0cc703ea994eef3451b9e6c45499ff11a6acf2c7)), closes [#824](https://github.com/rushiranpise/morphe-patches/issues/824)
+* harden Amazon WebView trust boundaries ([491a99c](https://github.com/rushiranpise/morphe-patches/commit/491a99c09e07e160fcea86a3826a0bd95ec45795))
+* remove duplicate Amazon autoplay patch ([85a8243](https://github.com/rushiranpise/morphe-patches/commit/85a8243b6cb41c8af422d9b27c967b91b2f860e2))
+* telegram web ([9012229](https://github.com/rushiranpise/morphe-patches/commit/90122291d91e7df9a4607b29161abcfc308dc97e)), closes [#729](https://github.com/rushiranpise/morphe-patches/issues/729)
+* update apps ([765f739](https://github.com/rushiranpise/morphe-patches/commit/765f739f52c4e65d5d5a4b851a088643c31f6dfd))
+
 ## [1.21.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0...v1.21.0-dev.1) (2026-08-23)
 
 ### 🐛 Bug Fixes
