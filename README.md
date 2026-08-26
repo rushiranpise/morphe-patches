@@ -93,14 +93,14 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.21.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**394 patches** across **252 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.21.0-dev.2](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.0-dev.2)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**399 patches** across **252 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
 | 1 | [**1.1.1.1**](PATCHES.md#1111-comcloudflareonedotonedotonedotone) | 3 | `6.38.9` | [`com.cloudflare.onedotonedotonedotone`](https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone) |
 | 2 | [**1Tap Cleaner**](PATCHES.md#1tap-cleaner-coma0softgphoneaccfree) | 1 | `5.22` | [`com.a0soft.gphone.acc.free`](https://play.google.com/store/apps/details?id=com.a0soft.gphone.acc.free) |
 | 3 | [**AAAD**](PATCHES.md#aaad-sksaaacustomapps) | 2 | `2.8.5` | [`sksa.aa.customapps`](https://play.google.com/store/apps/details?id=sksa.aa.customapps) |
-| 4 | [**AAEnabler**](PATCHES.md#aaenabler-comaaenablerapp) | 1 | `1.0.2` | [`com.aaenabler.app`](https://play.google.com/store/apps/details?id=com.aaenabler.app) |
+| 4 | [**AAEnabler**](PATCHES.md#aaenabler-comaaenablerapp) | 1 | `v1.0.7` | [`com.aaenabler.app`](https://play.google.com/store/apps/details?id=com.aaenabler.app) |
 | 5 | [**AccuBattery**](PATCHES.md#accubattery-comdigibitesaccubattery) | 1 | `2.1.8` | [`com.digibites.accubattery`](https://play.google.com/store/apps/details?id=com.digibites.accubattery) |
 | 6 | [**AccuWeather**](PATCHES.md#accuweather-comaccuweatherandroid) | 1 | `21.1.15-3-rc` | [`com.accuweather.android`](https://play.google.com/store/apps/details?id=com.accuweather.android) |
 | 7 | [**Ace Ex File Manager**](PATCHES.md#ace-ex-file-manager-comaceexfilemanager) | 1 | `1.6.0.4` | [`com.ace.ex.file.manager`](https://play.google.com/store/apps/details?id=com.ace.ex.file.manager) |
@@ -154,7 +154,7 @@ Bug reports must include:
 | 55 | [**Charge Meter**](PATCHES.md#charge-meter-devkmandroidchargemeter) | 1 | `2.9.7` | [`dev.km.android.chargemeter`](https://play.google.com/store/apps/details?id=dev.km.android.chargemeter) |
 | 56 | [**Citizen**](PATCHES.md#citizen-sp0ncitizen) | 1 | `0.1303.2` | [`sp0n.citizen`](https://play.google.com/store/apps/details?id=sp0n.citizen) |
 | 57 | [**Citymapper**](PATCHES.md#citymapper-comcitymapperapprelease) | 1 | `11.57.1` | [`com.citymapper.app.release`](https://play.google.com/store/apps/details?id=com.citymapper.app.release) |
-| 58 | [**Clickmate**](PATCHES.md#clickmate-cominscodeautoclicker) | 1 | `7.1.4` | [`com.inscode.autoclicker`](https://play.google.com/store/apps/details?id=com.inscode.autoclicker) |
+| 58 | [**Clickmate**](PATCHES.md#clickmate-cominscodeautoclicker) | 1 | `7.1.5` | [`com.inscode.autoclicker`](https://play.google.com/store/apps/details?id=com.inscode.autoclicker) |
 | 59 | [**Clue Period &amp; Cycle Tracker**](PATCHES.md#clue-period-cycle-tracker-comclueandroid) | 1 | `266.0` | [`com.clue.android`](https://play.google.com/store/apps/details?id=com.clue.android) |
 | 60 | [**ColorNote**](PATCHES.md#colornote-comsocialnmobiledictappsnotepadcolornote) | 1 | `4.8.6` | [`com.socialnmobile.dictapps.notepad.color.note`](https://play.google.com/store/apps/details?id=com.socialnmobile.dictapps.notepad.color.note) |
 | 61 | [**Countdown Widget**](PATCHES.md#countdown-widget-megirawidgetcountdown) | 1 | `3.2.0` | [`me.gira.widget.countdown`](https://play.google.com/store/apps/details?id=me.gira.widget.countdown) |
@@ -165,7 +165,7 @@ Bug reports must include:
 | 66 | [**Dailyhunt**](PATCHES.md#dailyhunt-cometerno) | 1 | `34.0.4` | [`com.eterno`](https://play.google.com/store/apps/details?id=com.eterno) |
 | 67 | [**Depth Live Wallpaper**](PATCHES.md#depth-live-wallpaper-comjndappdepthlivewallpaper) | 1 | `2.1.06` | [`com.jndapp.depth.live.wallpaper`](https://play.google.com/store/apps/details?id=com.jndapp.depth.live.wallpaper) |
 | 68 | [**DooFlix**](PATCHES.md#dooflix-comkingmoja) | 3 | `9.8` | [`com.king.moja`](https://play.google.com/store/apps/details?id=com.king.moja) |
-| 69 | [**DramaBox**](PATCHES.md#dramabox-comstorymatrixdrama) | 1 | `6.6.0` | [`com.storymatrix.drama`](https://play.google.com/store/apps/details?id=com.storymatrix.drama) |
+| 69 | [**DramaBox**](PATCHES.md#dramabox-comstorymatrixdrama) | 1 | `5.8.1` | [`com.storymatrix.drama`](https://play.google.com/store/apps/details?id=com.storymatrix.drama) |
 | 70 | [**Drivvo**](PATCHES.md#drivvo-brcomctncardosoctncar) | 1 | `9.6.1` | [`br.com.ctncardoso.ctncar`](https://play.google.com/store/apps/details?id=br.com.ctncardoso.ctncar) |
 | 71 | [**Duolingo**](PATCHES.md#duolingo-comduolingo) | 2 | `6.90.3` | [`com.duolingo`](https://play.google.com/store/apps/details?id=com.duolingo) |
 | 72 | [**Electron**](PATCHES.md#electron-commahersafadielectron) | 1 | `3.0.3` | [`com.mahersafadi.electron`](https://play.google.com/store/apps/details?id=com.mahersafadi.electron) |
@@ -179,7 +179,7 @@ Bug reports must include:
 | 80 | [**Flightradar24**](PATCHES.md#flightradar24-comflightradar24free) | 1 | `11.9.0` | [`com.flightradar24free`](https://play.google.com/store/apps/details?id=com.flightradar24free) |
 | 81 | [**Flightsky**](PATCHES.md#flightsky-comliveflighttracker) | 1 | `1.7.1` | [`com.live.flight.tracker`](https://play.google.com/store/apps/details?id=com.live.flight.tracker) |
 | 82 | [**Flud**](PATCHES.md#flud-comdelphicoderflud) | 1 | `2.0.15` | [`com.delphicoder.flud`](https://play.google.com/store/apps/details?id=com.delphicoder.flud) |
-| 83 | [**Fuelio**](PATCHES.md#fuelio-comkajdafuelio) | 1 | `10.3.3` | [`com.kajda.fuelio`](https://play.google.com/store/apps/details?id=com.kajda.fuelio) |
+| 83 | [**Fuelio**](PATCHES.md#fuelio-comkajdafuelio) | 1 | `10.3.4` | [`com.kajda.fuelio`](https://play.google.com/store/apps/details?id=com.kajda.fuelio) |
 | 84 | [**Genius Scan**](PATCHES.md#genius-scan-comthegrizzlylabsgeniusscanfree) | 1 | `7.41.0` | [`com.thegrizzlylabs.geniusscan.free`](https://play.google.com/store/apps/details?id=com.thegrizzlylabs.geniusscan.free) |
 | 85 | [**Getcontact**](PATCHES.md#getcontact-appsourcegetcontact) | 1 | `8.16.0` | [`app.source.getcontact`](https://play.google.com/store/apps/details?id=app.source.getcontact) |
 | 86 | [**Google Photos**](PATCHES.md#google-photos-comgoogleandroidappsphotos) | 6 | `7.89.0.968035987` | [`com.google.android.apps.photos`](https://play.google.com/store/apps/details?id=com.google.android.apps.photos) |
@@ -187,7 +187,7 @@ Bug reports must include:
 | 88 | [**HD UHD Live Wallpapers**](PATCHES.md#hd-uhd-live-wallpapers-hduhdlivewallpaperstopwallpapers) | 1 | `6.0.1` | [`hd.uhd.live.wallpapers.topwallpapers`](https://play.google.com/store/apps/details?id=hd.uhd.live.wallpapers.topwallpapers) |
 | 89 | [**Height Increase**](PATCHES.md#height-increase-increaseheightworkoutheightincreaseexercisetallerexercise) | 1 | `1.1.17` | [`increaseheightworkout.heightincreaseexercise.tallerexercise`](https://play.google.com/store/apps/details?id=increaseheightworkout.heightincreaseexercise.tallerexercise) |
 | 90 | [**Hibernator**](PATCHES.md#hibernator-comtafayorhibernator) | 1 | `2.57.0` | [`com.tafayor.hibernator`](https://play.google.com/store/apps/details?id=com.tafayor.hibernator) |
-| 91 | [**Historical Calendar**](PATCHES.md#historical-calendar-comalexandrucenedayhistory) | 1 | `7.5.4` | [`com.alexandrucene.dayhistory`](https://play.google.com/store/apps/details?id=com.alexandrucene.dayhistory) |
+| 91 | [**Historical Calendar**](PATCHES.md#historical-calendar-comalexandrucenedayhistory) | 1 | `7.5.5` | [`com.alexandrucene.dayhistory`](https://play.google.com/store/apps/details?id=com.alexandrucene.dayhistory) |
 | 92 | [**Hola VPN Proxy Plus**](PATCHES.md#hola-vpn-proxy-plus-orgholaplay) | 1 | `AARCH64_1.248.400` | [`org.hola.play`](https://play.google.com/store/apps/details?id=org.hola.play) |
 | 93 | [**Home Workout**](PATCHES.md#home-workout-homeworkouthomeworkoutsnoequipment) | 1 | `1.7.8` | [`homeworkout.homeworkouts.noequipment`](https://play.google.com/store/apps/details?id=homeworkout.homeworkouts.noequipment) |
 | 94 | [**HTTP Sniffer**](PATCHES.md#http-sniffer-comanetcapturemock) | 1 | `2.3.6-ad_mob` | [`com.anetcapture.mock`](https://play.google.com/store/apps/details?id=com.anetcapture.mock) |
@@ -283,7 +283,7 @@ Bug reports must include:
 | 184 | [**RAR**](PATCHES.md#rar-comrarlabrar) | 1 | `7.23.build134` | [`com.rarlab.rar`](https://play.google.com/store/apps/details?id=com.rarlab.rar) |
 | 185 | [**re-Link**](PATCHES.md#re-link-comcuriouscompanyrelink) | 1 | `2.0.13` | [`com.curiouscompany.relink`](https://play.google.com/store/apps/details?id=com.curiouscompany.relink) |
 | 186 | [**RecipeBro**](PATCHES.md#recipebro-comrecipebrocookingbuddy) | 1 | `1.7.21` | [`com.recipebro.cookingbuddy`](https://play.google.com/store/apps/details?id=com.recipebro.cookingbuddy) |
-| 187 | [**Reddit**](PATCHES.md#reddit-comredditfrontpage) | 15 | `2026.34.0` | [`com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage) |
+| 187 | [**Reddit**](PATCHES.md#reddit-comredditfrontpage) | 20 | `2026.34.0` | [`com.reddit.frontpage`](https://play.google.com/store/apps/details?id=com.reddit.frontpage) |
 | 188 | [**Relane VPN**](PATCHES.md#relane-vpn-xorsandrelane) | 1 | `2026073010.0.0` | [`xorsand.relane`](https://play.google.com/store/apps/details?id=xorsand.relane) |
 | 189 | [**Rename &amp; Organize**](PATCHES.md#rename-organize-euduongpicturemanager) | 1 | `8.30.0` | [`eu.duong.picturemanager`](https://play.google.com/store/apps/details?id=eu.duong.picturemanager) |
 | 190 | [**Rocket Money**](PATCHES.md#rocket-money-comtruebill) | 1 | `13.15.0` | [`com.truebill`](https://play.google.com/store/apps/details?id=com.truebill) |
@@ -299,7 +299,7 @@ Bug reports must include:
 | 200 | [**Snipd**](PATCHES.md#snipd-aitopicfinderpodcastdiscovery) | 1 | `4.1.19` | [`ai.topicfinder.podcastdiscovery`](https://play.google.com/store/apps/details?id=ai.topicfinder.podcastdiscovery) |
 | 201 | [**Snow-Forecast.com**](PATCHES.md#snow-forecastcom-comsnow_forecastsnowforecast) | 1 | `8.0.8` | [`com.snow_forecast.snowforecast`](https://play.google.com/store/apps/details?id=com.snow_forecast.snowforecast) |
 | 202 | [**Social Gamebox**](PATCHES.md#social-gamebox-comappsocial_gamebox) | 1 | `1.1.3` | [`com.app.social_gamebox`](https://play.google.com/store/apps/details?id=com.app.social_gamebox) |
-| 203 | [**SocialLite**](PATCHES.md#sociallite-comsocialliteandroid) | 1 | `2.0.0.45` | [`com.sociallite.android`](https://play.google.com/store/apps/details?id=com.sociallite.android) |
+| 203 | [**SocialLite**](PATCHES.md#sociallite-comsocialliteandroid) | 1 | `2.0.0.59` | [`com.sociallite.android`](https://play.google.com/store/apps/details?id=com.sociallite.android) |
 | 204 | [**Speedtest**](PATCHES.md#speedtest-orgzwanooandroidspeedtest) | 1 | `7.0.7` | [`org.zwanoo.android.speedtest`](https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest) |
 | 205 | [**SPIN**](PATCHES.md#spin-comnationaledtechspinbrowser) | 1 | `70.3.0` | [`com.nationaledtech.spinbrowser`](https://play.google.com/store/apps/details?id=com.nationaledtech.spinbrowser) |
 | 206 | [**Splitwise**](PATCHES.md#splitwise-comsplitwisesplitwisemobile) | 1 | `26.7.3` | [`com.Splitwise.SplitwiseMobile`](https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile) |
@@ -314,7 +314,7 @@ Bug reports must include:
 | 215 | [**Teams**](PATCHES.md#teams-commicrosoftteams) | 2 | `1416/1.0.0.2026152302` | [`com.microsoft.teams`](https://play.google.com/store/apps/details?id=com.microsoft.teams) |
 | 216 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 13 | `12.10.0` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
 | 217 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 14 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
-| 218 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 13 | `12.9.2` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
+| 218 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 13 | `12.10.0` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
 | 219 | [**TeraBox**](PATCHES.md#terabox-comduboxdrive) | 1 | `4.23.5` | [`com.dubox.drive`](https://play.google.com/store/apps/details?id=com.dubox.drive) |
 | 220 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.147.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
 | 221 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.18.1` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
