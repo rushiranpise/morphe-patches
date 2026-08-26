@@ -1730,7 +1730,7 @@ val TELEGRAM_WEB_COMPATIBILITY = Compatibility(
         packageName = "org.telegram.messenger.web",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x2CA5E0,
-        targets = listOf(AppTarget(version = "12.9.2", versionCode = 69919))
+        targets = listOf(AppTarget(version = "12.10.0", versionCode = 70319))
     )
 
 val THE_ATHLETIC_COMPATIBILITY = Compatibility(
