@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.0-dev.1",
+  "version": "1.21.0-dev.2",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -187,12 +187,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -264,12 +264,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -341,12 +341,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -475,12 +475,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -552,12 +552,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -661,12 +661,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1190,12 +1190,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1267,12 +1267,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1521,59 +1521,6 @@
       "options": []
     },
     {
-      "name": "Disable video autoplay",
-      "description": "Prevents product and ad videos from autoplaying.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.amazon.mShop.android.shopping",
-          "name": "Amazon Shopping",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF9900",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "32.13.2.100",
-              "versionCodes": {
-                "ARM64_V8A": 1241320216,
-                "ARMEABI_V7A": 1241320216,
-                "X86_64": 1241320216,
-                "X86": 1241320216
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "in.amazon.mShop.android.shopping",
-          "name": "Amazon India",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF9900",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "32.15.0.300",
-              "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Download speed boost",
       "description": "Increases download chunk size to 1 MB and max concurrent requests to 12.",
       "default": true,
@@ -1612,12 +1559,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2148,6 +2095,37 @@
       "options": []
     },
     {
+      "name": "Hide Awards",
+      "description": "Removes award icons and badges from posts and comments.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.34.0",
+              "versionCodes": {
+                "ARM64_V8A": 2634001,
+                "ARMEABI_V7A": 2634001,
+                "X86_64": 2634001,
+                "X86": 2634001
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide CAPTCHA Popups",
       "description": "Suppresses browsing CAPTCHA dialogs from SecApiImpl.",
       "default": true,
@@ -2182,6 +2160,37 @@
       "name": "Hide Chat Tab",
       "description": "Removes the Chat button from the bottom navigation bar.",
       "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.34.0",
+              "versionCodes": {
+                "ARM64_V8A": 2634001,
+                "ARMEABI_V7A": 2634001,
+                "X86_64": 2634001,
+                "X86": 2634001
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Comment Score",
+      "description": "Hides vote counts on all comments.",
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -2336,9 +2345,71 @@
       "options": []
     },
     {
+      "name": "Hide NSFW Posts",
+      "description": "Hides NSFW posts from the feed by treating all posts as SFW.",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.34.0",
+              "versionCodes": {
+                "ARM64_V8A": 2634001,
+                "ARMEABI_V7A": 2634001,
+                "X86_64": 2634001,
+                "X86": 2634001
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Hide Navigation Buttons",
       "description": "Removes the Create Post button from the bottom navigation bar.",
       "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.34.0",
+              "versionCodes": {
+                "ARM64_V8A": 2634001,
+                "ARMEABI_V7A": 2634001,
+                "X86_64": 2634001,
+                "X86": 2634001
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Post Score",
+      "description": "Hides vote counts on all posts in the feed.",
+      "default": false,
       "dependencies": [],
       "compatiblePackages": [
         {
@@ -2375,6 +2446,37 @@
         "BytecodePatch",
         "BytecodePatch"
       ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.reddit.frontpage",
+          "name": "Reddit",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#FF4500",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2026.34.0",
+              "versionCodes": {
+                "ARM64_V8A": 2634001,
+                "ARMEABI_V7A": 2634001,
+                "X86_64": 2634001,
+                "X86": 2634001
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide Repost Button",
+      "description": "Removes the repost (crosspost) button from all posts.",
+      "default": false,
+      "dependencies": [],
       "compatiblePackages": [
         {
           "packageName": "com.reddit.frontpage",
@@ -2715,12 +2817,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3952,12 +4054,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5193,39 +5295,6 @@
       "options": []
     },
     {
-      "name": "Unlock Family Pro",
-      "description": "Unlocks SocialLite Pro by: (1) forcing isPremiumActive() to return true; (2) forcing getSubscriptionTier() to return 'pro', enabling all Pro-tier features gated by hasProFeatures(); (3) forcing hasProFeatures() itself to return true as defense-in-depth; (4) faking the RevenueCat entitlement snapshot to prevent the server sync from downgrading the premium state on subsequent launches.",
-      "default": true,
-      "dependencies": [
-        "ResourcePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.sociallite.android",
-          "name": "SocialLite",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#5B5EA6",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2.0.0.45",
-              "versionCodes": {
-                "ARM64_V8A": 73,
-                "ARMEABI_V7A": 73,
-                "X86_64": 73,
-                "X86": 73
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Unlock Full Version",
       "description": "Bypasses the 15-day trial gate and unlocks all premium features in Inure App Manager.",
       "default": true,
@@ -5419,17 +5488,17 @@
           "packageName": "com.storymatrix.drama",
           "name": "DramaBox",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "6.6.0",
+              "version": "5.8.1",
               "versionCodes": {
-                "ARM64_V8A": 660,
-                "ARMEABI_V7A": 660,
-                "X86_64": 660,
-                "X86": 660
+                "ARM64_V8A": 581,
+                "ARMEABI_V7A": 581,
+                "X86_64": 581,
+                "X86": 581
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5710,8 +5779,13 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.2",
-              "versionCodes": null,
+              "version": "v1.0.7",
+              "versionCodes": {
+                "ARM64_V8A": 7,
+                "ARMEABI_V7A": 7,
+                "X86_64": 7,
+                "X86": 7
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -6910,17 +6984,17 @@
           "packageName": "com.kajda.fuelio",
           "name": "Fuelio",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6B00",
           "signatures": null,
           "targets": [
             {
-              "version": "10.3.3",
+              "version": "10.3.4",
               "versionCodes": {
-                "ARM64_V8A": 3437,
-                "ARMEABI_V7A": 3437,
-                "X86_64": 3437,
-                "X86": 3437
+                "ARM64_V8A": 3438,
+                "ARMEABI_V7A": 3438,
+                "X86_64": 3438,
+                "X86": 3438
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6964,7 +7038,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlock Premium features in app.",
+      "description": "Unlocks all premium features in Historical Calendar by forcing the isPremium gate to return true.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -6977,12 +7051,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.5.4",
+              "version": "7.5.5",
               "versionCodes": {
-                "ARM64_V8A": 376,
-                "ARMEABI_V7A": 376,
-                "X86_64": 376,
-                "X86": 376
+                "ARM64_V8A": 377,
+                "ARMEABI_V7A": 377,
+                "X86_64": 377,
+                "X86": 377
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7065,12 +7139,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.1.4",
+              "version": "7.1.5",
               "versionCodes": {
-                "ARM64_V8A": 680,
-                "ARMEABI_V7A": 680,
-                "X86_64": 680,
-                "X86": 680
+                "ARM64_V8A": 686,
+                "ARMEABI_V7A": 686,
+                "X86_64": 686,
+                "X86": 686
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8672,6 +8746,39 @@
     },
     {
       "name": "Unlock Premium",
+      "description": "Bypasses PairIP DRM and unlocks all SocialLite Pro features.",
+      "default": true,
+      "dependencies": [
+        "ResourcePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.sociallite.android",
+          "name": "SocialLite",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#5B5EA6",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.0.0.59",
+              "versionCodes": {
+                "ARM64_V8A": 87,
+                "ARMEABI_V7A": 87,
+                "X86_64": 87,
+                "X86": 87
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock Premium",
       "description": "Unlocks Sticker Maker premium and ad-free checks.",
       "default": true,
       "dependencies": [],
@@ -8833,12 +8940,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11758,12 +11865,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.9.2",
+              "version": "12.10.0",
               "versionCodes": {
-                "ARM64_V8A": 69919,
-                "ARMEABI_V7A": 69919,
-                "X86_64": 69919,
-                "X86": 69919
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
               },
               "isExperimental": false,
               "minSdk": null,
