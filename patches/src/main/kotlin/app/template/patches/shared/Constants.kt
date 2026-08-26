@@ -514,10 +514,10 @@ val DEPTH_LIVE_WALLPAPER_COMPATIBILITY = Compatibility(
 val DRAMABOX_COMPATIBILITY = Compatibility(
         name = "DramaBox",
         packageName = "com.storymatrix.drama",
-        apkFileType = ApkFileType.XAPK,
+        apkFileType = ApkFileType.APK,
         appIconColor = 0xE53935,
         targets = listOf(
-            AppTarget(version = "6.6.0", versionCode = 660)
+            AppTarget(version = "5.8.1", versionCode = 581)
         )
     )
 
