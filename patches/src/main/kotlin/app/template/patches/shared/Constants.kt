@@ -950,7 +950,7 @@ val MESSENGER_COMPATIBILITY = Compatibility(
                 version = "575.0.0.48.90",
                 versionCodes = mapOf(
                     SupportedAbi.ARMEABI_V7A to 345012838,
-                    SupportedAbi.ARM64_V8A to 345012840, versionCode = 345012838)
+                    SupportedAbi.ARM64_V8A to 345012840)
             ),
         )
     )
