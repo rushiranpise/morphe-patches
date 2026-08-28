@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.21.0-dev.3](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.0-dev.3)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**399 patches** across **252 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.21.0-dev.4](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.0-dev.4)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**402 patches** across **252 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -312,9 +312,9 @@ Bug reports must include:
 | 213 | [**Super File**](PATCHES.md#super-file-comesuperfileexplorer) | 1 | `1.5.6.3` | [`com.esuper.file.explorer`](https://play.google.com/store/apps/details?id=com.esuper.file.explorer) |
 | 214 | [**Tag Tracker**](PATCHES.md#tag-tracker-commakeevappstagtracker) | 1 | `1.3.2` | [`com.makeevapps.tagtracker`](https://play.google.com/store/apps/details?id=com.makeevapps.tagtracker) |
 | 215 | [**Teams**](PATCHES.md#teams-commicrosoftteams) | 2 | `1416/1.0.0.2026152302` | [`com.microsoft.teams`](https://play.google.com/store/apps/details?id=com.microsoft.teams) |
-| 216 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 13 | `12.10.0` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
-| 217 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 14 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
-| 218 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 13 | `12.10.0` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
+| 216 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 14 | `12.10.0` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
+| 217 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 15 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
+| 218 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 14 | `12.10.0` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
 | 219 | [**TeraBox**](PATCHES.md#terabox-comduboxdrive) | 1 | `4.23.5` | [`com.dubox.drive`](https://play.google.com/store/apps/details?id=com.dubox.drive) |
 | 220 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.147.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
 | 221 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.19.1` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
