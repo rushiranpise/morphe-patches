@@ -1,3 +1,9 @@
+## [1.21.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.2...v1.21.0-dev.3) (2026-08-28)
+
+### 🐛 Bug Fixes
+
+* **photos:** make Maps/Places initialize under MicroG-RE ([ef694b2](https://github.com/rushiranpise/morphe-patches/commit/ef694b2c37b3bd20d992e115cce0aa46f2ba63ae))
+
 ## [1.21.0-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.1...v1.21.0-dev.2) (2026-08-26)
 
 ### 🐛 Bug Fixes

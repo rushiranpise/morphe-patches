@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.0-dev.2** (`dev`) · **399 patches** across **252 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.0-dev.3** (`dev`) · **399 patches** across **252 apps** · back to [README](README.md)
 
 ---
 
@@ -109,7 +109,7 @@
 
 ## AIDA64 (com.finalwire.aida64)
 
-**Supported versions:** `2.21`
+**Supported versions:** `2.22`
 
 | Patch | Details |
 |---|---|
@@ -333,7 +333,7 @@
 
 ## Beta Maniac (it.mirko.beta)
 
-**Supported versions:** `0.10.0`
+**Supported versions:** `0.11.0`
 
 | Patch | Details |
 |---|---|
@@ -604,7 +604,7 @@
 
 ## Clue Period & Cycle Tracker (com.clue.android)
 
-**Supported versions:** `266.0`
+**Supported versions:** `267.0`
 
 | Patch | Details |
 |---|---|
@@ -759,7 +759,7 @@
 
 ## Excel (com.microsoft.office.excel)
 
-**Supported versions:** `16.0.20326.20034`
+**Supported versions:** `16.0.20228.20090`
 
 | Patch | Details |
 |---|---|
@@ -809,7 +809,7 @@
 
 ## FlightAware (com.flightaware.android.liveFlightTracker)
 
-**Supported versions:** `5.15.5`
+**Supported versions:** `5.16.1`
 
 | Patch | Details |
 |---|---|
@@ -879,7 +879,7 @@
 
 ## Google Photos (com.google.android.apps.photos)
 
-**Supported versions:** `7.89.0.968035987`
+**Supported versions:** `7.90.0.970693120`
 
 | Patch | Details |
 |---|---|
@@ -964,7 +964,7 @@
 
 ## HTTP Sniffer (com.anetcapture.mock)
 
-**Supported versions:** `2.3.6-ad_mob`
+**Supported versions:** `2.3.7-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -1024,7 +1024,7 @@
 
 ## JEFIT (je.fit)
 
-**Supported versions:** `17.2.12`
+**Supported versions:** `17.4.0`
 
 | Patch | Details |
 |---|---|
@@ -1094,7 +1094,7 @@
 
 ## Lawfully (com.lawfully.lawfully_ai_tracker)
 
-**Supported versions:** `6.8.1`
+**Supported versions:** `6.8.2`
 
 | Patch | Details |
 |---|---|
@@ -1286,7 +1286,7 @@
 
 ## Monet (com.klevico.monet)
 
-**Supported versions:** `1.0.76`
+**Supported versions:** `v1.0.76`
 
 | Patch | Details |
 |---|---|
@@ -1326,7 +1326,7 @@
 
 ## MovieBox India (com.community.mbox.in)
 
-**Supported versions:** `4.0.01.0813.02`
+**Supported versions:** `3.0.13.0402.02`
 
 | Patch | Details |
 |---|---|
@@ -1336,7 +1336,7 @@
 
 ## MovieBox TV (com.community.mbox.tv)
 
-**Supported versions:** `1.1.8.0814.03`
+**Supported versions:** `1.1.9.0820.03`
 
 | Patch | Details |
 |---|---|
@@ -1366,7 +1366,7 @@
 
 ## NAVITIME (com.navitime.inbound.walk)
 
-**Supported versions:** `12.1.0`
+**Supported versions:** `12.1.1`
 
 | Patch | Details |
 |---|---|
@@ -1406,7 +1406,7 @@
 
 ## NewsBreak (com.particlenews.newsbreak)
 
-**Supported versions:** `26.34.0`
+**Supported versions:** `26.35.0`
 
 | Patch | Details |
 |---|---|
@@ -1416,7 +1416,7 @@
 
 ## NewsBreak Lite (com.particlenews.newsbreaklite)
 
-**Supported versions:** `26.33.0`
+**Supported versions:** `26.34.0`
 
 | Patch | Details |
 |---|---|
@@ -1446,7 +1446,7 @@
 
 ## NYT Games (com.nytimes.crossword)
 
-**Supported versions:** `6.38.0`
+**Supported versions:** `6.39.0`
 
 | Patch | Details |
 |---|---|
@@ -1586,7 +1586,7 @@
 
 ## PicsArt (com.picsart.studio)
 
-**Supported versions:** `30.5.5`
+**Supported versions:** `30.6.4`
 
 | Patch | Details |
 |---|---|
@@ -1688,7 +1688,7 @@
 
 ## Pocket Prep EMS (com.pocketprep.android.ems)
 
-**Supported versions:** `3.29.0`
+**Supported versions:** `3.29.1`
 
 | Patch | Details |
 |---|---|
@@ -2028,7 +2028,7 @@
 
 ## Server Auditor (com.server.auditor.ssh.client)
 
-**Supported versions:** `7.8.1`
+**Supported versions:** `7.8.2`
 
 | Patch | Details |
 |---|---|
@@ -2138,7 +2138,7 @@
 
 ## Stargazing Hub (com.twtapp)
 
-**Supported versions:** `3.4.1`
+**Supported versions:** `3.4.2`
 
 | Patch | Details |
 |---|---|
@@ -2306,7 +2306,7 @@
 
 ## The Weather Channel (com.weather.Weather)
 
-**Supported versions:** `16.18.1`
+**Supported versions:** `16.19.1`
 
 | Patch | Details |
 |---|---|
@@ -2425,7 +2425,7 @@
 
 ## Transit (com.thetransitapp.droid)
 
-**Supported versions:** `6.2.3`
+**Supported versions:** `6.3.0`
 
 | Patch | Details |
 |---|---|
@@ -2495,7 +2495,7 @@
 
 ## VIZ Manga (com.vizmanga.android)
 
-**Supported versions:** `4.14.3`
+**Supported versions:** `4.14.5`
 
 | Patch | Details |
 |---|---|
@@ -2605,7 +2605,7 @@
 
 ## Word (com.microsoft.office.word)
 
-**Supported versions:** `16.0.20326.20034`
+**Supported versions:** `16.0.20228.20090`
 
 | Patch | Details |
 |---|---|
