@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.0-dev.2",
+  "version": "1.21.0-dev.3",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -17,12 +17,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -70,12 +70,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.0.01.0813.02",
+              "version": "3.0.13.0402.02",
               "versionCodes": {
-                "ARM64_V8A": 50020121,
-                "ARMEABI_V7A": 50020121,
-                "X86_64": 50020121,
-                "X86": 50020121
+                "ARM64_V8A": 50020092,
+                "ARMEABI_V7A": 50020092,
+                "X86_64": 50020092,
+                "X86": 50020092
               },
               "isExperimental": false,
               "minSdk": null,
@@ -101,12 +101,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.1.8.0814.03",
+              "version": "1.1.9.0820.03",
               "versionCodes": {
-                "ARM64_V8A": 50040013,
-                "ARMEABI_V7A": 50040013,
-                "X86_64": 50040013,
-                "X86": 50040013
+                "ARM64_V8A": 50040014,
+                "ARMEABI_V7A": 50040014,
+                "X86_64": 50040014,
+                "X86": 50040014
               },
               "isExperimental": false,
               "minSdk": null,
@@ -204,17 +204,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -281,17 +281,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -358,17 +358,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -492,17 +492,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -569,17 +569,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -678,17 +678,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -714,12 +714,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1130,17 +1130,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1207,17 +1207,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1284,17 +1284,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1576,17 +1576,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1651,12 +1651,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1903,12 +1903,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1956,12 +1956,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2834,17 +2834,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3436,7 +3436,7 @@
           "packageName": "com.opera.app.news",
           "name": "Opera News",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF1B2A",
           "signatures": null,
           "targets": [
@@ -3467,7 +3467,7 @@
           "packageName": "com.arjanvlek.oxygenupdater",
           "name": "Oxygen Updater",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#CC0C00",
           "signatures": null,
           "targets": [
@@ -3505,12 +3505,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "30.5.5",
+              "version": "30.6.4",
               "versionCodes": {
-                "ARM64_V8A": 993830505,
-                "ARMEABI_V7A": 993830505,
-                "X86_64": 993830505,
-                "X86": 993830505
+                "ARM64_V8A": 993830604,
+                "ARMEABI_V7A": 993830604,
+                "X86_64": 993830604,
+                "X86": 993830604
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3562,7 +3562,7 @@
           "packageName": "com.yablio.sendfilestotv",
           "name": "Send Files To TV",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -3660,12 +3660,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "4.14.3",
+              "version": "4.14.5",
               "versionCodes": {
-                "ARM64_V8A": 241,
-                "ARMEABI_V7A": 241,
-                "X86_64": 241,
-                "X86": 241
+                "ARM64_V8A": 243,
+                "ARMEABI_V7A": 243,
+                "X86_64": 243,
+                "X86": 243
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3743,7 +3743,7 @@
           "packageName": "com.apple.trackerdetect",
           "name": "Tracker Detect",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#000000",
           "signatures": null,
           "targets": [
@@ -3843,12 +3843,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "30.5.5",
+              "version": "30.6.4",
               "versionCodes": {
-                "ARM64_V8A": 993830505,
-                "ARMEABI_V7A": 993830505,
-                "X86_64": 993830505,
-                "X86": 993830505
+                "ARM64_V8A": 993830604,
+                "ARMEABI_V7A": 993830604,
+                "X86_64": 993830604,
+                "X86": 993830604
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3877,17 +3877,17 @@
           "packageName": "com.finalwire.aida64",
           "name": "AIDA64",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
-              "version": "2.21",
+              "version": "2.22",
               "versionCodes": {
-                "ARM64_V8A": 221,
-                "ARMEABI_V7A": 221,
-                "X86_64": 221,
-                "X86": 221
+                "ARM64_V8A": 222,
+                "ARMEABI_V7A": 222,
+                "X86_64": 222,
+                "X86": 222
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3963,7 +3963,7 @@
           "packageName": "game.puzzle.blockpuzzle",
           "name": "Block Puzzle",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#3B82F6",
           "signatures": null,
           "targets": [
@@ -4071,17 +4071,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4606,12 +4606,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.89.0.968035987",
+              "version": "7.90.0.970693120",
               "versionCodes": {
-                "ARM64_V8A": 52244454,
-                "ARMEABI_V7A": 52244454,
-                "X86_64": 52244454,
-                "X86": 52244454
+                "ARM64_V8A": 52288652,
+                "ARMEABI_V7A": 52288652,
+                "X86_64": 52288652,
+                "X86": 52288652
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4869,12 +4869,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.15.5",
+              "version": "5.16.1",
               "versionCodes": {
-                "ARM64_V8A": 501500500,
-                "ARMEABI_V7A": 501500500,
-                "X86_64": 501500500,
-                "X86": 501500500
+                "ARM64_V8A": 501600104,
+                "ARMEABI_V7A": 501600104,
+                "X86_64": 501600104,
+                "X86": 501600104
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4957,7 +4957,7 @@
           "packageName": "com.flightradar24free",
           "name": "Flightradar24",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APKM",
           "appIconColor": "#327CB5",
           "signatures": null,
           "targets": [
@@ -4993,12 +4993,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.8.1",
+              "version": "7.8.2",
               "versionCodes": {
-                "ARM64_V8A": 934,
-                "ARMEABI_V7A": 934,
-                "X86_64": 934,
-                "X86": 934
+                "ARM64_V8A": 935,
+                "ARMEABI_V7A": 935,
+                "X86_64": 935,
+                "X86": 935
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5147,13 +5147,18 @@
           "packageName": "com.oasisfeng.greenify",
           "name": "Greenify",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
             {
               "version": "5.1.1",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 51100,
+                "ARMEABI_V7A": 51100,
+                "X86_64": 51100,
+                "X86": 51100
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5209,12 +5214,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "17.2.12",
+              "version": "17.4.0",
               "versionCodes": {
-                "ARM64_V8A": 2048,
-                "ARMEABI_V7A": 2048,
-                "X86_64": 2048,
-                "X86": 2048
+                "ARM64_V8A": 2073,
+                "ARMEABI_V7A": 2073,
+                "X86_64": 2073,
+                "X86": 2073
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5273,17 +5278,17 @@
           "packageName": "com.microsoft.office.excel",
           "name": "Excel",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1B5E20",
           "signatures": null,
           "targets": [
             {
-              "version": "16.0.20326.20034",
+              "version": "16.0.20228.20090",
               "versionCodes": {
-                "ARM64_V8A": 200292347,
-                "ARMEABI_V7A": 200292347,
-                "X86_64": 200292347,
-                "X86": 200292347
+                "ARM64_V8A": 2006247667,
+                "ARMEABI_V7A": 2006247667,
+                "X86_64": 2006247667,
+                "X86": 2006247667
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5400,13 +5405,18 @@
           "packageName": "com.blockerhero",
           "name": "BlockerHero",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#FF5252",
           "signatures": null,
           "targets": [
             {
               "version": "1.5.0",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 190,
+                "ARMEABI_V7A": 190,
+                "X86_64": 190,
+                "X86": 190
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -5648,17 +5658,17 @@
           "packageName": "com.clue.android",
           "name": "Clue Period & Cycle Tracker",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKS",
           "appIconColor": "#E91E63",
           "signatures": null,
           "targets": [
             {
-              "version": "266.0",
+              "version": "267.0",
               "versionCodes": {
-                "ARM64_V8A": 3185,
-                "ARMEABI_V7A": 3185,
-                "X86_64": 3185,
-                "X86": 3185
+                "ARM64_V8A": 3186,
+                "ARMEABI_V7A": 3186,
+                "X86_64": 3186,
+                "X86": 3186
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5679,7 +5689,7 @@
           "packageName": "com.spotangels.android",
           "name": "SpotAngels",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#1C9BE6",
           "signatures": null,
           "targets": [
@@ -5805,7 +5815,7 @@
           "packageName": "com.digibites.accubattery",
           "name": "AccuBattery",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#00BCD4",
           "signatures": null,
           "targets": [
@@ -5836,7 +5846,7 @@
           "packageName": "com.ace.ex.file.manager",
           "name": "Ace Ex File Manager",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -5986,7 +5996,7 @@
           "packageName": "pro.vitalii.andropods",
           "name": "AndroPods",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1DA1F2",
           "signatures": null,
           "targets": [
@@ -6017,7 +6027,7 @@
           "packageName": "dev.dworks.apps.anexplorer",
           "name": "AnExplorer",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
@@ -6079,7 +6089,7 @@
           "packageName": "com.kin.athena",
           "name": "Athena",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -6141,7 +6151,7 @@
           "packageName": "com.mk.awake",
           "name": "Awake",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1A237E",
           "signatures": null,
           "targets": [
@@ -6416,13 +6426,18 @@
           "packageName": "com.catalinagroup.callrecorder",
           "name": "Cube ACR",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
               "version": "2.4.281",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 281,
+                "ARMEABI_V7A": 281,
+                "X86_64": 281,
+                "X86": 281
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -6569,7 +6584,7 @@
           "packageName": "dev.km.android.chargemeter",
           "name": "Charge Meter",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -6633,7 +6648,7 @@
           "packageName": "me.gira.widget.countdown",
           "name": "Countdown Widget",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -6760,7 +6775,7 @@
           "packageName": "com.jndapp.depth.live.wallpaper",
           "name": "Depth Live Wallpaper",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -7103,7 +7118,7 @@
           "packageName": "eu.duong.imagedatefixer",
           "name": "Image & Video Date Fixer",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -7265,12 +7280,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.8.1",
+              "version": "6.8.2",
               "versionCodes": {
-                "ARM64_V8A": 545,
-                "ARMEABI_V7A": 545,
-                "X86_64": 545,
-                "X86": 545
+                "ARM64_V8A": 547,
+                "ARMEABI_V7A": 547,
+                "X86_64": 547,
+                "X86": 547
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7322,7 +7337,7 @@
           "packageName": "com.pryshedko.materialpods",
           "name": "MaterialPods",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1B72E8",
           "signatures": null,
           "targets": [
@@ -7422,12 +7437,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "0.10.0",
+              "version": "0.11.0",
               "versionCodes": {
-                "ARM64_V8A": 152,
-                "ARMEABI_V7A": 152,
-                "X86_64": 152,
-                "X86": 152
+                "ARM64_V8A": 155,
+                "ARMEABI_V7A": 155,
+                "X86_64": 155,
+                "X86": 155
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7448,7 +7463,7 @@
           "packageName": "com.mobisystems.office",
           "name": "MobiOffice",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -7484,7 +7499,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.0.76",
+              "version": "v1.0.76",
               "versionCodes": {
                 "ARM64_V8A": 110,
                 "ARMEABI_V7A": 110,
@@ -7541,13 +7556,18 @@
           "packageName": "cz.mroczis.netmonster",
           "name": "NetMonster",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
               "version": "3.4.1",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 268,
+                "ARMEABI_V7A": 268,
+                "X86_64": 268,
+                "X86": 268
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -7572,12 +7592,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.34.0",
+              "version": "26.35.0",
               "versionCodes": {
-                "ARM64_V8A": 26340031,
-                "ARMEABI_V7A": 26340031,
-                "X86_64": 26340031,
-                "X86": 26340031
+                "ARM64_V8A": 26350019,
+                "ARMEABI_V7A": 26350019,
+                "X86_64": 26350019,
+                "X86": 26350019
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7598,17 +7618,17 @@
           "packageName": "com.particlenews.newsbreaklite",
           "name": "NewsBreak Lite",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#E31837",
           "signatures": null,
           "targets": [
             {
-              "version": "26.33.0",
+              "version": "26.34.0",
               "versionCodes": {
-                "ARM64_V8A": 26330013,
-                "ARMEABI_V7A": 26330013,
-                "X86_64": 26330013,
-                "X86": 26330013
+                "ARM64_V8A": 26340001,
+                "ARMEABI_V7A": 26340001,
+                "X86_64": 26340001,
+                "X86": 26340001
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7629,7 +7649,7 @@
           "packageName": "app.ninjavpn.android",
           "name": "Ninja VPN",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
@@ -7660,7 +7680,7 @@
           "packageName": "ai.metaverselabs.obdandroid",
           "name": "OBD Android",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
@@ -7753,7 +7773,7 @@
           "packageName": "com.monect.portable",
           "name": "PC Remote",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -7853,12 +7873,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "30.5.5",
+              "version": "30.6.4",
               "versionCodes": {
-                "ARM64_V8A": 993830505,
-                "ARMEABI_V7A": 993830505,
-                "X86_64": 993830505,
-                "X86": 993830505
+                "ARM64_V8A": 993830604,
+                "ARMEABI_V7A": 993830604,
+                "X86_64": 993830604,
+                "X86": 993830604
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7949,7 +7969,7 @@
           "packageName": "xyz.rtrvr.pillo",
           "name": "pillo",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF69B4",
           "signatures": null,
           "targets": [
@@ -8070,7 +8090,7 @@
           "packageName": "com.pocketprep.android.nursingschool",
           "name": "Pocket Prep Nursing School",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1D5CFF",
           "signatures": null,
           "targets": [
@@ -8119,12 +8139,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.29.0",
+              "version": "3.29.1",
               "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
+                "ARM64_V8A": 434,
+                "ARMEABI_V7A": 434,
+                "X86_64": 434,
+                "X86": 434
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8295,7 +8315,7 @@
           "packageName": "com.rainbowmeteo.weather.rainbow.ai",
           "name": "Rainbow Weather",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#5C6BC0",
           "signatures": null,
           "targets": [
@@ -8424,7 +8444,7 @@
           "packageName": "com.curiouscompany.relink",
           "name": "re-Link",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6F00",
           "signatures": null,
           "targets": [
@@ -8512,7 +8532,7 @@
           "packageName": "com.rs.explorer.filemanager",
           "name": "RS File Manager",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#0D47A1",
           "signatures": null,
           "targets": [
@@ -8609,13 +8629,18 @@
           "packageName": "shareit.premium",
           "name": "SHAREit Premium",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF4B00",
           "signatures": null,
           "targets": [
             {
               "version": "1.1.98",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 40101980,
+                "ARMEABI_V7A": 40101980,
+                "X86_64": 40101980,
+                "X86": 40101980
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -8635,7 +8660,7 @@
           "packageName": "com.consumedbycode.slopes",
           "name": "Slopes",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -8697,7 +8722,7 @@
           "packageName": "com.snow_forecast.snowforecast",
           "name": "Snow-Forecast.com",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKS",
           "appIconColor": "#CA0013",
           "signatures": null,
           "targets": [
@@ -8728,13 +8753,18 @@
           "packageName": "com.app.social_gamebox",
           "name": "Social Gamebox",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#7C4DFF",
           "signatures": null,
           "targets": [
             {
               "version": "1.1.3",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 524,
+                "ARMEABI_V7A": 524,
+                "X86_64": 524,
+                "X86": 524
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -8787,7 +8817,7 @@
           "packageName": "com.marsvard.stickermakerforwhatsapp",
           "name": "Sticker Maker",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#00A884",
           "signatures": null,
           "targets": [
@@ -8849,7 +8879,7 @@
           "packageName": "com.esuper.file.explorer",
           "name": "Super File",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -8880,7 +8910,7 @@
           "packageName": "com.makeevapps.tagtracker",
           "name": "Tag Tracker",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -8957,17 +8987,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9019,17 +9049,17 @@
           "packageName": "com.weather.Weather",
           "name": "The Weather Channel",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKM",
           "appIconColor": "#1B6AC9",
           "signatures": null,
           "targets": [
             {
-              "version": "16.18.1",
+              "version": "16.19.1",
               "versionCodes": {
-                "ARM64_V8A": 1080014064,
-                "ARMEABI_V7A": 1080014064,
-                "X86_64": 1080014064,
-                "X86": 1080014064
+                "ARM64_V8A": 1080014279,
+                "ARMEABI_V7A": 1080014279,
+                "X86_64": 1080014279,
+                "X86": 1080014279
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9052,7 +9082,7 @@
           "packageName": "mobi.lockdown.weather",
           "name": "Today Weather",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
@@ -9220,13 +9250,18 @@
           "packageName": "sensustech.universal.tv.remote.control",
           "name": "Unimote",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
               "version": "1.8.1",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 78,
+                "ARMEABI_V7A": 78,
+                "X86_64": 78,
+                "X86": 78
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -9308,7 +9343,7 @@
           "packageName": "com.wallverse.wallpapers",
           "name": "Wallverse",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#4F46E5",
           "signatures": null,
           "targets": [
@@ -9370,7 +9405,7 @@
           "packageName": "com.remi.widget",
           "name": "Widget 2026",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKS",
           "appIconColor": "#FF6B35",
           "signatures": null,
           "targets": [
@@ -9401,7 +9436,7 @@
           "packageName": "com.windscribe.vpn",
           "name": "Windscribe VPN",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#00AEEF",
           "signatures": null,
           "targets": [
@@ -9432,7 +9467,7 @@
           "packageName": "com.windyty.android",
           "name": "Windy",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APKM",
           "appIconColor": "#0FA0EB",
           "signatures": null,
           "targets": [
@@ -9714,7 +9749,7 @@
           "packageName": "club.boxbox.android",
           "name": "Box Box",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#E10600",
           "signatures": null,
           "targets": [
@@ -9807,7 +9842,7 @@
           "packageName": "com.budget.tracker_app",
           "name": "Cashew",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APKM",
           "appIconColor": "#FFB300",
           "signatures": null,
           "targets": [
@@ -9838,7 +9873,7 @@
           "packageName": "sp0n.citizen",
           "name": "Citizen",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APKM",
           "appIconColor": "#0066FF",
           "signatures": null,
           "targets": [
@@ -9931,7 +9966,7 @@
           "packageName": "com.codium.hydrocoach",
           "name": "Hydro Coach",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#0288D1",
           "signatures": null,
           "targets": [
@@ -10122,13 +10157,18 @@
           "packageName": "com.javiersantos.mlmanager",
           "name": "ML Manager",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#2196F3",
           "signatures": null,
           "targets": [
             {
               "version": "5.0",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 120,
+                "ARMEABI_V7A": 120,
+                "X86_64": 120,
+                "X86": 120
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -10272,7 +10312,7 @@
           "packageName": "com.otp.octopilauncher",
           "name": "Octopi Launcher",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6600",
           "signatures": null,
           "targets": [
@@ -10334,13 +10374,18 @@
           "packageName": "police.scanner.radio.broadcastify.citizen",
           "name": "Police Scanner",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#0D47A1",
           "signatures": null,
           "targets": [
             {
               "version": "1.29.0-260420093",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 260420093,
+                "ARMEABI_V7A": 260420093,
+                "X86_64": 260420093,
+                "X86": 260420093
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -10360,7 +10405,7 @@
           "packageName": "com.stealthcopter.portdroid",
           "name": "PortDroid",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -10391,7 +10436,7 @@
           "packageName": "com.rarlab.rar",
           "name": "RAR",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKM",
           "appIconColor": "#4CAF50",
           "signatures": null,
           "targets": [
@@ -10453,13 +10498,18 @@
           "packageName": "com.shexa.permissionmanager",
           "name": "App Permission Manager",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "XAPK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
             {
               "version": "3.4.6.2",
-              "versionCodes": null,
+              "versionCodes": {
+                "ARM64_V8A": 128,
+                "ARMEABI_V7A": 128,
+                "X86_64": 128,
+                "X86": 128
+              },
               "isExperimental": false,
               "minSdk": null,
               "description": null
@@ -10572,7 +10622,7 @@
           "packageName": "com.piksoft.turboscan.free",
           "name": "TurboScan",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -10665,7 +10715,7 @@
           "packageName": "kha.prog.usbhotspot",
           "name": "USB Hotspot",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF6900",
           "signatures": null,
           "targets": [
@@ -10727,17 +10777,17 @@
           "packageName": "com.thetransitapp.droid",
           "name": "Transit",
           "description": null,
-          "apkFileType": "XAPK",
+          "apkFileType": "APKM",
           "appIconColor": "#00B2A9",
           "signatures": null,
           "targets": [
             {
-              "version": "6.2.3",
+              "version": "6.3.0",
               "versionCodes": {
-                "ARM64_V8A": 5126772,
-                "ARMEABI_V7A": 5126772,
-                "X86_64": 5126772,
-                "X86": 5126772
+                "ARM64_V8A": 5126991,
+                "ARMEABI_V7A": 5126991,
+                "X86_64": 5126991,
+                "X86": 5126991
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10758,7 +10808,7 @@
           "packageName": "com.nationaledtech.spinbrowser",
           "name": "SPIN",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#2563EB",
           "signatures": null,
           "targets": [
@@ -10878,12 +10928,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.4.1",
+              "version": "3.4.2",
               "versionCodes": {
-                "ARM64_V8A": 3040100,
-                "ARMEABI_V7A": 3040100,
-                "X86_64": 3040100,
-                "X86": 3040100
+                "ARM64_V8A": 3040200,
+                "ARMEABI_V7A": 3040200,
+                "X86_64": 3040200,
+                "X86": 3040200
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10906,7 +10956,7 @@
           "packageName": "net.myanimelist.app",
           "name": "MyAnimeList",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#2E51A2",
           "signatures": null,
           "targets": [
@@ -11065,7 +11115,7 @@
           "packageName": "com.thegrizzlylabs.geniusscan.free",
           "name": "Genius Scan",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "APKM",
           "appIconColor": "#1565C0",
           "signatures": null,
           "targets": [
@@ -11135,7 +11185,7 @@
           "packageName": "proton.android.pass",
           "name": "Proton Pass",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#6D4AFF",
           "signatures": null,
           "targets": [
@@ -11264,12 +11314,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.3.6-ad_mob",
+              "version": "2.3.7-ad_mob",
               "versionCodes": {
-                "ARM64_V8A": 154,
-                "ARMEABI_V7A": 154,
-                "X86_64": 154,
-                "X86": 154
+                "ARM64_V8A": 155,
+                "ARMEABI_V7A": 155,
+                "X86_64": 155,
+                "X86": 155
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11324,7 +11374,7 @@
           "packageName": "com.playit.videoplayer",
           "name": "PLAYit",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#FF5722",
           "signatures": null,
           "targets": [
@@ -11455,17 +11505,17 @@
           "packageName": "com.microsoft.office.word",
           "name": "Word",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1A237E",
           "signatures": null,
           "targets": [
             {
-              "version": "16.0.20326.20034",
+              "version": "16.0.20228.20090",
               "versionCodes": {
-                "ARM64_V8A": 2005292347,
-                "ARMEABI_V7A": 2005292347,
-                "X86_64": 2005292347,
-                "X86": 2005292347
+                "ARM64_V8A": 2006247667,
+                "ARMEABI_V7A": 2006247667,
+                "X86_64": 2006247667,
+                "X86": 2006247667
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11686,12 +11736,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "12.1.0",
+              "version": "12.1.1",
               "versionCodes": {
-                "ARM64_V8A": 374,
-                "ARMEABI_V7A": 374,
-                "X86_64": 374,
-                "X86": 374
+                "ARM64_V8A": 375,
+                "ARMEABI_V7A": 375,
+                "X86_64": 375,
+                "X86": 375
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11743,7 +11793,7 @@
           "packageName": "com.urbandroid.kinestop",
           "name": "KineStop",
           "description": null,
-          "apkFileType": null,
+          "apkFileType": "APK",
           "appIconColor": "#1A1A2E",
           "signatures": null,
           "targets": [
@@ -11779,12 +11829,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "6.38.0",
+              "version": "6.39.0",
               "versionCodes": {
-                "ARM64_V8A": 6427092,
-                "ARMEABI_V7A": 6427092,
-                "X86_64": 6427092,
-                "X86": 6427092
+                "ARM64_V8A": 6427169,
+                "ARMEABI_V7A": 6427169,
+                "X86_64": 6427169,
+                "X86": 6427169
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11882,17 +11932,17 @@
           "packageName": "org.telegram.plus",
           "name": "Telegram Plus",
           "description": null,
-          "apkFileType": "APK",
+          "apkFileType": "XAPK",
           "appIconColor": "#2CA5E0",
           "signatures": null,
           "targets": [
             {
               "version": "12.9.2.0",
               "versionCodes": {
-                "ARM64_V8A": 22448,
-                "ARMEABI_V7A": 22448,
-                "X86_64": 22448,
-                "X86": 22448
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
