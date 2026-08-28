@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-08-28T15:30:43",
-  "description": "## [1.21.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.2...v1.21.0-dev.3) (2026-08-28)\n\n### 🐛 Bug Fixes\n\n* **photos:** make Maps/Places initialize under MicroG-RE ([ef694b2](https://github.com/rushiranpise/morphe-patches/commit/ef694b2c37b3bd20d992e115cce0aa46f2ba63ae))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.21.0-dev.3/patches-1.21.0-dev.3.mpp",
+  "created_at": "2026-08-28T15:36:11",
+  "description": "## [1.21.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.3...v1.21.0-dev.4) (2026-08-28)\n\n### ✨ New Features\n\n* Add Telegram Disable Rich HTML Paste patch ([5076208](https://github.com/rushiranpise/morphe-patches/commit/5076208de296f3bc6481b9ce3c6a622e98516232))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.21.0-dev.4/patches-1.21.0-dev.4.mpp",
   "signature_download_url": "",
-  "version": "1.21.0-dev.3"
+  "version": "1.21.0-dev.4"
 }

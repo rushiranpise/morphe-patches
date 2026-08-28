@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.0-dev.3",
+  "version": "1.21.0-dev.4",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -11835,6 +11835,81 @@
                 "ARMEABI_V7A": 6427169,
                 "X86_64": 6427169,
                 "X86": 6427169
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Use normal paste for Rich HTML clipboard content",
+      "description": "Skips Telegram's Rich HTML paste handler and falls back to the normal paste path.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.messenger",
+          "name": "Telegram",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 70242,
+                "ARMEABI_V7A": 70242,
+                "X86_64": 70242,
+                "X86": 70242
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.messenger.web",
+          "name": "Telegram Web",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
               },
               "isExperimental": false,
               "minSdk": null,
