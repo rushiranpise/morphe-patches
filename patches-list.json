@@ -8884,7 +8884,7 @@
           "name": "TradingView",
           "description": null,
           "apkFileType": "XAPK",
-          "appIconColor": "#000000",
+          "appIconColor": "#2962FF",
           "signatures": null,
           "targets": [
             {
