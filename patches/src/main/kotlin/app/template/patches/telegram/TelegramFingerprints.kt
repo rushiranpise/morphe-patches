@@ -768,3 +768,11 @@ val AnalyticsTrackEventMapFingerprint = Fingerprint(
     returnType = "V",
     parameters = listOf("Ljava/lang/String;", "Ljava/util/HashMap;"),
 )
+
+// ─── Rich HTML paste ──────────────────────────────────────────────────────────
+val ChatActivityEnterViewHandleRichHtmlPasteFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/Components/ChatActivityEnterView;",
+    name = "handleRichHtmlPaste",
+    returnType = "Z",
+    parameters = listOf(),
+)
