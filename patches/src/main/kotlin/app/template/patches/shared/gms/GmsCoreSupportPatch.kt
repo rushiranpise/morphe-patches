@@ -8,7 +8,6 @@ import app.template.patches.shared.cert.autoSha1
 import app.template.patches.shared.cert.extractApkCertificatePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.stringOption
-import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.instruction.formats.Instruction21c
@@ -18,10 +17,19 @@ import com.android.tools.smali.dexlib2.iface.reference.StringReference
 import com.android.tools.smali.dexlib2.immutable.reference.ImmutableStringReference
 import org.w3c.dom.Element
 import org.w3c.dom.Node
+import java.net.URI
 
 // Default vendor — MicroG RE / standard GmsCore. Pass a different value for other forks
 // (e.g. "app.morphe" for Morphe GmsCore).
 const val DEFAULT_GMS_CORE_VENDOR = "app.revanced.android.gms"
+
+// Derive the vendor group prefix for com.google.* rewrites
+// e.g. "app.revanced.android.gms" → "app.revanced"
+private fun gmsVendorGroup(vendor: String): String = when {
+    vendor.endsWith(".android.gms") -> vendor.removeSuffix(".android.gms")
+    vendor.endsWith(".manager") -> vendor.removeSuffix(".manager")
+    else -> vendor
+}
 
 private const val EXTENSION_CLASS =
     "Lapp/template/extension/extension/GmsCoreSupportPatch;"
@@ -56,18 +64,11 @@ private val ActivityOnCreateFingerprint = Fingerprint(
     },
 )
 
-// Matches isGooglePlayServicesAvailable(Context, int) → return 0 (CONNECTION_SUCCESS).
-private val IsGooglePlayServicesAvailableFingerprint = Fingerprint(
-    name = "GmsCore / MicroG support",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    returnType = "I",
-    parameters = listOf("Landroid/content/Context;", "I"),
-)
-
 private val GMS_PERMISSIONS = setOf(
     "com.google.android.c2dm.permission.RECEIVE",
     "com.google.android.c2dm.permission.SEND",
     "com.google.android.gms.auth.api.phone.permission.SEND",
+    "com.google.android.gms.permission.ACTIVITY_RECOGNITION",
     "com.google.android.gms.permission.AD_ID",
     "com.google.android.gms.permission.AD_ID_NOTIFICATION",
     "com.google.android.gms.permission.CAR_FUEL",
@@ -80,6 +81,8 @@ private val GMS_PERMISSIONS = setOf(
     "com.google.android.googleapps.permission.GOOGLE_AUTH.local",
     "com.google.android.googleapps.permission.GOOGLE_AUTH.mail",
     "com.google.android.googleapps.permission.GOOGLE_AUTH.writely",
+    "com.google.android.gms.auth.permission.GOOGLE_ACCOUNT_CHANGE",
+    "com.google.android.gms.locationsharingreporter.periodic.STATUS_UPDATE",
     "com.google.android.gtalkservice.permission.GTALK_SERVICE",
     "com.google.android.providers.gsf.permission.READ_GSERVICES",
 )
@@ -157,13 +160,25 @@ private val GMS_ACTIONS = setOf(
 )
 
 private val GMS_AUTHORITIES = setOf(
+    "com.google.android.gms.fileprovider",
     "com.google.android.gms.auth.accounts",
     "com.google.android.gms.chimera",
     "com.google.android.gms.fonts",
     "com.google.android.gms.phenotype",
     "com.google.android.gsf.gservices",
     "com.google.settings",
+    "subscribedfeeds",
 )
+
+// App-declared permissions/authorities, seeded with the MicroG-era names and extended with
+// whatever the manifest declares (collected in the resource phase). DEX references to these are
+// rewritten to match the (optionally renamed) package, mirroring ReVanced's APP_* handling.
+private val APP_PERMISSIONS = mutableSetOf(
+    "org.microg.gms.STATUS_BROADCAST",
+    "org.microg.gms.EXTENDED_ACCESS",
+    "org.microg.gms.PROVISION",
+)
+private val APP_AUTHORITIES = mutableSetOf<String>()
 
 /**
  * Resource-only half of GmsCore support. Injects spoofing metadata into AndroidManifest so
@@ -334,6 +349,10 @@ val gmsCoreVendorOption by stringOption(
 
     // Read original package name from the manifest before execute runs.
     lateinit var originalPackageName: String
+    // Resolved (renamed) package name — computed in the resource phase so the bytecode phase
+    // can keep DEX references consistent with the manifest rename. Same as original when no
+    // custom package name is set (in which case app-level rewrites are skipped).
+    var resolvedPackageName: String = ""
 
     dependsOn(extractApkCertificatePatch,
         resourcePatch {
@@ -341,12 +360,24 @@ val gmsCoreVendorOption by stringOption(
                 document("AndroidManifest.xml").use { doc ->
                     originalPackageName = (doc.getElementsByTagName("manifest").item(0) as Element)
                         .getAttribute("package")
+
+                    // Collect app-declared permissions and provider authorities so the bytecode
+                    // phase rewrites DEX references consistently (ReVanced-style APP_* sets).
+                    (0 until doc.getElementsByTagName("permission").length)
+                        .mapNotNull { doc.getElementsByTagName("permission").item(it) as? Element }
+                        .mapNotNull { it.getAttribute("android:name").takeIf { n -> n.isNotBlank() } }
+                        .forEach { APP_PERMISSIONS += it }
+                    (0 until doc.getElementsByTagName("provider").length)
+                        .mapNotNull { doc.getElementsByTagName("provider").item(it) as? Element }
+                        .flatMap { it.getAttribute("android:authorities").split(";") }
+                        .filter { it.isNotBlank() }
+                        .forEach { APP_AUTHORITIES += it }
                 }
 
                 val vendor = gmsCoreVendorOption ?: DEFAULT_GMS_CORE_VENDOR
                 val sig = autoSha1
                 // Resolve package name: user custom > <original>.revanced
-                val resolvedPackageName = customPackageName?.takeIf { it.isNotBlank() }
+                resolvedPackageName = customPackageName?.takeIf { it.isNotBlank() }
                     ?: originalPackageName
 
                 document("AndroidManifest.xml").use { doc ->
@@ -386,6 +417,49 @@ val gmsCoreVendorOption by stringOption(
                     applicationNode.upsertMeta("$vendor.SPOOFED_PACKAGE_NAME", originalPackageName)
                     if (sig != null) applicationNode.upsertMeta("$vendor.SPOOFED_PACKAGE_SIGNATURE", sig)
                     applicationNode.upsertMeta("$vendor.MICROG_PACKAGE_NAME", vendor)
+
+                    // Rewrite GMS permissions (com.google.* → vendor) and, when the app is being
+                    // renamed, the app's own declared permissions/authorities so the manifest stays
+                    // consistent with the DEX rewrite below. Mirrors ReVanced's resource handling.
+                    fun String.prefixOrReplace(from: String, to: String): String =
+                        if (startsWith(from)) replace(from, to) else "$to.$this"
+
+                    val vendorGroup = gmsVendorGroup(vendor)
+                    val isCustomVendor = !vendor.contains("microg") && !vendor.startsWith("com.google")
+                    val isRenaming = resolvedPackageName != originalPackageName
+
+                    (0 until doc.getElementsByTagName("permission").length)
+                        .mapNotNull { doc.getElementsByTagName("permission").item(it) as? Element }
+                        .forEach { el ->
+                            val name = el.getAttribute("android:name").takeIf { it.isNotBlank() } ?: return@forEach
+                            if (isRenaming) {
+                                el.setAttribute("android:name", name.prefixOrReplace(originalPackageName, resolvedPackageName))
+                            }
+                        }
+                    (0 until doc.getElementsByTagName("uses-permission").length)
+                        .mapNotNull { doc.getElementsByTagName("uses-permission").item(it) as? Element }
+                        .forEach { el ->
+                            val name = el.getAttribute("android:name").takeIf { it.isNotBlank() } ?: return@forEach
+                            when {
+                                isCustomVendor && name in GMS_PERMISSIONS ->
+                                    el.setAttribute("android:name", name.replace("com.google", vendorGroup))
+                                isRenaming && name in APP_PERMISSIONS ->
+                                    el.setAttribute("android:name", name.prefixOrReplace(originalPackageName, resolvedPackageName))
+                            }
+                        }
+                    (0 until doc.getElementsByTagName("provider").length)
+                        .mapNotNull { doc.getElementsByTagName("provider").item(it) as? Element }
+                        .forEach { el ->
+                            val authorities = el.getAttribute("android:authorities").takeIf { it.isNotBlank() } ?: return@forEach
+                            if (isRenaming) {
+                                el.setAttribute(
+                                    "android:authorities",
+                                    authorities.split(";").joinToString(";") { auth ->
+                                        auth.prefixOrReplace(originalPackageName, resolvedPackageName)
+                                    },
+                                )
+                            }
+                        }
                 }
 
                 // Manifest text rewrites.
@@ -412,32 +486,49 @@ val gmsCoreVendorOption by stringOption(
         val vendor = gmsCoreVendorOption ?: DEFAULT_GMS_CORE_VENDOR
         // Derive the vendor group prefix for com.google.* rewrites
         // e.g. "app.revanced.android.gms" → "app.revanced"
-        val vendorGroup = when {
-            vendor.endsWith(".android.gms") -> vendor.removeSuffix(".android.gms")
-            vendor.endsWith(".manager") -> vendor.removeSuffix(".manager")
-            else -> vendor
-        }
+        val vendorGroup = gmsVendorGroup(vendor)
+        val isRenaming = resolvedPackageName.isNotEmpty() && resolvedPackageName != originalPackageName
 
         val rewriteStrings = buildMap<String, String> {
             put("com.google", vendorGroup)
             put("com.google.android.gms", vendor)
-            put("subscribedfeeds", "$vendorGroup.subscribedfeeds")
+            // MicroG RE registers the subscribedfeeds provider under <vendor>.android.gsf.subscribedfeeds.
+            put("subscribedfeeds", "$vendorGroup.android.gsf.subscribedfeeds")
             (GMS_PERMISSIONS + GMS_ACTIONS + GMS_AUTHORITIES).forEach { s ->
-                put(s, s.replace("com.google", vendorGroup))
+                if (s != "subscribedfeeds") put(s, s.replace("com.google", vendorGroup))
+            }
+        }
+
+        fun String.prefixOrReplace(from: String, to: String): String =
+            if (startsWith(from)) replace(from, to) else "$to.$this"
+
+        fun transformContentUri(str: String): String? {
+            if (!str.startsWith("content://")) return null
+            return runCatching { URI.create(str) }.getOrNull()?.let { uri ->
+                when (uri.authority) {
+                    in GMS_AUTHORITIES -> when {
+                        uri.authority == "subscribedfeeds" ->
+                            str.replace("subscribedfeeds", "$vendorGroup.android.gsf.subscribedfeeds")
+                        uri.authority.startsWith("com.google") -> str.replace("com.google", vendorGroup)
+                        else -> str.replace(uri.authority, "$vendorGroup.${uri.authority}")
+                    }
+                    in APP_AUTHORITIES -> if (isRenaming && uri.authority.startsWith(originalPackageName)) {
+                        str.replace(uri.authority, uri.authority.replace(originalPackageName, resolvedPackageName))
+                    } else {
+                        null
+                    }
+                    else -> null
+                }
             }
         }
 
         fun transform(str: String): String? {
             rewriteStrings[str]?.let { return it }
-            if (str.startsWith("content://")) {
-                GMS_AUTHORITIES.forEach { auth ->
-                    if (str.startsWith("content://$auth"))
-                        return str.replace("content://$auth", "content://${auth.replace("com.google", vendorGroup)}")
-                }
-                if (str.startsWith("content://subscribedfeeds"))
-                    return str.replace("content://subscribedfeeds", "content://$vendorGroup.subscribedfeeds")
+            if (isRenaming) {
+                if (str in APP_PERMISSIONS) return str.prefixOrReplace(originalPackageName, resolvedPackageName)
+                if (str in APP_AUTHORITIES) return str.prefixOrReplace(originalPackageName, resolvedPackageName)
             }
-            return null
+            return transformContentUri(str)
         }
 
         getAllClassesWithStrings().forEach { classDef ->
