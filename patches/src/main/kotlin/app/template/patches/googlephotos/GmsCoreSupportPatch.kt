@@ -8,6 +8,7 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.resourcePatch
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.GOOGLE_PHOTOS_COMPATIBILITY
+import app.template.patches.shared.gms.IsGooglePlayServicesAvailableFingerprint
 import com.android.tools.smali.dexlib2.Opcode
 import com.android.tools.smali.dexlib2.builder.instruction.BuilderInstruction21c
 import com.android.tools.smali.dexlib2.iface.ClassDef
@@ -35,8 +36,11 @@ private val GMS_STRING_REPLACEMENTS = mapOf(
     "com.google.android.c2dm.permission.RECEIVE" to "app.revanced.android.c2dm.permission.RECEIVE",
     "com.google.android.c2dm.permission.SEND" to "app.revanced.android.c2dm.permission.SEND",
     "com.google.android.gms.auth.api.phone.permission.SEND" to "app.revanced.android.gms.auth.api.phone.permission.SEND",
+    "com.google.android.gms.permission.ACTIVITY_RECOGNITION" to "app.revanced.android.gms.permission.ACTIVITY_RECOGNITION",
     "com.google.android.gms.permission.AD_ID" to "app.revanced.android.gms.permission.AD_ID",
     "com.google.android.gms.permission.AD_ID_NOTIFICATION" to "app.revanced.android.gms.permission.AD_ID_NOTIFICATION",
+    "com.google.android.gms.auth.permission.GOOGLE_ACCOUNT_CHANGE" to "app.revanced.android.gms.auth.permission.GOOGLE_ACCOUNT_CHANGE",
+    "com.google.android.gms.locationsharingreporter.periodic.STATUS_UPDATE" to "app.revanced.android.gms.locationsharingreporter.periodic.STATUS_UPDATE",
     "com.google.android.googleapps.permission.GOOGLE_AUTH" to "app.revanced.android.googleapps.permission.GOOGLE_AUTH",
     "com.google.android.googleapps.permission.GOOGLE_AUTH.cp" to "app.revanced.android.googleapps.permission.GOOGLE_AUTH.cp",
     "com.google.android.googleapps.permission.GOOGLE_AUTH.local" to "app.revanced.android.googleapps.permission.GOOGLE_AUTH.local",
@@ -150,7 +154,7 @@ private val GMS_STRING_REPLACEMENTS = mapOf(
     "com.google.firebase.auth.api.gms.service.START" to "app.revanced.firebase.auth.api.gms.service.START",
     "com.google.firebase.dynamiclinks.service.START" to "app.revanced.firebase.dynamiclinks.service.START",
     "com.google.iid.TOKEN_REQUEST" to "app.revanced.iid.TOKEN_REQUEST",
-    "subscribedfeeds" to "app.revanced.subscribedfeeds",
+    "subscribedfeeds" to "app.revanced.android.gsf.subscribedfeeds",
 )
 
 private val APP_PERMISSIONS = setOf(
@@ -269,6 +273,15 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
                     val manifestNode = document.getElementsByTagName("manifest").item(0) as Element
                     val applicationNode = document.getElementsByTagName("application").item(0) as Element
 
+                    // Rewrite GMS uses-permissions in the manifest to the vendor namespace so they
+                    // match the DEX rewrite (ReVanced parity — previously only c2dm was rewritten).
+                    (0 until document.getElementsByTagName("uses-permission").length)
+                        .mapNotNull { document.getElementsByTagName("uses-permission").item(it) as? Element }
+                        .forEach { el ->
+                            val name = el.getAttribute("android:name").takeIf { it.isNotBlank() } ?: return@forEach
+                            GMS_STRING_REPLACEMENTS[name]?.let { el.setAttribute("android:name", it) }
+                        }
+
                     val queryPackages = document.getElementsByTagName("package")
                     for (index in 0 until queryPackages.length) {
                         val queryPackage = queryPackages.item(index) as? Element ?: continue
@@ -329,6 +342,14 @@ val googlePhotosGmsCoreSupportPatch = bytecodePatch(
         )
 
         ServiceCheckFingerprint.method.addInstruction(0, "return-void")
+
+        // Maps SDK availability check (GoogleApiAvailabilityLight.isGooglePlayServicesAvailable) —
+        // return 0 (SUCCESS) so map/place features initialize under MicroG (ReVanced parity;
+        // verified to resolve on 7.90.0 as Lbnut->b(Context, I)I).
+        IsGooglePlayServicesAvailableFingerprint.methodOrNull?.let { method ->
+            method.addInstruction(0, "return v0")
+            method.addInstruction(0, "const/4 v0, 0x0")
+        }
 
         AccountValidityMonitorCheckFingerprint.method.addInstruction(0, "return-void")
 
@@ -417,7 +438,7 @@ private fun transformContentUri(string: String): String? {
         authority == "com.google.android.gms" -> GMS_CORE_PACKAGE
         authority == "com.google.android.gsf.gservices" -> "app.revanced.android.gsf.gservices"
         authority == "com.google.settings" -> "app.revanced.settings"
-        authority == "subscribedfeeds" -> "app.revanced.subscribedfeeds"
+        authority == "subscribedfeeds" -> "app.revanced.android.gsf.subscribedfeeds"
         else -> return null
     }
 
