@@ -1,3 +1,9 @@
+## [1.21.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.3...v1.21.0-dev.4) (2026-08-28)
+
+### ✨ New Features
+
+* Add Telegram Disable Rich HTML Paste patch ([5076208](https://github.com/rushiranpise/morphe-patches/commit/5076208de296f3bc6481b9ce3c6a622e98516232))
+
 ## [1.21.0-dev.3](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.2...v1.21.0-dev.3) (2026-08-28)
 
 ### 🐛 Bug Fixes

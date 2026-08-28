@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.0-dev.3** (`dev`) · **399 patches** across **252 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.0-dev.4** (`dev`) · **402 patches** across **252 apps** · back to [README](README.md)
 
 ---
 
@@ -2235,6 +2235,7 @@
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
+| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
@@ -2258,6 +2259,7 @@
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
+| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
@@ -2280,6 +2282,7 @@
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
+| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
