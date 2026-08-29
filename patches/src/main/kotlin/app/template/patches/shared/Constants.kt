@@ -2035,6 +2035,13 @@ val YATRI_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "5.0.6", versionCode = 1013))
     )
 
+val ZEE5_COMPATIBILITY = Compatibility(
+        name = "ZEE5",
+        packageName = "com.graymatrix.did",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(AppTarget(version = "39.56.7", versionCode = 204312578))
+    )
+
 val COMPATIBILITY_DOOFLIX = Compatibility(
         name = "DooFlix",
         packageName = "com.king.moja",
