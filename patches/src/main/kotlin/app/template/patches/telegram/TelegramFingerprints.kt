@@ -776,3 +776,18 @@ val ChatActivityEnterViewHandleRichHtmlPasteFingerprint = Fingerprint(
     returnType = "Z",
     parameters = listOf(),
 )
+
+// ─── Rich-message forwarding / Hide Sender Name ───────────────────────────────
+val ChatActivityForwardMessagesFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/ui/ChatActivity;",
+    name = "forwardMessages",
+    returnType = "V",
+    parameters = listOf(
+        "Ljava/util/ArrayList;",
+        "Z",
+        "Z",
+        "Z",
+        "I",
+        "J",
+    ),
+)
