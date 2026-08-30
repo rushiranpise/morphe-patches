@@ -1,3 +1,27 @@
+## [1.21.0](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0...v1.21.0) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* avoid private API for Amazon dark mode ([90564f6](https://github.com/rushiranpise/morphe-patches/commit/90564f6867c9d67d2d12d4112b29c102bdd0cf19))
+* boldvoice ([299222b](https://github.com/rushiranpise/morphe-patches/commit/299222bec0912410b28f4fec18c082dc7f083345)), closes [#735](https://github.com/rushiranpise/morphe-patches/issues/735)
+* build ([485e7e8](https://github.com/rushiranpise/morphe-patches/commit/485e7e8588246f76291ee2f829a04d2f0476c19c))
+* bvm and capod ([178c325](https://github.com/rushiranpise/morphe-patches/commit/178c3252d4d5efbf85e490c36c9d3dce7474deb8))
+* clarify dramabox source ([e82f8a8](https://github.com/rushiranpise/morphe-patches/commit/e82f8a892e7608f5654010120bc8c48758d05895))
+* clickmate ([64a53ab](https://github.com/rushiranpise/morphe-patches/commit/64a53abecc739ebb809c661f0a7e8c6cc59ce02b))
+* dramabox version ([6d6b804](https://github.com/rushiranpise/morphe-patches/commit/6d6b804ac785685668b86d8e520f2b69806a8fe3)), closes [#824](https://github.com/rushiranpise/morphe-patches/issues/824)
+* harden Amazon WebView trust boundaries ([1b45a3e](https://github.com/rushiranpise/morphe-patches/commit/1b45a3e75edda531733f32cafe9175d4b16727a9))
+* **photos:** make Maps/Places initialize under MicroG-RE ([42d7ea7](https://github.com/rushiranpise/morphe-patches/commit/42d7ea79b672fcc5d90cbc96f860bdfb85b312e5))
+* remove duplicate Amazon autoplay patch ([8f399ca](https://github.com/rushiranpise/morphe-patches/commit/8f399ca2475ffa5de71d89376e3ce881178a2c47))
+* sai ([06e925d](https://github.com/rushiranpise/morphe-patches/commit/06e925dbb43aa935f02854d574882f5cbc33da39))
+* telegram web ([2af8a86](https://github.com/rushiranpise/morphe-patches/commit/2af8a864dfa284138160509b971c83a5e930164f)), closes [#729](https://github.com/rushiranpise/morphe-patches/issues/729)
+* update apps ([24eb69b](https://github.com/rushiranpise/morphe-patches/commit/24eb69b3ab8ab5462e32ca56e8defbf52ec4ceca))
+
+### ✨ New Features
+
+* add dooflix ([2df2c39](https://github.com/rushiranpise/morphe-patches/commit/2df2c39ef000cba85437c98ccd3d84a5758ac1da))
+* add moviebox ([09421e7](https://github.com/rushiranpise/morphe-patches/commit/09421e73f28a0c26c915b4e268489682ef5f10a7))
+* add nova launcher ([41fe418](https://github.com/rushiranpise/morphe-patches/commit/41fe418e78e9667982afb42f2919dd8e23ad3344))
+
 ## [1.21.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.4...v1.21.0-dev.5) (2026-08-30)
 
 ### 🐛 Bug Fixes
