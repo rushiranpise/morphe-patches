@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.0-dev.4",
+  "version": "1.21.0-dev.5",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -17,12 +17,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -134,10 +134,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -396,10 +396,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -714,12 +714,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -767,10 +767,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -857,12 +857,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1009,37 +1009,6 @@
                 "ARMEABI_V7A": 5641,
                 "X86_64": 5641,
                 "X86": 5641
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Disable Screenshot Popup",
-      "description": "Suppresses the share prompt that appears after taking a screenshot.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1330,10 +1299,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1381,12 +1350,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1415,17 +1384,17 @@
           "packageName": "com.intsig.camscanner",
           "name": "CamScanner",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#19BCAA",
           "signatures": null,
           "targets": [
             {
-              "version": "7.22.5.2607250000",
+              "version": "7.24.5.2608200000",
               "versionCodes": {
-                "ARM64_V8A": 72252,
-                "ARMEABI_V7A": 72252,
-                "X86_64": 72252,
-                "X86": 72252
+                "ARM64_V8A": 72451,
+                "ARMEABI_V7A": 72451,
+                "X86_64": 72451,
+                "X86": 72451
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1453,10 +1422,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1504,12 +1473,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1651,12 +1620,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1764,10 +1733,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1872,12 +1841,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1903,12 +1872,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -1956,12 +1925,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2028,104 +1997,6 @@
       "options": []
     },
     {
-      "name": "Hide Ads",
-      "description": "Removes promoted posts and comment ads without requiring Reddit Premium unlock.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Answers Tab",
-      "description": "Removes the AI Answers tab from the bottom navigation bar.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Awards",
-      "description": "Removes award icons and badges from posts and comments.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Hide CAPTCHA Popups",
       "description": "Suppresses browsing CAPTCHA dialogs from SecApiImpl.",
       "default": true,
@@ -2157,101 +2028,6 @@
       "options": []
     },
     {
-      "name": "Hide Chat Tab",
-      "description": "Removes the Chat button from the bottom navigation bar.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Comment Score",
-      "description": "Hides vote counts on all comments.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Communities Shelf",
-      "description": "Hides the related or suggested communities shelf in subreddits.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Hide Facebook buttons",
       "description": "Hides buttons and shortcuts that open Facebook.",
       "default": true,
@@ -2268,41 +2044,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Games Tab",
-      "description": "Removes the Games tab from the bottom navigation bar.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2334,165 +2079,6 @@
                 "ARMEABI_V7A": 440952,
                 "X86_64": 440952,
                 "X86": 440952
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide NSFW Posts",
-      "description": "Hides NSFW posts from the feed by treating all posts as SFW.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Navigation Buttons",
-      "description": "Removes the Create Post button from the bottom navigation bar.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Post Score",
-      "description": "Hides vote counts on all posts in the feed.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Promoted Posts",
-      "description": "Blanks the promoted post render method and forces promoted/ad flags to false at the model layer.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Repost Button",
-      "description": "Removes the repost (crosspost) button from all posts.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2540,76 +2126,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Sidebar Components",
-      "description": "Hides About, Resources, and Reddit Pro sections from the community sidebar.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Hide Trending Shelves",
-      "description": "Removes Trending Today from the feed and trending searches from the search screen.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2626,6 +2148,37 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
+      "options": []
+    },
+    {
+      "name": "Hide ZEE5 display ads",
+      "description": "Disables selected client-side display-ad visibility flags.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.graymatrix.did",
+          "name": "ZEE5",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "39.56.7",
+              "versionCodes": {
+                "ARM64_V8A": 204312578,
+                "ARMEABI_V7A": 204312578,
+                "X86_64": 204312578,
+                "X86": 204312578
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
       "options": []
     },
     {
@@ -2653,10 +2206,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2684,10 +2237,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2715,10 +2268,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2777,6 +2330,81 @@
           "values": null
         }
       ]
+    },
+    {
+      "name": "Hide sender name",
+      "description": "Removes the forwarded channel attribution for Rich Messages while preserving the original message.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "org.telegram.messenger",
+          "name": "Telegram",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 70242,
+                "ARMEABI_V7A": 70242,
+                "X86_64": 70242,
+                "X86": 70242
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.messenger.web",
+          "name": "Telegram Web",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.10.0",
+              "versionCodes": {
+                "ARM64_V8A": 70319,
+                "ARMEABI_V7A": 70319,
+                "X86_64": 70319,
+                "X86": 70319
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        },
+        {
+          "packageName": "org.telegram.plus",
+          "name": "Telegram Plus",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#2CA5E0",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "12.9.2.0",
+              "versionCodes": {
+                "ARM64_V8A": 22460,
+                "ARMEABI_V7A": 22460,
+                "X86_64": 22460,
+                "X86": 22460
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     },
     {
       "name": "Hide typing indicator",
@@ -2903,10 +2531,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -2954,12 +2582,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3023,12 +2651,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3677,6 +3305,37 @@
       "options": []
     },
     {
+      "name": "Remove Ads",
+      "description": "Disables the client-side ZEE5 mobile ad configuration path.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.graymatrix.did",
+          "name": "ZEE5",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "39.56.7",
+              "versionCodes": {
+                "ARM64_V8A": 204312578,
+                "ARMEABI_V7A": 204312578,
+                "X86_64": 204312578,
+                "X86": 204312578
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Meta AI",
       "description": "Removes the Meta AI floating button, drawer items, and search suggestions.",
       "default": true,
@@ -3693,10 +3352,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3765,37 +3424,6 @@
       "options": []
     },
     {
-      "name": "Remove Subreddit Dialogs",
-      "description": "Suppresses the notification re-enable prompt that appears on subreddit visits.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Remove Watermark",
       "description": "Removes watermarks from Canva exports and previews.",
       "default": true,
@@ -3810,12 +3438,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.374.0",
+              "version": "2.375.0",
               "versionCodes": {
-                "ARM64_V8A": 29682599,
-                "ARMEABI_V7A": 29682599,
-                "X86_64": 29682599,
-                "X86": 29682599
+                "ARM64_V8A": 29693806,
+                "ARMEABI_V7A": 29693806,
+                "X86_64": 29693806,
+                "X86": 29693806
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3935,12 +3563,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "32.15.0.300",
+              "version": "32.16.2.300",
               "versionCodes": {
-                "ARM64_V8A": 1243210306,
-                "ARMEABI_V7A": 1243210306,
-                "X86_64": 1243210306,
-                "X86": 1243210306
+                "ARM64_V8A": 1243222206,
+                "ARMEABI_V7A": 1243222206,
+                "X86_64": 1243222206,
+                "X86": 1243222206
               },
               "isExperimental": false,
               "minSdk": null,
@@ -3999,12 +3627,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "10.0",
+              "version": "10.1",
               "versionCodes": {
-                "ARM64_V8A": 2136,
-                "ARMEABI_V7A": 2136,
-                "X86_64": 2136,
-                "X86": 2136
+                "ARM64_V8A": 2144,
+                "ARMEABI_V7A": 2144,
+                "X86_64": 2144,
+                "X86": 2144
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4140,37 +3768,6 @@
       "options": []
     },
     {
-      "name": "Sanitize Sharing Links",
-      "description": "Returns the raw permalink before UTM tracking parameters are appended to shared Reddit URLs.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "Security Bypass",
       "description": "Disables AAAD's anti-tamper, anti-debug, and integrity checks to allow running on patched installations.",
       "default": true,
@@ -4207,37 +3804,6 @@
       "default": false,
       "dependencies": [],
       "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Show Comment Karma",
-      "description": "Ensures comment karma is surfaced alongside link karma on the profile header.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
       "options": []
     },
     {
@@ -4606,12 +4172,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.90.0.970693120",
+              "version": "7.90.0.971743778",
               "versionCodes": {
-                "ARM64_V8A": 52288652,
-                "ARMEABI_V7A": 52288652,
-                "X86_64": 52288652,
-                "X86": 52288652
+                "ARM64_V8A": 52288898,
+                "ARMEABI_V7A": 52288898,
+                "X86_64": 52288898,
+                "X86": 52288898
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4737,10 +4303,10 @@
           "signatures": null,
           "targets": [
             {
-              "version": "575.0.0.48.90",
+              "version": "576.0.0.47.92",
               "versionCodes": {
-                "ARMEABI_V7A": 345012838,
-                "ARM64_V8A": 345012840
+                "ARMEABI_V7A": 345212666,
+                "ARM64_V8A": 345212670
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5055,12 +4621,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "11.57.1",
+              "version": "11.57.2",
               "versionCodes": {
-                "ARM64_V8A": 1157080,
-                "ARMEABI_V7A": 1157080,
-                "X86_64": 1157080,
-                "X86": 1157080
+                "ARM64_V8A": 1157110,
+                "ARMEABI_V7A": 1157110,
+                "X86_64": 1157110,
+                "X86": 1157110
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5090,12 +4656,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.11.4",
+              "version": "7.11.5",
               "versionCodes": {
-                "ARM64_V8A": 18315,
-                "ARMEABI_V7A": 18315,
-                "X86_64": 18315,
-                "X86": 18315
+                "ARM64_V8A": 18317,
+                "ARMEABI_V7A": 18317,
+                "X86_64": 18317,
+                "X86": 18317
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5183,12 +4749,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.34.0",
+              "version": "3.35.0",
               "versionCodes": {
-                "ARM64_V8A": 3340002,
-                "ARMEABI_V7A": 3340002,
-                "X86_64": 3340002,
-                "X86": 3340002
+                "ARM64_V8A": 3350004,
+                "ARMEABI_V7A": 3350004,
+                "X86_64": 3350004,
+                "X86": 3350004
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5214,12 +4780,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "17.4.0",
+              "version": "17.4.1",
               "versionCodes": {
-                "ARM64_V8A": 2073,
-                "ARMEABI_V7A": 2073,
-                "X86_64": 2073,
-                "X86": 2073
+                "ARM64_V8A": 2077,
+                "ARMEABI_V7A": 2077,
+                "X86_64": 2077,
+                "X86": 2077
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5490,7 +5056,7 @@
     },
     {
       "name": "Unlock Membership",
-      "description": "Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation.",
+      "description": "Unlocks DramaBox VIP membershipNote: Use apk from Uptodown",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -5632,12 +5198,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.31.0",
+              "version": "26.31.6",
               "versionCodes": {
-                "ARM64_V8A": 2914950,
-                "ARMEABI_V7A": 2914950,
-                "X86_64": 2914950,
-                "X86": 2914950
+                "ARM64_V8A": 2915100,
+                "ARMEABI_V7A": 2915100,
+                "X86_64": 2915100,
+                "X86": 2915100
               },
               "isExperimental": false,
               "minSdk": null,
@@ -5789,12 +5355,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "v1.0.7",
+              "version": "v1.0.11",
               "versionCodes": {
-                "ARM64_V8A": 7,
-                "ARMEABI_V7A": 7,
-                "X86_64": 7,
-                "X86": 7
+                "ARM64_V8A": 11,
+                "ARMEABI_V7A": 11,
+                "X86_64": 11,
+                "X86": 11
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6001,12 +5567,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "1.5.28",
+              "version": "1.5.30",
               "versionCodes": {
-                "ARM64_V8A": 84,
-                "ARMEABI_V7A": 84,
-                "X86_64": 84,
-                "X86": 84
+                "ARM64_V8A": 86,
+                "ARMEABI_V7A": 86,
+                "X86_64": 86,
+                "X86": 86
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6400,12 +5966,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2026.08.2",
+              "version": "2026.08.3",
               "versionCodes": {
-                "ARM64_V8A": 625,
-                "ARMEABI_V7A": 625,
-                "X86_64": 625,
-                "X86": 625
+                "ARM64_V8A": 626,
+                "ARMEABI_V7A": 626,
+                "X86_64": 626,
+                "X86": 626
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6553,17 +6119,17 @@
           "packageName": "cast.video.screenmirroring.casttotv",
           "name": "Cast to TV",
           "description": null,
-          "apkFileType": "APKM",
+          "apkFileType": "XAPK",
           "appIconColor": "#E53935",
           "signatures": null,
           "targets": [
             {
-              "version": "2.5.3.1",
+              "version": "2.5.4",
               "versionCodes": {
-                "ARM64_V8A": 253102,
-                "ARMEABI_V7A": 253102,
-                "X86_64": 253102,
-                "X86": 253102
+                "ARM64_V8A": 254001,
+                "ARMEABI_V7A": 254001,
+                "X86_64": 254001,
+                "X86": 254001
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6589,12 +6155,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.9.7",
+              "version": "3.0.0",
               "versionCodes": {
-                "ARM64_V8A": 77,
-                "ARMEABI_V7A": 77,
-                "X86_64": 77,
-                "X86": 77
+                "ARM64_V8A": 80,
+                "ARMEABI_V7A": 80,
+                "X86_64": 80,
+                "X86": 80
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6718,12 +6284,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "26.33.1",
+              "version": "26.35.0",
               "versionCodes": {
-                "ARM64_V8A": 26330103,
-                "ARMEABI_V7A": 26330103,
-                "X86_64": 26330103,
-                "X86": 26330103
+                "ARM64_V8A": 26350002,
+                "ARMEABI_V7A": 26350002,
+                "X86_64": 26350002,
+                "X86": 26350002
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6909,12 +6475,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "8.30.0-0",
+              "version": "8.31.0-4",
               "versionCodes": {
-                "ARM64_V8A": 10830000,
-                "ARMEABI_V7A": 10830000,
-                "X86_64": 10830000,
-                "X86": 10830000
+                "ARM64_V8A": 10831004,
+                "ARMEABI_V7A": 10831004,
+                "X86_64": 10831004,
+                "X86": 10831004
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6940,12 +6506,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "25.1.12",
+              "version": "25.1.14",
               "versionCodes": {
-                "ARM64_V8A": 1493,
-                "ARMEABI_V7A": 1493,
-                "X86_64": 1493,
-                "X86": 1493
+                "ARM64_V8A": 1495,
+                "ARMEABI_V7A": 1495,
+                "X86_64": 1495,
+                "X86": 1495
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7010,37 +6576,6 @@
                 "ARMEABI_V7A": 3438,
                 "X86_64": 3438,
                 "X86": 3438
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks Getcontact Premium Yearly (Tariff 10) — patches all 28 subscription model getters including trial, usage limits, and plan identity.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "app.source.getcontact",
-          "name": "Getcontact",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#00BCD4",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "8.16.0",
-              "versionCodes": {
-                "ARM64_V8A": 16471,
-                "ARMEABI_V7A": 16471,
-                "X86_64": 16471,
-                "X86": 16471
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7404,12 +6939,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.1.02",
+              "version": "2.1.04",
               "versionCodes": {
-                "ARM64_V8A": 13,
-                "ARMEABI_V7A": 13,
-                "X86_64": 13,
-                "X86": 13
+                "ARM64_V8A": 14,
+                "ARMEABI_V7A": 14,
+                "X86_64": 14,
+                "X86": 14
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7530,12 +7065,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "8.72.0",
+              "version": "8.73.0",
               "versionCodes": {
-                "ARM64_V8A": 593,
-                "ARMEABI_V7A": 593,
-                "X86_64": 593,
-                "X86": 593
+                "ARM64_V8A": 596,
+                "ARMEABI_V7A": 596,
+                "X86_64": 596,
+                "X86": 596
               },
               "isExperimental": false,
               "minSdk": null,
@@ -7992,259 +7527,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks Pocket Prep premium subscription gates and the full question bank.",
-      "default": true,
-      "dependencies": [
-        "ResourcePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.pocketprep.android.itcybersecurity",
-          "name": "Pocket Prep IT Cybersecurity",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.professional",
-          "name": "Pocket Prep Professional",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.behavioralhealth",
-          "name": "Pocket Prep Behavioral Health",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.medical",
-          "name": "Pocket Prep Medical",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.nursingschool",
-          "name": "Pocket Prep Nursing School",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.28.1",
-              "versionCodes": {
-                "ARM64_V8A": 429,
-                "ARMEABI_V7A": 429,
-                "X86_64": 429,
-                "X86": 429
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.nursing",
-          "name": "Pocket Prep Nursing",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.ems",
-          "name": "Pocket Prep EMS",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.1",
-              "versionCodes": {
-                "ARM64_V8A": 434,
-                "ARMEABI_V7A": 434,
-                "X86_64": 434,
-                "X86": 434
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.automotive",
-          "name": "Pocket Prep Skilled Trades",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.fitness",
-          "name": "Pocket Prep Fitness",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.essentials",
-          "name": "Pocket Prep Essentials",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.28.1",
-              "versionCodes": {
-                "ARM64_V8A": 429,
-                "ARMEABI_V7A": 429,
-                "X86_64": 429,
-                "X86": 429
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        },
-        {
-          "packageName": "com.pocketprep.android.pocketprep",
-          "name": "Pocket Prep",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1D5CFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "3.29.0",
-              "versionCodes": {
-                "ARM64_V8A": 433,
-                "ARMEABI_V7A": 433,
-                "X86_64": 433,
-                "X86": 433
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks lifetime pro by bypassing all entitlement checks and poisoning the account cache.",
       "default": true,
       "dependencies": [],
@@ -8289,12 +7571,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "479",
+              "version": "486",
               "versionCodes": {
-                "ARM64_V8A": 479,
-                "ARMEABI_V7A": 479,
-                "X86_64": 479,
-                "X86": 479
+                "ARM64_V8A": 486,
+                "ARMEABI_V7A": 486,
+                "X86_64": 486,
+                "X86": 486
               },
               "isExperimental": false,
               "minSdk": null,
@@ -8357,42 +7639,6 @@
                 "ARMEABI_V7A": 1502,
                 "X86_64": 1502,
                 "X86": 1502
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks Reddit Premium features and removes all ads client-side.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch",
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9023,12 +8269,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "13.147.0",
+              "version": "13.148.0",
               "versionCodes": {
-                "ARM64_V8A": 33625841,
-                "ARMEABI_V7A": 33625841,
-                "X86_64": 33625841,
-                "X86": 33625841
+                "ARM64_V8A": 33625994,
+                "ARMEABI_V7A": 33625994,
+                "X86_64": 33625994,
+                "X86": 33625994
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9878,12 +9124,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "0.1303.2",
+              "version": "0.1307.0",
               "versionCodes": {
-                "ARM64_V8A": 1138,
-                "ARMEABI_V7A": 1138,
-                "X86_64": 1138,
-                "X86": 1138
+                "ARM64_V8A": 1139,
+                "ARMEABI_V7A": 1139,
+                "X86_64": 1139,
+                "X86": 1139
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9971,12 +9217,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "5.1.9",
+              "version": "5.1.10",
               "versionCodes": {
-                "ARM64_V8A": 541,
-                "ARMEABI_V7A": 541,
-                "X86_64": 541,
-                "X86": 541
+                "ARM64_V8A": 542,
+                "ARMEABI_V7A": 542,
+                "X86_64": 542,
+                "X86": 542
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10004,12 +9250,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.3.50",
+              "version": "2.3.53",
               "versionCodes": {
-                "ARM64_V8A": 739,
-                "ARMEABI_V7A": 739,
-                "X86_64": 739,
-                "X86": 739
+                "ARM64_V8A": 745,
+                "ARMEABI_V7A": 745,
+                "X86_64": 745,
+                "X86": 745
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10846,12 +10092,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.2.85",
+              "version": "3.2.86",
               "versionCodes": {
-                "ARM64_V8A": 3285,
-                "ARMEABI_V7A": 3285,
-                "X86_64": 3285,
-                "X86": 3285
+                "ARM64_V8A": 3286,
+                "ARMEABI_V7A": 3286,
+                "X86_64": 3286,
+                "X86": 3286
               },
               "isExperimental": false,
               "minSdk": null,
@@ -10928,12 +10174,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "3.4.2",
+              "version": "3.4.4",
               "versionCodes": {
-                "ARM64_V8A": 3040200,
-                "ARMEABI_V7A": 3040200,
-                "X86_64": 3040200,
-                "X86": 3040200
+                "ARM64_V8A": 3040400,
+                "ARMEABI_V7A": 3040400,
+                "X86_64": 3040400,
+                "X86": 3040400
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11155,12 +10401,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.11.4",
+              "version": "7.11.5",
               "versionCodes": {
-                "ARM64_V8A": 18315,
-                "ARMEABI_V7A": 18315,
-                "X86_64": 18315,
-                "X86": 18315
+                "ARM64_V8A": 18317,
+                "ARMEABI_V7A": 18317,
+                "X86_64": 18317,
+                "X86": 18317
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11314,12 +10560,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.3.7-ad_mob",
+              "version": "2.3.8-ad_mob",
               "versionCodes": {
-                "ARM64_V8A": 155,
-                "ARMEABI_V7A": 155,
-                "X86_64": 155,
-                "X86": 155
+                "ARM64_V8A": 156,
+                "ARMEABI_V7A": 156,
+                "X86_64": 156,
+                "X86": 156
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11536,17 +10782,17 @@
           "packageName": "com.intsig.camscanner",
           "name": "CamScanner",
           "description": null,
-          "apkFileType": "APKS",
+          "apkFileType": "XAPK",
           "appIconColor": "#19BCAA",
           "signatures": null,
           "targets": [
             {
-              "version": "7.22.5.2607250000",
+              "version": "7.24.5.2608200000",
               "versionCodes": {
-                "ARM64_V8A": 72252,
-                "ARMEABI_V7A": 72252,
-                "X86_64": 72252,
-                "X86": 72252
+                "ARM64_V8A": 72451,
+                "ARMEABI_V7A": 72451,
+                "X86_64": 72451,
+                "X86": 72451
               },
               "isExperimental": false,
               "minSdk": null,
@@ -11846,7 +11092,7 @@
       "options": []
     },
     {
-      "name": "Use normal paste for Rich HTML clipboard content",
+      "name": "Use normal paste",
       "description": "Skips Telegram's Rich HTML paste handler and falls back to the normal paste path.",
       "default": true,
       "dependencies": [],
@@ -11910,37 +11156,6 @@
                 "ARMEABI_V7A": 22460,
                 "X86_64": 22460,
                 "X86": 22460
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Username Hider",
-      "description": "Replaces the displayed username with 'u/hidden' for screen-sharing privacy.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.reddit.frontpage",
-          "name": "Reddit",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#FF4500",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026.34.0",
-              "versionCodes": {
-                "ARM64_V8A": 2634001,
-                "ARMEABI_V7A": 2634001,
-                "X86_64": 2634001,
-                "X86": 2634001
               },
               "isExperimental": false,
               "minSdk": null,
