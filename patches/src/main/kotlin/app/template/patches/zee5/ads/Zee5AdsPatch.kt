@@ -6,7 +6,7 @@ import app.template.patches.shared.returnEarly
 
 @Suppress("unused")
 val zee5AdsPatch = bytecodePatch(
-    name = "Remove ZEE5 video ad configuration",
+    name = "Remove Ads",
     description = "Disables the client-side ZEE5 mobile ad configuration path.",
 ) {
     compatibleWith(ZEE5_COMPATIBILITY)

@@ -21,7 +21,7 @@ import app.template.patches.telegram.ChatActivityForwardMessagesFingerprint
  */
 @Suppress("unused")
 val telegramHideRichMessageForwardedSenderPatch = bytecodePatch(
-    name = "Hide sender name for Rich Message forwards",
+    name = "Hide sender name",
     description = "Removes the forwarded channel attribution for Rich Messages while preserving the original message.",
 ) {
     compatibleWith(
