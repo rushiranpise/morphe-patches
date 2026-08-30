@@ -5,6 +5,7 @@ import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.ChatActivityForwardMessagesFingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 
 /**
  * Telegram 12.10.1 Rich Message forwarding fix.
@@ -42,7 +43,7 @@ val telegramHideRichMessageForwardedSenderPatch = bytecodePatch(
                 invoke-virtual {p1, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
                 move-result-object v0
                 check-cast v0, Lorg/telegram/messenger/MessageObject;
-                iget-object v0, v0, Lorg/telegram/tgnet/TLRPC$Message;->rich_message:Lorg/telegram/tgnet/tl/TL_iv$RichMessage;
+                iget-object v0, v0, Lorg/telegram/tgnet/TLRPC{'$'}Message;->rich_message:Lorg/telegram/tgnet/tl/TL_iv{'$'}RichMessage;
                 if-eqz v0, :rich_forward_done
                 const/4 p2, 0x1
             :rich_forward_done
