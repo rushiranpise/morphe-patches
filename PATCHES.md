@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.0-dev.4** (`dev`) · **402 patches** across **252 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.0-dev.5** (`dev`) · **375 patches** across **240 apps** · back to [README](README.md)
 
 ---
 
@@ -39,7 +39,7 @@
 
 ## AAEnabler (com.aaenabler.app)
 
-**Supported versions:** `v1.0.7`
+**Supported versions:** `v1.0.11`
 
 | Patch | Details |
 |---|---|
@@ -139,7 +139,7 @@
 
 ## Amazon India (in.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.15.0.300`
+**Supported versions:** `32.16.2.300`
 
 | Patch | Details |
 |---|---|
@@ -203,7 +203,7 @@
 
 ## AndroPods (pro.vitalii.andropods)
 
-**Supported versions:** `1.5.28`
+**Supported versions:** `1.5.30`
 
 | Patch | Details |
 |---|---|
@@ -453,7 +453,7 @@
 
 ## BuzzCast (com.guochao.faceshow)
 
-**Supported versions:** `3.2.85`
+**Supported versions:** `3.2.86`
 
 | Patch | Details |
 |---|---|
@@ -463,7 +463,7 @@
 
 ## calimoto (com.calimoto.calimoto)
 
-**Supported versions:** `2026.08.2`
+**Supported versions:** `2026.08.3`
 
 | Patch | Details |
 |---|---|
@@ -493,7 +493,7 @@
 
 ## CamScanner (com.intsig.camscanner)
 
-**Supported versions:** `7.22.5.2607250000`
+**Supported versions:** `7.24.5.2608200000`
 
 | Patch | Details |
 |---|---|
@@ -504,7 +504,7 @@
 
 ## Canva (com.canva.editor)
 
-**Supported versions:** `2.374.0`
+**Supported versions:** `2.375.0`
 
 | Patch | Details |
 |---|---|
@@ -554,7 +554,7 @@
 
 ## Cast to TV (cast.video.screenmirroring.casttotv)
 
-**Supported versions:** `2.5.3.1`
+**Supported versions:** `2.5.4`
 
 | Patch | Details |
 |---|---|
@@ -564,7 +564,7 @@
 
 ## Charge Meter (dev.km.android.chargemeter)
 
-**Supported versions:** `2.9.7`
+**Supported versions:** `3.0.0`
 
 | Patch | Details |
 |---|---|
@@ -574,7 +574,7 @@
 
 ## Citizen (sp0n.citizen)
 
-**Supported versions:** `0.1303.2`
+**Supported versions:** `0.1307.0`
 
 | Patch | Details |
 |---|---|
@@ -584,7 +584,7 @@
 
 ## Citymapper (com.citymapper.app.release)
 
-**Supported versions:** `11.57.1`
+**Supported versions:** `11.57.2`
 
 | Patch | Details |
 |---|---|
@@ -644,7 +644,7 @@
 
 ## Crime Radar (com.newsbreak.crimeradar)
 
-**Supported versions:** `26.33.1`
+**Supported versions:** `26.35.0`
 
 | Patch | Details |
 |---|---|
@@ -711,7 +711,7 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock Membership** | Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation. |
+| **Unlock Membership** | Unlocks DramaBox VIP membershipNote: Use apk from Uptodown |
 
 ---
 
@@ -789,7 +789,7 @@
 
 ## Fitbod (com.fitbod.fitbod)
 
-**Supported versions:** `8.30.0-0`
+**Supported versions:** `8.31.0-4`
 
 | Patch | Details |
 |---|---|
@@ -799,7 +799,7 @@
 
 ## Fitia (com.nutrition.technologies.Fitia)
 
-**Supported versions:** `25.1.12`
+**Supported versions:** `25.1.14`
 
 | Patch | Details |
 |---|---|
@@ -867,19 +867,9 @@
 
 ---
 
-## Getcontact (app.source.getcontact)
-
-**Supported versions:** `8.16.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Getcontact Premium Yearly (Tariff 10) — patches all 28 subscription model getters including trial, usage limits, and plan identity. |
-
----
-
 ## Google Photos (com.google.android.apps.photos)
 
-**Supported versions:** `7.90.0.970693120`
+**Supported versions:** `7.90.0.971743778`
 
 | Patch | Details |
 |---|---|
@@ -964,7 +954,7 @@
 
 ## HTTP Sniffer (com.anetcapture.mock)
 
-**Supported versions:** `2.3.7-ad_mob`
+**Supported versions:** `2.3.8-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -974,7 +964,7 @@
 
 ## Hydro Coach (com.codium.hydrocoach)
 
-**Supported versions:** `5.1.9`
+**Supported versions:** `5.1.10`
 
 | Patch | Details |
 |---|---|
@@ -994,7 +984,7 @@
 
 ## Inmigreat (com.changayaf.inmigreat)
 
-**Supported versions:** `2.3.50`
+**Supported versions:** `2.3.53`
 
 | Patch | Details |
 |---|---|
@@ -1024,7 +1014,7 @@
 
 ## JEFIT (je.fit)
 
-**Supported versions:** `17.4.0`
+**Supported versions:** `17.4.1`
 
 | Patch | Details |
 |---|---|
@@ -1104,7 +1094,7 @@
 
 ## Life360 (com.life360.android.safetymapd)
 
-**Supported versions:** `26.31.0`
+**Supported versions:** `26.31.6`
 
 | Patch | Details |
 |---|---|
@@ -1114,7 +1104,7 @@
 
 ## LiveScore (com.livescore)
 
-**Supported versions:** `10.0`
+**Supported versions:** `10.1`
 
 | Patch | Details |
 |---|---|
@@ -1204,7 +1194,7 @@
 
 ## Messenger (com.facebook.orca)
 
-**Supported versions:** `575.0.0.48.90`
+**Supported versions:** `576.0.0.47.92`
 
 | Patch | Details |
 |---|---|
@@ -1256,7 +1246,7 @@
 
 ## Minimal Widgets (com.jndapp.minimal.widgets)
 
-**Supported versions:** `2.1.02`
+**Supported versions:** `2.1.04`
 
 | Patch | Details |
 |---|---|
@@ -1356,7 +1346,7 @@
 
 ## MyRadar (com.acmeaom.android.myradar)
 
-**Supported versions:** `8.72.0`
+**Supported versions:** `8.73.0`
 
 | Patch | Details |
 |---|---|
@@ -1666,116 +1656,6 @@
 
 ---
 
-## Pocket Prep (com.pocketprep.android.pocketprep)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Behavioral Health (com.pocketprep.android.behavioralhealth)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep EMS (com.pocketprep.android.ems)
-
-**Supported versions:** `3.29.1`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Essentials (com.pocketprep.android.essentials)
-
-**Supported versions:** `3.28.1`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Fitness (com.pocketprep.android.fitness)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep IT Cybersecurity (com.pocketprep.android.itcybersecurity)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Medical (com.pocketprep.android.medical)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Nursing (com.pocketprep.android.nursing)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Nursing School (com.pocketprep.android.nursingschool)
-
-**Supported versions:** `3.28.1`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Professional (com.pocketprep.android.professional)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
-## Pocket Prep Skilled Trades (com.pocketprep.android.automotive)
-
-**Supported versions:** `3.29.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Pocket Prep premium subscription gates and the full question bank. |
-
----
-
 ## PodsLink (net.podslink)
 
 **Supported versions:** `1.3.9`
@@ -1808,7 +1688,7 @@
 
 ## Proton Mail (ch.protonmail.android)
 
-**Supported versions:** `7.11.4`
+**Supported versions:** `7.11.5`
 
 | Patch | Details |
 |---|---|
@@ -1849,7 +1729,7 @@
 
 ## Psiphon Pro (com.psiphon3.subscription)
 
-**Supported versions:** `479`
+**Supported versions:** `486`
 
 | Patch | Details |
 |---|---|
@@ -1907,35 +1787,6 @@
 
 ---
 
-## Reddit (com.reddit.frontpage)
-
-**Supported versions:** `2026.34.0`
-
-| Patch | Details |
-|---|---|
-| **Disable Screenshot Popup** | Suppresses the share prompt that appears after taking a screenshot. |
-| **Hide Ads** | Removes promoted posts and comment ads without requiring Reddit Premium unlock. |
-| **Hide Answers Tab** | Removes the AI Answers tab from the bottom navigation bar. |
-| **Hide Awards** | Removes award icons and badges from posts and comments. |
-| **Hide Chat Tab** | Removes the Chat button from the bottom navigation bar. |
-| **Hide Comment Score** | Hides vote counts on all comments. |
-| **Hide Communities Shelf** | Hides the related or suggested communities shelf in subreddits. |
-| **Hide Games Tab** | Removes the Games tab from the bottom navigation bar. |
-| **Hide NSFW Posts** | Hides NSFW posts from the feed by treating all posts as SFW. |
-| **Hide Navigation Buttons** | Removes the Create Post button from the bottom navigation bar. |
-| **Hide Post Score** | Hides vote counts on all posts in the feed. |
-| **Hide Promoted Posts** | Blanks the promoted post render method and forces promoted/ad flags to false at the model layer. |
-| **Hide Repost Button** | Removes the repost (crosspost) button from all posts. |
-| **Hide Sidebar Components** | Hides About, Resources, and Reddit Pro sections from the community sidebar. |
-| **Hide Trending Shelves** | Removes Trending Today from the feed and trending searches from the search screen. |
-| **Remove Subreddit Dialogs** | Suppresses the notification re-enable prompt that appears on subreddit visits. |
-| **Sanitize Sharing Links** | Returns the raw permalink before UTM tracking parameters are appended to shared Reddit URLs. |
-| **Show Comment Karma** | Ensures comment karma is surfaced alongside link karma on the profile header. |
-| **Unlock Premium** | Unlocks Reddit Premium features and removes all ads client-side. |
-| **Username Hider** | Replaces the displayed username with 'u/hidden' for screen-sharing privacy. |
-
----
-
 ## Relane VPN (xorsand.relane)
 
 **Supported versions:** `2026073010.0.0`
@@ -1988,7 +1839,7 @@
 
 ## Scoopz (com.localaiapp.scoops)
 
-**Supported versions:** `3.34.0`
+**Supported versions:** `3.35.0`
 
 | Patch | Details |
 |---|---|
@@ -2138,7 +1989,7 @@
 
 ## Stargazing Hub (com.twtapp)
 
-**Supported versions:** `3.4.2`
+**Supported versions:** `3.4.4`
 
 | Patch | Details |
 |---|---|
@@ -2232,10 +2083,11 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
-| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
+| **Use normal paste** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
@@ -2256,10 +2108,11 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
-| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
+| **Use normal paste** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
@@ -2279,10 +2132,11 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
+| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
-| **Use normal paste for Rich HTML clipboard content** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
+| **Use normal paste** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
 
 ---
@@ -2299,7 +2153,7 @@
 
 ## The Athletic (com.theathletic)
 
-**Supported versions:** `13.147.0`
+**Supported versions:** `13.148.0`
 
 | Patch | Details |
 |---|---|
@@ -2623,6 +2477,17 @@
 | Patch | Details |
 |---|---|
 | **Unlock VIP** | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |
+
+---
+
+## ZEE5 (com.graymatrix.did)
+
+**Supported versions:** `39.56.7`
+
+| Patch | Details |
+|---|---|
+| **Hide ZEE5 display ads** | Disables selected client-side display-ad visibility flags. |
+| **Remove Ads** | Disables the client-side ZEE5 mobile ad configuration path. |
 
 ---
 

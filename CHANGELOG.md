@@ -1,3 +1,10 @@
+## [1.21.0-dev.5](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.4...v1.21.0-dev.5) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* build ([061008b](https://github.com/rushiranpise/morphe-patches/commit/061008bb3fb2b3b6bc0af08e2e49b1b975a79677))
+* clarify dramabox source ([7e3db09](https://github.com/rushiranpise/morphe-patches/commit/7e3db09242a893dcbe01edb649540fafa977d83b))
+
 ## [1.21.0-dev.4](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0-dev.3...v1.21.0-dev.4) (2026-08-28)
 
 ### ✨ New Features
