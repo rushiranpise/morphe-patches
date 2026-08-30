@@ -23,7 +23,7 @@ val AAENABLER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0x1A73E8,
         targets = listOf(
-            AppTarget(version = "v1.0.7", versionCode = 7)
+            AppTarget(version = "v1.0.11", versionCode = 11)
         )
     )
 
@@ -347,7 +347,7 @@ val CALIMOTO_COMPATIBILITY = Compatibility(
         packageName = "com.calimoto.calimoto",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = "2026.08.2", versionCode = 625))
+        targets = listOf(AppTarget(version = "2026.08.3", versionCode = 626))
     )
 
 val CALLRECORDER_COMPATIBILITY = Compatibility(
@@ -377,9 +377,9 @@ val CALORY_COMPATIBILITY = Compatibility(
 val CAMSCANNER_COMPATIBILITY = Compatibility(
         name = "CamScanner",
         packageName = "com.intsig.camscanner",
-        apkFileType = ApkFileType.APKS,
+        apkFileType = ApkFileType.XAPK,
         appIconColor = 0x19BCAA,
-        targets = listOf(AppTarget(version = "7.22.5.2607250000", versionCode = 72252))
+        targets = listOf(AppTarget(version = "7.24.5.2608200000", versionCode = 72451))
     )
 
 val CANVA_COMPATIBILITY = Compatibility(
@@ -450,7 +450,7 @@ val CITYMAPPER_COMPATIBILITY = Compatibility(
         packageName = "com.citymapper.app.release",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x00A862,
-        targets = listOf(AppTarget(version = "11.57.1", versionCode = 1157080))
+        targets = listOf(AppTarget(version = "11.57.2", versionCode = 1157110))
     )
 
 val CLUE_COMPATIBILITY = Compatibility(
@@ -609,7 +609,7 @@ val FITBOD_COMPATIBILITY = Compatibility(
         packageName = "com.fitbod.fitbod",
         appIconColor = 0xFF3D00,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "8.30.0-0", versionCode = 10830000))
+        targets = listOf(AppTarget(version = "8.31.0-4", versionCode = 10831004))
     )
 
 val FITIA_COMPATIBILITY = Compatibility(
@@ -617,7 +617,7 @@ val FITIA_COMPATIBILITY = Compatibility(
         packageName = "com.nutrition.technologies.Fitia",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF5722,
-        targets = listOf(AppTarget(version = "25.1.12", versionCode = 1493))
+        targets = listOf(AppTarget(version = "25.1.14", versionCode = 1495))
     )
 
 val FLIGHTAWARE_COMPATIBILITY = Compatibility(
@@ -719,7 +719,7 @@ val HTTPMOCK_COMPATIBILITY = Compatibility(
         packageName = "com.anetcapture.mock",
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "2.3.7-ad_mob", versionCode = 155))
+        targets = listOf(AppTarget(version = "2.3.8-ad_mob", versionCode = 156))
     )
 
 val HYDROCOACH_COMPATIBILITY = Compatibility(
@@ -871,7 +871,7 @@ val LIFE360_COMPATIBILITY = Compatibility(
         packageName = "com.life360.android.safetymapd",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x5D2DE6,
-        targets = listOf(AppTarget(version = "26.31.5", versionCode = 2915080))
+        targets = listOf(AppTarget(version = "26.31.6", versionCode = 2915100))
     )
 
 val LIVESCORE_COMPATIBILITY = Compatibility(
@@ -879,7 +879,7 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         packageName = "com.livescore",
         appIconColor = 0xE30613,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "10.0", versionCode = 2136))
+        targets = listOf(AppTarget(version = "10.1", versionCode = 2144))
     )
 
 val MACRODROID_COMPATIBILITY = Compatibility(
@@ -992,7 +992,7 @@ val MINIMAL_WIDGETS_COMPATIBILITY = Compatibility(
         packageName = "com.jndapp.minimal.widgets",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x212121,
-        targets = listOf(AppTarget(version = "2.1.02", versionCode = 13))
+        targets = listOf(AppTarget(version = "2.1.04", versionCode = 14))
     )
 
 val MIRKO_COMPATIBILITY = Compatibility(
@@ -1072,7 +1072,7 @@ val MYRADAR_COMPATIBILITY = Compatibility(
         packageName = "com.acmeaom.android.myradar",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1A6FBF,
-        targets = listOf(AppTarget(version = "8.72.0", versionCode = 593))
+        targets = listOf(AppTarget(version = "8.73.0", versionCode = 596))
     )
 
 val NAVITIME_COMPATIBILITY = Compatibility(
@@ -1321,7 +1321,7 @@ val POCKETPREP_COMPATIBILITY = Compatibility(
         packageName = "com.pocketprep.android.itcybersecurity",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
+        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
     )
 
 val POCKETPREP_EMS_COMPATIBILITY = Compatibility(
@@ -1377,7 +1377,7 @@ val POCKETPREP_NURSING_SCHOOL_COMPATIBILITY = Compatibility(
         packageName = "com.pocketprep.android.nursingschool",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.28.1", versionCode = 429))
+        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
     )
 
 val POCKETPREP_PROFESSIONAL_COMPATIBILITY = Compatibility(
@@ -1459,7 +1459,7 @@ val PSIPHON_COMPATIBILITY = Compatibility(
         packageName = "com.psiphon3.subscription",
         appIconColor = 0x6A1B9A,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "479", versionCode = 479))
+        targets = listOf(AppTarget(version = "486", versionCode = 486))
     )
 
 val QBITCONNECT_COMPATIBILITY = Compatibility(
@@ -1887,7 +1887,7 @@ val TWTAPP_COMPATIBILITY = Compatibility(
         packageName = "com.twtapp",
         appIconColor = 0x1A1A2E,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "3.4.2", versionCode = 3040200))
+        targets = listOf(AppTarget(version = "3.4.4", versionCode = 3040400))
     )
 
 val UBIKITOUCH_COMPATIBILITY = Compatibility(
@@ -2033,6 +2033,13 @@ val YATRI_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6B00,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.6", versionCode = 1013))
+    )
+
+val ZEE5_COMPATIBILITY = Compatibility(
+        name = "ZEE5",
+        packageName = "com.graymatrix.did",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(AppTarget(version = "39.56.7", versionCode = 204312578))
     )
 
 val COMPATIBILITY_DOOFLIX = Compatibility(
