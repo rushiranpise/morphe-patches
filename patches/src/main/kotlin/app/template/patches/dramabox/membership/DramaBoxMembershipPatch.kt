@@ -95,7 +95,7 @@ import app.template.patches.shared.returnEarly
 @Suppress("unused")
 val dramaBoxMembershipPatch = bytecodePatch(
     name = "Unlock Membership",
-    description = "Unlocks DramaBox VIP membership status locally by patching the DataStore VIP getter and setter, bypassing the Google Play Billing verification and server-side VIP flag propagation.",
+    description = "Unlocks DramaBox VIP membership" +"Note: Use apk from Uptodown",
     default = true,
 ) {
     compatibleWith(DRAMABOX_COMPATIBILITY)
