@@ -668,14 +668,6 @@ val GENIUSSCAN_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "7.41.0", versionCode = 7555))
     )
 
-val GETCONTACT_COMPATIBILITY = Compatibility(
-        name = "Getcontact",
-        packageName = "app.source.getcontact",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x00BCD4,
-        targets = listOf(AppTarget(version = "8.16.0", versionCode = 16471)),
-    )
-
 val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
         name = "Google Photos",
         packageName = "com.google.android.apps.photos",
@@ -1308,94 +1300,6 @@ val POCKET_CASTS_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "8.16", versionCode = 9441))
     )
 
-val POCKETPREP_BEHAVIORAL_HEALTH_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Behavioral Health",
-        packageName = "com.pocketprep.android.behavioralhealth",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
-    )
-
-val POCKETPREP_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep IT Cybersecurity",
-        packageName = "com.pocketprep.android.itcybersecurity",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
-    )
-
-val POCKETPREP_EMS_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep EMS",
-        packageName = "com.pocketprep.android.ems",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
-    )
-
-val POCKETPREP_ESSENTIALS_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Essentials",
-        packageName = "com.pocketprep.android.essentials",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.28.1", versionCode = 429))
-    )
-
-val POCKETPREP_FITNESS_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Fitness",
-        packageName = "com.pocketprep.android.fitness",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
-    )
-
-val POCKETPREP_MAIN_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep",
-        packageName = "com.pocketprep.android.pocketprep",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
-    )
-
-val POCKETPREP_MEDICAL_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Medical",
-        packageName = "com.pocketprep.android.medical",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
-    )
-
-val POCKETPREP_NURSING_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Nursing",
-        packageName = "com.pocketprep.android.nursing",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.0", versionCode = 433))
-    )
-
-val POCKETPREP_NURSING_SCHOOL_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Nursing School",
-        packageName = "com.pocketprep.android.nursingschool",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
-    )
-
-val POCKETPREP_PROFESSIONAL_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Professional",
-        packageName = "com.pocketprep.android.professional",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
-    )
-
-val POCKETPREP_SKILLED_TRADES_COMPATIBILITY = Compatibility(
-        name = "Pocket Prep Skilled Trades",
-        packageName = "com.pocketprep.android.automotive",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1D5CFF,
-        targets = listOf(AppTarget(version = "3.29.1", versionCode = 434))
-    )
-
 val PODSLINK_COMPATIBILITY = Compatibility(
         name = "PodsLink",
         packageName = "net.podslink",
@@ -1494,15 +1398,6 @@ val RECIPEBRO_COMPATIBILITY = Compatibility(
         appIconColor = 0xE65100,
         apkFileType = ApkFileType.APKS,
         targets = listOf(AppTarget(version = "1.7.21", versionCode = 1502))
-    )
-
-val REDDIT_COMPATIBILITY = Compatibility(
-        name = "Reddit",
-        packageName = "com.reddit.frontpage",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0xFF4500,
-        targets = listOf(
-            AppTarget(version = "2026.35.0", versionCode = 2635001))
     )
 
 val RELANE_COMPATIBILITY = Compatibility(
