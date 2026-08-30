@@ -9,7 +9,7 @@ import app.template.patches.telegram.ChatActivityEnterViewHandleRichHtmlPasteFin
 
 @Suppress("unused")
 val telegramDisableRichHtmlPastePatch = bytecodePatch(
-    name = "Use normal paste for Rich HTML clipboard content",
+    name = "Use normal paste",
     description = "Skips Telegram's Rich HTML paste handler and falls back to the normal paste path.",
 ) {
     compatibleWith(
