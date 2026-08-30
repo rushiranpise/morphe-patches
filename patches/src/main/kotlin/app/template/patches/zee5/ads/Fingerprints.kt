@@ -24,7 +24,7 @@ object AdsConfigInputAdsUrlFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
     parameters = emptyList(),
     custom = { method, classDef ->
-        classDef.type == "Lcom/zee5/usecase/content/GetAdsConfigUseCase$Input;" &&
+        classDef.type == "Lcom/zee5/usecase/content/GetAdsConfigUseCase{'$'}Input;" &&
             method.name == "getAdsUrl"
     },
 )
@@ -33,7 +33,7 @@ object AdsConfigInputImaAdsFingerprint : Fingerprint(
     returnType = "Ljava/util/List;",
     parameters = emptyList(),
     custom = { method, classDef ->
-        classDef.type == "Lcom/zee5/usecase/content/GetAdsConfigUseCase$Input;" &&
+        classDef.type == "Lcom/zee5/usecase/content/GetAdsConfigUseCase{'$'}Input;" &&
             method.name == "getImaAdsMetaInfoList"
     },
 )
