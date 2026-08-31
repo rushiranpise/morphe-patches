@@ -1339,7 +1339,7 @@ val PROTONMAIL_COMPATIBILITY = Compatibility(
         packageName = "ch.protonmail.android",
         appIconColor = 0x6D4AFF,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "7.11.5", versionCode = 18317))
+        targets = listOf(AppTarget(version = "7.11.4", versionCode = 18315))
     )
 
 val PROTONVPN_COMPATIBILITY = Compatibility(
