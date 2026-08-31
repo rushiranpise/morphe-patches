@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.0** (`main`) · **375 patches** across **240 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.1** (`main`) · **370 patches** across **239 apps** · back to [README](README.md)
 
 ---
 
@@ -2083,7 +2083,6 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
-| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
@@ -2108,7 +2107,6 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
-| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
@@ -2132,7 +2130,6 @@
 | **Disable auto-update** | Disables automatic app update checks, the blocking update screen, and the proxy sponsor channel insertion. On Telegram Plus also disables the Plus-specific updater and update settings flag. |
 | **Disable channel switching** | Disables the pull-down gesture that switches to the next unread channel. |
 | **Download speed boost** | Increases download chunk size to 1 MB and max concurrent requests to 12. |
-| **Hide sender name** | Removes the forwarded channel attribution for Rich Messages while preserving the original message. |
 | **Hide typing indicator** | Hides your typing indicator from other users in all chats. On Telegram Plus also silences the controller-level sendTyping dispatcher. |
 | **Remove ads** | Removes sponsored messages and video ads from all chats and channels. On Telegram Plus also blocks native banner and inline ads. |
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
@@ -2477,17 +2474,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock VIP** | Unlocks Yatri VIP by forcing active plan status and spoofing active plan DB query. |
-
----
-
-## ZEE5 (com.graymatrix.did)
-
-**Supported versions:** `39.56.7`
-
-| Patch | Details |
-|---|---|
-| **Hide ZEE5 display ads** | Disables selected client-side display-ad visibility flags. |
-| **Remove Ads** | Disables the client-side ZEE5 mobile ad configuration path. |
 
 ---
 

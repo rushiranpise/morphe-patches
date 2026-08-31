@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0...v1.21.1) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* remove rich patch ([8dd213c](https://github.com/rushiranpise/morphe-patches/commit/8dd213c3be1225a5499f60e24e4847b4c461b288))
+* remove zee5 ([5498e4d](https://github.com/rushiranpise/morphe-patches/commit/5498e4dba2eea1d69b592e1eb8d06c692d6fb20c))
+
 ## [1.21.0](https://github.com/rushiranpise/morphe-patches/compare/v1.20.0...v1.21.0) (2026-08-30)
 
 ### 🐛 Bug Fixes
