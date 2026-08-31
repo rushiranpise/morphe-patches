@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.2",
+  "version": "1.21.3-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -10367,37 +10367,6 @@
                 "ARMEABI_V7A": 10450,
                 "X86_64": 10450,
                 "X86": 10450
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock VIP",
-      "description": "Unlocks TeraBox / Dubox Drive VIP/SVIP (Premium+).",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.dubox.drive",
-          "name": "TeraBox",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#2EAAFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "4.23.5",
-              "versionCodes": {
-                "ARM64_V8A": 680,
-                "ARMEABI_V7A": 680,
-                "X86_64": 680,
-                "X86": 680
               },
               "isExperimental": false,
               "minSdk": null,
