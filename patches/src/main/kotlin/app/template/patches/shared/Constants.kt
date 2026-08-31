@@ -545,14 +545,6 @@ val DRIVVO_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
     )
 
-val DUBOXDRIVE_COMPATIBILITY = Compatibility(
-        name = "TeraBox",
-        packageName = "com.dubox.drive",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0x2EAAFF,
-        targets = listOf(AppTarget(version = "4.23.5", versionCode = 680))
-    )
-
 val DUOLINGO_COMPATIBILITY = Compatibility(
         name = "Duolingo",
         packageName = "com.duolingo",
