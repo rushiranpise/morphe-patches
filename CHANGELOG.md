@@ -1,3 +1,9 @@
+## [1.21.3-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.2...v1.21.3-dev.1) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* remove terabox ([72ae34f](https://github.com/rushiranpise/morphe-patches/commit/72ae34fe314c485c84581e98f2fe4e2ab216d911))
+
 ## [1.21.2](https://github.com/rushiranpise/morphe-patches/compare/v1.21.1...v1.21.2) (2026-08-31)
 
 ### 🐛 Bug Fixes
