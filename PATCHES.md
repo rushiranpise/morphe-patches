@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.2** (`main`) · **370 patches** across **239 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.3-dev.1** (`dev`) · **369 patches** across **238 apps** · back to [README](README.md)
 
 ---
 
@@ -2135,16 +2135,6 @@
 | **Unlock Premium** | Unlocks Telegram Premium features for the current account. |
 | **Use normal paste** | Skips Telegram's Rich HTML paste handler and falls back to the normal paste path. |
 | **Voice to music** | Plays voice notes in the full music player with seek bar and background playback. |
-
----
-
-## TeraBox (com.dubox.drive)
-
-**Supported versions:** `4.23.5`
-
-| Patch | Details |
-|---|---|
-| **Unlock VIP** | Unlocks TeraBox / Dubox Drive VIP/SVIP (Premium+). |
 
 ---
 
