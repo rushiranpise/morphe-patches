@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.21.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**370 patches** across **239 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.21.2-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.2-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**370 patches** across **239 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -261,7 +261,7 @@ Bug reports must include:
 | 162 | [**PodsLink**](PATCHES.md#podslink-netpodslink) | 1 | `1.3.9` | [`net.podslink`](https://play.google.com/store/apps/details?id=net.podslink) |
 | 163 | [**Police Scanner**](PATCHES.md#police-scanner-policescannerradiobroadcastifycitizen) | 1 | `1.29.0-260420093` | [`police.scanner.radio.broadcastify.citizen`](https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen) |
 | 164 | [**PortDroid**](PATCHES.md#portdroid-comstealthcopterportdroid) | 1 | `1.0.7` | [`com.stealthcopter.portdroid`](https://play.google.com/store/apps/details?id=com.stealthcopter.portdroid) |
-| 165 | [**Proton Mail**](PATCHES.md#proton-mail-chprotonmailandroid) | 2 | `7.11.5` | [`ch.protonmail.android`](https://play.google.com/store/apps/details?id=ch.protonmail.android) |
+| 165 | [**Proton Mail**](PATCHES.md#proton-mail-chprotonmailandroid) | 2 | `7.11.4` | [`ch.protonmail.android`](https://play.google.com/store/apps/details?id=ch.protonmail.android) |
 | 166 | [**Proton Pass**](PATCHES.md#proton-pass-protonandroidpass) | 1 | `1.40.3` | [`proton.android.pass`](https://play.google.com/store/apps/details?id=proton.android.pass) |
 | 167 | [**Proton VPN**](PATCHES.md#proton-vpn-chprotonvpnandroid) | 1 | `5.19.78.0` | [`ch.protonvpn.android`](https://play.google.com/store/apps/details?id=ch.protonvpn.android) |
 | 168 | [**Proxyman**](PATCHES.md#proxyman-comproxymanproxymanandroid) | 1 | `1.21.0` | [`com.proxyman.proxymanandroid`](https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid) |
