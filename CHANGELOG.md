@@ -1,3 +1,9 @@
+## [1.21.2-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.1...v1.21.2-dev.1) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* protonmail rollback to older version ([db86b72](https://github.com/rushiranpise/morphe-patches/commit/db86b72c647dfd02f3f0a9506c53c511b364cbc0))
+
 ## [1.21.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.0...v1.21.1) (2026-08-31)
 
 ### 🐛 Bug Fixes
