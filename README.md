@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.21.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**375 patches** across **240 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.21.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.21.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**370 patches** across **239 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -299,9 +299,9 @@ Bug reports must include:
 | 200 | [**Super File**](PATCHES.md#super-file-comesuperfileexplorer) | 1 | `1.5.6.3` | [`com.esuper.file.explorer`](https://play.google.com/store/apps/details?id=com.esuper.file.explorer) |
 | 201 | [**Tag Tracker**](PATCHES.md#tag-tracker-commakeevappstagtracker) | 1 | `1.3.2` | [`com.makeevapps.tagtracker`](https://play.google.com/store/apps/details?id=com.makeevapps.tagtracker) |
 | 202 | [**Teams**](PATCHES.md#teams-commicrosoftteams) | 2 | `1416/1.0.0.2026152302` | [`com.microsoft.teams`](https://play.google.com/store/apps/details?id=com.microsoft.teams) |
-| 203 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 15 | `12.10.0` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
-| 204 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 16 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
-| 205 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 15 | `12.10.0` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
+| 203 | [**Telegram**](PATCHES.md#telegram-orgtelegrammessenger) | 14 | `12.10.0` | [`org.telegram.messenger`](https://play.google.com/store/apps/details?id=org.telegram.messenger) |
+| 204 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 15 | `12.9.2.0` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
+| 205 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 14 | `12.10.0` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
 | 206 | [**TeraBox**](PATCHES.md#terabox-comduboxdrive) | 1 | `4.23.5` | [`com.dubox.drive`](https://play.google.com/store/apps/details?id=com.dubox.drive) |
 | 207 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.148.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
 | 208 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.19.1` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
@@ -335,9 +335,8 @@ Bug reports must include:
 | 236 | [**Women Workout**](PATCHES.md#women-workout-womenworkoutfemalefitness) | 1 | `2.3.5` | [`women.workout.female.fitness`](https://play.google.com/store/apps/details?id=women.workout.female.fitness) |
 | 237 | [**Word**](PATCHES.md#word-commicrosoftofficeword) | 1 | `16.0.20228.20090` | [`com.microsoft.office.word`](https://play.google.com/store/apps/details?id=com.microsoft.office.word) |
 | 238 | [**Yatri**](PATCHES.md#yatri-comyatrirailwaysyatri) | 1 | `5.0.6` | [`com.yatrirailways.yatri`](https://play.google.com/store/apps/details?id=com.yatrirailways.yatri) |
-| 239 | [**ZEE5**](PATCHES.md#zee5-comgraymatrixdid) | 2 | `39.56.7` | [`com.graymatrix.did`](https://play.google.com/store/apps/details?id=com.graymatrix.did) |
-| 240 | [**Zutobi**](PATCHES.md#zutobi-comdriverlicenseapp) | 1 | `4.5.78` | [`com.driverlicenseapp`](https://play.google.com/store/apps/details?id=com.driverlicenseapp) |
-| 241 | [**Universal**](PATCHES.md#universal) | 38 | — | — |
+| 239 | [**Zutobi**](PATCHES.md#zutobi-comdriverlicenseapp) | 1 | `4.5.78` | [`com.driverlicenseapp`](https://play.google.com/store/apps/details?id=com.driverlicenseapp) |
+| 240 | [**Universal**](PATCHES.md#universal) | 38 | — | — |
 <!-- PATCHES_END -->
 
 ### 📙 Contributing
