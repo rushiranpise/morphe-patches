@@ -1,3 +1,9 @@
+## [1.21.3-dev.2](https://github.com/rushiranpise/morphe-patches/compare/v1.21.3-dev.1...v1.21.3-dev.2) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* remove Duolingo ([88b7c17](https://github.com/rushiranpise/morphe-patches/commit/88b7c179d6c3584ce2b79a2f67e6c2e240ea2cda))
+
 ## [1.21.3-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.2...v1.21.3-dev.1) (2026-08-31)
 
 ### 🐛 Bug Fixes

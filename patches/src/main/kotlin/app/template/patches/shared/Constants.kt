@@ -545,14 +545,6 @@ val DRIVVO_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
     )
 
-val DUOLINGO_COMPATIBILITY = Compatibility(
-        name = "Duolingo",
-        packageName = "com.duolingo",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x58CC02,
-        targets = listOf(AppTarget(version = "6.90.3", versionCode = 2422))
-    )
-
 val ELECTRON_COMPATIBILITY = Compatibility(
         name = "Electron",
         packageName = "com.mahersafadi.electron",
