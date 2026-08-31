@@ -1339,7 +1339,7 @@ val PROTONMAIL_COMPATIBILITY = Compatibility(
         packageName = "ch.protonmail.android",
         appIconColor = 0x6D4AFF,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "7.11.5", versionCode = 18317))
+        targets = listOf(AppTarget(version = "7.11.4", versionCode = 18315))
     )
 
 val PROTONVPN_COMPATIBILITY = Compatibility(
@@ -1928,13 +1928,6 @@ val YATRI_COMPATIBILITY = Compatibility(
         appIconColor = 0xFF6B00,
         apkFileType = ApkFileType.XAPK,
         targets = listOf(AppTarget(version = "5.0.6", versionCode = 1013))
-    )
-
-val ZEE5_COMPATIBILITY = Compatibility(
-        name = "ZEE5",
-        packageName = "com.graymatrix.did",
-        apkFileType = ApkFileType.APKM,
-        targets = listOf(AppTarget(version = "39.56.7", versionCode = 204312578))
     )
 
 val COMPATIBILITY_DOOFLIX = Compatibility(
