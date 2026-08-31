@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.3-dev.1** (`dev`) · **369 patches** across **238 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.3-dev.2** (`dev`) · **367 patches** across **237 apps** · back to [README](README.md)
 
 ---
 
@@ -722,17 +722,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock Pro** | Unlocks Drivvo Pro by patching all four gateway methods in the y9 subscription class: isPremium() → true, getPlanType() → 'pro', checkVehicleLimit() → true (no vehicle cap), checkPremiumScreen() → true (no screen lock). |
-
----
-
-## Duolingo (com.duolingo)
-
-**Supported versions:** `6.90.3`
-
-| Patch | Details |
-|---|---|
-| **Enable Debug Menu** | Enables Duolingo's hidden debug menu in settings. |
-| **Unlock Subscription** | Unlocks user-selectable Duolingo subscription tiers.<br><sub>Options: Subscription tier</sub> |
 
 ---
 

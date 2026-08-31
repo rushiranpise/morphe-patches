@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.3-dev.1",
+  "version": "1.21.3-dev.2",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -1626,37 +1626,6 @@
                 "ARMEABI_V7A": 52288898,
                 "X86_64": 52288898,
                 "X86": 52288898
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Enable Debug Menu",
-      "description": "Enables Duolingo's hidden debug menu in settings.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.duolingo",
-          "name": "Duolingo",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#58CC02",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "6.90.3",
-              "versionCodes": {
-                "ARM64_V8A": 2422,
-                "ARMEABI_V7A": 2422,
-                "X86_64": 2422,
-                "X86": 2422
               },
               "isExperimental": false,
               "minSdk": null,
@@ -9970,57 +9939,6 @@
         }
       ],
       "options": []
-    },
-    {
-      "name": "Unlock Subscription",
-      "description": "Unlocks user-selectable Duolingo subscription tiers.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.duolingo",
-          "name": "Duolingo",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#58CC02",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "6.90.3",
-              "versionCodes": {
-                "ARM64_V8A": 2422,
-                "ARMEABI_V7A": 2422,
-                "X86_64": 2422,
-                "X86": 2422
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": [
-        {
-          "key": "subscriptionTier",
-          "title": "Subscription tier",
-          "description": "Choose Super, Max, Lite, or Immersive metadata.",
-          "required": false,
-          "type": "kotlin.String",
-          "default": "max",
-          "values": {
-            "Max": "max",
-            "Max Family": "max_family",
-            "Max Immersive": "max_immersive",
-            "Max Immersive Family": "max_immersive_family",
-            "Super": "super",
-            "Super Family": "super_family",
-            "Super Immersive": "super_immersive",
-            "Super Immersive Family": "super_immersive_family",
-            "Lite": "lite"
-          }
-        }
-      ]
     },
     {
       "name": "Unlock Subscription",
