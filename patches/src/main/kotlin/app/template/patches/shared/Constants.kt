@@ -537,14 +537,6 @@ val DRIVERLICENSE_COMPATIBILITY = Compatibility(
         )
     )
 
-val DRIVVO_COMPATIBILITY = Compatibility(
-        name = "Drivvo",
-        packageName = "br.com.ctncardoso.ctncar",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x0077B6,
-        targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
-    )
-
 val ELECTRON_COMPATIBILITY = Compatibility(
         name = "Electron",
         packageName = "com.mahersafadi.electron",
@@ -1733,16 +1725,6 @@ val TRACKERDETECT_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x000000,
         targets = listOf(AppTarget(version = "1.2", versionCode = 9))
-    )
-
-val TRADINGVIEW_COMPATIBILITY = Compatibility(
-        name = "TradingView",
-        packageName = "com.tradingview.tradingviewapp",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x000000,
-        targets = listOf(
-            AppTarget(version = "1.20.80.0.1002385", versionCode = 1002385),
-        )
     )
 
 val TRANZMATE_COMPATIBILITY = Compatibility(
