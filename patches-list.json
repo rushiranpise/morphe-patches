@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.21.3",
+  "version": "1.21.4-dev.1",
   "patches": [
     {
       "name": "AMOLED dark theme",
@@ -801,24 +801,6 @@
       ]
     },
     {
-      "name": "Change version code",
-      "description": "Changes android:versionCode.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalVersionCode",
-          "title": "Version code",
-          "description": "Version code to write into AndroidManifest.xml.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "2147483647",
-          "values": null
-        }
-      ]
-    },
-    {
       "name": "Dark mode",
       "description": "Force dark mode for Amazon Shopping.",
       "default": true,
@@ -1082,14 +1064,6 @@
       "options": []
     },
     {
-      "name": "Disable ad SDK calls",
-      "description": "No-ops common ad SDK load/show/init/fetch methods in bundled ad packages.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Disable analytics",
       "description": "Blocks Firebase analytics and event tracking in Telegram Plus. FirebaseApp.initializeApp() is preserved so push notifications keep working.",
       "default": true,
@@ -1275,14 +1249,6 @@
       "options": []
     },
     {
-      "name": "Disable clipboard access",
-      "description": "Blocks app clipboard reads and writes.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Disable media transcoding",
       "description": "Sends photos and videos at original quality without re-encoding.",
       "default": true,
@@ -1364,14 +1330,6 @@
           ]
         }
       ],
-      "options": []
-    },
-    {
-      "name": "Disable shake ads",
-      "description": "Skips SensorManager.registerListener calls that can power shake-to-ad behavior.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
       "options": []
     },
     {
@@ -1598,14 +1556,6 @@
       "options": []
     },
     {
-      "name": "Enable Android debugging",
-      "description": "Sets android:debuggable=true.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Enable DCIM folders backup control",
       "description": "Allows controlling Camera and other DCIM folder backup individually.",
       "default": true,
@@ -1668,24 +1618,6 @@
       "options": []
     },
     {
-      "name": "Enable ROM signature spoofing",
-      "description": "Adds fake-signature permission and metadata.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalFakeSignature",
-          "title": "Certificate hex/signature",
-          "description": null,
-          "required": false,
-          "type": "kotlin.String",
-          "default": "",
-          "values": null
-        }
-      ]
-    },
-    {
       "name": "Enable chat heads",
       "description": "Enables chat heads (bubbles) for all devices regardless of API level or RAM class.",
       "default": true,
@@ -1714,32 +1646,6 @@
           ]
         }
       ],
-      "options": []
-    },
-    {
-      "name": "Enable debug build target",
-      "description": "Forces compatible BUILD_TARGET debug providers to debug=true.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Export all activities",
-      "description": "Makes all activities exportable.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Export internal data documents provider",
-      "description": "Registers an extension DocumentsProvider for the app internal data directory.",
-      "default": false,
-      "dependencies": [
-        "ResourcePatch"
-      ],
-      "compatiblePackages": null,
       "options": []
     },
     {
@@ -1868,16 +1774,6 @@
       "options": []
     },
     {
-      "name": "Force dark theme",
-      "description": "Forces common AppCompat, UiModeManager, and Configuration dark-mode checks to night mode.",
-      "default": false,
-      "dependencies": [
-        "ResourcePatch"
-      ],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "GmsCore support",
       "description": "Adds MicroG/GmsCore support metadata for Google Photos.",
       "default": true,
@@ -1956,14 +1852,6 @@
           "values": null
         }
       ]
-    },
-    {
-      "name": "Hide ADB status",
-      "description": "Hides adb_enabled and development_settings_enabled.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
     },
     {
       "name": "Hide CAPTCHA Popups",
@@ -2112,22 +2000,6 @@
       "options": []
     },
     {
-      "name": "Hide VPN and proxy",
-      "description": "Hides common VPN transport/interface and Java proxy property checks.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Hide app icon",
-      "description": "Removes launcher category from MAIN launcher filters.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Hide inbox ads",
       "description": "Hides ads in the Messenger inbox.",
       "default": true,
@@ -2219,55 +2091,6 @@
         }
       ],
       "options": []
-    },
-    {
-      "name": "Hide mock location",
-      "description": "Hides mock-location signals from app checks.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "hideMockLocationMode",
-          "title": "Mode",
-          "description": "Which mock-location checks to hide.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "full",
-          "values": {
-            "Full": "full",
-            "Location API only": "location",
-            "Settings only": "settings",
-            "AppOps only": "appops",
-            "Extras and provider only": "extras_provider",
-            "Accuracy only": "accuracy"
-          }
-        },
-        {
-          "key": "hideMockLocationProvider",
-          "title": "Provider",
-          "description": "Provider returned when app reads an unknown/mock provider.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "gps",
-          "values": {
-            "GPS": "gps",
-            "Network": "network",
-            "Fused": "fused",
-            "Passive": "passive",
-            "Original": "original"
-          }
-        },
-        {
-          "key": "hideMockLocationAccuracy",
-          "title": "Accuracy meters",
-          "description": "Accuracy value returned by Location.getAccuracy().",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "5.0",
-          "values": null
-        }
-      ]
     },
     {
       "name": "Hide typing indicator",
@@ -2459,22 +2282,6 @@
           ]
         }
       ],
-      "options": []
-    },
-    {
-      "name": "Override certificate pinning",
-      "description": "Forces network security config trust anchors to override pins.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Predictive back gesture",
-      "description": "Enables Android predictive back gesture.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
       "options": []
     },
     {
@@ -3320,14 +3127,6 @@
       "options": []
     },
     {
-      "name": "Remove ad manifest entries",
-      "description": "Removes common ad SDK permissions, services, providers, libraries, and metadata.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Remove ads",
       "description": "Stubs all ad loading paths: banner/interstitial loaders, billing callbacks, and ad SDK init.",
       "default": true,
@@ -3553,22 +3352,6 @@
       "options": []
     },
     {
-      "name": "Remove internet permission",
-      "description": "Removes the INTERNET permission so the app cannot access the network at all. Blocks all trackers, analytics and ads from phoning home, but also disables any legitimate online features. Only enable for apps you want fully offline.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Remove share targets",
-      "description": "Removes chooser/direct share targets.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Sanitize Share URLs",
       "description": "Removes tracking parameters (utm_campaign, share_link_id) from shared links.",
       "default": true,
@@ -3631,151 +3414,6 @@
       "options": []
     },
     {
-      "name": "Set target SDK 34",
-      "description": "Sets targetSdkVersion to 34.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Spoof Android ID",
-      "description": "Spoofs Settings.Secure android_id reads.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalAndroidId",
-          "title": "Android ID",
-          "description": "16 hex characters.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "a1b2c3d4e5f67890",
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Spoof Bluetooth identifiers",
-      "description": "Spoofs Bluetooth adapter name and MAC address reads.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalBluetoothName",
-          "title": "Bluetooth name",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "Pixel Buds",
-          "values": null
-        },
-        {
-          "key": "universalBluetoothAddress",
-          "title": "Bluetooth MAC address",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "02:11:22:33:44:55",
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Spoof Pixel device",
-      "description": "Ports PixelSpoof-style Build, system property, and Pixel feature spoofing.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "pixelSpoofMode",
-          "title": "Spoof mode",
-          "description": "Pixel 10 Pro XL / mustang profile, or Pixel XL / marlin for Google Photos.",
-          "required": true,
-          "type": "kotlin.String",
-          "default": "build_props_features",
-          "values": {
-            "Full spoof": "build_props_features",
-            "Build fields only": "build",
-            "System properties only": "props",
-            "Pixel features only": "features",
-            "Build + system properties": "build_props",
-            "Build + Pixel features": "build_features",
-            "System properties + Pixel features": "props_features",
-            "Build + props + features + identifiers": "build_props_features_identifiers",
-            "Google Photos unlimited storage": "photos_build_props_features",
-            "Identifiers only": "identifiers"
-          }
-        }
-      ]
-    },
-    {
-      "name": "Spoof Play age signals",
-      "description": "Spoofs Play age signal result getters.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalPlayAgeLower",
-          "title": "Lower age",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "18",
-          "values": null
-        },
-        {
-          "key": "universalPlayAgeUpper",
-          "title": "Upper age",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "99",
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Spoof SIM provider",
-      "description": "Spoofs TelephonyManager SIM/network provider values.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalSimCountryIso",
-          "title": "Country ISO",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "us",
-          "values": null
-        },
-        {
-          "key": "universalSimOperator",
-          "title": "Operator code",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "310260",
-          "values": null
-        },
-        {
-          "key": "universalSimOperatorName",
-          "title": "Operator name",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "T-Mobile",
-          "values": null
-        }
-      ]
-    },
-    {
       "name": "Spoof WARP+ Unlimited UI",
       "description": "Forces WarpPlusState to UNLIMITED on every AccountData instance by intercepting the primary constructor before the account type field is written.",
       "default": true,
@@ -3805,50 +3443,6 @@
         }
       ],
       "options": []
-    },
-    {
-      "name": "Spoof Wi-Fi connection",
-      "description": "Forces common connectivity checks to connected/unmetered.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Spoof Wi-Fi identifiers",
-      "description": "Spoofs Wi-Fi SSID, BSSID, and MAC address reads.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalWifiSsid",
-          "title": "SSID",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "Pixel_WiFi",
-          "values": null
-        },
-        {
-          "key": "universalWifiBssid",
-          "title": "BSSID",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "02:00:00:12:34:56",
-          "values": null
-        },
-        {
-          "key": "universalWifiMac",
-          "title": "MAC address",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "02:00:00:65:43:21",
-          "values": null
-        }
-      ]
     },
     {
       "name": "Spoof Widevine / DRM level",
@@ -3904,87 +3498,6 @@
           "required": false,
           "type": "kotlin.String",
           "default": null,
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Spoof build info",
-      "description": "Spoofs common android.os.Build fields with configurable values.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalBuildModel",
-          "title": "MODEL",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "Pixel 10 Pro XL",
-          "values": null
-        },
-        {
-          "key": "universalBuildManufacturer",
-          "title": "MANUFACTURER",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "Google",
-          "values": null
-        },
-        {
-          "key": "universalBuildBrand",
-          "title": "BRAND",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "google",
-          "values": null
-        },
-        {
-          "key": "universalBuildDevice",
-          "title": "DEVICE",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "mustang",
-          "values": null
-        },
-        {
-          "key": "universalBuildProduct",
-          "title": "PRODUCT",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "mustang",
-          "values": null
-        },
-        {
-          "key": "universalBuildFingerprint",
-          "title": "FINGERPRINT",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "google/mustang/mustang:17/CP2A.260605.012/15430684:user/release-keys",
-          "values": null
-        },
-        {
-          "key": "universalBuildRelease",
-          "title": "VERSION.RELEASE",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "17",
-          "values": null
-        },
-        {
-          "key": "universalBuildSdk",
-          "title": "VERSION.SDK_INT",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "37",
           "values": null
         }
       ]
@@ -4111,14 +3624,6 @@
       ]
     },
     {
-      "name": "Spoof keystore security level",
-      "description": "Forces key/security level getters to software/trusted-environment style values.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
       "name": "Spoof package version",
       "description": "Sets a very high version code so the Play Store treats the app as already up to date and never offers an update.",
       "default": false,
@@ -4155,68 +3660,6 @@
           "required": true,
           "type": "kotlin.String",
           "default": "2147483647",
-          "values": null
-        }
-      ]
-    },
-    {
-      "name": "Spoof root of trust",
-      "description": "Spoofs common RootOfTrust verified boot getters.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": []
-    },
-    {
-      "name": "Spoof telephony IDs",
-      "description": "Spoofs IMEI, MEID, subscriber ID, SIM serial, and line number reads.",
-      "default": false,
-      "dependencies": [],
-      "compatiblePackages": null,
-      "options": [
-        {
-          "key": "universalImei",
-          "title": "IMEI",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "356938035643809",
-          "values": null
-        },
-        {
-          "key": "universalMeid",
-          "title": "MEID",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "A000004E4F4F50",
-          "values": null
-        },
-        {
-          "key": "universalSubscriberId",
-          "title": "Subscriber ID",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "310260000000000",
-          "values": null
-        },
-        {
-          "key": "universalSimSerial",
-          "title": "SIM serial",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "89014103211118510720",
-          "values": null
-        },
-        {
-          "key": "universalLineNumber",
-          "title": "Line number",
-          "description": null,
-          "required": true,
-          "type": "kotlin.String",
-          "default": "+15551234567",
           "values": null
         }
       ]
@@ -8289,37 +7732,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks Ultimate plan features, disables all paywalls and upgrade dialogs, suppresses payment-banned blocking errors, and grants access to all benefits including bar replay, custom intervals, multiple charts, study-on-study, server-side alerts, and ad-free charts.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.tradingview.tradingviewapp",
-          "name": "TradingView",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#000000",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.20.80.0.1002385",
-              "versionCodes": {
-                "ARM64_V8A": 1002385,
-                "ARMEABI_V7A": 1002385,
-                "X86_64": 1002385,
-                "X86": 1002385
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks Premium Features In the App.",
       "default": true,
       "dependencies": [],
@@ -8962,37 +8374,6 @@
                 "ARMEABI_V7A": 1139,
                 "X86_64": 1139,
                 "X86": 1139
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Pro",
-      "description": "Unlocks Drivvo Pro by patching all four gateway methods in the y9 subscription class: isPremium() → true, getPlanType() → 'pro', checkVehicleLimit() → true (no vehicle cap), checkPremiumScreen() → true (no screen lock).",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "br.com.ctncardoso.ctncar",
-          "name": "Drivvo",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#0077B6",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "9.6.1",
-              "versionCodes": {
-                "ARM64_V8A": 242,
-                "ARMEABI_V7A": 242,
-                "X86_64": 242,
-                "X86": 242
               },
               "isExperimental": false,
               "minSdk": null,
