@@ -537,14 +537,6 @@ val DRIVERLICENSE_COMPATIBILITY = Compatibility(
         )
     )
 
-val DRIVVO_COMPATIBILITY = Compatibility(
-        name = "Drivvo",
-        packageName = "br.com.ctncardoso.ctncar",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x0077B6,
-        targets = listOf(AppTarget(version = "9.6.1", versionCode = 242))
-    )
-
 val ELECTRON_COMPATIBILITY = Compatibility(
         name = "Electron",
         packageName = "com.mahersafadi.electron",
