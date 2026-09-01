@@ -1,3 +1,12 @@
+## [1.21.4](https://github.com/rushiranpise/morphe-patches/compare/v1.21.3...v1.21.4) (2026-09-01)
+
+### 🐛 Bug Fixes
+
+* remove drivvo ([9863742](https://github.com/rushiranpise/morphe-patches/commit/98637422416922553c37ec557a4f2327b95f9cf1))
+* remove pixel patches ([4036563](https://github.com/rushiranpise/morphe-patches/commit/40365632f5d5e9d50f1b35f6288109d743447236))
+* remove tradingview ([4806a8f](https://github.com/rushiranpise/morphe-patches/commit/4806a8feb3cd5abe5fb801e2d0d87613a12c0b10))
+* remove universal patches ([55f11fe](https://github.com/rushiranpise/morphe-patches/commit/55f11feae7749990252dfe7f1aede8536aab062a))
+
 ## [1.21.4-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.3...v1.21.4-dev.1) (2026-09-01)
 
 ### 🐛 Bug Fixes
