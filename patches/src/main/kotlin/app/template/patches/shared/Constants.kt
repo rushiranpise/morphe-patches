@@ -1685,7 +1685,7 @@ val TOPWALLPAPERS_COMPATIBILITY = Compatibility(
         packageName = "hd.uhd.live.wallpapers.topwallpapers",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "6.0.1", versionCode = 114))
+        targets = listOf(AppTarget(version = "6.1.1", versionCode = 115))
     )
 
 val TORRDROID_COMPATIBILITY = Compatibility(
