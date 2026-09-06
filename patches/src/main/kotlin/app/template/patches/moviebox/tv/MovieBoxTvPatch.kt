@@ -7,25 +7,28 @@ import app.template.patches.shared.Constants.MOVIEBOX_TV_COMPATIBILITY
 import com.android.tools.smali.dexlib2.Opcode
 
 // ═══════════════════════════════════════════════════════════════════
-//  MovieBox TV  (com.community.mbox.tv)  v1.1.8.0814.03
+//  MovieBox TV  (com.community.mbox.tv)  v1.1.10.0901.03
 // ═══════════════════════════════════════════════════════════════════
 //
 // CLASSES ABSENT IN THIS VERSION (removed v1.1.7+):
 //   AppLifeStatusInterceptor, VipInfo, DownloadItem, DownloadResolutionItem
 //
-// REGION GATE (v1.1.8):
+// CLASSES ABSENT IN THIS VERSION (removed v1.1.10):
+//   com.hisavana.mintegral.executer.* — Mintegral executor layer removed entirely.
+//   SceneInterceptManager.a() still covers all scene-based ads.
+//
+// REGION GATE (v1.1.10):
 //   BffVisitorLoginData.getRegionBlock() → false
 //   NotAvailableActivity.initView() + NotAvailableTvActivity.initView() → finish()
-//   No AppLifeStatusInterceptor. Country code spoof not applicable (TV has no
-//   NationalInformationManager). Region is server-side only; bean patch is the fix.
 //
 // VIP SINGLETON CHAIN:
 //   v1.1.4: TvServiceLocator.V()Z
 //   v1.1.6: TvServiceLocator.Z()Z → com.transsion.tvdata.x.a()Z
 //   v1.1.7+: TvServiceLocator.e0()Z → com.transsion.tvdata.z.a()Z
-//   NOTE: com.transsion.tvdata.x in this build is a coroutine lambda, NOT the old VIP singleton
+//   v1.1.10: TvServiceLocator.k0()Z → com.transsion.tvdata.c0.a()Z
+//   NOTE: z.smali in v1.1.10 is a coroutine lambda (invoke()Object) — NOT the VIP singleton.
 //
-// LIVE STREAM BUG: when z.a()=true, LiveDetailViewModel.L()V emits only stream
+// LIVE STREAM BUG: when c0.a()=true, LiveDetailViewModel.L()V emits only stream
 //   ID (no URL) → player fails silently. Fix: inject const/4 v1,0x0 before first if-eqz.
 //
 // RENEW/UPSELL SUPPRESSION (TV):
@@ -136,19 +139,19 @@ val movieBoxTvPatch = bytecodePatch(
                     ?.addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             }
 
-        // ─── VIP singleton: z.a()Z ────────────────────────────────────
-        // v1.1.7+: TvServiceLocator.e0()Z → z.a()Z (StateFlow<Boolean> reader)
-        // x is a coroutine lambda in this build — NOT the VIP singleton
-        // Fallback: any ()Z on TvServiceLocator itself
-        val zSingleton = mutableClassDefByOrNull("Lcom/transsion/tvdata/z;")
-        if (zSingleton != null) {
-            zSingleton.methods.firstOrNull {
+        // ─── VIP singleton: c0.a()Z ───────────────────────────────────
+        // v1.1.10: TvServiceLocator.k0()Z → c0.a()Z (StateFlow<Boolean> reader)
+        // z.smali in v1.1.10 is a coroutine lambda (invoke()Object) — NOT the VIP singleton.
+        // c0 is in classes4/com/transsion/tvdata/c0.smali.
+        val c0Singleton = mutableClassDefByOrNull("Lcom/transsion/tvdata/c0;")
+        if (c0Singleton != null) {
+            c0Singleton.methods.firstOrNull {
                 it.name == "a" && it.returnType == "Z" && it.parameterTypes.isEmpty()
             }?.addInstructions(0, "const/4 v0, 0x1\nreturn v0")
-                ?: throw PatchException("TV: com.transsion.tvdata.z.a()Z not found")
+                ?: throw PatchException("TV: com.transsion.tvdata.c0.a()Z not found")
         } else {
             val tvsl = mutableClassDefByOrNull("Lcom/transsion/tvdata/TvServiceLocator;")
-                ?: throw PatchException("TV: VIP singleton not found (z absent, TvServiceLocator absent)")
+                ?: throw PatchException("TV: VIP singleton not found (c0 absent, TvServiceLocator absent)")
             tvsl.methods.firstOrNull { it.returnType == "Z" && it.parameterTypes.isEmpty() }
                 ?.addInstructions(0, "const/4 v0, 0x1\nreturn v0")
                 ?: throw PatchException("TV: TvServiceLocator ()Z VIP accessor not found")
@@ -183,17 +186,8 @@ val movieBoxTvPatch = bytecodePatch(
                 return-object v0
             """.trimIndent())
 
-        // ─── Mintegral ad executor kill points ────────────────────────
-        for ((cls2, method) in listOf(
-            "Lcom/hisavana/mintegral/executer/MintegralVideo;" to "initVideo",
-            "Lcom/hisavana/mintegral/executer/MintegralBanner;" to "showBanner",
-            "Lcom/hisavana/mintegral/executer/MintegralNative;" to "initNative",
-            "Lcom/hisavana/mintegral/executer/MintegralInterstitial;" to "initInterstitial",
-            "Lcom/hisavana/mintegral/executer/MintegralSplash;" to "onSplashStartLoad",
-        )) {
-            mutableClassDefByOrNull(cls2)
-                ?.methods?.firstOrNull { it.name == method && it.returnType == "V" }
-                ?.addInstructions(0, "return-void")
-        }
+        // ─── Mintegral executor kill points ──────────────────────────
+        // com.hisavana.mintegral.executer.* removed in v1.1.10.
+        // SceneInterceptManager.a() above covers all scene-based ad delivery.
     }
 }

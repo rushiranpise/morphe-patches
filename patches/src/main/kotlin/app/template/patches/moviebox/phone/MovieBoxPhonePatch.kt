@@ -4,7 +4,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.MOVIEBOX_COMPATIBILITY
-import app.template.patches.shared.Constants.MOVIEBOXIN_COMPATIBILITY
 import app.template.patches.shared.clearBody
 import com.android.tools.smali.dexlib2.Opcode
 
@@ -119,6 +118,10 @@ val movieBoxPhonePatch = bytecodePatch(
             ?.addInstructions(0, returnTrue) ?: throw PatchException("MemberProvider.f()Z not found")
         cls.methods.firstOrNull { it.name == "g" && it.returnType == "Z" && it.parameterTypes.isEmpty() }
             ?.addInstructions(0, returnTrue) ?: throw PatchException("MemberProvider.g()Z not found")
+        // B()Z reads MMKV "kv_is_enable_member" — gates member feature surfaces.
+        // Found in reference mod (v3.0.16 = y()Z, v4.0.01 = B()Z, same key).
+        cls.methods.firstOrNull { it.name == "B" && it.returnType == "Z" && it.parameterTypes.isEmpty() }
+            ?.addInstructions(0, returnTrue) ?: throw PatchException("MemberProvider.B()Z not found")
         cls.methods.firstOrNull { it.name == "x" && it.returnType == "V" && it.parameterTypes == listOf("F") }
             ?.apply { clearBody(); addInstructions(0, "return-void") }
             ?: throw PatchException("MemberProvider.x(F)V not found")
@@ -152,10 +155,10 @@ val movieBoxPhonePatch = bytecodePatch(
                 ?.addInstructions(0, returnIntMax)
         }
 
-        // ─── NationalInformationManager — country code spoof ─────────
-        // e()Ljava/lang/String; reads MMKV "sp_code" (SIM MCC).
-        // "90101" = Transsion test MCC → BFF returns {isPassed:true, vipEnable:true}
-        // → no 471/472 responses → no region-block redirects → app stays responsive.
+        // ─── NationalInformationManager — ad SDK country spoof ────────
+        // e() is ONLY called by ad SDK (MBAd, CountryInWhitelistHandler).
+        // "90101" = Transsion test MCC. Does NOT affect content region detection.
+        // Content region is server-side IP-based; blocked via l()→Triple(0) above.
         cls = mutableClassDefByOrNull("Lcom/transsion/ad/strategy/NationalInformationManager;")
             ?: throw PatchException("NationalInformationManager not found")
         cls.methods.firstOrNull {
@@ -229,15 +232,41 @@ val movieBoxPhonePatch = bytecodePatch(
                 }?.addInstructions(0, "const/4 v0, 0x0\nreturn v0")
         }
 
-        // ─── AppLifeStatusInterceptor — region bypass ─────────────────
-        // i(String,String)V — dialog popup via interface g (code 472)
-        // j(String,String)V — TheRouter route to /main/page_not_available (code 471)
-        // k(String)V        — TheRouter redirect (code 403)
-        // n(Chain)Z         — freeze flag setter → false (prevents AtomicBoolean freeze)
-        // Combined with NationalInformationManager.e()="90101": BFF returns success
-        // so 471/472/403 never fire. These noops are belt-and-suspenders.
+        // ─── AppLifeStatusInterceptor — full region detection block ───
+        // intercept() parses every API response body via l(String)→Triple<code,msg,reason>.
+        // When code is 471/472/403 it triggers region-block handlers (j/k/i).
+        // 
+        // Strategy: noop l(String) to always return Triple(0,"","") — the same safe
+        // value that the exception-catch path already returns. Code 0 never matches
+        // 471/472/403 so NO response can ever trigger the region-block chain.
+        // This completely blocks the app from detecting region restriction at the
+        // network response level.
+        //
+        // Belt-and-suspenders: also noop i/j/k individually in case they are called
+        // from other places, and keep n()=false to prevent the AtomicBoolean freeze.
         val interceptor = mutableClassDefByOrNull("Lcom/transsion/baselib/net/AppLifeStatusInterceptor;")
             ?: throw PatchException("AppLifeStatusInterceptor not found")
+
+        // l(String)→Triple: always return Triple(0,"","") — code 0 = no region block
+        // Uses the same construction as the existing :L4 exception-catch path.
+        // .registers 7: v0=""(const-string), v1=0(const/4), v4=new Triple
+        interceptor.methods.firstOrNull {
+            it.name == "l" && it.returnType == "Lkotlin/Triple;" &&
+            it.parameterTypes == listOf("Ljava/lang/String;")
+        }?.apply {
+            clearBody()
+            addInstructions(0, """
+                const-string v0, ""
+                const/4 v1, 0x0
+                new-instance v2, Lkotlin/Triple;
+                invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+                move-result-object v1
+                invoke-direct {v2, v1, v0, v0}, Lkotlin/Triple;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+                return-object v2
+            """.trimIndent())
+        } ?: throw PatchException("AppLifeStatusInterceptor.l(String)Triple not found")
+
+        // Individual handler noops (belt-and-suspenders)
         interceptor.methods.firstOrNull {
             it.name == "i" && it.returnType == "V" && it.parameterTypes == listOf("Ljava/lang/String;", "Ljava/lang/String;")
         }?.apply { clearBody(); addInstructions(0, "return-void") }
@@ -248,9 +277,11 @@ val movieBoxPhonePatch = bytecodePatch(
         interceptor.methods.firstOrNull {
             it.name == "k" && it.returnType == "V" && it.parameterTypes == listOf("Ljava/lang/String;")
         }?.apply { clearBody(); addInstructions(0, "return-void") }
+
+        // n(Chain)Z: always false — prevents AtomicBoolean freeze flag being set
         interceptor.methods.firstOrNull {
             it.name == "n" && it.returnType == "Z" && it.parameterTypes == listOf("Lokhttp3/Interceptor\$Chain;")
-        }?.addInstructions(0, returnFalse)
+        }?.addInstructions(0, "const/4 v0, 0x0\nreturn v0")
             ?: throw PatchException("AppLifeStatusInterceptor.n(Chain)Z not found")
 
         // ─── NotAvailableActivity — region-lock wall ──────────────────
@@ -285,6 +316,18 @@ val movieBoxPhonePatch = bytecodePatch(
                 return-object v0
             """.trimIndent())
 
+        // ─── ColdStartScene ad duration → 0 (faster splash) ──────────
+        // SplashActivity calculates its delay as:
+        //   scene.a.t("ColdStartScene") × 1000ms
+        // t(String)I returns the configured ad scene duration in seconds (3-5s typically).
+        // Returning 0 collapses the delay to 0ms → instant splash → faster app open.
+        // Reference mod (ANiK555) lists "Faster app opening animation" — this is how.
+        mutableClassDefByOrNull("Lcom/transsion/ad/scene/a;")
+            ?.methods?.firstOrNull {
+                it.name == "t" && it.returnType == "I" &&
+                it.parameterTypes == listOf("Ljava/lang/String;")
+            }?.addInstructions(0, "const/4 v0, 0x0\nreturn v0")
+
         // ─── Splash ad redirect ────────────────────────────────────────
         mutableClassDefByOrNull("Lcom/transsion/subroom/activity/SplashActivity;")
             ?.methods?.firstOrNull { m ->
@@ -297,7 +340,30 @@ val movieBoxPhonePatch = bytecodePatch(
                 return-void
             """.trimIndent())
 
-        // ─── Mintegral ad executor kill points ────────────────────────
+        // ─── TV content country fix — force "NG" for API requests ────
+        // The home content API (ql.a.c/d) filters content by country code derived
+        // from the server's IP geo-detection (CountryDataBean.getCurrentCountry()).
+        // On a region-blocked device/IP the server returns a blocked country → empty list.
+        // Fix: inject const-string p3, "NG" at index 0 in the two private methods
+        // that pass the country string to the API (A(J,String)V and z(J,String)V).
+        // Both have .registers 5/7, p3 = the country String param — safe to override.
+        // "NG" (Nigeria) is the primary Transsion market with the largest content library.
+        // Note: this is a smali-level IP-geo bypass. If the server ALSO checks IP server-side
+        // for content access (beyond the country param), a VPN may still be needed.
+        mutableClassDefByOrNull("Lcom/transsion/home/tv/TVChannelHomeViewModel;")
+            ?.let { vm ->
+                // A(J,String)V — live/channel content API call
+                vm.methods.firstOrNull {
+                    it.name == "A" && it.returnType == "V" &&
+                    it.parameterTypes == listOf("J", "Ljava/lang/String;")
+                }?.addInstructions(0, "const-string p3, \"NG\"")
+
+                // z(J,String)V — movie/series content API call
+                vm.methods.firstOrNull {
+                    it.name == "z" && it.returnType == "V" &&
+                    it.parameterTypes == listOf("J", "Ljava/lang/String;")
+                }?.addInstructions(0, "const-string p3, \"NG\"")
+            }
         for ((cls2, method) in listOf(
             "Lcom/hisavana/mintegral/executer/MintegralVideo;" to "initVideo",
             "Lcom/hisavana/mintegral/executer/MintegralBanner;" to "showBanner",
