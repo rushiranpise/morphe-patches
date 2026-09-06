@@ -186,6 +186,48 @@ object SetProStatusLoadedFingerprint : Fingerprint(
 )
 
 /**
+ * MainActivityNew.requestAuthorizedDownload(AppMetadata)V — Firebase download gate
+ *
+ * This is the root cause of "Verifying download authorization…" hanging.
+ *
+ * Flow: installApp() → requestAuthorizedDownload() → Firebase Functions "getDownloadUrl"
+ * (europe-west1) → server validates subscription + androidId → returns {authorized, downloadUrl}
+ * → success callback calls startDownload(app).
+ *
+ * The Firebase Function checks server-side subscription state, so no client-side patch
+ * to SubscriptionManager can bypass it. The function call hangs indefinitely when the
+ * server rejects or never responds to an unsubscribed device.
+ *
+ * Fix: redirect requestAuthorizedDownload → startDownload(p1) directly, skipping Firebase.
+ *
+ * Smali (classes3/com/legs/appsforaa/MainActivityNew.smali line 10020):
+ *   .method public final requestAuthorizedDownload(Lcom/legs/appsforaa/data/AppMetadata;)V
+ *     .registers 10
+ *     ...shows progress dialog...
+ *     const-string v0, "getDownloadUrl"
+ *     invoke-virtual {v3, v0}, FirebaseFunctions->getHttpsCallable(...)
+ *     ...adds onSuccess/onFailure listeners...
+ *
+ * Access flags: PUBLIC FINAL
+ * Return type: V
+ * Parameters: Lcom/legs/appsforaa/data/AppMetadata;
+ * Filters: string "getDownloadUrl" (only occurrence in MainActivityNew calling getHttpsCallable)
+ */
+object RequestAuthorizedDownloadFingerprint : Fingerprint(
+    returnType = "V",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf("Lcom/legs/appsforaa/data/AppMetadata;"),
+    definingClass = "Lcom/legs/appsforaa/MainActivityNew;",
+    name = "requestAuthorizedDownload",
+    filters = listOf(
+        methodCall(
+            definingClass = "Lcom/google/firebase/functions/FirebaseFunctions;",
+            name = "getHttpsCallable",
+        ),
+    ),
+)
+
+/**
  * MainActivityNew.showNotEligibleDialog()V — install-blocked popup
  *
  * Shows the "Pro is required" / "not eligible" MaterialAlertDialog when
