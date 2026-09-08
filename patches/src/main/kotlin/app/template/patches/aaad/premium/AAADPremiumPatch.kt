@@ -45,7 +45,7 @@ import app.template.patches.shared.returnEarly
  */
 @Suppress("unused")
 val aaadPremiumPatch = bytecodePatch(
-    name = "Unlock Pro",
+    name = "AAAD Premium",
     description = "Unlocks AAAD Pro subscription features by bypassing Stripe and Firebase subscription checks.",
 ) {
     compatibleWith(AAAD_COMPATIBILITY)
@@ -86,5 +86,27 @@ val aaadPremiumPatch = bytecodePatch(
 
         // Layer F: Suppress "Pro is required" install-blocked dialog
         ShowNotEligibleDialogFingerprint.method.returnEarly()
+
+        // Layer G: Bypass Firebase "getDownloadUrl" server-side auth gate
+        //
+        // ROOT CAUSE of "Verifying download authorization…" hang:
+        //   requestAuthorizedDownload() calls Firebase Functions "getDownloadUrl" (europe-west1)
+        //   which validates the subscription server-side using androidId. If the server rejects
+        //   the device (no active sub) it returns authorized=false or times out → download
+        //   never starts, UI freezes on the progress dialog.
+        //
+        // The success callback (lambda$0) calls startDownload(app) when authorized=true.
+        // We replicate that by injecting invoke-virtual {p0, p1}, startDownload(AppMetadata)V
+        // at index 0 and returning, so the entire Firebase round-trip is skipped.
+        //
+        // p0 = this (MainActivityNew), p1 = AppMetadata — same args as requestAuthorizedDownload.
+        // .registers 10 → v0–v7 available; p0/p1 safe to use directly.
+        RequestAuthorizedDownloadFingerprint.method.addInstructions(
+            0,
+            """
+            invoke-virtual {p0, p1}, Lcom/legs/appsforaa/MainActivityNew;->startDownload(Lcom/legs/appsforaa/data/AppMetadata;)V
+            return-void
+            """.trimIndent(),
+        )
     }
 }
