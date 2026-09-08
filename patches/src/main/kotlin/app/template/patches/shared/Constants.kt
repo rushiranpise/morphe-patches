@@ -995,36 +995,6 @@ val MONET_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "v1.0.76", versionCode = 110))
     )
 
-val MOVIEBOX_COMPATIBILITY = Compatibility(
-        name = "MovieBox",
-        packageName = "com.community.oneroom",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "4.0.01.0813.02", versionCode = 50020121)
-        )
-    )
-
-val MOVIEBOX_TV_COMPATIBILITY = Compatibility(
-        name = "MovieBox TV",
-        packageName = "com.community.mbox.tv",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "1.1.9.0820.03", versionCode = 50040014)
-        )
-    )
-
-val MOVIEBOXIN_COMPATIBILITY = Compatibility(
-        name = "MovieBox India",
-        packageName = "com.community.mbox.in",
-        apkFileType = ApkFileType.APK,
-        appIconColor = 0xE53935,
-        targets = listOf(
-            AppTarget(version = "3.0.13.0402.02", versionCode = 50020092)
-        )
-    )
-
 val MYANIMELIST_COMPATIBILITY = Compatibility(
         name = "MyAnimeList",
         packageName = "net.myanimelist.app",
