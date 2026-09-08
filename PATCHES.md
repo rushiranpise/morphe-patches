@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.4** (`main`) · **334 patches** across **235 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.21.5-dev.1** (`dev`) · **331 patches** across **232 apps** · back to [README](README.md)
 
 ---
 
@@ -32,8 +32,8 @@
 
 | Patch | Details |
 |---|---|
-| **Security Bypass** | Disables AAAD's anti-tamper, anti-debug, and integrity checks to allow running on patched installations. |
-| **Unlock Pro** | Unlocks AAAD Pro subscription features by bypassing Stripe and Firebase subscription checks. |
+| **AAAD Premium** | Unlocks AAAD Pro subscription features by bypassing Stripe and Firebase subscription checks. |
+| **AAAD Security Bypass** | Disables AAAD's anti-tamper, anti-debug, and integrity checks to allow running on patched installations. |
 
 ---
 
@@ -873,11 +873,11 @@
 
 ## HD UHD Live Wallpapers (hd.uhd.live.wallpapers.topwallpapers)
 
-**Supported versions:** `6.0.1`
+**Supported versions:** `6.1.1`
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlocks all premium wallpapers and removes interstitial ads. |
+| **Unlock Premium** | Unlocks all premium wallpapers and removes interstitial ads permanently. |
 
 ---
 
@@ -1280,36 +1280,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock Moovit+** | Unlocks Moovit+ premium features, removes ads, and suppresses all upgrade paywalls and UI. |
-
----
-
-## MovieBox (com.community.oneroom)
-
-**Supported versions:** `4.0.01.0813.02`
-
-| Patch | Details |
-|---|---|
-| **All-In-One** | Unlocks VIP premium, removes ads and upsells, bypasses region lock and force update, unlocks HD and downloads, enables 5 parallel downloads. |
-
----
-
-## MovieBox India (com.community.mbox.in)
-
-**Supported versions:** `3.0.13.0402.02`
-
-| Patch | Details |
-|---|---|
-| **All-In-One** | Unlocks VIP premium, removes ads and upsells, bypasses region lock and force update, unlocks HD and downloads, enables 5 parallel downloads. |
-
----
-
-## MovieBox TV (com.community.mbox.tv)
-
-**Supported versions:** `1.1.9.0820.03`
-
-| Patch | Details |
-|---|---|
-| **All-In-One** | Unlocks TV premium, removes ads and upsells, bypasses region lock and force update. |
 
 ---
 
