@@ -1,3 +1,9 @@
+## [1.21.5-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.4...v1.21.5-dev.1) (2026-09-08)
+
+### 🐛 Bug Fixes
+
+* aaad ([620b6dc](https://github.com/rushiranpise/morphe-patches/commit/620b6dce166b4730bffc8e6ae5d8e0e5845ed9f2)), closes [#938](https://github.com/rushiranpise/morphe-patches/issues/938)
+
 ## [1.21.4](https://github.com/rushiranpise/morphe-patches/compare/v1.21.3...v1.21.4) (2026-09-01)
 
 ### 🐛 Bug Fixes
