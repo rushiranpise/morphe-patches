@@ -7,8 +7,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.fieldAccess
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.CheckCanOpenChat2Fingerprint
 import app.template.patches.telegram.CheckCanOpenChat3Fingerprint
 import app.template.patches.telegram.CheckCanOpenChat4Fingerprint
@@ -38,7 +36,7 @@ val telegramBypassChannelRestrictionsPatch = bytecodePatch(
     description = "Allows opening, viewing, saving and forwarding content from restricted, " +
         "sensitive, and copyright-restricted channels.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

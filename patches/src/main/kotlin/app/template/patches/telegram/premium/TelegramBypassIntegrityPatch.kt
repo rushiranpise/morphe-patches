@@ -5,8 +5,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.AndroidUtilitiesGetCertFingerprintFingerprint
 import app.template.patches.telegram.SafetyNetCheckFingerprint
 import app.template.patches.telegram.signature.telegramSpoofDependency
@@ -19,16 +17,11 @@ import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 //
 // Do NOT use the raw PKCS7 SHA-256 — that's a different (larger) byte sequence.
 //
-// Verified against (APKMirror bundletool-signed builds):
-//   org.telegram.messenger      12.9.2   versionCode 69912  (META-INF/BNDLTOOL.RSA)
-//   org.telegram.messenger.web  12.9.2   versionCode 69919  (META-INF/CERT.RSA)
-//   org.telegram.plus           12.9.0.1 versionCode 22437  (META-INF/BNDLTOOL.RSA)
-//
-// messenger + web share the same Nikolay Kudasov/VK signing key → identical hash.
+// Verified against the original Telegram signing certificate used by Graph Messenger / Telegraph.
+// The official Telegram package name was migrated to ir.ilmili.telegraph while preserving
+// the original Telegram certificate fingerprint for compatibility.
 private val CERT_HASHES = mapOf(
-    "org.telegram.messenger"     to "49C1522548EBACD46CE322B6FD47F6092BB745D0F88082145CAF35E14DCC38E1",
-    "org.telegram.messenger.web" to "49C1522548EBACD46CE322B6FD47F6092BB745D0F88082145CAF35E14DCC38E1",
-    "org.telegram.plus"          to "6EBB622268AAD319DBE8A1F414837D2843A9B35856AEFB7DEE2971A3D493F276",
+    "ir.ilmili.telegraph" to "49C1522548EBACD46CE322B6FD47F6092BB745D0F88082145CAF35E14DCC38E1",
 )
 
 private var detectedPackageName = ""
@@ -47,7 +40,7 @@ val telegramBypassIntegrityPatch = bytecodePatch(
     name = "Bypass integrity check",
     description = "Spoofs certificate fingerprint and SafetyNet results so login works on patched APK.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY)
     dependsOn(telegramSpoofDependency(), readPackageNamePatch)
 
     execute {

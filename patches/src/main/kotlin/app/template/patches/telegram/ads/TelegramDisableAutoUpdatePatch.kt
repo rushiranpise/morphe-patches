@@ -3,8 +3,6 @@ package app.template.patches.telegram.ads
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.telegram.BlockingUpdateViewShowFingerprint
 import app.template.patches.telegram.CheckAppUpdateFingerprint
@@ -21,7 +19,7 @@ val telegramDisableAutoUpdatePatch = bytecodePatch(
         "and the proxy sponsor channel insertion. On Telegram Plus also disables the " +
         "Plus-specific updater and update settings flag.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

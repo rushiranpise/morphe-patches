@@ -4,8 +4,6 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
 import app.template.patches.telegram.signature.telegramSpoofDependency
-import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.FileLoadOperationUpdateParamsFingerprint
 
 @Suppress("unused")
@@ -13,7 +11,7 @@ val telegramDownloadBoostPatch = bytecodePatch(
     name = "Download speed boost",
     description = "Increases download chunk size to 1 MB and max concurrent requests to 12.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {

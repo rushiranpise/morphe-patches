@@ -3,8 +3,6 @@ package app.template.patches.telegram.premium
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
-import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.telegram.MessagesControllerIsPremiumUserFingerprint
 import app.template.patches.telegram.PremiumFeaturesBlockedFingerprint
@@ -19,7 +17,7 @@ val telegramPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
     description = "Unlocks Telegram Premium features for the current account.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(TELEGRAM_COMPATIBILITY)
     dependsOn(telegramSpoofDependency())
 
     execute {
