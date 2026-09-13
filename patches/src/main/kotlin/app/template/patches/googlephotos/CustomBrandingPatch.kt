@@ -25,6 +25,33 @@ private val launcherMipmapDirectories = listOf(
     "mipmap-xxxhdpi",
 )
 
+private const val LEGACY_LAUNCHER_XML = """<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@mipmap/morphe_adaptive_background_custom" />
+    </item>
+    <item>
+        <bitmap
+            android:gravity="fill"
+            android:src="@mipmap/morphe_adaptive_foreground_custom" />
+    </item>
+</layer-list>"""
+
+private const val ADAPTIVE_LAUNCHER_XML = """<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
+    <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
+</adaptive-icon>"""
+
+private const val THEMED_LAUNCHER_XML = """<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
+    <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
+    <monochrome android:drawable="@drawable/morphe_adaptive_monochrome_custom" />
+</adaptive-icon>"""
+
 @Suppress("unused")
 val googlePhotosCustomBrandingPatch = resourcePatch(
     name = "Custom branding",
@@ -153,52 +180,19 @@ private fun writeLauncherResources(resDirectory: File, hasMonochrome: Boolean) {
 private fun writeLegacyLauncherResource(resDirectory: File) {
     resDirectory.resolve("mipmap-anydpi").apply { mkdirs() }
         .resolve(customLauncherIconFile)
-        .writeText(
-            """
-            <?xml version="1.0" encoding="utf-8"?>
-            <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-                <item>
-                    <bitmap
-                        android:gravity="fill"
-                        android:src="@mipmap/morphe_adaptive_background_custom" />
-                </item>
-                <item>
-                    <bitmap
-                        android:gravity="fill"
-                        android:src="@mipmap/morphe_adaptive_foreground_custom" />
-                </item>
-            </layer-list>
-            """.trimIndent(),
-        )
+        .writeText(LEGACY_LAUNCHER_XML)
 }
 
 private fun writeAdaptiveLauncherResource(resDirectory: File) {
     resDirectory.resolve("mipmap-anydpi-v26").apply { mkdirs() }
         .resolve(customLauncherIconFile)
-        .writeText(
-            """
-            <?xml version="1.0" encoding="utf-8"?>
-            <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-                <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
-                <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
-            </adaptive-icon>
-            """.trimIndent(),
-        )
+        .writeText(ADAPTIVE_LAUNCHER_XML)
 }
 
 private fun writeThemedLauncherResource(resDirectory: File) {
     resDirectory.resolve("mipmap-anydpi-v33").apply { mkdirs() }
         .resolve(customLauncherIconFile)
-        .writeText(
-            """
-            <?xml version="1.0" encoding="utf-8"?>
-            <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-                <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
-                <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
-                <monochrome android:drawable="@drawable/morphe_adaptive_monochrome_custom" />
-            </adaptive-icon>
-            """.trimIndent(),
-        )
+        .writeText(THEMED_LAUNCHER_XML)
 }
 
 private fun Element.hasLauncherIntentFilter(): Boolean {
