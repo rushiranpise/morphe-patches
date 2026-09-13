@@ -8,9 +8,14 @@ import org.w3c.dom.Element
 import java.io.File
 
 private const val CUSTOM_LAUNCHER_ICON = "morphe_launcher_custom"
+private val customLauncherIconFile = "$CUSTOM_LAUNCHER_ICON.xml"
+private val customLauncherIconResource = "@mipmap/$CUSTOM_LAUNCHER_ICON"
 private const val CUSTOM_BACKGROUND = "morphe_adaptive_background_custom.png"
 private const val CUSTOM_FOREGROUND = "morphe_adaptive_foreground_custom.png"
 private const val CUSTOM_MONOCHROME = "morphe_adaptive_monochrome_custom.xml"
+
+private const val ANDROID_ICON_ATTRIBUTE = "android:icon"
+private const val ANDROID_ROUND_ICON_ATTRIBUTE = "android:roundIcon"
 
 private val launcherMipmapDirectories = listOf(
     "mipmap-mdpi",
@@ -65,9 +70,9 @@ val googlePhotosCustomBrandingPatch = resourcePatch(
         val resDirectory = get("res")
         var copiedDensityCount = 0
 
-        launcherMipmapDirectories.forEach { directoryName ->
+        for (directoryName in launcherMipmapDirectories) {
             val sourceDirectory = iconRoot.resolve(directoryName)
-            if (!sourceDirectory.exists()) return@forEach
+            if (!sourceDirectory.exists()) continue
 
             if (!sourceDirectory.isDirectory) {
                 throw PatchException("Expected a directory: ${sourceDirectory.absolutePath}")
@@ -112,18 +117,21 @@ val googlePhotosCustomBrandingPatch = resourcePatch(
                 ?: throw PatchException("AndroidManifest.xml does not contain an application element.")
 
             // App info, APK preview, and launchers that inherit the application icon.
-            application.setAttribute("android:icon", "@mipmap/$CUSTOM_LAUNCHER_ICON")
-            application.setAttribute("android:roundIcon", "@mipmap/$CUSTOM_LAUNCHER_ICON")
+            application.setAttribute(ANDROID_ICON_ATTRIBUTE, customLauncherIconResource)
+            application.setAttribute(ANDROID_ROUND_ICON_ATTRIBUTE, customLauncherIconResource)
 
             // Some launchers use an explicit icon from the launcher activity/activity-alias,
             // which overrides android:icon on <application>. Patch those too.
-            listOf("activity", "activity-alias").forEach { tagName ->
+            for (tagName in listOf("activity", "activity-alias")) {
                 val nodes = document.getElementsByTagName(tagName)
                 for (index in 0 until nodes.length) {
                     val component = nodes.item(index) as? Element ?: continue
                     if (component.hasLauncherIntentFilter()) {
-                        component.setAttribute("android:icon", "@mipmap/$CUSTOM_LAUNCHER_ICON")
-                    component.setAttribute("android:roundIcon", "@mipmap/$CUSTOM_LAUNCHER_ICON")
+                        component.setAttribute(ANDROID_ICON_ATTRIBUTE, customLauncherIconResource)
+                        component.setAttribute(
+                            ANDROID_ROUND_ICON_ATTRIBUTE,
+                            customLauncherIconResource,
+                        )
                     }
                 }
             }
@@ -134,9 +142,17 @@ val googlePhotosCustomBrandingPatch = resourcePatch(
 }
 
 private fun writeLauncherResources(resDirectory: File, hasMonochrome: Boolean) {
-    // Legacy fallback for Android < 8: compose the foreground/background as a layer list.
+    writeLegacyLauncherResource(resDirectory)
+    writeAdaptiveLauncherResource(resDirectory)
+
+    if (hasMonochrome) {
+        writeThemedLauncherResource(resDirectory)
+    }
+}
+
+private fun writeLegacyLauncherResource(resDirectory: File) {
     resDirectory.resolve("mipmap-anydpi").apply { mkdirs() }
-        .resolve("$CUSTOM_LAUNCHER_ICON.xml")
+        .resolve(customLauncherIconFile)
         .writeText(
             """
             <?xml version="1.0" encoding="utf-8"?>
@@ -154,10 +170,11 @@ private fun writeLauncherResources(resDirectory: File, hasMonochrome: Boolean) {
             </layer-list>
             """.trimIndent(),
         )
+}
 
-    // Adaptive icon for Android 8+.
+private fun writeAdaptiveLauncherResource(resDirectory: File) {
     resDirectory.resolve("mipmap-anydpi-v26").apply { mkdirs() }
-        .resolve("$CUSTOM_LAUNCHER_ICON.xml")
+        .resolve(customLauncherIconFile)
         .writeText(
             """
             <?xml version="1.0" encoding="utf-8"?>
@@ -167,22 +184,21 @@ private fun writeLauncherResources(resDirectory: File, hasMonochrome: Boolean) {
             </adaptive-icon>
             """.trimIndent(),
         )
+}
 
-    // Android 13+ themed icon, when the icon set supplies a monochrome layer.
-    if (hasMonochrome) {
-        resDirectory.resolve("mipmap-anydpi-v33").apply { mkdirs() }
-            .resolve("$CUSTOM_LAUNCHER_ICON.xml")
-            .writeText(
-                """
-                <?xml version="1.0" encoding="utf-8"?>
-                <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-                    <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
-                    <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
-                    <monochrome android:drawable="@drawable/morphe_adaptive_monochrome_custom" />
-                </adaptive-icon>
-                """.trimIndent(),
-            )
-    }
+private fun writeThemedLauncherResource(resDirectory: File) {
+    resDirectory.resolve("mipmap-anydpi-v33").apply { mkdirs() }
+        .resolve(customLauncherIconFile)
+        .writeText(
+            """
+            <?xml version="1.0" encoding="utf-8"?>
+            <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+                <background android:drawable="@mipmap/morphe_adaptive_background_custom" />
+                <foreground android:drawable="@mipmap/morphe_adaptive_foreground_custom" />
+                <monochrome android:drawable="@drawable/morphe_adaptive_monochrome_custom" />
+            </adaptive-icon>
+            """.trimIndent(),
+        )
 }
 
 private fun Element.hasLauncherIntentFilter(): Boolean {
@@ -190,36 +206,37 @@ private fun Element.hasLauncherIntentFilter(): Boolean {
 
     for (index in 0 until children.length) {
         val intentFilter = children.item(index) as? Element ?: continue
-        if (intentFilter.tagName != "intent-filter") continue
-
-        var hasMainAction = false
-        var hasLauncherCategory = false
-
-        val intentChildren = intentFilter.childNodes
-        for (childIndex in 0 until intentChildren.length) {
-            val child = intentChildren.item(childIndex) as? Element ?: continue
-            val name = child.getAttribute("android:name")
-
-            when (child.tagName) {
-                "action" -> {
-                    if (name == "android.intent.action.MAIN") {
-                        hasMainAction = true
-                    }
-                }
-
-                "category" -> {
-                    if (
-                        name == "android.intent.category.LAUNCHER" ||
-                        name == "android.intent.category.LEANBACK_LAUNCHER"
-                    ) {
-                        hasLauncherCategory = true
-                    }
-                }
-            }
+        if (intentFilter.tagName == "intent-filter" && intentFilter.isLauncherIntentFilter()) {
+            return true
         }
-
-        if (hasMainAction && hasLauncherCategory) return true
     }
 
     return false
+}
+
+private fun Element.isLauncherIntentFilter(): Boolean {
+    var hasMainAction = false
+    var hasLauncherCategory = false
+    val children = childNodes
+
+    for (index in 0 until children.length) {
+        val child = children.item(index) as? Element ?: continue
+        val name = child.getAttribute("android:name")
+
+        if (child.tagName == "action" && name == "android.intent.action.MAIN") {
+            hasMainAction = true
+        }
+
+        if (
+            child.tagName == "category" &&
+            (
+                name == "android.intent.category.LAUNCHER" ||
+                    name == "android.intent.category.LEANBACK_LAUNCHER"
+            )
+        ) {
+            hasLauncherCategory = true
+        }
+    }
+
+    return hasMainAction && hasLauncherCategory
 }
