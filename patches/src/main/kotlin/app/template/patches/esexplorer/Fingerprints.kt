@@ -2,69 +2,128 @@ package app.template.patches.esexplorer
 
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.fieldAccess
+import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
 
-// ES File Explorer (com.estrongs.android.pop) v4.4.3.7
+// ─────────────────────────────────────────────────────────────────────────────
+// ES File Explorer (com.estrongs.android.pop)
 //
-// APP ARCHITECTURE OVERVIEW
-// Framework: Native Java/Kotlin, targetSdk 30, R8 obfuscation.
-// Non-obfuscated packages preserved under com.estrongs.android.pop.
-// All internal es.* classes are R8-obfuscated (single/short names change each version).
+// TWO TARGET VERSIONS — different architectures:
 //
-// VIP GATE CHAIN (v4.4.3.7):
-//   t05.t()Z (PremiumManager)  — 46 callers — the main client-side isVip gate
-//     → zx4.L0() (PopSharedPreferences singleton)
-//     → zx4.G2()Z
-//     → zx4.E2()Z → SharedPrefs.getBoolean(r05.d, false)
-//       (r05 = PremiumKey.java — SP key names loaded at runtime)
+//   v4.2.1.3.a (versionCode 20014) — "Old" IAP model
+//     In-app purchase / companion-APK model.
+//     Central singleton: wx0 = PremiumManager.java
+//     SharedPrefs wrapper: vw0 = PopSharedPreferences.java
+//     VIP check chain: wx0.v()Z → vw0.h2()Z ("es_premium_sku") and vw0.c2()Z ("es_premium_sku_inapp")
+//     Subscription-days gate: FexApplication.K()Z (y:I > 0)
+//     Signature alert: vw0.b2()Z ("not_show_falsified_alert")
 //
-//   zx4.n2()Z — lifetime/forever VIP flag
-//     → SharedPrefs.getBoolean("wx_pay_forever", false)
+//   v4.4.3.5 (versionCode 10351) — "New" subscription model
+//     All internal es.* classes R8-obfuscated. Fingerprints use string constants
+//     and stable non-obfuscated references instead of obfuscated class names.
+//     PremiumManager = t05, SharedPrefs = zx4, Signature = nb1 (changed from prior versions).
 //
-//   t05.l()J — VIP expiry timestamp
-//     → zx4.L0().o1()J → SharedPrefs.getLong(r05.e, 0)
-//
-// ACCOUNT-LEVEL VIP (server-sync):
-//   AccountInfo.getIsVip()Z — fully non-obfuscated getter, reads isVip:Z field
-//     populated from server login response via y7 (AccountPref.java)
-//   b.t()Z (ESAccountManager) — login gate; !isEmpty(token)
-//     class com.estrongs.android.pop.app.account.util.b — NON-OBFUSCATED
-//
-// SIGNATURE CHECK:
-//   nb1.c()Z (ESAppInfo.java) — computes APK signing cert MD5 "3079a983587b13f6861dedfb6fad5502"
-//     Called from FileExplorerActivity; false → shows "unofficial version" dialog
-//   zx4.y2()Z — reads pref "not_show_falsified_alert"; true → skips nb1.c() entirely
-//
-// CHANGED FROM v4.4.3.7 (previous targets):
-//   All old fingerprints used custom = { classDef.type == "Les/zz4;" } or
-//   custom = { classDef.type == "Les/fx4;" } — both class names were reassigned by R8.
-//   In 4.4.3.5: zz4 → t05 (PremiumManager), fx4 → zx4 (PopSharedPreferences),
-//   wb1 → nb1 (ESAppInfo). Every hardcoded obfuscated class name broke.
-//   Fingerprints are now anchored only on stable strings, stable SDK calls,
-//   non-obfuscated class/field references, or stable SP key string constants.
-//   None of the new fingerprints contain any obfuscated class or method names.
-//
-// Constants version updated: 4.4.3.7 / 10353.
+// STABLE FINGERPRINT RULE: zero obfuscated class names in any fingerprint.
+//   All anchors use non-obfuscated definingClass, stable SP key strings,
+//   stable SDK methodCall references, or stable field references on non-obfuscated classes.
+// ─────────────────────────────────────────────────────────────────────────────
 
-// ── t05.t()Z — main isVip gate (46 callers) ──────────────────────────────────
+// ── v4.2.1.3.a targets ───────────────────────────────────────────────────────
+
+// vw0.h2()Z — subscription SKU check (PopSharedPreferences, old version)
+//
+// SMALI VERIFIED (classes.dex, v4.2.1.3.a):
+//   .source "PopSharedPreferences.java"
+//   .method public h2()Z
+//   Reads SharedPrefs getString("es_premium_sku", null)
+//   Returns true when the stored SKU starts with "es_premiun" (their typo, stable).
+//
+// FINGERPRINT ANCHOR: string("es_premium_sku") — unique SP key in one ()Z method.
+// wx0.v() (PremiumManager.isVip) calls h2() and c2(). Patching h2→true cascades.
+internal val OldPremiumSkuSubscriptionFingerprint = Fingerprint(
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList(),
+    filters = listOf(
+        string("es_premium_sku"),
+    ),
+)
+
+// vw0.c2()Z — in-app purchase SKU check (PopSharedPreferences, old version)
+//
+// SMALI VERIFIED (classes.dex, v4.2.1.3.a):
+//   .method public c2()Z
+//   Reads SharedPrefs getString("es_premium_sku_inapp", null)
+//   Returns true when SKU starts with "es_premium_inapp".
+//
+// FINGERPRINT ANCHOR: string("es_premium_sku_inapp") — unique SP key in one ()Z method.
+internal val OldPremiumSkuInAppFingerprint = Fingerprint(
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList(),
+    filters = listOf(
+        string("es_premium_sku_inapp"),
+    ),
+)
+
+// vw0.b2()Z — signature alert suppression pref (PopSharedPreferences, old version)
+//
+// SMALI VERIFIED (classes.dex, v4.2.1.3.a):
+//   .method public b2()Z
+//   Reads SharedPrefs getBoolean("not_show_falsified_alert", false)
+//   When true → calling code skips the "unofficial version" signature alert.
+//
+// FINGERPRINT ANCHOR: string("not_show_falsified_alert") — unique in one ()Z getter.
+// Same key present in v4.4.3.5 (zx4.y2()) — SuppressAlertPrefFingerprint covers that.
+internal val OldSuppressAlertPrefFingerprint = Fingerprint(
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList(),
+    filters = listOf(
+        string("not_show_falsified_alert"),
+    ),
+)
+
+// FexApplication.K()Z — subscription days gate (old version)
+//
+// SMALI VERIFIED (classes.dex, v4.2.1.3.a):
+//   .class public Lcom/estrongs/android/pop/FexApplication;
+//   .method public K()Z  .registers 2
+//   [0] iget v0, p0, FexApplication->y:I
+//   [1] if-lez v0, :L0          (y is subscription-days int, 0 at init)
+//   [2] const/4 v0, 0x1; goto :L1
+//   :L0 const/4 v0, 0x0
+//   :L1 return v0
+//   Called by nk1.e()Z (UnlockUtils.isActivated) and a few UI paths.
+//
+// FINGERPRINT: definingClass + name — both NON-OBFUSCATED (com.estrongs.android.pop package).
+//   FexApplication is the Application subclass; K is a stable public method name.
+internal val OldFexApplicationKFingerprint = Fingerprint(
+    definingClass = "Lcom/estrongs/android/pop/FexApplication;",
+    name = "K",
+    returnType = "Z",
+    accessFlags = listOf(AccessFlags.PUBLIC),
+    parameters = emptyList(),
+)
+
+// ── v4.4.3.5 targets ─────────────────────────────────────────────────────────
+// (unchanged from last session — stable string/non-obfuscated anchors)
+
+// t05.t()Z — main isVip gate (46 callers, PremiumManager, new version)
 //
 // SMALI VERIFIED (classes.dex, v4.4.3.5):
-//   .class public Les/t05;
 //   .source "PremiumManager.java"
-//   .method public t()Z  .registers 2
+//   .method public t()Z
 //   [0] sget-boolean v0, Lcom/estrongs/android/pop/TestActivity;->j:Z  ← filter
 //   [1] invoke-static {}, Les/zx4;->L0()Les/zx4;
-//   [2] move-result-object v0
 //   [3] invoke-virtual {v0}, Les/zx4;->G2()Z
-//   [4] move-result v0
-//   [5] return v0
+//   ...
 //
 // FINGERPRINT ANCHOR: sget-boolean on Lcom/estrongs/android/pop/TestActivity;->j:Z
-//   TestActivity is fully non-obfuscated (com.estrongs.android.pop package).
-//   Field name "j" is obfuscated but its definingClass is stable.
-//   Verified unique: only one ()Z method in the entire app reads TestActivity.j as sget-boolean.
+//   TestActivity is fully non-obfuscated. Only one ()Z method reads TestActivity.j.
+//   (Note: v4.2.1.3.a uses TestActivity.I — different field, different version.)
 internal val IsVipFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC),
@@ -77,25 +136,12 @@ internal val IsVipFingerprint = Fingerprint(
     ),
 )
 
-// ── zx4.n2()Z — lifetime/forever VIP flag ────────────────────────────────────
+// zx4.n2()Z — lifetime/forever VIP flag (PopSharedPreferences, new version)
 //
 // SMALI VERIFIED (classes.dex, v4.4.3.5):
-//   .class public Les/zx4;
-//   .source "PopSharedPreferences.java"
-//   .method public n2()Z  .registers 4
-//   [0] invoke-static {}, FexApplication->o()FexApplication
-//   [1] move-result-object v0
-//   [2] invoke-static {v0}, PreferenceManager->getDefaultSharedPreferences(Context)SP
-//   [3] move-result-object v0
-//   [4] const-string/jumbo v1, "wx_pay_forever"       ← filter
-//   [5] const/4 v2, 0x0
-//   [6] invoke-interface {v0,v1,v2}, SP->getBoolean(String,Z)Z
-//   [7] move-result v0
-//   [8] return v0
+//   .method public n2()Z  — reads SharedPrefs.getBoolean("wx_pay_forever", false)
 //
-// FINGERPRINT ANCHOR: string("wx_pay_forever")
-//   Stable SP key for the WeChat lifetime purchase flag. Only one ()Z method
-//   in the app reads "wx_pay_forever". Method name n2 is stable (was n2 in fx4 too).
+// FINGERPRINT ANCHOR: string("wx_pay_forever") — unique in one ()Z method.
 internal val IsLifetimeFingerprint = Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC),
@@ -105,22 +151,14 @@ internal val IsLifetimeFingerprint = Fingerprint(
     ),
 )
 
-// ── t05.l()J — VIP expiry timestamp ──────────────────────────────────────────
+// t05.l()J — VIP expiry timestamp (new version)
 //
 // SMALI VERIFIED (classes.dex, v4.4.3.5):
-//   .class public Les/t05;
-//   .source "PremiumManager.java"
-//   .method public l()J  .registers 3
-//   [0] invoke-static {}, Les/zx4;->L0()Les/zx4;
-//   [1] move-result-object v0
-//   [2] invoke-virtual {v0}, Les/zx4;->o1()J
-//   [3] move-result-wide v0
-//   [4] return-wide v0
+//   .method public l()J — calls zx4.L0().o1()J (SharedPrefs getLong)
+//   classFingerprint = IsVipFingerprint (same class t05)
+//   Only public ()J non-static method in t05.
 //
-// FINGERPRINT ANCHOR: sget-boolean of TestActivity.j identifies t05 as the class.
-//   Then within t05, l()J is the only public ()J method on the instance (non-static).
-//   classFingerprint = IsVipFingerprint (t05 is the same class).
-//   Patch: return Long.MAX_VALUE so VIP never expires in UI.
+// Patch: return Long.MAX_VALUE → VIP never expires in any UI date calculation.
 internal val VipExpireTimeFingerprint = Fingerprint(
     returnType = "J",
     accessFlags = listOf(AccessFlags.PUBLIC),
@@ -128,19 +166,15 @@ internal val VipExpireTimeFingerprint = Fingerprint(
     classFingerprint = IsVipFingerprint,
 )
 
-// ── nb1.c()Z — APK signature verification ("unofficial version" dialog) ───────
+// nb1.c()Z — APK signature verification (new version)
 //
 // SMALI VERIFIED (classes4.dex, v4.4.3.5):
-//   .class public Les/nb1;
 //   .source "ESAppInfo.java"
 //   .method public static c()Z
 //   Contains: const-string v3, "3079a983587b13f6861dedfb6fad5502"
-//   Computes MD5 of signing cert, compares to the known official MD5.
-//   Returns false on re-signed builds → triggers "unofficial version" dialog.
+//   Returns false on re-signed builds → "unofficial version" dialog.
 //
-// FINGERPRINT ANCHOR: string("3079a983587b13f6861dedfb6fad5502")
-//   Unique MD5 constant — only one method in the codebase contains it.
-//   Was previously anchored on custom = classDef.type == "Les/wb1;" — wb1 renamed to nb1.
+// FINGERPRINT ANCHOR: string("3079a983587b13f6861dedfb6fad5502") — unique.
 internal val SignatureCheckFingerprint = Fingerprint(
     returnType = "Z",
     parameters = emptyList(),
@@ -149,17 +183,14 @@ internal val SignatureCheckFingerprint = Fingerprint(
     ),
 )
 
-// ── zx4.y2()Z — "not_show_falsified_alert" pref bypass ───────────────────────
+// zx4.y2()Z — "not_show_falsified_alert" pref (new version)
 //
 // SMALI VERIFIED (classes.dex, v4.4.3.5):
-//   .class public Les/zx4;  .source "PopSharedPreferences.java"
-//   .method public y2()Z  — reads pref "not_show_falsified_alert"
-//   First gate in FileExplorerActivity's signature check flow:
-//   if y2()=true → skip nb1.c() entirely.
+//   .method public y2()Z — reads SharedPrefs.getBoolean("not_show_falsified_alert", false)
+//   First gate in FileExplorerActivity signature check; true → skip nb1.c().
 //
-// FINGERPRINT ANCHOR: string("not_show_falsified_alert")
-//   Stable SP key name. Unique: only one ()Z method in the app reads it.
-//   Was previously anchored on custom = classDef.type == "Les/fx4;" — fx4 renamed to zx4.
+// FINGERPRINT ANCHOR: string("not_show_falsified_alert") — unique in one ()Z getter.
+// (In v4.2.1.3.a this is vw0.b2() — OldSuppressAlertPrefFingerprint covers that.)
 internal val SuppressAlertPrefFingerprint = Fingerprint(
     returnType = "Z",
     parameters = emptyList(),
@@ -168,20 +199,15 @@ internal val SuppressAlertPrefFingerprint = Fingerprint(
     ),
 )
 
-// ── b.t()Z — ES account login gate ───────────────────────────────────────────
+// b.t()Z — ES account login gate (new version, non-obfuscated package)
 //
 // SMALI VERIFIED (classes.dex, v4.4.3.5):
 //   .class public Lcom/estrongs/android/pop/app/account/util/b;
 //   .source "ESAccountManager.java"
-//   .method public t()Z  — !isEmpty(q()) where q() returns the stored token
-//   Body: invoke-virtual q()String → TextUtils.isEmpty → xor-int/lit8 0x1 → return
-//   Used by PremiumHelperActivity, VIP page UI — gates the "already subscribed" view.
+//   .method public t()Z — !isEmpty(q()) where q() returns stored auth token.
 //
-// FINGERPRINT: class + method name only. Both are stable:
-//   - com.estrongs.android.pop.app.account.util.b (NON-OBFUSCATED package + class)
-//   - method name "t" has remained stable across versions
-//   No filters needed — unique within the class.
-private const val ES_ACCOUNT_MANAGER = "Lcom/estrongs.android.pop/app/account/util/b;"
+// FINGERPRINT: custom predicate on non-obfuscated class + stable method name "t".
+private const val ES_ACCOUNT_MANAGER = "Lcom/estrongs/android/pop/app/account/util/b;"
 
 internal val AccountLoginFingerprint = Fingerprint(
     returnType = "Z",
@@ -191,18 +217,13 @@ internal val AccountLoginFingerprint = Fingerprint(
     },
 )
 
-// ── AccountInfo.getIsVip()Z — server account-level VIP ───────────────────────
+// AccountInfo.getIsVip()Z — server account-level VIP (new version)
 //
 // SMALI VERIFIED (classes4.dex, v4.4.3.5):
 //   .class public Lcom/estrongs/android/pop/app/account/model/AccountInfo;
-//   .source "AccountInfo.java"
-//   .method public getIsVip()Z  .registers 2
-//   [0] iget-boolean v0, p0, AccountInfo->isVip:Z
-//   [1] return v0
+//   .method public getIsVip()Z — iget-boolean v0, p0, AccountInfo->isVip:Z
 //
-// FINGERPRINT: definingClass + method name — both NON-OBFUSCATED.
-//   This is a JavaBean getter in a data model class. Will not change
-//   unless the developers rename their own field.
+// FINGERPRINT: definingClass + name — both NON-OBFUSCATED.
 internal val AccountInfoIsVipFingerprint = Fingerprint(
     definingClass = "Lcom/estrongs/android/pop/app/account/model/AccountInfo;",
     name = "getIsVip",
@@ -210,39 +231,22 @@ internal val AccountInfoIsVipFingerprint = Fingerprint(
     parameters = emptyList(),
 )
 
-// ── UMeng Analytics & Telemetry — UMConfigure & UMCrash ───────────────────────
+// FexApplication.M()V — UMeng analytics init (new version)
 //
-// SMALI VERIFIED (classes.dex, v4.4.3.5 & v4.4.3.7):
-//   .class public Lcom/umeng/commonsdk/UMConfigure;
-//   .method public static preInit(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)V
-//   .method public static init(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
-//   .class public Lcom/umeng/umcrash/UMCrash;
-//   .method public static registerUMCrashCallback(Lcom/umeng/umcrash/IUMCrashCallbackWithType;)V
+// SMALI VERIFIED (classes.dex, v4.4.3.5):
+//   .class public Lcom/estrongs/android/pop/FexApplication;
+//   .method public final M()V — contains UMConfigure.preInit/init calls with "China" arg.
 //
-// FINGERPRINT: non-obfuscated third-party SDK class & method names.
-//   Nooping these directly prevents UMeng tracking initialization while leaving
-//   FexApplication.M()V intact so that Handler initialization (this.g = new Handler())
-//   runs safely without triggering NullPointerException (NPE) crashes.
-private const val UM_CONFIGURE = "Lcom/umeng/commonsdk/UMConfigure;"
-private const val UM_CRASH = "Lcom/umeng/umcrash/UMCrash;"
+// FINGERPRINT: string("China") narrowed to FexApplication.M via custom predicate.
+private const val FEXAPP = "Lcom/estrongs/android/pop/FexApplication;"
 
-internal val UMConfigurePreInitFingerprint = Fingerprint(
+internal val AnalyticsInitFingerprint = Fingerprint(
     returnType = "V",
+    parameters = emptyList(),
+    filters = listOf(
+        string("China"),
+    ),
     custom = { method, classDef ->
-        classDef.type == UM_CONFIGURE && method.name == "preInit"
-    },
-)
-
-internal val UMConfigureInitFingerprint = Fingerprint(
-    returnType = "V",
-    custom = { method, classDef ->
-        classDef.type == UM_CONFIGURE && method.name == "init"
-    },
-)
-
-internal val UMCrashRegisterCallbackFingerprint = Fingerprint(
-    returnType = "V",
-    custom = { method, classDef ->
-        classDef.type == UM_CRASH && method.name == "registerUMCrashCallback"
+        classDef.type == FEXAPP && method.name == "M"
     },
 )
