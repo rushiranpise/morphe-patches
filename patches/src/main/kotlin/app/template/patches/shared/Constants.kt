@@ -131,14 +131,6 @@ val AMPERE_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "v4.37.0", versionCode = 292))
     )
 
-val ANDROID_VERIFIER_COMPATIBILITY = Compatibility(
-        name = "Android Developer Verifier",
-        packageName = "com.google.android.verifier",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x4285F4,
-        targets = listOf(AppTarget(version = "1.0.977374101", versionCode = 65354))
-    )
-
 val ANDROPODS_COMPATIBILITY = Compatibility(
         name = "AndroPods",
         packageName = "pro.vitalii.andropods",
@@ -1280,14 +1272,6 @@ val PROTON_PASS_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.40.3", versionCode = 14003373))
     )
 
-val PROTONMAIL_COMPATIBILITY = Compatibility(
-        name = "Proton Mail",
-        packageName = "ch.protonmail.android",
-        appIconColor = 0x6D4AFF,
-        apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "7.11.6", versionCode = 18320))
-    )
-
 val PROTONVPN_COMPATIBILITY = Compatibility(
         name = "Proton VPN",
         packageName = "ch.protonvpn.android",
@@ -1614,16 +1598,6 @@ val THEWEATHERCHANNEL_COMPATIBILITY = Compatibility(
         appIconColor = 0x1B6AC9,
         apkFileType = ApkFileType.APKM,
         targets = listOf(AppTarget(version = "16.21.1", versionCode = 1080014660))
-    )
-
-val TIKTOK_LITE_COMPATIBILITY = Compatibility(
-        name = "TikTok Lite",
-        packageName = "com.tiktok.lite.go",
-        apkFileType = ApkFileType.APKM,
-        appIconColor = 0xFE2C55,
-        targets = listOf(
-            AppTarget(version = "44.9.52", versionCode = 440952)
-        )
     )
 
 val TODAYWEATHER_COMPATIBILITY = Compatibility(
