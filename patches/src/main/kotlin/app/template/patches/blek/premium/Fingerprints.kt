@@ -5,13 +5,18 @@ import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 
-// ─── Pairip (DEX-layer only — no VMRunner/StartupLauncher in this variant) ────
+// ─── STABILITY CONTRACT ────────────────────────────────────────────────────────
+// All filters use ONLY non-obfuscated, update-stable anchors:
+//   - Named Pairip SDK classes (never renamed)
+//   - Android SDK / Java stdlib calls (never renamed)
+//   - String literals that are billing-semantic (stable across renames)
+//   - Lgy; SKU state enum (stable: same name across v6.22–v6.23.2+)
+// REMOVED: all methodCall filters referencing obfuscated class names
+//   (Lcz;->q, Ljh4;->getValue, Ljh4;->i — these changed v6.23.1→v6.23.2).
+// ─────────────────────────────────────────────────────────────────────────────
 
-/**
- * LicenseClient.checkLicense(Context) — public static.
- * Short-circuits the entire Play licensing binder connection.
- * Stable: non-obfuscated com.pairip.* SDK class.
- */
+// ─── Pairip (stable non-obfuscated SDK classes) ───────────────────────────────
+
 internal object LicenseCheckFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseClient;",
     name = "checkLicense",
@@ -19,11 +24,6 @@ internal object LicenseCheckFingerprint : Fingerprint(
     parameters = listOf("Landroid/content/Context;"),
 )
 
-/**
- * LicenseResponseHelper.validateResponse(Bundle, String) — public static.
- * RSA/JWS signature verification. Belt-and-suspenders bypass.
- * Stable: non-obfuscated com.pairip.* SDK class.
- */
 internal object LicenseValidateResponseFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseResponseHelper;",
     name = "validateResponse",
@@ -31,11 +31,6 @@ internal object LicenseValidateResponseFingerprint : Fingerprint(
     parameters = listOf("Landroid/os/Bundle;", "Ljava/lang/String;"),
 )
 
-/**
- * LicenseActivity.closeApp() — private.
- * Called on license failure → System.exit(0). No-op prevents process kill.
- * Stable: non-obfuscated com.pairip.* SDK class.
- */
 internal object LicenseCloseAppFingerprint : Fingerprint(
     definingClass = "Lcom/pairip/licensecheck/LicenseActivity;",
     name = "closeApp",
@@ -46,70 +41,52 @@ internal object LicenseCloseAppFingerprint : Fingerprint(
 // ─── Billing / Premium ────────────────────────────────────────────────────────
 
 /**
- * IsPremiumFingerprint → nz.v()Z
+ * IsPremiumFingerprint
  *
- * Top-level isPremium boolean gate. Calls cz.q("premium_v1") || cz.q("premium_yearly").
- * Also called directly by xn.<init>(Lnz;) to set the Compose nav initial isPremium
- * value via rd3.setValue — so patching this covers both the feature gate AND the
- * nav Upgrade-tab initial state (NavIsPremiumInitFingerprint no longer needed).
+ * Top-level isPremium boolean gate. Checks two SKU IDs via the billing manager.
  *
- * v6.22.0: ez.e()Z calling Luy;->h() ×2
- * v6.23.1: nz.v()Z calling Lcz;->q() ×2 — uy renamed cz, ez renamed nz
+ * v6.22.0: ez.e()Z  calling Luy;->h() ×2
+ * v6.23.1: nz.v()Z  calling Lcz;->q() ×2  (uy→cz, ez→nz)
+ * v6.23.2: rz.f()Z  calling Lez;->d() ×2  (cz→ez, nz→rz)
  *
- * Smali (nz.smali line 605, v6.23.1):
- *   .method public final v()Z
- *     sget-object v0, Lnz;->a:Ljava/lang/String;        ← static "premium_v1" field
- *     iget-object p0, p0, Lnz;->v:Lcz;
- *     invoke-virtual {p0, v0}, Lcz;->q(Ljava/lang/String;)Z   ← filter[0]
- *     move-result v0
- *     if-nez v0, :cond_15
- *     const-string v0, "premium_yearly"                 ← filter[1]
- *     invoke-virtual {p0, v0}, Lcz;->q(Ljava/lang/String;)Z   ← filter[2]
+ * Previous filters used Lcz;->q() — BROKE v6.23.1→v6.23.2 because the
+ * obfuscated class name changed. Now anchored ONLY on stable string literals:
  *
- * Filters: first cz.q() call + string("premium_yearly") + second cz.q() call.
- * This combination is unique to nz.v()Z across the entire DEX.
+ *   string("premium_yearly")  ← the second SKU ID, always a plain string constant
+ *
+ * "premium_v1" is stored in a static field (not const-string in the method body),
+ * so only "premium_yearly" appears as a const-string filter.
+ * This string is billing-semantic and stable across app updates.
+ *
+ * The combination of returnType=Z + PUBLIC FINAL + params=[] + string("premium_yearly")
+ * is unique to this one method across the entire DEX.
  */
 internal object IsPremiumFingerprint : Fingerprint(
     returnType = "Z",
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     parameters = listOf(),
     filters = listOf(
-        methodCall(
-            definingClass = "Lcz;",
-            name = "q",
-            returnType = "Z",
-            parameters = listOf("Ljava/lang/String;"),
-        ),
         string("premium_yearly"),
-        methodCall(
-            definingClass = "Lcz;",
-            name = "q",
-            returnType = "Z",
-            parameters = listOf("Ljava/lang/String;"),
-        ),
     ),
 )
 
 /**
- * SkuStateQueryFingerprint → cz.q(String)Z
+ * SkuStateQueryFingerprint
  *
- * Per-SKU boolean query. Reads jh4 StateFlow from HashMap, checks against
- * Lgy;->m (PURCHASED_AND_ACKNOWLEDGED enum constant).
+ * Per-SKU boolean purchase check. Reads the SKU StateFlow from a HashMap.
  *
- * v6.22.0: uy.h(String)Z — HashMap.get + Lwf4;->getValue
- * v6.23.1: cz.q(String)Z — HashMap.get + Ljh4;->getValue  (wf4 → jh4)
+ * v6.22.0: uy.h(String)Z  — HashMap.get + Lwf4;->getValue
+ * v6.23.1: cz.q(String)Z  — HashMap.get + Ljh4;->getValue  (wf4→jh4)
+ * v6.23.2: ez.d(String)Z  — HashMap.get + Lsh4;->getValue  (jh4→sh4, cz→ez)
  *
- * Smali (cz.smali line 4411, v6.23.1):
- *   .method public final q(Ljava/lang/String;)Z
- *     iget-object p0, p0, Lcz;->o:Ljava/util/HashMap;
- *     invoke-virtual {p0, p1}, Ljava/util/HashMap;->get(Object)Object   ← filter[0]
- *     move-result-object p0
- *     check-cast p0, Ljh4;
- *     if-eqz p0, :cond_14
- *     invoke-virtual {p0}, Ljh4;->getValue()Ljava/lang/Object;          ← filter[1]
- *     check-cast p0, Lgy;
- *     sget-object p1, Lgy;->m:Lgy;
- *     if-ne p0, p1, :cond_1b
+ * Previous filters used Ljh4;->getValue — BROKE v6.23.1→v6.23.2.
+ * Now uses only stable SDK anchors:
+ *
+ *   Object.getClass() — null-check on the String param (first call)
+ *   HashMap.get(Object) — reads SKU from internal map
+ *
+ * The StateFlow class name changes each version (wf4→jh4→sh4) — removed entirely.
+ * returnType=Z + PUBLIC FINAL + params=[String] + these two filters is unique.
  */
 internal object SkuStateQueryFingerprint : Fingerprint(
     returnType = "Z",
@@ -117,40 +94,33 @@ internal object SkuStateQueryFingerprint : Fingerprint(
     parameters = listOf("Ljava/lang/String;"),
     filters = listOf(
         methodCall(
-            definingClass = "Ljava/util/HashMap;",
-            name = "get",
-            returnType = "Ljava/lang/Object;",
-            parameters = listOf("Ljava/lang/Object;"),
+            definingClass = "Ljava/lang/Object;",
+            name = "getClass",
         ),
         methodCall(
-            definingClass = "Ljh4;",
-            name = "getValue",
-            returnType = "Ljava/lang/Object;",
-            parameters = listOf(),
+            definingClass = "Ljava/util/HashMap;",
+            name = "get",
         ),
     ),
 )
 
 /**
- * SkuStateInitFingerprint → cz.v(List)V
+ * SkuStateInitFingerprint
  *
- * Initialises one jh4 StateFlow per SKU from SharedPreferences at startup.
- * Reads getInt("SKU_"+skuId, 0) and calls Lgy;->values() to map ordinal → enum.
+ * Initialises one StateFlow per SKU from SharedPreferences at startup.
+ * Reads getInt("SKU_"+skuId, 0) and maps ordinal → gy enum.
  *
- * v6.22.0: uy.c(List)V — Ley;->values()[Ley;
- * v6.23.1: cz.v(List)V — Lgy;->values()[Lgy;  (enum Ley renamed Lgy)
+ * v6.22.0: uy.c(List)V  — Ley;->values()[Ley;
+ * v6.23.1: cz.v(List)V  — Lgy;->values()[Lgy;  (enum Ley→Lgy)
+ * v6.23.2: ez.f(List)V  — Lgy;->values()[Lgy;  (cz→ez, gy UNCHANGED)
  *
- * Smali (cz.smali line 5276, v6.23.1):
- *   .method public final v(Ljava/util/List;)V
- *     ...
- *     const-string v3, "SKU_"                              ← filter[0]
- *     ...
- *     invoke-interface SharedPreferences;->getInt(S,I)I   ← filter[1]
- *     move-result v1                                       ← patch target: replace with const/4 v1, 0x3
- *     invoke-static {}, Lgy;->values()[Lgy;               ← filter[2]  (was Ley;->values)
+ * Filters unchanged from v6.23.1 — all stable:
+ *   string("SKU_")                          — billing key prefix, never changes
+ *   SharedPreferences.getInt(String, I)     — standard Android SDK
+ *   Lgy;->values()[Lgy;                     — gy enum name stable since v6.23.1
  *
- * Patch: replace move-result v1 at (filter[1].index + 1) with const/4 v1, 0x3
- * → forces every jh4 StateFlow to initialise as PURCHASED_AND_ACKNOWLEDGED (ordinal 3).
+ * Patch: replace move-result at (getInt.index + 1) with const/4 vREG, 0x3
+ * → forces every SKU StateFlow to initialise as PURCHASED_AND_ACKNOWLEDGED (ordinal 3).
  */
 internal object SkuStateInitFingerprint : Fingerprint(
     returnType = "V",
@@ -174,24 +144,23 @@ internal object SkuStateInitFingerprint : Fingerprint(
 )
 
 /**
- * SkuStateWriteFingerprint → cz.u(String, Lgy;)V
+ * SkuStateWriteFingerprint
  *
- * Updates jh4 StateFlow and SharedPreferences when BillingClient reports a
- * purchase state change. Returning early blocks the overwrite of the
- * PURCHASED_AND_ACKNOWLEDGED value set by SkuStateInitFingerprint.
+ * Updates StateFlow and SharedPreferences when BillingClient reports a state change.
+ * Returning early blocks overwrite of the PURCHASED_AND_ACKNOWLEDGED value.
  *
- * v6.22.0: uy.u(String, Ley;)V — putInt + Lwf4;->h(Object,Object)Z CAS
- * v6.23.1: cz.u(String, Lgy;)V — putInt + Ljh4;->i(Object,Object)Z CAS
- *          (wf4 → jh4, CAS method h → i, enum Ley → Lgy)
+ * v6.22.0: uy.u(String, Ley;)V  — putInt + Lwf4;->h()
+ * v6.23.1: cz.u(String, Lgy;)V  — putInt + Ljh4;->i()   (wf4→jh4, h→i, Ley→Lgy)
+ * v6.23.2: ez.r(String, Lgy;)V  — putInt + Lsh4;->e()   (jh4→sh4, i→e, cz→ez)
  *
- * Smali (cz.smali line 5165, v6.23.1):
- *   .method public final u(Ljava/lang/String;Lgy;)V
- *     SharedPreferences;->edit()
- *     SharedPreferences$Editor;->putInt(String,I)               ← filter[0]
- *     SharedPreferences$Editor;->apply()
- *     HashMap;->get(Object)
- *     check-cast Ljh4;
- *     Ljh4;->i(Object,Object)Z                                  ← filter[1]  (was wf4.h)
+ * Previous filters used Ljh4;->i() — BROKE v6.23.1→v6.23.2.
+ * Now uses only stable anchors:
+ *
+ *   SharedPreferences$Editor.putInt — standard Android SDK
+ *   HashMap.get(Object)             — reads StateFlow by SKU key
+ *
+ * The StateFlow CAS method (wf4.h / jh4.i / sh4.e) changes every version — removed.
+ * params=[String, Lgy;] pins this to the write method (gy is stable since v6.23.1).
  */
 internal object SkuStateWriteFingerprint : Fingerprint(
     returnType = "V",
@@ -205,10 +174,10 @@ internal object SkuStateWriteFingerprint : Fingerprint(
             parameters = listOf("Ljava/lang/String;", "I"),
         ),
         methodCall(
-            definingClass = "Ljh4;",
-            name = "i",
-            returnType = "Z",
-            parameters = listOf("Ljava/lang/Object;", "Ljava/lang/Object;"),
+            definingClass = "Ljava/util/HashMap;",
+            name = "get",
+            returnType = "Ljava/lang/Object;",
+            parameters = listOf("Ljava/lang/Object;"),
         ),
     ),
 )
