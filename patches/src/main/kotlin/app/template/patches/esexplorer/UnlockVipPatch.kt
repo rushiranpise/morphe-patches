@@ -25,7 +25,7 @@ import app.template.patches.shared.returnEarly
 @Suppress("unused")
 val esExplorerUnlockVipPatch = bytecodePatch(
     name = "Unlock VIP Lifetime",
-    description = "Unlocks VIP lifetime features in ES File Explorer.",
+    description = "Unlocks VIP lifetime features in ES File Explorer Phone and TV.",
     default = true,
 ) {
     compatibleWith(ES_EXPLORER_COMPATIBILITY)

@@ -34,7 +34,7 @@ import app.template.patches.shared.returnEarly
 @Suppress("unused")
 val protonVpnPremiumPatch = bytecodePatch(
     name = "Unlock VPN Plus",
-    description = "Injects max tier (3=PMTeam) into VpnUser at construction for all UI unlocks, while routing connections through free servers for server-side compatibility.",
+    description = "Injects max tier (3=PMTeam) into VpnUser at construction for all UI unlocks, while routing connections through free servers for server-side compatibility. Phone and TV",
 ) {
     compatibleWith(PROTONVPN_COMPATIBILITY)
 
