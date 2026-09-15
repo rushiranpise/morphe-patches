@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.21.5** (`main`) · **331 patches** across **232 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.22.0-dev.1** (`dev`) · **318 patches** across **229 apps** · back to [README](README.md)
 
 ---
 
@@ -39,7 +39,7 @@
 
 ## AAEnabler (com.aaenabler.app)
 
-**Supported versions:** `v1.0.11`
+**Supported versions:** `v1.0.12`
 
 | Patch | Details |
 |---|---|
@@ -139,7 +139,7 @@
 
 ## Amazon India (in.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.16.2.300`
+**Supported versions:** `32.17.0.300`
 
 | Patch | Details |
 |---|---|
@@ -156,7 +156,7 @@
 
 ## Amazon Shopping (com.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.13.2.100`
+**Supported versions:** `32.17.0.100`
 
 | Patch | Details |
 |---|---|
@@ -188,16 +188,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Unlocks the Remove Ads purchase in Ampere by bypassing the isProVersion getter and purchase verifier. |
-
----
-
-## Android Developer Verifier (com.google.android.verifier)
-
-**Supported versions:** `1.0.958871038`
-
-| Patch | Details |
-|---|---|
-| **Bypass developer verification** | Forces all APK install verification sessions to be bypassed, preventing the verifier from blocking sideloaded or unsigned apps on Android 16+ devices. Only available for root (mount) installations.Important: Requires pushing the patched APK as a system app replacement (e.g. via Magisk module or ADB with root)since the original holds DEVELOPER_VERIFICATION_AGENT permission. ADB installs are exempt from verification regardless. |
 
 ---
 
@@ -313,7 +303,7 @@
 
 ## Battery Guru (com.paget96.batteryguru)
 
-**Supported versions:** `2.5.0.7`
+**Supported versions:** `2.5.0.8`
 
 | Patch | Details |
 |---|---|
@@ -353,7 +343,7 @@
 
 ## Block Puzzle (game.puzzle.blockpuzzle)
 
-**Supported versions:** `6.0`
+**Supported versions:** `6.1`
 
 | Patch | Details |
 |---|---|
@@ -443,7 +433,7 @@
 
 ## BubbleUPnP (com.bubblesoft.android.bubbleupnp)
 
-**Supported versions:** `4.6.5.1`
+**Supported versions:** `4.6.6`
 
 | Patch | Details |
 |---|---|
@@ -453,7 +443,7 @@
 
 ## BuzzCast (com.guochao.faceshow)
 
-**Supported versions:** `3.2.86`
+**Supported versions:** `3.2.87`
 
 | Patch | Details |
 |---|---|
@@ -504,7 +494,7 @@
 
 ## Canva (com.canva.editor)
 
-**Supported versions:** `2.375.0`
+**Supported versions:** `2.377.0`
 
 | Patch | Details |
 |---|---|
@@ -514,7 +504,7 @@
 
 ## CAPod (eu.darken.capod)
 
-**Supported versions:** `5.2.3-rc0`
+**Supported versions:** `5.2.5-rc0`
 
 | Patch | Details |
 |---|---|
@@ -564,7 +554,7 @@
 
 ## Charge Meter (dev.km.android.chargemeter)
 
-**Supported versions:** `3.0.0`
+**Supported versions:** `3.0.1`
 
 | Patch | Details |
 |---|---|
@@ -584,7 +574,7 @@
 
 ## Citymapper (com.citymapper.app.release)
 
-**Supported versions:** `11.57.2`
+**Supported versions:** `11.58`
 
 | Patch | Details |
 |---|---|
@@ -604,7 +594,7 @@
 
 ## Clue Period & Cycle Tracker (com.clue.android)
 
-**Supported versions:** `267.0`
+**Supported versions:** `269.1`
 
 | Patch | Details |
 |---|---|
@@ -618,7 +608,7 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlocks ColorNote premium and removes advertising ID permissions. |
+| **Unlock Premium** | Unlocks ColorNote premium by forcing license validity and subscription checks to return true. |
 
 ---
 
@@ -644,7 +634,7 @@
 
 ## Crime Radar (com.newsbreak.crimeradar)
 
-**Supported versions:** `26.35.0`
+**Supported versions:** `26.36.1`
 
 | Patch | Details |
 |---|---|
@@ -731,8 +721,7 @@
 
 | Patch | Details |
 |---|---|
-| **Disable Tracking** | Disables UMeng analytics and crash reporting in ES File Explorer. |
-| **Unlock VIP Lifetime** | Unlocks VIP lifetime features in ES File Explorer. |
+| **Unlock VIP Lifetime** | Unlocks VIP lifetime features in ES File Explorer Phone and TV. |
 
 ---
 
@@ -768,7 +757,7 @@
 
 ## Fitbod (com.fitbod.fitbod)
 
-**Supported versions:** `8.31.0-4`
+**Supported versions:** `8.33.0-0`
 
 | Patch | Details |
 |---|---|
@@ -778,7 +767,7 @@
 
 ## Fitia (com.nutrition.technologies.Fitia)
 
-**Supported versions:** `25.1.14`
+**Supported versions:** `26.0.1`
 
 | Patch | Details |
 |---|---|
@@ -798,7 +787,7 @@
 
 ## Flightradar24 (com.flightradar24free)
 
-**Supported versions:** `11.9.0`
+**Supported versions:** `11.10.0`
 
 | Patch | Details |
 |---|---|
@@ -818,7 +807,7 @@
 
 ## Flud (com.delphicoder.flud)
 
-**Supported versions:** `2.0.15`
+**Supported versions:** `2.0.16`
 
 | Patch | Details |
 |---|---|
@@ -848,12 +837,13 @@
 
 ## Google Photos (com.google.android.apps.photos)
 
-**Supported versions:** `7.90.0.971743778`
+**Supported versions:** `7.92.0.977185651`
 
 | Patch | Details |
 |---|---|
 | **AMOLED dark theme** | Makes Google Photos dark surfaces true black. |
 | **Change package name** | Installs Google Photos beside the system Photos app by changing package, permissions, providers, and app name.<br><sub>Options: Package name, App name</sub> |
+| **Custom branding** | Adds an option to replace the Google Photos launcher icon.<br><sub>Options: Custom icon</sub> |
 | **Enable DCIM folders backup control** | Allows controlling Camera and other DCIM folder backup individually. |
 | **Fix DCIM folder classification** | Prevents non-Camera DCIM folders from being grouped as Camera. |
 | **GmsCore support** | Adds MicroG/GmsCore support metadata for Google Photos. |
@@ -923,7 +913,7 @@
 
 ## Home Workout (homeworkout.homeworkouts.noequipment)
 
-**Supported versions:** `1.7.8`
+**Supported versions:** `1.7.9`
 
 | Patch | Details |
 |---|---|
@@ -933,7 +923,7 @@
 
 ## HTTP Sniffer (com.anetcapture.mock)
 
-**Supported versions:** `2.3.8-ad_mob`
+**Supported versions:** `2.4.1-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -963,7 +953,7 @@
 
 ## Inmigreat (com.changayaf.inmigreat)
 
-**Supported versions:** `2.3.53`
+**Supported versions:** `2.3.63`
 
 | Patch | Details |
 |---|---|
@@ -983,7 +973,7 @@
 
 ## Inure App Manager (GitHub) (app.simple.inure)
 
-**Supported versions:** `build107.2.1`
+**Supported versions:** `build107.2.2`
 
 | Patch | Details |
 |---|---|
@@ -993,7 +983,7 @@
 
 ## JEFIT (je.fit)
 
-**Supported versions:** `17.4.1`
+**Supported versions:** `17.4.4`
 
 | Patch | Details |
 |---|---|
@@ -1033,7 +1023,7 @@
 
 ## KineStop (com.urbandroid.kinestop)
 
-**Supported versions:** `5.1`
+**Supported versions:** `5.5`
 
 | Patch | Details |
 |---|---|
@@ -1043,7 +1033,7 @@
 
 ## komoot (de.komoot.android)
 
-**Supported versions:** `2026.34.2`
+**Supported versions:** `2026.37.5`
 
 | Patch | Details |
 |---|---|
@@ -1103,7 +1093,7 @@
 
 ## m-Indicator (com.mobond.mindicator)
 
-**Supported versions:** `18.0.364`
+**Supported versions:** `18.0.365`
 
 | Patch | Details |
 |---|---|
@@ -1133,7 +1123,7 @@
 
 ## MANGA Plus by SHUEISHA (jp.co.shueisha.mangaplus)
 
-**Supported versions:** `2.6.2`
+**Supported versions:** `2.6.4`
 
 | Patch | Details |
 |---|---|
@@ -1163,7 +1153,7 @@
 
 ## MEGA (mega.privacy.android.app)
 
-**Supported versions:** `16.11.1(262250408)(9a6c828835)`
+**Supported versions:** `16.12(262370820)(dcdf0a7f27)`
 
 | Patch | Details |
 |---|---|
@@ -1295,7 +1285,7 @@
 
 ## MyRadar (com.acmeaom.android.myradar)
 
-**Supported versions:** `8.73.0`
+**Supported versions:** `8.73.1`
 
 | Patch | Details |
 |---|---|
@@ -1305,7 +1295,7 @@
 
 ## NAVITIME (com.navitime.inbound.walk)
 
-**Supported versions:** `12.1.1`
+**Supported versions:** `12.2.2`
 
 | Patch | Details |
 |---|---|
@@ -1325,7 +1315,7 @@
 
 ## NetMonster (cz.mroczis.netmonster)
 
-**Supported versions:** `3.4.1`
+**Supported versions:** `3.4.3`
 
 | Patch | Details |
 |---|---|
@@ -1345,7 +1335,7 @@
 
 ## NewsBreak (com.particlenews.newsbreak)
 
-**Supported versions:** `26.35.0`
+**Supported versions:** `26.37.1`
 
 | Patch | Details |
 |---|---|
@@ -1385,7 +1375,7 @@
 
 ## NYT Games (com.nytimes.crossword)
 
-**Supported versions:** `6.39.0`
+**Supported versions:** `6.41.0`
 
 | Patch | Details |
 |---|---|
@@ -1415,7 +1405,7 @@
 
 ## Octi (eu.darken.octi)
 
-**Supported versions:** `1.2.1-rc0`
+**Supported versions:** `1.2.2-rc0`
 
 | Patch | Details |
 |---|---|
@@ -1505,7 +1495,7 @@
 
 ## Photo Editor (com.iudesk.android.photo.editor)
 
-**Supported versions:** `13.6`
+**Supported versions:** `14.0`
 
 | Patch | Details |
 |---|---|
@@ -1515,7 +1505,7 @@
 
 ## Pialytic (verbosus.pialytic)
 
-**Supported versions:** `1.3.1`
+**Supported versions:** `1.3.2`
 
 | Patch | Details |
 |---|---|
@@ -1525,7 +1515,7 @@
 
 ## PicsArt (com.picsart.studio)
 
-**Supported versions:** `30.6.4`
+**Supported versions:** `30.7.8`
 
 | Patch | Details |
 |---|---|
@@ -1547,7 +1537,7 @@
 
 ## PictureThis (cn.danatech.xingseus)
 
-**Supported versions:** `5.34.0`
+**Supported versions:** `5.35.0`
 
 | Patch | Details |
 |---|---|
@@ -1557,7 +1547,7 @@
 
 ## pillo (xyz.rtrvr.pillo)
 
-**Supported versions:** `0.6.18`
+**Supported versions:** `0.6.19`
 
 | Patch | Details |
 |---|---|
@@ -1567,7 +1557,7 @@
 
 ## Pixel Habit Tracker (com.pixel.al.pixelhabittracker)
 
-**Supported versions:** `2.3.1`
+**Supported versions:** `2.5.0`
 
 | Patch | Details |
 |---|---|
@@ -1607,7 +1597,7 @@
 
 ## PodsLink (net.podslink)
 
-**Supported versions:** `1.3.9`
+**Supported versions:** `1.4.0`
 
 | Patch | Details |
 |---|---|
@@ -1635,17 +1625,6 @@
 
 ---
 
-## Proton Mail (ch.protonmail.android)
-
-**Supported versions:** `7.11.4`
-
-| Patch | Details |
-|---|---|
-| **Unlock Custom Time Picker** | Unlocks the custom scheduled send date/time picker for all users. |
-| **Unlock Unlimited Plan** | Unlocks Proton Mail Unlimited plan features by always returning UpsellingVisibility.Hidden. |
-
----
-
 ## Proton Pass (proton.android.pass)
 
 **Supported versions:** `1.40.3`
@@ -1662,7 +1641,7 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock VPN Plus** | Injects max tier (3=PMTeam) into VpnUser at construction for all UI unlocks, while routing connections through free servers for server-side compatibility. |
+| **Unlock VPN Plus** | Injects max tier (3=PMTeam) into VpnUser at construction for all UI unlocks, while routing connections through free servers for server-side compatibility. Phone and TV |
 
 ---
 
@@ -1788,7 +1767,7 @@
 
 ## Scoopz (com.localaiapp.scoops)
 
-**Supported versions:** `3.35.0`
+**Supported versions:** `3.36.0`
 
 | Patch | Details |
 |---|---|
@@ -1798,7 +1777,7 @@
 
 ## SCRL (com.appostrophe.scrl)
 
-**Supported versions:** `1.24.1`
+**Supported versions:** `1.27`
 
 | Patch | Details |
 |---|---|
@@ -1828,11 +1807,11 @@
 
 ## Server Auditor (com.server.auditor.ssh.client)
 
-**Supported versions:** `7.8.2`
+**Supported versions:** `7.9.0`
 
 | Patch | Details |
 |---|---|
-| **Unlock Business Premium** | Unlocks Business tier by forcing the UserType mapper to always return UserType$BusinessTeamOwner. |
+| **Server Auditor Premium** | Unlocks Pro features by forcing the UserType mapper to always return UserType$Pro. |
 
 ---
 
@@ -1858,7 +1837,7 @@
 
 ## Snipd (ai.topicfinder.podcastdiscovery)
 
-**Supported versions:** `4.1.19`
+**Supported versions:** `4.1.21`
 
 | Patch | Details |
 |---|---|
@@ -1898,7 +1877,7 @@
 
 ## Speedtest (org.zwanoo.android.speedtest)
 
-**Supported versions:** `7.0.7`
+**Supported versions:** `7.1.0`
 
 | Patch | Details |
 |---|---|
@@ -1938,7 +1917,7 @@
 
 ## Stargazing Hub (com.twtapp)
 
-**Supported versions:** `3.4.4`
+**Supported versions:** `3.5.0`
 
 | Patch | Details |
 |---|---|
@@ -1958,7 +1937,7 @@
 
 ## Sticker.ly (com.snowcorp.stickerly.android)
 
-**Supported versions:** `3.37.0`
+**Supported versions:** `3.37.1`
 
 | Patch | Details |
 |---|---|
@@ -1968,7 +1947,7 @@
 
 ## Strava (com.strava)
 
-**Supported versions:** `477.14`
+**Supported versions:** `480.15`
 
 | Patch | Details |
 |---|---|
@@ -2019,7 +1998,7 @@
 
 ## Telegram (org.telegram.messenger)
 
-**Supported versions:** `12.10.0`
+**Supported versions:** `12.10.1`
 
 | Patch | Details |
 |---|---|
@@ -2042,7 +2021,7 @@
 
 ## Telegram Plus (org.telegram.plus)
 
-**Supported versions:** `12.9.2.0`
+**Supported versions:** `12.10.1.1`
 
 | Patch | Details |
 |---|---|
@@ -2066,7 +2045,7 @@
 
 ## Telegram Web (org.telegram.messenger.web)
 
-**Supported versions:** `12.10.0`
+**Supported versions:** `12.10.1`
 
 | Patch | Details |
 |---|---|
@@ -2089,7 +2068,7 @@
 
 ## The Athletic (com.theathletic)
 
-**Supported versions:** `13.148.0`
+**Supported versions:** `13.150.0`
 
 | Patch | Details |
 |---|---|
@@ -2099,30 +2078,11 @@
 
 ## The Weather Channel (com.weather.Weather)
 
-**Supported versions:** `16.19.1`
+**Supported versions:** `16.21.1`
 
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Unlocks The Weather Channel's Premium and Premium Pro subscription tiers. Enables the ad-free experience, extended 15-day hourly forecast, real-feel temperature, air quality index, minute-by-minute precipitation, severe weather notifications, and radar overlays gated behind the subscription paywall. |
-
----
-
-## TikTok Lite (com.tiktok.lite.go)
-
-**Supported versions:** `44.9.52`
-
-| Patch | Details |
-|---|---|
-| **Disable Login Requirement** | Removes TikTok Lite mandatory login gate so the app can be browsed without an account. |
-| **Disable Telemetry** | Disables ByteDance analytics by blocking LiteApplogServiceImpl, AppLogNetworkClient, and startup tracker init tasks. |
-| **Downloads** | Enables downloading all videos |
-| **Enable Duet and Stitch** | Unlocks Duet and Stitch on all videos regardless of creator permission settings. |
-| **Feed Filter** | Removes ads, sponsored content, and commerce posts from the TikTok Lite home feed. |
-| **Hide CAPTCHA Popups** | Suppresses browsing CAPTCHA dialogs from SecApiImpl. |
-| **Hide Live Cards** | Removes live stream cards from the TikTok Lite home feed. |
-| **Remove Ads** | Removes feed ads, splash ads, and soft ads from TikTok Lite. |
-| **Sanitize Share URLs** | Removes tracking parameters (utm_campaign, share_link_id) from shared links. |
-| **Stop Video Looping** | Prevents videos from looping automatically after playback ends. |
 
 ---
 
@@ -2208,7 +2168,7 @@
 
 ## Transit (com.thetransitapp.droid)
 
-**Supported versions:** `6.3.0`
+**Supported versions:** `6.3.2`
 
 | Patch | Details |
 |---|---|
@@ -2238,7 +2198,7 @@
 
 ## UDisc (com.regasoftware.udisc)
 
-**Supported versions:** `24.2.10`
+**Supported versions:** `24.2.12`
 
 | Patch | Details |
 |---|---|
@@ -2268,7 +2228,7 @@
 
 ## USB Hotspot (kha.prog.usbhotspot)
 
-**Supported versions:** `1.6`
+**Supported versions:** `1.7`
 
 | Patch | Details |
 |---|---|
@@ -2328,7 +2288,7 @@
 
 ## Weawow (com.weawow)
 
-**Supported versions:** `7.1.8`
+**Supported versions:** `7.1.9`
 
 | Patch | Details |
 |---|---|

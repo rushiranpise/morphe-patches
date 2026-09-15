@@ -1,3 +1,14 @@
+## [1.22.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.21.5...v1.22.0-dev.1) (2026-09-15)
+
+### 🐛 Bug Fixes
+
+* build ([81207e1](https://github.com/rushiranpise/morphe-patches/commit/81207e12513860720ac4f56c90d582a0c7e008b6))
+* update few apps ([cf6ac31](https://github.com/rushiranpise/morphe-patches/commit/cf6ac31af3126935169fa7f3dae7fff56451416d))
+
+### ✨ New Features
+
+* **google-photos:** add custom launcher branding ([e4f5e87](https://github.com/rushiranpise/morphe-patches/commit/e4f5e87e6afe0f04c257c78feccad66895bd106c))
+
 ## [1.21.5](https://github.com/rushiranpise/morphe-patches/compare/v1.21.4...v1.21.5) (2026-09-08)
 
 ### 🐛 Bug Fixes

@@ -4,6 +4,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.morphe.patcher.patch.resourcePatch
 import app.template.patches.shared.Constants.COLORNOTE_COMPATIBILITY
+import app.template.patches.shared.returnEarly
 import org.w3c.dom.Element
 
 private val adPermissions = setOf(
@@ -29,19 +30,19 @@ private val stripAdIdPatch = resourcePatch {
 @Suppress("unused")
 val unlockPremiumPatch = bytecodePatch(
     name = "Unlock Premium",
-    description = "Unlocks ColorNote premium and removes advertising ID permissions.",
+    description = "Unlocks ColorNote premium by forcing license validity and subscription checks to return true.",
     default = true,
 ) {
     compatibleWith(COLORNOTE_COMPATIBILITY)
     dependsOn(stripAdIdPatch)
 
     execute {
-        IsPremiumFingerprint.method.addInstructions(
-            0,
-            """
-                const/4 v0, 0x1
-                return v0
-            """.trimIndent(),
-        )
+        // Primary: sm.F4.a.i()Z — root of isPremium chain.
+        // returnEarly(true) = license always valid.
+        IsPremiumFingerprint.method.returnEarly(true)
+
+        // Belt-and-suspenders: sm.d5.y.i()Z — isSubscribed().
+        // Covers null short-circuit path that bypasses F4.a.i().
+        IsSubscribedFingerprint.method.returnEarly(true)
     }
 }
