@@ -4,13 +4,23 @@ import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.ResourcePatchContext
 import app.morphe.patcher.patch.resourcePatch
 import app.template.patches.shared.Constants.LIFE360_COMPATIBILITY
+import app.template.patches.shared.childElementsSequence
 import org.w3c.dom.Element
 import java.io.File
 
 private const val ANDROID_ICON_ATTRIBUTE = "android:icon"
 private const val ANDROID_ROUND_ICON_ATTRIBUTE = "android:roundIcon"
+private const val ANDROID_DRAWABLE_ATTRIBUTE = "android:drawable"
 private const val MONOCHROME_DRAWABLE_NAME = "morphe_life360_monochrome"
 private const val MONOCHROME_DRAWABLE_REF = "@drawable/$MONOCHROME_DRAWABLE_NAME"
+private const val DEFAULT_VIEWPORT = "108"
+private const val DEFAULT_ICON_DP = "108dp"
+private const val FILL_TYPE_EVEN_ODD = "evenOdd"
+private const val QUALIFIER_V26 = "anydpi-v26"
+private const val QUALIFIER_V33 = "anydpi-v33"
+private const val ACTION_MAIN = "android.intent.action.MAIN"
+private const val CATEGORY_LAUNCHER = "android.intent.category.LAUNCHER"
+private const val CATEGORY_LEANBACK_LAUNCHER = "android.intent.category.LEANBACK_LAUNCHER"
 
 /**
  * Fallback Life360 360-spiral glyph, taken from the official launcher
@@ -73,34 +83,17 @@ val life360ThemedIconPatch = resourcePatch(
             val application = document.getElementsByTagName("application").item(0) as? Element
                 ?: throw PatchException("AndroidManifest.xml does not contain an application element.")
 
-            val applicationIcon = application.iconResource()
+            val applicationIcon = application.resourceRef(ANDROID_ICON_ATTRIBUTE)
                 ?: throw PatchException("AndroidManifest.xml application element has no android:icon.")
 
-            launcherIcons[applicationIcon.key] = applicationIcon
-
-            if (application.resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE) == null) {
-                application.setAttribute(ANDROID_ROUND_ICON_ATTRIBUTE, applicationIcon.reference)
-            } else {
-                application.resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE)?.let {
-                    launcherIcons[it.key] = it
-                }
-            }
+            application.patchIconAttributes(applicationIcon, launcherIcons)
 
             for (tagName in listOf("activity", "activity-alias")) {
                 val nodes = document.getElementsByTagName(tagName)
                 for (index in 0 until nodes.length) {
                     val component = nodes.item(index) as? Element ?: continue
-                    if (!component.hasLauncherIntentFilter()) continue
-
-                    val icon = component.resourceRef(ANDROID_ICON_ATTRIBUTE) ?: applicationIcon
-                    launcherIcons[icon.key] = icon
-
-                    if (component.resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE) == null) {
-                        component.setAttribute(ANDROID_ROUND_ICON_ATTRIBUTE, icon.reference)
-                    } else {
-                        component.resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE)?.let {
-                            launcherIcons[it.key] = it
-                        }
+                    if (component.hasLauncherIntent()) {
+                        component.patchIconAttributes(applicationIcon, launcherIcons)
                     }
                 }
             }
@@ -109,7 +102,6 @@ val life360ThemedIconPatch = resourcePatch(
         val layersByIcon = launcherIcons.values.mapNotNull { icon ->
             resolveAdaptiveLayers(resDirectory, icon)?.let { icon to it }
         }
-
         if (layersByIcon.isEmpty()) {
             throw PatchException(
                 "Could not locate adaptive-icon foreground/background resources for Life360 launcher icons.",
@@ -120,31 +112,18 @@ val life360ThemedIconPatch = resourcePatch(
             .asSequence()
             .mapNotNull { (_, layers) -> extractMonochromeVector(resDirectory, layers.foreground) }
             .firstOrNull()
-            ?: fallbackMonochromeVector()
+            ?: buildMonochromeVector(
+                ExtractedVector(DEFAULT_VIEWPORT, DEFAULT_VIEWPORT, DEFAULT_ICON_DP, DEFAULT_ICON_DP),
+                listOf(VectorPath(FALLBACK_LOGO_PATH, FILL_TYPE_EVEN_ODD)),
+            )
 
         resDirectory.resolve("drawable").apply { mkdirs() }
             .resolve("$MONOCHROME_DRAWABLE_NAME.xml")
             .writeText(monochromeVector)
 
         for ((icon, layers) in layersByIcon) {
-            writeAdaptiveIconXml(
-                resDirectory = resDirectory,
-                icon = icon,
-                qualifier = "anydpi-v26",
-                includeMonochrome = false,
-                background = layers.background,
-                foreground = layers.foreground,
-                overwrite = false,
-            )
-            writeAdaptiveIconXml(
-                resDirectory = resDirectory,
-                icon = icon,
-                qualifier = "anydpi-v33",
-                includeMonochrome = true,
-                background = layers.background,
-                foreground = layers.foreground,
-                overwrite = true,
-            )
+            writeAdaptiveIcon(resDirectory, icon, layers, QUALIFIER_V26, monochrome = false)
+            writeAdaptiveIcon(resDirectory, icon, layers, QUALIFIER_V33, monochrome = true)
         }
 
         println(
@@ -155,8 +134,8 @@ val life360ThemedIconPatch = resourcePatch(
 }
 
 private data class ResourceRef(val type: String, val name: String) {
-    val reference: String get() = "@$type/$name"
-    val key: String get() = "$type/$name"
+    val reference = "@$type/$name"
+    val key = "$type/$name"
 }
 
 private data class AdaptiveLayers(val background: String, val foreground: String)
@@ -168,63 +147,91 @@ private data class ExtractedVector(
     val viewportHeight: String,
     val width: String,
     val height: String,
-    val paths: List<VectorPath>,
 )
 
-private fun Element.iconResource(): ResourceRef? = resourceRef(ANDROID_ICON_ATTRIBUTE)
-
-private fun Element.resourceRef(attribute: String): ResourceRef? {
-    val value = getAttribute(attribute)
+private fun parseResourceRef(value: String?): ResourceRef? {
     if (value.isNullOrBlank()) return null
-    return parseResourceRef(value)
-}
-
-private fun parseResourceRef(value: String): ResourceRef? {
     val match = resourceRefRegex.matchEntire(value.trim()) ?: return null
     val type = match.groupValues[2]
     val name = match.groupValues[3]
-    if (type == "android") return null
-    return ResourceRef(type, name)
+    return if (type == "android") null else ResourceRef(type, name)
+}
+
+private fun Element.resourceRef(attribute: String): ResourceRef? =
+    parseResourceRef(getAttribute(attribute))
+
+private fun Element.patchIconAttributes(
+    fallback: ResourceRef,
+    icons: MutableMap<String, ResourceRef>,
+) {
+    val icon = resourceRef(ANDROID_ICON_ATTRIBUTE) ?: fallback
+    icons[icon.key] = icon
+    val roundIcon = resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE)
+    if (roundIcon == null) {
+        setAttribute(ANDROID_ROUND_ICON_ATTRIBUTE, icon.reference)
+    } else {
+        icons[roundIcon.key] = roundIcon
+    }
+}
+
+private fun Element.hasLauncherIntent(): Boolean {
+    for (filter in childElementsSequence()) {
+        if (filter.tagName != "intent-filter") continue
+        var hasMainAction = false
+        var hasLauncherCategory = false
+        for (child in filter.childElementsSequence()) {
+            val name = child.getAttribute("android:name")
+            if (child.tagName == "action" && name == ACTION_MAIN) {
+                hasMainAction = true
+            }
+            if (
+                child.tagName == "category" &&
+                (name == CATEGORY_LAUNCHER || name == CATEGORY_LEANBACK_LAUNCHER)
+            ) {
+                hasLauncherCategory = true
+            }
+        }
+        if (hasMainAction && hasLauncherCategory) return true
+    }
+    return false
 }
 
 private fun ResourcePatchContext.resolveAdaptiveLayers(
     resDirectory: File,
     icon: ResourceRef,
 ): AdaptiveLayers? {
-    val xmlFiles = resDirectory.findResourceXml(icon.type, icon.name)
-    for (xmlFile in xmlFiles) {
-        val layers = readAdaptiveLayers(xmlFile)
-        if (layers != null) return layers
-    }
-
-    val background = siblingResource(resDirectory, icon, "background") ?: return null
-    val foreground = siblingResource(resDirectory, icon, "foreground") ?: return null
-    return AdaptiveLayers(background.reference, foreground.reference)
-}
-
-private fun ResourcePatchContext.readAdaptiveLayers(xmlFile: File): AdaptiveLayers? {
-    xmlFile.inputStream().use { input ->
-        document(input).use { document ->
-            val root = document.documentElement ?: return null
-            if (root.tagName != "adaptive-icon") return null
-
-            val background = root.firstChildElement("background")
-                ?.getAttribute("android:drawable")
-                ?.takeIf { it.isNotBlank() }
-                ?: return null
-            val foreground = root.firstChildElement("foreground")
-                ?.getAttribute("android:drawable")
-                ?.takeIf { it.isNotBlank() }
-                ?: return null
-
-            return AdaptiveLayers(background, foreground)
+    for (xmlFile in resDirectory.findResourceXml(icon.type, icon.name)) {
+        xmlFile.inputStream().use { input ->
+            document(input).use { document ->
+                val root = document.documentElement
+                if (root != null && root.tagName == "adaptive-icon") {
+                    var background: String? = null
+                    var foreground: String? = null
+                    for (child in root.childElementsSequence()) {
+                        val drawable = child.getAttribute(ANDROID_DRAWABLE_ATTRIBUTE)
+                        if (drawable.isBlank()) continue
+                        when (child.tagName) {
+                            "background" -> background = drawable
+                            "foreground" -> foreground = drawable
+                        }
+                    }
+                    if (background != null && foreground != null) {
+                        return AdaptiveLayers(background, foreground)
+                    }
+                }
+            }
         }
     }
-}
 
-private fun siblingResource(resDirectory: File, icon: ResourceRef, suffix: String): ResourceRef? {
-    val candidate = ResourceRef(icon.type, "${icon.name}_$suffix")
-    return candidate.takeIf { resDirectory.findResourceXml(it.type, it.name).isNotEmpty() }
+    val background = ResourceRef(icon.type, "${icon.name}_background")
+    val foreground = ResourceRef(icon.type, "${icon.name}_foreground")
+    val hasBackground = resDirectory.findResourceXml(background.type, background.name).isNotEmpty()
+    val hasForeground = resDirectory.findResourceXml(foreground.type, foreground.name).isNotEmpty()
+    return if (hasBackground && hasForeground) {
+        AdaptiveLayers(background.reference, foreground.reference)
+    } else {
+        null
+    }
 }
 
 private fun ResourcePatchContext.extractMonochromeVector(
@@ -232,56 +239,57 @@ private fun ResourcePatchContext.extractMonochromeVector(
     foregroundRef: String,
 ): String? {
     val parsed = parseResourceRef(foregroundRef) ?: return null
-    val xmlFiles = resDirectory.findResourceXml(parsed.type, parsed.name)
-    for (xmlFile in xmlFiles) {
-        val vector = readVector(xmlFile) ?: continue
-        val logoPaths = selectLogoPaths(vector.paths)
-        if (logoPaths.isEmpty()) continue
-        return buildMonochromeVector(vector, logoPaths)
-    }
-    return null
-}
+    for (xmlFile in resDirectory.findResourceXml(parsed.type, parsed.name)) {
+        val monochrome = xmlFile.inputStream().use { input ->
+            document(input).use { document ->
+                val root = document.documentElement
+                if (root == null || root.tagName != "vector") {
+                    null
+                } else {
+                    val paths = mutableListOf<VectorPath>()
+                    val nodes = root.getElementsByTagName("path")
+                    for (index in 0 until nodes.length) {
+                        val element = nodes.item(index) as? Element ?: continue
+                        val pathData = element.getAttribute("android:pathData")
+                        if (pathData.isBlank()) continue
+                        val fillType = when (val raw = element.getAttribute("android:fillType").trim()) {
+                            "", "0" -> null
+                            "1", FILL_TYPE_EVEN_ODD -> FILL_TYPE_EVEN_ODD
+                            "nonZero" -> "nonZero"
+                            else -> raw.takeIf { it.isNotEmpty() }
+                        }
+                        paths += VectorPath(pathData, fillType)
+                    }
 
-private fun ResourcePatchContext.readVector(xmlFile: File): ExtractedVector? {
-    xmlFile.inputStream().use { input ->
-        document(input).use { document ->
-            val root = document.documentElement ?: return null
-            if (root.tagName != "vector") return null
+                    val unique = paths.distinctBy { it.pathData }
+                    if (unique.isEmpty()) {
+                        null
+                    } else {
+                        val shortest = unique.minOf { it.pathData.length }
+                        // Drop vector-export stroke expansions, which are typically far longer
+                        // than the filled logo glyph they outline.
+                        val logoPaths = unique.filter { path ->
+                            path.pathData.length >= 40 && path.pathData.length <= shortest * 2
+                        }.ifEmpty { listOf(unique.minBy { it.pathData.length }) }
 
-            val paths = root.getElementsByTagName("path").let { nodes ->
-                (0 until nodes.length).mapNotNull { index ->
-                    val element = nodes.item(index) as? Element ?: return@mapNotNull null
-                    val pathData = element.getAttribute("android:pathData")
-                    if (pathData.isBlank()) return@mapNotNull null
-                    VectorPath(
-                        pathData = pathData,
-                        fillType = normalizeFillType(element.getAttribute("android:fillType")),
-                    )
+                        buildMonochromeVector(
+                            ExtractedVector(
+                                viewportWidth = root.getAttribute("android:viewportWidth")
+                                    .ifBlank { DEFAULT_VIEWPORT },
+                                viewportHeight = root.getAttribute("android:viewportHeight")
+                                    .ifBlank { DEFAULT_VIEWPORT },
+                                width = root.getAttribute("android:width").ifBlank { DEFAULT_ICON_DP },
+                                height = root.getAttribute("android:height").ifBlank { DEFAULT_ICON_DP },
+                            ),
+                            logoPaths,
+                        )
+                    }
                 }
             }
-            if (paths.isEmpty()) return null
-
-            return ExtractedVector(
-                viewportWidth = root.getAttribute("android:viewportWidth").ifBlank { "108" },
-                viewportHeight = root.getAttribute("android:viewportHeight").ifBlank { "108" },
-                width = dimensionOrDefault(root.getAttribute("android:width")),
-                height = dimensionOrDefault(root.getAttribute("android:height")),
-                paths = paths,
-            )
         }
+        if (monochrome != null) return monochrome
     }
-}
-
-private fun selectLogoPaths(paths: List<VectorPath>): List<VectorPath> {
-    val unique = paths.distinctBy { it.pathData }
-    if (unique.isEmpty()) return emptyList()
-
-    val shortest = unique.minOf { it.pathData.length }
-    // Drop vector-export stroke expansions, which are typically far longer
-    // than the filled logo glyph they outline.
-    return unique.filter { path ->
-        path.pathData.length >= 40 && path.pathData.length <= shortest * 2
-    }.ifEmpty { listOf(unique.minBy { it.pathData.length }) }
+    return null
 }
 
 private fun buildMonochromeVector(vector: ExtractedVector, paths: List<VectorPath>): String {
@@ -303,31 +311,18 @@ $pathXml
 """
 }
 
-private fun fallbackMonochromeVector(): String = buildMonochromeVector(
-    ExtractedVector(
-        viewportWidth = "108",
-        viewportHeight = "108",
-        width = "108dp",
-        height = "108dp",
-        paths = emptyList(),
-    ),
-    listOf(VectorPath(FALLBACK_LOGO_PATH, "evenOdd")),
-)
-
-private fun writeAdaptiveIconXml(
+private fun writeAdaptiveIcon(
     resDirectory: File,
     icon: ResourceRef,
+    layers: AdaptiveLayers,
     qualifier: String,
-    includeMonochrome: Boolean,
-    background: String,
-    foreground: String,
-    overwrite: Boolean,
+    monochrome: Boolean,
 ) {
-    val directory = resDirectory.resolve("${icon.type}-$qualifier").apply { mkdirs() }
-    val target = directory.resolve("${icon.name}.xml")
-    if (target.exists() && !overwrite) return
+    val target = resDirectory.resolve("${icon.type}-$qualifier").apply { mkdirs() }
+        .resolve("${icon.name}.xml")
+    if (target.exists() && !monochrome) return
 
-    val monochrome = if (includeMonochrome) {
+    val monochromeXml = if (monochrome) {
         "\n    <monochrome android:drawable=\"$MONOCHROME_DRAWABLE_REF\" />"
     } else {
         ""
@@ -336,8 +331,8 @@ private fun writeAdaptiveIconXml(
     target.writeText(
         """<?xml version="1.0" encoding="utf-8"?>
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="${background.xmlEscape()}" />
-    <foreground android:drawable="${foreground.xmlEscape()}" />$monochrome
+    <background android:drawable="${layers.background.xmlEscape()}" />
+    <foreground android:drawable="${layers.foreground.xmlEscape()}" />$monochromeXml
 </adaptive-icon>
 """,
     )
@@ -349,63 +344,6 @@ private fun File.findResourceXml(type: String, name: String): List<File> =
         ?.map { it.resolve("$name.xml") }
         ?.filter { it.isFile }
         .orEmpty()
-
-private fun Element.firstChildElement(tagName: String): Element? {
-    val children = childNodes
-    for (index in 0 until children.length) {
-        val child = children.item(index) as? Element ?: continue
-        if (child.tagName == tagName) return child
-    }
-    return null
-}
-
-private fun Element.hasLauncherIntentFilter(): Boolean {
-    val children = childNodes
-    for (index in 0 until children.length) {
-        val intentFilter = children.item(index) as? Element ?: continue
-        if (intentFilter.tagName == "intent-filter" && intentFilter.isLauncherIntentFilter()) {
-            return true
-        }
-    }
-    return false
-}
-
-private fun Element.isLauncherIntentFilter(): Boolean {
-    var hasMainAction = false
-    var hasLauncherCategory = false
-    val children = childNodes
-
-    for (index in 0 until children.length) {
-        val child = children.item(index) as? Element ?: continue
-        val name = child.getAttribute("android:name")
-
-        if (child.tagName == "action" && name == "android.intent.action.MAIN") {
-            hasMainAction = true
-        }
-
-        if (
-            child.tagName == "category" &&
-            (
-                name == "android.intent.category.LAUNCHER" ||
-                    name == "android.intent.category.LEANBACK_LAUNCHER"
-                )
-        ) {
-            hasLauncherCategory = true
-        }
-    }
-
-    return hasMainAction && hasLauncherCategory
-}
-
-private fun normalizeFillType(value: String): String? = when (value.trim()) {
-    "", "0" -> null
-    "1", "evenOdd" -> "evenOdd"
-    "nonZero" -> "nonZero"
-    else -> value.trim().takeIf { it.isNotEmpty() }
-}
-
-private fun dimensionOrDefault(value: String): String =
-    value.takeIf { it.isNotBlank() } ?: "108dp"
 
 private fun String.xmlEscape(): String =
     replace("&", "&amp;")
