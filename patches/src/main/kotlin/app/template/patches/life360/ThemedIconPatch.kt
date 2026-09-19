@@ -83,7 +83,7 @@ val life360ThemedIconPatch = resourcePatch(
             val application = document.getElementsByTagName("application").item(0) as? Element
                 ?: throw PatchException("AndroidManifest.xml does not contain an application element.")
 
-            val applicationIcon = application.resourceRef(ANDROID_ICON_ATTRIBUTE)
+            val applicationIcon = parseResourceRef(application.getAttribute(ANDROID_ICON_ATTRIBUTE))
                 ?: throw PatchException("AndroidManifest.xml application element has no android:icon.")
 
             application.patchIconAttributes(applicationIcon, launcherIcons)
@@ -157,16 +157,13 @@ private fun parseResourceRef(value: String?): ResourceRef? {
     return if (type == "android") null else ResourceRef(type, name)
 }
 
-private fun Element.resourceRef(attribute: String): ResourceRef? =
-    parseResourceRef(getAttribute(attribute))
-
 private fun Element.patchIconAttributes(
     fallback: ResourceRef,
     icons: MutableMap<String, ResourceRef>,
 ) {
-    val icon = resourceRef(ANDROID_ICON_ATTRIBUTE) ?: fallback
+    val icon = parseResourceRef(getAttribute(ANDROID_ICON_ATTRIBUTE)) ?: fallback
     icons[icon.key] = icon
-    val roundIcon = resourceRef(ANDROID_ROUND_ICON_ATTRIBUTE)
+    val roundIcon = parseResourceRef(getAttribute(ANDROID_ROUND_ICON_ATTRIBUTE))
     if (roundIcon == null) {
         setAttribute(ANDROID_ROUND_ICON_ATTRIBUTE, icon.reference)
     } else {
@@ -196,30 +193,31 @@ private fun Element.hasLauncherIntent(): Boolean {
     return false
 }
 
+private fun ResourcePatchContext.readXmlRoot(xmlFile: File): Element? =
+    xmlFile.inputStream().use { input ->
+        document(input).use { it.documentElement }
+    }
+
 private fun ResourcePatchContext.resolveAdaptiveLayers(
     resDirectory: File,
     icon: ResourceRef,
 ): AdaptiveLayers? {
     for (xmlFile in resDirectory.findResourceXml(icon.type, icon.name)) {
-        xmlFile.inputStream().use { input ->
-            document(input).use { document ->
-                val root = document.documentElement
-                if (root != null && root.tagName == "adaptive-icon") {
-                    var background: String? = null
-                    var foreground: String? = null
-                    for (child in root.childElementsSequence()) {
-                        val drawable = child.getAttribute(ANDROID_DRAWABLE_ATTRIBUTE)
-                        if (drawable.isBlank()) continue
-                        when (child.tagName) {
-                            "background" -> background = drawable
-                            "foreground" -> foreground = drawable
-                        }
-                    }
-                    if (background != null && foreground != null) {
-                        return AdaptiveLayers(background, foreground)
-                    }
-                }
+        val root = readXmlRoot(xmlFile) ?: continue
+        if (root.tagName != "adaptive-icon") continue
+
+        var background: String? = null
+        var foreground: String? = null
+        for (child in root.childElementsSequence()) {
+            val drawable = child.getAttribute(ANDROID_DRAWABLE_ATTRIBUTE)
+            if (drawable.isBlank()) continue
+            when (child.tagName) {
+                "background" -> background = drawable
+                "foreground" -> foreground = drawable
             }
+        }
+        if (background != null && foreground != null) {
+            return AdaptiveLayers(background, foreground)
         }
     }
 
@@ -240,54 +238,42 @@ private fun ResourcePatchContext.extractMonochromeVector(
 ): String? {
     val parsed = parseResourceRef(foregroundRef) ?: return null
     for (xmlFile in resDirectory.findResourceXml(parsed.type, parsed.name)) {
-        val monochrome = xmlFile.inputStream().use { input ->
-            document(input).use { document ->
-                val root = document.documentElement
-                if (root == null || root.tagName != "vector") {
-                    null
-                } else {
-                    val paths = mutableListOf<VectorPath>()
-                    val nodes = root.getElementsByTagName("path")
-                    for (index in 0 until nodes.length) {
-                        val element = nodes.item(index) as? Element ?: continue
-                        val pathData = element.getAttribute("android:pathData")
-                        if (pathData.isBlank()) continue
-                        val fillType = when (val raw = element.getAttribute("android:fillType").trim()) {
-                            "", "0" -> null
-                            "1", FILL_TYPE_EVEN_ODD -> FILL_TYPE_EVEN_ODD
-                            "nonZero" -> "nonZero"
-                            else -> raw.takeIf { it.isNotEmpty() }
-                        }
-                        paths += VectorPath(pathData, fillType)
-                    }
+        val root = readXmlRoot(xmlFile) ?: continue
+        if (root.tagName != "vector") continue
 
-                    val unique = paths.distinctBy { it.pathData }
-                    if (unique.isEmpty()) {
-                        null
-                    } else {
-                        val shortest = unique.minOf { it.pathData.length }
-                        // Drop vector-export stroke expansions, which are typically far longer
-                        // than the filled logo glyph they outline.
-                        val logoPaths = unique.filter { path ->
-                            path.pathData.length >= 40 && path.pathData.length <= shortest * 2
-                        }.ifEmpty { listOf(unique.minBy { it.pathData.length }) }
-
-                        buildMonochromeVector(
-                            ExtractedVector(
-                                viewportWidth = root.getAttribute("android:viewportWidth")
-                                    .ifBlank { DEFAULT_VIEWPORT },
-                                viewportHeight = root.getAttribute("android:viewportHeight")
-                                    .ifBlank { DEFAULT_VIEWPORT },
-                                width = root.getAttribute("android:width").ifBlank { DEFAULT_ICON_DP },
-                                height = root.getAttribute("android:height").ifBlank { DEFAULT_ICON_DP },
-                            ),
-                            logoPaths,
-                        )
-                    }
-                }
+        val paths = mutableListOf<VectorPath>()
+        val nodes = root.getElementsByTagName("path")
+        for (index in 0 until nodes.length) {
+            val element = nodes.item(index) as? Element ?: continue
+            val pathData = element.getAttribute("android:pathData")
+            if (pathData.isBlank()) continue
+            val fillType = when (val raw = element.getAttribute("android:fillType").trim()) {
+                "", "0" -> null
+                "1", FILL_TYPE_EVEN_ODD -> FILL_TYPE_EVEN_ODD
+                "nonZero" -> "nonZero"
+                else -> raw.takeIf { it.isNotEmpty() }
             }
+            paths += VectorPath(pathData, fillType)
         }
-        if (monochrome != null) return monochrome
+
+        val unique = paths.distinctBy { it.pathData }
+        if (unique.isEmpty()) continue
+        val shortest = unique.minOf { it.pathData.length }
+        // Drop vector-export stroke expansions, which are typically far longer
+        // than the filled logo glyph they outline.
+        val logoPaths = unique.filter { path ->
+            path.pathData.length >= 40 && path.pathData.length <= shortest * 2
+        }.ifEmpty { listOf(unique.minBy { it.pathData.length }) }
+
+        return buildMonochromeVector(
+            ExtractedVector(
+                viewportWidth = root.getAttribute("android:viewportWidth").ifBlank { DEFAULT_VIEWPORT },
+                viewportHeight = root.getAttribute("android:viewportHeight").ifBlank { DEFAULT_VIEWPORT },
+                width = root.getAttribute("android:width").ifBlank { DEFAULT_ICON_DP },
+                height = root.getAttribute("android:height").ifBlank { DEFAULT_ICON_DP },
+            ),
+            logoPaths,
+        )
     }
     return null
 }
