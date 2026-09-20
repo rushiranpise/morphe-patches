@@ -1330,14 +1330,6 @@ val RECIPEBRO_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "1.7.21", versionCode = 1502))
     )
 
-val RELANE_COMPATIBILITY = Compatibility(
-        name = "Relane VPN",
-        packageName = "xorsand.relane",
-        apkFileType = ApkFileType.XAPK,
-        appIconColor = 0x1A1A2E,
-        targets = listOf(AppTarget(version = "2026073010.0.0", versionCode = 2026073010))
-    )
-
 val RELINK_COMPATIBILITY = Compatibility(
         name = "re-Link",
         packageName = "com.curiouscompany.relink",
