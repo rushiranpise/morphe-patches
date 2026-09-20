@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.22.0** (`main`) · **318 patches** across **229 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.23.0-dev.1** (`dev`) · **318 patches** across **228 apps** · back to [README](README.md)
 
 ---
 
@@ -1067,6 +1067,7 @@
 
 | Patch | Details |
 |---|---|
+| **Material You themed icon** | Adds a proper Android adaptive launcher icon and a monochrome Material You themed icon. |
 | **Unlock Platinum** | Unlocks Life360 Platinum feature in app. |
 
 ---
@@ -1712,16 +1713,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock Premium** | Unlocks RecipeBro premium by patching both CustomerInfo and FeatureFlagResponse premium gates. |
-
----
-
-## Relane VPN (xorsand.relane)
-
-**Supported versions:** `2026073010.0.0`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks Relane VPN Premium by patching the RevenueCat SDK to always report an active "premium_vpn" entitlement, enabling premium servers, unlimited data, and premium sync. |
 
 ---
 

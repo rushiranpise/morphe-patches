@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.22.0",
+  "version": "1.23.0-dev.1",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -1930,6 +1930,37 @@
                 "ARMEABI_V7A": 10722,
                 "X86_64": 10722,
                 "X86": 10722
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Material You themed icon",
+      "description": "Adds a proper Android adaptive launcher icon and a monochrome Material You themed icon.",
+      "default": true,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.life360.android.safetymapd",
+          "name": "Life360",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#5D2DE6",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.31.6",
+              "versionCodes": {
+                "ARM64_V8A": 2915100,
+                "ARMEABI_V7A": 2915100,
+                "X86_64": 2915100,
+                "X86": 2915100
               },
               "isExperimental": false,
               "minSdk": null,
@@ -6495,37 +6526,6 @@
                 "ARMEABI_V7A": 1502,
                 "X86_64": 1502,
                 "X86": 1502
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
-      "description": "Unlocks Relane VPN Premium by patching the RevenueCat SDK to always report an active \"premium_vpn\" entitlement, enabling premium servers, unlimited data, and premium sync.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "xorsand.relane",
-          "name": "Relane VPN",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#1A1A2E",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "2026073010.0.0",
-              "versionCodes": {
-                "ARM64_V8A": 2026073010,
-                "ARMEABI_V7A": 2026073010,
-                "X86_64": 2026073010,
-                "X86": 2026073010
               },
               "isExperimental": false,
               "minSdk": null,
