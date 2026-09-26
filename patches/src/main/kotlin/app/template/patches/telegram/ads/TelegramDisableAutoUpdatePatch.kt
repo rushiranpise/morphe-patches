@@ -1,58 +1,69 @@
 package app.template.patches.telegram.ads
 
+import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.signature.telegramSpoofDependency
-import app.template.patches.telegram.BlockingUpdateViewShowFingerprint
-import app.template.patches.telegram.CheckAppUpdateFingerprint
-import app.template.patches.telegram.MessagesControllerCheckPromoInfoInternalFingerprint
-import app.template.patches.telegram.PlusSettingsIsUpdateEnabledFingerprint
-import app.template.patches.telegram.PlusUpdaterCheckAppUpdateFingerprint
-import app.template.patches.telegram.SharedConfigIsAppUpdateAvailableFingerprint
-import app.template.patches.telegram.SharedConfigSetNewAppVersionAvailableFingerprint
+
+private val sharedConfigIsAppUpdateAvailableFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/SharedConfig;",
+    name = "isAppUpdateAvailable",
+    returnType = "Z",
+)
+
+private val sharedConfigSetNewAppVersionAvailableFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/SharedConfig;",
+    name = "setNewAppVersionAvailable",
+    returnType = "Z",
+    parameters = listOf("Lorg/telegram/tgnet/TLRPC\$TL_help_appUpdate;"),
+)
+
+private val messagesControllerCheckPromoInfoInternalFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "checkPromoInfoInternal",
+    returnType = "V",
+    parameters = listOf("Z"),
+)
+
+/** Telegram Plus 12.10.3.0 */
+private val plusUpdateButtonUpdateFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/plus/update/UpdateButton;",
+    name = "update",
+    returnType = "V",
+    parameters = listOf("Z"),
+)
 
 @Suppress("unused")
 val telegramDisableAutoUpdatePatch = bytecodePatch(
     name = "Disable auto-update",
-    description = "Disables automatic app update checks, the blocking update screen, " +
-        "and the proxy sponsor channel insertion. On Telegram Plus also disables the " +
-        "Plus-specific updater and update settings flag.",
+    description = "Disables Telegram update availability, update-version storage and proxy sponsor-channel insertion.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(
+        TELEGRAM_COMPATIBILITY,
+        TELEGRAM_PLUS_COMPATIBILITY,
+        TELEGRAM_WEB_COMPATIBILITY,
+    )
     dependsOn(telegramSpoofDependency())
 
     execute {
-        // Suppress update checks at the LaunchActivity level
-        CheckAppUpdateFingerprint.method.addInstructions(0, "return-void")
-
-        // Block the modal update screen from showing
-        BlockingUpdateViewShowFingerprint.method.addInstructions(0, "return-void")
-
-        // SharedConfig level: never report an update as available
-        SharedConfigIsAppUpdateAvailableFingerprint.method.addInstructions(0, """
+        sharedConfigIsAppUpdateAvailableFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
             return v0
         """)
 
-        // Suppress storing new app version info (prevents update banners)
-        SharedConfigSetNewAppVersionAvailableFingerprint.method.addInstructions(0, """
+        sharedConfigSetNewAppVersionAvailableFingerprint.method.addInstructions(0, """
             const/4 v0, 0x0
             return v0
         """)
 
-        // Suppress proxy sponsor dialog injection into dialogs list
-        MessagesControllerCheckPromoInfoInternalFingerprint.method.addInstructions(0, "return-void")
+        messagesControllerCheckPromoInfoInternalFingerprint.method.addInstructions(0, "return-void")
 
-        // Plus-only: block Plus-specific update checker (no-op on messenger/web)
-        PlusUpdaterCheckAppUpdateFingerprint.methodOrNull?.addInstructions(0, "return-void")
-
-        // Plus-only: isUpdateEnabled → false (no-op on messenger/web)
-        PlusSettingsIsUpdateEnabledFingerprint.methodOrNull?.addInstructions(0, """
-            const/4 v0, 0x0
-            return v0
-        """)
+        // Plus 12.10.3.0 has a dedicated update button. Its update() method
+        // reads SharedConfig.isAppUpdateAvailable(); make the UI non-reactive
+        // as well. Optional so Telegram/Web are unaffected.
+        plusUpdateButtonUpdateFingerprint.methodOrNull?.addInstructions(0, "return-void")
     }
 }

@@ -1,49 +1,129 @@
 package app.template.patches.telegram.content
 
+import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.fieldAccess
+import app.morphe.patcher.methodCall
+import com.android.tools.smali.dexlib2.Opcode
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
-import app.template.patches.telegram.signature.telegramSpoofDependency
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
-import app.template.patches.telegram.DeleteMessagesByPushFingerprint
-import app.template.patches.telegram.MarkMessagesAsDeletedFingerprint1
-import app.template.patches.telegram.MarkMessagesAsDeletedFingerprint2
-import app.template.patches.telegram.NotificationsControllerRemoveDeletedMessagesFingerprint
+import app.template.patches.telegram.signature.telegramSpoofDependency
+
+private val deleteMessagesByPushFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "deleteMessagesByPush",
+    returnType = "V",
+    parameters = listOf("J", "Ljava/util/ArrayList;", "J"),
+)
+
+private val markMessagesAsDeletedFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesStorage;",
+    name = "markMessagesAsDeleted",
+    returnType = "Ljava/util/ArrayList;",
+    parameters = listOf("J", "Ljava/util/ArrayList;", "Z", "Z", "I", "I"),
+)
+
+private val deletedMessageUiFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    returnType = "V",
+    filters = listOf(
+        fieldAccess(
+            definingClass = "Lorg/telegram/messenger/MessageObject;",
+            name = "deleted",
+            type = "Z",
+            opcode = Opcode.IPUT_BOOLEAN,
+        ),
+        methodCall(
+            definingClass = "Lorg/telegram/messenger/NotificationsController;",
+            name = "removeDeletedMessagesFromNotifications",
+            returnType = "V",
+        ),
+    ),
+)
+
+/*
+ * The first parameter is build-specific:
+ *   Normal Telegram 12.10.5 / Telegram Web 12.10.5 -> Lz/f;
+ *   Telegram Plus 12.10.3.0 -> Landroidx/collection/h;
+ *
+ * Resolve the exact known variant at patch time rather than using a stale
+ * LongSparseArray descriptor or silently skipping the notification hook.
+ */
+private val removeDeletedMessagesFromNotificationsNormalWebFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/NotificationsController;",
+    name = "removeDeletedMessagesFromNotifications",
+    returnType = "V",
+    parameters = listOf(
+        "Lz/f;",
+        "Z",
+    ),
+)
+
+private val removeDeletedMessagesFromNotificationsPlusFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/NotificationsController;",
+    name = "removeDeletedMessagesFromNotifications",
+    returnType = "V",
+    parameters = listOf(
+        "Landroidx/collection/h;",
+        "Z",
+    ),
+)
 
 @Suppress("unused")
 val telegramAntiDeletePatch = bytecodePatch(
     name = "Anti-delete messages",
     description = "Prevents messages deleted by other users from being removed locally.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(
+        TELEGRAM_COMPATIBILITY,
+        TELEGRAM_PLUS_COMPATIBILITY,
+        TELEGRAM_WEB_COMPATIBILITY,
+    )
     dependsOn(telegramSpoofDependency())
 
     execute {
-        // markMessagesAsDeleted(JIZZ) — p4=Z is the async/local-only flag.
-        // true = user-initiated local delete (allow); false = server-push delete (block).
-        MarkMessagesAsDeletedFingerprint1.method.addInstructions(0, """
-            if-nez p4, :allow
-            const/4 v0, 0x0
-            return-object v0
-            :allow
-            nop
-        """)
+        deleteMessagesByPushFingerprint.method.addInstructions(
+            0,
+            "return-void",
+        )
 
-        // markMessagesAsDeleted(JArrayListZZII) — p4=Z same semantics.
-        MarkMessagesAsDeletedFingerprint2.method.addInstructions(0, """
-            if-nez p4, :allow
-            const/4 v0, 0x0
-            return-object v0
-            :allow
-            nop
-        """)
+        markMessagesAsDeletedFingerprint.method.addInstructions(
+            0,
+            """
+                if-nez p4, :continue_original
+                new-instance v0, Ljava/util/ArrayList;
+                invoke-direct {v0}, Ljava/util/ArrayList;->
+<init>()V
+                return-object v0
+                :continue_original
+                nop
+            """,
+        )
 
-        // Block server-push deletion path entirely
-        DeleteMessagesByPushFingerprint.method.addInstructions(0, "return-void")
+        deletedMessageUiFingerprint.matchAllOrNull()?.forEach { match ->
+            match.instructionMatches
+                .map { it.index }
+                .reversed()
+                .forEach { index ->
+                    match.method.replaceInstruction(
+                        index,
+                        "nop\nnop",
+                    )
+                }
+        }
 
-        // Suppress notification removal when messages are deleted server-side
-        // Sig changed in 12.9.2: (LongSparseArray, Z)V
-        NotificationsControllerRemoveDeletedMessagesFingerprint.method.addInstructions(0, "return-void")
+        val removeDeletedMessagesMethod =
+            removeDeletedMessagesFromNotificationsNormalWebFingerprint.methodOrNull
+                ?: removeDeletedMessagesFromNotificationsPlusFingerprint.methodOrNull
+
+        requireNotNull(removeDeletedMessagesMethod) {
+            "Failed to match removeDeletedMessagesFromNotifications for Telegram/Web/Plus"
+        }.addInstructions(
+            0,
+            "return-void",
+        )
     }
 }

@@ -768,26 +768,3 @@ val AnalyticsTrackEventMapFingerprint = Fingerprint(
     returnType = "V",
     parameters = listOf("Ljava/lang/String;", "Ljava/util/HashMap;"),
 )
-
-// ─── Rich HTML paste ──────────────────────────────────────────────────────────
-val ChatActivityEnterViewHandleRichHtmlPasteFingerprint = Fingerprint(
-    definingClass = "Lorg/telegram/ui/Components/ChatActivityEnterView;",
-    name = "handleRichHtmlPaste",
-    returnType = "Z",
-    parameters = listOf(),
-)
-
-// ─── Rich-message forwarding / Hide Sender Name ───────────────────────────────
-val ChatActivityForwardMessagesFingerprint = Fingerprint(
-    definingClass = "Lorg/telegram/ui/ChatActivity;",
-    name = "forwardMessages",
-    returnType = "V",
-    parameters = listOf(
-        "Ljava/util/ArrayList;",
-        "Z",
-        "Z",
-        "Z",
-        "I",
-        "J",
-    ),
-)

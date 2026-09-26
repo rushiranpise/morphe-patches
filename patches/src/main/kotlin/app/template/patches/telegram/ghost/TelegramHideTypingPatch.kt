@@ -7,33 +7,49 @@ import app.template.patches.shared.Constants.TELEGRAM_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_PLUS_COMPATIBILITY
 import app.template.patches.shared.Constants.TELEGRAM_WEB_COMPATIBILITY
 import app.template.patches.telegram.signature.telegramSpoofDependency
-import app.template.patches.telegram.PlusSendTypingFingerprint
+
+/**
+ * Telegram 12.10.x no longer exposes the old needSendTyping() hook used by
+ * earlier versions. DEX verification shows that the actual controller-level
+ * dispatchers are MessagesController.sendTyping(JJII)Z and
+ * MessagesController.sendTyping(JJILjava/lang/String;I)Z.
+ *
+ * Returning false from both overloads blocks the typing TL dispatch directly
+ * and avoids broad matchAll() hooks against unrelated methods.
+ */
+private val sendTypingLegacyFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "sendTyping",
+    returnType = "Z",
+    parameters = listOf("J", "J", "I", "I"),
+)
+
+private val sendTypingActionFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/MessagesController;",
+    name = "sendTyping",
+    returnType = "Z",
+    parameters = listOf("J", "J", "I", "Ljava/lang/String;", "I"),
+)
 
 @Suppress("unused")
 val telegramHideTypingPatch = bytecodePatch(
     name = "Hide typing indicator",
-    description = "Hides your typing indicator from other users in all chats. " +
-        "On Telegram Plus also silences the controller-level sendTyping dispatcher.",
+    description = "Blocks Telegram's controller-level sendTyping dispatch on 12.10.x builds.",
 ) {
-    compatibleWith(TELEGRAM_COMPATIBILITY, TELEGRAM_WEB_COMPATIBILITY, TELEGRAM_PLUS_COMPATIBILITY)
+    compatibleWith(
+        TELEGRAM_COMPATIBILITY,
+        TELEGRAM_WEB_COMPATIBILITY,
+        TELEGRAM_PLUS_COMPATIBILITY,
+    )
     dependsOn(telegramSpoofDependency())
 
     execute {
-        // needSendTyping()V — UI layer: called by ChatActivityEnterView when the user types.
-        // Silencing all implementations prevents the typing TL request from being dispatched.
-        Fingerprint(
-            name = "needSendTyping",
-            returnType = "V",
-            parameters = listOf(),
-        ).matchAllOrNull()?.forEach { match ->
-            if (match.method.implementation != null) {
-                match.method.addInstructions(0, "return-void")
-            }
-        }
+        sendTypingLegacyFingerprint.methodOrNull?.addInstructions(0, """
+            const/4 v0, 0x0
+            return v0
+        """)
 
-        // Plus-only: MessagesController.sendTyping(JJII)Z — controller dispatch layer.
-        // Return false = not sent. (no-op on messenger/web where this signature doesn't exist)
-        PlusSendTypingFingerprint.methodOrNull?.addInstructions(0, """
+        sendTypingActionFingerprint.methodOrNull?.addInstructions(0, """
             const/4 v0, 0x0
             return v0
         """)
