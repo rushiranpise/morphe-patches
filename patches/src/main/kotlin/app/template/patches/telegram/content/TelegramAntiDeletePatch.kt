@@ -45,20 +45,29 @@ private val deletedMessageUiFingerprint = Fingerprint(
 )
 
 /*
- * Telegram 12.10.5 Web uses the obfuscated type Lz/f; for the first
- * parameter of removeDeletedMessagesFromNotifications().
+ * The first parameter is build-specific:
+ *   Normal Telegram 12.10.5 / Telegram Web 12.10.5 -> Lz/f;
+ *   Telegram Plus 12.10.3.0 -> Landroidx/collection/h;
  *
- * Do not use androidx.collection.LongSparseArray here. The clean 12.10.5
- * DEX resolves the method as:
- *
- * removeDeletedMessagesFromNotifications(Lz/f;, Z)V
+ * Resolve the exact known variant at patch time rather than using a stale
+ * LongSparseArray descriptor or silently skipping the notification hook.
  */
-private val removeDeletedMessagesFromNotificationsFingerprint = Fingerprint(
+private val removeDeletedMessagesFromNotificationsNormalWebFingerprint = Fingerprint(
     definingClass = "Lorg/telegram/messenger/NotificationsController;",
     name = "removeDeletedMessagesFromNotifications",
     returnType = "V",
     parameters = listOf(
         "Lz/f;",
+        "Z",
+    ),
+)
+
+private val removeDeletedMessagesFromNotificationsPlusFingerprint = Fingerprint(
+    definingClass = "Lorg/telegram/messenger/NotificationsController;",
+    name = "removeDeletedMessagesFromNotifications",
+    returnType = "V",
+    parameters = listOf(
+        "Landroidx/collection/h;",
         "Z",
     ),
 )
@@ -86,7 +95,8 @@ val telegramAntiDeletePatch = bytecodePatch(
             """
                 if-nez p4, :continue_original
                 new-instance v0, Ljava/util/ArrayList;
-                invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+                invoke-direct {v0}, Ljava/util/ArrayList;->
+<init>()V
                 return-object v0
                 :continue_original
                 nop
@@ -105,7 +115,13 @@ val telegramAntiDeletePatch = bytecodePatch(
                 }
         }
 
-        removeDeletedMessagesFromNotificationsFingerprint.methodOrNull?.addInstructions(
+        val removeDeletedMessagesMethod =
+            removeDeletedMessagesFromNotificationsNormalWebFingerprint.methodOrNull
+                ?: removeDeletedMessagesFromNotificationsPlusFingerprint.methodOrNull
+
+        requireNotNull(removeDeletedMessagesMethod) {
+            "Failed to match removeDeletedMessagesFromNotifications for Telegram/Web/Plus"
+        }.addInstructions(
             0,
             "return-void",
         )
