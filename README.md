@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.23.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**318 patches** across **228 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.23.0-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.0-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**319 patches** across **228 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -128,7 +128,7 @@ Bug reports must include:
 | 29 | [**Battery Guru**](PATCHES.md#battery-guru-compaget96batteryguru) | 1 | `2.5.0.8` | [`com.paget96.batteryguru`](https://play.google.com/store/apps/details?id=com.paget96.batteryguru) |
 | 30 | [**BatteryPods**](PATCHES.md#batterypods-comsumyapplicationsbluetoothearphone) | 1 | `7.52` | [`com.sumyapplications.bluetooth.earphone`](https://play.google.com/store/apps/details?id=com.sumyapplications.bluetooth.earphone) |
 | 31 | [**Beta Maniac**](PATCHES.md#beta-maniac-itmirkobeta) | 1 | `0.11.0` | [`it.mirko.beta`](https://play.google.com/store/apps/details?id=it.mirko.beta) |
-| 32 | [**Block Blast!**](PATCHES.md#block-blast-comblockjuggle) | 1 | `10.4.5` | [`com.block.juggle`](https://play.google.com/store/apps/details?id=com.block.juggle) |
+| 32 | [**Block Blast!**](PATCHES.md#block-blast-comblockjuggle) | 2 | `10.8.1` | [`com.block.juggle`](https://play.google.com/store/apps/details?id=com.block.juggle) |
 | 33 | [**Block Puzzle**](PATCHES.md#block-puzzle-gamepuzzleblockpuzzle) | 1 | `6.1` | [`game.puzzle.blockpuzzle`](https://play.google.com/store/apps/details?id=game.puzzle.blockpuzzle) |
 | 34 | [**BlockerHero**](PATCHES.md#blockerhero-comblockerhero) | 1 | `1.5.0` | [`com.blockerhero`](https://play.google.com/store/apps/details?id=com.blockerhero) |
 | 35 | [**Blocking Sites**](PATCHES.md#blocking-sites-comblockingsites) | 1 | `4.0.19` | [`com.blocking.sites`](https://play.google.com/store/apps/details?id=com.blocking.sites) |

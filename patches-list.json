@@ -2952,6 +2952,37 @@
     },
     {
       "name": "Remove ads",
+      "description": "Removes banner and interstitial ads and grants rewarded ad rewards like revive without watching. Mutually exclusive with \"Unlock VIP\".",
+      "default": false,
+      "dependencies": [],
+      "compatiblePackages": [
+        {
+          "packageName": "com.block.juggle",
+          "name": "Block Blast!",
+          "description": null,
+          "apkFileType": "XAPK",
+          "appIconColor": "#4CAF50",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "10.8.1",
+              "versionCodes": {
+                "ARM64_V8A": 10810,
+                "ARMEABI_V7A": 10810,
+                "X86_64": 10810,
+                "X86": 10810
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ads",
       "description": "Disables Block Puzzle AdMob initialization, banner, and interstitial ads.",
       "default": true,
       "dependencies": [
@@ -9162,7 +9193,7 @@
     },
     {
       "name": "Unlock VIP",
-      "description": "Unlock ViP features in app.",
+      "description": "Unlocks VIP, the ad-free subscription. Removes all ads including revive offers. Mutually exclusive with \"Remove ads\".",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -9175,12 +9206,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "10.4.5",
+              "version": "10.8.1",
               "versionCodes": {
-                "ARM64_V8A": 10450,
-                "ARMEABI_V7A": 10450,
-                "X86_64": 10450,
-                "X86": 10450
+                "ARM64_V8A": 10810,
+                "ARMEABI_V7A": 10810,
+                "X86_64": 10810,
+                "X86": 10810
               },
               "isExperimental": false,
               "minSdk": null,
