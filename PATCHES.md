@@ -333,11 +333,11 @@
 
 ## Block Blast! (com.block.juggle)
 
-**Supported versions:** `10.4.5`
+**Supported versions:** `10.8.1`
 
 | Patch | Details |
 |---|---|
-| **Unlock VIP** | Unlock ViP features in app. |
+| **Unlock VIP** | Unlocks VIP, the ad-free subscription. Removes all ads including revive offers. |
 
 ---
 

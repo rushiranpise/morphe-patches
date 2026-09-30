@@ -251,7 +251,7 @@ val BLOCKBLAST_COMPATIBILITY = Compatibility(
         packageName = "com.block.juggle",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "10.4.5", versionCode = 10450))
+        targets = listOf(AppTarget(version = "10.8.1", versionCode = 10810))
     )
 
 val BLOCKERHERO_COMPATIBILITY = Compatibility(

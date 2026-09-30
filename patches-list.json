@@ -9162,7 +9162,7 @@
     },
     {
       "name": "Unlock VIP",
-      "description": "Unlock ViP features in app.",
+      "description": "Unlocks VIP, the ad-free subscription. Removes all ads including revive offers.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -9175,12 +9175,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "10.4.5",
+              "version": "10.8.1",
               "versionCodes": {
-                "ARM64_V8A": 10450,
-                "ARMEABI_V7A": 10450,
-                "X86_64": 10450,
-                "X86": 10450
+                "ARM64_V8A": 10810,
+                "ARMEABI_V7A": 10810,
+                "X86_64": 10810,
+                "X86": 10810
               },
               "isExperimental": false,
               "minSdk": null,
