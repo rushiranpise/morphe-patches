@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.23.0-dev.1** (`dev`) · **318 patches** across **228 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.23.0-dev.1** (`dev`) · **319 patches** across **228 apps** · back to [README](README.md)
 
 ---
 
@@ -337,7 +337,8 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock VIP** | Unlocks VIP, the ad-free subscription. Removes all ads including revive offers. |
+| **Remove ads** | Removes banner and interstitial ads and grants rewarded ad rewards like revive without watching. Mutually exclusive with "Unlock VIP". |
+| **Unlock VIP** | Unlocks VIP, the ad-free subscription. Removes all ads including revive offers. Mutually exclusive with "Remove ads". |
 
 ---
 
