@@ -604,14 +604,6 @@ val FLIGHTRADAR_COMPATIBILITY = Compatibility(
         targets = listOf(AppTarget(version = "11.10.0", versionCode = 111000000))
     )
 
-val FLIGHTSKY_COMPATIBILITY = Compatibility(
-        name = "Flightsky",
-        packageName = "com.live.flight.tracker",
-        apkFileType = ApkFileType.APKS,
-        appIconColor = 0x1565C0,
-        targets = listOf(AppTarget(version = "1.7.1", versionCode = 23))
-    )
-
 val FLUD_COMPATIBILITY = Compatibility(
         name = "Flud",
         packageName = "com.delphicoder.flud",
