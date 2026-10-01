@@ -8,6 +8,16 @@
 
 * **life360:** add themed icon patch with adaptive support ([83226e3](https://github.com/rushiranpise/morphe-patches/commit/83226e3034b86e8923915cf09831ad394d291d19))
 
+## [1.23.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.22.0...v1.23.0-dev.1) (2026-10-01)
+
+### 🐛 Bug Fixes
+
+* remove Relane patches ([29819ed](https://github.com/rushiranpise/morphe-patches/commit/29819edeab47def853a57a52a5b5fd6f5db6dbdc)), closes [#1033](https://github.com/rushiranpise/morphe-patches/issues/1033)
+
+### ✨ New Features
+
+* **life360:** add themed icon patch with adaptive support ([83226e3](https://github.com/rushiranpise/morphe-patches/commit/83226e3034b86e8923915cf09831ad394d291d19))
+
 ## [1.23.0-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.22.0...v1.23.0-dev.1) (2026-09-20)
 
 ### 🐛 Bug Fixes
