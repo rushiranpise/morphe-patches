@@ -5411,39 +5411,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks premium features in app.",
-      "default": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": [
-        {
-          "packageName": "com.live.flight.tracker",
-          "name": "Flightsky",
-          "description": null,
-          "apkFileType": "APKS",
-          "appIconColor": "#1565C0",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.7.1",
-              "versionCodes": {
-                "ARM64_V8A": 23,
-                "ARMEABI_V7A": 23,
-                "X86_64": 23,
-                "X86": 23
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Unlocks Fuelio Premium, restores Google Maps, and suppresses the Limited Promo paywall banner for unlocked users.",
       "default": true,
       "dependencies": [],
