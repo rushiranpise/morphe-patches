@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.23.0-dev.1** (`dev`) · **318 patches** across **228 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.23.0-dev.1** (`dev`) · **317 patches** across **227 apps** · back to [README](README.md)
 
 ---
 
@@ -792,16 +792,6 @@
 | Patch | Details |
 |---|---|
 | **Unlock Business Premium** | Unlocks Business-tier features in Flightradar24: ad-free experience, weather layers, ATC routes, 3D view, flight history playback, and unlimited saved locations. |
-
----
-
-## Flightsky (com.live.flight.tracker)
-
-**Supported versions:** `1.7.1`
-
-| Patch | Details |
-|---|---|
-| **Unlock Premium** | Unlocks premium features in app. |
 
 ---
 
