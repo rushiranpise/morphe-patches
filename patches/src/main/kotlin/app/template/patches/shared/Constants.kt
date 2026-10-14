@@ -832,7 +832,7 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         packageName = "com.livescore",
         appIconColor = 0xE30613,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "10.3.1", versionCode = 2226))
+        targets = listOf(AppTarget(version = "10.3.2", versionCode = 2230))
     )
 
 val MACRODROID_COMPATIBILITY = Compatibility(
