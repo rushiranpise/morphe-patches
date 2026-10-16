@@ -1,6 +1,7 @@
 package app.template.patches.blockblast
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.patch.BytecodePatchContext
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
 import app.template.patches.shared.Constants.BLOCKBLAST_COMPATIBILITY
@@ -21,6 +22,139 @@ private fun claimAdPatch(name: String) {
         throw PatchException("\"$UNLOCK_VIP\" and \"$REMOVE_ADS\" are mutually exclusive, select only one.")
     }
     appliedAdPatch = name
+}
+
+private const val ACTIVITY = "Landroid/app/Activity;"
+private const val AD_CONFIG = "Lcom/block/juggle/ad/almax/api/WAdConfig;"
+private const val RCT_TRACK = "Lcom/block/juggle/ad/almax/api/RctAdTrackConfig;"
+private const val RCT_TRACK_BUILDER = "Lcom/block/juggle/ad/almax/api/RctAdTrackConfig\$Builder;"
+private const val DIRECT_TRACK = "Lcom/block/juggle/ad/channels/hot/base/HuDirectAdTrackConfig;"
+private const val DIRECT_TRACK_BUILDER = "Lcom/block/juggle/ad/channels/hot/base/HuDirectAdTrackConfig\$Builder;"
+private const val DIRECT_LISTENER = "Lcom/block/juggle/ad/channels/hot/base/g;"
+private const val CHANNEL = "Lcom/block/juggle/ad/channels/base/a;"
+private const val CHANNEL_AD = "Lcom/block/juggle/ad/channels/base/d;"
+private const val AD_FORMAT = "Lcom/block/juggle/ad/channels/base/b;"
+private const val AD_CONTEXT = "Lg5/c;"
+private const val LOAD_AD_CONFIG = "iget-object v0, p0, $AD_CONTEXT->a:$AD_CONFIG"
+
+private fun BytecodePatchContext.method(type: String, name: String, vararg parameters: String) =
+    mutableClassDefBy(type).methods.first { method ->
+        method.name == name && method.parameterTypes.map { it.toString() } == parameters.toList()
+    }
+
+private fun buildRctTrack(adType: String, target: String, scratch: String) = """
+    invoke-static {}, $RCT_TRACK_BUILDER->newBuilder()$RCT_TRACK_BUILDER
+    move-result-object $target
+    const/4 $scratch, $adType
+    invoke-virtual {$target, $scratch}, $RCT_TRACK_BUILDER->setAdType(I)$RCT_TRACK_BUILDER
+    move-result-object $target
+    invoke-virtual {$target}, $RCT_TRACK_BUILDER->build()$RCT_TRACK
+    move-result-object $target
+"""
+
+// The wrapper listener stamps channel, keyId and adUnitId the game uses to match the reward.
+private fun BytecodePatchContext.fakeDirectShow(wrapper: String, show: String, listener: String, earn: String) =
+    method(wrapper, show, ACTIVITY, DIRECT_TRACK, listener).addInstructions(
+        0,
+        """
+            if-eqz p3, :done
+            invoke-virtual {p0}, $wrapper->c()Ljava/lang/String;
+            move-result-object v0
+            iget-object v1, p0, $wrapper->c:Ljava/lang/String;
+            new-instance v2, ${wrapper.dropLast(1)}${'$'}b;
+            invoke-direct {v2, p0, v0, v1, p3}, ${wrapper.dropLast(1)}${'$'}b;-><init>(${wrapper}Ljava/lang/String;Ljava/lang/String;$listener)V
+            if-nez p2, :track
+            invoke-static {}, $DIRECT_TRACK->newBuilder()$DIRECT_TRACK_BUILDER
+            move-result-object p2
+            invoke-virtual {p2}, $DIRECT_TRACK_BUILDER->build()$DIRECT_TRACK
+            move-result-object p2
+            :track
+            invoke-interface {v2, p2}, $DIRECT_LISTENER->b($DIRECT_TRACK)V
+            invoke-interface {v2, p2}, $DIRECT_LISTENER->c($DIRECT_TRACK)V
+            $earn
+            invoke-interface {v2, p2}, $DIRECT_LISTENER->f($DIRECT_TRACK)V
+            :done
+            return-void
+        """,
+    )
+
+private fun BytecodePatchContext.fakeChannelShow(name: String, format: String, listener: String, close: String) =
+    method("Lm3/b;", name, CHANNEL, ACTIVITY, "Ljava/lang/String;", CHANNEL_AD, listener).addInstructions(
+        0,
+        """
+            if-eqz p5, :done
+            sget-object v0, $AD_FORMAT->$format:$AD_FORMAT
+            invoke-virtual {p0, p1, v0, p3}, Lm3/b;->e($CHANNEL${AD_FORMAT}Ljava/lang/String;)$CHANNEL_AD
+            move-result-object v0
+            invoke-interface {p5, v0}, Lcom/block/juggle/ad/channels/base/p;->a($CHANNEL_AD)V
+            $close
+            :done
+            return-void
+        """,
+    )
+
+/*
+ * Block Blast shows ads through several independent layers; each show entry point
+ * is replaced with the callback sequence its SDK adapter emits after a finished ad:
+ *
+ * A. React Native ad module, MAX part (y1/i "HuAL"): z1/d rewarded, z1/c interstitial.
+ *   z1/d.n has no local registers and z1/c.n only one, so the no longer needed
+ *   parameter registers (and `this` in z1/d.n) are reused as scratch.
+ * B. React Native ad module, direct "hot" channels (Meta, Moloco, Pangle, BigO, …):
+ *   every channel ad is held in a g4/b (rewarded) or f4/b (interstitial) wrapper whose
+ *   show wraps the listener in g4/b$b / f4/b$b, stamping channel, keyId and adUnitId.
+ *   The fake builds that same wrapper listener.
+ * C. Channel manager m3/b (AdChannelManager): N showRewardAd, M showIntersAd.
+ * D. Cocos mediation facade g5/c (PAdSDKContext), the fallback when the RN ad module
+ *   is remotely disabled: rewarded S/T/U/V, interstitial D/E/F/G.
+ */
+
+/**
+ * Hidden, shared by both ad patches: interstitials are shown by the RN ad module
+ * even for VIP users, so VIP alone does not remove the game-over ads.
+ * Each show reports displayed and closed, so the game continues its flow.
+ */
+private val blockBlastInterstitialAdsPatch = bytecodePatch {
+    execute {
+        // A. z1/c.n(Activity, r1/d): displayed (r1/d.c), hidden (r1/d.a).
+        method("Lz1/c;", "n", ACTIVITY, "Lr1/d;").addInstructions(
+            0,
+            """
+                if-eqz p2, :done
+                ${buildRctTrack("0x2", "v0", "p1")}
+                invoke-interface {p2, v0}, Lr1/d;->c($RCT_TRACK)V
+                invoke-interface {p2, v0}, Lr1/d;->a($RCT_TRACK)V
+                :done
+                return-void
+            """,
+        )
+
+        // B. f4/b.j: impression (g.b, g.c), closed (g.f).
+        fakeDirectShow("Lf4/b;", "j", "Lf4/d;", "")
+
+        // C. m3/b.M showIntersAd: impression (p.a), dismissed (v.d).
+        fakeChannelShow(
+            "M",
+            "interstitialAd",
+            "Lcom/block/juggle/ad/channels/base/v;",
+            "invoke-interface {p5, v0}, Lcom/block/juggle/ad/channels/base/v;->d($CHANNEL_AD)V",
+        )
+
+        // D. g5/c.D/E/F/G(String, Activity, d2/l): displayed (a), hidden (d).
+        listOf("D", "E", "F", "G").forEach {
+            method(AD_CONTEXT, it, "Ljava/lang/String;", ACTIVITY, "Ld2/l;").addInstructions(
+                0,
+                """
+                    if-eqz p3, :done
+                    $LOAD_AD_CONFIG
+                    invoke-interface {p3, v0}, Ld2/l;->a($AD_CONFIG)V
+                    invoke-interface {p3, v0}, Ld2/l;->d($AD_CONFIG)V
+                    :done
+                    return-void
+                """,
+            )
+        }
+    }
 }
 
 /**
@@ -61,7 +195,7 @@ private fun claimAdPatch(name: String) {
  * so it never fired for sideloaded apps.
  *
  * ── Patch strategy ───────────────────────────────────────────────────────────
- * Patch THREE methods:
+ * Patch FOUR methods:
  *
  * ① cg/j.e(String) — the notify hub:
  *   Set SPStore.L(true), then call JsCallJava.notifySubStateUpdate() immediately.
@@ -73,6 +207,13 @@ private fun claimAdPatch(name: String) {
  *
  * ③ cg/m.q() — purchase handler (fallback for purchase path):
  *   Set SPStore.L(true), call notifySubStateUpdate() directly, return-void.
+ *
+ * ④ je/i.z() — ad SDK init (ArcAppActivityManager.initSDK), runs at startup:
+ *   Set SPStore.L(true). Billing only reaches cg/j.e ~10 s after launch (and never
+ *   without Play billing), so VIP is also set before any ad loads.
+ *
+ * The React Native ad module shows game-over interstitials even for VIP users, so
+ * this patch also depends on blockBlastInterstitialAdsPatch.
  */
 @Suppress("unused")
 val blockBlastUnlockVipPatch = bytecodePatch(
@@ -81,6 +222,8 @@ val blockBlastUnlockVipPatch = bytecodePatch(
         "Mutually exclusive with \"$REMOVE_ADS\".",
 ) {
     compatibleWith(BLOCKBLAST_COMPATIBILITY)
+
+    dependsOn(blockBlastInterstitialAdsPatch)
 
     finalize { appliedAdPatch = null }
 
@@ -117,6 +260,16 @@ val blockBlastUnlockVipPatch = bytecodePatch(
         mutableClassDefBy("Lcg/m;")
             .methods.first { it.name == "q" && it.returnType == "V" }
             .addInstructions(0, "$setVipAndNotify\n            return-void")
+
+        // ④ je/i.z() — ad SDK init at startup → set VIP before any ad loads
+        mutableClassDefBy("Lje/i;")
+            .methods.first { it.name == "z" && it.parameterTypes.isEmpty() && it.returnType == "V" }
+            .addInstructions(0, """
+                invoke-static {}, Lorg/cocos2dx/javascript/pay/SPStore;->k()Lorg/cocos2dx/javascript/pay/SPStore;
+                move-result-object v0
+                const/4 v1, 0x1
+                invoke-virtual {v0, v1}, Lorg/cocos2dx/javascript/pay/SPStore;->L(Z)V
+            """)
     }
 }
 
@@ -124,34 +277,16 @@ val blockBlastUnlockVipPatch = bytecodePatch(
  * Remove ads — blocks banner and interstitial ads and grants rewarded-ad rewards
  * (revive, extra moves, …) without showing the ad.
  *
- * Block Blast shows ads through several independent layers; each show entry point
- * is replaced with the callback sequence its SDK adapter emits after a finished ad.
- *
- * A. React Native ad module, MAX part (y1/i "HuAL"):
- *   z1/d.n(Activity, WAdConfig, r1/f) rewarded: displayed (r1/f.d), rewarded
- *   (r1/e.a on the load listener z1/d.d), hidden with rewarded=true (r1/f.c).
- *   z1/d.h() isReady → true, so revive is offered even with no fill.
- *   z1/c.n(Activity, r1/d) interstitial: displayed (r1/d.c), hidden (r1/d.a).
- *   z1/d.n has no local registers and z1/c.n only one, so the no longer needed
- *   parameter registers (and `this` in z1/d.n) are reused as scratch.
- *
- * B. React Native ad module, direct "hot" channels (Meta, Moloco, Pangle, BigO, …):
- *   Every channel ad is held in a g4/b (rewarded) or f4/b (interstitial) wrapper whose
- *   show i/j wraps the listener in g4/b$b / f4/b$b, stamping channel, keyId and adUnitId.
- *   The fake builds that same wrapper listener and reports impression (g.b, g.c),
- *   for rewarded isEarned=true + rewarded (g4/d.a), then closed (g.f).
- *
- * C. Channel manager m3/b (AdChannelManager):
- *   N(…, w) showRewardAd: impression (p.a), rewarded (w.e), closed earned=true (w.b).
- *   M(…, v) showIntersAd: impression (p.a), dismissed (v.d).
- *
- * D. Cocos mediation facade g5/c (PAdSDKContext), reached via g2/a and j3, i3, s2:
- *   Interstitial D/E/F/G(String, Activity, d2/l): displayed (a), hidden (d).
- *   Rewarded S/T/U/V(String, Activity, e2/l): displayed (b), rewarded (a), hidden (d, TRUE).
- *   Rewarded isLoading/isReady M()/N() → true. Its banners end in MAX/AdMob views (E).
- *
- * E. Banners at SDK level: MaxAdView.loadAd/startAutoRefresh and AdMob
- *   BaseAdView.loadAd → return-void, so no banner is ever fetched.
+ * Interstitials come from blockBlastInterstitialAdsPatch. Rewarded shows report
+ * displayed, rewarded and closed with the reward flag set:
+ *   A. z1/d.n(Activity, WAdConfig, r1/f): r1/f.d, r1/e.a on the load listener z1/d.d,
+ *      r1/f.c(rewarded=true). z1/d.h() isReady → true, so revive is offered with no fill.
+ *   B. g4/b.i: g.b, g.c, isEarned=true + g4/d.a, g.f.
+ *   C. m3/b.N: p.a, w.e, w.b(earned=true).
+ *   D. g5/c.S/T/U/V(String, Activity, e2/l): e2/l.b, e2/l.a, e2/l.d(TRUE).
+ *      isLoading/isReady M()/N() → true. Its banners end in MAX/AdMob views.
+ *   E. Banners at SDK level: MaxAdView.loadAd/startAutoRefresh and AdMob
+ *      BaseAdView.loadAd → return-void, so no banner is ever fetched.
  */
 @Suppress("unused")
 val blockBlastRemoveAdsPatch = bytecodePatch(
@@ -162,43 +297,26 @@ val blockBlastRemoveAdsPatch = bytecodePatch(
 ) {
     compatibleWith(BLOCKBLAST_COMPATIBILITY)
 
+    dependsOn(blockBlastInterstitialAdsPatch)
+
     finalize { appliedAdPatch = null }
 
     execute {
         claimAdPatch(REMOVE_ADS)
 
-        fun method(type: String, name: String, vararg parameters: String) =
-            mutableClassDefBy(type).methods.first { method ->
-                method.name == name && method.parameterTypes.map { it.toString() } == parameters.toList()
-            }
-
-        val activity = "Landroid/app/Activity;"
-        val config = "Lcom/block/juggle/ad/almax/api/WAdConfig;"
-        val track = "Lcom/block/juggle/ad/almax/api/RctAdTrackConfig;"
-        val trackBuilder = "Lcom/block/juggle/ad/almax/api/RctAdTrackConfig\$Builder;"
-        fun buildTrack(adType: String, target: String, scratch: String) = """
-            invoke-static {}, $trackBuilder->newBuilder()$trackBuilder
-            move-result-object $target
-            const/4 $scratch, $adType
-            invoke-virtual {$target, $scratch}, $trackBuilder->setAdType(I)$trackBuilder
-            move-result-object $target
-            invoke-virtual {$target}, $trackBuilder->build()$track
-            move-result-object $target
-        """
-
-        // No local registers here (v0 is p0), so read the load listener before `this` is reused.
-        method("Lz1/d;", "n", activity, config, "Lr1/f;").addInstructions(
+        // A. No local registers here (v0 is p0), so read the load listener before `this` is reused.
+        method("Lz1/d;", "n", ACTIVITY, AD_CONFIG, "Lr1/f;").addInstructions(
             0,
             """
                 if-eqz p3, :done
                 iget-object p2, p0, Lz1/d;->d:Lr1/e;
-                ${buildTrack("0x3", "p0", "p1")}
-                invoke-interface {p3, p0}, Lr1/f;->d($track)V
+                ${buildRctTrack("0x3", "p0", "p1")}
+                invoke-interface {p3, p0}, Lr1/f;->d($RCT_TRACK)V
                 if-eqz p2, :hidden
-                invoke-interface {p2, p0}, Lr1/e;->a($track)V
+                invoke-interface {p2, p0}, Lr1/e;->a($RCT_TRACK)V
                 :hidden
                 const/4 p1, 0x1
-                invoke-interface {p3, p0, p1}, Lr1/f;->c(${track}Z)V
+                invoke-interface {p3, p0, p1}, Lr1/f;->c(${RCT_TRACK}Z)V
                 :done
                 return-void
             """,
@@ -210,53 +328,49 @@ val blockBlastRemoveAdsPatch = bytecodePatch(
                 return v0
             """,
         )
-        method("Lz1/c;", "n", activity, "Lr1/d;").addInstructions(
-            0,
+
+        // B.
+        fakeDirectShow(
+            "Lg4/b;",
+            "i",
+            "Lg4/d;",
             """
-                if-eqz p2, :done
-                ${buildTrack("0x2", "v0", "p1")}
-                invoke-interface {p2, v0}, Lr1/d;->c($track)V
-                invoke-interface {p2, v0}, Lr1/d;->a($track)V
-                :done
-                return-void
+                const/4 v0, 0x1
+                iput-boolean v0, p2, $DIRECT_TRACK->isEarned:Z
+                invoke-interface {v2, p2}, Lg4/d;->a($DIRECT_TRACK)V
             """,
         )
 
-        val adContext = "Lg5/c;"
-        val loadConfig = "iget-object v0, p0, $adContext->a:$config"
+        // C.
+        fakeChannelShow(
+            "N",
+            "rewardAd",
+            "Lcom/block/juggle/ad/channels/base/w;",
+            """
+                invoke-interface {p5, v0}, Lcom/block/juggle/ad/channels/base/w;->e($CHANNEL_AD)V
+                const/4 v1, 0x1
+                invoke-interface {p5, v0, v1}, Lcom/block/juggle/ad/channels/base/w;->b(${CHANNEL_AD}Z)V
+            """,
+        )
 
-        listOf("D", "E", "F", "G").forEach {
-            method(adContext, it, "Ljava/lang/String;", activity, "Ld2/l;").addInstructions(
-                0,
-                """
-                    if-eqz p3, :done
-                    $loadConfig
-                    invoke-interface {p3, v0}, Ld2/l;->a($config)V
-                    invoke-interface {p3, v0}, Ld2/l;->d($config)V
-                    :done
-                    return-void
-                """,
-            )
-        }
-
+        // D.
         listOf("S", "T", "U", "V").forEach {
-            method(adContext, it, "Ljava/lang/String;", activity, "Le2/l;").addInstructions(
+            method(AD_CONTEXT, it, "Ljava/lang/String;", ACTIVITY, "Le2/l;").addInstructions(
                 0,
                 """
                     if-eqz p3, :done
-                    $loadConfig
-                    invoke-interface {p3, v0}, Le2/l;->b($config)V
-                    invoke-interface {p3, v0}, Le2/l;->a($config)V
+                    $LOAD_AD_CONFIG
+                    invoke-interface {p3, v0}, Le2/l;->b($AD_CONFIG)V
+                    invoke-interface {p3, v0}, Le2/l;->a($AD_CONFIG)V
                     sget-object v1, Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;
-                    invoke-interface {p3, v0, v1}, Le2/l;->d(${config}Ljava/lang/Boolean;)V
+                    invoke-interface {p3, v0, v1}, Le2/l;->d(${AD_CONFIG}Ljava/lang/Boolean;)V
                     :done
                     return-void
                 """,
             )
         }
-
         listOf("M", "N").forEach {
-            method(adContext, it).addInstructions(
+            method(AD_CONTEXT, it).addInstructions(
                 0,
                 """
                     const/4 v0, 0x1
@@ -265,81 +379,7 @@ val blockBlastRemoveAdsPatch = bytecodePatch(
             )
         }
 
-        val directTrack = "Lcom/block/juggle/ad/channels/hot/base/HuDirectAdTrackConfig;"
-        val directTrackBuilder = "Lcom/block/juggle/ad/channels/hot/base/HuDirectAdTrackConfig\$Builder;"
-        val directListener = "Lcom/block/juggle/ad/channels/hot/base/g;"
-        // The wrapper listener stamps channel, keyId and adUnitId the game uses to match the reward.
-        fun directShow(wrapper: String, show: String, listener: String, earn: String) =
-            method(wrapper, show, activity, directTrack, listener).addInstructions(
-                0,
-                """
-                    if-eqz p3, :done
-                    invoke-virtual {p0}, $wrapper->c()Ljava/lang/String;
-                    move-result-object v0
-                    iget-object v1, p0, $wrapper->c:Ljava/lang/String;
-                    new-instance v2, ${wrapper.dropLast(1)}${'$'}b;
-                    invoke-direct {v2, p0, v0, v1, p3}, ${wrapper.dropLast(1)}${'$'}b;-><init>(${wrapper}Ljava/lang/String;Ljava/lang/String;$listener)V
-                    if-nez p2, :track
-                    invoke-static {}, $directTrack->newBuilder()$directTrackBuilder
-                    move-result-object p2
-                    invoke-virtual {p2}, $directTrackBuilder->build()$directTrack
-                    move-result-object p2
-                    :track
-                    invoke-interface {v2, p2}, $directListener->b($directTrack)V
-                    invoke-interface {v2, p2}, $directListener->c($directTrack)V
-                    $earn
-                    invoke-interface {v2, p2}, $directListener->f($directTrack)V
-                    :done
-                    return-void
-                """,
-            )
-        directShow(
-            "Lg4/b;",
-            "i",
-            "Lg4/d;",
-            """
-                const/4 v0, 0x1
-                iput-boolean v0, p2, $directTrack->isEarned:Z
-                invoke-interface {v2, p2}, Lg4/d;->a($directTrack)V
-            """,
-        )
-        directShow("Lf4/b;", "j", "Lf4/d;", "")
-
-        val channel = "Lcom/block/juggle/ad/channels/base/a;"
-        val channelAd = "Lcom/block/juggle/ad/channels/base/d;"
-        val adFormat = "Lcom/block/juggle/ad/channels/base/b;"
-        val channelListener = "Lcom/block/juggle/ad/channels/base/p;"
-        fun channelInfo(format: String) = """
-            sget-object v0, $adFormat->$format:$adFormat
-            invoke-virtual {p0, p1, v0, p3}, Lm3/b;->e($channel${adFormat}Ljava/lang/String;)$channelAd
-            move-result-object v0
-            invoke-interface {p5, v0}, $channelListener->a($channelAd)V
-        """
-        method("Lm3/b;", "M", channel, activity, "Ljava/lang/String;", channelAd, "Lcom/block/juggle/ad/channels/base/v;")
-            .addInstructions(
-                0,
-                """
-                    if-eqz p5, :done
-                    ${channelInfo("interstitialAd")}
-                    invoke-interface {p5, v0}, Lcom/block/juggle/ad/channels/base/v;->d($channelAd)V
-                    :done
-                    return-void
-                """,
-            )
-        method("Lm3/b;", "N", channel, activity, "Ljava/lang/String;", channelAd, "Lcom/block/juggle/ad/channels/base/w;")
-            .addInstructions(
-                0,
-                """
-                    if-eqz p5, :done
-                    ${channelInfo("rewardAd")}
-                    invoke-interface {p5, v0}, Lcom/block/juggle/ad/channels/base/w;->e($channelAd)V
-                    const/4 v1, 0x1
-                    invoke-interface {p5, v0, v1}, Lcom/block/juggle/ad/channels/base/w;->b(${channelAd}Z)V
-                    :done
-                    return-void
-                """,
-            )
-
+        // E.
         method("Lcom/applovin/mediation/ads/MaxAdView;", "loadAd").addInstructions(0, "return-void")
         method("Lcom/applovin/mediation/ads/MaxAdView;", "startAutoRefresh").addInstructions(0, "return-void")
         method("Lcom/google/android/gms/ads/BaseAdView;", "loadAd", "Lcom/google/android/gms/ads/AdRequest;")
