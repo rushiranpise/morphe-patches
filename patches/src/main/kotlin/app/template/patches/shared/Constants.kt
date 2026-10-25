@@ -219,7 +219,10 @@ val BATTERYGURU_COMMUNITY_COMPATIBILITY = Compatibility(
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1B7080,
-        targets = listOf(AppTarget(version = "2.5.0.8", versionCode = 732))
+        targets = listOf(
+            AppTarget(version = "2.5.0.8", versionCode = 732),
+            AppTarget(version = "2.5.0.9", versionCode = 741),
+        )
     )
 
 val BATTERYGURU_COMPATIBILITY = Compatibility(
@@ -227,7 +230,10 @@ val BATTERYGURU_COMPATIBILITY = Compatibility(
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1B7080,
-        targets = listOf(AppTarget(version = "2.5.0.8", versionCode = 732))
+        targets = listOf(
+            AppTarget(version = "2.5.0.8", versionCode = 732),
+            AppTarget(version = "2.5.0.9", versionCode = 741),
+        )
     )
 
 val BATTERYPODS_COMPATIBILITY = Compatibility(
