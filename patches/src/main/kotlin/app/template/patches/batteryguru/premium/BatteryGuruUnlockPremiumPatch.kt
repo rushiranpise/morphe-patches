@@ -196,14 +196,15 @@ val batteryGuruUnlockPremiumPatch = bytecodePatch(
             const-string p3, "one_year_subscription"
         """
 
-        // Constructor: (List, String, String, Z×N, I, I, J) — N differs by version.
-        // Match by shape: first param List, at least 6 booleans, last param J.
+        // Constructor: (List, String, String, Z×N, I, I, J[, rewardedChain]) — N differs by version,
+        // v2.5.0.9 appends an obfuscated rewardedChain object after J.
+        // Match by shape: List, String, String first, at least 6 booleans, a J.
         premiumUiState.methods.singleOrNull { method ->
             method.name == "<init>" &&
                 method.parameterTypes.map { it.toString() }.let { params ->
-                    params.firstOrNull() == "Ljava/util/List;" &&
+                    params.take(3) == listOf("Ljava/util/List;", "Ljava/lang/String;", "Ljava/lang/String;") &&
                     params.count { it == "Z" } >= 6 &&
-                    params.lastOrNull() == "J"
+                    "J" in params
                 }
         }?.addInstructions(0, forceYearlyUiState)
             ?: throw PatchException("Battery Guru: PremiumUiState constructor not found.")

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-14T17:37:49",
-  "description": "## [1.23.0](https://github.com/rushiranpise/morphe-patches/compare/v1.22.0...v1.23.0) (2026-10-14)\n\n### 🐛 Bug Fixes\n\n* remove Relane patches ([29819ed](https://github.com/rushiranpise/morphe-patches/commit/29819edeab47def853a57a52a5b5fd6f5db6dbdc)), closes [#1033](https://github.com/rushiranpise/morphe-patches/issues/1033)\n* update verified app versions ([5ca039c](https://github.com/rushiranpise/morphe-patches/commit/5ca039c16f9d766678d5c697d6dee6cd19f67f7a))\n\n### ✨ New Features\n\n* **life360:** add themed icon patch with adaptive support ([83226e3](https://github.com/rushiranpise/morphe-patches/commit/83226e3034b86e8923915cf09831ad394d291d19))",
-  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.23.0/patches-1.23.0.mpp",
+  "created_at": "2026-10-25T13:19:42",
+  "description": "## [1.23.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.23.0...v1.23.1-dev.1) (2026-10-25)\n\n### 🐛 Bug Fixes\n\n* **batteryguru:** support 2.5.0.9 ([3e2f1b7](https://github.com/rushiranpise/morphe-patches/commit/3e2f1b79993124503586ad1b51321b64071863f7))\n* **batterypods:** support 8.32 and suppress ads ([4a10a24](https://github.com/rushiranpise/morphe-patches/commit/4a10a24c39b4088bec36767146841c34eee4d0a9))",
+  "download_url": "https://github.com/rushiranpise/morphe-patches/releases/download/v1.23.1-dev.1/patches-1.23.1-dev.1.mpp",
   "signature_download_url": "",
-  "version": "1.23.0"
+  "version": "1.23.1-dev.1"
 }

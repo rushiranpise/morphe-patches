@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.23.0** (`main`) · **317 patches** across **227 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.23.1-dev.1** (`dev`) · **317 patches** across **227 apps** · back to [README](README.md)
 
 ---
 
@@ -303,7 +303,7 @@
 
 ## Battery Guru (com.paget96.batteryguru)
 
-**Supported versions:** `2.5.0.8`
+**Supported versions:** `2.5.0.9`
 
 | Patch | Details |
 |---|---|
@@ -313,11 +313,11 @@
 
 ## BatteryPods (com.sumyapplications.bluetooth.earphone)
 
-**Supported versions:** `7.52`
+**Supported versions:** `8.32`
 
 | Patch | Details |
 |---|---|
-| **Unlock Premium** | Unlocks BatteryPods Pro: removes all advertisements and enables premium features including all widget themes and device customization options. |
+| **Unlock Premium** | Unlocks BatteryPods Pro: removes advertisements and enables premium features including widget themes and device customization options. |
 
 ---
 

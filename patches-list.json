@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.23.0",
+  "version": "1.23.1-dev.1",
   "patches": [
     {
       "name": "AAAD Premium",
@@ -4640,12 +4640,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.5.0.8",
+              "version": "2.5.0.9",
               "versionCodes": {
-                "ARM64_V8A": 732,
-                "ARMEABI_V7A": 732,
-                "X86_64": 732,
-                "X86": 732
+                "ARM64_V8A": 741,
+                "ARMEABI_V7A": 741,
+                "X86_64": 741,
+                "X86": 741
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4662,12 +4662,12 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.5.0.8",
+              "version": "2.5.0.9",
               "versionCodes": {
-                "ARM64_V8A": 732,
-                "ARMEABI_V7A": 732,
-                "X86_64": 732,
-                "X86": 732
+                "ARM64_V8A": 741,
+                "ARMEABI_V7A": 741,
+                "X86_64": 741,
+                "X86": 741
               },
               "isExperimental": false,
               "minSdk": null,
@@ -4680,7 +4680,7 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks BatteryPods Pro: removes all advertisements and enables premium features including all widget themes and device customization options.",
+      "description": "Unlocks BatteryPods Pro: removes advertisements and enables premium features including widget themes and device customization options.",
       "default": true,
       "dependencies": [],
       "compatiblePackages": [
@@ -4693,13 +4693,8 @@
           "signatures": null,
           "targets": [
             {
-              "version": "7.52",
-              "versionCodes": {
-                "ARM64_V8A": 7520,
-                "ARMEABI_V7A": 7520,
-                "X86_64": 7520,
-                "X86": 7520
-              },
+              "version": "8.32",
+              "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
               "description": null

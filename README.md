@@ -93,7 +93,7 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.23.0](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**317 patches** across **227 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.23.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.1-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**317 patches** across **227 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -125,8 +125,8 @@ Bug reports must include:
 | 26 | [**Automate**](PATCHES.md#automate-comllamalabautomate) | 1 | `1.53.2` | [`com.llamalab.automate`](https://play.google.com/store/apps/details?id=com.llamalab.automate) |
 | 27 | [**Aviate**](PATCHES.md#aviate-mehighestaviate) | 1 | `1.1.0-beta.1` | [`me.highest.aviate`](https://play.google.com/store/apps/details?id=me.highest.aviate) |
 | 28 | [**Awake**](PATCHES.md#awake-commkawake) | 1 | `1.10.3` | [`com.mk.awake`](https://play.google.com/store/apps/details?id=com.mk.awake) |
-| 29 | [**Battery Guru**](PATCHES.md#battery-guru-compaget96batteryguru) | 1 | `2.5.0.8` | [`com.paget96.batteryguru`](https://play.google.com/store/apps/details?id=com.paget96.batteryguru) |
-| 30 | [**BatteryPods**](PATCHES.md#batterypods-comsumyapplicationsbluetoothearphone) | 1 | `7.52` | [`com.sumyapplications.bluetooth.earphone`](https://play.google.com/store/apps/details?id=com.sumyapplications.bluetooth.earphone) |
+| 29 | [**Battery Guru**](PATCHES.md#battery-guru-compaget96batteryguru) | 1 | `2.5.0.9` | [`com.paget96.batteryguru`](https://play.google.com/store/apps/details?id=com.paget96.batteryguru) |
+| 30 | [**BatteryPods**](PATCHES.md#batterypods-comsumyapplicationsbluetoothearphone) | 1 | `8.32` | [`com.sumyapplications.bluetooth.earphone`](https://play.google.com/store/apps/details?id=com.sumyapplications.bluetooth.earphone) |
 | 31 | [**Beta Maniac**](PATCHES.md#beta-maniac-itmirkobeta) | 1 | `0.11.0` | [`it.mirko.beta`](https://play.google.com/store/apps/details?id=it.mirko.beta) |
 | 32 | [**Block Blast!**](PATCHES.md#block-blast-comblockjuggle) | 1 | `10.4.5` | [`com.block.juggle`](https://play.google.com/store/apps/details?id=com.block.juggle) |
 | 33 | [**Block Puzzle**](PATCHES.md#block-puzzle-gamepuzzleblockpuzzle) | 1 | `6.1` | [`game.puzzle.blockpuzzle`](https://play.google.com/store/apps/details?id=game.puzzle.blockpuzzle) |

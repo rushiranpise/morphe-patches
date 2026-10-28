@@ -219,7 +219,7 @@ val BATTERYGURU_COMMUNITY_COMPATIBILITY = Compatibility(
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1B7080,
-        targets = listOf(AppTarget(version = "2.5.0.8", versionCode = 732))
+        targets = listOf(AppTarget(version = "2.5.0.9", versionCode = 741))
     )
 
 val BATTERYGURU_COMPATIBILITY = Compatibility(
@@ -227,7 +227,7 @@ val BATTERYGURU_COMPATIBILITY = Compatibility(
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1B7080,
-        targets = listOf(AppTarget(version = "2.5.0.8", versionCode = 732))
+        targets = listOf(AppTarget(version = "2.5.0.9", versionCode = 741))
     )
 
 val BATTERYPODS_COMPATIBILITY = Compatibility(
@@ -235,7 +235,7 @@ val BATTERYPODS_COMPATIBILITY = Compatibility(
         packageName = "com.sumyapplications.bluetooth.earphone",
         apkFileType = ApkFileType.APKS,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.52", versionCode = 7520))
+        targets = listOf(AppTarget(version = "8.32"))
     )
 
 val BLEK_COMPATIBILITY = Compatibility(
