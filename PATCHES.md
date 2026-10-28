@@ -1,12 +1,12 @@
 # Patches
 
-> Generated from `patches-list.json` — **v1.23.1-dev.1** (`dev`) · **317 patches** across **227 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v1.23.1** (`main`) · **317 patches** across **227 apps** · back to [README](README.md)
 
 ---
 
 ## 1.1.1.1 (com.cloudflare.onedotonedotonedotone)
 
-**Supported versions:** `6.38.9`
+**Supported versions:** `6.38.11`
 
 | Patch | Details |
 |---|---|
@@ -139,7 +139,7 @@
 
 ## Amazon India (in.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.18.0.300`
+**Supported versions:** `32.19.0.300`
 
 | Patch | Details |
 |---|---|
@@ -156,7 +156,7 @@
 
 ## Amazon Shopping (com.amazon.mShop.android.shopping)
 
-**Supported versions:** `32.18.0.100`
+**Supported versions:** `32.19.0.100`
 
 | Patch | Details |
 |---|---|
@@ -443,7 +443,7 @@
 
 ## BuzzCast (com.guochao.faceshow)
 
-**Supported versions:** `3.2.91`
+**Supported versions:** `3.2.97`
 
 | Patch | Details |
 |---|---|
@@ -473,7 +473,7 @@
 
 ## Calory (com.funnmedia.calory)
 
-**Supported versions:** `3.8.7`
+**Supported versions:** `3.9`
 
 | Patch | Details |
 |---|---|
@@ -594,7 +594,7 @@
 
 ## Clue Period & Cycle Tracker (com.clue.android)
 
-**Supported versions:** `273.0`
+**Supported versions:** `275.0`
 
 | Patch | Details |
 |---|---|
@@ -634,7 +634,7 @@
 
 ## Crime Radar (com.newsbreak.crimeradar)
 
-**Supported versions:** `26.41.0`
+**Supported versions:** `26.42.1`
 
 | Patch | Details |
 |---|---|
@@ -777,7 +777,7 @@
 
 ## FlightAware (com.flightaware.android.liveFlightTracker)
 
-**Supported versions:** `5.16.1`
+**Supported versions:** `5.16.3`
 
 | Patch | Details |
 |---|---|
@@ -787,7 +787,7 @@
 
 ## Flightradar24 (com.flightradar24free)
 
-**Supported versions:** `11.12.0`
+**Supported versions:** `11.13.0`
 
 | Patch | Details |
 |---|---|
@@ -797,7 +797,7 @@
 
 ## Flud (com.delphicoder.flud)
 
-**Supported versions:** `2.1.2`
+**Supported versions:** `2.2.2`
 
 | Patch | Details |
 |---|---|
@@ -827,7 +827,7 @@
 
 ## Google Photos (com.google.android.apps.photos)
 
-**Supported versions:** `7.97.0.997578476`
+**Supported versions:** `7.98.0.1001971222`
 
 | Patch | Details |
 |---|---|
@@ -853,7 +853,7 @@
 
 ## HD UHD Live Wallpapers (hd.uhd.live.wallpapers.topwallpapers)
 
-**Supported versions:** `6.1.1`
+**Supported versions:** `7.0.1`
 
 | Patch | Details |
 |---|---|
@@ -913,7 +913,7 @@
 
 ## HTTP Sniffer (com.anetcapture.mock)
 
-**Supported versions:** `2.5.0-ad_mob`
+**Supported versions:** `2.5.2-ad_mob`
 
 | Patch | Details |
 |---|---|
@@ -923,7 +923,7 @@
 
 ## Hydro Coach (com.codium.hydrocoach)
 
-**Supported versions:** `5.1.13`
+**Supported versions:** `6.0.3`
 
 | Patch | Details |
 |---|---|
@@ -963,7 +963,7 @@
 
 ## Inure App Manager (GitHub) (app.simple.inure)
 
-**Supported versions:** `build107.2.4`
+**Supported versions:** `build107.3.0`
 
 | Patch | Details |
 |---|---|
@@ -973,7 +973,7 @@
 
 ## JEFIT (je.fit)
 
-**Supported versions:** `17.4.5`
+**Supported versions:** `17.6.0`
 
 | Patch | Details |
 |---|---|
@@ -1064,7 +1064,7 @@
 
 ## LiveScore (com.livescore)
 
-**Supported versions:** `10.3.1`
+**Supported versions:** `10.3.2`
 
 | Patch | Details |
 |---|---|
@@ -1286,7 +1286,7 @@
 
 ## NAVITIME (com.navitime.inbound.walk)
 
-**Supported versions:** `12.2.5`
+**Supported versions:** `12.3.0`
 
 | Patch | Details |
 |---|---|
@@ -1306,7 +1306,7 @@
 
 ## NetMonster (cz.mroczis.netmonster)
 
-**Supported versions:** `4.0.5`
+**Supported versions:** `5.0.2`
 
 | Patch | Details |
 |---|---|
@@ -1326,7 +1326,7 @@
 
 ## NewsBreak (com.particlenews.newsbreak)
 
-**Supported versions:** `26.41.0`
+**Supported versions:** `26.43.0`
 
 | Patch | Details |
 |---|---|
@@ -1336,7 +1336,7 @@
 
 ## NewsBreak Lite (com.particlenews.newsbreaklite)
 
-**Supported versions:** `26.34.0`
+**Supported versions:** `26.39.0`
 
 | Patch | Details |
 |---|---|
@@ -1376,7 +1376,7 @@
 
 ## nzb360 (com.kevinforeman.nzb360)
 
-**Supported versions:** `25.2`
+**Supported versions:** `25.2.1`
 
 | Patch | Details |
 |---|---|
@@ -1528,7 +1528,7 @@
 
 ## PictureThis (cn.danatech.xingseus)
 
-**Supported versions:** `5.36.0`
+**Supported versions:** `5.38.0`
 
 | Patch | Details |
 |---|---|
@@ -1618,7 +1618,7 @@
 
 ## Proton Pass (proton.android.pass)
 
-**Supported versions:** `1.41.3`
+**Supported versions:** `1.41.5`
 
 | Patch | Details |
 |---|---|
@@ -1708,7 +1708,7 @@
 
 ## Rename & Organize (eu.duong.picturemanager)
 
-**Supported versions:** `8.30.2`
+**Supported versions:** `8.30.3`
 
 | Patch | Details |
 |---|---|
@@ -1758,7 +1758,7 @@
 
 ## SCRL (com.appostrophe.scrl)
 
-**Supported versions:** `1.31`
+**Supported versions:** `1.32.1`
 
 | Patch | Details |
 |---|---|
@@ -1898,7 +1898,7 @@
 
 ## Stargazing Hub (com.twtapp)
 
-**Supported versions:** `3.5.3`
+**Supported versions:** `3.5.4`
 
 | Patch | Details |
 |---|---|
@@ -1918,7 +1918,7 @@
 
 ## Sticker.ly (com.snowcorp.stickerly.android)
 
-**Supported versions:** `3.40.0`
+**Supported versions:** `3.40.1`
 
 | Patch | Details |
 |---|---|
@@ -2059,7 +2059,7 @@
 
 ## The Weather Channel (com.weather.Weather)
 
-**Supported versions:** `16.25.0`
+**Supported versions:** `16.26.0`
 
 | Patch | Details |
 |---|---|
@@ -2169,7 +2169,7 @@
 
 ## UbikiTouch (eu.toneiv.ubktouch)
 
-**Supported versions:** `1.17.10`
+**Supported versions:** `1.17.11`
 
 | Patch | Details |
 |---|---|
@@ -2179,7 +2179,7 @@
 
 ## UDisc (com.regasoftware.udisc)
 
-**Supported versions:** `24.3.2`
+**Supported versions:** `24.3.4`
 
 | Patch | Details |
 |---|---|

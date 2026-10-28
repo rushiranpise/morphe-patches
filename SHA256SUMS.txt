@@ -1,1 +1,1 @@
-99cc7b2cd00839852ff481e5353a5ffdadce99122a8173b047f793932eb6c1ad  patches/build/libs/patches-1.23.1-dev.1.mpp
+9a8d0652494b0e3d60f4fd0c2872138270e278858fd3d2525715f52ed87a2c5a  patches/build/libs/patches-1.23.1.mpp

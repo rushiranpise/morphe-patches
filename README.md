@@ -93,11 +93,11 @@ Bug reports must include:
 ## 🩹 Patches list
 
 <!-- PATCHES_START -->
-> **[v1.23.1-dev.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.1-dev.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`dev`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**317 patches** across **227 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v1.23.1](https://github.com/rushiranpise/morphe-patches/releases/tag/v1.23.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**317 patches** across **227 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
-| 1 | [**1.1.1.1**](PATCHES.md#1111-comcloudflareonedotonedotonedotone) | 3 | `6.38.9` | [`com.cloudflare.onedotonedotonedotone`](https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone) |
+| 1 | [**1.1.1.1**](PATCHES.md#1111-comcloudflareonedotonedotonedotone) | 3 | `6.38.11` | [`com.cloudflare.onedotonedotonedotone`](https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone) |
 | 2 | [**1Tap Cleaner**](PATCHES.md#1tap-cleaner-coma0softgphoneaccfree) | 1 | `5.22` | [`com.a0soft.gphone.acc.free`](https://play.google.com/store/apps/details?id=com.a0soft.gphone.acc.free) |
 | 3 | [**AAAD**](PATCHES.md#aaad-sksaaacustomapps) | 2 | `2.8.5` | [`sksa.aa.customapps`](https://play.google.com/store/apps/details?id=sksa.aa.customapps) |
 | 4 | [**AAEnabler**](PATCHES.md#aaenabler-comaaenablerapp) | 1 | `v1.0.14` | [`com.aaenabler.app`](https://play.google.com/store/apps/details?id=com.aaenabler.app) |
@@ -110,8 +110,8 @@ Bug reports must include:
 | 11 | [**AIDA64**](PATCHES.md#aida64-comfinalwireaida64) | 1 | `2.22` | [`com.finalwire.aida64`](https://play.google.com/store/apps/details?id=com.finalwire.aida64) |
 | 12 | [**AiScore**](PATCHES.md#aiscore-comonesportsscore) | 1 | `4.2.7` | [`com.onesports.score`](https://play.google.com/store/apps/details?id=com.onesports.score) |
 | 13 | [**All Reader**](PATCHES.md#all-reader-alldocumentreaderofficeviewerfilereaderpdfviewer) | 1 | `3.2.4` | [`alldocumentreader.office.viewer.filereader.pdfviewer`](https://play.google.com/store/apps/details?id=alldocumentreader.office.viewer.filereader.pdfviewer) |
-| 14 | [**Amazon India**](PATCHES.md#amazon-india-inamazonmshopandroidshopping) | 8 | `32.18.0.300` | [`in.amazon.mShop.android.shopping`](https://play.google.com/store/apps/details?id=in.amazon.mShop.android.shopping) |
-| 15 | [**Amazon Shopping**](PATCHES.md#amazon-shopping-comamazonmshopandroidshopping) | 8 | `32.18.0.100` | [`com.amazon.mShop.android.shopping`](https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping) |
+| 14 | [**Amazon India**](PATCHES.md#amazon-india-inamazonmshopandroidshopping) | 8 | `32.19.0.300` | [`in.amazon.mShop.android.shopping`](https://play.google.com/store/apps/details?id=in.amazon.mShop.android.shopping) |
+| 15 | [**Amazon Shopping**](PATCHES.md#amazon-shopping-comamazonmshopandroidshopping) | 8 | `32.19.0.100` | [`com.amazon.mShop.android.shopping`](https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping) |
 | 16 | [**AmoledPix**](PATCHES.md#amoledpix-comandroholicamoledpix) | 1 | `7.3` | [`com.androholic.amoledpix`](https://play.google.com/store/apps/details?id=com.androholic.amoledpix) |
 | 17 | [**Ampere**](PATCHES.md#ampere-comgombosdevampere) | 1 | `v4.37.0` | [`com.gombosdev.ampere`](https://play.google.com/store/apps/details?id=com.gombosdev.ampere) |
 | 18 | [**AndroPods**](PATCHES.md#andropods-provitaliiandropods) | 1 | `1.5.30` | [`pro.vitalii.andropods`](https://play.google.com/store/apps/details?id=pro.vitalii.andropods) |
@@ -139,10 +139,10 @@ Bug reports must include:
 | 40 | [**BoldVoice**](PATCHES.md#boldvoice-comwellocutionandroidapp) | 1 | `4.6.6` | [`com.wellocution.androidapp`](https://play.google.com/store/apps/details?id=com.wellocution.androidapp) |
 | 41 | [**Box Box**](PATCHES.md#box-box-clubboxboxandroid) | 1 | `5.4.17` | [`club.boxbox.android`](https://play.google.com/store/apps/details?id=club.boxbox.android) |
 | 42 | [**BubbleUPnP**](PATCHES.md#bubbleupnp-combubblesoftandroidbubbleupnp) | 1 | `4.6.7.1` | [`com.bubblesoft.android.bubbleupnp`](https://play.google.com/store/apps/details?id=com.bubblesoft.android.bubbleupnp) |
-| 43 | [**BuzzCast**](PATCHES.md#buzzcast-comguochaofaceshow) | 1 | `3.2.91` | [`com.guochao.faceshow`](https://play.google.com/store/apps/details?id=com.guochao.faceshow) |
+| 43 | [**BuzzCast**](PATCHES.md#buzzcast-comguochaofaceshow) | 1 | `3.2.97` | [`com.guochao.faceshow`](https://play.google.com/store/apps/details?id=com.guochao.faceshow) |
 | 44 | [**calimoto**](PATCHES.md#calimoto-comcalimotocalimoto) | 1 | `2026.10.2` | [`com.calimoto.calimoto`](https://play.google.com/store/apps/details?id=com.calimoto.calimoto) |
 | 45 | [**Calm**](PATCHES.md#calm-comcalmandroid) | 1 | `6.102` | [`com.calm.android`](https://play.google.com/store/apps/details?id=com.calm.android) |
-| 46 | [**Calory**](PATCHES.md#calory-comfunnmediacalory) | 1 | `3.8.7` | [`com.funnmedia.calory`](https://play.google.com/store/apps/details?id=com.funnmedia.calory) |
+| 46 | [**Calory**](PATCHES.md#calory-comfunnmediacalory) | 1 | `3.9` | [`com.funnmedia.calory`](https://play.google.com/store/apps/details?id=com.funnmedia.calory) |
 | 47 | [**CamScanner**](PATCHES.md#camscanner-comintsigcamscanner) | 2 | `7.24.5.2608200000` | [`com.intsig.camscanner`](https://play.google.com/store/apps/details?id=com.intsig.camscanner) |
 | 48 | [**Canva**](PATCHES.md#canva-comcanvaeditor) | 1 | `2.377.0` | [`com.canva.editor`](https://play.google.com/store/apps/details?id=com.canva.editor) |
 | 49 | [**CAPod**](PATCHES.md#capod-eudarkencapod) | 1 | `5.2.5-rc0` | [`eu.darken.capod`](https://play.google.com/store/apps/details?id=eu.darken.capod) |
@@ -154,11 +154,11 @@ Bug reports must include:
 | 55 | [**Citizen**](PATCHES.md#citizen-sp0ncitizen) | 1 | `0.1307.0` | [`sp0n.citizen`](https://play.google.com/store/apps/details?id=sp0n.citizen) |
 | 56 | [**Citymapper**](PATCHES.md#citymapper-comcitymapperapprelease) | 1 | `11.60` | [`com.citymapper.app.release`](https://play.google.com/store/apps/details?id=com.citymapper.app.release) |
 | 57 | [**Clickmate**](PATCHES.md#clickmate-cominscodeautoclicker) | 1 | `7.1.6` | [`com.inscode.autoclicker`](https://play.google.com/store/apps/details?id=com.inscode.autoclicker) |
-| 58 | [**Clue Period &amp; Cycle Tracker**](PATCHES.md#clue-period-cycle-tracker-comclueandroid) | 1 | `273.0` | [`com.clue.android`](https://play.google.com/store/apps/details?id=com.clue.android) |
+| 58 | [**Clue Period &amp; Cycle Tracker**](PATCHES.md#clue-period-cycle-tracker-comclueandroid) | 1 | `275.0` | [`com.clue.android`](https://play.google.com/store/apps/details?id=com.clue.android) |
 | 59 | [**ColorNote**](PATCHES.md#colornote-comsocialnmobiledictappsnotepadcolornote) | 1 | `4.8.8` | [`com.socialnmobile.dictapps.notepad.color.note`](https://play.google.com/store/apps/details?id=com.socialnmobile.dictapps.notepad.color.note) |
 | 60 | [**Countdown Widget**](PATCHES.md#countdown-widget-megirawidgetcountdown) | 1 | `3.2.0` | [`me.gira.widget.countdown`](https://play.google.com/store/apps/details?id=me.gira.widget.countdown) |
 | 61 | [**CPU-Z**](PATCHES.md#cpu-z-comcpuidcpu_z) | 1 | `1.60` | [`com.cpuid.cpu_z`](https://play.google.com/store/apps/details?id=com.cpuid.cpu_z) |
-| 62 | [**Crime Radar**](PATCHES.md#crime-radar-comnewsbreakcrimeradar) | 1 | `26.41.0` | [`com.newsbreak.crimeradar`](https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar) |
+| 62 | [**Crime Radar**](PATCHES.md#crime-radar-comnewsbreakcrimeradar) | 1 | `26.42.1` | [`com.newsbreak.crimeradar`](https://play.google.com/store/apps/details?id=com.newsbreak.crimeradar) |
 | 63 | [**Cube ACR**](PATCHES.md#cube-acr-comcatalinagroupcallrecorder) | 1 | `2.4.281` | [`com.catalinagroup.callrecorder`](https://play.google.com/store/apps/details?id=com.catalinagroup.callrecorder) |
 | 64 | [**Cube Solver**](PATCHES.md#cube-solver-comjeffprodcubesolver) | 2 | `5.1.0` | [`com.jeffprod.cubesolver`](https://play.google.com/store/apps/details?id=com.jeffprod.cubesolver) |
 | 65 | [**Dailyhunt**](PATCHES.md#dailyhunt-cometerno) | 1 | `34.0.4` | [`com.eterno`](https://play.google.com/store/apps/details?id=com.eterno) |
@@ -172,26 +172,26 @@ Bug reports must include:
 | 73 | [**File Manager**](PATCHES.md#file-manager-comalphainventorfilemanager) | 1 | `3.8.2` | [`com.alphainventor.filemanager`](https://play.google.com/store/apps/details?id=com.alphainventor.filemanager) |
 | 74 | [**Fitbod**](PATCHES.md#fitbod-comfitbodfitbod) | 1 | `8.33.0-0` | [`com.fitbod.fitbod`](https://play.google.com/store/apps/details?id=com.fitbod.fitbod) |
 | 75 | [**Fitia**](PATCHES.md#fitia-comnutritiontechnologiesfitia) | 1 | `26.0.1` | [`com.nutrition.technologies.Fitia`](https://play.google.com/store/apps/details?id=com.nutrition.technologies.Fitia) |
-| 76 | [**FlightAware**](PATCHES.md#flightaware-comflightawareandroidliveflighttracker) | 1 | `5.16.1` | [`com.flightaware.android.liveFlightTracker`](https://play.google.com/store/apps/details?id=com.flightaware.android.liveFlightTracker) |
-| 77 | [**Flightradar24**](PATCHES.md#flightradar24-comflightradar24free) | 1 | `11.12.0` | [`com.flightradar24free`](https://play.google.com/store/apps/details?id=com.flightradar24free) |
-| 78 | [**Flud**](PATCHES.md#flud-comdelphicoderflud) | 1 | `2.1.2` | [`com.delphicoder.flud`](https://play.google.com/store/apps/details?id=com.delphicoder.flud) |
+| 76 | [**FlightAware**](PATCHES.md#flightaware-comflightawareandroidliveflighttracker) | 1 | `5.16.3` | [`com.flightaware.android.liveFlightTracker`](https://play.google.com/store/apps/details?id=com.flightaware.android.liveFlightTracker) |
+| 77 | [**Flightradar24**](PATCHES.md#flightradar24-comflightradar24free) | 1 | `11.13.0` | [`com.flightradar24free`](https://play.google.com/store/apps/details?id=com.flightradar24free) |
+| 78 | [**Flud**](PATCHES.md#flud-comdelphicoderflud) | 1 | `2.2.2` | [`com.delphicoder.flud`](https://play.google.com/store/apps/details?id=com.delphicoder.flud) |
 | 79 | [**Fuelio**](PATCHES.md#fuelio-comkajdafuelio) | 1 | `10.3.4` | [`com.kajda.fuelio`](https://play.google.com/store/apps/details?id=com.kajda.fuelio) |
 | 80 | [**Genius Scan**](PATCHES.md#genius-scan-comthegrizzlylabsgeniusscanfree) | 1 | `7.41.0` | [`com.thegrizzlylabs.geniusscan.free`](https://play.google.com/store/apps/details?id=com.thegrizzlylabs.geniusscan.free) |
-| 81 | [**Google Photos**](PATCHES.md#google-photos-comgoogleandroidappsphotos) | 7 | `7.97.0.997578476` | [`com.google.android.apps.photos`](https://play.google.com/store/apps/details?id=com.google.android.apps.photos) |
+| 81 | [**Google Photos**](PATCHES.md#google-photos-comgoogleandroidappsphotos) | 7 | `7.98.0.1001971222` | [`com.google.android.apps.photos`](https://play.google.com/store/apps/details?id=com.google.android.apps.photos) |
 | 82 | [**Greenify**](PATCHES.md#greenify-comoasisfenggreenify) | 1 | `5.1.1` | [`com.oasisfeng.greenify`](https://play.google.com/store/apps/details?id=com.oasisfeng.greenify) |
-| 83 | [**HD UHD Live Wallpapers**](PATCHES.md#hd-uhd-live-wallpapers-hduhdlivewallpaperstopwallpapers) | 1 | `6.1.1` | [`hd.uhd.live.wallpapers.topwallpapers`](https://play.google.com/store/apps/details?id=hd.uhd.live.wallpapers.topwallpapers) |
+| 83 | [**HD UHD Live Wallpapers**](PATCHES.md#hd-uhd-live-wallpapers-hduhdlivewallpaperstopwallpapers) | 1 | `7.0.1` | [`hd.uhd.live.wallpapers.topwallpapers`](https://play.google.com/store/apps/details?id=hd.uhd.live.wallpapers.topwallpapers) |
 | 84 | [**Height Increase**](PATCHES.md#height-increase-increaseheightworkoutheightincreaseexercisetallerexercise) | 1 | `1.1.17` | [`increaseheightworkout.heightincreaseexercise.tallerexercise`](https://play.google.com/store/apps/details?id=increaseheightworkout.heightincreaseexercise.tallerexercise) |
 | 85 | [**Hibernator**](PATCHES.md#hibernator-comtafayorhibernator) | 1 | `2.57.0` | [`com.tafayor.hibernator`](https://play.google.com/store/apps/details?id=com.tafayor.hibernator) |
 | 86 | [**Historical Calendar**](PATCHES.md#historical-calendar-comalexandrucenedayhistory) | 1 | `7.6.0` | [`com.alexandrucene.dayhistory`](https://play.google.com/store/apps/details?id=com.alexandrucene.dayhistory) |
 | 87 | [**Hola VPN Proxy Plus**](PATCHES.md#hola-vpn-proxy-plus-orgholaplay) | 1 | `AARCH64_1.248.400` | [`org.hola.play`](https://play.google.com/store/apps/details?id=org.hola.play) |
 | 88 | [**Home Workout**](PATCHES.md#home-workout-homeworkouthomeworkoutsnoequipment) | 1 | `1.7.9` | [`homeworkout.homeworkouts.noequipment`](https://play.google.com/store/apps/details?id=homeworkout.homeworkouts.noequipment) |
-| 89 | [**HTTP Sniffer**](PATCHES.md#http-sniffer-comanetcapturemock) | 1 | `2.5.0-ad_mob` | [`com.anetcapture.mock`](https://play.google.com/store/apps/details?id=com.anetcapture.mock) |
-| 90 | [**Hydro Coach**](PATCHES.md#hydro-coach-comcodiumhydrocoach) | 1 | `5.1.13` | [`com.codium.hydrocoach`](https://play.google.com/store/apps/details?id=com.codium.hydrocoach) |
+| 89 | [**HTTP Sniffer**](PATCHES.md#http-sniffer-comanetcapturemock) | 1 | `2.5.2-ad_mob` | [`com.anetcapture.mock`](https://play.google.com/store/apps/details?id=com.anetcapture.mock) |
+| 90 | [**Hydro Coach**](PATCHES.md#hydro-coach-comcodiumhydrocoach) | 1 | `6.0.3` | [`com.codium.hydrocoach`](https://play.google.com/store/apps/details?id=com.codium.hydrocoach) |
 | 91 | [**Image &amp; Video Date Fixer**](PATCHES.md#image-video-date-fixer-euduongimagedatefixer) | 1 | `3.7.1` | [`eu.duong.imagedatefixer`](https://play.google.com/store/apps/details?id=eu.duong.imagedatefixer) |
 | 92 | [**Inmigreat**](PATCHES.md#inmigreat-comchangayafinmigreat) | 1 | `2.3.87` | [`com.changayaf.inmigreat`](https://play.google.com/store/apps/details?id=com.changayaf.inmigreat) |
 | 93 | [**Inure App Manager**](PATCHES.md#inure-app-manager-appsimpleinureplay) | 1 | `build107.2.1` | [`app.simple.inure.play`](https://play.google.com/store/apps/details?id=app.simple.inure.play) |
-| 94 | [**Inure App Manager (GitHub)**](PATCHES.md#inure-app-manager-github-appsimpleinure) | 1 | `build107.2.4` | [`app.simple.inure`](https://play.google.com/store/apps/details?id=app.simple.inure) |
-| 95 | [**JEFIT**](PATCHES.md#jefit-jefit) | 1 | `17.4.5` | [`je.fit`](https://play.google.com/store/apps/details?id=je.fit) |
+| 94 | [**Inure App Manager (GitHub)**](PATCHES.md#inure-app-manager-github-appsimpleinure) | 1 | `build107.3.0` | [`app.simple.inure`](https://play.google.com/store/apps/details?id=app.simple.inure) |
+| 95 | [**JEFIT**](PATCHES.md#jefit-jefit) | 1 | `17.6.0` | [`je.fit`](https://play.google.com/store/apps/details?id=je.fit) |
 | 96 | [**Kahoot!**](PATCHES.md#kahoot-nomobitrollkahootandroid) | 1 | `6.6.7` | [`no.mobitroll.kahoot.android`](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android) |
 | 97 | [**KillApps**](PATCHES.md#killapps-comtafayorkillall) | 1 | `1.58.0` | [`com.tafayor.killall`](https://play.google.com/store/apps/details?id=com.tafayor.killall) |
 | 98 | [**KineMaster**](PATCHES.md#kinemaster-comnexstreamingappkinemasterfree) | 1 | `8.1.13.36552.GP` | [`com.nexstreaming.app.kinemasterfree`](https://play.google.com/store/apps/details?id=com.nexstreaming.app.kinemasterfree) |
@@ -200,7 +200,7 @@ Bug reports must include:
 | 101 | [**Lark Player**](PATCHES.md#lark-player-comdywxlarkplayer) | 1 | `2026.12.5` | [`com.dywx.larkplayer`](https://play.google.com/store/apps/details?id=com.dywx.larkplayer) |
 | 102 | [**Lawfully**](PATCHES.md#lawfully-comlawfullylawfully_ai_tracker) | 1 | `6.8.2` | [`com.lawfully.lawfully_ai_tracker`](https://play.google.com/store/apps/details?id=com.lawfully.lawfully_ai_tracker) |
 | 103 | [**Life360**](PATCHES.md#life360-comlife360androidsafetymapd) | 2 | `26.31.6` | [`com.life360.android.safetymapd`](https://play.google.com/store/apps/details?id=com.life360.android.safetymapd) |
-| 104 | [**LiveScore**](PATCHES.md#livescore-comlivescore) | 1 | `10.3.1` | [`com.livescore`](https://play.google.com/store/apps/details?id=com.livescore) |
+| 104 | [**LiveScore**](PATCHES.md#livescore-comlivescore) | 1 | `10.3.2` | [`com.livescore`](https://play.google.com/store/apps/details?id=com.livescore) |
 | 105 | [**Lose Weight App for Women**](PATCHES.md#lose-weight-app-for-women-loseweightapploseweightappforwomenwomenworkoutathome) | 1 | `2.4.0` | [`loseweightapp.loseweightappforwomen.womenworkoutathome`](https://play.google.com/store/apps/details?id=loseweightapp.loseweightappforwomen.womenworkoutathome) |
 | 106 | [**m-Indicator**](PATCHES.md#m-indicator-commobondmindicator) | 1 | `18.0.365` | [`com.mobond.mindicator`](https://play.google.com/store/apps/details?id=com.mobond.mindicator) |
 | 107 | [**MacroDroid**](PATCHES.md#macrodroid-comarlosoftmacrodroid) | 1 | `5.66.9` | [`com.arlosoft.macrodroid`](https://play.google.com/store/apps/details?id=com.arlosoft.macrodroid) |
@@ -221,16 +221,16 @@ Bug reports must include:
 | 122 | [**Moovit**](PATCHES.md#moovit-comtranzmate) | 1 | `5.197.1.1801` | [`com.tranzmate`](https://play.google.com/store/apps/details?id=com.tranzmate) |
 | 123 | [**MyAnimeList**](PATCHES.md#myanimelist-netmyanimelistapp) | 1 | `2.3.16` | [`net.myanimelist.app`](https://play.google.com/store/apps/details?id=net.myanimelist.app) |
 | 124 | [**MyRadar**](PATCHES.md#myradar-comacmeaomandroidmyradar) | 1 | `8.73.1` | [`com.acmeaom.android.myradar`](https://play.google.com/store/apps/details?id=com.acmeaom.android.myradar) |
-| 125 | [**NAVITIME**](PATCHES.md#navitime-comnavitimeinboundwalk) | 1 | `12.2.5` | [`com.navitime.inbound.walk`](https://play.google.com/store/apps/details?id=com.navitime.inbound.walk) |
+| 125 | [**NAVITIME**](PATCHES.md#navitime-comnavitimeinboundwalk) | 1 | `12.3.0` | [`com.navitime.inbound.walk`](https://play.google.com/store/apps/details?id=com.navitime.inbound.walk) |
 | 126 | [**NetGuard**](PATCHES.md#netguard-eufaircodenetguard) | 1 | `2.337` | [`eu.faircode.netguard`](https://play.google.com/store/apps/details?id=eu.faircode.netguard) |
-| 127 | [**NetMonster**](PATCHES.md#netmonster-czmroczisnetmonster) | 1 | `4.0.5` | [`cz.mroczis.netmonster`](https://play.google.com/store/apps/details?id=cz.mroczis.netmonster) |
+| 127 | [**NetMonster**](PATCHES.md#netmonster-czmroczisnetmonster) | 1 | `5.0.2` | [`cz.mroczis.netmonster`](https://play.google.com/store/apps/details?id=cz.mroczis.netmonster) |
 | 128 | [**Network Guru**](PATCHES.md#network-guru-compaget96netspeedindicator) | 1 | `2.0` | [`com.paget96.netspeedindicator`](https://play.google.com/store/apps/details?id=com.paget96.netspeedindicator) |
-| 129 | [**NewsBreak**](PATCHES.md#newsbreak-comparticlenewsnewsbreak) | 1 | `26.41.0` | [`com.particlenews.newsbreak`](https://play.google.com/store/apps/details?id=com.particlenews.newsbreak) |
-| 130 | [**NewsBreak Lite**](PATCHES.md#newsbreak-lite-comparticlenewsnewsbreaklite) | 1 | `26.34.0` | [`com.particlenews.newsbreaklite`](https://play.google.com/store/apps/details?id=com.particlenews.newsbreaklite) |
+| 129 | [**NewsBreak**](PATCHES.md#newsbreak-comparticlenewsnewsbreak) | 1 | `26.43.0` | [`com.particlenews.newsbreak`](https://play.google.com/store/apps/details?id=com.particlenews.newsbreak) |
+| 130 | [**NewsBreak Lite**](PATCHES.md#newsbreak-lite-comparticlenewsnewsbreaklite) | 1 | `26.39.0` | [`com.particlenews.newsbreaklite`](https://play.google.com/store/apps/details?id=com.particlenews.newsbreaklite) |
 | 131 | [**Ninja VPN**](PATCHES.md#ninja-vpn-appninjavpnandroid) | 1 | `1.4.7` | [`app.ninjavpn.android`](https://play.google.com/store/apps/details?id=app.ninjavpn.android) |
 | 132 | [**Nova Launcher**](PATCHES.md#nova-launcher-comteslacoilswlauncher) | 1 | `8.8.8` | [`com.teslacoilsw.launcher`](https://play.google.com/store/apps/details?id=com.teslacoilsw.launcher) |
 | 133 | [**NYT Games**](PATCHES.md#nyt-games-comnytimescrossword) | 1 | `6.41.0` | [`com.nytimes.crossword`](https://play.google.com/store/apps/details?id=com.nytimes.crossword) |
-| 134 | [**nzb360**](PATCHES.md#nzb360-comkevinforemannzb360) | 1 | `25.2` | [`com.kevinforeman.nzb360`](https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360) |
+| 134 | [**nzb360**](PATCHES.md#nzb360-comkevinforemannzb360) | 1 | `25.2.1` | [`com.kevinforeman.nzb360`](https://play.google.com/store/apps/details?id=com.kevinforeman.nzb360) |
 | 135 | [**OBD Android**](PATCHES.md#obd-android-aimetaverselabsobdandroid) | 1 | `4.9` | [`ai.metaverselabs.obdandroid`](https://play.google.com/store/apps/details?id=ai.metaverselabs.obdandroid) |
 | 136 | [**Octi**](PATCHES.md#octi-eudarkenocti) | 1 | `1.3.0-rc0` | [`eu.darken.octi`](https://play.google.com/store/apps/details?id=eu.darken.octi) |
 | 137 | [**Octopi Launcher**](PATCHES.md#octopi-launcher-comotpoctopilauncher) | 1 | `1.88` | [`com.otp.octopilauncher`](https://play.google.com/store/apps/details?id=com.otp.octopilauncher) |
@@ -245,7 +245,7 @@ Bug reports must include:
 | 146 | [**Pialytic**](PATCHES.md#pialytic-verbosuspialytic) | 1 | `1.3.5` | [`verbosus.pialytic`](https://play.google.com/store/apps/details?id=verbosus.pialytic) |
 | 147 | [**PicsArt**](PATCHES.md#picsart-compicsartstudio) | 3 | `30.7.8` | [`com.picsart.studio`](https://play.google.com/store/apps/details?id=com.picsart.studio) |
 | 148 | [**Picture Mushroom**](PATCHES.md#picture-mushroom-comgloritypicturemushroom) | 1 | `2.9.31` | [`com.glority.picturemushroom`](https://play.google.com/store/apps/details?id=com.glority.picturemushroom) |
-| 149 | [**PictureThis**](PATCHES.md#picturethis-cndanatechxingseus) | 1 | `5.36.0` | [`cn.danatech.xingseus`](https://play.google.com/store/apps/details?id=cn.danatech.xingseus) |
+| 149 | [**PictureThis**](PATCHES.md#picturethis-cndanatechxingseus) | 1 | `5.38.0` | [`cn.danatech.xingseus`](https://play.google.com/store/apps/details?id=cn.danatech.xingseus) |
 | 150 | [**pillo**](PATCHES.md#pillo-xyzrtrvrpillo) | 1 | `0.6.24` | [`xyz.rtrvr.pillo`](https://play.google.com/store/apps/details?id=xyz.rtrvr.pillo) |
 | 151 | [**Pixel Habit Tracker**](PATCHES.md#pixel-habit-tracker-compixelalpixelhabittracker) | 1 | `2.5.0` | [`com.pixel.al.pixelhabittracker`](https://play.google.com/store/apps/details?id=com.pixel.al.pixelhabittracker) |
 | 152 | [**PLAYit**](PATCHES.md#playit-complayitvideoplayer) | 1 | `2.7.50.12` | [`com.playit.videoplayer`](https://play.google.com/store/apps/details?id=com.playit.videoplayer) |
@@ -254,7 +254,7 @@ Bug reports must include:
 | 155 | [**PodsLink**](PATCHES.md#podslink-netpodslink) | 1 | `1.4.0` | [`net.podslink`](https://play.google.com/store/apps/details?id=net.podslink) |
 | 156 | [**Police Scanner**](PATCHES.md#police-scanner-policescannerradiobroadcastifycitizen) | 1 | `1.29.0-260420093` | [`police.scanner.radio.broadcastify.citizen`](https://play.google.com/store/apps/details?id=police.scanner.radio.broadcastify.citizen) |
 | 157 | [**PortDroid**](PATCHES.md#portdroid-comstealthcopterportdroid) | 1 | `1.0.7` | [`com.stealthcopter.portdroid`](https://play.google.com/store/apps/details?id=com.stealthcopter.portdroid) |
-| 158 | [**Proton Pass**](PATCHES.md#proton-pass-protonandroidpass) | 1 | `1.41.3` | [`proton.android.pass`](https://play.google.com/store/apps/details?id=proton.android.pass) |
+| 158 | [**Proton Pass**](PATCHES.md#proton-pass-protonandroidpass) | 1 | `1.41.5` | [`proton.android.pass`](https://play.google.com/store/apps/details?id=proton.android.pass) |
 | 159 | [**Proton VPN**](PATCHES.md#proton-vpn-chprotonvpnandroid) | 1 | `5.19.78.0` | [`ch.protonvpn.android`](https://play.google.com/store/apps/details?id=ch.protonvpn.android) |
 | 160 | [**Proxyman**](PATCHES.md#proxyman-comproxymanproxymanandroid) | 1 | `1.21.0` | [`com.proxyman.proxymanandroid`](https://play.google.com/store/apps/details?id=com.proxyman.proxymanandroid) |
 | 161 | [**Psiphon Pro**](PATCHES.md#psiphon-pro-compsiphon3subscription) | 1 | `486` | [`com.psiphon3.subscription`](https://play.google.com/store/apps/details?id=com.psiphon3.subscription) |
@@ -263,12 +263,12 @@ Bug reports must include:
 | 164 | [**RAR**](PATCHES.md#rar-comrarlabrar) | 1 | `7.23.build134` | [`com.rarlab.rar`](https://play.google.com/store/apps/details?id=com.rarlab.rar) |
 | 165 | [**re-Link**](PATCHES.md#re-link-comcuriouscompanyrelink) | 1 | `2.0.13` | [`com.curiouscompany.relink`](https://play.google.com/store/apps/details?id=com.curiouscompany.relink) |
 | 166 | [**RecipeBro**](PATCHES.md#recipebro-comrecipebrocookingbuddy) | 1 | `1.7.21` | [`com.recipebro.cookingbuddy`](https://play.google.com/store/apps/details?id=com.recipebro.cookingbuddy) |
-| 167 | [**Rename &amp; Organize**](PATCHES.md#rename-organize-euduongpicturemanager) | 1 | `8.30.2` | [`eu.duong.picturemanager`](https://play.google.com/store/apps/details?id=eu.duong.picturemanager) |
+| 167 | [**Rename &amp; Organize**](PATCHES.md#rename-organize-euduongpicturemanager) | 1 | `8.30.3` | [`eu.duong.picturemanager`](https://play.google.com/store/apps/details?id=eu.duong.picturemanager) |
 | 168 | [**Rocket Money**](PATCHES.md#rocket-money-comtruebill) | 1 | `13.15.0` | [`com.truebill`](https://play.google.com/store/apps/details?id=com.truebill) |
 | 169 | [**RS File Manager**](PATCHES.md#rs-file-manager-comrsexplorerfilemanager) | 1 | `2.3.0.4` | [`com.rs.explorer.filemanager`](https://play.google.com/store/apps/details?id=com.rs.explorer.filemanager) |
 | 170 | [**SAI Split APKs Installer**](PATCHES.md#sai-split-apks-installer-commtvsai) | 1 | `2.4.0` | [`com.mtv.sai`](https://play.google.com/store/apps/details?id=com.mtv.sai) |
 | 171 | [**Scoopz**](PATCHES.md#scoopz-comlocalaiappscoops) | 1 | `3.36.0` | [`com.localaiapp.scoops`](https://play.google.com/store/apps/details?id=com.localaiapp.scoops) |
-| 172 | [**SCRL**](PATCHES.md#scrl-comappostrophescrl) | 1 | `1.31` | [`com.appostrophe.scrl`](https://play.google.com/store/apps/details?id=com.appostrophe.scrl) |
+| 172 | [**SCRL**](PATCHES.md#scrl-comappostrophescrl) | 1 | `1.32.1` | [`com.appostrophe.scrl`](https://play.google.com/store/apps/details?id=com.appostrophe.scrl) |
 | 173 | [**SD Maid SE**](PATCHES.md#sd-maid-se-eudarkensdmse) | 1 | `2.0.3-rc0` | [`eu.darken.sdmse`](https://play.google.com/store/apps/details?id=eu.darken.sdmse) |
 | 174 | [**Send Files To TV**](PATCHES.md#send-files-to-tv-comyabliosendfilestotv) | 1 | `1.4.22` | [`com.yablio.sendfilestotv`](https://play.google.com/store/apps/details?id=com.yablio.sendfilestotv) |
 | 175 | [**Server Auditor**](PATCHES.md#server-auditor-comserverauditorsshclient) | 1 | `7.11.2` | [`com.server.auditor.ssh.client`](https://play.google.com/store/apps/details?id=com.server.auditor.ssh.client) |
@@ -282,9 +282,9 @@ Bug reports must include:
 | 183 | [**SPIN**](PATCHES.md#spin-comnationaledtechspinbrowser) | 1 | `70.3.0` | [`com.nationaledtech.spinbrowser`](https://play.google.com/store/apps/details?id=com.nationaledtech.spinbrowser) |
 | 184 | [**Splitwise**](PATCHES.md#splitwise-comsplitwisesplitwisemobile) | 1 | `26.7.3` | [`com.Splitwise.SplitwiseMobile`](https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile) |
 | 185 | [**SpotAngels**](PATCHES.md#spotangels-comspotangelsandroid) | 1 | `15.2.2` | [`com.spotangels.android`](https://play.google.com/store/apps/details?id=com.spotangels.android) |
-| 186 | [**Stargazing Hub**](PATCHES.md#stargazing-hub-comtwtapp) | 1 | `3.5.3` | [`com.twtapp`](https://play.google.com/store/apps/details?id=com.twtapp) |
+| 186 | [**Stargazing Hub**](PATCHES.md#stargazing-hub-comtwtapp) | 1 | `3.5.4` | [`com.twtapp`](https://play.google.com/store/apps/details?id=com.twtapp) |
 | 187 | [**Sticker Maker**](PATCHES.md#sticker-maker-commarsvardstickermakerforwhatsapp) | 1 | `1.0.12-7` | [`com.marsvard.stickermakerforwhatsapp`](https://play.google.com/store/apps/details?id=com.marsvard.stickermakerforwhatsapp) |
-| 188 | [**Sticker.ly**](PATCHES.md#stickerly-comsnowcorpstickerlyandroid) | 1 | `3.40.0` | [`com.snowcorp.stickerly.android`](https://play.google.com/store/apps/details?id=com.snowcorp.stickerly.android) |
+| 188 | [**Sticker.ly**](PATCHES.md#stickerly-comsnowcorpstickerlyandroid) | 1 | `3.40.1` | [`com.snowcorp.stickerly.android`](https://play.google.com/store/apps/details?id=com.snowcorp.stickerly.android) |
 | 189 | [**Strava**](PATCHES.md#strava-comstrava) | 1 | `480.15` | [`com.strava`](https://play.google.com/store/apps/details?id=com.strava) |
 | 190 | [**Subway Now**](PATCHES.md#subway-now-iogoodservicetheweekendest) | 1 | `1.2.10` | [`io.goodservice.theweekendest`](https://play.google.com/store/apps/details?id=io.goodservice.theweekendest) |
 | 191 | [**Super File**](PATCHES.md#super-file-comesuperfileexplorer) | 1 | `1.5.6.3` | [`com.esuper.file.explorer`](https://play.google.com/store/apps/details?id=com.esuper.file.explorer) |
@@ -294,7 +294,7 @@ Bug reports must include:
 | 195 | [**Telegram Plus**](PATCHES.md#telegram-plus-orgtelegramplus) | 15 | `12.10.1.1` | [`org.telegram.plus`](https://play.google.com/store/apps/details?id=org.telegram.plus) |
 | 196 | [**Telegram Web**](PATCHES.md#telegram-web-orgtelegrammessengerweb) | 14 | `12.10.1` | [`org.telegram.messenger.web`](https://play.google.com/store/apps/details?id=org.telegram.messenger.web) |
 | 197 | [**The Athletic**](PATCHES.md#the-athletic-comtheathletic) | 1 | `13.153.0` | [`com.theathletic`](https://play.google.com/store/apps/details?id=com.theathletic) |
-| 198 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.25.0` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
+| 198 | [**The Weather Channel**](PATCHES.md#the-weather-channel-comweatherweather) | 1 | `16.26.0` | [`com.weather.Weather`](https://play.google.com/store/apps/details?id=com.weather.Weather) |
 | 199 | [**Today Weather**](PATCHES.md#today-weather-mobilockdownweather) | 1 | `2.5.0-6` | [`mobi.lockdown.weather`](https://play.google.com/store/apps/details?id=mobi.lockdown.weather) |
 | 200 | [**TomTom GO**](PATCHES.md#tomtom-go-comtomtomgplaynavapp) | 1 | `3.6.320` | [`com.tomtom.gplay.navapp`](https://play.google.com/store/apps/details?id=com.tomtom.gplay.navapp) |
 | 201 | [**Toomics**](PATCHES.md#toomics-comtoomicsglobalgoogle) | 1 | `1.6.9` | [`com.toomics.global.google`](https://play.google.com/store/apps/details?id=com.toomics.global.google) |
@@ -305,8 +305,8 @@ Bug reports must include:
 | 206 | [**Tracker Detect**](PATCHES.md#tracker-detect-comappletrackerdetect) | 1 | `1.2` | [`com.apple.trackerdetect`](https://play.google.com/store/apps/details?id=com.apple.trackerdetect) |
 | 207 | [**Transit**](PATCHES.md#transit-comthetransitappdroid) | 1 | `6.3.5` | [`com.thetransitapp.droid`](https://play.google.com/store/apps/details?id=com.thetransitapp.droid) |
 | 208 | [**TurboScan**](PATCHES.md#turboscan-compiksoftturboscanfree) | 1 | `1.7.3` | [`com.piksoft.turboscan.free`](https://play.google.com/store/apps/details?id=com.piksoft.turboscan.free) |
-| 209 | [**UbikiTouch**](PATCHES.md#ubikitouch-eutoneivubktouch) | 1 | `1.17.10` | [`eu.toneiv.ubktouch`](https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch) |
-| 210 | [**UDisc**](PATCHES.md#udisc-comregasoftwareudisc) | 1 | `24.3.2` | [`com.regasoftware.udisc`](https://play.google.com/store/apps/details?id=com.regasoftware.udisc) |
+| 209 | [**UbikiTouch**](PATCHES.md#ubikitouch-eutoneivubktouch) | 1 | `1.17.11` | [`eu.toneiv.ubktouch`](https://play.google.com/store/apps/details?id=eu.toneiv.ubktouch) |
+| 210 | [**UDisc**](PATCHES.md#udisc-comregasoftwareudisc) | 1 | `24.3.4` | [`com.regasoftware.udisc`](https://play.google.com/store/apps/details?id=com.regasoftware.udisc) |
 | 211 | [**Unimote**](PATCHES.md#unimote-sensustechuniversaltvremotecontrol) | 1 | `1.8.1` | [`sensustech.universal.tv.remote.control`](https://play.google.com/store/apps/details?id=sensustech.universal.tv.remote.control) |
 | 212 | [**Uptodown App Store**](PATCHES.md#uptodown-app-store-comuptodown) | 1 | `7.37` | [`com.uptodown`](https://play.google.com/store/apps/details?id=com.uptodown) |
 | 213 | [**USB Hotspot**](PATCHES.md#usb-hotspot-khaprogusbhotspot) | 1 | `1.7` | [`kha.prog.usbhotspot`](https://play.google.com/store/apps/details?id=kha.prog.usbhotspot) |

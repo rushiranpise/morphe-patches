@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/rushiranpise/morphe-patches/compare/v1.23.0...v1.23.1) (2026-10-28)
+
+### 🐛 Bug Fixes
+
+* **batteryguru:** support 2.5.0.9 ([3e2f1b7](https://github.com/rushiranpise/morphe-patches/commit/3e2f1b79993124503586ad1b51321b64071863f7))
+* **batterypods:** support 8.32 and suppress ads ([4a10a24](https://github.com/rushiranpise/morphe-patches/commit/4a10a24c39b4088bec36767146841c34eee4d0a9))
+
 ## [1.23.1-dev.1](https://github.com/rushiranpise/morphe-patches/compare/v1.23.0...v1.23.1-dev.1) (2026-10-25)
 
 ### 🐛 Bug Fixes
