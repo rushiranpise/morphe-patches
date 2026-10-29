@@ -13,7 +13,7 @@ import java.security.MessageDigest
  * Version    : ? (versionCode=?)
  * Bundle SHA : 1603f2ef06af7b8c19b69be20918c23ec209244c
  *
- * 16 patch sites:
+ * 17 patch sites:
  *    1. isSubscriber selector
  *    2. isProSubscriber selector
  *    3. subStatus selector
@@ -30,6 +30,7 @@ import java.security.MessageDigest
  *   14. showPaywallScreen selector
  *   15. ForceUpdateScreen no-op
  *   16. presentSuperwall bypass
+ *   17. force update gate (remote FORCE_UPDATE flag)
  *
  * HBC v96 opcodes: 0x5C=Ret  0x73=LoadConstString  0x76=LoadConstUndefined(nop)
  *                          0x78=LoadConstTrue  0x79=LoadConstFalse
@@ -144,6 +145,15 @@ val boldVoiceUnlockPremiumPatch = rawResourcePatch(
             "presentSuperwall bypass",
             hex("92 12 05 29 02 00 2E 03"),
             hex("8E 12 76 00 76 00 76 00")
+        )
+
+        // RootContainer: showForceUpdate = isRelease && FORCE_UPDATE.on && semver.gte(FORCE_UPDATE.value, appVersion).
+        // Force the isRelease read to false so the remote FORCE_UPDATE flag can never route to the
+        // (blanked) ForceUpdateScreen, which otherwise leaves a black screen.
+        bytes.replaceUnique(
+            "force update gate",
+            hex("37 02 02 25 A6 4F 92 09 02 37 02 10 1A 39 4D"),
+            hex("76 02 76 02 79 02 92 09 02 37 02 10 1A 39 4D")
         )
         bundle.writeBytes(bytes.withUpdatedSha1())
     }
