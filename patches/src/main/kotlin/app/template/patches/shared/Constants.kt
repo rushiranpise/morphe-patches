@@ -840,7 +840,7 @@ val MACRODROID_COMPATIBILITY = Compatibility(
         packageName = "com.arlosoft.macrodroid",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x2196F3,
-        targets = listOf(AppTarget(version = "5.66.9", versionCode = 896600011))
+        targets = listOf(AppTarget(version = "6.1.5", versionCode = 901000005))
     )
 
 val MALWAREBYTES_COMPATIBILITY = Compatibility(
