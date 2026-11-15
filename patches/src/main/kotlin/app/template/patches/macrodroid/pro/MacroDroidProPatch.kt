@@ -8,25 +8,26 @@ import app.template.patches.shared.signature.spoofSignatureVerificationPatch
 import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
 import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
-// MacroDroid Pro Unlock (com.arlosoft.macrodroid v5.65.9)
+// MacroDroid Pro Unlock (com.arlosoft.macrodroid v5.66.9+)
 //
-// Pro state resolver: ycc.j()Ltcc;
-//   Checks in order:
-//     1. Settings.c3()   → "vcp_count" int  (device-cap pro)   ← patch target
-//     2. Settings.d3()   → "htt_count" int  (legacy serial pro)
-//     3. Settings.m4()   → serial String    (serial-key pro)
-//     4. LiveData<Boolean> from Play Store purchase
-//     5. Settings.I2()   → "utc_check_enabled" (trial/fallback)
+// Pro state resolver: j3d.a()Lb3d; (formerly ycc.j()Ltcc; in v5.65.9)
+//   Checks in order (inlined by R8):
+//     1. "vcp_count" int  (device-cap pro)         ← target branch (returns b3d$c)
+//     2. "htt_count" int  (legacy serial pro)
+//     3. Settings.y0()    (serial-key pro)
+//     4. "pro_play_order_id" / LiveData<Boolean>   (Play Store purchase)
+//     5. "utc_check_enabled"                       (trial/fallback)
 //
-//   Returns tcc$c (PRO) or tcc$b (FREE).
+//   Returns b3d$c (PRO) or b3d$b (FREE).
 //
-// Patch: returnEarly(true) on Settings.c3() — the device-cap gate.
-// This makes ycc.j() immediately return tcc$c (PRO) on the first branch,
-// bypassing Play Store and server validation entirely.
+// Patch: Copies the Pro singleton load (sget-object v0, Lb3d$c;->a:Lb3d$c;)
+// and return-object v0 instruction from the first branch to index 0 of j3d.a().
+// This makes the resolver immediately return PRO without hardcoding obfuscated
+// class names, bypassing Play Store and server validation entirely.
 //
 // Server validation (/v1/checkPro Retrofit API) still runs in background
-// but only updates the locally cached state that c3/d3 read — it does not
-// revoke the app in the same session once we've patched the reader.
+// but only updates the locally cached preferences that the resolver reads —
+// it does not revoke Pro status once the resolver returns early.
 
 @Suppress("unused")
 val macroDroidProPatch = bytecodePatch(
