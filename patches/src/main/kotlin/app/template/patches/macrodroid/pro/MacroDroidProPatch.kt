@@ -1,11 +1,12 @@
 package app.template.patches.macrodroid.pro
 
 import app.morphe.patcher.patch.bytecodePatch
-import app.morphe.patcher.util.findFreeRegister
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.template.patches.shared.Constants.MACRODROID_COMPATIBILITY
 import app.template.patches.shared.installer.spoofInstallSourcePatch
 import app.template.patches.shared.signature.spoofSignatureVerificationPatch
+import com.android.tools.smali.dexlib2.iface.instruction.ReferenceInstruction
+import com.android.tools.smali.dexlib2.iface.reference.FieldReference
 
 // MacroDroid Pro Unlock (com.arlosoft.macrodroid v5.65.9)
 //
@@ -40,8 +41,8 @@ val macroDroidProPatch = bytecodePatch(
     )
 
     execute {
-        val fieldReference = IsProViaDeviceCapFingerprint.instructionMatches.last().fieldReference.toString()
-        val register = IsProViaDeviceCapFingerprint.method.findFreeRegister(0)
-        IsProViaDeviceCapFingerprint.method.addInstructions(0, "sget-object v$register, $fieldReference\nreturn-object v$register")
+        val fieldReference = (IsProViaDeviceCapFingerprint.instructionMatches.last().instruction as ReferenceInstruction)
+            .reference as FieldReference
+        IsProViaDeviceCapFingerprint.method.addInstructions(0, "sget-object v0, $fieldReference\nreturn-object v0")
     }
 }
