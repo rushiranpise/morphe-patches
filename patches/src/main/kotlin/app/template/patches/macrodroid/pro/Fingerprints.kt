@@ -5,11 +5,11 @@ import app.morphe.patcher.methodCall
 import app.morphe.patcher.string
 import com.android.tools.smali.dexlib2.AccessFlags
 
-// Settings.c3(Context)Z — the "vcp_count" device-cap pro check.
+// Pro state resolver (e.g., defpackage.j3d.a()Lb3d; in v5.66.9) — inlined "vcp_count" device-cap pro check.
 object IsProViaDeviceCapFingerprint : Fingerprint(
-    returnType = "Z",
-    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
-    parameters = listOf("Landroid/content/Context;"),
+    returnType = "L",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
+    parameters = listOf(),
     filters = listOf(
         methodCall(
             definingClass = "Landroid/preference/PreferenceManager;",
