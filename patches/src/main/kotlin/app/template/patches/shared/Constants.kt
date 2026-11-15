@@ -23,7 +23,7 @@ val AAENABLER_COMPATIBILITY = Compatibility(
         apkFileType = ApkFileType.APK,
         appIconColor = 0x1A73E8,
         targets = listOf(
-            AppTarget(version = "v1.0.14", versionCode = 14)
+            AppTarget(version = "v1.0.16", versionCode = 16)
         )
     )
 
@@ -80,7 +80,7 @@ val AIDA64_COMPATIBILITY = Compatibility(
         packageName = "com.finalwire.aida64",
         appIconColor = 0x1565C0,
         apkFileType = ApkFileType.APKM,
-        targets = listOf(AppTarget(version = "2.22", versionCode = 222))
+        targets = listOf(AppTarget(version = "2.26", versionCode = 226))
     )
 
 val AISCORE_COMPATIBILITY = Compatibility(
@@ -112,7 +112,7 @@ val AMAZON_SHOPPING_COMPATIBILITY = Compatibility(
         packageName = "com.amazon.mShop.android.shopping",
         appIconColor = 0xFF9900,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "32.19.0.100", versionCode = 1243250306))
+        targets = listOf(AppTarget(version = "32.20.2.100", versionCode = 1243262206))
     )
 
 val AMOLEDPIX_COMPATIBILITY = Compatibility(
@@ -152,7 +152,7 @@ val ANIME_DEPTH_WALLPAPERS_COMPATIBILITY = Compatibility(
         packageName = "com.jndapp.anime.depth.live.wallpaper",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x6A1B9A,
-        targets = listOf(AppTarget(version = "1.1.2", versionCode = 6))
+        targets = listOf(AppTarget(version = "1.2.1", versionCode = 7))
     )
 
 val APKMIRROR_INSTALLER_COMPATIBILITY = Compatibility(
@@ -195,7 +195,7 @@ val AUTOMATE_COMPATIBILITY = Compatibility(
         packageName = "com.llamalab.automate",
         apkFileType = ApkFileType.APK,
         appIconColor = 0xFF6600,
-        targets = listOf(AppTarget(version = "1.53.2", versionCode = 266))
+        targets = listOf(AppTarget(version = "1.54.0-play", versionCode = 267))
     )
 
 val AVIATE_COMPATIBILITY = Compatibility(
@@ -219,7 +219,7 @@ val BATTERYGURU_COMMUNITY_COMPATIBILITY = Compatibility(
         packageName = "com.paget96.batteryguru",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1B7080,
-        targets = listOf(AppTarget(version = "2.5.0.9", versionCode = 741))
+        targets = listOf(AppTarget(version = "2.5.1.1", versionCode = 746))
     )
 
 val BATTERYGURU_COMPATIBILITY = Compatibility(
@@ -259,7 +259,7 @@ val BLOCKERHERO_COMPATIBILITY = Compatibility(
         packageName = "com.blockerhero",
         appIconColor = 0xFF5252,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "1.5.0", versionCode = 190))
+        targets = listOf(AppTarget(version = "1.6.0", versionCode = 192))
     )
 
 val BLOCKING_SITES_COMPATIBILITY = Compatibility(
@@ -363,7 +363,7 @@ val CALORY_COMPATIBILITY = Compatibility(
         packageName = "com.funnmedia.calory",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF6B35,
-        targets = listOf(AppTarget(version = "3.9", versionCode = 217))
+        targets = listOf(AppTarget(version = "3.9.6", versionCode = 219))
     )
 
 val CAMSCANNER_COMPATIBILITY = Compatibility(
@@ -442,7 +442,7 @@ val CITYMAPPER_COMPATIBILITY = Compatibility(
         packageName = "com.citymapper.app.release",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0x00A862,
-        targets = listOf(AppTarget(version = "11.60", versionCode = 1160110))
+        targets = listOf(AppTarget(version = "11.61.1", versionCode = 1161080))
     )
 
 val CLUE_COMPATIBILITY = Compatibility(
@@ -450,7 +450,7 @@ val CLUE_COMPATIBILITY = Compatibility(
         packageName = "com.clue.android",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xE91E63,
-        targets = listOf(AppTarget(version = "275.0", versionCode = 3195))
+        targets = listOf(AppTarget(version = "278.0", versionCode = 3198))
     )
 
 val COLORNOTE_COMPATIBILITY = Compatibility(
@@ -482,7 +482,7 @@ val CRIMERADAR_COMPATIBILITY = Compatibility(
         packageName = "com.newsbreak.crimeradar",
         appIconColor = 0xE53935,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "26.43.0", versionCode = 26430005))
+        targets = listOf(AppTarget(version = "26.46.0", versionCode = 26460001))
     )
 
 val CUBESOLVER_COMPATIBILITY = Compatibility(
@@ -633,7 +633,7 @@ val GOOGLE_PHOTOS_COMPATIBILITY = Compatibility(
         packageName = "com.google.android.apps.photos",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x4285F4,
-        targets = listOf(AppTarget(version = "7.98.0.1007591100", versionCode = 52591199))
+        targets = listOf(AppTarget(version = "8.1.0.1020990585", versionCode = 52683105))
     )
 
 val GREENIFY_COMPATIBILITY = Compatibility(
@@ -672,7 +672,7 @@ val HTTPMOCK_COMPATIBILITY = Compatibility(
         packageName = "com.anetcapture.mock",
         appIconColor = 0x2196F3,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "2.5.2-ad_mob", versionCode = 170))
+        targets = listOf(AppTarget(version = "3.0.4-ad_mob", versionCode = 179))
     )
 
 val HYDROCOACH_COMPATIBILITY = Compatibility(
@@ -696,7 +696,7 @@ val INMIGREAT_COMPATIBILITY = Compatibility(
         packageName = "com.changayaf.inmigreat",
         appIconColor = 0x6344CC,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "2.3.97", versionCode = 790))
+        targets = listOf(AppTarget(version = "2.4.12", versionCode = 800))
     )
 
 val INSCODE_AUTOCLICKER_COMPATIBILITY = Compatibility(
@@ -720,7 +720,7 @@ val INURE_GITHUB_COMPATIBILITY = Compatibility(
         packageName = "app.simple.inure",
         apkFileType = ApkFileType.APK,
         appIconColor = 0x6200EE,
-        targets = listOf(AppTarget(version = "build107.3.0", versionCode = 10730))
+        targets = listOf(AppTarget(version = "build107.3.1", versionCode = 10731))
     )
 
 val JEFIT_COMPATIBILITY = Compatibility(
@@ -832,7 +832,7 @@ val LIVESCORE_COMPATIBILITY = Compatibility(
         packageName = "com.livescore",
         appIconColor = 0xE30613,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "10.3.2", versionCode = 2230))
+        targets = listOf(AppTarget(version = "10.4.1", versionCode = 2260))
     )
 
 val MACRODROID_COMPATIBILITY = Compatibility(
@@ -858,7 +858,7 @@ val MANGA_PLUS_COMPATIBILITY = Compatibility(
         packageName = "jp.co.shueisha.mangaplus",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xE53935,
-        targets = listOf(AppTarget(version = "2.7.0", versionCode = 265))
+        targets = listOf(AppTarget(version = "2.7.1", versionCode = 268))
     )
 
 val MAPY_COMPATIBILITY = Compatibility(
@@ -1019,7 +1019,7 @@ val NETMONSTER_COMPATIBILITY = Compatibility(
         packageName = "cz.mroczis.netmonster",
         appIconColor = 0x1565C0,
         apkFileType = ApkFileType.APKM,
-        targets = listOf(AppTarget(version = "5.0.2", versionCode = 282))
+        targets = listOf(AppTarget(version = "5.3.1", versionCode = 286))
     )
 
 val NETWORKGURU_COMPATIBILITY = Compatibility(
@@ -1033,9 +1033,9 @@ val NETWORKGURU_COMPATIBILITY = Compatibility(
 val NEWSBREAK_COMPATIBILITY = Compatibility(
         name = "NewsBreak",
         packageName = "com.particlenews.newsbreak",
-        apkFileType = ApkFileType.XAPK,
+        apkFileType = ApkFileType.APKM,
         appIconColor = 0xE31837,
-        targets = listOf(AppTarget(version = "26.43.1", versionCode = 26430103))
+        targets = listOf(AppTarget(version = "26.46.0", versionCode = 26460028))
     )
 
 val NEWSBREAKLITE_COMPATIBILITY = Compatibility(
@@ -1075,7 +1075,7 @@ val NZB360_COMPATIBILITY = Compatibility(
         packageName = "com.kevinforeman.nzb360",
         appIconColor = 0x1565C0,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "25.2.2", versionCode = 535))
+        targets = listOf(AppTarget(version = "25.3", versionCode = 537))
     )
 
 val OBD_ANDROID_COMPATIBILITY = Compatibility(
@@ -1107,7 +1107,7 @@ val OPERA_NEWS_COMPATIBILITY = Compatibility(
         packageName = "com.opera.app.news",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0xFF1B2A,
-        targets = listOf(AppTarget(version = "14.4.2254.84848", versionCode = 144084848))
+        targets = listOf(AppTarget(version = "14.5.2254.85179", versionCode = 145085179))
     )
 
 val OXYGENUPDATER_COMPATIBILITY = Compatibility(
@@ -1139,7 +1139,7 @@ val PARK4NIGHT_COMPATIBILITY = Compatibility(
         packageName = "fr.tramb.park4night",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x4CAF50,
-        targets = listOf(AppTarget(version = "7.1.62", versionCode = 378))
+        targets = listOf(AppTarget(version = "7.1.64", versionCode = 380))
     )
 
 val PC_REMOTE_COMPATIBILITY = Compatibility(
@@ -1155,7 +1155,7 @@ val PHOTOEDITOR_COMPATIBILITY = Compatibility(
         packageName = "com.iudesk.android.photo.editor",
         appIconColor = 0xFF6B9D,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "14.2", versionCode = 2026101200))
+        targets = listOf(AppTarget(version = "14.3.1", versionCode = 2026110600))
     )
 
 val PIALYTIC_COMPATIBILITY = Compatibility(
@@ -1391,7 +1391,7 @@ val SERVER_AUDITOR_COMPATIBILITY = Compatibility(
         packageName = "com.server.auditor.ssh.client",
         apkFileType = ApkFileType.XAPK,
         appIconColor = 0x1A73E8,
-        targets = listOf(AppTarget(version = "7.11.2", versionCode = 988))
+        targets = listOf(AppTarget(version = "8.0.1", versionCode = 1008))
     )
 
 val SHAREIT_COMPATIBILITY = Compatibility(
@@ -1407,7 +1407,7 @@ val SHEXA_COMPATIBILITY = Compatibility(
         packageName = "com.shexa.permissionmanager",
         appIconColor = 0x1565C0,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "3.4.6.2", versionCode = 128))
+        targets = listOf(AppTarget(version = "3.4.8", versionCode = 132))
     )
 
 val SLOPES_COMPATIBILITY = Compatibility(
@@ -1423,15 +1423,15 @@ val SNIPD_COMPATIBILITY = Compatibility(
         packageName = "ai.topicfinder.podcastdiscovery",
         appIconColor = 0x1CC29F,
         apkFileType = ApkFileType.XAPK,
-        targets = listOf(AppTarget(version = "4.3.11", versionCode = 4311))
+        targets = listOf(AppTarget(version = "4.3.20", versionCode = 4320))
     )
 
 val SNOWFORECAST_COMPATIBILITY = Compatibility(
         name = "Snow-Forecast.com",
         packageName = "com.snow_forecast.snowforecast",
         appIconColor = 0xCA0013,
-        apkFileType = ApkFileType.APKS,
-        targets = listOf(AppTarget(version = "8.0.8", versionCode = 2145))
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(AppTarget(version = "8.0.10", versionCode = 2164))
     )
 
 val SOCIALLITE_COMPATIBILITY = Compatibility(
@@ -1598,7 +1598,7 @@ val TOOMICS_COMPATIBILITY = Compatibility(
         packageName = "com.toomics.global.google",
         appIconColor = 0xE53935,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "1.6.9", versionCode = 109))
+        targets = listOf(AppTarget(version = "1.7.0", versionCode = 110))
     )
 
 val TOPWALLPAPERS_COMPATIBILITY = Compatibility(
@@ -1750,7 +1750,7 @@ val WARP_COMPATIBILITY = Compatibility(
         packageName = "com.cloudflare.onedotonedotonedotone",
         apkFileType = ApkFileType.APKM,
         appIconColor = 0xF48120,
-        targets = listOf(AppTarget(version = "6.38.11", versionCode = 5703))
+        targets = listOf(AppTarget(version = "6.38.12", versionCode = 5722))
     )
 
 val WAVVE_BOATING_COMPATIBILITY = Compatibility(
@@ -1782,7 +1782,7 @@ val WINDSCRIBE_COMPATIBILITY = Compatibility(
         packageName = "com.windscribe.vpn",
         appIconColor = 0x00AEEF,
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "4.3.2360", versionCode = 2360))
+        targets = listOf(AppTarget(version = "4.4.2412", versionCode = 2412))
     )
 
 val WINDY_COMPATIBILITY = Compatibility(
