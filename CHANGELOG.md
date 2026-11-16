@@ -1291,7 +1291,6 @@
 * add Psiphon Pro ([777e56b](https://github.com/rushiranpise/morphe-patches/commit/777e56b53ac27b962269ff4d02da732a13516685))
 * add sai ([d0d47e7](https://github.com/rushiranpise/morphe-patches/commit/d0d47e743e4177cf8711ba2401cda70618046c7d))
 * add shareit premium patches ([a78dbd6](https://github.com/rushiranpise/morphe-patches/commit/a78dbd6cf28952ae9beacf07a505f65f862747ba))
-* add Social GameBox ([733cf20](https://github.com/rushiranpise/morphe-patches/commit/733cf20a9e9086c211a73ffeb5faa3523bce9dd5))
 * add Speedtest ([d26b4b9](https://github.com/rushiranpise/morphe-patches/commit/d26b4b97ea15dd1cfae4333b6c4225f6407d1562))
 * add tasker unlock pro patch ([4805906](https://github.com/rushiranpise/morphe-patches/commit/480590645d7929c488ca16c4f5949fa9b31d73fa))
 * add TeraBox ([740303d](https://github.com/rushiranpise/morphe-patches/commit/740303dcab889f18c98ae725338964fbb4fb8a77))
@@ -1317,7 +1316,6 @@
 * add Permission Pilot ([bbf3553](https://github.com/rushiranpise/morphe-patches/commit/bbf355370982d0c30170685161811ff6c1c80341))
 * add proton vpn ([6589c89](https://github.com/rushiranpise/morphe-patches/commit/6589c89c6264038ef25b13f8406aa0d9685663f9))
 * add Psiphon Pro ([777e56b](https://github.com/rushiranpise/morphe-patches/commit/777e56b53ac27b962269ff4d02da732a13516685))
-* add Social GameBox ([733cf20](https://github.com/rushiranpise/morphe-patches/commit/733cf20a9e9086c211a73ffeb5faa3523bce9dd5))
 * add Speedtest ([d26b4b9](https://github.com/rushiranpise/morphe-patches/commit/d26b4b97ea15dd1cfae4333b6c4225f6407d1562))
 
 ## [1.6.0-dev.13](https://github.com/rushiranpise/morphe-patches/compare/v1.6.0-dev.12...v1.6.0-dev.13) (2026-06-16)
