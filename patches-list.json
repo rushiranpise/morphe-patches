@@ -6809,37 +6809,6 @@
     },
     {
       "name": "Unlock Premium",
-      "description": "Unlocks Social Gamebox premium features.",
-      "default": true,
-      "dependencies": [],
-      "compatiblePackages": [
-        {
-          "packageName": "com.app.social_gamebox",
-          "name": "Social Gamebox",
-          "description": null,
-          "apkFileType": "XAPK",
-          "appIconColor": "#7C4DFF",
-          "signatures": null,
-          "targets": [
-            {
-              "version": "1.4.3",
-              "versionCodes": {
-                "ARM64_V8A": 1027,
-                "ARMEABI_V7A": 1027,
-                "X86_64": 1027,
-                "X86": 1027
-              },
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Unlock Premium",
       "description": "Bypasses PairIP DRM and unlocks all SocialLite Pro features.",
       "default": true,
       "dependencies": [
