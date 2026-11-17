@@ -22,6 +22,6 @@ object IsProViaDeviceCapFingerprint : Fingerprint(
             definingClass = "Landroid/content/SharedPreferences;",
             name = "getInt",
         ),
+        opcode(Opcode.SGET_OBJECT),
     ),
-    opcode(Opcode.SGET_OBJECT),
 )
